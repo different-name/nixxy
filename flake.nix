@@ -93,6 +93,10 @@
         specialArgs = {inherit inputs outputs;};
         modules = [ ./hosts/lithium ];
       };
+      "sodium" = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [ ./hosts/sodium ];
+      };
     };
   };
 }

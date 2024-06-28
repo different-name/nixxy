@@ -22,6 +22,7 @@ in {
 
       monitor = [
         "desc:Valve Corporation ANX7530 U 0x00000001, preferred, 0x0, 1, transform, 3"
+        "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 2"
         ",preferred,auto,1"
       ];
 

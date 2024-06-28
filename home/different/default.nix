@@ -26,7 +26,7 @@
     networkmanagerapplet
     imagemagick
     ani-cli
-    webcord-vencord
+    vesktop
   ];
 
   home = {

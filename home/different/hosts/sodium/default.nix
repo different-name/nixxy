@@ -1,5 +1,5 @@
 { inputs, ... }: {
   imports = [
-    inputs.disko.nixosModules.default
+    ../../. # home/different
   ];
 }

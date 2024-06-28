@@ -10,11 +10,9 @@
       ".ssh"
       ".local/share/keyrings"
       ".local/share/direnv"
-      # ".local/share/Steam" # Steam cannot cope with this folder being bind mounted or symlinked :(
       ".cache"
-      #".steam" # Steam cannot cope with this folder being bind mounted or symlinked :(
       ".librewolf/xg1lny11.default/storage"
-      ".config/WebCord"
+      ".config/vesktop"
       ".config/VSCodium/CachedDate"
       ".config/VSCodium/Cache"
       ".config/VSCodium/Backups"
