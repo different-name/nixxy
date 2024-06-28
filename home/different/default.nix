@@ -6,11 +6,11 @@
     ./persistence.nix
 
     ./programs/hyprland.nix
-    ./programs/librewolf.nix
     ./programs/codium.nix
     ./programs/catppuccin.nix
     ./programs/waybar.nix
     ./programs/rofi.nix
+    ./programs/gtk.nix
 
     ./terminal/kitty.nix
     ./terminal/fd.nix
@@ -22,11 +22,12 @@
 
   home.packages = with pkgs; [
     libnotify
-    swww
     networkmanagerapplet
     imagemagick
     ani-cli
     vesktop
+    brave
+    pavucontrol
   ];
 
   home = {

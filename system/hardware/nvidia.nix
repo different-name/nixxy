@@ -20,7 +20,5 @@
       settingsSha256 = "sha256-PMh5efbSEq7iqEMBr2+VGQYkBG73TGUh6FuDHZhmwHk="; 
       persistencedSha256 = lib.fakeSha256;
     };
-
-    prime.nvidiaBusId = "PCI:5:0:0"; 
   };
 }

@@ -10,8 +10,10 @@
 
     ../../system/hardware/nvidia.nix
 
+    ../../system/programs/goxlr-utility.nix
+
     inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-nvidia-sync
+    inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
     inputs.hardware.nixosModules.common-pc-ssd
   ];
 

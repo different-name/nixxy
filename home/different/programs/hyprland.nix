@@ -4,6 +4,7 @@
   ...
 }: let
   hyprland = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  scaleFactor = "1.666667";
 in {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -13,21 +14,26 @@ in {
 
     settings = {
       exec-once = [
-        "swww init"
-        #"sww img ~/Wallpapers/blah.png"
         "nm-applet --indicator"
         "waybar"
         "dunst"
       ];
 
+      env = [
+        "GDK_SCALE,${scaleFactor}"
+        "XCURSOR_SIZE,16"
+      ];
+
       monitor = [
         "desc:Valve Corporation ANX7530 U 0x00000001, preferred, 0x0, 1, transform, 3"
-        "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 2"
+        "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, ${scaleFactor}"
         ",preferred,auto,1"
+        "Unknown-1,disable"
       ];
 
       general = {
         resize_on_border = true;
+        gaps_out = 10;
       };
 
       dwindle = {
@@ -50,7 +56,7 @@ in {
         [
           "SUPER, S, exec, rofi -show drun -show-icons"
           "SUPER, Return, exec, kitty"
-          "SUPER, W, exec, librewolf"
+          "SUPER, W, exec, brave"
           "SUPER, E, exec, thunar"
           "CTRL ALT, Delete, exit"
           "ALT, Q, killactive"
@@ -59,22 +65,22 @@ in {
           "SUPER, O, fakefullscreen"
           "SUPER, P, togglesplit"
 
-          (mvfocus "k" "u")
-          (mvfocus "j" "d")
-          (mvfocus "l" "r")
-          (mvfocus "h" "l")
+          (mvfocus "up" "u")
+          (mvfocus "down" "d")
+          (mvfocus "right" "r")
+          (mvfocus "left" "l")
           (ws "left" "e-1")
           (ws "right" "e+1")
           (mvtows "left" "e-1")
           (mvtows "right" "e+1")
-          (resizeactive "k" "0 -20")
-          (resizeactive "j" "0 20")
-          (resizeactive "l" "20 0")
-          (resizeactive "h" "-20 0")
-          (mvactive "k" "0 -20")
-          (mvactive "j" "0 20")
-          (mvactive "l" "20 0")
-          (mvactive "h" "-20 0")
+          (resizeactive "up" "0 -20")
+          (resizeactive "down" "0 20")
+          (resizeactive "right" "20 0")
+          (resizeactive "left" "-20 0")
+          (mvactive "up" "0 -20")
+          (mvactive "down" "0 20")
+          (mvactive "right" "20 0")
+          (mvactive "left" "-20 0")
         ]
         ++ (map (i: ws (toString i) (toString i)) arr)
         ++ (map (i: mvtows (toString i) (toString i)) arr);
@@ -88,6 +94,8 @@ in {
         drop_shadow = "yes";
         shadow_range = 8;
         shadow_render_power = 2;
+
+        rounding = 5;
 
         dim_inactive = false;
 
@@ -114,6 +122,11 @@ in {
           "workspaces, 1, 6, default"
         ];
       };
+
+      # unscale xwayland
+      xwayland.force_zero_scaling = true;
+
+      debug.disable_logs = false;
     };
   };
 }

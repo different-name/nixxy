@@ -30,5 +30,7 @@
       # Skip boot options after 3 seconds
       timeout = 3;
     };
+
+    supportedFilesystems = [ "ntfs" ];
   };
 }

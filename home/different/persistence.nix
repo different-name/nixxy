@@ -11,7 +11,6 @@
       ".local/share/keyrings"
       ".local/share/direnv"
       ".cache"
-      ".librewolf/xg1lny11.default/storage"
       ".config/vesktop"
       ".config/VSCodium/CachedDate"
       ".config/VSCodium/Cache"
@@ -20,6 +19,7 @@
       ".config/VSCodium/DawnCache"
       ".config/VSCodium/GPUCache"
       ".config/VSCodium/User/History"
+      ".config/BraveSoftware/Brave-Browser"
       # {
       #   directory = ".local/share/Steam";
       #   method = "symlink";

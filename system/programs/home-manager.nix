@@ -13,5 +13,7 @@
   systemd.tmpfiles.rules = [
     "d /persist/home/ 1777 root root -"
     "d /persist/home/different 0700 different users -"
+    "d /home/different/.local 0755 different users -"
+    "d /home/different/.local/share 0755 different users -"
   ];
 }

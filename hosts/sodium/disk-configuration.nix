@@ -94,27 +94,29 @@
         # steam needs ~/.steam to be a regular folder or mount
         # this folder cannot be a symlink or bind mount, else
         # steam will crashcomplaining about steamwebhelper
-#        steam = {
-#          type = "zfs_fs";
-#          mountpoint = "/home/different/.steam";
-#          options = {
-#            canmount = "noauto"; # Only allow explicit mounting
-#            mountpoint = "legacy"; # Do not mount under the pool (/zpool/...)
-#          };
-#          postCreateHook = "zfs snapshot rpool/steam@empty";
-#        };
+        steam = {
+          type = "zfs_fs";
+          mountpoint = "/home/different/.steam";
+          options = {
+            canmount = "noauto"; # Only allow explicit mounting
+            mountpoint = "legacy"; # Do not mount under the pool (/zpool/...)
+          };
+          postCreateHook = "zfs snapshot rpool/steam@empty";
+          postMountHook = "chown different:users /home/different/.steam";
+        };
         # steam needs ~/.local/share/Steam to be a regular folder or mount
         # this folder cannot be a symlink or bind mount, else
         #steam will crashcomplaining about steamwebhelper
-#        lssteam = {
-#          type = "zfs_fs";
-#          mountpoint = "/home/different/.local/share/Steam";
-#          options = {
-#            canmount = "noauto"; # Only allow explicit mounting
-#            mountpoint = "legacy"; # Do not mount under the pool (/zpool/...)
-#          };
-#          postCreateHook = "zfs snapshot rpool/lssteam@empty";
-#        };
+        lssteam = {
+          type = "zfs_fs";
+          mountpoint = "/home/different/.local/share/Steam";
+          options = {
+            canmount = "noauto"; # Only allow explicit mounting
+            mountpoint = "legacy"; # Do not mount under the pool (/zpool/...)
+          };
+          postCreateHook = "zfs snapshot rpool/lssteam@empty";
+          postMountHook = "chown different:users /home/different/.local/share/Steam";
+        };
       };
     };
   };
