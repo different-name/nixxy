@@ -25,14 +25,15 @@ in {
         "dunst"
       ];
 
-      env = [
-        "GDK_SCALE,${scaleFactor}"
-        "XCURSOR_SIZE,16"
-      ];
+      # env = [
+      #   "GDK_SCALE,${scaleFactor}"
+      #   "XCURSOR_SIZE,16"
+      # ];
 
       monitor = [
         "desc:Valve Corporation ANX7530 U 0x00000001, preferred, 0x0, 1, transform, 3"
         "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, ${scaleFactor}"
+        "desc:Sharp Corporation 0x14D1, preferred, 0x0, 1.2"
         ",preferred,auto,1"
         "Unknown-1,disable"
       ];
@@ -48,6 +49,10 @@ in {
 
       input = {
         kb_layout = "us";
+        touchpad = {
+          natural_scroll = true;
+          scroll_factor = 0.5;
+        };
       };
 
       bind = let

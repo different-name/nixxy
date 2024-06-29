@@ -4,7 +4,7 @@
     enable = true;
 
     # nh default flake
-    flake = "/home/different/nixos-config";
+    flake = "/home/different/dotfiles";
 
     # weekly garbage collection
     clean = {

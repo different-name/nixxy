@@ -1,4 +1,4 @@
-# nixos-config
+# dotfiles
 
 ## todo
 - terminal icons missing

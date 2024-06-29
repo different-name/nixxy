@@ -1,7 +1,7 @@
 {...}: {
   home.persistence."/persist/home/different" = {
     directories = [
-      "nixos-config"
+      "dotfiles"
       "Downloads"
       "Music"
       "Pictures"

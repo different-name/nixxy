@@ -8,8 +8,11 @@
       roboto
       (google-fonts.override {fonts = ["Inter"];})
       
+      # monospace fonts
+      jetbrains-mono
+
       # nerdfonts
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly" "JetBrainsMono"];})
+      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
 
     # apparently causes more issues than it fixes
@@ -23,7 +26,7 @@
       addAll {
         serif = ["Noto Serif"];
         sansSerif = ["Inter"];
-        monospace = ["JetBrainsMono Nerd Font"];
+        monospace = ["JetBrains Mono"];
         emoji = [];
       };
   };

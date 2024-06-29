@@ -16,13 +16,13 @@
   ];
 
   hardware.nvidia.prime = {
-    nvidiaBusId = "";
-    intelBusId = "";
+    nvidiaBusId = "PCI:1:0:0";
+    intelBusId = "PCI:0:2:0";
   };
 
   networking = {
     hostName = "potassium";
-    hostId = "9471422d";
+    hostId = "ea3a24c5";
   };
 
   home-manager = {
