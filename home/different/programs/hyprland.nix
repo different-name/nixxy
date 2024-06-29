@@ -6,6 +6,12 @@
   hyprland = inputs.hyprland.packages."${pkgs.system}".hyprland;
   scaleFactor = "1.666667";
 in {
+  home.packages = [
+    pkgs.libnotify
+    pkgs.networkmanagerapplet
+    inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = hyprland;
@@ -52,6 +58,7 @@ in {
         mvactive = binding "SUPER ALT" "moveactive";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
         arr = [1 2 3 4 5 6 7];
+        runOnce = program: "pgrep ${program} || ${program}";
       in
         [
           "SUPER, S, exec, rofi -show drun -show-icons"
@@ -64,6 +71,7 @@ in {
           "SUPER, G, fullscreen"
           "SUPER, O, fakefullscreen"
           "SUPER, P, togglesplit"
+          "SUPER_SHIFT, S, exec, ${runOnce "grimblast"} --notify copysave area"
 
           (mvfocus "up" "u")
           (mvfocus "down" "d")

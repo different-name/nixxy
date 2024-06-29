@@ -7,11 +7,11 @@
 - wallpaper
 - workspaces
 - waybar
-- secrets
+- secrets & keyring
 - locker
-- screenshots
 - color picker
 - ente photos
 - proton drive
-- vrcx
+- package vrcx
 - vscodium persistence
+- review fufexan's bindings and hyprland config

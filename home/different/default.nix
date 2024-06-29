@@ -21,8 +21,6 @@
   ];
 
   home.packages = with pkgs; [
-    libnotify
-    networkmanagerapplet
     imagemagick
     ani-cli
     vesktop

@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  time.timeZone = "Japan/Tokyo";
+  time.timeZone = "Australia/Brisbane";
   i18n.defaultLocale = "en_AU.UTF-8";
 
   console.useXkbConfig = true; # Use xkb layout for console

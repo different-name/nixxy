@@ -1,0 +1,5 @@
+{ inputs, ... }: {
+  imports = [
+    ../../. # home/different
+  ];
+}
