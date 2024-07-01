@@ -19,6 +19,7 @@
     ./programs/hyprland.nix
     ./programs/steam.nix
     ./programs/thunar.nix
+    ./programs/seahorse.nix
 
     ./services
     ./services/pipewire.nix
