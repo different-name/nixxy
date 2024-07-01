@@ -9,7 +9,7 @@
     ];
     userSettings = {
       "workbench.colorTheme" = "Catppuccin Mocha";
-      "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace', monospace";
+      "editor.fontFamily" = "'JetBrains Mono', 'monospace', monospace";
       "files.enableTrash" = false;
       "workbench.startupEditor" = "none";
       "window.titleBarStyle" = "custom";

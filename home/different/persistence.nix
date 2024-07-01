@@ -19,7 +19,12 @@
       ".config/VSCodium/DawnCache"
       ".config/VSCodium/GPUCache"
       ".config/VSCodium/User/History"
+      ".config/VSCodium/User/globalStorage"
+      ".config/VSCodium/User/workspaceStorage"
+      ".config/VSCodium/logs"
       ".config/BraveSoftware/Brave-Browser"
+      ".config/Slack"
+      ".local/share/PrismLauncher"
       # {
       #   directory = ".local/share/Steam";
       #   method = "symlink";

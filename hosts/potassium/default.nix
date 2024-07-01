@@ -9,6 +9,7 @@
     ../../system
 
     ../../system/hardware/nvidia.nix
+    ../../system/hardware/backlight.nix
 
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-gpu-nvidia

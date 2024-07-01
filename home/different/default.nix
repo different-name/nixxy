@@ -5,12 +5,13 @@
     ../. # home
     ./persistence.nix
 
-    ./programs/hyprland.nix
-    ./programs/codium.nix
+    ./programs/wayland/hyprland
+    ./programs/wayland/waybar.nix
+    ./programs/wayland/rofi.nix
+    ./programs/wayland/hyprlock.nix
     ./programs/catppuccin.nix
-    ./programs/waybar.nix
-    ./programs/rofi.nix
     ./programs/gtk.nix
+    ./programs/codium.nix
 
     ./terminal/kitty.nix
     ./terminal/fd.nix
@@ -18,6 +19,7 @@
 
     ./services/network-manager-applet.nix
     ./services/mako.nix
+    ./services/hyprpaper.nix
   ];
 
   home.packages = with pkgs; [
@@ -26,6 +28,16 @@
     vesktop
     brave
     pavucontrol
+    slack
+    gnome.gnome-calculator
+    libnotify
+    networkmanagerapplet
+    playerctl
+    (prismlauncher.override {
+      jdks = [
+        zulu17
+      ];
+    })
   ];
 
   home = {

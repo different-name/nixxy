@@ -10,7 +10,6 @@
         Defaults lecture=never # don't give the sudo lecture
       '';
     };
-    
 
     polkit = {
       enable = true;

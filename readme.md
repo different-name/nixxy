@@ -15,3 +15,5 @@
 - package vrcx
 - vscodium persistence
 - review fufexan's bindings and hyprland config
+- per host scale
+- hyprlock

@@ -4,9 +4,10 @@
     ./nix
     ./network
     
-    ./hardware/opengl.nix
+    ./hardware/graphics.nix
     ./hardware/fwupd.nix
     ./hardware/fstrim.nix
+    ./hardware/bluetooth.nix
 
     ./programs
     ./programs/fonts.nix
