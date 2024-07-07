@@ -36,6 +36,7 @@
     (prismlauncher.override {
       jdks = [
         zulu17
+        zulu21
       ];
     })
   ];

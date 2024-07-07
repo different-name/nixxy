@@ -1,6 +1,6 @@
 { pkgs, ...}: {
   users.users.different = {
-    initialPassword = "nixos";
+    password = "nixos";
     isNormalUser = true;
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = [

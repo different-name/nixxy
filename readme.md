@@ -2,12 +2,11 @@
 
 ## todo
 - terminal icons missing
-- goxlr
+- goxlr (probably just needed to reboot)
 - fd config
-- wallpaper
-- workspaces
+- workspace previews?
 - waybar
-- secrets & keyring
+- secrets
 - locker
 - color picker
 - ente photos
@@ -17,3 +16,7 @@
 - review fufexan's bindings and hyprland config
 - per host scale
 - hyprlock
+- readme files
+- persistent configs inside relevant config files?
+- persist pipewire
+- formatting hook
