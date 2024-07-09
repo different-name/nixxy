@@ -1,24 +1,8 @@
 # dotfiles
 
-## todo
-- terminal icons missing
-- goxlr (probably just needed to reboot)
-- fd config
-- workspace previews?
-- waybar
-- secrets
-- locker
-- color picker
-- ente photos
-- proton drive
-- package vrcx
-- vscodium persistence
-- review fufexan's bindings and hyprland config
-- per host scale
-- hyprlock
-- readme files
-- persistent configs inside relevant config files?
-- persist pipewire
-- formatting hook
-- use options instead of imports for optional modules & seperate out optional ones from global
-- float filepicker popups
+> [!WARNING]
+> This configuration is a work in progress, and is intended for personal use only
+
+## Acknowledgements
+
+[fufexan](https://github.com/fufexan/dotfiles)

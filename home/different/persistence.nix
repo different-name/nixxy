@@ -16,8 +16,9 @@
       ".config/Slack"
       ".local/share/PrismLauncher"
       ".config/alvr"
-      ".confg/openvr"
+      ".config/openvr"
       ".local/share/goxlr-utility"
+      ".local/state/wireplumber"
     ];
     files = [];
     allowOther = true;

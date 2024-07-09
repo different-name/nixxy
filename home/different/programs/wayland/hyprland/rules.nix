@@ -33,6 +33,9 @@
 
       # gtk popups
       "float, class:^(xdg-desktop-portal-gtk)$"
+
+      # pavucontrol
+      "float, class:^(pavucontrol)$"
     ];
   };
 }
