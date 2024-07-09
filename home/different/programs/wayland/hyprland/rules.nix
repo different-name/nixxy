@@ -30,6 +30,9 @@
       # brave PiP
       "float, title:^(Picture-in-picture)"
       "pin, title:^(Picture-in-picture)"
+
+      # gtk popups
+      "float, class:^(xdg-desktop-portal-gtk)$"
     ];
   };
 }
