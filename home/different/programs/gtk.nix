@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   gtk = {
     enable = true;
 
@@ -8,7 +13,8 @@
       flavor = "mocha";
       accent = "red";
       size = "standard";
-      tweaks = [ "normal" ];
+      tweaks = ["normal"];
+      icon.enable = true;
     };
   };
 }

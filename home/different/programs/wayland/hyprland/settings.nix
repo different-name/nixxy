@@ -4,14 +4,15 @@
 
     env = [
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-    #   "GDK_SCALE,${scaleFactor}"
-    #   "XCURSOR_SIZE,16"
+      "GDK_SCALE,1.666667"
+      "XCURSOR_SIZE,16"
     ];
-    
+
     exec-once = [
       "nm-applet --indicator"
       "waybar"
       "dunst"
+      "goxlr_daemon"
     ];
 
     general = {

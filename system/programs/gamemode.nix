@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{inputs, ...}: {
   programs.gamemode = {
     enable = true;
     settings = {

@@ -3,9 +3,8 @@
   wine,
   lib,
   fetchzip,
-  makeWrapper
-}: 
-let
+  makeWrapper,
+}: let
   pname = "vrcx";
   version = "2024.06.12";
   version-short = builtins.replaceStrings ["."] [""] version;
@@ -15,7 +14,6 @@ let
     hash = "sha256-UX6W1PZRAKEYBdN8IcJ4+MZW7yj4J/b1qONt7wSrtZY=";
     stripRoot = false;
   };
-
   # meta = {
   #   description = "Friendship management tool for VRChat";
   #   homepage = "https://github.com/vrcx-team/VRCX";
@@ -26,24 +24,25 @@ let
   #   mainProgram = "vrcx";
   #   platforms = [ "x86_64-linux" ];
   # };
-in stdenv.mkDerivation {
-  inherit pname version src;
+in
+  stdenv.mkDerivation {
+    inherit pname version src;
 
-  nativeBuildInputs = [
-    makeWrapper
-  ];
+    nativeBuildInputs = [
+      makeWrapper
+    ];
 
-  builtInputs = [
-    wine
-  ];
+    builtInputs = [
+      wine
+    ];
 
-  postUnpack = ''
-    mkdir -p $out/vrcx
-    cp -r $src/. $out/vrcx
-    chmod +x $out/vrcx/VRCX.exe
-  '';
+    postUnpack = ''
+      mkdir -p $out/vrcx
+      cp -r $src/. $out/vrcx
+      chmod +x $out/vrcx/VRCX.exe
+    '';
 
-  installPhase = ''
-    wrapProgram $out/vrcx/VRCX.exe --run "${wine}/bin/wine PROGRAM"
-  '';
-}
+    installPhase = ''
+      wrapProgram $out/vrcx/VRCX.exe --run "${wine}/bin/wine PROGRAM"
+    '';
+  }

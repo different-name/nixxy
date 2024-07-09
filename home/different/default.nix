@@ -1,4 +1,8 @@
-{inputs, pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.catppuccin.homeManagerModules.catppuccin
 
@@ -33,6 +37,7 @@
     libnotify
     networkmanagerapplet
     playerctl
+    mpv
     (prismlauncher.override {
       jdks = [
         zulu17

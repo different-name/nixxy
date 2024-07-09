@@ -1,4 +1,8 @@
-{ config, lib, ... }: {
+{
+  config,
+  lib,
+  ...
+}: {
   # load nvidia driver for xorg and wayland
   services.xserver.videoDrivers = ["nvidia"];
 
@@ -17,7 +21,7 @@
       sha256_64bit = "sha256-nVOubb7zKulXhux9AruUTVBQwccFFuYGWrU1ZiakRAI=";
       sha256_aarch64 = lib.fakeSha256;
       openSha256 = lib.fakeSha256;
-      settingsSha256 = "sha256-PMh5efbSEq7iqEMBr2+VGQYkBG73TGUh6FuDHZhmwHk="; 
+      settingsSha256 = "sha256-PMh5efbSEq7iqEMBr2+VGQYkBG73TGUh6FuDHZhmwHk=";
       persistencedSha256 = lib.fakeSha256;
     };
   };

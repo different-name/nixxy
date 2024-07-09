@@ -10,7 +10,6 @@
       ];
 
       highopacity = [
-        
       ];
 
       blurred = lib.concatLists [

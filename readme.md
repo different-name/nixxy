@@ -20,3 +20,5 @@
 - persistent configs inside relevant config files?
 - persist pipewire
 - formatting hook
+- use options instead of imports for optional modules & seperate out optional ones from global
+- float filepicker popups

@@ -1,4 +1,10 @@
-{ pkgs, lib, inputs, config, ...}: {
+{
+  pkgs,
+  lib,
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     ./nh.nix
     ./nixpkgs.nix
@@ -6,7 +12,7 @@
   ];
 
   # need git for flakes
-  environment.systemPackages = [ pkgs.git ];
+  environment.systemPackages = [pkgs.git];
 
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;

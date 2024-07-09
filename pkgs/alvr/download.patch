@@ -1,0 +1,50 @@
+--- a/alvr/xtask/src/command.rs
++++ b/alvr/xtask/src/command.rs
+@@ -22,27 +22,25 @@ pub fn targz(sh: &Shell, source: &Path) -> Result<(), xshell::Error> {
+ }
+ 
+ pub fn download(sh: &Shell, url: &str, destination: &Path) -> Result<(), xshell::Error> {
+-    cmd!(sh, "curl -L -o {destination} --url {url}").run()
++    let folder_name = url.split('/').last().unwrap()
++        .replace(".tar.bz2", "")
++        .replace(".zip", "")
++        .replace("n6.0", "FFmpeg-n6.0")
++        .replace("n12.1.14.0", "nv-codec-headers-n12.1.14.0");
++    let destination_folder = Path::new("/build/download/").join(folder_name);
++    cmd!(sh, "cp -r {destination_folder} {destination}").run()
+ }
+ 
+ pub fn download_and_extract_zip(url: &str, destination: &Path) -> Result<(), xshell::Error> {
+     let sh = Shell::new().unwrap();
+-    let temp_dir_guard = sh.create_temp_dir()?;
+ 
+-    let zip_file = temp_dir_guard.path().join("temp_download.zip");
+-    download(&sh, url, &zip_file)?;
+-
+-    unzip(&sh, &zip_file, destination)
++    download(&sh, url, &destination)
+ }
+ 
+ pub fn download_and_extract_tar(url: &str, destination: &Path) -> Result<(), xshell::Error> {
+     let sh = Shell::new().unwrap();
+-    let temp_dir_guard = sh.create_temp_dir()?;
+-
+-    let tar_file = temp_dir_guard.path().join("temp_download.tar");
+-    download(&sh, url, &tar_file)?;
+ 
+-    untar(&sh, &tar_file, destination)
++    download(&sh, url, &destination)
+ }
+ 
+ pub fn date_utc_yyyymmdd(sh: &Shell) -> Result<String, xshell::Error> {
+--- a/alvr/xtask/src/dependencies.rs
++++ b/alvr/xtask/src/dependencies.rs
+@@ -135,7 +135,7 @@ pub fn build_x264_linux(deps_path: &Path) {
+     )
+     .unwrap();
+ 
+-    let flags = ["--enable-static", "--disable-cli", "--enable-pic"];
++    let flags = ["--enable-static", "--disable-cli", "--enable-pic", "--disable-asm"];
+ 
+     let install_prefix = format!("--prefix={}", final_path.join("alvr_build").display());
+ 

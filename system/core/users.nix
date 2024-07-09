@@ -1,4 +1,4 @@
-{ pkgs, ...}: {
+{pkgs, ...}: {
   users.users.different = {
     password = "nixos";
     isNormalUser = true;

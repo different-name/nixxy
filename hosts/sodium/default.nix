@@ -1,7 +1,4 @@
-{
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./disk-configuration.nix
@@ -11,6 +8,7 @@
     ../../system/hardware/nvidia.nix
 
     ../../system/programs/goxlr-utility.nix
+    ../../system/programs/alvr.nix
 
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
@@ -23,7 +21,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
     users.different = import ../../home/different/hosts/sodium;
   };
 

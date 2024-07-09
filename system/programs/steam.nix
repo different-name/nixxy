@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # steam will fail on first install, with the error message
   # "Fatal Error: Failed to load steamui.so" relaunching appears
   # to fix the issue and steam will continue where it left off
@@ -6,7 +6,7 @@
     enable = true;
 
     # add proton GE
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    extraCompatPackages = [pkgs.proton-ge-bin];
 
     # fix gamescope inside of steam
     package = pkgs.steam.override {

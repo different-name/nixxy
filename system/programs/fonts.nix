@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   fonts = {
     packages = with pkgs; [
       # sans(serif) fonts
@@ -7,7 +7,7 @@
       noto-fonts-emoji
       roboto
       (google-fonts.override {fonts = ["Inter"];})
-      
+
       # monospace fonts
       jetbrains-mono
 

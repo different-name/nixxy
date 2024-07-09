@@ -97,15 +97,15 @@
     nixosConfigurations = {
       "sodium" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [ ./hosts/sodium ];
+        modules = [./hosts/sodium];
       };
       "lithium" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [ ./hosts/lithium ];
+        modules = [./hosts/lithium];
       };
       "potassium" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [ ./hosts/potassium ];
+        modules = [./hosts/potassium];
       };
     };
   };

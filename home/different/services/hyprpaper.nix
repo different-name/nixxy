@@ -13,8 +13,8 @@ in {
     package = inputs.hyprpaper.packages.${pkgs.system}.default;
 
     settings = {
-      preload = [ "${wallpaperImg}" ];
-      wallpaper = [ ",${wallpaperImg}" ];
+      preload = ["${wallpaperImg}"];
+      wallpaper = [",${wallpaperImg}"];
     };
   };
 }

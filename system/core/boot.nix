@@ -1,4 +1,8 @@
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   boot = {
     initrd = {
       # enable systemd in initial ramdisk
@@ -31,6 +35,6 @@
       timeout = 3;
     };
 
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = ["ntfs"];
   };
 }

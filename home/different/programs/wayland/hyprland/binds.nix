@@ -18,57 +18,59 @@ in {
       "SUPER_ALT, mouse:272, resizewindow"
     ];
 
-    bind = [
-      # compositor commands
-      "$mod SHIFT, E, exec, pkill Hyprland"
-      "$mod, Q, killactive"
-      "$mod, F, fullscreen"
-      "$mod, R, togglesplit,"
-      "$mod, G, togglefloating,"
-      "$mod, P, pseudo"
-      "$mod ALT, ,resizeactive,"
+    bind =
+      [
+        # compositor commands
+        "$mod SHIFT, E, exec, pkill Hyprland"
+        "$mod, Q, killactive"
+        "$mod, F, fullscreen"
+        "$mod, R, togglesplit,"
+        "$mod, G, togglefloating,"
+        "$mod, P, pseudo"
+        "$mod ALT, ,resizeactive,"
+        "$mod, T, pin,"
 
-      # utility
-      ## terminal
-      "$mod, Return, exec, kitty"
-      ## lock screen
-      "$mod, L, exec, ${runOnce "hyprlock"}"
-      ## launcher
-      "$mod, S, exec, rofi -show drun -show-icons"
-      ## browser
-      "$mod, W, exec, brave"
-      ## file explorer
-      "$mod, E, exec, thunar"
-      
-      # move focus
-      "$mod, left, movefocus, l"
-      "$mod, right, movefocus, r"
-      "$mod, up, movefocus, u"
-      "$mod, down, movefocus, d"
+        # utility
+        ## terminal
+        "$mod, Return, exec, kitty"
+        ## lock screen
+        "$mod, L, exec, ${runOnce "hyprlock"}"
+        ## launcher
+        "$mod, S, exec, rofi -show drun -show-icons"
+        ## browser
+        "$mod, W, exec, brave"
+        ## file explorer
+        "$mod, E, exec, thunar"
 
-      # screenshot
-      ## area
-      ", Print, exec, ${runOnce "grimblast"} --notify copysave area"
-      "$mod SHIFT, S, exec, ${runOnce "grimblast"} --notify copysave area"
-      ## current screen
-      "CTRL, Print, exec, ${runOnce "grimblast"} --cursor --copysave output"
-      "$mod SHIFT CTRL, S, exec, ${runOnce "grimblast"} --cursor --copysave output"
+        # move focus
+        "$mod, left, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
 
-      # cycle workspaces
-      "$mod, bracketleft, workspace, m-1"
-      "$mod, bracketright, workspace, m+1"
+        # screenshot
+        ## area
+        ", Print, exec, ${runOnce "grimblast"} --notify copysave area"
+        "$mod SHIFT, S, exec, ${runOnce "grimblast"} --notify copysave area"
+        ## current screen
+        "CTRL, Print, exec, ${runOnce "grimblast"} --cursor --copysave output"
+        "$mod SHIFT CTRL, S, exec, ${runOnce "grimblast"} --cursor --copysave output"
 
-      # cycle monitors
-      "$mod SHIFT, bracketleft, focusmonitor, l"
-      "$mod SHIFT, bracketright, focusmonitor, r"
+        # cycle workspaces
+        "$mod, bracketleft, workspace, m-1"
+        "$mod, bracketright, workspace, m+1"
 
-      # send focused workspace to left/right monitors
-      "$mod SHIFT ALT, bracketleft, movecurrentworkspacetomonitor, l"
-      "$mod SHIFT ALT, bracketright, movecurrentworkspacetomonitor, r"
-    ]
-    # workspace keys
-    ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
-    ++ (map (ws: "$mod SHIFT, ${ws}, movetoworkspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"]);
+        # cycle monitors
+        "$mod SHIFT, bracketleft, focusmonitor, l"
+        "$mod SHIFT, bracketright, focusmonitor, r"
+
+        # send focused workspace to left/right monitors
+        "$mod SHIFT ALT, bracketleft, movecurrentworkspacetomonitor, l"
+        "$mod SHIFT ALT, bracketright, movecurrentworkspacetomonitor, r"
+      ]
+      # workspace keys
+      ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
+      ++ (map (ws: "$mod SHIFT, ${ws}, movetoworkspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"]);
 
     binde = [
       # resize with arrowkeys

@@ -3,7 +3,7 @@
     ./core
     ./nix
     ./network
-    
+
     ./hardware/graphics.nix
     ./hardware/fwupd.nix
     ./hardware/fstrim.nix
@@ -20,6 +20,7 @@
     ./programs/steam.nix
     ./programs/thunar.nix
     ./programs/seahorse.nix
+    ./programs/adb.nix
 
     ./services
     ./services/pipewire.nix
