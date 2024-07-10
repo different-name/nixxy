@@ -12,7 +12,7 @@
       "nm-applet --indicator"
       "waybar"
       "dunst"
-      "goxlr_daemon"
+      "goxlr-daemon"
     ];
 
     general = {

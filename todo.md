@@ -13,6 +13,7 @@
 - formatting hook
 - use options instead of imports for optional modules & seperate out optional ones from global
 - steam folder permissions aren't set properly
+- seahorse not working
 
 ## programs to package
 - vrcx
