@@ -38,12 +38,16 @@
     networkmanagerapplet
     playerctl
     mpv
-    (prismlauncher.override {
-      jdks = [
-        zulu17
-        zulu21
-      ];
-    })
+    imv
+    trashy
+    gimp-with-plugins
+    btop
+    # (prismlauncher.override {
+    #   jdks = [
+    #     zulu17
+    #     zulu21
+    #   ];
+    # })
   ];
 
   home = {

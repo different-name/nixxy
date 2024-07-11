@@ -3,7 +3,6 @@
     directories = [
       "dotfiles"
       "Downloads"
-      "Music"
       "Pictures"
       "Documents"
       "Videos"
@@ -19,6 +18,7 @@
       ".config/openvr"
       ".local/share/goxlr-utility"
       ".local/state/wireplumber"
+      ".local/share/Trash"
     ];
     files = [];
     allowOther = true;

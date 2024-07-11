@@ -1,8 +1,8 @@
 {inputs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    inputs.disko.nixosModules.default # TODO move this out?
-    (import ./disk-configuration.nix)
+    ./disk-configuration.nix
+
     ../../system
 
     inputs.hardware.nixosModules.common-cpu-amd

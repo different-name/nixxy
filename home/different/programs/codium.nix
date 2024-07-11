@@ -6,6 +6,7 @@
       jnoortheen.nix-ide
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons
+      editorconfig.editorconfig
     ];
     userSettings = {
       "workbench.colorTheme" = "Catppuccin Mocha";

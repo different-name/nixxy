@@ -1,4 +1,8 @@
 {
+  outputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./core
     ./nix
@@ -18,11 +22,18 @@
     ./programs/gamemode.nix
     ./programs/hyprland.nix
     ./programs/steam.nix
-    ./programs/thunar.nix
     ./programs/seahorse.nix
     ./programs/adb.nix
+    ./programs/thunar.nix
 
     ./services
     ./services/pipewire.nix
+    ./services/gvfs.nix
+    ./services/tumbler.nix
+    ./services/keyd.nix
+  ];
+
+  environment.systemPackages = [
+    outputs.packages.${pkgs.system}.openvr-advanced-settings
   ];
 }

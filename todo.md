@@ -8,12 +8,15 @@
 - color picker
 - review fufexan's bindings and hyprland config
 - per host scale
-- readme files
 - persistent configs inside relevant config files?
 - formatting hook
 - use options instead of imports for optional modules & seperate out optional ones from global
-- steam folder permissions aren't set properly
+- steam folder permissions aren't set properly on install
 - seahorse not working
+- create warning for directories in /persist that aren't being used
+- documentation
+- random audio spikes in games (spin rhythm)
+- https://wiki.hyprland.org/Configuring/Tearing/ maybe enable tearing
 
 ## programs to package
 - vrcx

@@ -50,11 +50,11 @@ in {
 
         # screenshot
         ## area
-        ", Print, exec, ${runOnce "grimblast"} --notify copysave area"
-        "$mod SHIFT, S, exec, ${runOnce "grimblast"} --notify copysave area"
+        ", Print, exec, ${runOnce "grimblast"} --notify --freeze copy area"
+        "$mod SHIFT, S, exec, ${runOnce "grimblast"} --notify --freeze copy area"
         ## current screen
-        "CTRL, Print, exec, ${runOnce "grimblast"} --cursor --copysave output"
-        "$mod SHIFT CTRL, S, exec, ${runOnce "grimblast"} --cursor --copysave output"
+        "CTRL, Print, exec, ${runOnce "grimblast"} --cursor copy output"
+        "$mod SHIFT CTRL, S, exec, ${runOnce "grimblast"} --cursor copy output"
 
         # cycle workspaces
         "$mod, bracketleft, workspace, m-1"

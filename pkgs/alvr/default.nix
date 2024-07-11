@@ -42,7 +42,7 @@
     owner = "alvr-org";
     repo = "ALVR";
     rev = "70bba37";
-    hash = "sha256-VMjzA8693c+XlChPiQkzjuYhfpb+/hx1+78gt6gZXv8=";
+    hash = "sha256-ettyLuMf6/0ihb6skq2r+u/KMgCmeomTySDF20Arbac=";
     fetchSubmodules = true;
     leaveDotGit = true;
   };
