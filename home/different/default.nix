@@ -27,27 +27,34 @@
   ];
 
   home.packages = with pkgs; [
-    imagemagick
-    ani-cli
+    # programs
     vesktop
     brave
     pavucontrol
     slack
     gnome.gnome-calculator
-    libnotify
     networkmanagerapplet
-    playerctl
     mpv
     imv
-    trashy
     gimp-with-plugins
-    btop
+    unityhub
     # (prismlauncher.override {
     #   jdks = [
     #     zulu17
     #     zulu21
     #   ];
     # })
+
+    # terminal
+    imagemagick
+    ani-cli
+    playerctl
+    trashy
+    btop
+    ncdu
+
+    # services
+    libnotify
   ];
 
   home = {

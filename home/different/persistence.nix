@@ -19,6 +19,8 @@
       ".local/share/goxlr-utility"
       ".local/state/wireplumber"
       ".local/share/Trash"
+      ".config/unityhub"
+      ".config/unity3d"
     ];
     files = [];
     allowOther = true;

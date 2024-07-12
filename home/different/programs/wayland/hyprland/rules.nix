@@ -40,9 +40,6 @@
 
       # thunar file operations
       "float, title:^(File Operation Progress)$"
-
-      # steam games
-      "fullscreen, title:^(steam_app_.*)$"
     ];
   };
 }
