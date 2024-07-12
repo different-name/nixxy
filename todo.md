@@ -17,6 +17,10 @@
 - documentation
 - random audio spikes in games (spin rhythm)
 - https://wiki.hyprland.org/Configuring/Tearing/ maybe enable tearing
+- monospace fonts dont work on github
+- proton games set to fullscreen in the game options will freeze / black screen when switching focus
+- mouse buttons for workspace switching
+- steam and vrchat seem to freeze when gta is running (only graphically)
 
 ## programs to package
 - vrcx
