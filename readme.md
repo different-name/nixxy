@@ -5,7 +5,7 @@
 
 ## todo
 
-### features
+#### features
 
 - format commit hook
 - secrets management
@@ -18,18 +18,19 @@
 - mouse buttons for workspace switching
 - more intuitive keybinds and workspace management
 
-### styling
+#### styling
 
 - waybar
 - locker
 
-### organisation
+#### organisation
 
 - refactor modules
     - use options instead of imports for enabling modules
     - seperate optional and global modules
+- document structure on readme
 
-## issues
+#### issues
 - terminal icons missing
 - autologin on other ttys means that locker is ineffective
 - formatter builds too often
@@ -42,12 +43,12 @@
 - trashing via thunar only works on persisted directories (low priority, i don't see why i'd need to move anything else to the trash)
 - make steam games fullscreen by default
 
-### general
+#### general
 
 - look into tearing https://wiki.hyprland.org/Configuring/Tearing/
 - look into why steam games seem to float by default
 
-### wishlist
+#### wishlist
 
 - slime vr server
 - vrcx
@@ -56,4 +57,5 @@
 
 ## acknowledgements
 
+[Misterio77](https://github.com/Misterio77/nix-starter-configs)
 [fufexan](https://github.com/fufexan/dotfiles)
