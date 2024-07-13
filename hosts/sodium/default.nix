@@ -10,6 +10,8 @@
     ../../system/programs/goxlr-utility.nix
     ../../system/programs/alvr.nix
 
+    inputs.disko.nixosModules.default
+
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
     inputs.hardware.nixosModules.common-pc-ssd

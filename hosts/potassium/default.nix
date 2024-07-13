@@ -8,6 +8,8 @@
     ../../system/hardware/nvidia.nix
     ../../system/hardware/backlight.nix
 
+    inputs.disko.nixosModules.default
+
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd

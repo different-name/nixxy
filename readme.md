@@ -1,11 +1,10 @@
 # dotfiles
 
 > [!WARNING]
-> This configuration is a work in progress, and is intended for personal use only
+> - This configuration is a work in progress, and is intended for personal use only
+> - This is only intended to be a single user config
 
 ## todo
-
-- switch to plasma 6, as much as i have enjoyed playing with hyprland and setting up everything how i like it, explicit sync has not been added due to the vaxry drama, and i don't think the tiling style works for my day to day usage
 
 #### features
 
@@ -31,6 +30,7 @@
     - use options instead of imports for enabling modules
     - seperate optional and global modules
 - document structure on readme
+- replace hardcoded username
 
 #### issues
 - terminal icons missing
@@ -45,11 +45,7 @@
 - trashing via thunar only works on persisted directories (low priority, i don't see why i'd need to move anything else to the trash)
 - make steam games fullscreen by default
 - cannot login to unity hub because xdg-open cannot recognise unity hub as the default application to open unity hub links
-
-#### general
-
-- look into tearing https://wiki.hyprland.org/Configuring/Tearing/
-- look into why steam games seem to float by default
+- kde does not have catppuccin theme
 
 #### wishlist
 

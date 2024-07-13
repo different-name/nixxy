@@ -14,18 +14,7 @@
 
     # newest kernels might not be supported by ZFS
     # use the latest compatible kernel:
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-
-    # https://wiki.archlinux.org/title/Silent_boot
-    # consoleLogLevel = 3;
-    # kernelParams = [
-    #   "quiet" # disable most log messages
-    #   "systemd.show_status=false" # disable systemd messages during initrd init
-    #   "rd.udev.log_level=3" # log level to 3 + disable systemd printing version num
-    # ];
-
-    # graphical boot splash
-    # plymouth.enable = true;
+    kernelPackages = pkgs.linuxPackages_zen; # config.boot.zfs.package.latestCompatibleLinuxPackages;
 
     loader = {
       # systemd-boot on UEFI
