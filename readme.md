@@ -12,6 +12,11 @@
 | [`home`](home)     | Home level configuration   |
 | [`pkgs`](pkgs)     | Package definitions        |
 
+## Acknowledgements
+
+- [Misterio77](https://github.com/Misterio77/nix-starter-configs)
+- [fufexan](https://github.com/fufexan/dotfiles)
+
 ## todo
 
 #### features
@@ -66,8 +71,3 @@
 - vrcx
 - proton drive
 - ente photos
-
-## acknowledgements
-
-- [Misterio77](https://github.com/Misterio77/nix-starter-configs)
-- [fufexan](https://github.com/fufexan/dotfiles)

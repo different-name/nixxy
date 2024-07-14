@@ -9,7 +9,7 @@
   };
 
   # hint electron apps to use wayland
-  environment.sessionVariables ={
+  environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
   };

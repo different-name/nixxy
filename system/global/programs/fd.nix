@@ -3,9 +3,7 @@
 # of files & directories on the system. This can easily become overwhelming due to the quantity
 # of results. I have an alias `mao` that ignores directories that are currently persisted by the
 # impermanence module, as well as directories listed below that I know I don't want to persist.
-
 # TLDR; I made an alias to list dirs/files that I haven't decided to persist or not persist yet.
-
 {
   lib,
   pkgs,
@@ -54,7 +52,8 @@
   };
 in {
   environment.shellAliases = {
-    mao = # inside joke
+    mao =
+      # inside joke
       "fd --hidden --type file . /"
       + lib.concatStrings (
         map
@@ -69,7 +68,8 @@ in {
         )
       );
 
-    maolite = # maolite :tm: only includes home directories
+    maolite =
+      # maolite :tm: only includes home directories
       "fd --hidden --type file . /home/different"
       + lib.concatStrings (
         map
