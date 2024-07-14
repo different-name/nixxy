@@ -8,11 +8,11 @@ Home level configuration
 
 | Folder                  | Description                                            |
 | ----------------------- | ------------------------------------------------------ |
-| [`hosts`](home/hosts)   | Host specific home configuration                       |
-| [`global`](home/global) | Home configurations used on all hosts                  |
-| [`extra`](home/extra)   | Optional home configurations used on one or more hosts |
+| [`hosts`](hosts)   | Host specific home configuration                       |
+| [`global`](global) | Home configurations used on all hosts                  |
+| [`extra`](extra)   | Optional home configurations used on one or more hosts |
 
-[`global`](home/global) & [`extra`](home/extra) folders are further divided into categories:
+[`global`](global) & [`extra`](extra) folders are further divided into categories:
 
 | Folder            | Description                                   |
 | ----------------- | --------------------------------------------- |
