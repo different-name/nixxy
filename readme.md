@@ -21,7 +21,6 @@
 
 #### features
 
-- format commit hook
 - secrets management
 - color picker
 - workspaces overview
@@ -58,12 +57,15 @@
 - make steam games fullscreen by default
 - cannot login to unity hub because xdg-open cannot recognise unity hub as the default application to open unity hub links
 - not sure what hyprexpo does
+- pre commit hooks not working
 
 #### general
 
 - look into tearing https://wiki.hyprland.org/Configuring/Tearing/
 - look into why steam games seem to float by default
 - tune pipewire latency https://nixos.wiki/wiki/PipeWire
+- look into flake-parts and flake-root
+- hypridle
 
 #### wishlist
 

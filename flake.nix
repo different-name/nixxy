@@ -2,24 +2,8 @@
   description = "Different's nix config";
 
   inputs = {
+    # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    hardware.url = "github:nixos/nixos-hardware";
-
-    # declarative partitioning and formatting
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # manage persistent state
-    impermanence.url = "github:nix-community/impermanence";
-
-    # manages user environment
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # secrets management
     agenix = {
@@ -31,16 +15,35 @@
     # color theme
     catppuccin.url = "github:/catppuccin/nix";
 
-    # nix code formatter
-    alejandra = {
-      url = "github:kamadorueda/alejandra";
+    # declarative partitioning and formatting
+    disko = {
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # pre-commit-hooks = {
-    #   url = "github:cachix/pre-commit-hooks.nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    # nix flakes framework
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    # manages user environment
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # hardware configurations
+    hardware.url = "github:nixos/nixos-hardware";
+
+    # manage persistent state
+    impermanence.url = "github:nix-community/impermanence";
+
+    # flake-parts pre commit hooks module
+    pre-commit-hooks-nix = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # hyprwm
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -77,36 +80,18 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    systems = ["x86_64-linux"];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-  in {
-    # Your custom packages
-    # Accessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-    # Formatter for your nix files, available through 'nix fmt'
-    # Other options beside 'alejandra' include 'nixpkgs-fmt'
-    formatter = forAllSystems (system: inputs.alejandra.defaultPackage.${system});
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux"];
 
-    # NixOS configuration entrypoint
-    nixosConfigurations = {
-      "sodium" = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [./system/hosts/sodium];
-      };
-      "lithium" = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [./system/hosts/lithium];
-      };
-      "potassium" = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [./system/hosts/potassium];
+      imports = [
+        ./system/hosts
+        ./pkgs
+        ./pre-commit-hooks.nix
+      ];
+
+      perSystem = {pkgs, ...}: {
+        formatter = pkgs.alejandra;
       };
     };
-  };
 }
