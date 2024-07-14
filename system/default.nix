@@ -22,18 +22,24 @@
     ./programs
     ./programs/fonts.nix
     ./programs/home-manager.nix
+    ./programs/xdg.nix
     ./programs/fish.nix
     ./programs/catppuccin.nix
     ./programs/gamemode.nix
+    ./programs/hyprland.nix
     ./programs/steam.nix
+    ./programs/seahorse.nix
     ./programs/adb.nix
+    ./programs/thunar.nix
     ./programs/fd.nix
 
-    ./services/plasma.nix
     ./services/pipewire.nix
+    ./services/gvfs.nix
+    ./services/tumbler.nix
     ./services/keyd.nix
     ./services/printing.nix
     ./services/openssh.nix
+    ./services/getty.nix
   ];
 
   environment.systemPackages = [

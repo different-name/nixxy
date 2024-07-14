@@ -1,0 +1,3 @@
+{
+  services.getty.autologinUser = "different";
+}

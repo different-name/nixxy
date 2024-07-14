@@ -13,7 +13,6 @@
 - color picker
 - workspaces overview
 - an alias for fd that searches home or root, ignoring persisted files / folders
-- per host display scale (for xwayland apps)
 - persistent configs inside relevant config files
 - create warning for directories in /persist that aren't being used
 - mouse buttons for workspace switching
@@ -31,6 +30,7 @@
     - seperate optional and global modules
 - document structure on readme
 - replace hardcoded username
+- write a module that takes a display scale, applys it for non wayland apps & disables xwayland scaling
 
 #### issues
 - terminal icons missing
@@ -45,7 +45,11 @@
 - trashing via thunar only works on persisted directories (low priority, i don't see why i'd need to move anything else to the trash)
 - make steam games fullscreen by default
 - cannot login to unity hub because xdg-open cannot recognise unity hub as the default application to open unity hub links
-- kde does not have catppuccin theme
+
+#### general
+
+- look into tearing https://wiki.hyprland.org/Configuring/Tearing/
+- look into why steam games seem to float by default
 
 #### wishlist
 

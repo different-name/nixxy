@@ -2,12 +2,10 @@
   home.persistence."/persist/home/different" = {
     directories = [
       "dotfiles"
-      "Desktop"
       "Downloads"
       "Pictures"
       "Documents"
       "Videos"
-      "Music"
       ".ssh"
       ".local/share/keyrings"
       ".local/share/direnv"

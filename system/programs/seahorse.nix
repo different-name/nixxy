@@ -1,0 +1,3 @@
+{
+  programs.seahorse.enable = true;
+}

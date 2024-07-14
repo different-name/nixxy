@@ -12,9 +12,7 @@
       availableKernelModules = ["hid_generic"];
     };
 
-    # newest kernels might not be supported by ZFS
-    # use the latest compatible kernel:
-    kernelPackages = pkgs.linuxPackages_zen; # config.boot.zfs.package.latestCompatibleLinuxPackages;
+    kernelPackages = pkgs.linuxPackages_zen;
 
     loader = {
       # systemd-boot on UEFI
