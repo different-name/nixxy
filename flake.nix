@@ -37,12 +37,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # gaming tweaks & tools
-    nix-gaming = {
-      url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # pre-commit-hooks = {
     #   url = "github:cachix/pre-commit-hooks.nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -103,15 +97,15 @@
     nixosConfigurations = {
       "sodium" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./hosts/sodium];
+        modules = [./system/hosts/sodium];
       };
       "lithium" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./hosts/lithium];
+        modules = [./system/hosts/lithium];
       };
       "potassium" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./hosts/potassium];
+        modules = [./system/hosts/potassium];
       };
     };
   };
