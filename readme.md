@@ -1,4 +1,4 @@
-# dotfiles
+# nix-files
 
 > [!WARNING]
 > - This configuration is a work in progress, and is intended for personal use only
@@ -15,7 +15,7 @@
 ## Acknowledgements
 
 - [Misterio77](https://github.com/Misterio77/nix-starter-configs)
-- [fufexan](https://github.com/fufexan/dotfiles)
+- [fufexan](https://github.com/fufexan/nix-files)
 
 ## todo
 

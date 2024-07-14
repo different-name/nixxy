@@ -4,7 +4,7 @@
     enable = true;
 
     # nh default flake
-    flake = "/home/different/dotfiles";
+    flake = "/home/different/nix-files";
 
     # weekly garbage collection
     clean = {
