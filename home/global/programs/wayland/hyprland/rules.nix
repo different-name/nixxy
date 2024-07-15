@@ -24,22 +24,25 @@
 
     windowrulev2 = [
       # gnome calculator
-      "float, class:^(org.gnome.Calculator)$"
-      "size 360 490, class:^(org.gnome.Calculator)$"
+      "float, class:(org.gnome.Calculator)"
+      "size 360 490, class:(org.gnome.Calculator)"
 
       # brave PiP
-      "float, title:^(Picture-in-picture)$"
-      "pin, title:^(Picture-in-picture)$"
+      "float, title:(Picture-in-picture)"
+      "pin, title:(Picture-in-picture)"
 
       # gtk popups
-      "float, class:^(xdg-desktop-portal-gtk)$"
+      "float, class:(xdg-desktop-portal-gtk)"
 
       # pavucontrol
-      "float, class:^(pavucontrol)$"
-      "size 1000 750, class:^(pavucontrol)$"
+      "float, class:(pavucontrol)"
+      "size 1000 750, class:(pavucontrol)"
 
       # thunar file operations
-      "float, title:^(File Operation Progress)$"
+      "float, title:(File Operation Progress)"
+
+      # vesktop sharescreen menu
+      "float, title:(MainPicker)"
     ];
   };
 }

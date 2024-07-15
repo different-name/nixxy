@@ -27,11 +27,8 @@ in {
         "$mod, R, togglesplit,"
         "$mod, G, togglefloating,"
         "$mod, P, pseudo"
-        "$mod ALT, ,resizeactive,"
         "$mod, T, pin,"
-        "$mod, D, focuswindow, vesktop"
-        "$mod SHIFT, W, focuswindow, brave-browser"
-        "$mod, TAB, focuscurrentorlast"
+        "$mod ALT, ,resizeactive,"
 
         # utility
         ## terminal
