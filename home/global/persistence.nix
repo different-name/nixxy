@@ -1,5 +1,5 @@
-{...}: {
-  home.persistence."/persist/home/different" = {
+{osConfig, ...}: {
+  home.persistence."/persist/home/${osConfig.nix-files.user}" = {
     directories = [
       "nix-files"
       "Downloads"

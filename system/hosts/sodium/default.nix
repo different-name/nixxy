@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   outputs,
   pkgs,
   ...
@@ -28,7 +29,7 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
-    users.different = import ../../../home/hosts/sodium.nix;
+    users.${config.nix-files.user} = import ../../../home/hosts/sodium.nix;
   };
 
   environment.systemPackages = [

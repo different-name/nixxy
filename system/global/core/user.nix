@@ -1,5 +1,11 @@
-{pkgs, ...}: {
-  users.users.different = {
+{
+  pkgs,
+  config,
+  ...
+}: {
+  nix-files.user = "different";
+
+  users.users.${config.nix-files.user} = {
     password = "nixos"; # TODO agenix
     isNormalUser = true;
     shell = pkgs.fish; # TODO check if I need this
@@ -18,5 +24,5 @@
     ];
   };
 
-  services.getty.autologinUser = "different";
+  services.getty.autologinUser = config.nix-files.user;
 }

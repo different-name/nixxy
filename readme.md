@@ -16,11 +16,12 @@ My NixOS configuration files
 
 ## Contents
 
-| Folder             | Description                |
-| ------------------ | -------------------------- |
-| [`system`](system) | System level configuration |
-| [`home`](home)     | Home level configuration   |
-| [`pkgs`](pkgs)     | Package definitions        |
+| Folder               | Description                |
+| -------------------- | -------------------------- |
+| [`system`](system)   | System level configuration |
+| [`home`](home)       | Home level configuration   |
+| [`modules`](modules) | NixOS modules              |
+| [`pkgs`](pkgs)       | Package definitions        |
 
 ### Acknowledgements
 

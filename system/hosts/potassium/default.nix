@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./disk-configuration.nix
@@ -19,7 +23,7 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
-    users.different = import ../../../home/hosts/potassium.nix;
+    users.${config.nix-files.user} = import ../../../home/hosts/potassium.nix;
   };
 
   hardware.nvidia.prime = {

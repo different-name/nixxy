@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  osConfig,
+  ...
+}: {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -17,7 +21,7 @@
     };
   };
 
-  home.persistence."/persist/home/different".directories = [
+  home.persistence."/persist/home/${osConfig.nix-files.user}".directories = [
     ".config/VSCodium/CachedDate"
     ".config/VSCodium/Cache"
     ".config/VSCodium/Backups"

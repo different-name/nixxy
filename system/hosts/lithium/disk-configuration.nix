@@ -1,4 +1,6 @@
-{...}: {
+{config ? {nix-files.user = "";}, ...}: let
+  inherit (config.nix-files) user;
+in {
   disko.devices = {
     disk."main" = {
       device = "/dev/mmcblk0";
@@ -94,27 +96,41 @@
         # steam needs ~/.steam to be a regular folder or mount
         # this folder cannot be a symlink or bind mount, else
         # steam will crashcomplaining about steamwebhelper
-        #        steam = {
-        #          type = "zfs_fs";
-        #          mountpoint = "/home/different/.steam";
-        #          options = {
-        #            canmount = "noauto"; # Only allow explicit mounting
-        #            mountpoint = "legacy"; # Do not mount under the pool (/zpool/...)
-        #          };
-        #          postCreateHook = "zfs snapshot rpool/steam@empty";
-        #        };
+        steam =
+          {
+            type = "zfs_fs";
+            options = {
+              canmount = "noauto"; # Only allow explicit mounting
+              mountpoint = "legacy"; # Do not mount under the pool (/zpool/...)
+            };
+            postCreateHook = "zfs snapshot rpool/steam@empty";
+          }
+          // (
+            if (user != "")
+            then {
+              mountpoint = "/home/${user}/.steam";
+            }
+            else {}
+          );
         # steam needs ~/.local/share/Steam to be a regular folder or mount
         # this folder cannot be a symlink or bind mount, else
-        #steam will crashcomplaining about steamwebhelper
-        #        lssteam = {
-        #          type = "zfs_fs";
-        #          mountpoint = "/home/different/.local/share/Steam";
-        #          options = {
-        #            canmount = "noauto"; # Only allow explicit mounting
-        #            mountpoint = "legacy"; # Do not mount under the pool (/zpool/...)
-        #          };
-        #          postCreateHook = "zfs snapshot rpool/lssteam@empty";
-        #        };
+        # steam will crashcomplaining about steamwebhelper
+        lssteam =
+          {
+            type = "zfs_fs";
+            options = {
+              canmount = "noauto"; # Only allow explicit mounting
+              mountpoint = "legacy"; # Do not mount under the pool (/zpool/...)
+            };
+            postCreateHook = "zfs snapshot rpool/lssteam@empty";
+          }
+          // (
+            if (user != "")
+            then {
+              mountpoint = "/home/${user}/.local/share/Steam";
+            }
+            else {}
+          );
       };
     };
   };

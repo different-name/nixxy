@@ -6,7 +6,7 @@
     ./networking.nix
     ./persistence.nix
     ./security.nix
-    ./users.nix
+    ./user.nix
     ./zfs.nix
   ];
 }

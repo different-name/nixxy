@@ -10,6 +10,8 @@
   config,
   ...
 }: let
+  inherit (config.nix-files) user;
+
   exclude = {
     home = [
       ".steam" # using a full mount to persist this, rather than the impermanence module
@@ -34,8 +36,8 @@
   exclude-all = {
     home =
       exclude.home
-      ++ config.home-manager.users.different.home.persistence."/persist/home/different".directories
-      ++ config.home-manager.users.different.home.persistence."/persist/home/different".files;
+      ++ config.home-manager.users.${user}.home.persistence."/persist/home/${user}".directories
+      ++ config.home-manager.users.${user}.home.persistence."/persist/home/${user}".files;
 
     root =
       exclude.root
@@ -62,7 +64,7 @@ in {
           exclude-all.root
           ++ (
             map
-            (dir: "/home/different/" + dir)
+            (dir: "/home/${user}/" + dir)
             (exclude-all.home)
           )
         )
@@ -70,7 +72,7 @@ in {
 
     maolite =
       # maolite :tm: only includes home directories
-      "fd --hidden --type file . /home/different"
+      "fd --hidden --type file . /home/${user}"
       + lib.concatStrings (
         map
         (path: " --exclude \"" + path + "\"")

@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./disk-configuration.nix
@@ -16,7 +20,7 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
-    users.different = import ../../../home/hosts/lithium.nix;
+    users.${config.nix-files.user} = import ../../../home/hosts/lithium.nix;
   };
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion

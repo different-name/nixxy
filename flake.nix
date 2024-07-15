@@ -1,5 +1,5 @@
 {
-  description = "Different's nix config";
+  description = "Different's nix-files";
 
   inputs = {
     # nixpkgs
@@ -86,6 +86,7 @@
 
       imports = [
         ./system/hosts
+        ./modules
         ./pkgs
         ./pre-commit-hooks.nix
       ];

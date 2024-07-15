@@ -1,8 +1,11 @@
 {
   inputs,
   pkgs,
+  osConfig,
   ...
-}: {
+}: let
+  inherit (osConfig.nix-files) user;
+in {
   imports = [
     ./programs
     ./services
@@ -21,8 +24,8 @@
   systemd.user.startServices = "sd-switch";
 
   home = {
-    username = "different";
-    homeDirectory = "/home/different";
+    username = user;
+    homeDirectory = "/home/${user}";
 
     packages = with pkgs; [
       # programs
@@ -31,7 +34,6 @@
       pavucontrol
       slack
       gnome.gnome-calculator
-      #networkmanagerapplet # TODO do i need this?
       gimp-with-plugins
       unityhub
       libreoffice-qt6-fresh
