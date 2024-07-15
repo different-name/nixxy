@@ -1,4 +1,4 @@
-# nix-files
+# <img src="assets/nix-snowflake-colours-cropped.svg" height=36> nix-files
 
 My NixOS configuration files
 

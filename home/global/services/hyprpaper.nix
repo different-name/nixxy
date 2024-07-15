@@ -5,7 +5,7 @@
   config,
   ...
 }: let
-  wallpaperImg = ../wallpaper.jpg;
+  wallpaperImg = ../../../assets/wallpaper.jpg;
 in {
   services.hyprpaper = {
     enable = true;
