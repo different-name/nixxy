@@ -20,7 +20,11 @@
   systemd.tmpfiles.rules = [
     "d /persist/home/ 1777 root root -"
     "d /persist/home/different 0700 different users -"
-    "d /home/different/.local 0755 different users -" # TODO this is just for the steam mounts, there is probably a better place to move these
+
+    # TODO these are just for the steam mounts, there is probably a better place to move these
+    "d /home/different/.steam 0755 different users -"
+    "d /home/different/.local 0755 different users -"
     "d /home/different/.local/share 0755 different users -"
+    "d /home/different/.local/share/Steam 0755 different users -"
   ];
 }

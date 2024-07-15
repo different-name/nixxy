@@ -102,7 +102,6 @@
             mountpoint = "legacy"; # Do not mount under the pool (/zpool/...)
           };
           postCreateHook = "zfs snapshot rpool/steam@empty";
-          postMountHook = "chown different:users /home/different/.steam";
         };
         # steam needs ~/.local/share/Steam to be a regular folder or mount
         # this folder cannot be a symlink or bind mount, else
@@ -115,7 +114,6 @@
             mountpoint = "legacy"; # Do not mount under the pool (/zpool/...)
           };
           postCreateHook = "zfs snapshot rpool/lssteam@empty";
-          postMountHook = "chown different:users /home/different/.local/share/Steam";
         };
       };
     };
