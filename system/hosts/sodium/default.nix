@@ -32,6 +32,11 @@
     users.${config.nix-files.user} = import ../../../home/hosts/sodium.nix;
   };
 
+  nix-files.xDisplayScale = {
+    enable = true;
+    value = "1.5";
+  };
+
   environment.systemPackages = [
     outputs.packages.${pkgs.system}.openvr-advanced-settings
   ];

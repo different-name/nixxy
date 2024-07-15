@@ -4,7 +4,6 @@
 
     env = [
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-      "GDK_SCALE,1.5"
       "XCURSOR_SIZE,16"
     ];
 

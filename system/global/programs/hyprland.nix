@@ -9,10 +9,7 @@
   };
 
   # hint electron apps to use wayland
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
-  };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # always start Hyprland on tty1 after login
   environment.loginShellInit = ''
