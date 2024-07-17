@@ -46,7 +46,7 @@
     };
 
     # hyprwm
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.url = "git+https://github.com/ikalco/Hyprland?submodules=1&ref=fix_direct_scanout_maybe";
 
     hypridle = {
       url = "github:hyprwm/hypridle";
