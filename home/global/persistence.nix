@@ -27,7 +27,9 @@
       ".local/share/vulkan/" # steam shader cache files?
       ".nv" # OpenGL cache
     ];
-    files = [];
+    files = [
+      ".bash_history"
+    ];
     allowOther = true;
   };
 }
