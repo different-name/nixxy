@@ -24,6 +24,8 @@
       ".config/unity3d"
       ".config/libreoffice"
       ".config/GIMP"
+      ".local/share/vulkan/" # steam shader cache files?
+      ".nv" # OpenGL cache
     ];
     files = [];
     allowOther = true;

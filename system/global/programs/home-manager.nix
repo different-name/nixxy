@@ -19,18 +19,12 @@ in {
   #   };
   # };
 
-  # needed for HM impermanence to mount it's directories
+  # needed for home-manager impermanence to mount it's directories
   programs.fuse.userAllowOther = true;
 
-  # setting up home directories with correct permissions for HM impermanence
+  # setting up home directories with correct permissions for home-manager impermanence
   systemd.tmpfiles.rules = [
     "d /persist/home/ 1777 root root -"
     "d /persist/home/${user} 0700 ${user} users -"
-
-    # TODO these are just for the steam mounts, there is probably a better place to move these
-    "d /home/${user}/.steam 0755 ${user} users -"
-    "d /home/${user}/.local 0755 ${user} users -"
-    "d /home/${user}/.local/share 0755 ${user} users -"
-    "d /home/${user}/.local/share/Steam 0755 ${user} users -"
   ];
 }

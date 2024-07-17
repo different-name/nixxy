@@ -22,7 +22,7 @@
   };
 
   home.persistence."/persist/home/${osConfig.nix-files.user}".directories = [
-    ".config/VSCodium/CachedDate"
+    ".config/VSCodium/CachedData"
     ".config/VSCodium/Cache"
     ".config/VSCodium/Backups"
     ".config/VSCodium/Code Cache"
