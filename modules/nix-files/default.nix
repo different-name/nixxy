@@ -87,10 +87,10 @@ in {
 
     relativeToAbsHome = path: concatPaths ["/home/${user}" path];
 
-    find = searchPaths: excludePaths: let
+    find = searchPaths: excludePaths: findOptions: let
       searchString = lib.concatMapStringsSep " " lib.escapeShellArg searchPaths;
       excludeString = lib.concatMapStringsSep " -o " (path: "-path " + (lib.escapeShellArg path)) excludePaths;
-    in ''find ${searchString} \( ${excludeString} \) -prune -o \( -empty -type d -print \) -o \( -type f -print \) 2> /dev/null'';
+    in ''find ${searchString} \( ${excludeString} \) -prune -o ${findOptions} 2> /dev/null'';
 
     persisted-paths = {
       home = lib.flatten (map
@@ -138,21 +138,21 @@ in {
         searchPaths = ["/"];
         excludePaths = cfg.tools.ephemeral.exclude-paths.root ++ (map relativeToAbsHome cfg.tools.ephemeral.exclude-paths.home) ++ (map (n: n.path) (persisted-paths.root ++ persisted-paths.home));
       in
-        find searchPaths excludePaths;
+        find searchPaths excludePaths "-type f -print";
 
       # "find ephemeral directories - home" only searches home directory
       fedh = let
         searchPaths = ["/home/${user}"];
         excludePaths = (map relativeToAbsHome cfg.tools.ephemeral.exclude-paths.home) ++ (map (n: n.path) persisted-paths.home);
       in
-        find searchPaths excludePaths;
+        find searchPaths excludePaths "-type f -print";
 
       # "find stray directories" find files in persistent storage that aren't being used
       fsd = let
         searchPaths = (lib.attrNames persistentStoragePaths.root) ++ (lib.attrNames persistentStoragePaths.home);
         excludePaths = map (path: path.persistPath) (persisted-paths.root ++ persisted-paths.home);
       in
-        find searchPaths excludePaths;
+        find searchPaths excludePaths ''\( -empty -type d -print \) -o \( -type f -print \)'';
     };
   };
 }
