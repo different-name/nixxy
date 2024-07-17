@@ -1,6 +1,6 @@
-{outputs, ...}: {
+{self, ...}: {
   imports = [
-    outputs.nixosModules.nix-files
+    self.nixosModules.nix-files
 
     ./core
     ./hardware

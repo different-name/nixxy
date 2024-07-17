@@ -1,7 +1,7 @@
 {
   inputs,
   config,
-  outputs,
+  self,
   pkgs,
   ...
 }: {
@@ -38,7 +38,7 @@
   };
 
   environment.systemPackages = [
-    outputs.packages.${pkgs.system}.openvr-advanced-settings
+    self.packages.${pkgs.system}.openvr-advanced-settings
   ];
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion

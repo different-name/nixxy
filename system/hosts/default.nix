@@ -4,8 +4,7 @@
   ...
 }: let
   inherit (inputs.nixpkgs.lib) nixosSystem;
-  inherit (self) outputs;
-  specialArgs = {inherit inputs outputs;};
+  specialArgs = {inherit inputs self;};
 in {
   flake.nixosConfigurations = {
     "sodium" = nixosSystem {
