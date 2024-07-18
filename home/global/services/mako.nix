@@ -1,4 +1,8 @@
-{lib, config, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   hyprlandCfg = config.wayland.windowManager.hyprland;
 in {
   services.mako = {

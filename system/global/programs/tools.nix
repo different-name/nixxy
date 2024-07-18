@@ -16,13 +16,13 @@
 
       root = [
         "/boot" # non ephemeral
-        "/nix"  # non ephemeral
+        "/nix" # non ephemeral
         "/persist" # non ephemeral
         "/proc" # virtual filesystem
-        "/sys"  # virtual filesystem
-        "/dev"  # virtual filesystem
-        "/run"  # runtime files
-        "/tmp"  # temporary files
+        "/sys" # virtual filesystem
+        "/dev" # virtual filesystem
+        "/run" # runtime files
+        "/tmp" # temporary files
         "/var/tmp" # temporary files
       ];
     };
