@@ -2,7 +2,7 @@
   imports = [
     ./wayland
     ./catppuccin.nix
-    ./codium.nix
+    ./vscodium.nix
     ./gtk.nix
     ./imv.nix
     ./mpv.nix

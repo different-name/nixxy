@@ -18,8 +18,8 @@
     general = {
       gaps_in = 3;
       gaps_out = 6;
-      "col.active_border" = "rgba(88888888)";
-      "col.inactive_border" = "rgba(00000088)";
+      "col.active_border" = "rgb(ed507c)";
+      "col.inactive_border" = "rgba(18192688)";
     };
 
     decoration = {
