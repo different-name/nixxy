@@ -82,11 +82,6 @@
       no_direct_scanout = false;
     };
 
-    cursor = {
-      no_hardware_cursors = false;
-      allow_dumb_copy = true;
-    };
-
     # touchpad gestures
     gestures = {
       workspace_swipe = true;
