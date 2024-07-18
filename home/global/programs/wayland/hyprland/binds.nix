@@ -61,8 +61,8 @@ in {
         # cycle workspaces
         "$mod, bracketleft, workspace, m-1"
         "$mod, bracketright, workspace, m+1"
-        ",mouse:276, workspace, m-1" # two buttons on the side of my mouse
-        ",mouse:275, workspace, m+1"
+        ",mouse:275, workspace, m-1" # two buttons on the side of my mouse
+        ",mouse:276, workspace, m+1"
 
         # cycle monitors
         "$mod SHIFT, bracketleft, focusmonitor, l"
