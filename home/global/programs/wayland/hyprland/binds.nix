@@ -13,6 +13,7 @@ in {
     # d -> has description, will allow you to write a description for your bind.
 
     bindm = [
+      # use wev to find mouse button codes
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
       "$mod CTRL, mouse:272, resizewindow"
@@ -24,6 +25,7 @@ in {
         "$mod SHIFT, E, exec, pkill Hyprland"
         "$mod, Q, killactive"
         "$mod, F, fullscreen"
+        "$mod SHIFT, F, fakefullscreen"
         "$mod, R, togglesplit,"
         "$mod, G, togglefloating,"
         "$mod, P, pseudo"
@@ -53,12 +55,14 @@ in {
         ", Print, exec, ${runOnce "grimblast"} --notify --freeze copy area"
         "$mod SHIFT, S, exec, ${runOnce "grimblast"} --notify --freeze copy area"
         ## current screen
-        "CTRL, Print, exec, ${runOnce "grimblast"} --cursor copy output"
-        "$mod SHIFT CTRL, S, exec, ${runOnce "grimblast"} --cursor copy output"
+        "CTRL, Print, exec, ${runOnce "grimblast"} --notify --cursor copy output"
+        "$mod SHIFT CTRL, S, exec, ${runOnce "grimblast"} --notify --cursor copy output"
 
         # cycle workspaces
         "$mod, bracketleft, workspace, m-1"
         "$mod, bracketright, workspace, m+1"
+        ",mouse:276, workspace, m-1" # two buttons on the side of my mouse
+        ",mouse:275, workspace, m+1"
 
         # cycle monitors
         "$mod SHIFT, bracketleft, focusmonitor, l"
