@@ -6,6 +6,7 @@
     ./gtk.nix
     ./imv.nix
     ./mpv.nix
+    ./obs.nix
     ./xdg.nix
   ];
 }
