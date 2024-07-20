@@ -29,8 +29,9 @@ in {
         "$mod, R, togglesplit,"
         "$mod, G, togglefloating,"
         "$mod, P, pseudo"
-        "$mod, T, pin,"
-        "$mod ALT, ,resizeactive,"
+        "$mod, T, pin"
+        "$mod ALT, ,resizeactive"
+        "CTRL ALT, DELETE, exec, hyprctl kill"
 
         # utility
         ## terminal

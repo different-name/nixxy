@@ -33,9 +33,10 @@ in {
       brave
       pavucontrol
       slack
-      gnome.gnome-calculator
+      gnome-calculator
       gimp-with-plugins
       unityhub
+      vrc-get
       libreoffice-qt6-fresh
       # (prismlauncher.override {
       #   jdks = [

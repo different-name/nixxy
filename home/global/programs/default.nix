@@ -2,6 +2,7 @@
   imports = [
     ./wayland
     ./catppuccin.nix
+    ./fd.nix
     ./vscodium.nix
     ./gtk.nix
     ./imv.nix

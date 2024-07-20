@@ -1,0 +1,3 @@
+{
+  programs.fd.enable = true;
+}

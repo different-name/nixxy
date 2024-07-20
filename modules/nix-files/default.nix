@@ -129,7 +129,7 @@ in {
   in {
     environment.sessionVariables = lib.mkIf cfg.xDisplayScale.enable {
       STEAM_FORCE_DESKTOPUI_SCALING = cfg.xDisplayScale.value;
-      GDK_SCALE = cfg.xDisplayScale.value;
+      #GDK_SCALE = cfg.xDisplayScale.value; # TODO fractional scaling isn't supported
     };
 
     environment.shellAliases = lib.mkIf cfg.tools.ephemeral.enable {
