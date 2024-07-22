@@ -91,9 +91,9 @@
     # unscale xwayland
     xwayland.force_zero_scaling = true;
 
-    experimental = {
-      explicit_sync = true;
-    };
+    #experimental = {
+    #  explicit_sync = true;
+    #};
 
     debug.disable_logs = false;
 
