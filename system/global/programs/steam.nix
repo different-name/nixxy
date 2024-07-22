@@ -40,4 +40,13 @@ in {
     "d /home/${user}/.local/share 0755 ${user} users -"
     "d /home/${user}/.local/share/Steam 0755 ${user} users -"
   ];
+
+  # https://lvra.gitlab.io/docs/steamvr/quick-start/#optional-disable-steamvr-dashboard
+  # TODO there's likely a better way to do this
+  system.userActivationScripts.disableSteamDashboard = {
+    text = ''
+      chmod -x /home/${user}/.steam/steam/steamapps/common/SteamVR/bin/vrwebhelper/linux64/vrwebhelper
+    '';
+    deps = [];
+  };
 }
