@@ -39,6 +39,7 @@
 
   environment.systemPackages = [
     self.packages.${pkgs.system}.openvr-advanced-settings
+    self.packages.${pkgs.system}.slimevr
   ];
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
