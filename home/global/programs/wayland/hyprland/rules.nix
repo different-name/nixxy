@@ -30,6 +30,7 @@
       # brave PiP
       "float, title:(Picture-in-picture)"
       "pin, title:(Picture-in-picture)"
+      "size 480 270, title:(Picture-in-picture)"
 
       # gtk popups
       "float, class:(xdg-desktop-portal-gtk)"

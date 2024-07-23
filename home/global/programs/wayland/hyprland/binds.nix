@@ -17,6 +17,7 @@ in {
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
       "$mod CTRL, mouse:272, resizewindow"
+      "$mod CTRL SHIFT, mouse:272, resizewindow 1"
     ];
 
     bind =
