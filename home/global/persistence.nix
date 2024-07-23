@@ -28,14 +28,12 @@
         ".local/share/vulkan/" # steam shader cache files?
         ".nv" # OpenGL cache
         ".config/ente"
+        ".local/share/fish"
       ];
       files = [
         ".bash_history"
-        ".local/share/fish/fish_history"
       ];
       allowOther = true;
     };
-
-    file.".local/share/fish/fish_history".force = true;
   };
 }
