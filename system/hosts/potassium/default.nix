@@ -22,7 +22,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = {inherit inputs self;};
     users.${config.nix-files.user} = import ../../../home/hosts/potassium.nix;
   };
 

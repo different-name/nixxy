@@ -1,49 +1,47 @@
 {
   lib,
-  stdenv,
-  fetchFromGitHub,
-  nodejs,
-  yarn,
-  fixup_yarn_lock,
+  appimageTools,
+  fetchurl,
+  makeDesktopItem,
 }: let
   pname = "ente-photos-desktop";
-  version = "1.7.1";
+  version = "1.7.2";
 
-  src = fetchFromGitHub {
-    owner = "ente-io";
-    repo = "ente";
-    rev = "ac4a68d";
-    hash = "sha256-E5b9eTisGV0JZtgDm+Nuf9Rdhx2e6+JAnDiQAoGBzw4=";
-    fetchSubmodules = true;
+  src = fetchurl {
+    url = "https://github.com/ente-io/photos-desktop/releases/download/v${version}/ente-${version}-x86_64.AppImage";
+    hash = "sha256-k8+E+c42hCXmPlIHe3mvjJwPsuxHGQ9SL6tLGGdM2i8=";
   };
+
+  desktopEntry = makeDesktopItem {
+    name = "ente-photos";
+    desktopName = "Ente Photos";
+    exec = "ente-photos-desktop";
+    icon = "ente-photos";
+    comment = "End to End Encrypted Cloud Photo Storage";
+  };
+
+  icon = fetchurl {
+    url = "https://github.com/ente-io/ente/raw/d7cd2cecbc820e949ec5865f27bd63b3657dc3d4/desktop/build/icon.png";
+    hash = "sha256-UGPpppDR9OrdG/a5ILBz/3k1/rlEW6BWozzn5MV0ac8=";
+  };
+
+  appimageContents = appimageTools.extractType2 {inherit pname version src;};
 in
-  stdenv.mkDerivation {
+  appimageTools.wrapType2 {
     inherit pname version src;
 
-    nativeBuildInputs = [
-      nodejs
-      yarn
-      fixup_yarn_lock
-    ];
-
-    configurePhase = ''
-      runHook preConfigure
-
-      cd desktop
-      yarn install
-      patchShebangs node_modules
-      cd ..
-
-      runHook postConfigure
+    extraInstallCommands = ''
+      install -m 444 -D ${desktopEntry}/share/applications/ente-photos.desktop $out/share/applications/ente-photos.desktop
+      install -m 444 -D ${icon} $out/share/icons/hicolor/512x512/apps/ente-photos.png
     '';
 
-    buildPhase = ''
-      runHook preBuild
-
-      cd desktop
-      yarn build
-      cd ..
-
-      runHook postBuild
-    '';
+    meta = with lib; {
+      description = "End to End Encrypted Cloud Photo Storage";
+      homepage = "https://ente.io/";
+      changelog = "https://github.com/ente-io/photos-desktop/releases/tag/v${version}";
+      license = licenses.agpl3Only;
+      mainProgram = "ente-photos";
+      maintainers = with maintainers; [different];
+      platforms = ["x86_64-linux"];
+    };
   }

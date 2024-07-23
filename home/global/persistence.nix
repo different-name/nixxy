@@ -27,6 +27,7 @@
         ".config/GIMP"
         ".local/share/vulkan/" # steam shader cache files?
         ".nv" # OpenGL cache
+        ".config/ente"
       ];
       files = [
         ".bash_history"

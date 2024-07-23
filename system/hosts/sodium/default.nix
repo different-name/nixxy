@@ -28,7 +28,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = {inherit inputs self;};
     users.${config.nix-files.user} = import ../../../home/hosts/sodium.nix;
   };
 
@@ -37,9 +37,9 @@
     value = "1.5";
   };
 
-  environment.systemPackages = [
-    self.packages.${pkgs.system}.openvr-advanced-settings
-    self.packages.${pkgs.system}.slimevr
+  environment.systemPackages = with self.packages.${pkgs.system}; [
+    openvr-advanced-settings
+    slimevr
   ];
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
