@@ -46,7 +46,7 @@
     };
 
     # hyprwm
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=672bf1f8670b200da57e2f6de4e9ed7efd8c98fc";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     hypridle = {
       url = "github:hyprwm/hypridle";
