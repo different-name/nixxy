@@ -44,6 +44,11 @@
 
       # vesktop sharescreen menu
       "float, title:(MainPicker)"
+
+      # vrchat
+      "suppressevent maximize, class:(steam_app_438100)"
+      "suppressevent fullscreen, class:(steam_app_438100)"
+      "fullscreen, class:(steam_app_438100)"
     ];
   };
 }
