@@ -16,6 +16,7 @@ in {
       # use wev to find mouse button codes
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
+      "$mod SHIFT, mouse:273, resizewindow 1"
       "$mod CTRL, mouse:272, resizewindow"
       "$mod CTRL SHIFT, mouse:272, resizewindow 1"
     ];
