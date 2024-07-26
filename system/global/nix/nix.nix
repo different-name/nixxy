@@ -5,6 +5,12 @@
   config,
   ...
 }: {
+  # weekly updated nix-index database
+  # needed due to nix channels being disabled, breaking command-not-found
+  imports = [
+    inputs.nix-index-database.nixosModules.nix-index
+  ];
+
   # need git for flakes
   environment.systemPackages = [pkgs.git];
 

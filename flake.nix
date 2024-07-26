@@ -39,6 +39,12 @@
     # manage persistent state
     impermanence.url = "github:nix-community/impermanence";
 
+    # weekly updated nix-index database
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # flake-parts pre commit hooks module
     pre-commit-hooks-nix = {
       url = "github:cachix/pre-commit-hooks.nix";
