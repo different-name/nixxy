@@ -8,8 +8,6 @@ in {
   imports = [
     ./wayland
     ./catppuccin.nix
-    ./fastfetch.nix
-    ./fd.nix
     ./gtk.nix
     ./imv.nix
     ./mpv.nix

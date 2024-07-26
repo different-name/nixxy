@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   imports = [
     ./btop.nix
+    ./fastfetch.nix
+    ./fd.nix
     ./fish.nix
     ./git.nix
     ./kitty.nix
