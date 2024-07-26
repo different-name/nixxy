@@ -11,8 +11,19 @@ in {
   programs.steam = {
     enable = true;
 
-    # add proton GE
-    extraCompatPackages = [pkgs.proton-ge-bin];
+    extraCompatPackages = with pkgs; [
+      # add proton ge
+      proton-ge-bin
+      # proton ge with rtsp patch, for vrchat video players
+      (proton-ge-bin.overrideAttrs (finalAttrs: {
+        pname = "proton-ge-rtsp-bin";
+        version = "GE-Proton9-10-rtsp12-hotfix";
+        src = pkgs.fetchzip {
+          url = "https://github.com/SpookySkeletons/proton-ge-rtsp/releases/download/rtsp6-hotfix/GE-Proton9-10-rtsp12-hotfix.tar.gz";
+          hash = "sha256-o5YfTsmLzkCZWjn+J6v38AbuTXcKSAcVJdqt+Km4jwA=";
+        };
+      }))
+    ];
 
     # fix gamescope inside of steam
     package = pkgs.steam.override {
