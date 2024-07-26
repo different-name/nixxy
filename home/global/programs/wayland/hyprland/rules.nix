@@ -1,54 +1,41 @@
 {lib, ...}: {
   wayland.windowManager.hyprland.settings = {
-    layerrule = let
-      toRegex = list: let
-        elements = lib.concatStringsSep "|" list;
-      in "^(${elements})$";
-
-      lowopacity = [
-        "notifications"
+    windowrulev2 = let
+      fullscreenSteamApps = [
+        438100 # vrchat
+        1058830 # spin rhythm
       ];
+    in
+      [
+        # gnome calculator
+        "float, class:(org.gnome.Calculator)"
+        "size 360 490, class:(org.gnome.Calculator)"
 
-      highopacity = [
-      ];
+        # brave PiP
+        "float, title:(Picture-in-picture)"
+        "pin, title:(Picture-in-picture)"
+        "size 480 270, title:(Picture-in-picture)"
 
-      blurred = lib.concatLists [
-        lowopacity
-        highopacity
-      ];
-    in [
-      "blur, ${toRegex blurred}"
-      "ignorealpha 0.5, ${toRegex highopacity}"
-      "ignorealpha 0.2, ${toRegex lowopacity}"
-    ];
+        # gtk popups
+        "float, class:(xdg-desktop-portal-gtk)"
 
-    windowrulev2 = [
-      # gnome calculator
-      "float, class:(org.gnome.Calculator)"
-      "size 360 490, class:(org.gnome.Calculator)"
+        # pavucontrol
+        "float, class:(pavucontrol)"
+        "size 1000 750, class:(pavucontrol)"
 
-      # brave PiP
-      "float, title:(Picture-in-picture)"
-      "pin, title:(Picture-in-picture)"
-      "size 480 270, title:(Picture-in-picture)"
+        # thunar file operations
+        "float, title:(File Operation Progress)"
 
-      # gtk popups
-      "float, class:(xdg-desktop-portal-gtk)"
-
-      # pavucontrol
-      "float, class:(pavucontrol)"
-      "size 1000 750, class:(pavucontrol)"
-
-      # thunar file operations
-      "float, title:(File Operation Progress)"
-
-      # vesktop sharescreen menu
-      "float, title:(MainPicker)"
-
-      # vrchat
-      "suppressevent maximize, class:(steam_app_438100)"
-      "suppressevent fullscreen, class:(steam_app_438100)"
-      "fullscreen, class:(steam_app_438100)"
-    ];
+        # vesktop sharescreen menu
+        "float, title:(MainPicker)"
+      ]
+      ++ (lib.flatten (map (id: let
+          idStr = toString id;
+        in [
+          "suppressevent maximize, class:(steam_app_${idStr})"
+          "suppressevent fullscreen, class:(steam_app_${idStr})"
+          "fullscreen, class:(steam_app_${idStr})"
+        ])
+        fullscreenSteamApps));
   };
 }
