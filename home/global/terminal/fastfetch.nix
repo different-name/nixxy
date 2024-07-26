@@ -1,6 +1,20 @@
-{osConfig, ...}: { 
+{
+  osConfig,
+  pkgs,
+  ...
+}: {
   programs.fastfetch = {
     enable = true;
+    # TODO remove this when nixpkgs is updated
+    package = pkgs.fastfetch.overrideAttrs (finalAttrs: {
+      version = "2.20.0";
+      src = pkgs.fetchFromGitHub {
+        owner = "fastfetch-cli";
+        repo = "fastfetch";
+        rev = "2.20.0";
+        hash = "sha256-8N2BG9eTZpAvnc1wiG6p7GJSCPfZ+NTbz8kLGPRg5HU=";
+      };
+    });
     settings = {
       logo = {
         type = "kitty-direct";
@@ -8,7 +22,7 @@
         width = 18;
         height = 8;
         padding = {
-          left = 1;
+          left = 0;
           right = 2;
         };
       };
@@ -31,10 +45,13 @@
         }
         "terminal"
         "packages"
-        {type = "memory"; percent = {
-          green = 0;
-          yellow = 0;
-        };}
+        {
+          type = "memory";
+          percent = {
+            green = 0;
+            yellow = 0;
+          };
+        }
       ];
     };
   };
