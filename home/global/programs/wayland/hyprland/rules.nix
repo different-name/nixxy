@@ -23,9 +23,6 @@
         "float, class:(pavucontrol)"
         "size 1000 750, class:(pavucontrol)"
 
-        # thunar file operations
-        "float, title:(File Operation Progress)"
-
         # vesktop sharescreen menu
         "float, title:(MainPicker)"
       ]

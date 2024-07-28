@@ -45,7 +45,7 @@ in {
         ## browser
         "$mod, W, exec, brave"
         ## file explorer
-        "$mod, E, exec, thunar"
+        "$mod, E, exec, kitty yazi"
 
         # move focus
         "$mod, left, movefocus, l"
