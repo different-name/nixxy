@@ -95,20 +95,6 @@
     #  explicit_sync = true;
     # };
 
-    debug.disable_logs = false;
-
-    plugin = {
-      hyprexpo = {
-        colimns = 3;
-        gap_size = 4;
-        bg_col = "rgb(000000)";
-
-        enable_gesture = true;
-        gesture_distance = 300;
-        gesture_positive = false;
-      };
-    };
-
     monitor = [
       "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5" # home monitor
       "desc:Valve Corporation ANX7530 U 0x00000001, preferred, 0x0, 1, transform, 3" # steam deck display

@@ -102,7 +102,7 @@ in {
 
       # volume
       ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      ", XF86AudioMicMute, exec"
+      ", XF86AudioMicMute, exec" # TODO
     ];
 
     bindle = [

@@ -7,7 +7,7 @@
       ];
     in
       [
-        # gnome calculator
+        # galculate
         "float, class:(qalculate-gtk)"
         "size 850 575, class:(qalculate-gtk)"
 
@@ -23,7 +23,7 @@
         "float, class:(pavucontrol)"
         "size 1000 750, class:(pavucontrol)"
 
-        # vesktop sharescreen menu
+        # hyprland share picker
         "float, title:(MainPicker)"
       ]
       ++ (lib.flatten (map (id: let
