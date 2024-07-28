@@ -18,9 +18,11 @@
       "files.enableTrash" = false;
       "workbench.startupEditor" = "none";
       "window.titleBarStyle" = "custom";
-      "catppuccin.accentColor" = "red";
+      # "catppuccin.accentColor" = "red";
     };
   };
+
+  home.sessionVariables.EDITOR = "codium";
 
   home.persistence."/persist/home/${osConfig.nix-files.user}".directories = [
     ".config/VSCodium/CachedData"

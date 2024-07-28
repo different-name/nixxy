@@ -9,7 +9,6 @@
     ./qt.nix
     ./seahorse.nix
     ./steam.nix
-    ./thunar.nix
     ./tools.nix
     ./xdg.nix
   ];
