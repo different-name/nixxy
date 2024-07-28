@@ -29,6 +29,9 @@
         ".nv" # OpenGL cache
         ".config/ente"
         ".local/share/fish"
+        ".config/qalculate"
+        ".local/share/qalculate"
+        ".local/share/waydroid"
       ];
       files = [
         ".bash_history"

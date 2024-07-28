@@ -10,6 +10,7 @@
     ./seahorse.nix
     ./steam.nix
     ./tools.nix
+    ./waydroid.nix
     ./xdg.nix
   ];
 }

@@ -7,5 +7,6 @@
     ./nix
     ./programs
     ./services
+    ./persistence.nix
   ];
 }
