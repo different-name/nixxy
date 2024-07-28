@@ -14,6 +14,7 @@ in {
     ./obs.nix
     ./qt.nix
     ./vscodium.nix
+    ./zathura.nix
     ./xdg.nix
   ];
 
@@ -22,13 +23,12 @@ in {
       # util
       brave
       pavucontrol
-      gnome-calculator
+      qalculate-gtk
       gimp-with-plugins
 
       # games
       vesktop
       unityhub
-      vrc-get
       wlx-overlay-s
       # (prismlauncher.override {
       #   jdks = [

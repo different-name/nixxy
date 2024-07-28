@@ -4,8 +4,10 @@
     ./fastfetch.nix
     ./fd.nix
     ./fish.nix
+    ./fzf.nix
     ./git.nix
     ./kitty.nix
+    ./yazi.nix
   ];
 
   home.packages = with pkgs; [
@@ -13,5 +15,10 @@
     ani-cli
     trashy
     ncdu
+    vrc-get
+    aspell
+    aspellDicts.en
+    libqalculate
+    sshfs
   ];
 }

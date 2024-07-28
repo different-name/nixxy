@@ -5,6 +5,7 @@
     ./fish.nix
     ./home-manager.nix
     ./hyprland.nix
+    ./iftop.nix
     ./qt.nix
     ./seahorse.nix
     ./steam.nix

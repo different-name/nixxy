@@ -8,8 +8,8 @@
     in
       [
         # gnome calculator
-        "float, class:(org.gnome.Calculator)"
-        "size 360 490, class:(org.gnome.Calculator)"
+        "float, class:(qalculate-gtk)"
+        "size 850 575, class:(qalculate-gtk)"
 
         # brave PiP
         "float, title:(Picture-in-picture)"

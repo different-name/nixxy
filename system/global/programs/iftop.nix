@@ -1,0 +1,3 @@
+{
+  programs.iftop.enable = true;
+}
