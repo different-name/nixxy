@@ -24,7 +24,6 @@ in {
     bind =
       [
         # compositor commands
-        "$mod SHIFT, E, exec, pkill Hyprland"
         "$mod, Q, killactive"
         "$mod, F, fullscreen"
         "$mod SHIFT, F, fakefullscreen"
@@ -34,6 +33,7 @@ in {
         "$mod, T, pin"
         "$mod ALT, ,resizeactive"
         "CTRL ALT, DELETE, exec, hyprctl kill"
+        "CTRL ALT SHIFT, DELETE, exec, pkill Hyprland"
 
         # utility
         ## terminal
@@ -52,6 +52,12 @@ in {
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
+
+        # move window
+        "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, right, movewindow, r"
+        "$mod SHIFT, up, movewindow, u"
+        "$mod SHIFT, down, movewindow, d"
 
         # screenshot
         ## area
