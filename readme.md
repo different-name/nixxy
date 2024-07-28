@@ -10,6 +10,7 @@ My NixOS configuration files
 - Flake
 - Multi host
 - Single user
+- Random swap encryption & zfs encryption
 - Ephemeral root and home (state is opt in, managed by [impermanence](https://github.com/nix-community/impermanence))
 - Declarative home with [home-manager](https://github.com/nix-community/home-manager)
 - Hyprland

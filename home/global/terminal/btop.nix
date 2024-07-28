@@ -8,7 +8,6 @@
     package = pkgs.btop.override {cudaSupport = true;};
 
     settings = {
-      shown_boxes = "proc cpu mem net gpu0";
       proc_gradient = false;
       proc_mem_bytes = false;
       update_ms = 1500;

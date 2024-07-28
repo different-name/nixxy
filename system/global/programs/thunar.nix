@@ -11,4 +11,7 @@
 
   # thumbnail support for images
   services.tumbler.enable = true;
+
+  # archive support
+  programs.file-roller.enable = true;
 }
