@@ -80,6 +80,9 @@ in {
         # send focused workspace to left/right monitors
         "$mod SHIFT ALT, bracketleft, movecurrentworkspacetomonitor, l"
         "$mod SHIFT ALT, bracketright, movecurrentworkspacetomonitor, r"
+
+        # color picker
+        "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} --autocopy"
       ]
       # workspace keys
       ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])

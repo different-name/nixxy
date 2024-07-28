@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  self,
+  ...
+}: {
   imports = [
     ./btop.nix
     ./fastfetch.nix
@@ -10,15 +14,20 @@
     ./yazi.nix
   ];
 
-  home.packages = with pkgs; [
-    imagemagick
-    ani-cli
-    trashy
-    ncdu
-    vrc-get
-    aspell
-    aspellDicts.en
-    libqalculate
-    sshfs
-  ];
+  home.packages =
+    (with pkgs; [
+      imagemagick
+      ani-cli
+      trashy
+      ncdu
+      vrc-get
+      aspell
+      aspellDicts.en
+      libqalculate
+      sshfs
+      wl-clipboard
+    ])
+    ++ [
+      self.inputs.hyprpicker.packages.${pkgs.system}.default
+    ];
 }

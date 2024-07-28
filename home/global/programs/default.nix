@@ -41,7 +41,7 @@ in {
       slack
       libreoffice-qt6-fresh
     ])
-    ++ (with customPkgs; [
-      ente-photos-desktop
-    ]);
+    ++ [
+      customPkgs.ente-photos-desktop
+    ];
 }
