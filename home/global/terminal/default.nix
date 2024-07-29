@@ -26,6 +26,7 @@
       libqalculate
       sshfs
       wl-clipboard
+      magic-wormhole
     ])
     ++ [
       self.inputs.hyprpicker.packages.${pkgs.system}.default

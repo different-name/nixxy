@@ -98,7 +98,7 @@
     monitor = [
       "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5" # home monitor
       "desc:Valve Corporation ANX7530 U 0x00000001, preferred, 0x0, 1, transform, 3" # steam deck display
-      "desc:Sharp Corporation 0x14D1, preferred, 0x0, 1.2" # laptop display
+      "desc:Sharp Corporation 0x14D1, preferred, 0x0, 1" # laptop display
       ",preferred,auto,1" # everything else
     ];
   };

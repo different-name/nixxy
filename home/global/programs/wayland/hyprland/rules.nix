@@ -4,6 +4,7 @@
       fullscreenSteamApps = [
         438100 # vrchat
         1058830 # spin rhythm
+        271590 # gta v
       ];
     in
       [
