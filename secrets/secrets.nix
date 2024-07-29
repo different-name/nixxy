@@ -11,6 +11,8 @@ let
 
   keys = userKeys ++ rootKeys;
 in {
+  # EDITOR="nano" nix run github:ryantm/agenix -- -e xxx/xxx.age
+  "user/password.age".publicKeys = keys;
   "restic/password.age".publicKeys = keys;
   "restic/protondrive/rclone.conf.age".publicKeys = keys;
 }

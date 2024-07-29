@@ -4,11 +4,13 @@
   lib,
   ...
 }: {
+  age.secrets.user-password.file = ../../../secrets/user/password.age;
+
   nix-files.user = "different";
 
   users.users.${config.nix-files.user} = {
-    password = "nixos"; # TODO agenix
     isNormalUser = true;
+    passwordFile = config.age.secrets.user-password.path;
 
     openssh.authorizedKeys.keys = [
       # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
@@ -44,13 +46,10 @@
 
     gettyCmd = args: "@${pkgs.util-linux}/sbin/agetty agetty ${lib.escapeShellArgs baseArgs} ${args}";
   in {
-    overrideStrategy = "asDropin";
+    overrideStrategy = "asDropin"; # https://discourse.nixos.org/t/autologin-for-single-tty/49427
     serviceConfig.ExecStart = [
       "" # override upstream default with an empty ExecStart
       (gettyCmd "--noclear --keep-baud %I 115200,38400,9600 $TERM")
     ];
   };
-  # systemd.services."getty@tty1" = {
-  #   serviceConfig.ExecStart = ["" "@${pkgs.util-linux}/sbin/agetty agetty --login-program ${config.services.getty.loginProgram} --autologin different --noclear --keep-baud %I 115200,38400,9600 $TERM"];
-  # };
 }
