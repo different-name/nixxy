@@ -1,13 +1,6 @@
 {lib, ...}: {
   wayland.windowManager.hyprland.settings = {
-    windowrulev2 = let
-      fullscreenSteamApps = [
-        438100 # vrchat
-        1058830 # spin rhythm
-        271590 # gta v
-      ];
-    in
-      [
+    windowrulev2 = [
         # galculate
         "float, class:(qalculate-gtk)"
         "size 850 575, class:(qalculate-gtk)"
@@ -26,14 +19,12 @@
 
         # hyprland share picker
         "float, title:(MainPicker)"
-      ]
-      ++ (lib.flatten (map (id: let
-          idStr = toString id;
-        in [
-          "suppressevent maximize, class:(steam_app_${idStr})"
-          "suppressevent fullscreen, class:(steam_app_${idStr})"
-          "fullscreen, class:(steam_app_${idStr})"
-        ])
-        fullscreenSteamApps));
+
+        # steam games
+        "suppressevent maximize, class:(steam_app_[0-9]*)"
+        "suppressevent fullscreen, class:(steam_app_[0-9]*)"
+        "fullscreen, class:(steam_app_[0-9]*)"
+        "workspace 2, class:(steam_app_[0-9]*)"
+      ];
   };
 }
