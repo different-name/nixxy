@@ -1,8 +1,6 @@
 {
   pkgs,
   inputs,
-  lib,
-  config,
   ...
 }: let
   wallpaperImg = ../../../assets/wallpaper.jpg;

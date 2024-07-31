@@ -1,10 +1,4 @@
-{
-  pkgs,
-  self,
-  ...
-}: let
-  customPkgs = self.packages.${pkgs.system};
-in {
+{pkgs, ...}: {
   imports = [
     ./wayland
     ./catppuccin.nix

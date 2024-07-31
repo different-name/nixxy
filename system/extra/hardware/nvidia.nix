@@ -1,8 +1,4 @@
 {
-  config,
-  lib,
-  ...
-}: {
   # load nvidia driver for xorg and wayland
   services.xserver.videoDrivers = ["nvidia"];
 

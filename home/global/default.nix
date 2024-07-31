@@ -1,8 +1,6 @@
 {
   inputs,
-  pkgs,
   osConfig,
-  self,
   ...
 }: let
   inherit (osConfig.nix-files) user;

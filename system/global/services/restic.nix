@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{config, ...}: let
   user = config.nix-files.user;
 in {
   age.secrets.restic-password.file = ../../../secrets/restic/password.age;

@@ -1,8 +1,4 @@
-{
-  osConfig,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.fastfetch = {
     enable = true;
     # TODO remove this when nixpkgs is updated

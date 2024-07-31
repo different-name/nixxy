@@ -1,7 +1,6 @@
 {config, ...}: let
   hyprlandCfg = config.wayland.windowManager.hyprland;
   margin = hyprlandCfg.settings.general.gaps_out;
-  marginStr = builtins.toString margin;
 in {
   programs.waybar = {
     enable = true;
