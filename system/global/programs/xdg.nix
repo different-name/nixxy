@@ -16,7 +16,7 @@
     mime = {
       enable = true;
       defaultApplications = {
-        "x-scheme-handler/unityhub" = "unityhub.desktop"; # TODO doesn't seem to be working
+        "x-scheme-handler/unityhub" = "unityhub.desktop";
       };
     };
   };
