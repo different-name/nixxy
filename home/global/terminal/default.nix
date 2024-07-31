@@ -27,6 +27,7 @@
       sshfs
       wl-clipboard
       magic-wormhole
+      exiftool
     ])
     ++ [
       self.inputs.hyprpicker.packages.${pkgs.system}.default

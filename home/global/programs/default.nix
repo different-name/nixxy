@@ -18,27 +18,26 @@ in {
     ./xdg.nix
   ];
 
-  home.packages =
-    (with pkgs; [
-      # util
-      brave
-      pavucontrol
-      qalculate-gtk
-      gimp-with-plugins
+  home.packages = with pkgs; [
+    # util
+    brave
+    pavucontrol
+    qalculate-gtk
+    gimp-with-plugins
 
-      # games
-      vesktop
-      unityhub
-      # wlx-overlay-s
-      # (prismlauncher.override {
-      #   jdks = [
-      #     zulu17
-      #     zulu21
-      #   ];
-      # })
+    # games
+    vesktop
+    unityhub
+    # wlx-overlay-s
+    # (prismlauncher.override {
+    #   jdks = [
+    #     zulu17
+    #     zulu21
+    #   ];
+    # })
 
-      # work
-      slack
-      libreoffice-qt6-fresh
-    ]);
+    # work
+    slack
+    libreoffice-qt6-fresh
+  ];
 }
