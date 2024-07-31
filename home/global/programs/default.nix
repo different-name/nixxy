@@ -29,7 +29,7 @@ in {
       # games
       vesktop
       unityhub
-      wlx-overlay-s
+      # wlx-overlay-s
       # (prismlauncher.override {
       #   jdks = [
       #     zulu17
@@ -40,8 +40,5 @@ in {
       # work
       slack
       libreoffice-qt6-fresh
-    ])
-    ++ [
-      customPkgs.ente-photos-desktop
-    ];
+    ]);
 }
