@@ -8,8 +8,6 @@
     ];
 
     exec-once = [
-      "nm-applet --indicator"
-      "waybar"
       "dunst"
       "goxlr-daemon"
       "steam -silent"

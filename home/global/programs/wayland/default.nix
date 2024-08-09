@@ -3,6 +3,5 @@
     ./hyprland
     ./hyprlock.nix
     ./rofi.nix
-    ./waybar.nix
   ];
 }
