@@ -16,9 +16,7 @@ in {
       # use wev to find mouse button codes
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
-      "$mod SHIFT, mouse:273, resizewindow 1"
       "$mod CTRL, mouse:272, resizewindow"
-      "$mod CTRL SHIFT, mouse:272, resizewindow 1"
     ];
 
     bind =
@@ -26,7 +24,7 @@ in {
         # compositor commands
         "$mod, Q, killactive"
         "$mod, F, fullscreen"
-        "$mod SHIFT, F, fakefullscreen"
+        "$mod SHIFT, F, fullscreenstate, -1 2" # current fullscreen state, tell client it is fullscreened 
         "$mod, R, togglesplit,"
         "$mod, G, togglefloating,"
         "$mod, P, pseudo"
@@ -53,11 +51,11 @@ in {
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
 
-        # move window
-        "$mod SHIFT, left, movewindow, l"
-        "$mod SHIFT, right, movewindow, r"
-        "$mod SHIFT, up, movewindow, u"
-        "$mod SHIFT, down, movewindow, d"
+        # swap windows
+        "$mod SHIFT, left, swapwindow, l"
+        "$mod SHIFT, right, swapwindow, r"
+        "$mod SHIFT, up, swapwindow, u"
+        "$mod SHIFT, down, swapwindow, d"
 
         # screenshot
         ## area

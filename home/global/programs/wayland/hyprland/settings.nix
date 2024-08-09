@@ -76,10 +76,8 @@
     misc = {
       # disable auto polling for config file changes
       disable_autoreload = true;
-
-      force_default_wallpaper = 0;
-
-      no_direct_scanout = false;
+      disable_hyprland_logo = true;
+      disable_splash_rendering = true;
     };
 
     # touchpad gestures
@@ -90,10 +88,6 @@
 
     # unscale xwayland
     xwayland.force_zero_scaling = true;
-
-    # experimental = {
-    #  explicit_sync = true;
-    # };
 
     monitor = [
       "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5" # home monitor

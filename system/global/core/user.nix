@@ -10,7 +10,7 @@
 
   users.users.${config.nix-files.user} = {
     isNormalUser = true;
-    passwordFile = config.age.secrets.user-password.path;
+    hashedPasswordFile = config.age.secrets.user-password.path;
 
     openssh.authorizedKeys.keys = [
       # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect

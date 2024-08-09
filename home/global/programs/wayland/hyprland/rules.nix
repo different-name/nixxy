@@ -1,6 +1,9 @@
 {
   wayland.windowManager.hyprland.settings = {
     windowrulev2 = [
+      # global
+      "suppressevent maximize, class:.*"
+
       # galculate
       "float, class:^(qalculate-gtk)$"
       "size 850 575, class:^(qalculate-gtk)$"
@@ -9,6 +12,7 @@
       "float, title:^(Picture-in-picture)$"
       "pin, title:^(Picture-in-picture)$"
       "size 480 270, title:^(Picture-in-picture)$"
+      "keepaspectratio, title:^(Picture-in-picture)$"
 
       # gtk popups
       "float, class:^(xdg-desktop-portal-gtk)$"
@@ -21,14 +25,12 @@
       "float, title:^(MainPicker)$"
 
       # steam games
-      "suppressevent maximize, class:^(steam_app_[0-9]*)$"
       "suppressevent fullscreen, class:^(steam_app_[0-9]*)$"
       "fullscreen, class:^(steam_app_[0-9]*)$"
       "workspace 2, class:^(steam_app_[0-9]*)$"
-
-      # fix for borderlands mouse not working
+      # fix for various mouse issues
       # possibly related to https://github.com/hyprwm/Hyprland/issues/6543
-      "stayfocused, class:^(steam_app_49520)$"
+      "stayfocused, class:^(steam_app_[0-9]*)$"
     ];
   };
 }
