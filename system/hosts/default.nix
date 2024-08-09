@@ -11,10 +11,6 @@ in {
       inherit specialArgs;
       modules = [./sodium];
     };
-    "lithium" = nixosSystem {
-      inherit specialArgs;
-      modules = [./lithium];
-    };
     "potassium" = nixosSystem {
       inherit specialArgs;
       modules = [./potassium];

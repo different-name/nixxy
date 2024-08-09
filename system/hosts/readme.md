@@ -12,6 +12,5 @@ Current hosts
 
 | Host                                  | Description               |
 | ------------------------------------- | ------------------------- |
-| [`lithium`](lithium)     | Steam Deck                |
 | [`potassium`](potassium) | Laptop                    |
 | [`sodium`](sodium)       | Desktop - primary machine |
