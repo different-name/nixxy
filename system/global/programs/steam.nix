@@ -17,10 +17,10 @@ in {
       # proton ge with rtsp patch, for vrchat video players
       (proton-ge-bin.overrideAttrs (finalAttrs: {
         pname = "proton-ge-rtsp-bin";
-        version = "GE-Proton9-10-rtsp12-hotfix";
+        version = "GE-Proton9-10-rtsp13";
         src = pkgs.fetchzip {
-          url = "https://github.com/SpookySkeletons/proton-ge-rtsp/releases/download/rtsp6-hotfix/GE-Proton9-10-rtsp12-hotfix.tar.gz";
-          hash = "sha256-o5YfTsmLzkCZWjn+J6v38AbuTXcKSAcVJdqt+Km4jwA=";
+          url = "https://github.com/SpookySkeletons/proton-ge-rtsp/releases/download/GE-Proton9-10-rtsp13/GE-Proton9-10-rtsp13.tar.gz";
+          hash = "sha256-jf1p33Kuqtriycf6gOw/IBdx/ts/P7PJd+pjxonAS/U=";
         };
       }))
     ];
