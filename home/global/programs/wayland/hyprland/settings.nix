@@ -1,6 +1,40 @@
-{
+let
+  activeColor = "ed507c";
+  inactiveColor = "181825";
+in {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
+
+    general = {
+      gaps_in = 3;
+      gaps_out = 6;
+      "col.active_border" = "rgb(${activeColor})";
+      "col.inactive_border" = "rgba(${inactiveColor}88)";
+    };
+
+    decoration = {
+      rounding = 5;
+      drop_shadow = true;
+      shadow_range = 8;
+      shadow_render_power = 3;
+      shadow_ignore_window = true;
+      "col.shadow" = "rgba(00000055)";
+      dim_inactive = false;
+
+      blur = {
+        enabled = true;
+        size = 7;
+        passes = 4;
+        new_optimizations = true;
+        brightness = 1.0;
+        contrast = 1.0;
+        noise = 0.01;
+        vibrancy = 0.2;
+        vibrancy_darkness = 0.5;
+        popups = true;
+        popups_ignorealpha = 0.2;
+      };
+    };
 
     env = [
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
@@ -12,38 +46,6 @@
       "goxlr-daemon"
       "steam -silent"
     ];
-
-    general = {
-      gaps_in = 3;
-      gaps_out = 6;
-      "col.active_border" = "rgb(ed507c)";
-      "col.inactive_border" = "rgba(18192688)";
-    };
-
-    decoration = {
-      rounding = 5;
-      blur = {
-        enabled = true;
-        brightness = 1.0;
-        contrast = 1.0;
-        noise = 0.01;
-        vibrancy = 0.2;
-        vibrancy_darkness = 0.5;
-        passes = 4;
-        size = 7;
-        popups = true;
-        popups_ignorealpha = 0.2;
-        new_optimizations = "on";
-      };
-
-      drop_shadow = true;
-      shadow_ignore_window = true;
-      shadow_range = 8;
-      shadow_render_power = 3;
-      "col.shadow" = "rgba(00000055)";
-
-      dim_inactive = false;
-    };
 
     animations = {
       enabled = true;
@@ -78,10 +80,23 @@
       disable_splash_rendering = true;
     };
 
+    render.direct_scanout = true;
+
     # touchpad gestures
     gestures = {
       workspace_swipe = true;
       workspace_swipe_forever = true;
+    };
+
+    group = {
+      "col.border_active" = "rgb(${activeColor})";
+      "col.border_inactive" = "rgba(${inactiveColor}88)";
+      groupbar = {
+        height = 6;
+        render_titles = false;
+        "col.active" = "rgb(${activeColor})";
+        "col.inactive" = "rgb(${inactiveColor})";
+      };
     };
 
     # unscale xwayland
