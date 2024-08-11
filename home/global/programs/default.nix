@@ -22,6 +22,7 @@
     # games
     vesktop
     unityhub
+    lutris
     # wlx-overlay-s
     # (prismlauncher.override {
     #   jdks = [

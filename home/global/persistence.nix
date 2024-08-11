@@ -31,6 +31,7 @@
         ".local/share/fish"
         ".config/qalculate"
         ".local/share/qalculate"
+        ".local/share/lutris"
       ];
       files = [
         ".bash_history"
