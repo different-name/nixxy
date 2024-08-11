@@ -28,6 +28,7 @@
       wl-clipboard
       magic-wormhole
       exiftool
+      alejandra
     ])
     ++ [
       self.inputs.hyprpicker.packages.${pkgs.system}.default

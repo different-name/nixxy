@@ -15,6 +15,7 @@
     userSettings = {
       "workbench.colorTheme" = "Catppuccin Mocha";
       "editor.fontFamily" = "'JetBrains Mono', 'monospace', monospace";
+      "editor.tabSize" = 2;
       "files.enableTrash" = false;
       "workbench.startupEditor" = "none";
       "window.titleBarStyle" = "custom";

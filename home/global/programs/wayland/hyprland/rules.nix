@@ -1,7 +1,7 @@
 {
   wayland.windowManager.hyprland.settings = {
     windowrulev2 = let
-      steamGameClass = "^(steam_app_[0-9]+|hl2_linux)$";
+      gameRule = rule: (rule + ", class:^(steam_app_[0-9]+|hl2_linux)$, title:.+");
     in [
       # global
       "suppressevent maximize, class:.*"
@@ -29,13 +29,13 @@
       # hyprland share picker
       "float, title:^(MainPicker)$"
 
-      # steam games
-      "suppressevent fullscreen, class:${steamGameClass}"
-      "fullscreen, class:${steamGameClass}"
-      "workspace 2, class:${steamGameClass}"
+      # games
+      (gameRule "suppressevent fullscreen")
+      (gameRule "fullscreen")
+      (gameRule "workspace 2")
       # fix for various mouse issues
       # possibly related to https://github.com/hyprwm/Hyprland/issues/6543
-      "stayfocused, class:${steamGameClass}"
+      (gameRule "stayfocused")
     ];
   };
 }
