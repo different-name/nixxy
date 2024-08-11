@@ -1,6 +1,7 @@
 let
   activeColor = "ed507c";
   inactiveColor = "181825";
+  alternateColor = "cba6f7";
 in {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
@@ -91,11 +92,15 @@ in {
     group = {
       "col.border_active" = "rgb(${activeColor})";
       "col.border_inactive" = "rgba(${inactiveColor}88)";
+      "col.border_locked_active" = "rgb(${alternateColor})";
+      "col.border_locked_inactive" = "rgba(${inactiveColor}88)";
       groupbar = {
         height = 6;
         render_titles = false;
         "col.active" = "rgb(${activeColor})";
         "col.inactive" = "rgb(${inactiveColor})";
+        "col.locked_active" = "rgb(${alternateColor})";
+        "col.locked_inactive" = "rgb(${inactiveColor})";
       };
     };
 
@@ -104,7 +109,6 @@ in {
 
     monitor = [
       "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5" # home monitor
-      "desc:Sharp Corporation 0x14D1, preferred, 0x0, 1" # laptop display
       ",preferred,auto,1" # everything else
     ];
   };
