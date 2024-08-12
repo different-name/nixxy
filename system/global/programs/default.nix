@@ -7,7 +7,6 @@
     ./hyprland.nix
     ./iftop.nix
     ./qt.nix
-    ./seahorse.nix
     ./steam.nix
     ./thunar.nix
     ./tools.nix
