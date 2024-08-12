@@ -24,7 +24,8 @@
       "size 1000 750, class:^(pavucontrol)$"
 
       # thunar file operations
-      "float, title:(File Operation Progress)"
+      "float, title:^(File Operation Progress)$"
+      "float, class:^(file-roller)$"
 
       # hyprland share picker
       "float, title:^(MainPicker)$"
