@@ -12,12 +12,5 @@
         pkgs.xdg-desktop-portal-gtk
       ];
     };
-
-    mime = {
-      enable = true;
-      defaultApplications = {
-        "x-scheme-handler/unityhub" = "unityhub.desktop";
-      };
-    };
   };
 }

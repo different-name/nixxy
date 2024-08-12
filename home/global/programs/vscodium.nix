@@ -32,8 +32,6 @@
   # nix language server
   home.packages = [pkgs.nil];
 
-  home.sessionVariables.EDITOR = "codium";
-
   home.persistence."/persist/home/${osConfig.nix-files.user}".directories = [
     ".config/VSCodium/CachedData"
     ".config/VSCodium/Cache"

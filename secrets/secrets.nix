@@ -15,7 +15,7 @@ let
 
   keys = userKeys ++ rootKeys;
 in {
-  # EDITOR="nano" nix run github:ryantm/agenix -- -e xxx/xxx.age
+  # nix run github:ryantm/agenix -- -e xxx/xxx.age
   # nix run github:ryantm/agenix -- -r
   "user/password.age".publicKeys = keys;
   "restic/password.age".publicKeys = keys;
