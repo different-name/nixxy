@@ -23,6 +23,10 @@
         ".local/share/Trash"
         ".config/unityhub"
         ".config/unity3d"
+        ".config/Unity"
+        ".config/blender"
+        ".local/share/unity3d"
+        ".local/share/VRChatCreatorCompanion"
         ".config/libreoffice"
         ".config/GIMP"
         ".local/share/vulkan/" # steam shader cache files?
