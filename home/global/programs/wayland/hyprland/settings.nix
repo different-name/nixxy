@@ -90,16 +90,16 @@ in {
     };
 
     group = {
-      "col.border_active" = "rgb(${activeColor})";
+      "col.border_active" = "rgb(${alternateColor})";
       "col.border_inactive" = "rgba(${inactiveColor}88)";
-      "col.border_locked_active" = "rgb(${alternateColor})";
+      "col.border_locked_active" = "rgb(${activeColor})";
       "col.border_locked_inactive" = "rgba(${inactiveColor}88)";
       groupbar = {
         height = 6;
         render_titles = false;
-        "col.active" = "rgb(${activeColor})";
+        "col.active" = "rgb(${alternateColor})";
         "col.inactive" = "rgb(${inactiveColor})";
-        "col.locked_active" = "rgb(${alternateColor})";
+        "col.locked_active" = "rgb(${activeColor})";
         "col.locked_inactive" = "rgb(${inactiveColor})";
       };
     };
