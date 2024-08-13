@@ -18,6 +18,8 @@
     pavucontrol
     qalculate-gtk
     gimp-with-plugins
+    scrcpy
+    android-tools
 
     # games
     vesktop

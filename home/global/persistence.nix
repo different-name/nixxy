@@ -36,6 +36,7 @@
         ".config/qalculate"
         ".local/share/qalculate"
         ".local/share/lutris"
+        ".android"
       ];
       files = [
         ".bash_history"
