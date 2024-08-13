@@ -27,10 +27,12 @@ in {
   networking = {
     hostName = "sodium";
     hostId = "9471422d";
-    interfaces.enp4s0.ipv4.addresses = [{
-      address = "192.168.86.11";
-      prefixLength = 24;
-    }];
+    interfaces.enp4s0.ipv4.addresses = [
+      {
+        address = "192.168.86.11";
+        prefixLength = 24;
+      }
+    ];
   };
 
   home-manager = {
