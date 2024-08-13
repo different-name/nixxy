@@ -4,7 +4,9 @@
   self,
   pkgs,
   ...
-}: {
+}: let
+  user = config.nix-files.user;
+in {
   imports = [
     ./hardware-configuration.nix
     ./disk-configuration.nix
@@ -40,6 +42,10 @@
   environment.systemPackages = with self.packages.${pkgs.system}; [
     openvr-advanced-settings
     slimevr
+  ];
+
+  systemd.tmpfiles.rules = [
+    "d /home/${user}/HDD 0755 ${user} users -"
   ];
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion

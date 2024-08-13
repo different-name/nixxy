@@ -133,6 +133,64 @@ in {
           );
       };
     };
+
+    disk."hdd" = {
+      device = "/dev/sda1";
+      type = "disk";
+      content = {
+        type = "gpt";
+        partitions = {
+          zfs = {
+            size = "100%";
+            content = {
+              type = "zfs";
+              pool = "xpool";
+            };
+          };
+        };
+      };
+    };
+    zpool."xpool" = {
+      type = "zpool";
+      options = {
+        ashift = "12"; # 4K sectors
+        autotrim = "on";
+      };
+      rootFsOptions = {
+        # https://www.medo64.com/2022/01/my-zfs-settings/
+
+        compression = "zstd"; # Not as fast as lz4, but better compression, compression isn't usually the bottleneck anyway
+        normalization = "formD"; # Normalize filename characters
+        acltype = "posixacl"; # Enables use of posix acl
+        xattr = "sa"; # Set linux extended attributes directly in inodes
+        dnodesize = "auto"; # Enable support for larger metadata
+        atime = "off"; # Don't record access time
+        encryption = "aes-256-gcm"; # gcm is apparently fast
+        keyformat = "passphrase";
+        keylocation = "prompt";
+        canmount = "off";
+        mountpoint = "none";
+      };
+
+      datasets = {
+        hdd =
+          {
+            type = "zfs_fs";
+            options = {
+              canmount = "noauto"; # Only allow explicit mounting
+              mountpoint = "legacy"; # Do not mount under the pool (/zpool/...)
+            };
+            postCreateHook = "zfs snapshot xpool/hdd@empty";
+          }
+          // (
+            if (user != "")
+            then {
+              mountpoint = "/home/${user}/HDD";
+            }
+            else {}
+          );
+      };
+    };
   };
   fileSystems."/home".neededForBoot = true; # Workaround for zfs mounting after /home folders are created
   fileSystems."/persist".neededForBoot = true; # Required for impermanence to work
