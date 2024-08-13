@@ -5,11 +5,11 @@
     mime.enable = true;
 
     desktopEntries = {
-      imv = {
-        name = "imv";
+      imv-dir = {
+        name = "imv-dir";
         comment = "Image Viewer";
-        exec = "imv %U";
-        icon = "imv";
+        exec = "imv-dir %U";
+        icon = "imv-dir";
         terminal = false;
         type = "Application";
         categories = ["Graphics"];
@@ -23,12 +23,12 @@
         "inode/directory" = "thunar.desktop";
 
         # images
-        "image/png" = "imv.desktop";
-        "image/jpeg" = "imv.desktop";
-        "image/gif" = "imv.desktop";
-        "image/bmp" = "imv.desktop";
-        "image/tiff" = "imv.desktop";
-        "image/x-icon" = "imv.desktop";
+        "image/png" = "imv-dir.desktop";
+        "image/jpeg" = "imv-dir.desktop";
+        "image/gif" = "imv-dir.desktop";
+        "image/bmp" = "imv-dir.desktop";
+        "image/tiff" = "imv-dir.desktop";
+        "image/x-icon" = "imv-dir.desktop";
 
         # unity login
         "x-scheme-handler/unityhub" = "unityhub.desktop";
