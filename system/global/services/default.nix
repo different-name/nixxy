@@ -4,5 +4,6 @@
     ./pipewire.nix
     ./printing.nix
     ./restic.nix
+    ./tailscale.nix
   ];
 }
