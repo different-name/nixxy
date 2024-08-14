@@ -20,31 +20,32 @@ Coming soon - see https://github.com/Different-Name/nix-files/issues/45
 ## Structure
 
 ```
-nix-files/
-├── assets - images, etc
-├── home   - Home level configuration 
-│   ├── <category> - one of global, desktop, or extra
-│   │   ├── assets   - images, etc
-│   │   ├── programs - home programs.* configuration
-│   │   └── services - home services.* configuration
-│   └── users
-│       └── <name> - user home configuration
-│           └── hosts - user@host home configuration
-├── modules - NixOS modules
-├── pkgs    - package definitions
-├── secrets - age secrets
-└── system  - system level configuration
-    ├── <category> - one of global, desktop, or extra
-    │   ├── core     - boot, networking, security, etc
-    │   ├── hardware - bluetooth, video cards, etc
-    │   ├── nix      - nix-related options
-    │   ├── programs - programs.* configuration
-    │   └── services - services.* configuration
-    └── hosts
-        └── <host>
-            ├── default.nix
-            ├── disk-configuration.nix
-            └── hardware-configuration.nix
+system - system level configuration
+├── <category> - one of global, desktop, or extra
+│   ├── core     - boot, networking, security, etc
+│   ├── hardware - bluetooth, video cards, etc
+│   ├── nix      - nix-related options
+│   ├── programs - programs.* configuration
+│   └── services - services.* configuration
+└── hosts
+    └── <host>
+        ├── default.nix
+        ├── disk-configuration.nix
+        └── hardware-configuration.nix
+
+home - Home level configuration 
+├── <category> - one of global, desktop, or extra
+│   ├── assets   - images, etc
+│   ├── programs - home programs.* configuration
+│   └── services - home services.* configuration
+└── users
+    └── <name> - user home configuration
+        └── hosts - user@host home configuration
+
+secrets - age secrets
+modules - NixOS modules
+pkgs    - package definitions
+assets  - images, etc
 ```
 
 ## Users
