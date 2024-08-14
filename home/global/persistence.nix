@@ -18,5 +18,6 @@
       ".local/share/qalculate"
     ];
     files = [];
+    allowOther = true;
   };
 }

@@ -1,11 +1,11 @@
-{
+{config, ...}: {
   programs.fish = {
     enable = true;
 
     shellInit = ''
       set -U fish_color_cwd red
       set -U fish_color_user red
-      fastfetch
+      ${if config.programs.fastfetch.enable then "fastfetch" else ""}
     '';
 
     functions = {

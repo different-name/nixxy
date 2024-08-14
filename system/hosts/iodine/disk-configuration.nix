@@ -14,7 +14,6 @@ let
       xattr = "sa"; # Set linux extended attributes directly in inodes
       dnodesize = "auto"; # Enable support for larger metadata
       atime = "off"; # Don't record access time
-      encryption = "aes-256-gcm"; # gcm is apparently fast
       keyformat = "passphrase";
       canmount = "off";
       mountpoint = "none";
