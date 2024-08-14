@@ -19,18 +19,4 @@
       }))
     ];
   };
-
-  systemd.user.tmpfiles.rules = [
-    # link vrchat pictures to pictures folder
-    "L /home/different/Pictures/VRChat - - - - /home/different/Media/.steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/Pictures/VRChat"
-  ];
-
-  # https://lvra.gitlab.io/docs/steamvr/quick-start/#optional-disable-steamvr-dashboard
-  # TODO there's likely a better way to do this
-  system.userActivationScripts.disableSteamDashboard = {
-    text = ''
-      chmod -x /home/different/.steam/steam/steamapps/common/SteamVR/bin/vrwebhelper/linux64/vrwebhelper
-    '';
-    deps = [];
-  };
 }

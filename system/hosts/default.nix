@@ -15,5 +15,9 @@ in {
       inherit specialArgs;
       modules = [./potassium];
     };
+    "iodine" = nixosSystem {
+      inherit specialArgs;
+      modules = [./iodine];
+    };
   };
 }

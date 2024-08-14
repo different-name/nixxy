@@ -1,7 +1,6 @@
 {
   inputs,
   self,
-  pkgs,
   ...
 }: {
   imports = [
@@ -34,7 +33,7 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs self;};
-    users."different" = import ../../../home/different/hosts/sodium.nix;
+    users."different" = import ../../../home/users/different/hosts/sodium.nix;
   };
 
   # nh default flake
@@ -44,11 +43,6 @@
     enable = true;
     value = "1.5";
   };
-
-  environment.systemPackages = with self.packages.${pkgs.system}; [
-    openvr-advanced-settings
-    slimevr
-  ];
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
