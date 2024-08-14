@@ -11,7 +11,6 @@
 
     ../../extra/users/iodine.nix
 
-    ../../extra/services/headscale.nix
     ../../extra/services/tailscale.nix
 
     inputs.hardware.nixosModules.common-cpu-intel
