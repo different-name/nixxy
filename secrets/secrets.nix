@@ -21,5 +21,5 @@ let
 in {
   # create/edit: nix run github:ryantm/agenix -- -e xxx/xxx.age
   # rekey:       nix run github:ryantm/agenix -- -r
-  "different/password.age".publicKeys = keys;
+  "password.age".publicKeys = keys;
 }
