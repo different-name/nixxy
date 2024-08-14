@@ -1,17 +1,22 @@
 {
   inputs,
-  config,
   self,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
     ./disk-configuration.nix
+
     ../../global
+    ../../desktop
+
+    ../../extra/users/different.nix
 
     ../../extra/hardware/backlight.nix
     ../../extra/hardware/bluetooth.nix
     ../../extra/hardware/nvidia.nix
+
+    (import ../../extra/services/autologin.nix "different")
 
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-gpu-nvidia
@@ -25,8 +30,11 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs self;};
-    users.${config.nix-files.user} = import ../../../home/hosts/potassium.nix;
+    users."different" = import ../../../home/hosts/potassium.nix;
   };
+
+  # nh default flake
+  programs.nh.flake = "/home/different/nix-files";
 
   hardware.nvidia.prime = {
     nvidiaBusId = "PCI:1:0:0";

@@ -2,17 +2,15 @@
 
 Home level configuration
 
-> [!WARNING]
-> This configuration is only intended for use with a single user
-> I do not need multiple users, and do not want to introduce unnecessary complexity
+Each folder corresponds to a user's configuration, structured as follows:
 
-| Folder                  | Description                                            |
-| ----------------------- | ------------------------------------------------------ |
-| [`hosts`](hosts)   | Host specific home configuration                       |
-| [`global`](global) | Home configurations used on all hosts                  |
-| [`extra`](extra)   | Optional home configurations used on one or more hosts |
+| Folder                       | Description                                            |
+| ---------------------------- | ------------------------------------------------------ |
+| [`hosts`](different/hosts)   | Host specific home configuration                       |
+| [`global`](different/global) | Home configurations used on all hosts                  |
+| [`extra`](different/extra)   | Optional home configurations used on one or more hosts |
 
-[`global`](global) & [`extra`](extra) folders are further divided into categories:
+[`global`](different/global) & [`extra`](different/extra) folders are further divided into categories:
 
 | Folder            | Description                                   |
 | ----------------- | --------------------------------------------- |

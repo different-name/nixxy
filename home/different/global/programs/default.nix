@@ -20,12 +20,13 @@
     gimp-with-plugins
     scrcpy
     android-tools
+    blender
 
     # games
     vesktop
     unityhub
     lutris
-    # wlx-overlay-s
+    wlx-overlay-s
     # (prismlauncher.override {
     #   jdks = [
     #     zulu17

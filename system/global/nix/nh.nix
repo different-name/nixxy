@@ -1,10 +1,7 @@
-{config, ...}: {
+{
   # nh is a nix cli helper, useful for rebuilding & cleaning
   programs.nh = {
     enable = true;
-
-    # nh default flake
-    flake = "/home/${config.nix-files.user}/nix-files";
 
     # weekly garbage collection
     clean = {

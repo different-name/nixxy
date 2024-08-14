@@ -6,15 +6,6 @@
   cfg = config.nix-files;
 in {
   options.nix-files = {
-    user = lib.mkOption {
-      description = ''
-        Username of the system user
-      '';
-      type = lib.types.str;
-      example = lib.literalExample "nerowy";
-      default = "different";
-    };
-
     xDisplayScale = {
       enable = lib.mkOption {
         description = ''
@@ -66,10 +57,8 @@ in {
   };
 
   config = let
-    inherit (config.nix-files) user;
-
     persistentStoragePaths = {
-      home = config.home-manager.users.${user}.home.persistence;
+      home = config.home-manager.users.different.home.persistence;
       root = config.environment.persistence;
     };
 
@@ -85,7 +74,7 @@ in {
     in
       prefix + path;
 
-    relativeToAbsHome = path: concatPaths ["/home/${user}" path];
+    relativeToAbsHome = path: concatPaths ["/home/different" path];
 
     find = searchPaths: excludePaths: findOptions: let
       searchString = lib.concatMapStringsSep " " lib.escapeShellArg searchPaths;
@@ -142,7 +131,7 @@ in {
 
       # "find ephemeral directories - home" only searches home directory
       fedh = let
-        searchPaths = ["/home/${user}"];
+        searchPaths = ["/home/different"];
         excludePaths = (map relativeToAbsHome cfg.tools.ephemeral.exclude-paths.home) ++ (map (n: n.path) persisted-paths.home);
       in
         find searchPaths excludePaths "-type f -print";

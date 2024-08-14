@@ -4,7 +4,7 @@
     settings = {
       logo = {
         type = "kitty-direct";
-        source = ../../../assets/fastfetch.png;
+        source = ../../assets/fastfetch.png;
         width = 18;
         height = 8;
         padding = {

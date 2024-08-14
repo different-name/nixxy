@@ -1,5 +1,4 @@
-{config ? {nix-files.user = "different";}, ...}: let
-  inherit (config.nix-files) user;
+let
   poolConfig = {
     type = "zpool";
     options = {
@@ -35,19 +34,6 @@
       inherit mountpoint;
       postCreateHook = "zfs snapshot ${pool}/${dataset}@empty";
     }
-    // datasetConfig;
-
-  mkHomeDataset = pool: dataset: mountpoint:
-    {
-      postCreateHook = "zfs snapshot ${pool}/${dataset}@empty";
-    }
-    // (
-      if (user != "")
-      then {
-        mountpoint = "/home/${user}/${mountpoint}";
-      }
-      else {}
-    )
     // datasetConfig;
 in {
   disko.devices = {
@@ -99,8 +85,8 @@ in {
 
           # steam needs ~/.steam  and ~/.local/share/Steam to be regular folders or mounts
           # these folders cannot be symlinks or bind mounts, else steam will crash
-          "steam" = mkHomeDataset "rpool" "steam" ".steam";
-          "lssteam" = mkHomeDataset "rpool" "lssteam" ".local/share/Steam";
+          "steam" = mkDataset "rpool" "steam" "/home/different/.steam";
+          "lssteam" = mkDataset "rpool" "lssteam" "/home/different/.local/share/Steam";
         };
       }
       // poolConfig;
@@ -141,11 +127,26 @@ in {
     zpool."xpool" =
       {
         rootFsOptions.keylocation = "file:///etc/zfs/keys/xpool.key";
-        datasets."media" = mkHomeDataset "xpool" "media" "Media";
+        datasets."media" = mkDataset "xpool" "media" "/home/different/Media";
       }
       // poolConfig;
   };
 
-  fileSystems."/home".neededForBoot = true; # Workaround for zfs mounting after /home folders are created
-  fileSystems."/persist".neededForBoot = true; # Required for impermanence to work
+  fileSystems = {
+    "/home".neededForBoot = true; # Workaround for zfs mounting after /home folders are created
+    "/persist".neededForBoot = true; # Required for impermanence to work
+  };
+
+  systemd.tmpfiles.rules = [
+    # correcting permissions for zfs datasets mounted within home directory
+    "d /home/different/.steam 0755 different users -"
+    "d /home/different/.local 0755 different users -"
+    "d /home/different/.local/share 0755 different users -"
+    "d /home/different/.local/share/Steam 0755 different users -"
+    "d /home/different/Media 0755 different users -"
+
+    # setting up home directories with correct permissions for home-manager impermanence
+    "d /persist/home/ 1777 root root -"
+    "d /persist/home/different 0700 different users -"
+  ];
 }

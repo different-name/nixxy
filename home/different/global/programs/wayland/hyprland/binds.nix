@@ -23,8 +23,8 @@ in {
       [
         # compositor commands
         "$mod, Q, killactive"
-        "$mod, F, fullscreen"
-        "$mod SHIFT, F, fullscreenstate, -1 2" # current fullscreen state, tell client it is fullscreened
+        "$mod, F, fullscreenstate, 2 -1" # fullscreen the window, don't inform the client it was fullscreened
+        "$mod SHIFT, F, fullscreenstate, -1 2" # keep current fullscreen state, tell client it is fullscreened
         "$mod, R, togglesplit"
         "$mod, G, togglefloating"
         "$mod, A, togglegroup"

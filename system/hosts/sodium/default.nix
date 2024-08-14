@@ -1,23 +1,26 @@
 {
   inputs,
-  config,
   self,
   pkgs,
   ...
-}: let
-  user = config.nix-files.user;
-in {
+}: {
   imports = [
     ./hardware-configuration.nix
     ./disk-configuration.nix
+
     ../../global
+    ../../desktop
+
+    ../../extra/users/different.nix
 
     ../../extra/hardware/nvidia.nix
 
     ../../extra/programs/alvr.nix
     ../../extra/programs/goxlr-utility.nix
 
+    (import ../../extra/services/autologin.nix "different")
     ../../extra/services/keyd.nix
+    ../../extra/services/tailscale.nix
 
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
@@ -31,8 +34,11 @@ in {
 
   home-manager = {
     extraSpecialArgs = {inherit inputs self;};
-    users.${config.nix-files.user} = import ../../../home/hosts/sodium.nix;
+    users."different" = import ../../../home/different/hosts/sodium.nix;
   };
+
+  # nh default flake
+  programs.nh.flake = "/home/different/nix-files";
 
   nix-files.xDisplayScale = {
     enable = true;
@@ -42,10 +48,6 @@ in {
   environment.systemPackages = with self.packages.${pkgs.system}; [
     openvr-advanced-settings
     slimevr
-  ];
-
-  systemd.tmpfiles.rules = [
-    "d /home/${user}/Media 0755 ${user} users -"
   ];
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion

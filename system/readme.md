@@ -2,13 +2,14 @@
 
 System level configuration
 
-| Folder                    | Description                                       |
-| ------------------------- | ------------------------------------------------- |
-| [`hosts`](hosts)   | Host specific configuration                       |
-| [`global`](global) | Configurations used on all hosts                  |
-| [`extra`](extra)   | Optional configurations used on one or more hosts |
+| Folder               | Description                                                 |
+| -------------------- | ----------------------------------------------------------- |
+| [`hosts`](hosts)     | Host specific configuration                                 |
+| [`global`](global)   | Configurations used on all hosts                            |
+| [`desktop`](desktop) | Configurations used on all hosts with a desktop environment |
+| [`extra`](extra)     | Optional configurations used on one or more hosts           |
 
-[`global`](global) & [`extra`](extra) folders are further divided into categories:
+[`global`](global), [`desktop`](desktop) & [`extra`](extra) folders are further divided into categories:
 
 | Folder        | Description                                            |
 | ------------- | ------------------------------------------------------ |
