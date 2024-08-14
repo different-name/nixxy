@@ -16,6 +16,7 @@
       ".local/share/fish"
       ".config/qalculate"
       ".local/share/qalculate"
+      ".terminfo"
     ];
     files = [];
     allowOther = true;
