@@ -10,6 +10,7 @@
     ../../global
 
     ../../extra/hardware/backlight.nix
+    ../../extra/hardware/bluetooth.nix
     ../../extra/hardware/nvidia.nix
 
     inputs.hardware.nixosModules.common-cpu-intel
