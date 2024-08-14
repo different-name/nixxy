@@ -51,7 +51,7 @@ in {
   ];
 
   systemd.tmpfiles.rules = [
-    "d /home/${user}/HDD 0755 ${user} users -"
+    "d /home/${user}/Media 0755 ${user} users -"
   ];
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
