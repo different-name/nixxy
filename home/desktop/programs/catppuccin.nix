@@ -15,5 +15,5 @@
   };
 
   programs.btop.catppuccin.enable = true;
-  programs.fish.catppuccin.enable = true;
+  programs.fish.catppuccin.enable = false;
 }
