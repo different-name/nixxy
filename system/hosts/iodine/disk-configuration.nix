@@ -14,7 +14,6 @@ let
       xattr = "sa"; # Set linux extended attributes directly in inodes
       dnodesize = "auto"; # Enable support for larger metadata
       atime = "off"; # Don't record access time
-      keyformat = "passphrase";
       canmount = "off";
       mountpoint = "none";
     };
@@ -75,7 +74,6 @@ in {
     };
     zpool."rpool" =
       {
-        rootFsOptions.keylocation = "prompt";
         datasets = {
           "root" = mkDataset "rpool" "root" "/";
           "nix" = mkDataset "rpool" "nix" "/nix";
