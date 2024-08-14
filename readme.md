@@ -61,9 +61,9 @@ assets  - images, etc
 
 ## Hosts
 
-[./home/users/\<name\>/hosts](home/users/different/hosts) - host specific system configuration
+[./system/hosts](system/hosts) - host specific system configuration
 
-[./system/hosts](system/hosts) - host specific home configuration
+[./home/users/\<name\>/hosts](home/users/different/hosts) - host specific home configuration
 
 | Host                                  | Description               |
 | ------------------------------------- | ------------------------- |
