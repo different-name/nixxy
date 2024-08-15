@@ -9,8 +9,12 @@
   ];
 
   # https://lvra.gitlab.io/docs/steamvr/quick-start/#optional-disable-steamvr-dashboard
-  # TODO there's likely a better way to do this
-  home.activation.disableSteamDashboard = lib.hm.dag.entryAnywhere ''
-    chmod -x ${config.home.homeDirectory}/.steam/steam/steamapps/common/SteamVR/bin/vrwebhelper/linux64/vrwebhelper
+  # TODO there's likely a better way to do this - probably with the tmpfiles rules above
+  home.activation.disableSteamDashboard = let
+    steamDashboard = "${config.home.homeDirectory}/.steam/steam/steamapps/common/SteamVR/bin/vrwebhelper/linux64/vrwebhelper";
+  in lib.hm.dag.entryAnywhere ''
+    if [ -d "${steamDashboard}" ]; then
+      chmod -x ${steamDashboard}
+    fi
   '';
 }
