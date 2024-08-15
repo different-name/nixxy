@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./wayland
-    ./catppuccin.nix
     ./fastfetch.nix
     ./gtk.nix
     ./imv.nix

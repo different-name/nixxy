@@ -1,6 +1,5 @@
 {
   imports = [
-    ./catppuccin.nix
     ./fonts.nix
     ./hyprland.nix
     ./qt.nix

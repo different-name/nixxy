@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./btop.nix
+    ./catppuccin.nix
     ./fd.nix
     ./fish.nix
     ./fzf.nix

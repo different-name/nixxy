@@ -1,6 +1,7 @@
 {config, ...}: {
   programs.fish = {
     enable = true;
+    catppuccin.enable = false;
 
     shellInit = ''
       set -U fish_color_cwd red
