@@ -1,7 +1,7 @@
 {config, ...}: {
-  age.secrets.password.file = ../../../secrets/password.age;
+  age.secrets.password.file = ../../secrets/password.age;
 
-  users.users."different" = {
+  users.users."iodine" = {
     isNormalUser = true;
     hashedPasswordFile = config.age.secrets.password.path;
 
@@ -14,8 +14,6 @@
 
     extraGroups = [
       "wheel"
-      "audio"
-      "video"
       "input"
       "networkmanager"
       "libvirtd"
@@ -24,6 +22,6 @@
 
   # access to the hostkey independent of impermanence activation
   age.identityPaths = [
-    "/persist/home/different/.ssh/id_ed25519"
+    "/persist/home/iodine/.ssh/id_ed25519"
   ];
 }

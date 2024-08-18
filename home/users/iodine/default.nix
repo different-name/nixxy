@@ -1,6 +1,6 @@
 {config, ...}: {
   imports = [
-    ../../global
+    ../../common/global
   ];
 
   home = {

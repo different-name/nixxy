@@ -7,19 +7,19 @@
     ./hardware-configuration.nix
     ./disk-configuration.nix
 
-    ../../global
-    ../../desktop
+    ../../users/different.nix
 
-    ../../extra/users/different.nix
+    ../../common/global
+    ../../common/desktop
 
-    ../../extra/hardware/nvidia.nix
+    ../../common/extra/hardware/nvidia.nix
 
-    ../../extra/programs/alvr.nix
-    ../../extra/programs/goxlr-utility.nix
+    ../../common/extra/programs/alvr.nix
+    ../../common/extra/programs/goxlr-utility.nix
 
-    (import ../../extra/services/autologin.nix "different")
-    ../../extra/services/keyd.nix
-    ../../extra/services/tailscale.nix
+    (import ../../common/extra/services/autologin.nix "different")
+    ../../common/extra/services/keyd.nix
+    ../../common/extra/services/tailscale.nix
 
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-nvidia-nonprime

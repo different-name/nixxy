@@ -7,16 +7,16 @@
     ./hardware-configuration.nix
     ./disk-configuration.nix
 
-    ../../global
-    ../../desktop
+    ../../users/different.nix
 
-    ../../extra/users/different.nix
+    ../../common/global
+    ../../common/desktop
 
-    ../../extra/hardware/backlight.nix
-    ../../extra/hardware/bluetooth.nix
-    ../../extra/hardware/nvidia.nix
+    ../../common/extra/hardware/backlight.nix
+    ../../common/extra/hardware/bluetooth.nix
+    ../../common/extra/hardware/nvidia.nix
 
-    (import ../../extra/services/autologin.nix "different")
+    (import ../../common/extra/services/autologin.nix "different")
 
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-gpu-nvidia

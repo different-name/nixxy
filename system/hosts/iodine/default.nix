@@ -7,11 +7,11 @@
     ./hardware-configuration.nix
     ./disk-configuration.nix
 
-    ../../global
+    ../../users/iodine.nix
 
-    ../../extra/users/iodine.nix
+    ../../common/global
 
-    ../../extra/services/tailscale.nix
+    ../../common/extra/services/tailscale.nix
 
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-gpu-intel

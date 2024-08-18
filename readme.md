@@ -21,23 +21,26 @@ Coming soon - see https://github.com/Different-Name/nix-files/issues/45
 
 ```
 system - system level configuration
-├── <category> - one of global, desktop, or extra
-│   ├── core     - boot, networking, security, etc
-│   ├── hardware - bluetooth, video cards, etc
-│   ├── nix      - nix-related options
-│   ├── programs - programs.* configuration
-│   └── services - services.* configuration
-└── hosts
-    └── <host>
-        ├── default.nix
-        ├── disk-configuration.nix
-        └── hardware-configuration.nix
+├── common - system config shared between systems
+│   └── <category> - [ global, desktop, server, extra ]
+│       ├── core     - boot, networking, security, etc
+│       ├── hardware - bluetooth, video cards, etc
+│       ├── nix      - nix-related options
+│       ├── programs - programs.* configuration
+│       └── services - services.* configuration
+├── hosts - host specific system config
+│   └── <host>
+│       ├── default.nix
+│       ├── disk-configuration.nix - disk partitions & filesystems
+│       └── hardware-configuration.nix
+└── users - user system configuration
 
-home - Home level configuration 
-├── <category> - one of global, desktop, or extra
-│   ├── assets   - images, etc
-│   ├── programs - home programs.* configuration
-│   └── services - home services.* configuration
+home - home level configuration 
+├── common - home config shared between systems
+│   └── <category> - [ global, desktop, extra ]
+│       ├── assets   - images, etc
+│       ├── programs - home programs.* configuration
+│       └── services - home services.* configuration
 └── users
     └── <name> - user home configuration
         └── hosts - user@host home configuration
@@ -50,7 +53,7 @@ assets  - images, etc
 
 ## Users
 
-[./system/extra/users](system/extra/users) - user specific system configuration
+[./system/users](system/users) - user specific system configuration
 
 [./home/users](home/users) - user specific home configuration
 

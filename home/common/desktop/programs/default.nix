@@ -29,6 +29,7 @@
     blender
     ani-cli
     vrc-get
+    element-desktop-wayland
 
     # games
     vesktop

@@ -25,6 +25,7 @@
       ".config/ente"
       ".local/share/lutris"
       ".android"
+      ".config/Element"
     ];
     files = [];
   };
