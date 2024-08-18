@@ -11,6 +11,7 @@
 
   home.packages = with pkgs; [
     imagemagick
+    ffmpeg
     trashy
     ncdu
     aspell
