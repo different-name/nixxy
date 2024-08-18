@@ -6,7 +6,7 @@
       # global
       "suppressevent maximize, class:.*"
 
-      # galculate
+      # qalculate
       "float, class:^(qalculate-gtk)$"
       "size 850 575, class:^(qalculate-gtk)$"
 

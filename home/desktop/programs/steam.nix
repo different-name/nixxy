@@ -12,9 +12,10 @@
   # TODO there's likely a better way to do this - probably with the tmpfiles rules above
   home.activation.disableSteamDashboard = let
     steamDashboard = "${config.home.homeDirectory}/.steam/steam/steamapps/common/SteamVR/bin/vrwebhelper/linux64/vrwebhelper";
-  in lib.hm.dag.entryAnywhere ''
-    if [ -d "${steamDashboard}" ]; then
-      chmod -x ${steamDashboard}
-    fi
-  '';
+  in
+    lib.hm.dag.entryAnywhere ''
+      if [ -d "${steamDashboard}" ]; then
+        chmod -x ${steamDashboard}
+      fi
+    '';
 }

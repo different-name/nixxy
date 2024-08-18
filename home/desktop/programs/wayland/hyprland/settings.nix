@@ -4,8 +4,6 @@ let
   alternateColor = "cba6f7";
 in {
   wayland.windowManager.hyprland.settings = {
-    "$mod" = "SUPER";
-
     general = {
       gaps_in = 3;
       gaps_out = 6;

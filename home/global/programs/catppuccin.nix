@@ -1,4 +1,8 @@
-{inputs, osConfig, ...}: {
+{
+  inputs,
+  osConfig,
+  ...
+}: {
   imports = [
     inputs.catppuccin.homeManagerModules.catppuccin
   ];

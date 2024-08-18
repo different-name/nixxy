@@ -12,6 +12,8 @@ in {
     # s -> separate, will arbitrarily combine keys between each mod/key, see [Keysym combos](#keysym-combos) above.
     # d -> has description, will allow you to write a description for your bind.
 
+    "$mod" = "SUPER";
+
     bindm = [
       # use wev to find mouse button codes
       "$mod, mouse:272, movewindow"
@@ -33,7 +35,6 @@ in {
         "ALT SHIFT, TAB, changegroupactive, b"
         "$mod, P, pseudo"
         "$mod, T, pin"
-        "$mod ALT, ,resizeactive"
         "CTRL ALT, DELETE, exec, hyprctl kill"
         "CTRL ALT SHIFT, DELETE, exec, pkill Hyprland"
 
