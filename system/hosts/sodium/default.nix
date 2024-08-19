@@ -39,9 +39,9 @@
   # nh default flake
   programs.nh.flake = "/home/different/nix-files";
 
-  nix-files.xDisplayScale = {
-    enable = true;
-    value = "1.5";
+  environment.sessionVariables = {
+    STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
+    GDK_SCALE = "2";
   };
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
