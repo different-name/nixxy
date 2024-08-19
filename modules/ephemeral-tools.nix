@@ -7,10 +7,10 @@
   cfg = config.programs.ephemeral-tools;
 in {
   options.programs.ephemeral-tools = {
-    enable = lib.mkEnableOption ""; # TOOD description
+    enable = lib.mkEnableOption "Enable ephtools command, for finding new and stray files"; # TOOD description
 
     exclude-paths = lib.mkOption {
-      description = ""; # TOOD description
+      description = "Paths to always exclude from the \"new\" command search results"; # TOOD description
       type = lib.types.listOf lib.types.str;
       default = [];
     };
@@ -91,12 +91,14 @@ in {
     persistenceKeyData = systemPersistenceKeyData ++ homePersistenceKeyData;
 
     # always exclude /nix and virtual filesystems
-    exclude-paths = [
-      "/nix"
-      "/proc"
-      "/sys"
-      "/dev"
-    ] ++ cfg.exclude-paths;
+    exclude-paths =
+      [
+        "/nix"
+        "/proc"
+        "/sys"
+        "/dev"
+      ]
+      ++ cfg.exclude-paths;
 
     # generate strings for use in script
     searchPathsToStr = searchPaths: lib.concatMapStringsSep " " lib.escapeShellArg searchPaths;
@@ -104,7 +106,7 @@ in {
     searchPathsOld = searchPathsToStr (map (data: data.persistentStoragePath) persistenceKeyData);
 
     excludePathsToStr = excludePaths: lib.concatMapStringsSep " -o " (path: "-path ${lib.escapeShellArg path}") excludePaths;
-    excludePathsNew = excludePathsToStr ((lib.flatten (map (data: data.paths ++ [data.persistentStoragePath] ++ exclude-paths) persistenceKeyData)));
+    excludePathsNew = excludePathsToStr (lib.flatten (map (data: data.paths ++ [data.persistentStoragePath] ++ exclude-paths) persistenceKeyData));
     excludePathsOld = excludePathsToStr (lib.flatten (map (data: data.persistentStoragePaths) persistenceKeyData));
   in {
     environment.systemPackages = lib.mkIf cfg.enable [

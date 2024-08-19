@@ -1,7 +1,13 @@
-{
+{lib, ...}: {
   wayland.windowManager.hyprland.settings = {
     windowrulev2 = let
-      gameRule = rule: (rule + ", class:^(steam_app_[0-9]+|hl2_linux)$, title:.+");
+      gameClasses = [
+        "hl2_linux"
+        "Paradox Launcher"
+        "AcrossTheObelisk.x86_64"
+      ];
+      gameClassesStr = lib.concatStringsSep "|" gameClasses;
+      gameRule = rule: (rule + ", class:^(steam_app_[0-9]+|${gameClassesStr})$, title:.+");
     in [
       # global
       "suppressevent maximize, class:.*"
