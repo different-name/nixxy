@@ -7,10 +7,10 @@
   cfg = config.programs.ephemeral-tools;
 in {
   options.programs.ephemeral-tools = {
-    enable = lib.mkEnableOption "Enable ephtools command, for finding new and stray files"; # TOOD description
+    enable = lib.mkEnableOption "Enable ephtools command, for finding new and stray files";
 
     exclude-paths = lib.mkOption {
-      description = "Paths to always exclude from the \"new\" command search results"; # TOOD description
+      description = "Paths to always exclude from the \"new\" command search results";
       type = lib.types.listOf lib.types.str;
       default = [];
     };
