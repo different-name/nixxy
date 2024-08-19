@@ -120,7 +120,7 @@ in {
             echo "  stray - List stray files & directories that are in persistent storage, but are not in the persistence config"
             echo
             echo "Arguments:"
-            echo "  search paths - Override the search directories with one or more paths"
+            echo "  search paths - Override the search directories with one or more absolute paths"
           }
 
           SEARCH_DIRS=""
@@ -130,7 +130,12 @@ in {
 
             for path in "$@"; do
               if [ -d "$path" ]; then
-                SEARCH_DIRS+="$path "
+                if [[ "$path" == /* ]]; then
+                  SEARCH_DIRS+="$path "
+                else
+                  echo "Error: '$path' is not an absolute path"
+                  valid=false
+                fi
               else
                 echo "Error: '$path' is not a valid directory"
                 valid=false
