@@ -85,13 +85,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # flake-parts pre commit hooks module
-    pre-commit-hooks-nix = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
-    };
-
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-alvr.url = "github:NyCodeGHG/nixpkgs/alvr-celt";
@@ -108,7 +101,6 @@
         ./system/hosts
         ./modules
         ./pkgs
-        ./pre-commit-hooks.nix
       ];
 
       perSystem = {pkgs, ...}: {
