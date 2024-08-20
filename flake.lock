@@ -546,6 +546,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-alvr": {
+      "locked": {
+        "lastModified": 1723655389,
+        "narHash": "sha256-y1LVaC+m/Vs3D7lqaV1r/HRuYt0STeaGx6YO3l+ZKjI=",
+        "owner": "NyCodeGHG",
+        "repo": "nixpkgs",
+        "rev": "07ce75006ddc940d3551fa7ca5c2811bb696ced4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NyCodeGHG",
+        "ref": "alvr-celt",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -587,6 +603,7 @@
         "impermanence": "impermanence",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-alvr": "nixpkgs-alvr",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "systems": "systems"
       }

@@ -94,6 +94,7 @@
 
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-alvr.url = "github:NyCodeGHG/nixpkgs/alvr-celt";
 
     # list of systems
     systems.url = "github:nix-systems/default-linux";
