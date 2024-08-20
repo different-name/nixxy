@@ -2,6 +2,7 @@
   pkgs,
   lib,
   inputs,
+  self,
   config,
   ...
 }: {
@@ -10,6 +11,8 @@
   imports = [
     inputs.nix-index-database.nixosModules.nix-index
   ];
+
+  age.secrets."tokens/github".file = "${self}/secrets/tokens/github.age";
 
   # need git for flakes
   environment.systemPackages = [pkgs.git];
@@ -27,8 +30,6 @@
       experimental-features = "nix-command flakes";
       # disable global registry
       flake-registry = "";
-      # Workaround for https://github.com/NixOS/nix/issues/9574
-      nix-path = config.nix.nixPath;
 
       # https://jackson.dev/post/nix-reasonable-defaults/
       connect-timeout = 5;
@@ -39,6 +40,11 @@
       auto-optimise-store = true;
       warn-dirty = false;
     };
+
+    # read-only github token for rate limit
+    extraOptions = ''
+      !include ${config.age.secrets."tokens/github".path}
+    '';
 
     # Opinionated: disable channels
     channel.enable = false;

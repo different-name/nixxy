@@ -19,7 +19,9 @@ let
 
   keys = userKeys ++ rootKeys;
 in {
-  # create/edit: nix run github:ryantm/agenix -- -e xxx/xxx.age
+  # create/edit: nix run github:ryantm/agenix -- -e x.age
   # rekey:       nix run github:ryantm/agenix -- -r
   "password.age".publicKeys = keys;
+
+  "tokens/github.age".publicKeys = keys;
 }
