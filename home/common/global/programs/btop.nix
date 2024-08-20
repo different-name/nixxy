@@ -12,7 +12,7 @@
       proc_mem_bytes = false;
       update_ms = 1500;
       # TODO exclude persisted directories
-      disks_filter = "exclude=/boot /home/different/.steam /var/log /var/lib/nixos /var/lib/systemd/coredump /etc/zfs/keys /etc/NetworkManager/system-connections";
+      disks_filter = "exclude=/boot /home/different/.steam /var/log /var/lib/nixos /var/lib/systemd/coredump /etc/zfs/keys /etc/NetworkManager/system-connections /var/lib/tailscale";
     };
   };
 }

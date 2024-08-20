@@ -18,7 +18,9 @@
       ".local/share/qalculate"
       ".terminfo"
     ];
-    files = [];
+    files = [
+      ".local/share/nix/repl-history"
+    ];
     allowOther = true;
   };
 }

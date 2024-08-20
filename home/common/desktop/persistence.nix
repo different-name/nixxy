@@ -25,7 +25,10 @@
       ".config/ente"
       ".local/share/lutris"
       ".android"
-      ".config/Element"
+      ".config/xfce4/xfconf/xfce-perchannel-xml"
+      ".config/Thunar"
+      ".config/qBittorrent"
+      ".local/share/qBittorrent"
     ];
     files = [];
   };

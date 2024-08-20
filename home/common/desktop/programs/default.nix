@@ -29,7 +29,7 @@
     blender
     ani-cli
     vrc-get
-    element-desktop-wayland
+    qbittorrent-qt5
 
     # games
     vesktop
