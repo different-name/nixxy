@@ -1,12 +1,13 @@
 {
   pkgs,
+  inputs,
   config,
   ...
 }: {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
+    extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
       jnoortheen.nix-ide
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons
