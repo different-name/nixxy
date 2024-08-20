@@ -103,11 +103,11 @@ in {
     # generate strings for use in script
     searchPathsToStr = searchPaths: lib.concatMapStringsSep " " lib.escapeShellArg searchPaths;
     searchPathsNew = searchPathsToStr ["/"];
-    searchPathsOld = searchPathsToStr (map (data: data.persistentStoragePath) persistenceKeyData);
+    searchPathsStray = searchPathsToStr (map (data: data.persistentStoragePath) persistenceKeyData);
 
     excludePathsToStr = excludePaths: lib.concatMapStringsSep " -o " (path: "-path ${lib.escapeShellArg path}") excludePaths;
     excludePathsNew = excludePathsToStr (lib.flatten (map (data: data.paths ++ [data.persistentStoragePath] ++ exclude-paths) persistenceKeyData));
-    excludePathsOld = excludePathsToStr (lib.flatten (map (data: data.persistentStoragePaths) persistenceKeyData));
+    excludePathsStray = excludePathsToStr (lib.flatten (map (data: data.persistentStoragePaths) persistenceKeyData));
   in {
     environment.systemPackages = lib.mkIf cfg.enable [
       (pkgs.writeShellApplication {
@@ -167,13 +167,13 @@ in {
                 find "${"\${dir_array[@]}"}" \( ${excludePathsNew} \) -prune -o -type f -print
               fi
               ;;
-            "old")
+            "stray")
               validate_directories "$@"
               if [ "$SEARCH_DIRS" = "" ]; then
-                find ${searchPathsOld} \( ${excludePathsOld} \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
+                find ${searchPathsStray} \( ${excludePathsStray} \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
               else
                 IFS=' ' read -r -a dir_array <<< "$SEARCH_DIRS"
-                find "${"\${dir_array[@]}"}" \( ${excludePathsOld} \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
+                find "${"\${dir_array[@]}"}" \( ${excludePathsStray} \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
               fi
               ;;
             *)
