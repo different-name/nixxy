@@ -33,7 +33,7 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs self;};
-    users."different" = import ../../../home/users/different/hosts/sodium.nix;
+    users."different" = import "${self}/home/users/different/hosts/sodium.nix";
   };
 
   # nh default flake

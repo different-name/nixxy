@@ -25,7 +25,7 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs self;};
-    users."iodine" = import ../../../home/users/iodine/hosts/iodine.nix;
+    users."iodine" = import "${self}/home/users/iodine/hosts/iodine.nix";
   };
 
   # nh default flake

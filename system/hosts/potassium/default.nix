@@ -30,7 +30,7 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs self;};
-    users."different" = import ../../../home/users/different/hosts/potassium.nix;
+    users."different" = import "${self}/home/users/different/hosts/potassium.nix";
   };
 
   # nh default flake
