@@ -43,7 +43,7 @@ in {
     exec-once = [
       "dunst"
       "goxlr-daemon"
-      "steam -silent"
+      "steam -silent -forcedesktopscaling 1.5"
     ];
 
     animations = {
