@@ -9,12 +9,15 @@
   ];
 
   home = {
-    packages = with self.packages.${pkgs.system}; [
-      openvr-advanced-settings
-      slimevr
+    packages = with pkgs; [
+      ryujinx
+
+      self.packages.${pkgs.system}.openvr-advanced-settings
+      self.packages.${pkgs.system}.slimevr
     ];
 
     persistence."/persist${config.home.homeDirectory}".directories = [
+      ".config/Ryujinx"
       ".config/alvr"
       ".config/openvr"
       ".config/goxlr-utility"
