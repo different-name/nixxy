@@ -14,7 +14,7 @@
         type = "Application";
         categories = ["Graphics"];
       };
-      
+
       steam = {
         name = "Steam";
         comment = "Application for managing and playing games on Steam";
@@ -23,7 +23,6 @@
         terminal = false;
         type = "Application";
         categories = ["Network" "FileTransfer" "Game"];
-        mimeTypes = ["x-scheme-handler/steam" "x-scheme-handler/steamlink"];
       };
     };
 
