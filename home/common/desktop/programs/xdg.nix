@@ -14,16 +14,6 @@
         type = "Application";
         categories = ["Graphics"];
       };
-
-      steam = {
-        name = "Steam";
-        comment = "Application for managing and playing games on Steam";
-        exec = "steam %U -forcedesktopscaling 1.5";
-        icon = "steam";
-        terminal = false;
-        type = "Application";
-        categories = ["Network" "FileTransfer" "Game"];
-      };
     };
 
     mimeApps = {
