@@ -1,6 +1,7 @@
 {
   programs.fastfetch = {
     enable = true;
+
     settings = {
       logo = {
         type = "kitty-direct";
@@ -12,6 +13,7 @@
           right = 2;
         };
       };
+
       display = {
         separator = ": ";
         color = {
@@ -20,6 +22,7 @@
           keys = "red";
         };
       };
+
       modules = [
         "title"
         "separator"

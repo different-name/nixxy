@@ -17,6 +17,7 @@
       availableKernelModules = ["hid_generic"];
     };
 
+    # zen kernel resolved issue with extra non-existent monitor appearing
     kernelPackages = pkgs.linuxPackages_zen;
 
     loader = {

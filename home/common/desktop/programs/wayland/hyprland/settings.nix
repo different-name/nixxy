@@ -41,7 +41,6 @@ in {
     ];
 
     exec-once = [
-      "dunst"
       "goxlr-daemon"
       "steam -silent"
     ];

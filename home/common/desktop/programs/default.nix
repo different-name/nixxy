@@ -36,12 +36,12 @@
     unityhub
     lutris
     wlx-overlay-s
-    # (prismlauncher.override {
-    #   jdks = [
-    #     zulu17
-    #     zulu21
-    #   ];
-    # })
+    (prismlauncher.override {
+      jdks = [
+        zulu17
+        zulu21
+      ];
+    })
 
     # work
     slack

@@ -5,6 +5,7 @@
       "Pictures"
       "Documents"
       "Videos"
+
       ".local/share/keyrings"
       ".local/share/direnv"
       ".config/vesktop"
@@ -15,8 +16,8 @@
       ".config/unityhub"
       ".config/unity3d"
       ".config/Unity"
-      ".config/blender"
       ".local/share/unity3d"
+      ".config/blender"
       ".local/share/VRChatCreatorCompanion"
       ".config/libreoffice"
       ".config/GIMP"

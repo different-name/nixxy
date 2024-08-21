@@ -24,9 +24,6 @@
       # https://github.com/nix-community/vscode-nix-ide
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil"; # pkgs.nil
-
-      # pkgs.catppuccin.catppuccin-vsc
-      # "catppuccin.accentColor" = "red";
     };
   };
 
