@@ -13,10 +13,6 @@ My NixOS configuration files
 - Ephemeral root and home (state is opt in, managed by [impermanence](https://github.com/nix-community/impermanence))
 - Declarative home with [home-manager](https://github.com/nix-community/home-manager)
 
-## Usage
-
-Coming soon - see https://github.com/Different-Name/nix-files/issues/45
-
 ## Structure
 
 ```
