@@ -4,8 +4,8 @@
       gameClasses = [
         "hl2_linux"
         "Paradox Launcher"
-        "AcrossTheObelisk.x86_64"
-        "TerraTechLinux64.x86_64"
+        ''AcrossTheObelisk\.x86_64''
+        ''TerraTechLinux64\.x86_64''
       ];
       gameClassesStr = lib.concatStringsSep "|" gameClasses;
       gameRule = rule: (rule + ", class:^(steam_app_[0-9]+|${gameClassesStr})$, title:.+");
@@ -27,8 +27,8 @@
       "float, class:^(xdg-desktop-portal-gtk)$"
 
       # pavucontrol
-      "float, class:^(org.pulseaudio.pavucontrol)$"
-      "size 1000 750, class:^(org.pulseaudio.pavucontrol)$"
+      ''float, class:^(org\.pulseaudio\.pavucontrol)$''
+      ''size 1000 750, class:^(org\.pulseaudio\.pavucontrol)$''
 
       # thunar file operations
       "float, title:^(File Operation Progress)$"
