@@ -33,7 +33,9 @@
       ".local/share/qBittorrent"
       ".config/heroic"
       ".local/share/TerraTech"
+      ".local/share/aspyr-media/borderlands 2"
     ];
+
     files = [];
   };
 }
