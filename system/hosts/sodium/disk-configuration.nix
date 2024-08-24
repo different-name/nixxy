@@ -127,7 +127,7 @@ in {
     zpool."xpool" =
       {
         rootFsOptions.keylocation = "file:///etc/zfs/keys/xpool.key";
-        datasets."media" = mkDataset "xpool" "media" "/home/different/Media";
+        datasets."media" = mkDataset "xpool" "media" "/home/different/media";
       }
       // poolConfig;
   };
@@ -143,7 +143,7 @@ in {
     "d /home/different/.local 0755 different users -"
     "d /home/different/.local/share 0755 different users -"
     "d /home/different/.local/share/Steam 0755 different users -"
-    "d /home/different/Media 0755 different users -"
+    "d /home/different/media 0755 different users -"
 
     # setting up home directories with correct permissions for home-manager impermanence
     "d /persist/home/ 1777 root root -"

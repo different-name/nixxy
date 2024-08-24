@@ -1,10 +1,11 @@
 {config, ...}: {
   home.persistence."/persist${config.home.homeDirectory}" = {
     directories = [
-      "Downloads"
-      "Pictures"
-      "Documents"
-      "Videos"
+      "code"
+      "documents"
+      "downloads"
+      "pictures"
+      "videos"
 
       ".local/share/keyrings"
       ".local/share/direnv"
