@@ -35,7 +35,7 @@
     vesktop
     unityhub
     lutris
-    legendary-gl
+    heroic
     wlx-overlay-s
     (prismlauncher.override {
       jdks = [

@@ -22,6 +22,16 @@
     ];
   };
 
+  xdg.desktopEntries = {
+    battle-net = {
+      name = "Blizzard Battle.net";
+      exec = "env LUTRIS_SKIP_INIT=1 lutris lutris:rungameid/1";
+      icon = "lutris_battlenet";
+      type = "Application";
+      categories = [ "Game" ];
+    };
+  };
+
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.05";
 }

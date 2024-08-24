@@ -31,6 +31,8 @@
       ".config/Thunar"
       ".config/qBittorrent"
       ".local/share/qBittorrent"
+      ".config/heroic"
+      ".local/share/TerraTech"
     ];
     files = [];
   };
