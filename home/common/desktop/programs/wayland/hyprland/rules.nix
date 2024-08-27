@@ -2,6 +2,7 @@
   wayland.windowManager.hyprland.settings = {
     windowrulev2 = let
       gameClasses = [
+        "steam_app_default"
         "hl2_linux"
         "Paradox Launcher"
         ''AcrossTheObelisk\.x86_64''
