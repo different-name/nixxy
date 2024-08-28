@@ -26,6 +26,7 @@
       ".nv" # OpenGL cache
       ".config/ente"
       ".local/share/lutris"
+      ".local/share/umu" # lutris proton steam runtime
       ".android"
       ".config/xfce4/xfconf/xfce-perchannel-xml"
       ".config/Thunar"

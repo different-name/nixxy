@@ -39,6 +39,7 @@
     wlx-overlay-s
     (prismlauncher.override {
       jdks = [
+        zulu8
         zulu17
         zulu21
       ];
