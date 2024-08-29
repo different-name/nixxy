@@ -49,6 +49,7 @@
     slack
     libreoffice-qt6-fresh
 
-    inputs.hyprpicker.packages.${pkgs.system}.default
+    # inputs.hyprpicker.packages.${pkgs.system}.default
+    hyprpicker
   ];
 }

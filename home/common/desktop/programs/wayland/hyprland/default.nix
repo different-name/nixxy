@@ -11,14 +11,15 @@
     ./settings.nix
   ];
 
-  home.packages = [
-    inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+  home.packages = with pkgs; [
+    # inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+    grimblast
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
 
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    # package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
     systemd = {
       enable = true;
