@@ -78,7 +78,7 @@ in {
       disable_splash_rendering = true;
     };
 
-    render.direct_scanout = true;
+    render.direct_scanout = false;
 
     # touchpad gestures
     gestures = {
