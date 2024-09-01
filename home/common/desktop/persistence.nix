@@ -35,6 +35,7 @@
       ".config/heroic"
       ".local/share/TerraTech"
       ".local/share/aspyr-media/borderlands 2"
+      ".local/share/osu"
     ];
 
     files = [];

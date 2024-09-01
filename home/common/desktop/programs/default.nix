@@ -44,6 +44,7 @@
         zulu21
       ];
     })
+    osu-lazer-bin
 
     # work
     slack
