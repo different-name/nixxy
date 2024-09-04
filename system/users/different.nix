@@ -19,6 +19,7 @@
       "input"
       "networkmanager"
       "libvirtd"
+      "openrazer"
     ];
   };
 

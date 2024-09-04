@@ -30,6 +30,7 @@
     ani-cli
     vrc-get
     qbittorrent-qt5
+    polychromatic
 
     # games
     vesktop

@@ -59,6 +59,8 @@ in {
       kb_layout = "us";
 
       accel_profile = "flat";
+      sensitivity = -0.85;
+
       touchpad = {
         natural_scroll = true;
         scroll_factor = 0.5;
