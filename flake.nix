@@ -39,10 +39,7 @@
     # hyprwm
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
+      inputs.systems.follows = "systems";
     };
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
