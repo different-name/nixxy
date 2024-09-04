@@ -14,6 +14,7 @@
     ../../common/desktop
 
     ../../common/extra/hardware/nvidia.nix
+    ../../common/extra/hardware/qmk.nix
 
     ../../common/extra/programs/alvr.nix
     ../../common/extra/programs/goxlr-utility.nix
