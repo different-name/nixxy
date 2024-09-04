@@ -20,6 +20,7 @@
       "files.enableTrash" = false;
       "workbench.startupEditor" = "none";
       "window.titleBarStyle" = "custom";
+      "git.detectSubmodules" = false;
 
       # https://github.com/nix-community/vscode-nix-ide
       "nix.enableLanguageServer" = true;
