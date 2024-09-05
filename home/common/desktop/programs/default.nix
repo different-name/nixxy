@@ -31,6 +31,7 @@
     vrc-get
     qbittorrent-qt5
     polychromatic
+    video-trimmer
 
     # games
     vesktop
