@@ -9,6 +9,7 @@
         ''TerraTechLinux64\.x86_64''
         ''diablo iv\.exe''
         ''Minecraft [0-9\.]+''
+        "osu!"
       ];
       gameClassesStr = lib.concatStringsSep "|" gameClasses;
       gameRule = rule: (rule + ", class:^(steam_app_[0-9]+|${gameClassesStr})$, title:.+");
@@ -47,6 +48,7 @@
       # fix for various mouse issues
       # possibly related to https://github.com/hyprwm/Hyprland/issues/6543
       "stayfocused, class:^(steam_app_[0-9]+)$, title:.+"
+      "stayfocused, class:^(osu!)$, title:.+"
 
       # wine system tray
       "unset, title:Wine System Tray"
