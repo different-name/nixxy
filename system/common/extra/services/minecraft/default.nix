@@ -32,12 +32,12 @@
         };
 
         symlinks = let
-          modpack = pkgs.fetchzip {
-            url = "https://cdn.discordapp.com/attachments/1281211073722318929/1281547092304597068/the-pond-server.tar.gz?ex=66dc1d3c&is=66dacbbc&hm=4f7e9f25ac4dc5ff165d6a7603d7341a39cc1bbd0c48cbe787832a7473080e79&";
-            hash = "sha256-KB4Y4RWsWgFDsacy0+FyqACoDW+BJj0ZeZtI0fD5AOo=";
+          modpack = pkgs.fetchPackwizModpack {
+            url = "https://github.com/different-name/the-pond-server/raw/2bc55cbdc1fcd92e9c42ac07644ea91c690228ea/pack.toml";
+            packHash = "";
           };
         in {
-          mods = "${modpack}/.minecraft/mods";
+          mods = "${modpack}/mods";
           "server-icon.png" = ./server-icon.png;
         };
       };
