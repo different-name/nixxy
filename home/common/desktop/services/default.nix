@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./hyprpaper.nix
+    ./hyprpaper
     ./mako.nix
     ./playerctld.nix
   ];

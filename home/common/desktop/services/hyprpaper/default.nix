@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  wallpaperImg = ../assets/wallpaper.jpg;
+  wallpaperImg = ./wallpaper.jpg;
 in {
   services.hyprpaper = {
     enable = true;

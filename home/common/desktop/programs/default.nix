@@ -4,8 +4,8 @@
   ...
 }: {
   imports = [
+    ./fastfetch
     ./wayland
-    ./fastfetch.nix
     ./gtk.nix
     ./imv.nix
     ./kitty.nix

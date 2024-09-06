@@ -34,7 +34,6 @@ system - system level configuration
 home - home level configuration 
 ├── common - home config shared between systems
 │   └── <category> - [ global, desktop, extra ]
-│       ├── assets   - images, etc
 │       ├── programs - home programs.* configuration
 │       └── services - home services.* configuration
 └── users
