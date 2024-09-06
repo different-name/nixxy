@@ -11,6 +11,7 @@
 
     ../../common/global
 
+    ../../common/extra/services/minecraft
     ../../common/extra/services/tailscale.nix
 
     inputs.hardware.nixosModules.common-cpu-intel
