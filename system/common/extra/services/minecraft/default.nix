@@ -33,8 +33,8 @@
 
         symlinks = let
           modpack = pkgs.fetchPackwizModpack {
-            url = "https://github.com/different-name/the-pond-server/raw/2bc55cbdc1fcd92e9c42ac07644ea91c690228ea/pack.toml";
-            packHash = "";
+            url = "https://github.com/different-name/the-pond-server/raw/3e1ecde45c9106f054f275b831dcf5f295f74d9a/server/pack.toml";
+            packHash = "sha256-dfz5lTrWuhhWS1eLjeEPAssdhPoyu6XcnKBHgyFYufs=";
           };
         in {
           mods = "${modpack}/mods";
