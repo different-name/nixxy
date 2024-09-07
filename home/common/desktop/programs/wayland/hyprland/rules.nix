@@ -8,7 +8,7 @@
         ''AcrossTheObelisk\.x86_64''
         ''TerraTechLinux64\.x86_64''
         ''diablo iv\.exe''
-        ''Minecraft [0-9\.]+''
+        ''Minecraft(\*)? [0-9\.]+''
         "osu!"
       ];
       gameClassesStr = lib.concatStringsSep "|" gameClasses;
