@@ -1,4 +1,8 @@
-{inputs, pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.nix-minecraft.nixosModules.minecraft-servers
   ];
@@ -13,6 +17,7 @@
     openFirewall = true;
 
     servers = {
+      # nix-shell -p tmux --run "sudo tmux -S /run/minecraft/the-pond.sock attach"
       the-pond = {
         enable = true;
         package = pkgs.fabricServers.fabric-1_20_1;
