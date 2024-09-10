@@ -15,7 +15,6 @@
     ];
 
     persistence."/persist${config.home.homeDirectory}".directories = [
-      ".config/alvr"
       ".config/openvr"
       ".config/goxlr-utility"
       ".local/share/goxlr-utility"

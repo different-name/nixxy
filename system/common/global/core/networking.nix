@@ -4,17 +4,8 @@
     enableIPv6 = false;
 
     firewall = {
-      allowedUDPPorts = [
-        # ALVR
-        9943
-        9944
-      ];
-
-      allowedTCPPorts = [
-        # ALVR
-        9943
-        9944
-      ];
+      allowedUDPPorts = [];
+      allowedTCPPorts = [];
     };
   };
 
