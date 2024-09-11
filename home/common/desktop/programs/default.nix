@@ -30,7 +30,6 @@
     ani-cli
     vrc-get
     qbittorrent-qt5
-    polychromatic
     video-trimmer
 
     # games
