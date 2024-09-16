@@ -11,7 +11,6 @@
       ".local/share/direnv"
       ".config/vesktop"
       ".config/BraveSoftware/Brave-Browser"
-      ".config/Slack"
       ".local/share/PrismLauncher"
       ".local/state/wireplumber"
       ".config/unityhub"
