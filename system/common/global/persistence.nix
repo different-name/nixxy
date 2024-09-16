@@ -15,4 +15,7 @@
 
     files = [];
   };
+
+  # needed for home-manager impermanence to mount it's directories
+  programs.fuse.userAllowOther = true;
 }
