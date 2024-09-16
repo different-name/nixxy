@@ -10,8 +10,9 @@
       forceImportAll = true; # force import zpools at boot
     };
 
-    # roll back the root and home datasets to empty! impermanence :o
+    # rollback the root and home datasets to empty! impermanence :o
     initrd.systemd.services.rollback = {
+      description = "Rollback root and home datasets";
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;
