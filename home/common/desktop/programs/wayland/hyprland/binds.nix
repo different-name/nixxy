@@ -29,8 +29,8 @@ in {
         "$mod SHIFT, F, fullscreenstate, -1 2" # keep current fullscreen state, tell client it is fullscreened
         "$mod, R, togglesplit"
         "$mod, G, togglefloating"
-        "$mod SHIFT, A, togglegroup"
-        "$mod, A, lockactivegroup, toggle"
+        "$mod, A, togglegroup"
+        "$mod SHIFT, A, lockactivegroup, toggle"
         "ALT, TAB, changegroupactive, f"
         "ALT SHIFT, TAB, changegroupactive, b"
         "$mod, P, pseudo"
