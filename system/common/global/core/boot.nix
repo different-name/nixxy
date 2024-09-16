@@ -27,6 +27,6 @@
       timeout = 3;
     };
 
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = ["zfs" "ntfs"];
   };
 }
