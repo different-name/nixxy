@@ -27,9 +27,6 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    # hardware configurations
-    hardware.url = "github:nixos/nixos-hardware";
-
     # manages user environment
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -92,6 +89,9 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # hardware configurations
+    nixos-hardware.url = "github:nixos/nixos-hardware";
 
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

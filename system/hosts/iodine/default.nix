@@ -14,9 +14,9 @@
     ../../common/extra/services/minecraft
     ../../common/extra/services/tailscale.nix
 
-    inputs.hardware.nixosModules.common-cpu-intel
-    inputs.hardware.nixosModules.common-gpu-intel
-    inputs.hardware.nixosModules.common-pc-ssd
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-gpu-intel
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
   ];
 
   networking = {

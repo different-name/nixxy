@@ -7,12 +7,14 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
+    
     extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
       jnoortheen.nix-ide
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons
       editorconfig.editorconfig
     ];
+
     userSettings = {
       "workbench.colorTheme" = "Catppuccin Mocha";
       "editor.fontFamily" = "'JetBrains Mono', 'monospace', monospace";
