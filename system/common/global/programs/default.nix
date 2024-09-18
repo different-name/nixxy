@@ -5,5 +5,6 @@
     ./ephemeral-tools.nix
     ./fish.nix
     ./home-manager.nix
+    ./mosh.nix
   ];
 }
