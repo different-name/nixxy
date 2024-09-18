@@ -16,7 +16,7 @@
     ../../common/extra/hardware/nvidia.nix
     ../../common/extra/hardware/qmk.nix
 
-    ../../common/extra/services/goxlr-utility
+    ../../common/extra/services/goxlr-utility.nix
 
     (import ../../common/extra/services/autologin.nix "different")
     ../../common/extra/services/keyd.nix
