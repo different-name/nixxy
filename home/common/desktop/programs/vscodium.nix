@@ -17,21 +17,34 @@
 
     userSettings = {
       "workbench.colorTheme" = "Catppuccin Mocha";
+      "workbench.startupEditor" = "none";
       "editor.fontFamily" = "'JetBrains Mono', 'monospace', monospace";
       "editor.tabSize" = 2;
       "files.enableTrash" = false;
-      "workbench.startupEditor" = "none";
       "window.titleBarStyle" = "custom";
+      "explorer.confirmDragAndDrop" = false;
+      "explorer.confirmPasteNative" = false;
+
       "git.detectSubmodules" = false;
+      "git.confirmSync" = false;
 
       # https://github.com/nix-community/vscode-nix-ide
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "nil"; # pkgs.nil
+      "nix.serverPath" = "${pkgs.nil}/bin/nil";
+      "nix.serverSettings.nil.formatting.command" = ["${pkgs.alejandra}/bin/alejandra" "-" "--quiet"];
+      "nix.hiddenLanguageServerErrors" = [
+        # workaround for textDocument/documentSymbol errors
+        # https://github.com/nix-community/vscode-nix-ide/issues/387#issuecomment-2339564317
+        # https://github.com/oxalica/nil/issues/16
+        "textDocument/documentSymbol"
+      ];
     };
   };
 
-  # nix language server
-  home.packages = [pkgs.nil];
+  home.packages = with pkgs; [
+    alejandra # formatter
+    nil # nix language server
+  ];
 
   home.persistence."/persist${config.home.homeDirectory}".directories = [
     ".config/VSCodium/CachedData"
