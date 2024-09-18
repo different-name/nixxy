@@ -14,6 +14,7 @@
     '';
 
     functions = {
+      # wrapper for yazi https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
       yy = ''
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
         yazi $argv --cwd-file="$tmp"

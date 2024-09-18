@@ -12,7 +12,7 @@
       ".config/vesktop"
       ".config/BraveSoftware/Brave-Browser"
       ".local/share/PrismLauncher"
-      ".local/state/wireplumber"
+      ".local/state/wireplumber" # audio settings
       ".config/unityhub"
       ".config/unity3d"
       ".config/Unity"
