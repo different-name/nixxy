@@ -33,14 +33,8 @@
           type = "wm";
         }
         "terminal"
-        "packages"
-        {
-          type = "memory";
-          percent = {
-            green = 0;
-            yellow = 0;
-          };
-        }
+        "bios"
+        "kernel"
       ];
     };
   };
