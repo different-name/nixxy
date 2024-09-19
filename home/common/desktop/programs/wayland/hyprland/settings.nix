@@ -19,20 +19,6 @@ in {
       shadow_ignore_window = true;
       "col.shadow" = "rgba(00000055)";
       dim_inactive = false;
-
-      blur = {
-        enabled = true;
-        size = 7;
-        passes = 4;
-        new_optimizations = true;
-        brightness = 1.0;
-        contrast = 1.0;
-        noise = 0.01;
-        vibrancy = 0.2;
-        vibrancy_darkness = 0.5;
-        popups = true;
-        popups_ignorealpha = 0.2;
-      };
     };
 
     env = [
