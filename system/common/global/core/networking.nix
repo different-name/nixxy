@@ -13,10 +13,5 @@
     directories = [
       "/etc/NetworkManager/system-connections"
     ];
-
-    files = [
-      "/var/lib/NetworkManager/timestamps"
-      "/var/lib/NetworkManager/secret_key"
-    ];
   };
 }

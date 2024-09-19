@@ -30,6 +30,8 @@
         "/var/lib/systemd/timers"
         "/var/lib/NetworkManager/NetworkManager-intern.conf"
         "/etc/zfs/zpool.cache"
+        "/var/lib/NetworkManager/timestamps" # cannot be persisted as file
+        "/var/lib/NetworkManager/secret_key" # cannot be persisted as file
       ]
       ++ (map (path: "/home/different/${path}") [
         # https://wiki.archlinux.org/title/XDG_Base_Directory
