@@ -40,29 +40,33 @@
   # nh default flake
   programs.nh.flake = "/home/different/nix-files";
 
-  environment.sessionVariables = {
-    STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
-    GDK_SCALE = "2";
-  };
+  environment = {
+    etc.machine-id.source = ./machine-id;
 
-  # script used to backup to external hdd
-  environment.systemPackages = [
-    (pkgs.writeShellApplication {
-      name = "runbackup";
-      text = let
-        source = "/persist";
-        partitionId = "wwn-0x50014ee2145675c9-part1";
-        partitionPath = "/dev/disk/by-id/${partitionId}";
-        mountpoint = "/tmp/${partitionId}";
-      in ''
-        mkdir -p "${mountpoint}"
-        mount -t ext4 "${partitionPath}" "${mountpoint}"
-        rsync "${source}" "${mountpoint}" -avh --delete --progress --exclude /persist/home/different/.cache
-        udisksctl unmount -b "${partitionPath}"
-        udisksctl power-off -b "${partitionPath}"
-      '';
-    })
-  ];
+    sessionVariables = {
+      STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
+      GDK_SCALE = "2";
+    };
+
+    # script used to backup to external hdd
+    systemPackages = [
+      (pkgs.writeShellApplication {
+        name = "runbackup";
+        text = let
+          source = "/persist";
+          partitionId = "wwn-0x50014ee2145675c9-part1";
+          partitionPath = "/dev/disk/by-id/${partitionId}";
+          mountpoint = "/tmp/${partitionId}";
+        in ''
+          mkdir -p "${mountpoint}"
+          mount -t ext4 "${partitionPath}" "${mountpoint}"
+          rsync "${source}" "${mountpoint}" -avh --delete --progress --exclude /persist/home/different/.cache
+          udisksctl unmount -b "${partitionPath}"
+          udisksctl power-off -b "${partitionPath}"
+        '';
+      })
+    ];
+  };
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";

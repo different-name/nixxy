@@ -28,4 +28,10 @@
       '';
     };
   };
+
+  environment.persistence."/persist/system" = {
+    directories = [
+      "/etc/zfs/keys"
+    ];
+  };
 }

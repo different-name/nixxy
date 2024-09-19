@@ -18,6 +18,18 @@
         "/etc/NIXOS"
         "/etc/subuid"
         "/etc/passwd"
+        "/etc/resolv.conf" # dns config
+        "/etc/.clean"
+        "/etc/.updated"
+        "/etc/subgid"
+        "/etc/ssh/authorized_keys.d" # openssh.authorizedKeys
+        "/etc/fwupd/fwupd.conf" # services.fwupd
+        "/etc/printcap"
+        "/var/.updated"
+        "/var/lib/systemd/catalog"
+        "/var/lib/systemd/timers"
+        "/var/lib/NetworkManager/NetworkManager-intern.conf"
+        "/etc/zfs/zpool.cache"
       ]
       ++ (map (path: "/home/different/${path}") [
         # https://wiki.archlinux.org/title/XDG_Base_Directory

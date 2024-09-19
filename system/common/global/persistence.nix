@@ -10,10 +10,15 @@
       "/var/log"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
-      "/etc/zfs/keys"
+      "/root/.cache"
+      "/var/cache"
+      "/var/lib/systemd/timesync"
     ];
 
-    files = [];
+    files = [
+      "/var/lib/logrotate.status"
+      "/var/lib/systemd/random-seed"
+    ];
   };
 
   # needed for home-manager impermanence to mount it's directories
