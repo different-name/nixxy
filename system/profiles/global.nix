@@ -11,9 +11,9 @@
   options.nix-files.profiles.global.enable = lib.mkEnableOption "Global profile";
 
   config = lib.mkIf config.nix-files.profiles.global.enable {
-    services.fstrim.enable = true;
-
     programs.mosh.enable = true;
+
+    services.fstrim.enable = true;
 
     nix-files = {
       core = {

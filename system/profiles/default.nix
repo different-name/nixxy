@@ -1,7 +1,7 @@
 {
   imports = [
-    ./desktop.nix
     ./global.nix
+    ./graphical.nix
     ./laptop.nix
   ];
 }

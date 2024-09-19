@@ -33,7 +33,7 @@
 
     profiles = {
       global.enable = true;
-      desktop.enable = true;
+      graphical.enable = true;
     };
 
     core.boot.enable = true;

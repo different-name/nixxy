@@ -3,9 +3,9 @@
   config,
   ...
 }: {
-  options.nix-files.profiles.desktop.enable = lib.mkEnableOption "Desktop profile";
+  options.nix-files.profiles.graphical.enable = lib.mkEnableOption "Graphical profile";
 
-  config = lib.mkIf config.nix-files.profiles.desktop.enable {
+  config = lib.mkIf config.nix-files.profiles.graphical.enable {
     hardware.graphics.enable = true;
 
     nix-files = {
