@@ -14,7 +14,7 @@
       # https://github.com/aristocratos/btop/issues/426#issuecomment-2103598718
       package = pkgs.btop.override {cudaSupport = true;};
 
-      catppuccin.enable = true;
+      catppuccin.enable = lib.mkIf config.programs.catppuccin.enable true;
 
       settings = {
         proc_gradient = false;
