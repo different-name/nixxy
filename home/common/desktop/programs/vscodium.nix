@@ -20,6 +20,7 @@
       "workbench.startupEditor" = "none";
       "editor.fontFamily" = "'JetBrains Mono', 'monospace', monospace";
       "editor.tabSize" = 2;
+      "editor.formatOnSave" = true;
       "files.enableTrash" = false;
       "window.titleBarStyle" = "custom";
       "explorer.confirmDragAndDrop" = false;
