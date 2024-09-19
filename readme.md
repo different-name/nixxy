@@ -15,6 +15,9 @@ My NixOS configuration files
 
 ## Structure
 
+> [!WARNING]
+> Outdated, see issue [#56](https://github.com/different-name/nix-files/issues/56)
+
 ```
 system - system level configuration
 ├── common - system config shared between systems
