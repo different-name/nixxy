@@ -29,6 +29,11 @@
         "image/tiff" = "imv-dir.desktop";
         "image/x-icon" = "imv-dir.desktop";
 
+        # text
+        "text/plain" = "codium.desktop";
+        "application/json" = "codium.desktop";
+        "text/markdown" = "codium.desktop";
+
         # unity login
         "x-scheme-handler/unityhub" = "unityhub.desktop";
       };
