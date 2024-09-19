@@ -1,9 +1,9 @@
 {config, ...}: {
-  age.secrets.password.file = ../../secrets/password.age;
+  age.secrets."user-pass/different".file = ../../secrets/user-pass/different.age;
 
   users.users."different" = {
     isNormalUser = true;
-    hashedPasswordFile = config.age.secrets.password.path;
+    hashedPasswordFile = config.age.secrets."user-pass/different".path;
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIoe3VveHt2vXoHdkRbLE0Xx5il0T3v8PiWxFvdniSLg different@sodium"
