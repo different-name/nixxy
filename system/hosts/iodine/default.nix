@@ -7,13 +7,6 @@
     ./hardware-configuration.nix
     ./disk-configuration.nix
 
-    ../../users/iodine.nix
-
-    ../../common/global
-
-    ../../common/extra/services/minecraft
-    ../../common/extra/services/tailscale.nix
-
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -31,6 +24,14 @@
 
   # nh default flake
   programs.nh.flake = "/home/iodine/nix-files";
+
+  nix-files = {
+    users.iodine.enable = true;
+
+    profiles.global.enable = true;
+
+    services.minecraft-server.enable = true;
+  };
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";

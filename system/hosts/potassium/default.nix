@@ -7,17 +7,6 @@
     ./hardware-configuration.nix
     ./disk-configuration.nix
 
-    ../../users/different.nix
-
-    ../../common/global
-    ../../common/desktop
-
-    ../../common/extra/hardware/backlight.nix
-    ../../common/extra/hardware/bluetooth.nix
-    ../../common/extra/hardware/nvidia.nix
-
-    (import ../../common/extra/services/autologin.nix "different")
-
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -35,6 +24,23 @@
 
   # nh default flake
   programs.nh.flake = "/home/different/nix-files";
+
+  nix-files = {
+    users.different.enable = true;
+
+    profiles = {
+      global.enable = true;
+      desktop.enable = true;
+      laptop.enable = true;
+    };
+
+    hardware.nvidia.enable = true;
+
+    services.autologin = {
+      enable = true;
+      user = "different";
+    };
+  };
 
   hardware.nvidia.prime = {
     nvidiaBusId = "PCI:1:0:0";

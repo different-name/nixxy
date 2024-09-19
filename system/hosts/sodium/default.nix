@@ -8,20 +8,6 @@
     ./hardware-configuration.nix
     ./disk-configuration.nix
 
-    ../../users/different.nix
-
-    ../../common/global
-    ../../common/desktop
-
-    ../../common/extra/hardware/nvidia.nix
-    ../../common/extra/hardware/qmk.nix
-
-    ../../common/extra/services/goxlr-utility.nix
-
-    (import ../../common/extra/services/autologin.nix "different")
-    ../../common/extra/services/keyd.nix
-    ../../common/extra/services/tailscale.nix
-
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
     inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -32,6 +18,8 @@
     hostId = "9471422d";
   };
 
+  environment.etc.machine-id.source = ./machine-id;
+
   home-manager = {
     extraSpecialArgs = {inherit inputs self;};
     users."different" = import "${self}/home/users/different/hosts/sodium.nix";
@@ -40,9 +28,32 @@
   # nh default flake
   programs.nh.flake = "/home/different/nix-files";
 
-  environment = {
-    etc.machine-id.source = ./machine-id;
+  nix-files = {
+    users.different.enable = true;
 
+    profiles = {
+      global.enable = true;
+      desktop.enable = true;
+    };
+
+    core.boot.enable = true;
+
+    hardware.nvidia.enable = true;
+
+    services = {
+      autologin = {
+        enable = true;
+        user = "different";
+      };
+
+      keyd.enable = true;
+    };
+  };
+
+  hardware.keyboard.qmk.enable = true;
+  services.goxlr-utility.enable = true;
+
+  environment = {
     sessionVariables = {
       STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
       GDK_SCALE = "2";
