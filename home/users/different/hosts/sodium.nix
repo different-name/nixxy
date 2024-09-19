@@ -1,9 +1,16 @@
 {
   imports = [
     ../.
-
-    ../../../common/extra/services/goxlr-utility
   ];
+
+  nix-files = {
+    profiles = {
+      global.enable = true;
+      graphical.enable = true;
+    };
+
+    services.goxlr-utility.enable = true;
+  };
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.05";
