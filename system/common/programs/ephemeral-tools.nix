@@ -57,6 +57,9 @@
           ".local/share/recently-used.xbel" # recent files list used by some applications
           ".config/dconf/user" # gnome settings database
           ".local/state/lesshst" # less history file
+          ".config/gtk-2.0"
+          ".config/gtk-3.0"
+          ".config/pulse/cookie" # pulseaudio cookie, had no issues with this being unpersisted
         ]);
     };
   };

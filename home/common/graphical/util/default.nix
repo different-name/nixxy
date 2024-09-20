@@ -46,6 +46,7 @@
         # thunar
         ".config/Thunar"
         ".config/xfce4/xfconf/xfce-perchannel-xml"
+        ".local/share/gvfs-metadata" # gnome virtual file system data / cache
       ];
     };
   };
