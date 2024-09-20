@@ -1,6 +1,5 @@
 {
   inputs,
-  self,
   pkgs,
   ...
 }: {
@@ -13,6 +12,8 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
   ];
 
+  ### required config
+
   networking = {
     hostName = "sodium";
     hostId = "9471422d";
@@ -20,13 +21,12 @@
 
   environment.etc.machine-id.source = ./machine-id;
 
-  home-manager = {
-    extraSpecialArgs = {inherit inputs self;};
-    users."different" = import "${self}/home/users/different/hosts/sodium.nix";
-  };
-
-  # nh default flake
   programs.nh.flake = "/home/different/nix-files";
+
+  # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "24.05";
+
+  ### modules
 
   nix-files = {
     users.different.enable = true;
@@ -35,8 +35,6 @@
       global.enable = true;
       graphical.enable = true;
     };
-
-    core.boot.enable = true;
 
     hardware.nvidia.enable = true;
 
@@ -49,6 +47,8 @@
       keyd.enable = true;
     };
   };
+
+  ### host specific
 
   hardware.keyboard.qmk.enable = true;
   services.goxlr-utility.enable = true;
@@ -78,7 +78,4 @@
       })
     ];
   };
-
-  # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.05";
 }

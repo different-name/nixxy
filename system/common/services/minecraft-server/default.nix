@@ -54,8 +54,10 @@
       };
     };
 
-    environment.persistence."/persist/system".directories = [
-      "/srv/minecraft"
-    ];
+    environment.persistence."/persist/system" = lib.mkIf config.nix-files.core.persistence.enable {
+      directories = [
+        "/srv/minecraft"
+      ];
+    };
   };
 }

@@ -8,7 +8,7 @@
   config = lib.mkIf config.nix-files.hardware.fwupd.enable {
     services.fwupd.enable = true;
 
-    environment.persistence."/persist/system" = {
+    environment.persistence."/persist/system" = lib.mkIf config.nix-files.core.persistence.enable {
       directories = map (path: "/var/lib/fwupd/${path}") [
         "metadata"
         "gnupg"

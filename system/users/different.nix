@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs,
+  self,
   ...
 }: {
   options.nix-files.users.different.enable = lib.mkEnableOption "User different";
@@ -27,6 +29,11 @@
         "networkmanager"
         "libvirtd"
       ];
+    };
+
+    home-manager = {
+      extraSpecialArgs = {inherit inputs self;};
+      users."different" = import "${self}/home/users/different/hosts/${config.networking.hostName}.nix";
     };
 
     # access to the hostkey independent of impermanence activation

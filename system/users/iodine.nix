@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs,
+  self,
   ...
 }: {
   options.nix-files.users.iodine.enable = lib.mkEnableOption "User iodine";
@@ -25,6 +27,11 @@
         "networkmanager"
         "libvirtd"
       ];
+    };
+
+    home-manager = {
+      extraSpecialArgs = {inherit inputs self;};
+      users."iodine" = import "${self}/home/users/iodine/hosts/${config.networking.hostName}.nix";
     };
 
     # access to the hostkey independent of impermanence activation

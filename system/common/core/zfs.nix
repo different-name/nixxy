@@ -33,7 +33,7 @@
       };
     };
 
-    environment.persistence."/persist/system" = {
+    environment.persistence."/persist/system" = lib.mkIf config.nix-files.core.persistence.enable {
       directories = [
         "/etc/zfs/keys"
       ];
