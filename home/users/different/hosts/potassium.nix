@@ -6,7 +6,7 @@
   nix-files = {
     profiles = {
       global.enable = true;
-      desktop.enable = true;
+      graphical.enable = true;
     };
   };
 
