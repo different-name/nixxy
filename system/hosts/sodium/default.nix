@@ -12,20 +12,6 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
   ];
 
-  ### required config
-
-  networking = {
-    hostName = "sodium";
-    hostId = "9471422d";
-  };
-
-  environment.etc.machine-id.source = ./machine-id;
-
-  programs.nh.flake = "/home/different/nix-files";
-
-  # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.05";
-
   ### modules
 
   nix-files = {
@@ -78,4 +64,18 @@
       })
     ];
   };
+
+  ### required config
+
+  networking = {
+    hostName = "sodium";
+    hostId = "9471422d";
+  };
+
+  environment.etc.machine-id.source = ./machine-id;
+
+  programs.nh.flake = "/home/different/nix-files";
+
+  # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "24.05";
 }

@@ -8,6 +8,16 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
   ];
 
+  ### modules
+
+  nix-files = {
+    users.iodine.enable = true;
+
+    profiles.global.enable = true;
+
+    services.minecraft-server.enable = true;
+  };
+
   ### required config
 
   networking = {
@@ -21,14 +31,4 @@
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
-
-  ### modules
-
-  nix-files = {
-    users.iodine.enable = true;
-
-    profiles.global.enable = true;
-
-    services.minecraft-server.enable = true;
-  };
 }
