@@ -27,8 +27,7 @@ system - system level configuration
 │   └── <host>
 │       ├── default.nix
 │       ├── disk-configuration.nix - disk partitions & filesystems
-│       ├── hardware-configuration.nix
-│       └── machine-id
+│       └── hardware-configuration.nix
 ├── profiles - configuration "presets"
 └── users    - user configuration
 

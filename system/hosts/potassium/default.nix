@@ -1,4 +1,6 @@
-{inputs, ...}: {
+{inputs, ...}: let
+  machine-id = "ea3a24c5b3a84bc0a06ac47ef29ef2a8";
+in {
   imports = [
     ./hardware-configuration.nix
     ./disk-configuration.nix
@@ -38,10 +40,10 @@
 
   networking = {
     hostName = "potassium";
-    hostId = "ea3a24c5";
+    hostId = builtins.substring 0 8 machine-id;
   };
 
-  environment.etc.machine-id.source = ./machine-id;
+  environment.etc.machine-id.text = machine-id;
 
   programs.nh.flake = "/home/different/nix-files";
 

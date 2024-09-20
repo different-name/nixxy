@@ -2,7 +2,9 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  machine-id = "9471422d94d34bb8807903179fb35f11";
+in {
   imports = [
     ./hardware-configuration.nix
     ./disk-configuration.nix
@@ -69,10 +71,10 @@
 
   networking = {
     hostName = "sodium";
-    hostId = "9471422d";
+    hostId = builtins.substring 0 8 machine-id;
   };
 
-  environment.etc.machine-id.source = ./machine-id;
+  environment.etc.machine-id.text = machine-id;
 
   programs.nh.flake = "/home/different/nix-files";
 

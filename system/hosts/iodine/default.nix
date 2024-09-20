@@ -1,4 +1,6 @@
-{inputs, ...}: {
+{inputs, ...}: let
+  machine-id = "294b0aee9a634611a9ddef5e843f4035";
+in {
   imports = [
     ./hardware-configuration.nix
     ./disk-configuration.nix
@@ -22,10 +24,10 @@
 
   networking = {
     hostName = "iodine";
-    hostId = "294b0aee";
+    hostId = builtins.substring 0 8 machine-id;
   };
 
-  environment.etc.machine-id.source = ./machine-id;
+  environment.etc.machine-id.text = machine-id;
 
   programs.nh.flake = "/home/iodine/nix-files";
 
