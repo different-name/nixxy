@@ -10,6 +10,8 @@
     programs.fd.enable = true;
 
     nix-files = {
+      catppuccin.enable = true;
+
       terminal = {
         fastfetch.enable = true;
         btop.enable = true;

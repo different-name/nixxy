@@ -3,6 +3,7 @@
     ./graphical
     ./services
     ./terminal
+    ./catppuccin.nix
     ./persistence.nix
   ];
 

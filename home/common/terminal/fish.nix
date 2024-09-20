@@ -8,7 +8,7 @@
   config = lib.mkIf config.nix-files.terminal.fish.enable {
     programs.fish = {
       enable = true;
-      catppuccin.enable = lib.mkIf config.nix-files.graphical.meta.catppuccin.enable false;
+      catppuccin.enable = lib.mkIf config.nix-files.catppuccin.enable false;
 
       shellInit = ''
         set -U fish_color_cwd red

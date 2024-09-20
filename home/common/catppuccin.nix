@@ -9,9 +9,9 @@
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
-  options.nix-files.graphical.meta.catppuccin.enable = lib.mkEnableOption "Catppuccin config";
+  options.nix-files.catppuccin.enable = lib.mkEnableOption "Catppuccin config";
 
-  config = lib.mkIf config.nix-files.graphical.meta.catppuccin.enable {
+  config = lib.mkIf config.nix-files.catppuccin.enable {
     catppuccin = {
       inherit (osConfig.catppuccin) enable accent flavor;
       pointerCursor = {

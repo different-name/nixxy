@@ -21,7 +21,6 @@
         };
 
         meta = {
-          catppuccin.enable = true;
           gtk.enable = true;
           qt.enable = true;
           xdg.enable = true;
