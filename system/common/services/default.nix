@@ -1,5 +1,6 @@
 {
   imports = [
+    ./minecraft-server
     ./autologin.nix
     ./keyd.nix
     ./openssh.nix
