@@ -30,14 +30,21 @@
           };
         };
 
-        modules = [
+        modules = let
+          hyprlandEnabled = config.wayland.windowManager.hyprland.enable;
+        in [
           "title"
           "separator"
           "os"
           "kernel"
           {
+            enabled = hyprlandEnabled;
             key = "Compositor";
             type = "wm";
+          }
+          {
+            enabled = !hyprlandEnabled;
+            type = "terminal";
           }
           "terminal"
           "bios"
