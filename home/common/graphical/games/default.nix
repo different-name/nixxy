@@ -1,19 +1,52 @@
-{pkgs, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./steam.nix
   ];
 
-  home.packages = with pkgs; [
-    vesktop
-    lutris
-    heroic
-    osu-lazer-bin
-    (prismlauncher.override {
-      jdks = [
-        zulu8
-        zulu17
-        zulu21
+  options.nix-files.graphical.games.enable = lib.mkEnableOption "Games packages";
+
+  config = lib.mkIf config.nix-files.graphical.games.enable {
+    home.packages = with pkgs; [
+      vesktop
+      lutris
+      heroic
+      osu-lazer-bin
+      (prismlauncher.override {
+        jdks = [
+          zulu8
+          zulu17
+          zulu21
+        ];
+      })
+    ];
+
+    home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
+      directories = [
+        # general
+        ".nv" # OpenGL cache
+        ".local/share/vulkan/" # shader cache files?
+
+        # vesktop
+        ".config/vesktop"
+
+        # lutris
+        ".local/share/lutris"
+        ".local/share/umu" # proton runtime
+
+        # heroic
+        ".config/heroic"
+
+        # osu-lazer
+        ".local/share/osu"
+
+        # prism launcher
+        ".local/share/PrismLauncher"
       ];
-    })
-  ];
+    };
+  };
 }

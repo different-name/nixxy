@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./fastfetch
     ./btop.nix
@@ -7,17 +12,29 @@
     ./yazi.nix
   ];
 
-  home.packages = with pkgs; [
-    imagemagick
-    ffmpeg
-    trashy
-    ncdu
-    aspell
-    aspellDicts.en
-    libqalculate
-    sshfs
-    magic-wormhole
-    exiftool
-    alejandra
-  ];
+  options.nix-files.terminal.enable = lib.mkEnableOption "Terminal packages";
+
+  config = lib.mkIf config.nix-files.terminal.enable {
+    home.packages = with pkgs; [
+      imagemagick
+      ffmpeg
+      trashy
+      ncdu
+      aspell
+      aspellDicts.en
+      libqalculate
+      sshfs
+      magic-wormhole
+      exiftool
+      alejandra
+    ];
+
+    home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
+      directories = [
+        # qalculate
+        ".config/qalculate"
+        ".local/share/qalculate"
+      ];
+    };
+  };
 }

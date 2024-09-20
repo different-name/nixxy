@@ -14,7 +14,7 @@
       "L ${homeDirectory}/pictures/vrchat - - - - ${vrchatPictures}"
     ];
 
-    home.persistence."/persist${config.home.homeDirectory}" = {
+    home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
       directories = [
         ".local/share/TerraTech"
         ".local/share/aspyr-media/borderlands 2"

@@ -8,8 +8,10 @@
   config = lib.mkIf config.nix-files.graphical.media.obs.enable {
     programs.obs-studio.enable = true;
 
-    home.persistence."/persist${config.home.homeDirectory}".directories = [
-      ".config/obs-studio"
-    ];
+    home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
+      directories = [
+        ".config/obs-studio"
+      ];
+    };
   };
 }

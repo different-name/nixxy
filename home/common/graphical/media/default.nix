@@ -1,11 +1,20 @@
-{pkgs, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./imv.nix
     ./obs.nix
   ];
 
-  home.packages = with pkgs; [
-    ani-cli
-    video-trimmer
-  ];
+  options.nix-files.graphical.media.enable = lib.mkEnableOption "Media packages";
+
+  config = lib.mkIf config.nix-files.graphical.media.enable {
+    home.packages = with pkgs; [
+      ani-cli
+      video-trimmer
+    ];
+  };
 }
