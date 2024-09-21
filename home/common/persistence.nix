@@ -17,6 +17,7 @@
         ".cache"
         ".ssh"
         ".terminfo"
+        ".local/share/kitty-ssh-kitten"
         ".local/share/Trash"
       ];
 
