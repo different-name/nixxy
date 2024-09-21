@@ -10,7 +10,7 @@
       enable = true;
 
       # this theme is no longer in development
-      catppuccin = {
+      catppuccin = lib.mkIf config.catppuccin.enable {
         enable = true;
         flavor = "mocha";
         accent = "red";
