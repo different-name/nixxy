@@ -53,7 +53,7 @@ in {
         name = "runbackup";
         text = let
           source = "/persist";
-          partitionId = "wwn-0x50014ee2145675c9-part1";
+          partitionId = "usb-Seagate_Expansion_Desk_2HC015KJ-0:0-part1";
           partitionPath = "/dev/disk/by-id/${partitionId}";
           mountpoint = "/tmp/${partitionId}";
         in ''
