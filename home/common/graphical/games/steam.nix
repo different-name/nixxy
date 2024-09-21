@@ -18,6 +18,7 @@
       directories = [
         ".local/share/TerraTech"
         ".local/share/aspyr-media/borderlands 2"
+        ".factorio"
       ];
     };
   };
