@@ -11,14 +11,16 @@
       enable = true;
 
       extraCompatPackages = with pkgs; [
-        # add proton ge
         proton-ge-bin
+
         # proton ge with rtsp patch, for vrchat video players
-        (proton-ge-bin.overrideAttrs (finalAttrs: {
-          pname = "proton-ge-rtsp-bin";
+        (proton-ge-bin.overrideAttrs (finalAttrs: let
           version = "GE-Proton9-11-rtsp15";
+        in {
+          pname = "proton-ge-rtsp-bin";
+          inherit version;
           src = pkgs.fetchzip {
-            url = "https://github.com/SpookySkeletons/proton-ge-rtsp/releases/download/GE-Proton9-11-rtsp15/GE-Proton9-11-rtsp15.tar.gz";
+            url = "https://github.com/SpookySkeletons/proton-ge-rtsp/releases/download/${version}/${version}.tar.gz";
             hash = "sha256-3QWJUVkMgZldEXFVsry1FoKVE9y6Tg4IREAruPuL+hk=";
           };
         }))
