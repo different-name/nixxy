@@ -7,6 +7,11 @@
   options.nix-files.core.zfs.enable = lib.mkEnableOption "ZFS config";
 
   config = lib.mkIf config.nix-files.core.zfs.enable {
+    services.zfs = {
+      trim.enable = true;
+      autoScrub.enable = true;
+    };
+
     boot = {
       zfs = {
         package = pkgs.zfs_unstable;
