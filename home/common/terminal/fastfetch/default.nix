@@ -31,21 +31,21 @@
         };
 
         modules = [
-          "title"
-          "separator"
-          "os"
-          "kernel"
+          "Title"
+          "Separator"
+          "OS"
+          "Kernel"
           (
             if config.wayland.windowManager.hyprland.enable
             then {
               key = "Compositor";
-              type = "wm";
+              type = "WM";
             }
-            else "shell"
+            else "Shell"
           )
-          "terminal"
-          "bios"
-          "kernel"
+          "Terminal"
+          "Bios"
+          "InitSystem"
         ];
       };
     };
