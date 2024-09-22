@@ -25,56 +25,28 @@
       })
     ];
 
-    home.persistence = lib.mkIf config.nix-files.persistence.enable {
-      "/persist${config.home.homeDirectory}" = {
-        directories = [
-          # vesktop
-          ".config/vesktop"
+    home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
+      directories = [
+        # general
+        ".nv" # OpenGL cache
+        ".local/share/vulkan/" # shader cache files?
 
-          # lutris
-          ".local/share/lutris"
-          ".local/share/umu" # proton runtime
+        # vesktop
+        ".config/vesktop"
 
-          # heroic
-          ".config/heroic"
+        # lutris
+        ".local/share/lutris"
+        ".local/share/umu" # proton runtime
 
-          # osu-lazer
-          ".local/share/osu"
+        # heroic
+        ".config/heroic"
 
-          # prism launcher
-          ".local/share/PrismLauncher"
-        ];
-      };
+        # osu-lazer
+        ".local/share/osu"
 
-      "/persist${config.home.homeDirectory}-cache" = {
-        directories = [
-          # general
-          ".nv" # OpenGL cache
-          ".local/share/vulkan/"
-
-          # vesktop
-          ".config/vesktop/sessionData/Cache"
-          ".config/vesktop/sessionData/Code Cache"
-          ".config/vesktop/sessionData/GPUCache"
-          ".config/vesktop/sessionData/DawnWebGPUCache"
-          ".config/vesktop/sessionData/Shared Dictionary/cache"
-          ".config/vesktop/sessionData/DawnGraphiteCache"
-
-          # heroic
-          ".config/heroic/Cache"
-          ".config/heroic/store_cache"
-          ".config/heroic/images-cache"
-          ".config/heroic/GPUCache"
-          ".config/heroic/DawnCache"
-          ".config/heroic/Code Cache"
-          ".config/heroic/Shared Dictionary/cache"
-          ".config/heroic/Partitions/epicstore/Cache"
-          ".config/heroic/Partitions/epicstore/Code Cache"
-          ".config/heroic/Partitions/epicstore/GPUCache"
-          ".config/heroic/Partitions/epicstore/DawnCache"
-          ".config/heroic/Partitions/epicstore/Shared Dictionary/cache"
-        ];
-      };
+        # prism launcher
+        ".local/share/PrismLauncher"
+      ];
     };
   };
 }

@@ -11,30 +11,21 @@
   options.nix-files.persistence.enable = lib.mkEnableOption "Persistence config";
 
   config = lib.mkIf config.nix-files.persistence.enable {
-    home.persistence = {
-      "/persist${config.home.homeDirectory}" = {
-        allowOther = true;
+    home.persistence."/persist${config.home.homeDirectory}" = {
+      directories = [
+        "nix-files"
+        ".cache"
+        ".ssh"
+        ".terminfo"
+        ".local/share/kitty-ssh-kitten"
+        ".local/share/Trash"
+      ];
 
-        directories = [
-          "nix-files"
-          ".ssh"
-          ".terminfo"
-          ".local/share/kitty-ssh-kitten"
-          ".local/share/Trash"
-        ];
+      files = [
+        ".local/share/nix/repl-history"
+      ];
 
-        files = [
-          ".local/share/nix/repl-history"
-        ];
-      };
-
-      "/persist${config.home.homeDirectory}-cache" = {
-        allowOther = true;
-
-        directories = [
-          ".cache"
-        ];
-      };
+      allowOther = true;
     };
   };
 }
