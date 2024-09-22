@@ -76,7 +76,7 @@ in {
         disable_splash_rendering = true;
       };
 
-      screencopy.allow_token_by_default = true;
+      # screencopy.allow_token_by_default = true;
 
       render.direct_scanout = false;
 
