@@ -57,19 +57,26 @@
       "text/markdown" = "codium.desktop";
     };
 
-    home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
-      directories = [
-        ".config/VSCodium/CachedData"
-        ".config/VSCodium/Cache"
-        ".config/VSCodium/Backups"
-        ".config/VSCodium/Code Cache"
-        ".config/VSCodium/DawnCache"
-        ".config/VSCodium/GPUCache"
-        ".config/VSCodium/User/History"
-        ".config/VSCodium/User/globalStorage"
-        ".config/VSCodium/User/workspaceStorage"
-        ".config/VSCodium/logs"
-      ];
+    home.persistence = lib.mkIf config.nix-files.persistence.enable {
+      "/persist${config.home.homeDirectory}" = {
+        directories = [
+          ".config/VSCodium/Backups"
+          ".config/VSCodium/User/History"
+          ".config/VSCodium/User/globalStorage"
+          ".config/VSCodium/User/workspaceStorage"
+          ".config/VSCodium/logs"
+        ];
+      };
+
+      "/persist${config.home.homeDirectory}-cache" = {
+        directories = [
+          ".config/VSCodium/CachedData"
+          ".config/VSCodium/Cache"
+          ".config/VSCodium/Code Cache"
+          ".config/VSCodium/DawnCache"
+          ".config/VSCodium/GPUCache"
+        ];
+      };
     };
   };
 }

@@ -11,10 +11,19 @@
       libreoffice-qt6-fresh
     ];
 
-    home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
-      directories = [
-        ".config/libreoffice"
-      ];
+    home.persistence = lib.mkIf config.nix-files.persistence.enable {
+      "/persist${config.home.homeDirectory}" = {
+        directories = [
+          ".config/libreoffice"
+        ];
+      };
+
+      "/persist${config.home.homeDirectory}-cache" = {
+        directories = [
+          ".config/libreoffice/4/cache"
+          ".config/libreoffice/4/user/uno_packages/cache"
+        ];
+      };
     };
   };
 }
