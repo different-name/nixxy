@@ -76,8 +76,6 @@ in {
         disable_splash_rendering = true;
       };
 
-      # screencopy.allow_token_by_default = true;
-
       render.direct_scanout = false;
 
       # touchpad gestures
@@ -108,6 +106,15 @@ in {
         "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5" # home monitor
         ",preferred,auto,1" # everything else
       ];
+    };
+
+    # TODO find or implement a way to do this through home-manager module
+    xdg.configFile."hypr/xdph.conf" = {
+      text = ''
+        screencopy {
+          allow_token_by_default = true
+        }
+      '';
     };
   };
 }
