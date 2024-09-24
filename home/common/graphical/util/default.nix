@@ -21,6 +21,7 @@
       qalculate-gtk
       qbittorrent-qt5
       scrcpy
+      prusa-slicer
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
@@ -40,6 +41,9 @@
         # qbittorrent
         ".config/qBittorrent"
         ".local/share/qBittorrent"
+
+        # prusa-slicer
+        ".config/PrusaSlicer"
 
         ### system level
 
