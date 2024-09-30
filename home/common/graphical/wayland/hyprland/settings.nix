@@ -62,6 +62,8 @@ in {
         # workaround for grimblast area screenshots showing cursor
         # https://github.com/hyprwm/contrib/issues/60#issuecomment-2351538806
         allow_dumb_copy = true;
+        # workaround for mouse being invisible in blender
+        no_hardware_cursors = true;
       };
 
       dwindle = {
