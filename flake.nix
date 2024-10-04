@@ -98,6 +98,12 @@
 
     # list of systems
     systems.url = "github:nix-systems/default-linux";
+
+    # zen browser
+    zen-browser = {
+      url = "github:fufexan/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

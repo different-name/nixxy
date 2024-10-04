@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -16,12 +17,12 @@
     home.packages = with pkgs; [
       android-tools
       blender
-      brave
       gimp-with-plugins
       qalculate-gtk
       qbittorrent-qt5
       scrcpy
       prusa-slicer
+      inputs.zen-browser.packages."${system}".specific
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
@@ -32,9 +33,6 @@
         # blender
         ".config/blender"
 
-        # brave
-        ".config/BraveSoftware/Brave-Browser"
-
         # gimp
         ".config/GIMP"
 
@@ -44,6 +42,9 @@
 
         # prusa-slicer
         ".config/PrusaSlicer"
+
+        # zen-browser
+        ".zen"
 
         ### system level
 
