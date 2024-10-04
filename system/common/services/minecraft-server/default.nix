@@ -49,10 +49,11 @@
             };
           in {
             mods = "${modpack}/mods";
-            "server-icon.png" = ./server-icon.png;
+            "server-icon.png" = ./the-pond-icon.png;
           };
         };
 
+        # nix-shell -p tmux --run "sudo tmux -S /run/minecraft/gngg.sock attach"
         gngg = {
           enable = true;
           package = pkgs.papermcServers.papermc-1_21_1;
@@ -78,14 +79,15 @@
             loolystarlight = "15a80ccd-e919-4bf1-a5f9-caf4520164eb";
             Bluevou = "be884360-3a6f-43bb-8a6d-043e1ce12681";
             bagofdoritos_ = "96502a0b-5beb-42bc-8c38-1b7487eada5b";
+            RestlessSquid29 = "75da886f-c2e2-4be0-8506-229ba29e2f5a";
           };
 
-          # symlinks = {
-          #   plugins =
-          #     pkgs.linkDarmFromDrvs "plugins" (builtins.attrValues {
-          #
-          #     });
-          # };
+          symlinks = {
+            # plugins = pkgs.linkDarmFromDrvs "plugins" (builtins.attrValues {
+
+            # });
+            "server-icon.png" = ./gngg-icon.png;
+          };
         };
       };
     };
