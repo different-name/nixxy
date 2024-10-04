@@ -25,11 +25,11 @@
       "float, class:^(qalculate-gtk)$"
       "size 850 575, class:^(qalculate-gtk)$"
 
-      # brave PiP
-      "float, title:^(Picture-in-picture)$"
-      "pin, title:^(Picture-in-picture)$"
-      "size 480 270, title:^(Picture-in-picture)$"
-      "keepaspectratio, title:^(Picture-in-picture)$"
+      # zen PiP
+      "float, title:^(Picture-in-Picture)$"
+      "pin, title:^(Picture-in-Picture)$"
+      "size 480 270, title:^(Picture-in-Picture)$"
+      "keepaspectratio, title:^(Picture-in-Picture)$"
 
       # gtk popups
       "float, class:^(xdg-desktop-portal-gtk)$"

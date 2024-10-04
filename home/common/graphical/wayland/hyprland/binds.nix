@@ -51,7 +51,7 @@ in {
           ## launcher
           "$mod, S, exec, rofi -show drun -show-icons"
           ## browser
-          "$mod, W, exec, brave"
+          "$mod, W, exec, zen"
           ## file explorer
           "$mod, E, exec, thunar"
 
