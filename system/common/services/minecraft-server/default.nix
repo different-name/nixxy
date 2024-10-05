@@ -49,7 +49,44 @@
             };
           in {
             mods = "${modpack}/mods";
-            "server-icon.png" = ./server-icon.png;
+            "server-icon.png" = ./the-pond-icon.png;
+          };
+        };
+
+        # nix-shell -p tmux --run "sudo tmux -S /run/minecraft/gngg.sock attach"
+        gngg = {
+          enable = true;
+          package = pkgs.papermcServers.papermc-1_21_1;
+
+          serverProperties = {
+            server-port = 25566;
+            difficulty = "normal";
+            spawn-protection = 0;
+            view-distance = 16;
+            white-list = true;
+            motd = "gngg";
+          };
+
+          whitelist = {
+            Different_Name02 = "be0f57d1-a79c-49d1-a126-4536c476ee51";
+            fawntf = "6f198bd8-c414-4154-8d33-756c07da1853";
+            towsertv = "479bfc70-ec91-4975-ad6d-cbd38c352774";
+            sinayka = "67b13a9f-48f2-4a5d-b70e-b08593c523c2";
+            undeadtv = "565f70bb-3080-430f-a808-b81112f6ce6a";
+            Gailium_ = "b8b36037-0edb-422c-add3-d1e538db3ac1";
+            Novius69 = "4060fc44-c2cb-4851-bfc6-51ab365b0d90";
+            akrumbs = "d5615dfe-2c4b-4723-a943-e405696524ec";
+            loolystarlight = "15a80ccd-e919-4bf1-a5f9-caf4520164eb";
+            Bluevou = "be884360-3a6f-43bb-8a6d-043e1ce12681";
+            bagofdoritos_ = "96502a0b-5beb-42bc-8c38-1b7487eada5b";
+            RestlessSquid29 = "75da886f-c2e2-4be0-8506-229ba29e2f5a";
+          };
+
+          symlinks = {
+            # plugins = pkgs.linkDarmFromDrvs "plugins" (builtins.attrValues {
+
+            # });
+            "server-icon.png" = ./gngg-icon.png;
           };
         };
       };
