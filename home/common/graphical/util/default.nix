@@ -19,7 +19,7 @@
       blender
       gimp-with-plugins
       qalculate-gtk
-      qbittorrent-qt5
+      qbittorrent
       scrcpy
       prusa-slicer
       inputs.zen-browser.packages."${system}".specific
