@@ -101,7 +101,7 @@
 
     # zen browser
     zen-browser = {
-      url = "github:fufexan/zen-browser-flake";
+      url = "github:fufexan/zen-browser-flake/5ea9183acb736b9a606a1f33505d20a6f14dc5cf"; # TODO remove pin
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
