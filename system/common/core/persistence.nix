@@ -21,6 +21,7 @@
         "/root/.cache"
         "/var/cache"
         "/var/lib/systemd/timesync"
+        "/root/.android"
       ];
 
       files = [
