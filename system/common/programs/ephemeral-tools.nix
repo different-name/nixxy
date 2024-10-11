@@ -45,7 +45,7 @@
           # https://wiki.archlinux.org/title/XDG_Base_Directory
           ".steam" # using a full mount to persist this, rather than the impermanence module
           ".local/share/Steam" # ditto the above comment ^
-          "media" # xpool mountpoint
+          "Media" # xpool mountpoint
           ".vscode-oss" # seems to be data written by the vscode home-manager module
           ".config/VSCodium" # some subfolders are persisted, but I should have everything I need now
           ".config/fish" # can configure declaratively

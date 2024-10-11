@@ -59,11 +59,11 @@
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
       directories = [
         # home folders
-        "code"
-        "documents"
-        "downloads"
-        "pictures"
-        "videos"
+        "Code"
+        "Documents"
+        "Downloads"
+        "Pictures"
+        "Videos"
       ];
     };
   };
