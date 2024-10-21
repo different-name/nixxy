@@ -22,11 +22,15 @@
         availableKernelModules = ["hid_generic"];
       };
 
-      kernelPackages = pkgs.linuxPackages_zen;
+      kernelPackages = pkgs.linuxPackages_6_10; #zen;
 
       loader = {
         # systemd-boot on UEFI
-        systemd-boot.enable = true;
+        systemd-boot = {
+          enable = true;
+
+          memtest86.enable = true;
+        };
         efi.canTouchEfiVariables = true;
         # Skip boot options after 3 seconds
         timeout = 3;
