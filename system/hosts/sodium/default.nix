@@ -8,6 +8,7 @@ in {
   imports = [
     ./hardware-configuration.nix
     ./disk-configuration.nix
+    ./fancontrol.nix
 
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
