@@ -8,7 +8,7 @@
   options.nix-files.users.different.enable = lib.mkEnableOption "User different";
 
   config = lib.mkIf config.nix-files.users.different.enable {
-    age.secrets."user-pass/different".file = ../../secrets/user-pass/different.age;
+    age.secrets."user-pass/different".file = "${self}/secrets/user-pass/different.age";
 
     users.users."different" = {
       isNormalUser = true;

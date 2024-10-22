@@ -8,7 +8,7 @@
   options.nix-files.users.iodine.enable = lib.mkEnableOption "User iodine";
 
   config = lib.mkIf config.nix-files.users.iodine.enable {
-    age.secrets."user-pass/iodine".file = ../../secrets/user-pass/iodine.age;
+    age.secrets."user-pass/iodine".file = "${self}/secrets/user-pass/iodine.age";
 
     users.users."iodine" = {
       isNormalUser = true;
