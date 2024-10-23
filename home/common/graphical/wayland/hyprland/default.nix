@@ -1,12 +1,11 @@
 {
   lib,
   config,
-  inputs,
   pkgs,
   ...
 }: {
   imports = [
-    inputs.hyprland.homeManagerModules.default
+    # inputs.hyprland.homeManagerModules.default
 
     ./binds.nix
     ./rules.nix
@@ -16,15 +15,19 @@
   options.nix-files.graphical.wayland.hyprland.enable = lib.mkEnableOption "Hyprland config";
 
   config = lib.mkIf config.nix-files.graphical.wayland.hyprland.enable {
-    home.packages = with inputs; [
-      hyprland-contrib.packages.${pkgs.system}.grimblast
-      hyprpicker.packages.${pkgs.system}.default
+    # home.packages = with inputs; [
+    #   hyprland-contrib.packages.${pkgs.system}.grimblast
+    #   hyprpicker.packages.${pkgs.system}.default
+    # ];
+    home.packages = with pkgs; [
+      grimblast
+      hyprpicker
     ];
 
     wayland.windowManager.hyprland = {
       enable = true;
 
-      package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+      # package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
       systemd = {
         enable = true;
