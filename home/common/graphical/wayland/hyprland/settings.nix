@@ -108,6 +108,8 @@ in {
         "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5" # home monitor
         ",preferred,auto,1" # everything else
       ];
+
+      debug.disable_logs = false;
     };
 
     # TODO find or implement a way to do this through home-manager module
