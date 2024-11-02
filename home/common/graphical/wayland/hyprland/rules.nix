@@ -58,6 +58,9 @@
       "unset, title:Wine System Tray"
       "workspace special:hidden silent, title:Wine System Tray"
       "noinitialfocus, title:Wine System Tray"
+
+      # battle.net
+      ''tile, class:^(battle\.net\.exe)$''
     ];
   };
 }
