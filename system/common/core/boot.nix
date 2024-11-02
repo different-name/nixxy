@@ -22,7 +22,14 @@
         availableKernelModules = ["hid_generic"];
       };
 
-      kernelPackages = pkgs.linuxPackages_6_6; # TODO, back to zen when zfs supports 6.11 ;; on LTS because 6.10 EOL and removed from nixpkgs
+      # using pinned nixpkgs version for latest zfs compatible zen kernel
+      kernelPackages = let
+        pkgs-kernel = import inputs.nixpkgs-kernel {
+          inherit (pkgs.stdenv.hostPlatform) system;
+          inherit (config.nixpkgs) config;
+        };
+      in
+        pkgs-kernel.linuxPackages_zen;
 
       loader = {
         # systemd-boot on UEFI

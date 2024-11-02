@@ -95,6 +95,8 @@
 
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # using pinned nixpkgs version for latest zfs compatible zen kernel
+    nixpkgs-kernel.url = "github:nixos/nixpkgs/e0464e47880a69896f0fb1810f00e0de469f770a";
 
     # list of systems
     systems.url = "github:nix-systems/default-linux";
