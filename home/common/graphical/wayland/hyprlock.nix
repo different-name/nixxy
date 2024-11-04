@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs,
+  pkgs,
   ...
 }: {
   options.nix-files.graphical.wayland.hyprlock.enable = lib.mkEnableOption "Hyprlock config";
@@ -8,7 +10,7 @@
   config = lib.mkIf config.nix-files.graphical.wayland.hyprlock.enable {
     programs.hyprlock = {
       enable = true;
-      # package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+      package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
 
       settings = {
         general = {

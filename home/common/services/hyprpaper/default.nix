@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  pkgs,
+  inputs,
   ...
 }: let
   wallpaperImg = ./wallpaper.jpg;
@@ -10,7 +12,7 @@ in {
   config = lib.mkIf config.nix-files.services.hyprpaper.enable {
     services.hyprpaper = {
       enable = true;
-      # package = inputs.hyprpaper.packages.${pkgs.system}.default;
+      package = inputs.hyprpaper.packages.${pkgs.system}.default;
 
       settings = {
         preload = ["${wallpaperImg}"];
