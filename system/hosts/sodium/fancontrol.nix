@@ -10,7 +10,8 @@
   # hwmon1/pwm2 - CPU
   # hwmon1/pwm3 - CPU pump
   # hwmon1/pwm4 - case fan, fresh intake for CPU AIO
-  # hwmon1/pwm5 - GPU middle & right
+  # hwmon1/pwm5 - GPU middle
+  # hwmon1/pwm7 - GPU right
 
   hardware.fancontrol = {
     enable = true;
@@ -38,7 +39,7 @@
     in ''
       INTERVAL=5
       DEVPATH=hwmon1=devices/platform/nct6775.656 hwmon2=devices/pci0000:00/0000:00:18.3
-      DEVNAME=hwmon1=nct6798 hwmon2=k10temp
+      DEVNAME=hwmon2=nct6798 hwmon3=k10temp
       FCTEMPS=hwmon1/pwm1=/run/nvidia-temp hwmon1/pwm2=hwmon2/temp1_input hwmon1/pwm3=hwmon2/temp1_input hwmon1/pwm4=hwmon2/temp1_input hwmon1/pwm5=/run/nvidia-temp
       FCFANS=hwmon1/pwm1=hwmon1/fan1_input hwmon1/pwm2=hwmon1/fan2_input hwmon1/pwm3=hwmon1/fan3_input hwmon1/pwm4=hwmon1/fan4_input hwmon1/pwm5=hwmon1/fan5_input
       MINTEMP=hwmon1/pwm1=${GPU.minTemp} hwmon1/pwm2=${CPU.minTemp} hwmon1/pwm3=${CPU.minTemp} hwmon1/pwm4=${caseFan.minTemp} hwmon1/pwm5=${GPU.minTemp}
