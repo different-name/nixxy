@@ -19,6 +19,7 @@
       core = {
         agenix.enable = true;
         boot.enable = true;
+        btrfs.enable = true;
         locale.enable = true;
         networking.enable = true;
         persistence.enable = true;
