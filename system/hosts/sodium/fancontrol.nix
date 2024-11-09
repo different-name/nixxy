@@ -32,7 +32,7 @@
       };
 
       caseFan = {
-        minTemp = "55";
+        minTemp = "45";
         maxTemp = "80";
         maxPWM = "210";
       };
