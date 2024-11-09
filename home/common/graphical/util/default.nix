@@ -21,7 +21,6 @@
       qalculate-gtk
       qbittorrent
       scrcpy
-      prusa-slicer
       inputs.zen-browser.packages."${system}".specific
     ];
 
@@ -39,9 +38,6 @@
         # qbittorrent
         ".config/qBittorrent"
         ".local/share/qBittorrent"
-
-        # prusa-slicer
-        ".config/PrusaSlicer"
 
         # zen-browser
         ".zen"
