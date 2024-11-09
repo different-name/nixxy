@@ -37,7 +37,6 @@
           "/var/lib/systemd/catalog"
           "/var/lib/systemd/timers"
           "/var/lib/NetworkManager/NetworkManager-intern.conf"
-          "/etc/zfs/zpool.cache"
           "/var/lib/NetworkManager/timestamps" # cannot be persisted as file
           "/var/lib/NetworkManager/secret_key" # cannot be persisted as file
         ]
@@ -45,7 +44,6 @@
           # https://wiki.archlinux.org/title/XDG_Base_Directory
           ".steam" # using a full mount to persist this, rather than the impermanence module
           ".local/share/Steam" # ditto the above comment ^
-          "Media" # xpool mountpoint
           ".vscode-oss" # seems to be data written by the vscode home-manager module
           ".config/VSCodium" # some subfolders are persisted, but I should have everything I need now
           ".config/fish" # can configure declaratively

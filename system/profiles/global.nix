@@ -23,7 +23,6 @@
         networking.enable = true;
         persistence.enable = true;
         security.enable = true;
-        zfs.enable = true;
       };
 
       hardware = {

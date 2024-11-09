@@ -9,7 +9,7 @@ My NixOS configuration files
 - Flake based
 - Server and graphical system profiles
 - Hyprland
-- Declarative disk partitioning with [disko](https://github.com/nix-community/disko) with zfs full disk encryption
+- Declarative disk partitioning with [disko](https://github.com/nix-community/disko) with btrfs & luks full disk encryption
 - Ephemeral root and home (state is opt in, managed by [impermanence](https://github.com/nix-community/impermanence))
 - Declarative home with [home-manager](https://github.com/nix-community/home-manager)
 

@@ -22,7 +22,7 @@
         availableKernelModules = ["hid_generic"];
       };
 
-      kernelPackages = pkgs.linuxPackages_6_6; # TODO switch to zen kernel when ZFS is updated
+      kernelPackages = pkgs.linuxPackages_zen;
 
       loader = {
         # systemd-boot on UEFI
@@ -36,7 +36,7 @@
         timeout = 3;
       };
 
-      supportedFilesystems = ["zfs" "ntfs"];
+      supportedFilesystems = ["ntfs"];
     };
   };
 }

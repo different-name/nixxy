@@ -64,6 +64,7 @@
         "Downloads"
         "Pictures"
         "Videos"
+        "Media"
       ];
     };
   };

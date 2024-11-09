@@ -8,7 +8,7 @@
   config = lib.mkIf config.nix-files.graphical.games.steam.enable {
     systemd.user.tmpfiles.rules = let
       inherit (config.home) homeDirectory;
-      vrchatPictures = "${homeDirectory}/Media/.steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/Pictures/VRChat";
+      vrchatPictures = "${homeDirectory}/.local/share/Steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/Pictures/VRChat";
     in [
       # link vrchat pictures to pictures folder
       "L ${homeDirectory}/Pictures/VRChat - - - - ${vrchatPictures}"
