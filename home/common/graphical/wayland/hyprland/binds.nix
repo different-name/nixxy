@@ -53,7 +53,7 @@ in {
           ## terminal
           "$mod, Return, ${uwsm-exec "kitty"}"
           ## lock screen
-          "$mod, L, ${uwsm-exec "${runOnce "hyprlock"}"}"
+          "$mod, L, ${runOnce "${uwsm-exec "hyprlock"}"}"
           ## launcher
           "$mod, S, ${uwsm-exec "rofi -show drun -show-icons"}"
           ## browser
@@ -75,11 +75,11 @@ in {
 
           # screenshot
           ## area
-          ", Print, ${uwsm-exec "${runOnce "grimblast"} --notify --freeze copy area"}"
-          "$mod SHIFT, S, ${uwsm-exec "${runOnce "grimblast"} --notify --freeze copy area"}"
+          ", Print, ${runOnce "${uwsm-exec "grimblast"} --notify --freeze copy area"}"
+          "$mod SHIFT, S, ${runOnce "${uwsm-exec "grimblast"} --notify --freeze copy area"}"
           ## current screen
-          "CTRL, Print, ${uwsm-exec "${runOnce "grimblast"} --notify --cursor copy output"}"
-          "$mod SHIFT CTRL, S, ${uwsm-exec "${runOnce "grimblast"} --notify --cursor copy output"}"
+          "CTRL, Print, ${runOnce "${uwsm-exec "grimblast"} --notify --cursor copy output"}"
+          "$mod SHIFT CTRL, S, ${runOnce "${uwsm-exec "grimblast"} --notify --cursor copy output"}"
 
           # cycle workspaces
           "$mod, bracketleft, workspace, m-1"
@@ -96,7 +96,7 @@ in {
           "$mod SHIFT ALT, bracketright, movecurrentworkspacetomonitor, r"
 
           # color picker
-          "$mod SHIFT, C, ${uwsm-exec "${runOnce "hyprpicker"} --autocopy"}"
+          "$mod SHIFT, C, ${runOnce "${uwsm-exec "hyprpicker"} --autocopy"}"
         ]
         # workspace keys
         ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
