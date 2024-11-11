@@ -16,6 +16,7 @@
   config = lib.mkIf config.nix-files.graphical.util.enable {
     home.packages = with pkgs; [
       android-tools
+      bambu-studio
       blender
       gimp-with-plugins
       qalculate-gtk
@@ -28,6 +29,10 @@
       directories = [
         # android-tools
         ".android"
+
+        # bambu-studio
+        ".config/BambuStudio"
+        ".local/share/bambu-studio"
 
         # blender
         ".config/blender"
