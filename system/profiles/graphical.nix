@@ -15,6 +15,7 @@
         qt.enable = true;
         steam.enable = true;
         thunar.enable = true;
+        uwsm.enable = true;
         xdg.enable = true;
       };
 

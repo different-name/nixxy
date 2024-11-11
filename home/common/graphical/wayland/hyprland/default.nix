@@ -3,6 +3,7 @@
   config,
   inputs,
   pkgs,
+  osConfig,
   ...
 }: {
   imports = [
@@ -24,10 +25,10 @@
     wayland.windowManager.hyprland = {
       enable = true;
 
-      package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+      package = inputs.hyprland.packages."${pkgs.system}".hyprland-debug;
 
       systemd = {
-        enable = true;
+        enable = !osConfig.programs.uwsm.enable; # conflicts with uwsm
         variables = ["--all"]; # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#programs-dont-work-in-systemd-services-but-do-on-the-terminal
       };
 

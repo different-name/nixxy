@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  osConfig,
   ...
 }: let
   activeColor = "ed507c";
@@ -32,10 +33,16 @@ in {
         "XCURSOR_SIZE,16"
       ];
 
-      exec-once = [
-        "goxlr-daemon"
-        "steam -silent"
-      ];
+      exec-once =
+        map (
+          cmd:
+            if osConfig.programs.uwsm.enable
+            then "uwsm app -- ${cmd}"
+            else cmd
+        ) [
+          "goxlr-daemon"
+          "steam -silent"
+        ];
 
       animations = {
         enabled = true;

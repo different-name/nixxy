@@ -1,12 +1,18 @@
 {
   lib,
   config,
+  osConfig,
   ...
 }: let
   runOnce = program: "pgrep ${program} || ${program}";
 in {
   config = lib.mkIf config.nix-files.graphical.wayland.hyprland.enable {
-    wayland.windowManager.hyprland.settings = {
+    wayland.windowManager.hyprland.settings = let
+      uwsm-exec = cmd:
+        if osConfig.programs.uwsm.enable
+        then "exec, uwsm app -- ${cmd}"
+        else "exec, ${cmd}";
+    in {
       # l -> locked, will also work when an input inhibitor (e.g. a lockscreen) is active.
       # r -> release, will trigger on release of a key.
       # e -> repeat, will repeat when held.
@@ -40,20 +46,20 @@ in {
           "ALT SHIFT, TAB, changegroupactive, b"
           "$mod, P, pseudo"
           "$mod, T, pin"
-          "CTRL ALT, DELETE, exec, hyprctl kill"
-          "CTRL ALT SHIFT, DELETE, exec, pkill Hyprland"
+          "CTRL ALT, DELETE, ${uwsm-exec "hyprctl kill"}"
+          "CTRL ALT SHIFT, DELETE, exec, loginctl terminate-user \"\""
 
           # utility
           ## terminal
-          "$mod, Return, exec, kitty"
+          "$mod, Return, ${uwsm-exec "kitty"}"
           ## lock screen
-          "$mod, L, exec, ${runOnce "hyprlock"}"
+          "$mod, L, ${uwsm-exec "${runOnce "hyprlock"}"}"
           ## launcher
-          "$mod, S, exec, rofi -show drun -show-icons"
+          "$mod, S, ${uwsm-exec "rofi -show drun -show-icons"}"
           ## browser
-          "$mod, W, exec, zen"
+          "$mod, W, ${uwsm-exec "zen"}"
           ## file explorer
-          "$mod, E, exec, thunar"
+          "$mod, E, ${uwsm-exec "thunar"}"
 
           # move focus
           "$mod, left, movefocus, l"
@@ -69,11 +75,11 @@ in {
 
           # screenshot
           ## area
-          ", Print, exec, ${runOnce "grimblast"} --notify --freeze copy area"
-          "$mod SHIFT, S, exec, ${runOnce "grimblast"} --notify --freeze copy area"
+          ", Print, ${uwsm-exec "${runOnce "grimblast"} --notify --freeze copy area"}"
+          "$mod SHIFT, S, ${uwsm-exec "${runOnce "grimblast"} --notify --freeze copy area"}"
           ## current screen
-          "CTRL, Print, exec, ${runOnce "grimblast"} --notify --cursor copy output"
-          "$mod SHIFT CTRL, S, exec, ${runOnce "grimblast"} --notify --cursor copy output"
+          "CTRL, Print, ${uwsm-exec "${runOnce "grimblast"} --notify --cursor copy output"}"
+          "$mod SHIFT CTRL, S, ${uwsm-exec "${runOnce "grimblast"} --notify --cursor copy output"}"
 
           # cycle workspaces
           "$mod, bracketleft, workspace, m-1"
@@ -90,7 +96,7 @@ in {
           "$mod SHIFT ALT, bracketright, movecurrentworkspacetomonitor, r"
 
           # color picker
-          "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} --autocopy"
+          "$mod SHIFT, C, ${uwsm-exec "${runOnce "hyprpicker"} --autocopy"}"
         ]
         # workspace keys
         ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
@@ -106,21 +112,21 @@ in {
 
       bindl = [
         # media controls
-        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPlay, ${uwsm-exec "playerctl play-pause"}"
 
         # volume
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86AudioMute, ${uwsm-exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"}"
+        ", XF86AudioMicMute, ${uwsm-exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"}"
       ];
 
       bindle = [
         # volume
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%-"
+        ", XF86AudioRaiseVolume, ${uwsm-exec "wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%+"}"
+        ", XF86AudioLowerVolume, ${uwsm-exec "wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%-"}"
 
         # backlight
-        ", XF86MonBrightnessUp, exec, brillo -q -u 300000 -A 5"
-        ", XF86MonBrightnessDown, exec, brillo -q -u 300000 -U 5"
+        ", XF86MonBrightnessUp, ${uwsm-exec "brillo -q -u 300000 -A 5"}"
+        ", XF86MonBrightnessDown, ${uwsm-exec "brillo -q -u 300000 -U 5"}"
       ];
     };
   };

@@ -8,6 +8,7 @@
     ./qt.nix
     ./steam.nix
     ./thunar.nix
+    ./uwsm.nix
     ./xdg.nix
   ];
 }
