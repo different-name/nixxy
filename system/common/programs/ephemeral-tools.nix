@@ -16,6 +16,7 @@
 
       exclude-paths =
         [
+          "/btrfs" # default btrfs subvolume
           "/boot" # non ephemeral
           "/run" # runtime files
           "/tmp" # temporary files
