@@ -3,15 +3,16 @@
   config,
   osConfig,
   ...
-}: let
-  runOnce = program: "pgrep ${program} || ${program}";
-in {
+}: {
   config = lib.mkIf config.nix-files.graphical.wayland.hyprland.enable {
     wayland.windowManager.hyprland.settings = let
-      uwsm-exec = cmd:
+      uwsm-app = cmd:
         if osConfig.programs.uwsm.enable
-        then "exec, uwsm app -- ${cmd}"
-        else "exec, ${cmd}";
+        then "uwsm app -- ${cmd}"
+        else "${cmd}";
+
+      uwsm-exec = cmd: "exec, ${uwsm-app cmd}";
+      uwsm-exec-once = cmd: "exec, pgrep ${cmd} || ${uwsm-app cmd}";
     in {
       # l -> locked, will also work when an input inhibitor (e.g. a lockscreen) is active.
       # r -> release, will trigger on release of a key.
@@ -53,7 +54,7 @@ in {
           ## terminal
           "$mod, Return, ${uwsm-exec "kitty"}"
           ## lock screen
-          "$mod, L, ${runOnce "${uwsm-exec "hyprlock"}"}"
+          "$mod, L, ${uwsm-exec-once "hyprlock"}"
           ## launcher
           "$mod, S, ${uwsm-exec "rofi -show drun -show-icons"}"
           ## browser
@@ -75,11 +76,11 @@ in {
 
           # screenshot
           ## area
-          ", Print, ${runOnce "${uwsm-exec "grimblast"} --notify --freeze copy area"}"
-          "$mod SHIFT, S, ${runOnce "${uwsm-exec "grimblast"} --notify --freeze copy area"}"
+          ", Print, ${uwsm-exec-once "grimblast"} --notify --freeze copy area"
+          "$mod SHIFT, S, ${uwsm-exec-once "grimblast"} --notify --freeze copy area"
           ## current screen
-          "CTRL, Print, ${runOnce "${uwsm-exec "grimblast"} --notify --cursor copy output"}"
-          "$mod SHIFT CTRL, S, ${runOnce "${uwsm-exec "grimblast"} --notify --cursor copy output"}"
+          "CTRL, Print, ${uwsm-exec-once "grimblast"} --notify --cursor copy output"
+          "$mod SHIFT CTRL, S, ${uwsm-exec-once "grimblast"} --notify --cursor copy output"
 
           # cycle workspaces
           "$mod, bracketleft, workspace, m-1"
@@ -96,7 +97,7 @@ in {
           "$mod SHIFT ALT, bracketright, movecurrentworkspacetomonitor, r"
 
           # color picker
-          "$mod SHIFT, C, ${runOnce "${uwsm-exec "hyprpicker"} --autocopy"}"
+          "$mod SHIFT, C, ${uwsm-exec-once "hyprpicker"} --autocopy"
         ]
         # workspace keys
         ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
