@@ -16,9 +16,9 @@
       };
     };
 
-    # compositor selection menu on tty1
+    # auto launch hyprland on tty1
     environment.loginShellInit = ''
-      if uwsm check may-start; then
+      if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ] && uwsm check may-start; then
           exec uwsm start hyprland-uwsm.desktop
       fi
     '';
