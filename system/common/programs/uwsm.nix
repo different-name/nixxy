@@ -18,8 +18,8 @@
 
     # compositor selection menu on tty1
     environment.loginShellInit = ''
-      if uwsm check may-start && uwsm select; then
-        exec systemd-cat -t uwsm_start uwsm start default
+      if uwsm check may-start; then
+          exec uwsm start hyprland-uwsm.desktop
       fi
     '';
   };
