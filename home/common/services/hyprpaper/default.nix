@@ -3,6 +3,7 @@
   config,
   pkgs,
   inputs,
+  osConfig,
   ...
 }: let
   wallpaperImg = ./wallpaper.jpg;
@@ -19,5 +20,15 @@ in {
         wallpaper = [",${wallpaperImg}"];
       };
     };
+
+    wayland.windowManager.hyprland.settings.exec-once = let
+      hyprpaper = config.services.hyprpaper.package;
+    in [
+      (
+        if osConfig.programs.uwsm.enable
+        then "uwsm app -- ${hyprpaper}/bin/hyprpaper"
+        else "${hyprpaper}/bin/hyprpaper"
+      )
+    ];
   };
 }
