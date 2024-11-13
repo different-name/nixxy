@@ -5,9 +5,9 @@
   ...
 }: {
   imports = [
+    ./anyrun.nix
     ./hyprland
     ./hyprlock.nix
-    ./rofi.nix
   ];
 
   options.nix-files.graphical.wayland.enable = lib.mkEnableOption "Games packages";

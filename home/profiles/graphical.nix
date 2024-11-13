@@ -44,9 +44,9 @@
 
         wayland = {
           enable = true; # wayland packages
+          anyrun.enable = true;
           hyprland.enable = true;
           hyprlock.enable = true;
-          rofi.enable = true;
         };
       };
 

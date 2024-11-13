@@ -56,7 +56,7 @@
           ## lock screen
           "$mod, L, ${uwsm-exec-once "hyprlock"}"
           ## launcher
-          "$mod, S, ${uwsm-exec "rofi -show drun -show-icons"}"
+          "$mod, S, exec, anyrun" # not using uwsm as it introduces latency
           ## browser
           "$mod, W, ${uwsm-exec "zen"}"
           ## file explorer
