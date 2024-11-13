@@ -24,7 +24,7 @@
         ];
 
         width.fraction = 0.25;
-        y.fraction = 0.3;
+        y.fraction = 0.45;
         hidePluginInfo = true;
         closeOnClick = true;
       };
