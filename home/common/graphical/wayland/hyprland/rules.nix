@@ -38,9 +38,10 @@
       ''float, class:^(org\.pulseaudio\.pavucontrol)$''
       ''size 1000 750, class:^(org\.pulseaudio\.pavucontrol)$''
 
-      # thunar file operations
+      # file prompts
       "float, title:^(File Operation Progress)$"
       "float, class:^(file-roller)$"
+      "float, class: ^(codium)$, title: ^(Open Folder)$"
 
       # hyprland share picker
       "float, title:^(MainPicker)$"
