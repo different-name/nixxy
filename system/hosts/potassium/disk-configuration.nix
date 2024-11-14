@@ -71,15 +71,10 @@
   };
 
   fileSystems = {
-    "/home".neededForBoot = true; # Workaround for home mounting after folders are created
     "/persist".neededForBoot = true; # Required for impermanence to work
   };
 
   systemd.tmpfiles.rules = [
-    # setting up home directories with correct permissions for home-manager impermanence
-    "d /persist/home/ 1777 root root -"
-    "d /persist/home/different 0700 different users -"
-
     # correcting permissions for subvolumes mounted within home directory
     "d /home/different/.steam 0755 different users -"
     "d /home/different/.local 0755 different users -"
