@@ -10,7 +10,7 @@
   config = lib.mkIf config.nix-files.programs.hyprland.enable {
     programs.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages."${pkgs.system}".hyprland-debug;
+      package = inputs.hyprland.packages."${pkgs.system}".hyprland;
       portalPackage = inputs.hyprland.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
     };
 
