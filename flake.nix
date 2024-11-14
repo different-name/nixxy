@@ -40,10 +40,7 @@
     };
 
     # hyprwm
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.systems.follows = "systems";
-    };
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
@@ -100,7 +97,7 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     # nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/807e9154dcb16384b1b765ebe9cd2bba2ac287fd"; #nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # list of systems
     systems.url = "github:nix-systems/default-linux";
