@@ -2,7 +2,7 @@
   disko.devices = {
     disk."main" = {
       type = "disk";
-      device = "/dev/disk/by-diskseq/1";
+      device = "/dev/disk/by-diskseq/9";
       content = {
         type = "gpt";
 
@@ -17,39 +17,29 @@
             };
           };
 
-          luks = {
-            size = "100%";
+          btrfs = {
             content = {
-              type = "luks";
-              name = "rootfs";
+              type = "btrfs";
+              extraArgs = ["-f"]; # Override existing partition
 
-              settings = {
-                allowDiscards = true;
-              };
+              mountpoint = "/btrfs";
+              mountOptions = ["compress=zstd:1" "noatime"];
 
-              content = {
-                type = "btrfs";
-                extraArgs = ["-f"]; # Override existing partition
+              subvolumes = {
+                # current root, is swapped out each boot
+                "root/current" = {
+                  mountOptions = ["noatime"];
+                  mountpoint = "/";
+                };
 
-                mountpoint = "/btrfs";
-                mountOptions = ["compress=zstd:1" "noatime"];
+                "nix" = {
+                  mountOptions = ["compress=zstd:1" "noatime"];
+                  mountpoint = "/nix";
+                };
 
-                subvolumes = {
-                  # current root, is swapped out each boot
-                  "root/current" = {
-                    mountOptions = ["noatime"];
-                    mountpoint = "/";
-                  };
-
-                  "nix" = {
-                    mountOptions = ["compress=zstd:1" "noatime"];
-                    mountpoint = "/nix";
-                  };
-
-                  "persist" = {
-                    mountOptions = ["compress=zstd:1" "noatime"];
-                    mountpoint = "/persist";
-                  };
+                "persist" = {
+                  mountOptions = ["compress=zstd:1" "noatime"];
+                  mountpoint = "/persist";
                 };
               };
             };
