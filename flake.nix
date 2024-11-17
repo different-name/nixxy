@@ -97,7 +97,7 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     # nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/dc460ec76cbff0e66e269457d7b728432263166c"; #nixos-unstable";
 
     # list of systems
     systems.url = "github:nix-systems/default-linux";
