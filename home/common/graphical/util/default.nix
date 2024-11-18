@@ -33,19 +33,24 @@
         # bambu-studio
         ".config/BambuStudio"
         ".local/share/bambu-studio"
+        ".cache/bambu-studio"
 
         # blender
         ".config/blender"
+        ".cache/blender"
 
         # gimp
         ".config/GIMP"
+        ".cache/gimp"
 
         # qbittorrent
         ".config/qBittorrent"
         ".local/share/qBittorrent"
+        ".cache/qBittorrent"
 
         # zen-browser
         ".zen"
+        ".cache/zen"
 
         ### system level
 

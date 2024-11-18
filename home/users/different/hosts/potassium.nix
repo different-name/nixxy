@@ -10,6 +10,8 @@
       global.enable = true;
       graphical.enable = true;
     };
+
+    graphical.meta.nvidia.enable = true;
   };
 
   ### required config

@@ -36,6 +36,7 @@
 
         # lutris
         ".local/share/lutris"
+        ".cache/lutris"
         ".local/share/umu" # proton runtime
 
         # heroic

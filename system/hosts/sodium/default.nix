@@ -60,7 +60,7 @@ in {
         in ''
           mkdir -p "${mountpoint}"
           mount -t ext4 "${partitionPath}" "${mountpoint}"
-          rsync "${source}" "${mountpoint}" -avh --delete --progress --exclude /persist/home/different/.cache
+          rsync "${source}" "${mountpoint}" -avh --delete --progress
           udisksctl unmount -b "${partitionPath}"
           udisksctl power-off -b "${partitionPath}"
         '';

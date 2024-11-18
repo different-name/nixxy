@@ -20,6 +20,7 @@
           ".config/Unity"
           ".config/unity3d" # seems to also be for unity games
           ".local/share/unity3d"
+          ".cache/unity3d"
 
           # vrc-get
           ".local/share/VRChatCreatorCompanion"

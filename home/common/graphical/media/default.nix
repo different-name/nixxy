@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./imv.nix
+    ./mpv.nix
     ./obs.nix
   ];
 

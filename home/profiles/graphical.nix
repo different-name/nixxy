@@ -24,6 +24,7 @@
         media = {
           enable = true; # media packages
           imv.enable = true;
+          mpv.enable = true;
           obs.enable = true;
         };
 

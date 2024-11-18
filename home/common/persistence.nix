@@ -14,11 +14,13 @@
     home.persistence."/persist${config.home.homeDirectory}" = {
       directories = [
         "nix-files"
-        ".cache"
         ".ssh"
         ".terminfo"
-        ".local/share/kitty-ssh-kitten"
         ".local/share/Trash"
+        ".cache/fontconfig"
+        ".cache/nix"
+        ".cache/nix-output-monitor"
+        ".cache/gstreamer" # not sure what this is from
       ];
 
       files = [
