@@ -82,10 +82,10 @@ in {
       };
 
       misc = {
-        # disable auto polling for config file changes
-        disable_autoreload = true;
+        disable_autoreload = true; # disable auto polling for config file changes
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
+        focus_on_activate = true;
       };
 
       render.direct_scanout = false;
