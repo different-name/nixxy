@@ -8,12 +8,12 @@
 
   config = lib.mkIf config.nix-files.graphical.office.enable {
     home.packages = with pkgs; [
-      libreoffice-qt6-fresh
+      # libreoffice-qt6-fresh
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
       directories = [
-        ".config/libreoffice"
+        # ".config/libreoffice"
       ];
     };
   };
