@@ -34,6 +34,8 @@ in {
       };
 
       keyd.enable = true;
+
+      teamviewer.enable = true;
     };
   };
 
