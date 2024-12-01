@@ -63,6 +63,10 @@
           ];
 
           settings = {
+            ### custom
+            # disable pocket
+            "extensions.pocket.enabled" = false;
+
             # disable about:config warning
             "browser.aboutConfig.showWarning" = false;
 
@@ -311,9 +315,6 @@
             "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
             # disable search terms
             "browser.urlbar.showSearchTerms.enabled" = false;
-
-            ### custom
-            "extensions.pocket.enabled" = false;
           };
         };
       };
