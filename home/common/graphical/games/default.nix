@@ -14,7 +14,6 @@
     home.packages = with pkgs; [
       vesktop
       lutris
-      heroic
       osu-lazer-bin
       (prismlauncher.override {
         jdks = [
@@ -38,9 +37,6 @@
         ".local/share/lutris"
         ".cache/lutris"
         ".local/share/umu" # proton runtime
-
-        # heroic
-        ".config/heroic"
 
         # osu-lazer
         ".local/share/osu"
