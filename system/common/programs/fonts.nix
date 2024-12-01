@@ -20,7 +20,7 @@
         jetbrains-mono
 
         # nerdfonts
-        (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+        nerd-fonts.symbols-only
 
         # symbols
         symbola
