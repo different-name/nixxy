@@ -36,6 +36,7 @@
 
         util = {
           enable = true; # util packages
+          firefox.enable = true;
           kitty.enable = true;
           unity.enable = true;
           vscodium.enable = true;

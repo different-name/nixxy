@@ -58,7 +58,7 @@
           ## launcher
           "$mod, S, exec, anyrun" # not using uwsm as it introduces latency
           ## browser
-          "$mod, W, ${uwsm-exec "zen"}"
+          "$mod, W, ${uwsm-exec "firefox"}"
           ## file explorer
           "$mod, E, ${uwsm-exec "thunar"}"
 

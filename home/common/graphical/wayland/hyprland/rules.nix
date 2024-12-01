@@ -25,7 +25,7 @@
       "float, class:^(qalculate-gtk)$"
       "size 850 575, class:^(qalculate-gtk)$"
 
-      # zen PiP
+      # firefox PiP
       "float, title:^(Picture-in-Picture)$"
       "pin, title:^(Picture-in-Picture)$"
       "size 480 270, title:^(Picture-in-Picture)$"

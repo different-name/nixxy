@@ -2,10 +2,10 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }: {
   imports = [
+    ./firefox.nix
     ./kitty.nix
     ./unity.nix
     ./vscodium.nix
@@ -22,7 +22,6 @@
       qalculate-gtk
       qbittorrent
       scrcpy
-      inputs.zen-browser.packages."${system}".specific
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
@@ -47,10 +46,6 @@
         ".config/qBittorrent"
         ".local/share/qBittorrent"
         ".cache/qBittorrent"
-
-        # zen-browser
-        ".zen"
-        ".cache/zen"
 
         ### system level
 

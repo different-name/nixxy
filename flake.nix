@@ -99,14 +99,11 @@
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # nix user repository
+    nur.url = "github:nix-community/NUR";
+
     # list of systems
     systems.url = "github:nix-systems/default-linux";
-
-    # zen browser
-    zen-browser = {
-      url = "github:ch4og/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs:
