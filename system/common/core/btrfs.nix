@@ -6,6 +6,7 @@
   options.nix-files.core.btrfs.enable = lib.mkEnableOption "btrfs config";
 
   config = lib.mkIf config.nix-files.core.btrfs.enable {
+    # https://discourse.nixos.org/t/impermanence-vs-systemd-initrd-w-tpm-unlocking/25167/3
     boot.initrd.systemd = {
       enable = true;
       services.root-subvol-switch = {
@@ -22,10 +23,6 @@
         before = [
           "sysroot.mount"
         ];
-        # requires = ["initrd-root-device.target"];
-        # after = ["local-fs-pre.target" "initrd-root-device.target"];
-        # requiredBy = ["initrd-root-fs.target"];
-        # before = ["sysroot.mount"];
         unitConfig.DefaultDependencies = "no";
         serviceConfig.Type = "oneshot";
         script = ''
@@ -44,14 +41,15 @@
       };
     };
 
+    # TODO
+    # https://github.com/tejing1/nixos-config/blob/2cfac430ecddcc0b6d9606fb09889f0226b32c8c/nixosConfigurations/tejingdesk/optin-state.nix#L67-L92
     # systemd.services.root-subvol-cleanup = let
     #   keepAtLeast = 5;
-    #   cutoffDate = "30 days ago";
+    #   keepFrom = "30 days ago";
     # in {
     #   description = "Btrfs root subvolume cleaner";
     #   startAt = "daily";
     #   script = ''
-
     #   '';
     # };
 
