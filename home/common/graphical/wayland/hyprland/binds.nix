@@ -98,6 +98,9 @@
 
           # color picker
           "$mod SHIFT, C, ${uwsm-exec-once "hyprpicker"} --autocopy"
+
+          # display time as noficiation
+          ''$mod, D, exec, date "+%a %-d %b %Y | %-I:%M%p" | xargs -I {} notify-send -t 5000 "{}"''
         ]
         # workspace keys
         ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
