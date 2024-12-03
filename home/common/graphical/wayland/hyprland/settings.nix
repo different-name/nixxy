@@ -42,6 +42,7 @@ in {
         ) [
           "goxlr-daemon"
           "steam -silent"
+          "vesktop"
         ];
 
       animations = {
