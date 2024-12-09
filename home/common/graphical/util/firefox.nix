@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  osConfig,
+  pkgs,
   ...
 }: {
   options.nix-files.graphical.util.firefox.enable = lib.mkEnableOption "Firefox config";
@@ -53,7 +53,7 @@
             };
           };
 
-          extensions = with osConfig.nur.repos.rycee.firefox-addons; [
+          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             ublock-origin
             proton-pass
             proton-vpn

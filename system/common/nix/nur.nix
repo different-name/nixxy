@@ -1,5 +1,5 @@
 {inputs, ...}: {
   imports = [
-    inputs.nur.nixosModules.nur
+    inputs.nur.modules.nixos.default
   ];
 }

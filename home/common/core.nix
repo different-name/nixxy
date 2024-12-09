@@ -1,8 +1,13 @@
 {
   lib,
   config,
+  inputs,
   ...
 }: {
+  imports = [
+    inputs.nur.modules.homeManager.default
+  ];
+
   options.nix-files.core.enable = lib.mkEnableOption "Core home config";
 
   config = lib.mkIf config.nix-files.core.enable {
