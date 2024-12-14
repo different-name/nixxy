@@ -29,6 +29,7 @@
         # general
         ".nv" # OpenGL cache
         ".local/share/vulkan/" # shader cache files?
+        ".cache/mesa_shader_cache_db" # shader cache
 
         # vesktop
         ".config/vesktop"
