@@ -19,6 +19,7 @@
       bambu-studio
       blender
       gimp-with-plugins
+      protonvpn-gui
       qalculate-gtk
       qbittorrent
       scrcpy
@@ -59,6 +60,10 @@
         ".config/qBittorrent"
         ".local/share/qBittorrent"
         ".cache/qBittorrent"
+
+        # protonvpn-gui
+        ".config/Proton"
+        ".cache/Proton"
 
         ### system level
 
