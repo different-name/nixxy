@@ -5,9 +5,7 @@ in {
     ./hardware-configuration.nix
     ./disk-configuration.nix
 
-    inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia
-    inputs.nixos-hardware.nixosModules.common-pc-ssd
+    inputs.nixos-hardware.nixosModules.dell-xps-15-9500-nvidia
   ];
 
   ### modules
