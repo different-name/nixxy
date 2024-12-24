@@ -20,6 +20,10 @@
 
   programs.btop.settings.cpu_sensor = "k10temp/Tctl";
 
+  wayland.windowManager.hyprland.settings.bind = [
+    "$mod, P, exec, pgrep tascam || tascam"
+  ];
+
   ### required config
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
