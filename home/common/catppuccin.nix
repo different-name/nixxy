@@ -14,11 +14,24 @@
   config = lib.mkIf config.nix-files.catppuccin.enable {
     catppuccin = {
       inherit (osConfig.catppuccin) enable accent flavor;
-      pointerCursor = {
+
+      cursors = {
         inherit (osConfig.catppuccin) flavor;
         enable = true;
         accent = "dark";
       };
+
+      gtk = {
+        enable = true;
+        flavor = "mocha";
+        accent = "red";
+        size = "standard";
+        tweaks = ["normal"];
+        icon.enable = true;
+      };
+
+      btop.enable = true;
+      fish.enable = false;
     };
   };
 }

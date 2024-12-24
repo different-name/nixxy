@@ -13,6 +13,9 @@
     # services
     services.playerctld.enable = true;
 
+    # meta
+    gtk.enable = true;
+
     # modules
     nix-files = {
       graphical = {
@@ -29,7 +32,6 @@
         };
 
         meta = {
-          gtk.enable = true;
           qt.enable = true;
           xdg.enable = true;
         };
