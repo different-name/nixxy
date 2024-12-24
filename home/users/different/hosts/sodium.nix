@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ../.
   ];
@@ -19,6 +19,20 @@
   ### host specific
 
   programs.btop.settings.cpu_sensor = "k10temp/Tctl";
+
+  # goxlr / tascam
+
+  home.packages = [
+    (pkgs.writeShellApplication {
+      name = "tascam";
+      runtimeInputs = with pkgs; [
+        bash
+        jq
+        goxlr-utility
+      ];
+      text = builtins.readFile ../scripts/tascam.sh;
+    })
+  ];
 
   wayland.windowManager.hyprland.settings.bind = [
     "$mod, P, exec, pgrep tascam || tascam"
