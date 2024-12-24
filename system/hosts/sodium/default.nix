@@ -67,6 +67,16 @@ in {
           udisksctl power-off -b "${partitionPath}"
         '';
       })
+
+      (pkgs.writeShellApplication {
+        name = "tascam";
+        runtimeInputs = with pkgs; [
+          bash
+          jq
+          goxlr-utility
+        ];
+        text = builtins.readFile ./scripts/tascam.sh;
+      })
     ];
   };
 
