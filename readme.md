@@ -26,8 +26,10 @@ system - system level configuration
 ├── hosts - host specific config
 │   └── <host>
 │       ├── default.nix
+│       ├── hardware-configuration.nix
 │       ├── disk-configuration.nix - disk partitions & filesystems
-│       └── hardware-configuration.nix
+│       ├── fancontrol.nix - optional file for fan control
+│       └── scripts - scripts specific to a host
 ├── profiles - configuration "presets"
 └── users    - user configuration
 
@@ -39,7 +41,8 @@ home - home level configuration
 ├── profiles - home configuration "presets"
 └── users
     └── <name> - user home configuration
-        └── hosts - user@host home configuration
+        ├──  hosts   - user@host home configuration
+        └──  scripts - scripts specific to a user / user's host
 
 secrets - age secrets
 modules - NixOS modules
