@@ -45,7 +45,6 @@
           "$mod SHIFT, A, lockactivegroup, toggle"
           "ALT, TAB, changegroupactive, f"
           "ALT SHIFT, TAB, changegroupactive, b"
-          "$mod, P, pseudo"
           "$mod, T, pin"
           "CTRL ALT, DELETE, ${uwsm-exec "hyprctl kill"}"
           "CTRL ALT SHIFT, DELETE, exec, loginctl terminate-user \"\""
