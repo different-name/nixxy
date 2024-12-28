@@ -14,7 +14,7 @@
         noto-fonts-cjk-sans
         noto-fonts-emoji
         roboto
-        (google-fonts.override {fonts = ["Inter"];})
+        (google-fonts.override {fonts = ["Inter" "Nunito"];})
 
         # monospace fonts
         jetbrains-mono
