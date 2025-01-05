@@ -15,6 +15,7 @@
       vesktop
       lutris
       osu-lazer-bin
+      rpcs3
       (prismlauncher.override {
         jdks = [
           zulu8
@@ -41,6 +42,10 @@
 
         # osu-lazer
         ".local/share/osu"
+
+        # rpcs3
+        ".config/rpcs3"
+        ".cache/rpcs3"
 
         # prism launcher
         ".local/share/PrismLauncher"
