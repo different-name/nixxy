@@ -15,13 +15,13 @@
 
         # proton ge with rtsp patch, for vrchat video players
         (proton-ge-bin.overrideAttrs (finalAttrs: let
-          version = "GE-Proton9-20-rtsp16";
+          version = "GE-Proton9-22-rtsp17";
         in {
           pname = "proton-ge-rtsp-bin";
           inherit version;
           src = pkgs.fetchzip {
             url = "https://github.com/SpookySkeletons/proton-ge-rtsp/releases/download/${version}/${version}.tar.gz";
-            hash = "sha256-iq7oiDW5+51wzqYwASOGSV922c/pg1k29MdkIXlT34k=";
+            hash = "sha256-1zj0y7E9JWrnPC9HllFXos33rsdAt3q+NamoxNTmHHM=";
           };
         }))
       ];
