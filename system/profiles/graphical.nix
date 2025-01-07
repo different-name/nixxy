@@ -12,6 +12,7 @@
       programs = {
         fonts.enable = true;
         hyprland.enable = true;
+        obs.enable = true;
         qt.enable = true;
         steam.enable = true;
         thunar.enable = true;
