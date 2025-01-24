@@ -15,7 +15,7 @@
       wireplumber.enable = true;
     };
 
-    hardware.pulseaudio.enable = lib.mkForce false;
+    services.pulseaudio.enable = lib.mkForce false;
 
     environment.persistence."/persist/system" = lib.mkIf config.nix-files.core.persistence.enable {
       directories = [
