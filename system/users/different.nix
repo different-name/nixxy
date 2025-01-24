@@ -28,6 +28,7 @@
         "input"
         "networkmanager"
         "libvirtd"
+        "dialout"
       ];
     };
 
