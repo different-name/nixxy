@@ -52,7 +52,7 @@
       (gameRule "workspace 2")
       # fix for various mouse issues
       # possibly related to https://github.com/hyprwm/Hyprland/issues/6543
-      "stayfocused, class:^(steam_app_[0-9]+)$, title:.+"
+      # "stayfocused, class:^(steam_app_[0-9]+)$, title:.+"
       "stayfocused, class:^(osu!)$, title:.+"
 
       # wine system tray
