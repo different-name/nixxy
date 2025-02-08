@@ -74,7 +74,8 @@
     };
 
     # manage persistent state
-    impermanence.url = "github:nix-community/impermanence";
+    # pinned to avoid https://github.com/nix-community/impermanence/issues/257
+    impermanence.url = "github:nix-community/impermanence?rev=c64bed13b562fc3bb454b48773d4155023ac31b7";
 
     # weekly updated nix-index database
     nix-index-database = {
