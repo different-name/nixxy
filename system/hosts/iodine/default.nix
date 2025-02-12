@@ -19,6 +19,7 @@ in {
 
     services = {
       cloudflare-dyndns.enable = true;
+      minecraft-server.enable = true;
     };
   };
 
