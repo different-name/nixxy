@@ -17,7 +17,9 @@ in {
 
     profiles.global.enable = true;
 
-    services.minecraft-server.enable = true;
+    services = {
+      cloudflare-dyndns.enable = true;
+    };
   };
 
   ### required config
