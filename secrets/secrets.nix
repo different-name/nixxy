@@ -12,7 +12,7 @@ let
 
     iodine = {
       root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPkkCK33jVJn/dSsrhc3zZIyzGZ6uaKwjIKCKyu0YVpm root@iodine";
-      iodine = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDFgR+CwgIILS4vhO1VFCZwpek+MKMlA/rWZbWpPnPwz iodine@iodine";
+      iodine = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM5oCKpegl9IQDVehuGxvlSJTIkHy9Xr7myC9l2KJg2r iodine@iodine";
     };
   };
 
@@ -38,4 +38,5 @@ in {
   ];
 
   "tokens/github.age".publicKeys = allKeys;
+  "tokens/cloudflare.age".publicKeys = allKeys;
 }
