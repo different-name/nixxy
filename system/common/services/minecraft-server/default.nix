@@ -32,6 +32,7 @@
             spawn-protection = 0;
             view-distance = 16;
             white-list = true;
+            max-players = 2;
             motd = "mao";
           };
 
