@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-  options.nix-files.services.keyd.enable = lib.mkEnableOption "keyd";
+  options.nix-files.services.keyd.enable = lib.mkEnableOption "keyd config";
 
   config = lib.mkIf config.nix-files.services.keyd.enable {
     # use keyd -m to find devices & key codes
