@@ -64,6 +64,7 @@
             Different_Name02 = "be0f57d1-a79c-49d1-a126-4536c476ee51";
             Nerowy = "23b6e97d-d186-4bc2-8312-8a569013426a";
             Di_Angelo1 = "a5268ead-ffbd-4863-9308-4de1e2766250";
+            DillNoPick = "9fcb30b7-2292-4871-90b4-d03585b61258";
           };
 
           symlinks."server-icon.png" = ./buhguh-icon.png;
