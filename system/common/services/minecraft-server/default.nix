@@ -34,6 +34,7 @@
             white-list = true;
             max-players = 2;
             motd = "mao";
+            pvp = false;
           };
 
           whitelist = {
@@ -56,6 +57,7 @@
             white-list = true;
             max-players = 20;
             motd = "buhguh";
+            pvp = false;
           };
 
           whitelist = {
