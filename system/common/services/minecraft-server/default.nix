@@ -43,6 +43,29 @@
 
           symlinks."server-icon.png" = ./maocraft-icon.png;
         };
+
+        buhguh = {
+          enable = true;
+          package = pkgs.paperServers.paper-1_21_4;
+
+          serverProperties = {
+            server-port = 25566;
+            difficulty = "normal";
+            spawn-protection = 0;
+            view-distance = 16;
+            white-list = true;
+            max-players = 20;
+            motd = "buhguh";
+          };
+
+          whitelist = {
+            Different_Name02 = "be0f57d1-a79c-49d1-a126-4536c476ee51";
+            Nerowy = "23b6e97d-d186-4bc2-8312-8a569013426a";
+            Di_Angelo1 = "a5268ead-ffbd-4863-9308-4de1e2766250";
+          };
+
+          symlinks."server-icon.png" = ./buhguh-icon.png;
+        };
       };
     };
 
