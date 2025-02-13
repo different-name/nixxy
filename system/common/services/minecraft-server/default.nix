@@ -30,7 +30,7 @@
           serverProperties = {
             difficulty = "normal";
             spawn-protection = 0;
-            view-distance = 16;
+            view-distance = 32;
             white-list = true;
             max-players = 2;
             motd = "mao";
@@ -53,7 +53,7 @@
             server-port = 25566;
             difficulty = "normal";
             spawn-protection = 0;
-            view-distance = 16;
+            view-distance = 32;
             white-list = true;
             max-players = 20;
             motd = "buhguh";
