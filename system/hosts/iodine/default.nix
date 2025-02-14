@@ -19,7 +19,11 @@ in {
 
     services = {
       cloudflare-dyndns.enable = true;
-      minecraft-server.enable = true;
+      minecraft-server = {
+        enable = true;
+        maocraft.enable = true;
+        buhguh.enable = true;
+      };
     };
   };
 

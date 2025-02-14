@@ -9,7 +9,11 @@
     inputs.nix-minecraft.nixosModules.minecraft-servers
   ];
 
-  options.nix-files.services.minecraft-server.enable = lib.mkEnableOption "Minecraft-server config";
+  options.nix-files.services.minecraft-server = {
+    enable = lib.mkEnableOption "Minecraft-server config";
+    maocraft.enable = lib.mkEnableOption "Maocraft Minecraft server";
+    buhguh.enable = lib.mkEnableOption "Buhguh Minecraft server";
+  };
 
   config = lib.mkIf config.nix-files.services.minecraft-server.enable {
     nixpkgs.overlays = [
@@ -23,7 +27,7 @@
 
       servers = {
         # nix-shell -p tmux --run "sudo tmux -S /run/minecraft/maocraft.sock attach"
-        maocraft = {
+        maocraft = lib.mkIf config.nix-files.services.minecraft-server.maocraft.enable {
           enable = true;
           package = pkgs.paperServers.paper-1_21_4;
 
@@ -45,7 +49,8 @@
           symlinks."server-icon.png" = ./maocraft-icon.png;
         };
 
-        buhguh = {
+        # nix-shell -p tmux --run "sudo tmux -S /run/minecraft/buhguh.sock attach"
+        buhguh = lib.mkIf config.nix-files.services.minecraft-server.buhguh.enable {
           enable = true;
           package = pkgs.paperServers.paper-1_21_4;
 
