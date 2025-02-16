@@ -3,6 +3,7 @@
   config,
   inputs,
   pkgs,
+  self,
   ...
 }: {
   imports = [
@@ -19,6 +20,15 @@
     nixpkgs.overlays = [
       inputs.nix-minecraft.overlay
     ];
+
+    age.secrets."minecraft/maocraft-discordsrv" = lib.mkIf config.nix-files.services.minecraft-server.maocraft.enable {
+      file = "${self}/secrets/minecraft/maocraft-discordsrv.age";
+      path = "/srv/minecraft/maocraft/plugins/DiscordSRV/config.yml";
+      symlink = false;
+      mode = "660";
+      owner = "minecraft";
+      group = "minecraft";
+    };
 
     services.minecraft-servers = {
       enable = true;
@@ -47,6 +57,14 @@
           };
 
           symlinks."server-icon.png" = ./maocraft-icon.png;
+
+          files = {
+            "plugins/DiscordSRV-Build-1.29.0.jar" = pkgs.fetchurl {
+              url = "https://cdn.modrinth.com/data/UmLGoGij/versions/MK210KrY/DiscordSRV-Build-1.29.0.jar";
+              hash = "sha256-rd2qPbaQNLF2fqyv90CVhdxzTGxffSE4gJnYxHUIxic=";
+            };
+            "plugins/DiscordSRV/messages.yml" = ./maocraft-messages.yml;
+          };
         };
 
         # nix-shell -p tmux --run "sudo tmux -S /run/minecraft/buhguh.sock attach"

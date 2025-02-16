@@ -39,4 +39,6 @@ in {
 
   "tokens/github.age".publicKeys = allKeys;
   "tokens/cloudflare.age".publicKeys = allKeys;
+
+  "minecraft/maocraft-discordsrv.age".publicKeys = allKeys;
 }
