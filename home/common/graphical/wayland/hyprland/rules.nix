@@ -41,6 +41,7 @@
       # file prompts
       "float, title:^(File Operation Progress)$"
       "float, class:^(file-roller)$"
+      "float, class:^(org.gnome.FileRoller)$"
       "float, class: ^(codium)$, title: ^(Open Folder)$"
 
       # hyprland share picker
