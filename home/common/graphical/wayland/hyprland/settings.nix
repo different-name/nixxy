@@ -121,14 +121,5 @@ in {
 
       debug.disable_logs = false;
     };
-
-    # TODO find or implement a way to do this through home-manager module
-    xdg.configFile."hypr/xdph.conf" = {
-      text = ''
-        screencopy {
-          allow_token_by_default = true
-        }
-      '';
-    };
   };
 }
