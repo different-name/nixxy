@@ -19,6 +19,7 @@
         ".local/share/TerraTech"
         ".local/share/aspyr-media/borderlands 2"
         ".factorio"
+        ".local/share/Terraria"
       ];
     };
   };
