@@ -29,6 +29,8 @@
       alejandra
       qmk
       yt-dlp
+      zip
+      unzip
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
