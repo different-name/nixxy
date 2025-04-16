@@ -12,12 +12,6 @@
       };
     };
 
-    # launcher
-    anyrun = {
-      url = "github:fufexan/anyrun/launch-prefix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # color theme
     catppuccin.url = "github:/catppuccin/nix";
 

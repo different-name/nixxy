@@ -5,10 +5,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    inputs.anyrun.homeManagerModules.default
-  ];
-
   options.nix-files.graphical.wayland.anyrun.enable = lib.mkEnableOption "Anyrun config";
 
   config = lib.mkIf config.nix-files.graphical.wayland.anyrun.enable {
