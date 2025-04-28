@@ -45,7 +45,7 @@
           serverProperties = {
             difficulty = "normal";
             spawn-protection = 0;
-            view-distance = 32;
+            view-distance = 16;
             white-list = true;
             max-players = 2;
             motd = "mao";
@@ -77,7 +77,7 @@
             server-port = 25566;
             difficulty = "normal";
             spawn-protection = 0;
-            view-distance = 32;
+            view-distance = 10;
             white-list = true;
             max-players = 20;
             motd = "buhguh";
@@ -98,8 +98,8 @@
           inherit (inputs.nix-minecraft.lib) collectFilesAt;
 
           modpack = pkgs.fetchPackwizModpack {
-            url = "https://github.com/different-name/maodded/raw/4ce245d605b9d95de4b8e33974e41e5b78c4b416/pack.toml";
-            packHash = "sha256-O5jVBmn+04RPuzqN4BQwHWoLXNvljzbExEPth7V8a/g=";
+            url = "https://github.com/different-name/maodded/raw/6d1f28e7e829aee8dd61b0ae5c35693a75c191c5/pack.toml";
+            packHash = "sha256-WMcqXUJ7b8MfRIFRUO+k6AYJl0x7EuZYgif6RxSXq6g=";
           };
 
           mcVersion = modpack.manifest.versions.minecraft;
@@ -113,7 +113,7 @@
               server-port = 25567;
               difficulty = "normal";
               spawn-protection = 0;
-              view-distance = 32;
+              view-distance = 10;
               white-list = true;
               max-players = 20;
               motd = "only the best maoing";
