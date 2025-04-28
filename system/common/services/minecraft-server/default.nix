@@ -22,6 +22,8 @@
       inputs.nix-minecraft.overlay
     ];
 
+    networking.firewall.allowedUDPPorts = [24454];
+
     age.secrets."minecraft/maocraft-discordsrv" = lib.mkIf config.nix-files.services.minecraft-server.maocraft.enable {
       file = "${self}/secrets/minecraft/maocraft-discordsrv.age";
       path = "/srv/minecraft/maocraft/plugins/DiscordSRV/config.yml";
