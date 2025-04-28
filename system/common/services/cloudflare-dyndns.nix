@@ -14,6 +14,7 @@
       domains = [
         "maocraft.different-name.com"
         "buhguh.different-name.com"
+        "maodded.different-name.com"
       ];
       apiTokenFile = config.age.secrets."tokens/cloudflare".path;
     };

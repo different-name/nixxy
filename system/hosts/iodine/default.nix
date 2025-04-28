@@ -23,6 +23,7 @@ in {
         enable = true;
         maocraft.enable = true;
         buhguh.enable = true;
+        maodded.enable = true;
       };
     };
   };

@@ -14,6 +14,7 @@
     enable = lib.mkEnableOption "Minecraft-server config";
     maocraft.enable = lib.mkEnableOption "Maocraft Minecraft server";
     buhguh.enable = lib.mkEnableOption "Buhguh Minecraft server";
+    maodded.enable = lib.mkEnableOption "Maodded Minecraft server";
   };
 
   config = lib.mkIf config.nix-files.services.minecraft-server.enable {
@@ -91,6 +92,47 @@
 
           symlinks."server-icon.png" = ./buhguh-icon.png;
         };
+
+        # nix-shell -p tmux --run "sudo tmux -S /run/minecraft/maodded.sock attach"
+        maodded = let
+          inherit (inputs.nix-minecraft.lib) collectFilesAt;
+
+          modpack = pkgs.fetchPackwizModpack {
+            url = "https://github.com/different-name/maodded/raw/4ce245d605b9d95de4b8e33974e41e5b78c4b416/pack.toml";
+            packHash = "sha256-O5jVBmn+04RPuzqN4BQwHWoLXNvljzbExEPth7V8a/g=";
+          };
+
+          mcVersion = modpack.manifest.versions.minecraft;
+          serverVersion = lib.replaceStrings ["."] ["_"] "fabric-${mcVersion}";
+        in
+          lib.mkIf config.nix-files.services.minecraft-server.maodded.enable {
+            enable = true;
+            package = pkgs.fabricServers.${serverVersion};
+
+            serverProperties = {
+              server-port = 25567;
+              difficulty = "normal";
+              spawn-protection = 0;
+              view-distance = 32;
+              white-list = true;
+              max-players = 20;
+              motd = "only the best maoing";
+            };
+
+            whitelist = {
+              Different_Name02 = "be0f57d1-a79c-49d1-a126-4536c476ee51";
+              Nerowy = "23b6e97d-d186-4bc2-8312-8a569013426a";
+            };
+
+            symlinks = {
+              mods = "${modpack}/mods";
+              "server-icon.png" = ./maodded-icon.png;
+            };
+
+            files = collectFilesAt modpack "config";
+
+            jvmOpts = "-Xms8G -Xmx16G -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:+ParallelRefProcEnabled -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -Dfabric.api.env=server -Dfile.encoding=UTF-8";
+          };
       };
     };
 
