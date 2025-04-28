@@ -22,8 +22,6 @@
       inputs.nix-minecraft.overlay
     ];
 
-    networking.firewall.allowedUDPPorts = [24454];
-
     age.secrets."minecraft/maocraft-discordsrv" = lib.mkIf config.nix-files.services.minecraft-server.maocraft.enable {
       file = "${self}/secrets/minecraft/maocraft-discordsrv.age";
       path = "/srv/minecraft/maocraft/plugins/DiscordSRV/config.yml";
@@ -100,8 +98,8 @@
           inherit (inputs.nix-minecraft.lib) collectFilesAt;
 
           modpack = pkgs.fetchPackwizModpack {
-            url = "https://github.com/different-name/maodded/raw/6d1f28e7e829aee8dd61b0ae5c35693a75c191c5/pack.toml";
-            packHash = "sha256-WMcqXUJ7b8MfRIFRUO+k6AYJl0x7EuZYgif6RxSXq6g=";
+            url = "https://github.com/different-name/maodded/raw/283da1f28462488ac5b26730d79e1f2a802389a2/pack.toml";
+            packHash = "sha256-2f+E/N7o9q7gqaHTKNawXc3hBq1iXa+WFMo20FPHCDY=";
           };
 
           mcVersion = modpack.manifest.versions.minecraft;
