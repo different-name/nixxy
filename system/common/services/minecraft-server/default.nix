@@ -53,7 +53,7 @@
           };
 
           whitelist = {
-            Different_Name02 = "be0f57d1-a79c-49d1-a126-4536c476ee51";
+            Lazy_Diffy = "be0f57d1-a79c-49d1-a126-4536c476ee51";
             Nerowy = "23b6e97d-d186-4bc2-8312-8a569013426a";
           };
 
@@ -85,7 +85,7 @@
           };
 
           whitelist = {
-            Different_Name02 = "be0f57d1-a79c-49d1-a126-4536c476ee51";
+            Lazy_Diffy = "be0f57d1-a79c-49d1-a126-4536c476ee51";
             Nerowy = "23b6e97d-d186-4bc2-8312-8a569013426a";
             Di_Angelo1 = "a5268ead-ffbd-4863-9308-4de1e2766250";
           };
@@ -120,7 +120,7 @@
             };
 
             whitelist = {
-              Different_Name02 = "be0f57d1-a79c-49d1-a126-4536c476ee51";
+              Lazy_Diffy = "be0f57d1-a79c-49d1-a126-4536c476ee51";
               Nerowy = "23b6e97d-d186-4bc2-8312-8a569013426a";
             };
 
