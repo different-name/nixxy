@@ -22,6 +22,8 @@
       inputs.nix-minecraft.overlay
     ];
 
+    networking.firewall.allowedUDPPorts = [24454];
+
     age.secrets."minecraft/maocraft-discordsrv" = lib.mkIf config.nix-files.services.minecraft-server.maocraft.enable {
       file = "${self}/secrets/minecraft/maocraft-discordsrv.age";
       path = "/srv/minecraft/maocraft/plugins/DiscordSRV/config.yml";
@@ -98,8 +100,8 @@
           inherit (inputs.nix-minecraft.lib) collectFilesAt;
 
           modpack = pkgs.fetchPackwizModpack {
-            url = "https://github.com/different-name/maodded/raw/283da1f28462488ac5b26730d79e1f2a802389a2/pack.toml";
-            packHash = "sha256-2f+E/N7o9q7gqaHTKNawXc3hBq1iXa+WFMo20FPHCDY=";
+            url = "https://github.com/different-name/maodded/raw/6d1f28e7e829aee8dd61b0ae5c35693a75c191c5/pack.toml";
+            packHash = "sha256-WMcqXUJ7b8MfRIFRUO+k6AYJl0x7EuZYgif6RxSXq6g=";
           };
 
           mcVersion = modpack.manifest.versions.minecraft;
@@ -122,6 +124,9 @@
             whitelist = {
               Lazy_Diffy = "be0f57d1-a79c-49d1-a126-4536c476ee51";
               Nerowy = "23b6e97d-d186-4bc2-8312-8a569013426a";
+              jacobkingsman = "255c3ff3-bb6e-43fd-b224-6e0ad913fa91";
+              BeakedBubble8 = "37cb2b80-a717-45c3-b982-816f3f5fff25";
+              Shmezzy7 = "a03f2619-e480-4671-950c-fb97e9e60c46";
             };
 
             symlinks = {
