@@ -69,7 +69,7 @@
 
         # nix-shell -p tmux --run "sudo tmux -S /run/minecraft/buhguh.sock attach"
         buhguh = lib.mkIf config.nix-files.services.minecraft-server.buhguh.enable {
-          enable = true;
+          enable = false;
           package = pkgs.paperServers.paper-1_21_4;
 
           serverProperties = {
