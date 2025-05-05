@@ -100,8 +100,8 @@
           inherit (inputs.nix-minecraft.lib) collectFilesAt;
 
           modpack = pkgs.fetchPackwizModpack {
-            url = "https://github.com/different-name/maodded/raw/283da1f28462488ac5b26730d79e1f2a802389a2/pack.toml";
-            packHash = "sha256-2f+E/N7o9q7gqaHTKNawXc3hBq1iXa+WFMo20FPHCDY=";
+            url = "https://github.com/different-name/maodded/raw/719e4a21f6be0b7cd53614ecc792857082fc4a3b/pack.toml";
+            packHash = "sha256-0NU/pTaSSe0Li5DAJxloVXsAnyd8iKU0cPvFFcg177w=";
           };
 
           mcVersion = modpack.manifest.versions.minecraft;
