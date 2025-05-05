@@ -86,6 +86,7 @@ in {
         disable_autoreload = true; # disable auto polling for config file changes
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
+        enable_anr_dialog = false;
       };
 
       render.direct_scanout = false;
