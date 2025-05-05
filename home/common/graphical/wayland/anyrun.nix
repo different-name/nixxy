@@ -9,6 +9,9 @@
     inputs.anyrun.homeManagerModules.default
   ];
 
+  # TODO figure out if home-manger or fufexan module should be used
+  disabledModules = ["programs/anyrun.nix"];
+
   options.nix-files.graphical.wayland.anyrun.enable = lib.mkEnableOption "Anyrun config";
 
   config = lib.mkIf config.nix-files.graphical.wayland.anyrun.enable {

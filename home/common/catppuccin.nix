@@ -6,7 +6,7 @@
   ...
 }: {
   imports = [
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
   ];
 
   options.nix-files.catppuccin.enable = lib.mkEnableOption "Catppuccin config";
