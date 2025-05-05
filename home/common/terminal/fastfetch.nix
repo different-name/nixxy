@@ -10,17 +10,6 @@
       enable = true;
 
       settings = {
-        logo = {
-          type = "kitty-direct";
-          source = ./fastfetch.png;
-          width = 18;
-          height = 8;
-          padding = {
-            left = 0;
-            right = 2;
-          };
-        };
-
         display = {
           separator = ": ";
           color = {

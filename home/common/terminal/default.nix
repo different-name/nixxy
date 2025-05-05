@@ -5,8 +5,8 @@
   ...
 }: {
   imports = [
-    ./fastfetch
     ./btop.nix
+    ./fastfetch.nix
     ./fish.nix
     ./git.nix
     ./yazi.nix
