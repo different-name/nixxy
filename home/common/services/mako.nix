@@ -12,10 +12,6 @@ in {
       enable = true;
       borderColor = lib.mkForce "#ed507c";
       borderRadius = hyprlandCfg.settings.decoration.rounding;
-      extraConfig = ''
-        [mode=do-not-disturb]
-        invisible=1
-      '';
     };
   };
 }
