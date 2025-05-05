@@ -86,6 +86,7 @@ in {
         disable_autoreload = true; # disable auto polling for config file changes
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
+        enable_anr_dialog = false;
       };
 
       render.direct_scanout = false;
@@ -120,15 +121,6 @@ in {
       ];
 
       debug.disable_logs = false;
-    };
-
-    # TODO find or implement a way to do this through home-manager module
-    xdg.configFile."hypr/xdph.conf" = {
-      text = ''
-        screencopy {
-          allow_token_by_default = true
-        }
-      '';
     };
   };
 }

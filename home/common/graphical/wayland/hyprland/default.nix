@@ -38,7 +38,14 @@
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
       directories = [
         ".cache/hyprland"
+        ".local/share/hyprland"
       ];
+    };
+
+    programs.fish.shellAliases = {
+      monitorlowres = ''        hyprctl keyword monitor "desc:BNQ BenQ EW3270U 5BL00174019, 1920x1080, 0x0, 0
+                .75"'';
+      monitorres = ''hyprctl keyword monitor "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5"'';
     };
   };
 }
