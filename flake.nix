@@ -19,7 +19,7 @@
     };
 
     # color theme
-    catppuccin.url = "github:/catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix";
 
     # declarative partitioning and formatting
     disko = {
