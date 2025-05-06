@@ -100,6 +100,9 @@
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # nix xr/ar/vr packages
+    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
+
     # nix user repository
     nur.url = "github:nix-community/NUR";
 
