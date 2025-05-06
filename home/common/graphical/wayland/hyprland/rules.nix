@@ -12,7 +12,6 @@
         ''AcrossTheObelisk\.x86_64''
         ''TerraTechLinux64\.x86_64''
         ''diablo iv\.exe''
-        ''Minecraft(\*)? [0-9\.]+''
         "osu!"
       ];
       gameClassesStr = lib.concatStringsSep "|" gameClasses;
@@ -55,6 +54,11 @@
       # possibly related to https://github.com/hyprwm/Hyprland/issues/6543
       # "stayfocused, class:^(steam_app_[0-9]+)$, title:.+"
       "stayfocused, class:^(osu!)$, title:.+"
+
+      ''renderunfocused, initialTitle:^(Minecraft(\*)? [0-9\.]+)$''
+      ''suppressevent fullscreen, initialTitle:^(Minecraft(\*)? [0-9\.]+)$''
+      ''fullscreen, initialTitle:^(Minecraft(\*)? [0-9\.]+)$''
+      ''workspace 2, initialTitle:^(Minecraft(\*)? [0-9\.]+)$''
 
       # wine system tray
       "unset, title:Wine System Tray"
