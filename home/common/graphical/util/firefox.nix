@@ -17,7 +17,7 @@
 
           search = {
             force = true;
-            default = "Google";
+            default = "google";
             engines = {
               "Nix Packages" = {
                 urls = [
@@ -46,14 +46,14 @@
                 definedAliases = [":hm"];
               };
 
-              "Google".metaData.alias = ":g";
-              "DuckDuckGo".metaData.hidden = true;
-              "Bing".metaData.hidden = true;
+              "google".metaData.alias = ":g";
+              "ddg".metaData.hidden = true;
+              "bing".metaData.hidden = true;
               "Wikipedia".metaData.hidden = true;
             };
           };
 
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
             ublock-origin
             proton-pass
             proton-vpn
