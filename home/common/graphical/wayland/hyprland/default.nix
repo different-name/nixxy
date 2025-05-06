@@ -35,6 +35,8 @@
       xwayland.enable = true;
     };
 
+    services.hyprpolkitagent.enable = true;
+
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
       directories = [
         ".cache/hyprland"

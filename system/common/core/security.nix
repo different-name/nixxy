@@ -9,14 +9,9 @@
     security = {
       rtkit.enable = true;
 
-      sudo = {
-        # Don't ask for password for wheel group
-        wheelNeedsPassword = false;
-
-        extraConfig = ''
-          Defaults lecture=never # don't give the sudo lecture
-        '';
-      };
+      sudo.extraConfig = ''
+        Defaults lecture=never # don't give the sudo lecture
+      '';
 
       polkit = {
         enable = true;
