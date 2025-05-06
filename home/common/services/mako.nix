@@ -10,8 +10,10 @@ in {
   config = lib.mkIf config.nix-files.services.mako.enable {
     services.mako = {
       enable = true;
-      borderColor = lib.mkForce "#ed507c";
-      borderRadius = hyprlandCfg.settings.decoration.rounding;
+      settings = {
+        "border-color" = lib.mkForce "#ed507c";
+        "border-radius" = hyprlandCfg.settings.decoration.rounding;
+      };
     };
   };
 }
