@@ -70,7 +70,7 @@
 
       # steam friends
       "float, class:^(steam)$, title: ^(Friends List)$"
-      "size 1269 702, class:^(steam)$, title: ^(Friends List)$"
+      "size 452 800, class:^(steam)$, title: ^(Friends List)$"
       # steam settings
       "float, class:^(steam)$, title: ^(Steam Settings)$"
       "size 1275 1083, class:^(steam)$, title: ^(Steam Settings)$"
