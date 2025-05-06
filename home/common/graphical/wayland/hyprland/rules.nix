@@ -67,6 +67,10 @@
 
       # battle.net
       ''tile, class:^(battle\.net\.exe)$''
+
+      # steam friends
+      "float, class:^(steam)$, title: ^(Friends List)$"
+      "size 1269 702, class:^(steam)$, title: ^(Friends List)$"
     ];
   };
 }
