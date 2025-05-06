@@ -10,6 +10,9 @@
   };
 
   config = lib.mkIf config.nix-files.services.minecraft-server.maodded.enable {
+    # simple voice chat port
+    networking.firewall.allowedUDPPorts = [24454];
+
     # nix-shell -p tmux --run "sudo tmux -S /run/minecraft/maodded.sock attach"
     services.minecraft-servers.servers.maodded = let
       inherit (inputs.nix-minecraft.lib) collectFilesAt;
