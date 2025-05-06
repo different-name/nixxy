@@ -10,6 +10,8 @@
       enable = true;
 
       settings = {
+        logo.type = "none";
+
         display = {
           separator = ": ";
           color = {

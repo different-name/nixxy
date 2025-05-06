@@ -14,7 +14,7 @@
         set -U fish_color_user red
         ${
           if config.programs.fastfetch.enable
-          then "fastfetch"
+          then "fastfetch && echo"
           else ""
         }
       '';
