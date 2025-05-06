@@ -46,6 +46,24 @@
                 definedAliases = [":hm"];
               };
 
+              "Proton DB" = {
+                urls = [
+                  {
+                    template = "https://www.protondb.com/search?q={searchTerms}";
+                  }
+                ];
+                definedAliases = [":pd"];
+              };
+
+              "Youtube" = {
+                urls = [
+                  {
+                    template = "https://www.youtube.com/results?search_query={searchTerms}";
+                  }
+                ];
+                definedAliases = [":yt"];
+              };
+
               "google".metaData.alias = ":g";
               "ddg".metaData.hidden = true;
               "bing".metaData.hidden = true;
