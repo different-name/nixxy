@@ -75,8 +75,8 @@
 
           # screenshot
           ## area
-          ", Print, ${uwsm-exec-once "grimblast"} --notify --freeze copy area"
-          "$mod SHIFT, S, ${uwsm-exec-once "grimblast"} --notify --freeze copy area"
+          ", Print, ${uwsm-exec-once "grimblast"} --notify copy area"
+          "$mod SHIFT, S, ${uwsm-exec-once "grimblast"} --notify copy area"
           ## current screen
           "CTRL, Print, ${uwsm-exec-once "grimblast"} --notify --cursor copy output"
           "$mod SHIFT CTRL, S, ${uwsm-exec-once "grimblast"} --notify --cursor copy output"
