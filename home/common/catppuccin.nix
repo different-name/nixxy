@@ -32,9 +32,6 @@
 
       btop.enable = true;
       fish.enable = false;
-
-      # TODO, re-enable mako when fixed: https://github.com/catppuccin/nix/issues/552
-      mako.enable = false;
     };
   };
 }
