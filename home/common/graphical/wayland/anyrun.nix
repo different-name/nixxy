@@ -5,18 +5,12 @@
   pkgs,
   ...
 }: {
-  imports = [
-    inputs.anyrun.homeManagerModules.default
-  ];
-
-  # TODO figure out if home-manger or fufexan module should be used
-  disabledModules = ["programs/anyrun.nix"];
-
   options.nix-files.graphical.wayland.anyrun.enable = lib.mkEnableOption "Anyrun config";
 
   config = lib.mkIf config.nix-files.graphical.wayland.anyrun.enable {
     programs.anyrun = {
       enable = true;
+      package = inputs.anyrun.packages.x86_64-linux.default;
 
       config = {
         plugins = with inputs.anyrun.packages.${pkgs.system}; [
