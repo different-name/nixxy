@@ -1,4 +1,8 @@
-{inputs, ...}: let
+{
+  inputs,
+  lib,
+  ...
+}: let
   machine-id = "294b0aee9a634611a9ddef5e843f4035";
 in {
   imports = [
@@ -38,6 +42,11 @@ in {
   environment.etc.machine-id.text = machine-id;
 
   programs.nh.flake = "/home/iodine/nix-files";
+
+  ### host specific
+
+  # TODO temporary rollback on iodine for password issues
+  security.sudo.wheelNeedsPassword = lib.mkForce false;
 
   # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
