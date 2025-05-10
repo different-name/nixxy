@@ -38,6 +38,7 @@
 
         util = {
           enable = true; # util packages
+          chromium.enable = true;
           firefox.enable = true;
           kitty.enable = true;
           unity.enable = true;

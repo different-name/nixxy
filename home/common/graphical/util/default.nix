@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./chromium.nix
     ./firefox.nix
     ./kitty.nix
     ./unity.nix
