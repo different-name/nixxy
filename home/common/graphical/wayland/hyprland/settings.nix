@@ -31,6 +31,7 @@ in {
       env = [
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
         "XCURSOR_SIZE,16"
+        "GRIMBLAST_NO_CURSOR,0" # TODO https://github.com/fufexan/dotfiles/blob/27b78fa5e824ebcadcdb45509ca1e80aec40d50f/system/programs/hyprland/settings.nix#L11-L12
       ];
 
       exec-once =
