@@ -12,7 +12,6 @@
 
   config = lib.mkIf config.nix-files.graphical.games.enable {
     home.packages = with pkgs; [
-      vesktop
       lutris
       osu-lazer-bin
       rpcs3
@@ -34,9 +33,6 @@
         ".nv" # OpenGL cache
         ".local/share/vulkan/" # shader cache files?
         ".cache/mesa_shader_cache_db" # shader cache
-
-        # vesktop
-        ".config/vesktop"
 
         # lutris
         ".local/share/lutris"
