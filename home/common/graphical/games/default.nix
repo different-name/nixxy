@@ -48,6 +48,7 @@
 
         # discord
         ".config/discord"
+        ".config/Vencord"
 
         # prism launcher
         ".local/share/PrismLauncher"
