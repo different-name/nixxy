@@ -39,7 +39,6 @@
 
         util = {
           enable = true; # util packages
-          chromium.enable = true;
           firefox.enable = true;
           kitty.enable = true;
           summary.enable = true;
