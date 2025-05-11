@@ -7,6 +7,5 @@
     ./openssh.nix
     ./pipewire.nix
     ./tailscale.nix
-    ./teamviewer.nix
   ];
 }
