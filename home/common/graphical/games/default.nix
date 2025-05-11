@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./discord
     ./steam.nix
   ];
 
@@ -15,9 +16,6 @@
       lutris
       osu-lazer-bin
       rpcs3
-      (discord.override {
-        withVencord = true;
-      })
       (prismlauncher.override {
         jdks = [
           zulu8
@@ -45,10 +43,6 @@
         # rpcs3
         ".config/rpcs3"
         ".cache/rpcs3"
-
-        # discord
-        ".config/discord"
-        ".config/Vencord"
 
         # prism launcher
         ".local/share/PrismLauncher"
