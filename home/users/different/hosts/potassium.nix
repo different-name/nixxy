@@ -18,7 +18,7 @@
 
   # display battery as notification
   wayland.windowManager.hyprland.settings.bind = [
-    ''$mod, B, exec, cat /sys/class/power_supply/BAT0/capacity | xargs -I {} notify-send -t 5000 "Battery: {}%"''
+    ''$mod, B, exec, notify-send -t 5000 "Battery: $(cat /sys/class/power_supply/BAT0/capacity)%"''
   ];
 
   ### required config
