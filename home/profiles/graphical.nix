@@ -42,6 +42,7 @@
           chromium.enable = true;
           firefox.enable = true;
           kitty.enable = true;
+          summary.enable = true;
           unity.enable = true;
           vscodium.enable = true;
         };

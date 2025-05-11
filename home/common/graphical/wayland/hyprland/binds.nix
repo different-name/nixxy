@@ -97,12 +97,6 @@
 
           # color picker
           "$mod SHIFT, C, ${uwsm-exec-once "hyprpicker"} --autocopy"
-
-          # display time as noficiation
-          ''$mod, D, exec, notify-send -t 5000 "$(date "+%a %-d %b %Y | %-I:%M%p")"''
-
-          # display weather as notification
-          ''$mod SHIFT, D, exec, notify-send -t 7500 "$(curl wttr.in/?0QTn)"''
         ]
         # workspace keys
         ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
