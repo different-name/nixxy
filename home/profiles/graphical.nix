@@ -46,8 +46,6 @@
           vscodium.enable = true;
         };
 
-        office.enable = true; # office packages
-
         wayland = {
           enable = true; # wayland packages
           anyrun.enable = true;
