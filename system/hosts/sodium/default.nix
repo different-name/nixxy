@@ -27,6 +27,8 @@ in {
 
     hardware.nvidia.enable = true;
 
+    services.xr.enable = true;
+
     services = {
       autologin = {
         enable = true;

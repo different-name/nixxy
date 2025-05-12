@@ -7,5 +7,6 @@
     ./openssh.nix
     ./pipewire.nix
     ./tailscale.nix
+    ./xr.nix
   ];
 }

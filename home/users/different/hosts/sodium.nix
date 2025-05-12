@@ -11,6 +11,7 @@
       graphical.enable = true;
     };
 
+    graphical.games.xr.enable = true;
     graphical.meta.nvidia.enable = true;
 
     services.goxlr-utility.enable = true;
