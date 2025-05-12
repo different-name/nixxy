@@ -19,15 +19,14 @@ in {
   config = let
     dirListToPath = dirList: (lib.concatStringsSep "/" dirList);
 
-    splitPath = paths: (
-      lib.filter
-      (s: builtins.typeOf s == "string" && s != "")
-      (lib.concatMap (builtins.split "/") paths)
-    );
+    splitPath = paths:
+      paths
+      |> lib.concatMap (builtins.split "/")
+      |> lib.filter (s: builtins.typeOf s == "string" && s != "");
 
     concatPaths = paths: let
-      prefix = lib.optionalString (lib.hasPrefix "/" (lib.head paths)) "/";
-      path = dirListToPath (splitPath paths);
+      prefix = paths |> lib.head |> lib.hasPrefix "/" |> (s: lib.optionalString s "/");
+      path = paths |> splitPath |> dirListToPath;
     in
       prefix + path;
 
@@ -101,13 +100,36 @@ in {
       ++ cfg.exclude-paths;
 
     # generate strings for use in script
-    searchPathsToStr = searchPaths: lib.concatMapStringsSep " " lib.escapeShellArg searchPaths;
-    searchPathsNew = searchPathsToStr ["/"];
-    searchPathsStray = searchPathsToStr (map (data: data.persistentStoragePath) persistenceKeyData);
 
-    excludePathsToStr = excludePaths: lib.concatMapStringsSep " -o " (path: "-path ${lib.escapeShellArg path}") excludePaths;
-    excludePathsNew = excludePathsToStr (lib.flatten (map (data: data.paths ++ [data.persistentStoragePath] ++ exclude-paths) persistenceKeyData));
-    excludePathsStray = excludePathsToStr (lib.flatten (map (data: data.persistentStoragePaths) persistenceKeyData));
+    searchPathsToStr = searchPaths:
+      searchPaths
+      |> map lib.escapeShellArg
+      |> lib.concatStringsSep " ";
+
+    searchPathsNew =
+      searchPathsToStr ["/"];
+
+    searchPathsStray =
+      persistenceKeyData
+      |> map (data: data.persistentStoragePath)
+      |> searchPathsToStr;
+
+    excludePathsToStr = excludePaths:
+      excludePaths
+      |> map (path: "-path ${lib.escapeShellArg path}")
+      |> lib.concatStringsSep " -o ";
+
+    excludePathsNew =
+      persistenceKeyData
+      |> map (data: data.paths ++ [data.persistentStoragePath] ++ exclude-paths)
+      |> lib.flatten
+      |> excludePathsToStr;
+
+    excludePathsStray =
+      persistenceKeyData
+      |> map (data: data.persistentStoragePaths)
+      |> lib.flatten
+      |> excludePathsToStr;
   in {
     environment.systemPackages = lib.mkIf cfg.enable [
       (pkgs.writeShellApplication {

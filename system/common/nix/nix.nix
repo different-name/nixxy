@@ -30,7 +30,7 @@
 
       settings = {
         # enable flakes and 'nix' command
-        experimental-features = "nix-command flakes";
+        experimental-features = "nix-command flakes pipe-operators";
         # disable global registry
         flake-registry = "";
 
