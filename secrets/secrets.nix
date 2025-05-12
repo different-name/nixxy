@@ -16,16 +16,15 @@ let
     };
   };
 
-  allKeys = let
-    flatten = with builtins;
-      x:
-        if isList x
-        then concatMap (y: flatten y) x
-        else [x];
+  allKeys = with builtins; let
+    flatten = x:
+      if isList x
+      then concatMap (y: flatten y) x
+      else [x];
   in
     flatten (map
-      (host: builtins.attrValues host)
-      (builtins.attrValues keys));
+      (host: attrValues host)
+      (attrValues keys));
 in {
   # create/edit: nix run github:ryantm/agenix -- -e x.age
   # rekey:       nix run github:ryantm/agenix -- -r
