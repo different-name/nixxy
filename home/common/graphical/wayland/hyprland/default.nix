@@ -12,6 +12,7 @@
     ./binds.nix
     ./rules.nix
     ./settings.nix
+    ./style.nix
   ];
 
   options.nix-files.graphical.wayland.hyprland.enable = lib.mkEnableOption "Hyprland config";
