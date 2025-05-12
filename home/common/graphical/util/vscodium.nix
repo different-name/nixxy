@@ -3,6 +3,7 @@
   config,
   pkgs,
   inputs,
+  osConfig,
   ...
 }: {
   options.nix-files.graphical.util.vscodium.enable = lib.mkEnableOption "VSCodium config";
@@ -36,21 +37,16 @@
 
           # https://github.com/nix-community/vscode-nix-ide
           "nix.enableLanguageServer" = true;
-          "nix.serverPath" = "${pkgs.nil}/bin/nil";
-          "nix.serverSettings.nil.formatting.command" = ["${pkgs.alejandra}/bin/alejandra" "-" "--quiet"];
-          "nix.hiddenLanguageServerErrors" = [
-            # workaround for textDocument/documentSymbol errors
-            # https://github.com/nix-community/vscode-nix-ide/issues/387#issuecomment-2339564317
-            # https://github.com/oxalica/nil/issues/16
-            "textDocument/documentSymbol"
-          ];
+          "nix.serverPath" = "nixd";
+          "nix.serverSettings.nixd.formatting.command" = ["alejandra" "-" "--quiet"];
+          "nix.serverSettings.nixd.options.nixos.expr" = "(builtins.getFlake \"${osConfig.programs.nh.flake}\").nixosConfigurations.<name>.options";
         };
       };
     };
 
     home.packages = with pkgs; [
       alejandra # formatter
-      nil # nix language server
+      nixd # nix language server
     ];
 
     xdg.mimeApps.defaultApplications = {
