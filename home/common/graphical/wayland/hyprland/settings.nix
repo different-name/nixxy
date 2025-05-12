@@ -37,9 +37,17 @@
       xwayland.force_zero_scaling = true;
 
       ecosystem = {
+        enforce_permissions = true;
         no_update_news = true;
         no_donation_nag = true;
       };
+
+      permission = [
+        # xdph
+        "${osConfig.programs.hyprland.portalPackage}/libexec/.xdg-desktop-portal-hyprland-wrapped, screencopy, allow"
+        # grim, used by grimblast
+        "${lib.getExe pkgs.grim}, screencopy, allow"
+      ];
 
       monitor = [
         "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5" # home monitor
