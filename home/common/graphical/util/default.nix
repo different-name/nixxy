@@ -31,7 +31,7 @@
     #   name = "BambuStudio";
     #   genericName = "3D Printing Software";
     #   icon = "BambuStudio";
-    #   exec = "env __GLX_VENDOR_LIBRARY_NAME=mesa __EGL_VENDOR_LIBRARY_FILENAMES=${pkgs.mesa.drivers}/share/glvnd/egl_vendor.d/50_mesa.json ${pkgs.bambu-studio}/bin/bambu-studio";
+    #   exec = "env __GLX_VENDOR_LIBRARY_NAME=mesa __EGL_VENDOR_LIBRARY_FILENAMES=${pkgs.mesa.drivers}/share/glvnd/egl_vendor.d/50_mesa.json ${lib.getExe pkgs.bambu-studio}";
     #   terminal = false;
     #   type = "Application";
     #   mimeType = ["model/stl" "model/3mf" "application/vnd.ms-3mfdocument" "application/prs.wavefront-obj" "application/x-amf" "x-scheme-handler/bambustudio"];

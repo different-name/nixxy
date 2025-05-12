@@ -22,13 +22,10 @@ in {
     };
 
     wayland.windowManager.hyprland.settings.exec-once = let
-      hyprpaper = config.services.hyprpaper.package;
+      uwsmEnabled = osConfig.programs.uwsm.enable;
+      hyprpaperPath = lib.getExe config.services.hyprpaper.package;
     in [
-      (
-        if osConfig.programs.uwsm.enable
-        then "uwsm app -- ${hyprpaper}/bin/hyprpaper"
-        else "${hyprpaper}/bin/hyprpaper"
-      )
+      "${lib.optionalString uwsmEnabled "uwsm app -- "}${hyprpaperPath}"
     ];
   };
 }

@@ -18,12 +18,12 @@
         Service = {
           Type = "oneshot";
           ExecStart = let
-            updateWeather = pkgs.writeShellScriptBin "update-weather" ''
+            update-weather = pkgs.writeShellScriptBin "update-weather" ''
               CACHE_DIR="${config.home.homeDirectory}/.cache/nix-files"
               mkdir -p "$CACHE_DIR"
-              ${pkgs.curl}/bin/curl --max-time 10 "wttr.in/?0QTn" > "$CACHE_DIR/weather"
+              ${lib.getExe pkgs.curl} --max-time 10 "wttr.in/?0QTn" > "$CACHE_DIR/weather"
             '';
-          in "${updateWeather}/bin/update-weather";
+          in "${lib.getExe update-weather}";
         };
       };
 
