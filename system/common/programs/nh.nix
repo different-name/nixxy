@@ -3,9 +3,9 @@
   config,
   ...
 }: {
-  options.nix-files.nix.nh.enable = lib.mkEnableOption "nh config";
+  options.nix-files.programs.nh.enable = lib.mkEnableOption "nh config";
 
-  config = lib.mkIf config.nix-files.nix.nh.enable {
+  config = lib.mkIf config.nix-files.programs.nh.enable {
     # nh is a nix cli helper, useful for rebuilding & cleaning
     programs.nh = {
       enable = true;

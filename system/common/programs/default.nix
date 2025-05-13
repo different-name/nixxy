@@ -5,6 +5,7 @@
     ./fish.nix
     ./fonts.nix
     ./hyprland.nix
+    ./nh.nix
     ./obs.nix
     ./qt.nix
     ./steam.nix

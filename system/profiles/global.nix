@@ -26,7 +26,6 @@
       };
 
       nix = {
-        nh.enable = true;
         nix.enable = true;
         nixpkgs.enable = true;
         substituters.enable = true;
@@ -36,6 +35,7 @@
         catppuccin.enable = true;
         ephemeral-tools.enable = true;
         fish.enable = true;
+        nh.enable = true;
       };
 
       services = {
