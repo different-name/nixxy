@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    ./discord
     ./steam.nix
     ./xr.nix
   ];
@@ -14,16 +13,11 @@
 
   config = lib.mkIf config.nix-files.graphical.games.enable {
     home.packages = with pkgs; [
+      discord
       lutris
       osu-lazer-bin
       rpcs3
-      (prismlauncher.override {
-        jdks = [
-          zulu8
-          zulu17
-          zulu21
-        ];
-      })
+      prismlauncher
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
@@ -32,6 +26,10 @@
         ".nv" # OpenGL cache
         ".local/share/vulkan/" # shader cache files?
         ".cache/mesa_shader_cache_db" # shader cache
+
+        # discord
+        ".config/discord"
+        ".config/Vencord"
 
         # lutris
         ".local/share/lutris"

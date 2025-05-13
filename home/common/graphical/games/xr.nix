@@ -31,21 +31,7 @@
     home.packages = with pkgs; [
       wlx-overlay-s # TODO autostart this somehow
       slimevr
-      slimevr-server
     ];
-
-    # https://github.com/tauri-apps/tauri/issues/9394
-    # > Gdk-Message: 23:55:52.007: Error 71 (Protocol error) dispatching to Wayland display.
-    # > Requires to have WEBKIT_DISABLE_DMABUF_RENDERER=1 in the environment, it seems to happen on Wayland
-    xdg.desktopEntries.slimevr = {
-      name = "SlimeVR";
-      genericName = "Full-body tracking";
-      icon = "slimevr";
-      exec = "env WEBKIT_DISABLE_DMABUF_RENDERER=1 slimevr";
-      terminal = false;
-      type = "Application";
-      categories = ["Game" "Development" "GTK"];
-    };
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
       directories = [
