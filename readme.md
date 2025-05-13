@@ -31,7 +31,9 @@ system - system level configuration
 │       ├── fancontrol.nix - optional file for fan control
 │       └── scripts - scripts specific to a host
 ├── profiles - configuration "presets"
-└── users    - user configuration
+├── users    - user configuration
+└── modules  - NixOS modules
+
 
 home - home level configuration 
 ├── common - home configuration modules
@@ -45,8 +47,7 @@ home - home level configuration
         └──  scripts - scripts specific to a user / user's host
 
 secrets - age secrets
-modules - NixOS modules
-pkgs    - package definitions
+overlays - nixpkgs overlays
 assets  - images, etc
 ```
 
