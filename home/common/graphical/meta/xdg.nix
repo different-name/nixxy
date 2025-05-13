@@ -13,11 +13,8 @@
       mimeApps = {
         enable = true;
         defaultApplications = {
-          # directories
-          "inode/directory" = "thunar.desktop";
-
-          # unity login
-          "x-scheme-handler/unityhub" = "unityhub.desktop";
+          "inode/directory" = "thunar.desktop"; # directories
+          "x-scheme-handler/unityhub" = "unityhub.desktop"; # unity login
         };
       };
     };
