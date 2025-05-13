@@ -1,13 +1,8 @@
 {
   lib,
   config,
-  inputs,
   ...
 }: {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ];
-
   options.nix-files.profiles.global.enable = lib.mkEnableOption "Global profile";
 
   config = lib.mkIf config.nix-files.profiles.global.enable {

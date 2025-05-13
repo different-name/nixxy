@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  inputs,
   self,
   ...
 }: {
@@ -29,13 +28,11 @@
       ];
     };
 
-    home-manager = {
-      extraSpecialArgs = {inherit inputs self;};
-      users."iodine" = import "${self}/home/users/iodine/hosts/${config.networking.hostName}.nix";
-    };
+    home-manager.users."iodine" =
+      import "${self}/home/users/iodine/hosts/${config.networking.hostName}.nix";
 
     # access to the hostkey independent of impermanence activation
-    age.identityPaths = [
+    age.identityPaths = lib.mkIf config.nix-files.core.agenix.enable [
       "/persist/home/iodine/.ssh/id_ed25519"
     ];
   };

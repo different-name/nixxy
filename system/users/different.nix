@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  inputs,
   self,
   ...
 }: {
@@ -32,13 +31,11 @@
       ];
     };
 
-    home-manager = {
-      extraSpecialArgs = {inherit inputs self;};
-      users."different" = import "${self}/home/users/different/hosts/${config.networking.hostName}.nix";
-    };
+    home-manager.users."different" =
+      import "${self}/home/users/different/hosts/${config.networking.hostName}.nix";
 
     # access to the hostkey independent of impermanence activation
-    age.identityPaths = [
+    age.identityPaths = lib.mkIf config.nix-files.core.agenix.enable [
       "/persist/home/different/.ssh/id_ed25519"
     ];
   };
