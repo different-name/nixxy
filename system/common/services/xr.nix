@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options.nix-files.services.xr.enable = lib.mkEnableOption "XR config";
@@ -18,6 +19,7 @@
         json = {
           # 100 Mb/s
           bitrate = 100000000;
+          application = pkgs.wlx-overlay-s;
         };
       };
     };
