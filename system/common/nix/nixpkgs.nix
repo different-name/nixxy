@@ -35,9 +35,6 @@
           vencord = prev.vencord.overrideAttrs {
             patches = [./patches/disableSupportHelper.patch];
           };
-        })
-
-        (final: prev: {
           discord = prev.discord.override {withVencord = true;};
         })
 
