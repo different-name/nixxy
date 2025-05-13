@@ -19,6 +19,7 @@
           catppuccin.catppuccin-vsc
           catppuccin.catppuccin-vsc-icons
           editorconfig.editorconfig
+          tamasfe.even-better-toml
         ];
 
         userSettings = {
