@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  self,
   ...
 }: {
   options.nix-files.graphical.games.xr.enable = lib.mkEnableOption "XR config";
@@ -32,11 +31,15 @@
     home.packages = with pkgs; [
       wlx-overlay-s # TODO autostart this somehow
 
-      (slimevr.overrideAttrs (old: {
-        patches =
-          (old.patches or [])
-          ++ ["${self}/patches/slimevr/disable-dmabuf-in-desktop-entry.patch"];
-      }))
+      (symlinkJoin {
+        name = "slimevr";
+        paths = [slimevr];
+        buildInputs = [makeWrapper];
+        postBuild = ''
+          wrapProgram $out/bin/slimevr \
+            --set WEBKIT_DISABLE_DMABUF_RENDERER 1
+        '';
+      })
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
