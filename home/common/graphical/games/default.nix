@@ -20,7 +20,13 @@
         vencord = pkgs.vencord.overrideAttrs (old: {
           patches =
             (old.patches or [])
-            ++ ["${self}/patches/vencord/make-support-helper-optional.patch"];
+            ++ [
+              # https://nix.dev/guides/best-practices.html#reproducible-source-paths
+              (builtins.path {
+                path = "${self}/patches/vencord/make-support-helper-optional.patch";
+                name = "vencord-make-support-helper-optional";
+              })
+            ];
         });
       })
 
