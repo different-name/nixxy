@@ -31,14 +31,14 @@
       force = true;
     };
 
-    # openxr bindings spec
-    # https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#semantic-paths-oculus-touch-controller-profile
-
     home.file = let
       steamDir = ".local/share/Steam/steamapps/common";
     in {
+      # https://github.com/galister/wlx-overlay-s/wiki/OpenXR-Bindings
       ".config/wlxoverlay/openxr_actions.json5".source =
         ./bindings/wlx-overlay-s/openxr_actions.json5;
+
+      # https://lvra.gitlab.io/docs/fossvr/opencomposite/#rebinding-controls
 
       "${steamDir}/VRChat/OpenComposite/oculus_touch.json".source =
         ./bindings/vrchat/oculus_touch.json;
