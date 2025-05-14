@@ -46,8 +46,9 @@ home - home level configuration
         ├──  hosts   - user@host home configuration
         └──  scripts - scripts specific to a user / user's host
 
+pkgs    - package definitions, using nvfetcher
+patches - .patch files
 secrets - age secrets
-overlays - nixpkgs overlays
 assets  - images, etc
 ```
 
