@@ -31,6 +31,7 @@
     home.packages = with pkgs; [
       wlx-overlay-s # TODO autostart this somehow
 
+      # https://github.com/tauri-apps/tauri/issues/9394
       (symlinkJoin {
         name = "slimevr";
         paths = [slimevr];
