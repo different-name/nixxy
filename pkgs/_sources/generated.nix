@@ -3,14 +3,14 @@
 {
   wivrn = {
     pname = "wivrn";
-    version = "3cea1afee2c29d00056b3a10687431990ef860c8";
+    version = "ef897b4abbd2b6631386c3caa74274ca00801759";
     src = fetchFromGitHub {
       owner = "notpeelz";
       repo = "WiVRn";
-      rev = "3cea1afee2c29d00056b3a10687431990ef860c8";
+      rev = "ef897b4abbd2b6631386c3caa74274ca00801759";
       fetchSubmodules = false;
-      sha256 = "sha256-zaJoW5rnzcKn/vQrepJSFEJU1b3eyBwu1ukJLCjtJtE=";
+      sha256 = "sha256-blXAYg2f4TBvOWc3tli7VFouF/gh4NZuokx2qx9GnZQ=";
     };
-    date = "2025-05-11";
+    date = "2025-05-13";
   };
 }

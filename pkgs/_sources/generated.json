@@ -1,7 +1,7 @@
 {
     "wivrn": {
         "cargoLocks": null,
-        "date": "2025-05-11",
+        "date": "2025-05-13",
         "extract": null,
         "name": "wivrn",
         "passthru": null,
@@ -13,11 +13,11 @@
             "name": null,
             "owner": "notpeelz",
             "repo": "WiVRn",
-            "rev": "3cea1afee2c29d00056b3a10687431990ef860c8",
-            "sha256": "sha256-zaJoW5rnzcKn/vQrepJSFEJU1b3eyBwu1ukJLCjtJtE=",
+            "rev": "ef897b4abbd2b6631386c3caa74274ca00801759",
+            "sha256": "sha256-blXAYg2f4TBvOWc3tli7VFouF/gh4NZuokx2qx9GnZQ=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "3cea1afee2c29d00056b3a10687431990ef860c8"
+        "version": "ef897b4abbd2b6631386c3caa74274ca00801759"
     }
 }
