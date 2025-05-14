@@ -31,6 +31,7 @@
       yt-dlp
       zip
       unzip
+      nvfetcher
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
