@@ -13,6 +13,7 @@
       };
     in
       [
+        ./nd
         ./tascam
         ./wivrn-solarxr.nix
       ]
