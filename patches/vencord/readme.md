@@ -1,4 +1,4 @@
-## Vencord patches
+## vencord patches
 
 ### make-support-helper-optional.patch
 
