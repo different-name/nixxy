@@ -8,25 +8,41 @@
 
   config = lib.mkIf config.nix-files.graphical.games.xr.enable {
     # https://lvra.gitlab.io/docs/distros/nixos/#recommendations
-    xdg.configFile."openvr/openvrpaths.vrpath".text = ''
-      {
-        "config" :
-        [
-          "~/.local/share/Steam/config"
-        ],
-        "external_drivers" : null,
-        "jsonid" : "vrpathreg",
-        "log" :
-        [
-          "~/.local/share/Steam/logs"
-        ],
-        "runtime" :
-        [
-          "${pkgs.opencomposite}/lib/opencomposite"
-        ],
-        "version" : 1
-      }
-    '';
+    xdg.configFile."openvr/openvrpaths.vrpath" = {
+      text = ''
+        {
+          "config" :
+          [
+            "~/.local/share/Steam/config"
+          ],
+          "external_drivers" : null,
+          "jsonid" : "vrpathreg",
+          "log" :
+          [
+            "~/.local/share/Steam/logs"
+          ],
+          "runtime" :
+          [
+            "${pkgs.opencomposite}/lib/opencomposite"
+          ],
+          "version" : 1
+        }
+      '';
+      force = true;
+    };
+
+    # openxr bindings spec
+    # https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#semantic-paths-oculus-touch-controller-profile
+
+    home.file = let
+      steamDir = ".local/share/Steam/steamapps/common";
+    in {
+      ".config/wlxoverlay/openxr_actions.json5".source =
+        ./bindings/wlx-overlay-s/openxr_actions.json5;
+
+      "${steamDir}/VRChat/OpenComposite/oculus_touch.json".source =
+        ./bindings/vrchat/oculus_touch.json;
+    };
 
     home.packages = with pkgs; [
       wlx-overlay-s # TODO autostart this somehow

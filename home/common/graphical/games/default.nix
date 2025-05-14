@@ -6,8 +6,8 @@
   ...
 }: {
   imports = [
+    ./xr
     ./steam.nix
-    ./xr.nix
   ];
 
   options.nix-files.graphical.games.enable = lib.mkEnableOption "Games packages";
