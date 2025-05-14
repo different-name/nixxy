@@ -1,0 +1,4 @@
+[wivrn]
+src.git = "https://github.com/notpeelz/WiVRn.git"
+src.branch = "solarxr-patches"
+fetch.github = "notpeelz/WiVRn"
