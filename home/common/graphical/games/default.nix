@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  self,
   ...
 }: {
   imports = [
@@ -13,11 +14,26 @@
 
   config = lib.mkIf config.nix-files.graphical.games.enable {
     home.packages = with pkgs; [
-      discord
+      (discord.override {
+        withVencord = true;
+        # let me disable the silly popups
+        vencord = pkgs.vencord.overrideAttrs (old: {
+          patches =
+            (old.patches or [])
+            ++ ["${self}/patches/vencord/make-support-helper-optional.patch"];
+        });
+      })
+
       lutris
       osu-lazer-bin
+
+      (prismlauncher.override {
+        jdks = [
+          pkgs.temurin-bin
+        ];
+      })
+
       rpcs3
-      prismlauncher
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {

@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  self,
   ...
 }: {
   options.nix-files.graphical.games.xr.enable = lib.mkEnableOption "XR config";
@@ -30,7 +31,12 @@
 
     home.packages = with pkgs; [
       wlx-overlay-s # TODO autostart this somehow
-      slimevr
+
+      (slimevr.overrideAttrs (old: {
+        patches =
+          (old.patches or [])
+          ++ ["${self}/patches/slimevr/disable-dmabuf-in-desktop-entry.patch"];
+      }))
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {

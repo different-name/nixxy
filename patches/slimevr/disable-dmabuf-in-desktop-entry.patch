@@ -1,0 +1,13 @@
+diff --git a/gui/src-tauri/dev.slimevr.SlimeVR.desktop b/gui/src-tauri/dev.slimevr.SlimeVR.desktop
+index c331081d..4a3d6154 100644
+--- a/gui/src-tauri/dev.slimevr.SlimeVR.desktop
++++ b/gui/src-tauri/dev.slimevr.SlimeVR.desktop
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.5
+ Categories=Game;Development;GTK;
+-Exec={{exec}}
++Exec=env WEBKIT_DISABLE_DMABUF_RENDERER=1 {{exec}}
+ Icon={{icon}}
+ 
+ Name=SlimeVR

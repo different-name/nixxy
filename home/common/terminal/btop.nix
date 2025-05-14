@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   osConfig,
   ...
 }: {
@@ -9,6 +10,10 @@
   config = lib.mkIf config.nix-files.terminal.btop.enable {
     programs.btop = {
       enable = true;
+
+      # Nvidia GPU support
+      # https://github.com/aristocratos/btop/issues/426#issuecomment-2103598718
+      package = pkgs.btop.override {cudaSupport = true;};
 
       settings = {
         proc_gradient = false;
