@@ -31,15 +31,14 @@
       force = true;
     };
 
-    home.file = let
-      steamDir = ".local/share/Steam/steamapps/common";
+    # https://github.com/galister/wlx-overlay-s/wiki/OpenXR-Bindings
+    xdg.configFile."wlxoverlay/openxr_actions.json5".source =
+      ./bindings/wlx-overlay-s/openxr_actions.json5;
+
+    # https://lvra.gitlab.io/docs/fossvr/opencomposite/#rebinding-controls
+    xdg.dataFile = let
+      steamDir = "Steam/steamapps/common";
     in {
-      # https://github.com/galister/wlx-overlay-s/wiki/OpenXR-Bindings
-      ".config/wlxoverlay/openxr_actions.json5".source =
-        ./bindings/wlx-overlay-s/openxr_actions.json5;
-
-      # https://lvra.gitlab.io/docs/fossvr/opencomposite/#rebinding-controls
-
       "${steamDir}/VRChat/OpenComposite/oculus_touch.json".source =
         ./bindings/vrchat/oculus_touch.json;
     };
