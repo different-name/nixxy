@@ -1,0 +1,23 @@
+{
+    "wivrn": {
+        "cargoLocks": null,
+        "date": "2025-05-11",
+        "extract": null,
+        "name": "wivrn",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "notpeelz",
+            "repo": "WiVRn",
+            "rev": "3cea1afee2c29d00056b3a10687431990ef860c8",
+            "sha256": "sha256-zaJoW5rnzcKn/vQrepJSFEJU1b3eyBwu1ukJLCjtJtE=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "3cea1afee2c29d00056b3a10687431990ef860c8"
+    }
+}
