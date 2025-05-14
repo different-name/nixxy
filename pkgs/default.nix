@@ -8,11 +8,12 @@
       mkPackageAttr = path: let
         package = pkgs.callPackage path {inherit nvSources;};
       in {
-        name = package.pname;
+        name = package.pname or package.name;
         value = package;
       };
     in
       [
+        ./tascam
         ./wivrn-solarxr.nix
       ]
       |> map mkPackageAttr
