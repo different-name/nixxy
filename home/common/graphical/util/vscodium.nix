@@ -20,6 +20,7 @@
           catppuccin.catppuccin-vsc-icons
           editorconfig.editorconfig
           tamasfe.even-better-toml
+          blueglassblock.better-json5
         ];
 
         userSettings = {
