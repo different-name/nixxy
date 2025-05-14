@@ -117,6 +117,7 @@
       imports = [
         ./system/hosts
         ./system/modules
+        ./pkgs
       ];
 
       perSystem = {pkgs, ...}: {
