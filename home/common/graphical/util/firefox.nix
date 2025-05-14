@@ -64,6 +64,15 @@
                 definedAliases = [":yt"];
               };
 
+              "Noogle" = {
+                urls = [
+                  {
+                    template = "https://noogle.dev/q?term={searchTerms}";
+                  }
+                ];
+                definedAliases = [":ng"];
+              };
+
               "google".metaData.alias = ":g";
               "ddg".metaData.hidden = true;
               "bing".metaData.hidden = true;
