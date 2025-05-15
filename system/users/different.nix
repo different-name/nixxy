@@ -28,6 +28,7 @@
         "networkmanager"
         "libvirtd"
         "dialout"
+        "i2c" # for nix-files.hardware.ddcutil
       ];
     };
 

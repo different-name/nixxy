@@ -9,6 +9,8 @@
     hardware.graphics.enable = true;
 
     nix-files = {
+      hardware.ddcutil.enable = true;
+
       programs = {
         fonts.enable = true;
         hyprland.enable = true;
