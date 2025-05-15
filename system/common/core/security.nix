@@ -11,6 +11,7 @@
 
       sudo.extraConfig = ''
         Defaults lecture=never # don't give the sudo lecture
+        Defaults timestamp_timeout=190 # increase timeout to 3 hours
       '';
 
       polkit = {
