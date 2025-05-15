@@ -97,6 +97,10 @@
 
           # color picker
           "$mod SHIFT, C, ${uwsm-exec-once "hyprpicker"} --autocopy"
+
+          # ddcutil external monitor brightness
+          "$mod, PAGE_UP, ${uwsm-exec "ddcutil"} setvcp 10 + 20"
+          "$mod, PAGE_DOWN, ${uwsm-exec "ddcutil"} setvcp 10 - 20"
         ]
         # workspace keys
         ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
