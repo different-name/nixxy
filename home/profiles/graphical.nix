@@ -21,6 +21,7 @@
       graphical = {
         games = {
           enable = true; # games packages
+          discord.enable = true;
           steam.enable = true;
         };
 

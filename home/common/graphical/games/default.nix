@@ -2,11 +2,11 @@
   lib,
   config,
   pkgs,
-  self,
   ...
 }: {
   imports = [
     ./xr
+    ./discord.nix
     ./steam.nix
   ];
 
@@ -14,22 +14,6 @@
 
   config = lib.mkIf config.nix-files.graphical.games.enable {
     home.packages = with pkgs; [
-      (discord.override {
-        withVencord = true;
-        # let me disable the silly popups
-        vencord = pkgs.vencord.overrideAttrs (old: {
-          patches =
-            (old.patches or [])
-            ++ [
-              # https://nix.dev/guides/best-practices.html#reproducible-source-paths
-              (builtins.path {
-                path = "${self}/patches/vencord/make-support-helper-optional.patch";
-                name = "vencord-make-support-helper-optional";
-              })
-            ];
-        });
-      })
-
       lutris
       osu-lazer-bin
 
@@ -48,10 +32,6 @@
         ".nv" # OpenGL cache
         ".local/share/vulkan/" # shader cache files?
         ".cache/mesa_shader_cache_db" # shader cache
-
-        # discord
-        ".config/discord"
-        ".config/Vencord"
 
         # lutris
         ".local/share/lutris"
