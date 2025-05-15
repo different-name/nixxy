@@ -46,8 +46,11 @@
         ./opencomposite/vrchat/oculus_touch.json;
     };
 
+    xdg.configFile."VRCX/custom.css".source = ./vrcx-catppuccin.css;
+
     home.packages = with pkgs; [
       wlx-overlay-s
+      vrcx
 
       # https://github.com/tauri-apps/tauri/issues/9394
       (symlinkJoin {
@@ -71,6 +74,8 @@
         ".local/state/OpenComposite"
 
         ".config/wlxoverlay"
+
+        ".config/VRCX"
 
         ".config/dev.slimevr.SlimeVR"
         ".local/share/dev.slimevr.SlimeVR"
