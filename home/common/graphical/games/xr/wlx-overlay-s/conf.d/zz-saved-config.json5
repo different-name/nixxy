@@ -1,0 +1,21 @@
+{
+  "watch_pos": [
+    -0.08199999,
+    0.015000002,
+    0.09999995
+  ],
+  "watch_rot": [
+    -0.7514496,
+    0.13043255,
+    0.6295683,
+    -0.14818424
+  ],
+  "watch_hand": "Left",
+  "watch_view_angle_min": 0.5,
+  "watch_view_angle_max": 0.7,
+  "notifications_enabled": true,
+  "notifications_sound_enabled": true,
+  "realign_on_showhide": true,
+  "allow_sliding": true,
+  "space_drag_multiplier": 1.0
+}

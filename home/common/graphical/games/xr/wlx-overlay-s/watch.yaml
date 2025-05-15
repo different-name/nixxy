@@ -1,0 +1,158 @@
+# looking to make changes?
+# drop me in ~/.config/wlxoverlay/watch.yaml
+#
+
+width: 0.115
+
+size: [400, 200]
+
+elements:
+  # background panel
+  - type: Panel
+    rect: [0, 30, 400, 130]
+    corner_radius: 20
+    bg_color: "#1e1e2e"
+
+  - type: Button
+    rect: [2, 162, 60, 36]
+    corner_radius: 4
+    font_size: 15
+    bg_color: "#f38ba8"
+    fg_color: "#1e1e2e"
+    text: "Conf"
+    click_up: # destroy if exists, otherwise create
+      - type: Window
+        target: settings
+        action: ShowUi # only triggers if not exists
+      - type: Window
+        target: settings
+        action: Destroy # only triggers if exists since before current frame
+
+  # Keyboard button
+  - type: Button
+    rect: [65, 162, 60, 36]
+    corner_radius: 4
+    font_size: 15
+    bg_color: "#89b4fa"
+    fg_color: "#1e1e2e"
+    text: "Keyb"
+    click_up:
+      - type: Overlay
+        target: "kbd"
+        action: ToggleVisible
+    long_click_up:
+      - type: Overlay
+        target: "kbd"
+        action: Reset
+    right_up:
+      - type: Overlay
+        target: "kbd"
+        action: ToggleImmovable
+    middle_up:
+      - type: Overlay
+        target: "kbd"
+        action: ToggleInteraction
+    scroll_up:
+      - type: Overlay
+        target: "kbd"
+        action:
+          Opacity: { delta: 0.025 }
+    scroll_down:
+      - type: Overlay
+        target: "kbd"
+        action:
+          Opacity: { delta: -0.025 }
+
+  # bottom row, of keyboard + overlays
+  - type: OverlayList
+    rect: [125, 160, 277, 40]
+    corner_radius: 4
+    font_size: 15
+    fg_color: "#a6adc8"
+    bg_color: "#181825"
+    layout: Horizontal
+    click_up: ToggleVisible
+    long_click_up: Reset
+    right_up: ToggleImmovable
+    middle_up: ToggleInteraction
+    scroll_up:
+      Opacity: { delta: 0.025 }
+    scroll_down:
+      Opacity: { delta: -0.025 }
+
+  # local clock
+  - type: Label
+    rect: [19, 90, 200, 50]
+    corner_radius: 4
+    font_size: 36 # Use 46 for 24-hour time
+    fg_color: "#cdd6f4"
+    source: Clock
+    format: "%I:%M %p" # 11:59 PM
+    # format: "%H:%M" # 23:59
+
+  # local date
+  - type: Label
+    rect: [20, 117, 200, 20]
+    corner_radius: 4
+    font_size: 14
+    fg_color: "#bac2de"
+    source: Clock
+    format: "%x" # local date representation
+
+  # local day-of-week
+  - type: Label
+    rect: [20, 137, 200, 50]
+    corner_radius: 4
+    font_size: 14
+    fg_color: "#bac2de"
+    source: Clock
+    format: "%A" # Tuesday
+    #format: "%a" # Tue
+
+  # alt clock 1
+  - type: Label
+    rect: [260, 90, 200, 50]
+    corner_radius: 4
+    font_size: 18 # Use 24 for 24-hour time
+    fg_color: "#f38ba8"
+    source: Clock
+    timezone: 0
+    format: "%I:%M %p" # 11:59 PM
+    # format: "%H:%M" # 23:59
+  - type: Label
+    rect: [260, 68, 200, 50]
+    corner_radius: 4
+    font_size: 14
+    fg_color: "#f38ba8"
+    source: Timezone
+    timezone: 0
+
+  # # alt clock 2
+  # - type: Label
+  #   rect: [210, 150, 200, 50]
+  #   corner_radius: 4
+  #   font_size: 18 # Use 24 for 24-hour time
+  #   fg_color: "#b7bdf8"
+  #   source: Clock
+  #   timezone: 0
+  #   format: "%I:%M %p" # 11:59 PM
+  #   # format: "%H:%M" # 23:59
+  # - type: Label
+  #   rect: [210, 120, 200, 50]
+  #   corner_radius: 4
+  #   font_size: 14
+  #   fg_color: "#b7bdf8"
+  #   source: Timezone
+  #   timezone: 1
+
+  # batteries
+  - type: BatteryList
+    rect: [0, 5, 400, 30]
+    corner_radius: 4
+    font_size: 16
+    fg_color: "#a6adc8"
+    fg_color_low: "#f38ba8"
+    fg_color_charging: "#89b4fa"
+    num_devices: 9
+    layout: Horizontal
+    low_threshold: 33

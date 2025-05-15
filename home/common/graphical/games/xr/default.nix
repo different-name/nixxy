@@ -31,20 +31,22 @@
       force = true;
     };
 
-    # https://github.com/galister/wlx-overlay-s/wiki/OpenXR-Bindings
-    xdg.configFile."wlxoverlay/openxr_actions.json5".source =
-      ./bindings/wlx-overlay-s/openxr_actions.json5;
+    # https://github.com/galister/wlx-overlay-s/wiki
+    xdg.configFile."wlxoverlay" = {
+      source = ./wlx-overlay-s;
+      recursive = true;
+    };
 
     # https://lvra.gitlab.io/docs/fossvr/opencomposite/#rebinding-controls
     xdg.dataFile = let
       steamDir = "Steam/steamapps/common";
     in {
       "${steamDir}/VRChat/OpenComposite/oculus_touch.json".source =
-        ./bindings/vrchat/oculus_touch.json;
+        ./opencomposite/vrchat/oculus_touch.json;
     };
 
     home.packages = with pkgs; [
-      wlx-overlay-s # TODO autostart this somehow
+      wlx-overlay-s
 
       # https://github.com/tauri-apps/tauri/issues/9394
       (symlinkJoin {
