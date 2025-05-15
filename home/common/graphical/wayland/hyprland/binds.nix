@@ -51,7 +51,7 @@
 
           # utility
           ## terminal
-          "$mod, Return, ${uwsm-exec "kitty"}"
+          "$mod, RETURN, ${uwsm-exec "kitty"}"
           ## lock screen
           "$mod, L, ${uwsm-exec-once "hyprlock"}"
           ## launcher
@@ -62,23 +62,23 @@
           "$mod, E, ${uwsm-exec "thunar"}"
 
           # move focus
-          "$mod, left, movefocus, l"
-          "$mod, right, movefocus, r"
-          "$mod, up, movefocus, u"
-          "$mod, down, movefocus, d"
+          "$mod, LEFT, movefocus, l"
+          "$mod, RIGHT, movefocus, r"
+          "$mod, UP, movefocus, u"
+          "$mod, DOWN, movefocus, d"
 
           # swap windows
-          "$mod SHIFT, left, swapwindow, l"
-          "$mod SHIFT, right, swapwindow, r"
-          "$mod SHIFT, up, swapwindow, u"
-          "$mod SHIFT, down, swapwindow, d"
+          "$mod SHIFT, LEFT, swapwindow, l"
+          "$mod SHIFT, RIGHT, swapwindow, r"
+          "$mod SHIFT, UP, swapwindow, u"
+          "$mod SHIFT, DOWN, swapwindow, d"
 
           # screenshot
           ## area
-          ", Print, ${uwsm-exec-once "grimblast"} --notify copy area"
+          ", PRINT, ${uwsm-exec-once "grimblast"} --notify copy area"
           "$mod SHIFT, S, ${uwsm-exec-once "grimblast"} --notify copy area"
           ## current screen
-          "CTRL, Print, ${uwsm-exec-once "grimblast"} --notify --cursor copy output"
+          "CTRL, PRINT, ${uwsm-exec-once "grimblast"} --notify --cursor copy output"
           "$mod SHIFT CTRL, S, ${uwsm-exec-once "grimblast"} --notify --cursor copy output"
 
           # cycle workspaces
@@ -99,8 +99,8 @@
           "$mod SHIFT, C, ${uwsm-exec-once "hyprpicker"} --autocopy"
 
           # ddcutil external monitor brightness
-          "$mod, PAGE_UP, ${uwsm-exec "ddcutil"} setvcp 10 + 20"
-          "$mod, PAGE_DOWN, ${uwsm-exec "ddcutil"} setvcp 10 - 20"
+          "$mod, PAGE_UP, ${uwsm-exec "ddcutil"} setvcp 10 + 10"
+          "$mod, PAGE_DOWN, ${uwsm-exec "ddcutil"} setvcp 10 - 10"
         ]
         # workspace keys
         ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
@@ -108,10 +108,10 @@
 
       binde = [
         # resize with arrowkeys
-        "$mod CTRL, up, resizeactive, 0 -20"
-        "$mod CTRL, down, resizeactive, 0 20"
-        "$mod CTRL, left, resizeactive, -20 0"
-        "$mod CTRL, right, resizeactive, 20 0"
+        "$mod CTRL, UP, resizeactive, 0 -20"
+        "$mod CTRL, DOWN, resizeactive, 0 20"
+        "$mod CTRL, LEFT, resizeactive, -20 0"
+        "$mod CTRL, RIGHT, resizeactive, 20 0"
       ];
 
       bindl = [
