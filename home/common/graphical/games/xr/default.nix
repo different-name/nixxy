@@ -35,6 +35,7 @@
     xdg.configFile."wlxoverlay" = {
       source = ./wlx-overlay-s;
       recursive = true;
+      force = true;
     };
 
     # https://lvra.gitlab.io/docs/fossvr/opencomposite/#rebinding-controls
