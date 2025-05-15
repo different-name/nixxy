@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  self,
   ...
 }: {
   imports = [
@@ -16,6 +17,8 @@
 
   config = lib.mkIf config.nix-files.terminal.enable {
     home.packages = with pkgs; [
+      self.packages.${pkgs.system}.nd
+
       imagemagick
       ffmpeg
       trashy
@@ -31,6 +34,7 @@
       yt-dlp
       zip
       unzip
+      nvfetcher
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {

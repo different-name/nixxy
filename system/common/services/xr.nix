@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  pkgs,
+  self,
   ...
 }: {
   options.nix-files.services.xr.enable = lib.mkEnableOption "XR config";
@@ -8,6 +10,7 @@
   config = lib.mkIf config.nix-files.services.xr.enable {
     services.wivrn = {
       enable = true;
+      package = self.packages.${pkgs.system}.wivrn-solarxr;
 
       openFirewall = true;
       defaultRuntime = true;
@@ -18,6 +21,7 @@
         json = {
           # 100 Mb/s
           bitrate = 100000000;
+          application = pkgs.wlx-overlay-s;
         };
       };
     };

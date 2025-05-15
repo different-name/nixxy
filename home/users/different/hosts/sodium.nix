@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  self,
+  ...
+}: {
   imports = [
     ../.
   ];
@@ -24,15 +28,7 @@
   # goxlr / tascam
 
   home.packages = [
-    (pkgs.writeShellApplication {
-      name = "tascam";
-      runtimeInputs = with pkgs; [
-        bash
-        jq
-        goxlr-utility
-      ];
-      text = builtins.readFile ../scripts/tascam.sh;
-    })
+    self.packages.${pkgs.system}.tascam
   ];
 
   wayland.windowManager.hyprland.settings.bind = [

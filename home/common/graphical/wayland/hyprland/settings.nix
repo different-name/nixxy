@@ -2,7 +2,6 @@
   lib,
   config,
   osConfig,
-  pkgs,
   ...
 }: {
   config = lib.mkIf config.nix-files.graphical.wayland.hyprland.enable {
