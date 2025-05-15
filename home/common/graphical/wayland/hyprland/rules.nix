@@ -74,6 +74,9 @@
       # steam settings
       "float, class:steam, title:Steam Settings"
       "size 1275 1083, class:steam, title:Steam Settings"
+
+      # render discord in background, potential crash workaround while screencasting
+      ''renderunfocused, class:discord, initialTitle:Discord''
     ];
   };
 }
