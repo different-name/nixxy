@@ -101,6 +101,9 @@
           # ddcutil external monitor brightness
           "$mod, PAGE_UP, ${uwsm-exec "ddcutil"} setvcp 10 + 10"
           "$mod, PAGE_DOWN, ${uwsm-exec "ddcutil"} setvcp 10 - 10"
+          (let
+            getBrightness = "ddcutil getvcp 10 | awk -F'=' '/current value/ { gsub(\",\", \"\", $2); print $2+0 }'";
+          in "$mod, PRINT, ${uwsm-exec "notify-send"} -t 5000 \"Current Brightness: $(${getBrightness})%\"")
         ]
         # workspace keys
         ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
