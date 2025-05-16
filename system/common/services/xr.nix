@@ -19,8 +19,11 @@
       config = {
         enable = true;
         json = {
-          # 100 Mb/s
-          bitrate = 100000000;
+          bitrate = let
+            Mbps = 125;
+          in
+            Mbps * 1000000;
+
           application = pkgs.wlx-overlay-s;
         };
       };
