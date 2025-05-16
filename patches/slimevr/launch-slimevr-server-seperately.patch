@@ -1,0 +1,54 @@
+diff --git a/gui/src-tauri/src/main.rs b/gui/src-tauri/src/main.rs
+index 8125c986..caa048cd 100644
+--- a/gui/src-tauri/src/main.rs
++++ b/gui/src-tauri/src/main.rs
+@@ -303,49 +303,6 @@ fn setup_tauri(
+ 
+ 			app.manage(Mutex::new(window_state));
+ 
+-			if let Some((java_bin, p)) = server_info {
+-				let app_handle = app.app_handle().clone();
+-				tauri::async_runtime::spawn(async move {
+-					use tauri_plugin_shell::{process::CommandEvent, ShellExt};
+-
+-					let (mut rx, child) = app_handle
+-						.shell()
+-						.command(java_bin.to_str().unwrap())
+-						.current_dir(p)
+-						.args(["-Xmx128M", "-jar", "slimevr.jar", "run"])
+-						.spawn()
+-						.expect("Unable to start the server jar");
+-
+-					{
+-						let mut lock = backend.lock().unwrap();
+-						*lock = Some(child)
+-					}
+-
+-					while let Some(cmd_event) = rx.recv().await {
+-						let emit_me = match cmd_event {
+-							CommandEvent::Stderr(v) => {
+-								("stderr", String::from_utf8(v).unwrap_or_default())
+-							}
+-							CommandEvent::Stdout(v) => {
+-								("stdout", String::from_utf8(v).unwrap_or_default())
+-							}
+-							CommandEvent::Error(s) => ("error", s),
+-							CommandEvent::Terminated(s) => {
+-								exit_flag_terminated.store(true, Ordering::Relaxed);
+-								("terminated", format!("{s:?}"))
+-							}
+-							_ => ("other", "".to_string()),
+-						};
+-						app_handle
+-							.emit("server-status", emit_me)
+-							.expect("Check server log files. \nFailed to emit");
+-					}
+-					log::error!("Java server receiver died");
+-					app_handle
+-						.emit("server-status", ("other", "receiver cancelled"))
+-						.expect("Failed to emit");
+-				});
+-			}
+ 			Ok(())
+ 		})
+ 		.on_window_event(|w, e| match e {
