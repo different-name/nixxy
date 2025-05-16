@@ -14,7 +14,7 @@
     in
       [
         ./mcuuid
-        ./nd
+        ./nt
         ./tascam
         ./wivrn-solarxr.nix
       ]

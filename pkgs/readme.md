@@ -1,7 +1,8 @@
 # pgks
 
-## nd
+## nt
 
+(Nix Tools)
 A wrapper for nh that runs nvfetcher when updating my flake
 
 ## tascam

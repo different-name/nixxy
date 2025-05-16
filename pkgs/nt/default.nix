@@ -1,9 +1,9 @@
 {pkgs, ...}:
 pkgs.writeShellApplication {
-  name = "nd";
+  name = "nt";
   runtimeInputs = with pkgs; [
     nh
     nvfetcher
   ];
-  text = builtins.readFile ./nd.sh;
+  text = builtins.readFile ./nt.sh;
 }

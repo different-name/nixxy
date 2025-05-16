@@ -18,7 +18,7 @@
   config = lib.mkIf config.nix-files.terminal.enable {
     home.packages = with pkgs; [
       self.packages.${pkgs.system}.mcuuid
-      self.packages.${pkgs.system}.nd
+      self.packages.${pkgs.system}.nt
 
       imagemagick
       ffmpeg
