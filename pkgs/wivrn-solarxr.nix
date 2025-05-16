@@ -16,8 +16,8 @@ pkgs.wivrn.overrideAttrs (old: {
       domain = "gitlab.freedesktop.org";
       owner = "monado";
       repo = "monado";
-      rev = "c80de9e7cacf2bf9579f8ae8c621d8bf16e85d6c";
-      hash = "sha256-ciH26Hyr8FumB2rQB5sFcXqtcQ1R84XOlphkkLBjzvA=";
+      rev = "2a6932d46dad9aa957205e8a47ec2baa33041076";
+      hash = "sha256-Bus9GTNC4+nOSwN8pUsMaFsiXjlpHYioQfBLxbQEF+0=";
     };
 
     patches = [
