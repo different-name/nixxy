@@ -7,6 +7,38 @@
   options.nix-files.graphical.games.xr.enable = lib.mkEnableOption "XR config";
 
   config = lib.mkIf config.nix-files.graphical.games.xr.enable {
+    xdg.desktopEntries = let
+      vr-session-manager = pkgs.writeShellApplication {
+        name = "vr-session-manager";
+        runtimeInputs = with pkgs; [
+          libnotify
+          systemd
+        ];
+        text = builtins.readFile ./vr-session-manager.sh;
+      };
+
+      baseEntry = {
+        type = "Application";
+        terminal = false;
+        categories = ["Utility"];
+        startupNotify = false;
+      };
+    in {
+      start-vr-session =
+        {
+          name = "Start VR Session";
+          exec = "${lib.getExe vr-session-manager} start";
+        }
+        // baseEntry;
+
+      stop-vr-session =
+        {
+          name = "Stop VR Session";
+          exec = "${lib.getExe vr-session-manager} stop";
+        }
+        // baseEntry;
+    };
+
     # https://lvra.gitlab.io/docs/distros/nixos/#recommendations
     xdg.configFile."openvr/openvrpaths.vrpath" = {
       text = ''
