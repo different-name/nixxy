@@ -81,9 +81,6 @@
     xdg.configFile."VRCX/custom.css".source = ./vrcx-catppuccin.css;
 
     home.packages = with pkgs; [
-      wlx-overlay-s
-      vrcx
-
       # https://github.com/tauri-apps/tauri/issues/9394
       (symlinkJoin {
         name = "slimevr";
@@ -94,25 +91,31 @@
             --set WEBKIT_DISABLE_DMABUF_RENDERER 1
         '';
       })
+      vrcx
+      wlx-overlay-s
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
       directories = [
-        ".config/wivrn"
-        ".cache/wivrn"
-
+        # opencomposite
+        ".local/state/OpenComposite"
         ".config/openvr"
 
-        ".local/state/OpenComposite"
-
-        ".config/wlxoverlay"
-
-        ".config/VRCX"
-
+        # slimevr
         ".config/dev.slimevr.SlimeVR"
         ".local/share/dev.slimevr.SlimeVR"
         ".local/share/.slimevr-wrapped_"
         ".cache/.slimevr-wrapped_"
+
+        # vrcx
+        ".config/VRCX"
+
+        # wivrn
+        ".config/wivrn"
+        ".cache/wivrn"
+
+        # wlx-overlay-s
+        ".config/wlxoverlay"
       ];
     };
   };
