@@ -13,6 +13,7 @@
       };
     in
       [
+        ./mcuuid
         ./nd
         ./tascam
         ./wivrn-solarxr.nix
