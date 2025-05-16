@@ -14,7 +14,7 @@ NOTIFY_TIME="5000"
 if [ "$ACTION" = "start" ]; then
   if systemctl --user start "$SERVICE"; then
     notify-send -t "$NOTIFY_TIME" "VR Session" "VR session started successfully"
-    hyprctl keyword input:follow_mouse 0
+    hyprctl keyword input:follow_mouse 2
   else
     notify-send -t "$NOTIFY_TIME" "VR Session" "Failed to start VR session" -u critical
     exit 2
