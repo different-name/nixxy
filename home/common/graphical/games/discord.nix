@@ -43,6 +43,7 @@
           betterCodeblocks = true;
           mentionAvatars = true;
           noJoinMessageWave = true;
+          noMaskedLinkPaste = true;
           noReplyChainNag = true;
           replyChain = true;
           staffTags = true;
