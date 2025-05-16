@@ -19,7 +19,7 @@
         enable = true;
         json = {
           bitrate = let
-            Mbps = 125;
+            Mbps = 100;
           in
             Mbps * 1000000;
         };
