@@ -13,6 +13,7 @@
         runtimeInputs = with pkgs; [
           libnotify
           systemd
+          config.wayland.windowManager.hyprland.package
         ];
         text = builtins.readFile ./vr-session-manager.sh;
       };
