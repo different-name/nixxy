@@ -6,6 +6,8 @@
 }:
 pkgs.wivrn.overrideAttrs (old: {
   inherit (sources.wivrn-solarxr) pname version src;
+  inherit (pkgs.wivrn) meta;
+
   cmakeFlags =
     (old.cmakeFlags or [])
     ++ [(lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)];
