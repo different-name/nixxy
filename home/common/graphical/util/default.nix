@@ -24,6 +24,7 @@
       qalculate-gtk
       qbittorrent
       scrcpy
+      qpwgraph
     ];
 
     # https://github.com/bambulab/BambuStudio/issues/4669#issuecomment-2334688981
