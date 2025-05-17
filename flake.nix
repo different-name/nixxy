@@ -1,5 +1,20 @@
 {
-  description = "Different's nix-files";
+  description = "Diffy's nix-files";
+
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = import inputs.systems;
+
+      imports = [
+        ./system/hosts
+        ./system/modules
+        ./pkgs
+      ];
+
+      perSystem = {pkgs, ...}: {
+        formatter = pkgs.alejandra;
+      };
+    };
 
   inputs = {
     # secrets management
@@ -48,10 +63,12 @@
 
     # hyprwm
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
+
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs = {
@@ -63,6 +80,7 @@
         systems.follows = "hyprland/systems";
       };
     };
+
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs = {
@@ -74,6 +92,7 @@
         systems.follows = "hyprland/systems";
       };
     };
+
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
       inputs = {
@@ -165,19 +184,4 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = import inputs.systems;
-
-      imports = [
-        ./system/hosts
-        ./system/modules
-        ./pkgs
-      ];
-
-      perSystem = {pkgs, ...}: {
-        formatter = pkgs.alejandra;
-      };
-    };
 }
