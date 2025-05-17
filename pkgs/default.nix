@@ -1,11 +1,11 @@
 {
   perSystem = {pkgs, ...}: let
-    nvSources = import ./_sources/generated.nix {
+    sources = import ./_sources/generated.nix {
       inherit (pkgs) fetchgit fetchurl fetchFromGitHub dockerTools;
     };
 
     mkPackageAttr = path: let
-      package = pkgs.callPackage path {inherit nvSources;};
+      package = pkgs.callPackage path {inherit sources;};
     in {
       name = package.pname or package.name;
       value = package;
