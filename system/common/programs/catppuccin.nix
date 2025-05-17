@@ -13,6 +13,8 @@
   config = lib.mkIf config.nix-files.programs.catppuccin.enable {
     catppuccin = {
       enable = true;
+      cache.enable = true;
+
       accent = "red";
       flavor = "mocha";
     };
