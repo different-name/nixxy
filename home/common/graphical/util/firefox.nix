@@ -87,6 +87,7 @@
             dearrow
             sponsorblock
             stylus
+            youtube-nonstop
           ];
 
           settings = {
