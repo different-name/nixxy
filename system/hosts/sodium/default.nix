@@ -71,6 +71,23 @@ in {
     ];
   };
 
+  services.pipewire.wireplumber.connectPorts = [
+    # mirror audio from goxlr outputs to wivrn output
+    {
+      output = {
+        constraint = "GoXLR:monitor_*";
+        leftAlias = "GoXLR:monitor_FL";
+        rightAlias = "GoXLR:monitor_FR";
+      };
+
+      input = {
+        constraint = "WiVRn:playback_*";
+        leftAlias = "WiVRn:playback_1";
+        rightAlias = "WiVRn:playback_2";
+      };
+    }
+  ];
+
   ### required config
 
   networking = {
