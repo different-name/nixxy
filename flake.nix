@@ -122,6 +122,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # better minecraft server module
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs = {
