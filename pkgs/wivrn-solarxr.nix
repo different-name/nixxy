@@ -5,8 +5,7 @@
   ...
 }:
 pkgs.wivrn.overrideAttrs (old: {
-  inherit (nvSources.wivrn) version src;
-  pname = "wivrn-solarxr";
+  inherit (nvSources.wivrn-solarxr) pname version src;
   cmakeFlags =
     (old.cmakeFlags or [])
     ++ [(lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)];
@@ -25,7 +24,7 @@ pkgs.wivrn.overrideAttrs (old: {
     ];
 
     postPatch = ''
-      ${nvSources.wivrn.src}/patches/apply.sh ${nvSources.wivrn.src}/patches/monado/*
+      ${nvSources.wivrn-solarxr.src}/patches/apply.sh ${nvSources.wivrn-solarxr.src}/patches/monado/*
     '';
   };
 })

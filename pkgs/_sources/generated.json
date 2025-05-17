@@ -1,9 +1,9 @@
 {
-    "wivrn": {
+    "wivrn-solarxr": {
         "cargoLocks": null,
         "date": "2025-05-16",
         "extract": null,
-        "name": "wivrn",
+        "name": "wivrn-solarxr",
         "passthru": null,
         "pinned": false,
         "src": {
