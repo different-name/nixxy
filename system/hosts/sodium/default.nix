@@ -43,7 +43,6 @@ in {
 
   hardware.keyboard.qmk.enable = true;
   services.goxlr-utility.enable = true;
-  services.teamviewer.enable = true;
 
   environment = {
     sessionVariables = {
