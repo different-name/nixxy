@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  osConfig,
   ...
 }: {
   options.nix-files.graphical.util.unity.enable = lib.mkEnableOption "Unity config";
@@ -15,6 +16,10 @@
           "2022.3.22f1"
         ];
         editorDir = "Documents/Unity/.hub/Editor";
+
+        uwsmCmd =
+          lib.optionalString osConfig.programs.uwsm.enable
+          "${lib.getExe pkgs.uwsm} app -- ";
       in
         unityEditors
         |> map (version: "${editorDir}/${version}/Editor")
@@ -24,7 +29,7 @@
             executable = true;
             text = ''
               #! /bin/sh
-              exec ${lib.getExe pkgs.unityhub.fhsEnv} ${path}/Unity "$@"
+              exec ${lib.getExe pkgs.unityhub.fhsEnv} ${uwsmCmd} ${path}/Unity "$@"
             '';
           };
         })
