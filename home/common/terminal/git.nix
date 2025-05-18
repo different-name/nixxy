@@ -10,6 +10,7 @@
       enable = true;
       userName = "Different";
       userEmail = "hello@different-name.dev";
+      lfs.enable = true;
     };
   };
 }
