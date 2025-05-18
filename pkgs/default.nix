@@ -13,6 +13,7 @@
   in {
     packages =
       [
+        ./cats-blender-plugin-unofficial.nix
         ./mcuuid
         ./nt
         ./tascam

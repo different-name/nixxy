@@ -39,6 +39,7 @@
 
         util = {
           enable = true; # util packages
+          blender.enable = true;
           firefox.enable = true;
           kitty.enable = true;
           summary.enable = true;

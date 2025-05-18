@@ -2,3 +2,8 @@
 src.git = "https://github.com/notpeelz/WiVRn.git"
 src.branch = "solarxr-patches"
 fetch.github = "notpeelz/WiVRn"
+
+[cats-blender-plugin-unofficial]
+src.git = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
+src.branch = "blender-44"
+fetch.git = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"

@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./blender.nix
     ./firefox.nix
     ./kitty.nix
     ./summary.nix
@@ -18,7 +19,6 @@
     home.packages = with pkgs; [
       android-tools
       # bambu-studio
-      blender
       gimp-with-plugins
       protonvpn-gui
       qalculate-gtk
@@ -49,10 +49,6 @@
         ".config/BambuStudio"
         ".local/share/bambu-studio"
         ".cache/bambu-studio"
-
-        # blender
-        ".config/blender"
-        ".cache/blender"
 
         # gimp
         ".config/GIMP"
