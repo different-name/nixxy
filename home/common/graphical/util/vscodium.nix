@@ -37,6 +37,11 @@
 
           "git.detectSubmodules" = false;
           "git.confirmSync" = false;
+          "git.repositoryScanMaxDepth" = 3;
+
+          "files.associations" = {
+            "*.poiTemplateCollection" = "hlsl";
+          };
 
           # https://github.com/nix-community/vscode-nix-ide
           "nix.enableLanguageServer" = true;
