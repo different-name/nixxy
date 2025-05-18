@@ -24,16 +24,20 @@
         ];
 
         userSettings = {
+          "window.titleBarStyle" = "custom";
           "workbench.colorTheme" = "Catppuccin Mocha";
           "workbench.startupEditor" = "none";
+
           "editor.fontFamily" = "'JetBrains Mono', 'monospace', monospace";
           "editor.tabSize" = 2;
           "editor.formatOnSave" = true;
           "editor.fontLigatures" = true;
+
           "files.enableTrash" = false;
-          "window.titleBarStyle" = "custom";
           "explorer.confirmDragAndDrop" = false;
           "explorer.confirmPasteNative" = false;
+
+          "scm.alwaysShowRepositories" = true;
 
           "git.detectSubmodules" = false;
           "git.confirmSync" = false;
