@@ -32,6 +32,7 @@
 
       btop.enable = true;
       fish.enable = false;
+      mpv.enable = false;
     };
   };
 }
