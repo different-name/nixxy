@@ -12,13 +12,13 @@
         "GRIMBLAST_NO_CURSOR,0" # TODO https://github.com/fufexan/dotfiles/blob/27b78fa5e824ebcadcdb45509ca1e80aec40d50f/system/programs/hyprland/settings.nix#L11-L12
       ];
 
-      exec-once =
-        map (
-          cmd:
-            if osConfig.programs.uwsm.enable
-            then "uwsm app -- ${cmd}"
-            else cmd
-        ) [
+      exec-once = let
+        uwsmCmd =
+          lib.optionalString osConfig.programs.uwsm.enable
+          "uwsm app -- ";
+        uwsmSingleApp = cmd: "pgrep ${cmd} || ${uwsmCmd + cmd}";
+      in
+        map uwsmSingleApp [
           "goxlr-daemon"
           "steam -silent"
           "discord"

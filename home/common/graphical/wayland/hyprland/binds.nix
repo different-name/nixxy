@@ -6,13 +6,11 @@
 }: {
   config = lib.mkIf config.nix-files.graphical.wayland.hyprland.enable {
     wayland.windowManager.hyprland.settings = let
-      uwsm-app = cmd:
-        if osConfig.programs.uwsm.enable
-        then "uwsm app -- ${cmd}"
-        else "${cmd}";
-
-      uwsm-exec = cmd: "exec, ${uwsm-app cmd}";
-      uwsm-exec-once = cmd: "exec, pgrep ${cmd} || ${uwsm-app cmd}";
+      uwsmCmd =
+        lib.optionalString osConfig.programs.uwsm.enable
+        "uwsm app -- ";
+      uwsmApp = cmd: uwsmCmd + cmd;
+      uwsmSingleApp = cmd: "pgrep ${cmd} || ${uwsmCmd + cmd}";
     in {
       # l -> locked, will also work when an input inhibitor (e.g. a lockscreen) is active.
       # r -> release, will trigger on release of a key.
@@ -46,20 +44,20 @@
           "ALT, TAB, changegroupactive, f"
           "ALT SHIFT, TAB, changegroupactive, b"
           "$mod, T, pin"
-          "CTRL ALT, DELETE, ${uwsm-exec "hyprctl kill"}"
+          "CTRL ALT, DELETE, exec, ${uwsmApp "hyprctl kill"}"
           "CTRL ALT SHIFT, DELETE, exec, loginctl terminate-user \"\""
 
           # utility
           ## terminal
-          "$mod, RETURN, ${uwsm-exec "kitty"}"
+          "$mod, RETURN, exec, ${uwsmApp "kitty"}"
           ## lock screen
-          "$mod, L, ${uwsm-exec-once "hyprlock"}"
+          "$mod, L, exec, ${uwsmSingleApp "hyprlock"}"
           ## launcher
           "$mod, S, exec, anyrun" # not using uwsm as it introduces latency
           ## browser
-          "$mod, W, ${uwsm-exec "firefox"}"
+          "$mod, W, exec, ${uwsmApp "firefox"}"
           ## file explorer
-          "$mod, E, ${uwsm-exec "thunar"}"
+          "$mod, E, exec, ${uwsmApp "thunar"}"
 
           # move focus
           "$mod, LEFT, movefocus, l"
@@ -75,11 +73,11 @@
 
           # screenshot
           ## area
-          ", PRINT, ${uwsm-exec-once "grimblast"} --notify copy area"
-          "$mod SHIFT, S, ${uwsm-exec-once "grimblast"} --notify copy area"
+          ", PRINT, exec, ${uwsmSingleApp "grimblast"} --notify copy area"
+          "$mod SHIFT, S, exec, ${uwsmSingleApp "grimblast"} --notify copy area"
           ## current screen
-          "CTRL, PRINT, ${uwsm-exec-once "grimblast"} --notify --cursor copy output"
-          "$mod SHIFT CTRL, S, ${uwsm-exec-once "grimblast"} --notify --cursor copy output"
+          "CTRL, PRINT, exec, ${uwsmSingleApp "grimblast"} --notify --cursor copy output"
+          "$mod SHIFT CTRL, S, exec, ${uwsmSingleApp "grimblast"} --notify --cursor copy output"
 
           # cycle workspaces
           "$mod, bracketleft, workspace, m-1"
@@ -96,14 +94,14 @@
           "$mod SHIFT ALT, bracketright, movecurrentworkspacetomonitor, r"
 
           # color picker
-          "$mod SHIFT, C, ${uwsm-exec-once "hyprpicker"} --autocopy"
+          "$mod SHIFT, C, exec, ${uwsmSingleApp "hyprpicker"} --autocopy"
 
           # ddcutil external monitor brightness
-          "$mod, PAGE_UP, ${uwsm-exec "ddcutil"} setvcp 10 + 10"
-          "$mod, PAGE_DOWN, ${uwsm-exec "ddcutil"} setvcp 10 - 10"
+          "$mod, PAGE_UP, exec, ddcutil setvcp 10 + 10"
+          "$mod, PAGE_DOWN, exec, ddcutil setvcp 10 - 10"
           (let
             getBrightness = "ddcutil getvcp 10 | awk -F'=' '/current value/ { gsub(\",\", \"\", $2); print $2+0 }'";
-          in "$mod, PRINT, ${uwsm-exec "notify-send"} -t 5000 \"Current Brightness: $(${getBrightness})%\"")
+          in "$mod, PRINT, exec, notify-send -t 5000 \"Current Brightness: $(${getBrightness})%\"")
         ]
         # workspace keys
         ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") ["1" "2" "3" "4" "5" "6" "7" "8" "9"])
@@ -119,21 +117,21 @@
 
       bindl = [
         # media controls
-        ", XF86AudioPlay, ${uwsm-exec "playerctl play-pause"}"
+        ", XF86AudioPlay, exec, playerctl play-pause"
 
         # volume
-        ", XF86AudioMute, ${uwsm-exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"}"
-        ", XF86AudioMicMute, ${uwsm-exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"}"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       ];
 
       bindle = [
         # volume
-        ", XF86AudioRaiseVolume, ${uwsm-exec "wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%+"}"
-        ", XF86AudioLowerVolume, ${uwsm-exec "wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%-"}"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%-"
 
         # backlight
-        ", XF86MonBrightnessUp, ${uwsm-exec "brillo -q -u 300000 -A 5"}"
-        ", XF86MonBrightnessDown, ${uwsm-exec "brillo -q -u 300000 -U 5"}"
+        ", XF86MonBrightnessUp, exec, brillo -q -u 300000 -A 5"
+        ", XF86MonBrightnessDown, exec, brillo -q -u 300000 -U 5"
       ];
     };
   };
