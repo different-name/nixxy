@@ -46,7 +46,57 @@
           noMaskedLinkPaste = true;
           noReplyChainNag = true;
           replyChain = true;
-          staffTags = true;
+          staffTags = {
+            enabled = true;
+            config = {
+              tags = [
+                {
+                  label = "Owner";
+                  icon = "crown";
+                  color = 5793266;
+                  useRoleColor = true;
+                  permissions = [
+                    "OWNER"
+                  ];
+                }
+                {
+                  label = "Admin";
+                  icon = "shield";
+                  color = 5793266;
+                  useRoleColor = true;
+                  permissions = [
+                    "ADMINISTRATOR"
+                  ];
+                }
+                {
+                  label = "Manager";
+                  icon = "wrench";
+                  color = 5793266;
+                  useRoleColor = true;
+                  permissions = [
+                    "MANAGE_CHANNELS"
+                    "MANAGE_GUILD"
+                    "MANAGE_ROLES"
+                  ];
+                }
+                {
+                  label = "Mod";
+                  icon = "hammer";
+                  color = 5793266;
+                  useRoleColor = true;
+                  permissions = [
+                    "KICK_MEMBERS"
+                    "BAN_MEMBERS"
+                    "MUTE_MEMBERS"
+                    "DEAFEN_MEMBERS"
+                    "MOVE_MEMBERS"
+                    "MANAGE_NICKNAMES"
+                    "MODERATE_MEMBERS"
+                  ];
+                }
+              ];
+            };
+          };
           showReplySelf = true;
 
           # commands
@@ -88,6 +138,7 @@
               imageUrls = false;
               videoMetadata = false;
               noStickerAutosend = false;
+              noGifAutosend = false;
             };
           };
           openExternally = {
