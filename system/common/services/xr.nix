@@ -38,8 +38,6 @@
           ExecStart = "${lib.getExe pkgs.slimevr-server} run";
           Restart = "on-failure";
         };
-
-        wantedBy = ["default.target"];
       };
 
       wait-for-slimevr-server = {
@@ -53,8 +51,6 @@
             ${lib.getExe pkgs.bash} -c 'timeout 15s journalctl --user -fu slimevr-server.service | grep -m1 "\[SolarXR Bridge\] Socket /run/user/1000/SlimeVRRpc created"'
           '';
         };
-
-        wantedBy = ["default.target"];
       };
 
       # extends the service provided by services.wivrn
@@ -76,8 +72,6 @@
             ${lib.getExe pkgs.bash} -c 'timeout 15s journalctl --user -fu wivrn.service | grep -m1 "Service published: ${config.networking.hostName}" && sleep 0.5'
           '';
         };
-
-        wantedBy = ["default.target"];
       };
 
       wlx-overlay-s = {
@@ -94,8 +88,6 @@
           SendSIGKILL = "yes";
           TimeoutStopSec = "1s";
         };
-
-        wantedBy = ["default.target"];
       };
 
       vr-session = {
@@ -116,8 +108,6 @@
           ExecStart = "${pkgs.coreutils}/bin/true";
           RemainAfterExit = "yes";
         };
-
-        wantedBy = ["default.target"];
       };
     };
 
