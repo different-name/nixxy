@@ -18,6 +18,8 @@
         "gemma3:4b"
         "deepseek-r1:7b"
       ];
+      user = "ollama";
+      group = "ollama";
     };
 
     environment.persistence."/persist/system" = lib.mkIf config.nix-files.core.persistence.enable {
@@ -30,12 +32,12 @@
     # correcting permissions
     systemd.tmpfiles.rules = lib.mkIf config.nix-files.core.persistence.enable [
       "d /var/lib/private 0700 root root -"
-      "d /var/lib/private/open-webui 0700 root root -"
-      "d /var/lib/private/ollama 0700 root root -"
+      "d /var/lib/private/open-webui 0755 root root -"
+      "d /var/lib/private/ollama 0755 ollama ollama -"
 
       "d /persist/system/var/lib/private 0700 root root -"
-      "d /persist/system/var/lib/private/open-webui 0700 root root -"
-      "d /persist/system/var/lib/private/ollama 0700 root root -"
+      "d /persist/system/var/lib/private/open-webui 0755 root root -"
+      "d /persist/system/var/lib/private/ollama 0755 ollama ollama -"
     ];
   };
 }
