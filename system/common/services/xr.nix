@@ -105,7 +105,7 @@
           "wivrn.service"
           "wlx-overlay-s.service"
         ];
-        requires = [
+        wants = [
           "slimevr-server.service"
           "wivrn.service"
           "wlx-overlay-s.service"
