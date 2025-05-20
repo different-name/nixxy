@@ -9,7 +9,6 @@
     services.open-webui = {
       enable = true;
       port = 8888;
-      openFirewall = true;
     };
 
     services.ollama = {
