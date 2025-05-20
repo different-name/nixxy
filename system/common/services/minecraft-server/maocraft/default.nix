@@ -39,5 +39,9 @@
         "plugins/DiscordSRV/messages.yml" = ./maocraft-messages.yml;
       };
     };
+
+    services.cloudflare-dyndns.domains = [
+      "maocraft.different-name.com"
+    ];
   };
 }

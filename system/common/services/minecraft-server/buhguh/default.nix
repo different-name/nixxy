@@ -33,5 +33,9 @@
 
       symlinks."server-icon.png" = ./server-icon.png;
     };
+
+    services.cloudflare-dyndns.domains = [
+      "buhguh.different-name.com"
+    ];
   };
 }

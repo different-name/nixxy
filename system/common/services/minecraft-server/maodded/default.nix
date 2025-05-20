@@ -58,5 +58,9 @@
 
       jvmOpts = "-Xms8G -Xmx16G -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:+ParallelRefProcEnabled -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -Dfabric.api.env=server -Dfile.encoding=UTF-8";
     };
+
+    services.cloudflare-dyndns.domains = [
+      "maodded.different-name.com"
+    ];
   };
 }
