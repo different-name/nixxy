@@ -7,7 +7,6 @@
 
   config = lib.mkIf config.nix-files.profiles.global.enable {
     # programs
-    programs.fzf.enable = true;
     programs.fd.enable = true;
 
     # modules
@@ -22,6 +21,7 @@
         btop.enable = true;
         fish.enable = true;
         git.enable = true;
+        television.enable = true;
         yazi.enable = true;
       };
     };

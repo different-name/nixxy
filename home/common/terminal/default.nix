@@ -10,6 +10,7 @@
     ./fastfetch.nix
     ./fish.nix
     ./git.nix
+    ./television.nix
     ./yazi.nix
   ];
 
