@@ -37,6 +37,9 @@
       zip
       unzip
       nvfetcher
+      nix-melt
+      nix-init
+      nurl
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
