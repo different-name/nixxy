@@ -34,6 +34,10 @@
           ];
         };
       };
+
+      enableBashIntegration = false;
+      enableFishIntegration = false;
+      enableZshIntegration = false;
     };
   };
 }
