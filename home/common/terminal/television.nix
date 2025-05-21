@@ -16,8 +16,6 @@
         postBuild = "wrapProgram $out/bin/tv --add-flags '--exact'";
       };
 
-      enableFishIntegration = true;
-
       # TODO https://github.com/alexpasmantier/television/issues/520
       # settings = {
       #   default_channel = "nixpkgs";
