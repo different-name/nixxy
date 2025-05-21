@@ -12,78 +12,110 @@
   options.nix-files.graphical.games.discord.enable = lib.mkEnableOption "Discord config";
 
   config = lib.mkIf config.nix-files.graphical.games.discord.enable {
+    # to update config:
+    # $ rm ~/.config/moonlight-mod/stable.json
+    # save config in moonbase
+    # $ nix repl
+    # nix-repl> :p builtins.fromJSON (builtins.readFile ~/.config/moonlight-mod/stable.json)
     programs.moonlight-mod = {
       enable = true;
-
       configs.stable = {
+        devSearchPaths = ["/home/different/Code/my-moonlight-extensions/dist"];
         extensions = {
-          # moonbase
-          moonbase = {
-            enabled = true;
-            config = {
-              updateChecking = true;
-              updateBanner = true;
-            };
-          };
-
-          # appearance
-          colorConsistency = true;
-          moonlight-css = {
-            enabled = true;
-            config = {
-              paths = [
-                "https://catppuccin.github.io/discord/dist/catppuccin-mocha-red.theme.css"
-              ];
-            };
-          };
-
-          # chat
           alwaysShowForwardTime = true;
-          ownerCrown = true;
           betterCodeblocks = true;
+          betterEmbedsYT = true;
+          callIdling = true;
+          callTimer = true;
+          clearUrls = true;
+          cloneExpressions = true;
+          colorConsistency = true;
+          copyAvatarUrl = true;
+          copyWebp = true;
+          disableSentry = true;
+          freeMoji = true;
+          freeScreenShare = true;
+          imageViewer = true;
+          jumpToBlocked = true;
+          mediaTweaks = {
+            config = {
+              imageUrls = false;
+              noGifAutosend = false;
+              noStickerAutosend = false;
+              videoMetadata = false;
+            };
+            enabled = true;
+          };
           mentionAvatars = true;
+          moonbase = {
+            config = {
+              updateBanner = true;
+              updateChecking = true;
+            };
+            enabled = true;
+          };
+          moonlight-css = {
+            config = {
+              paths = ["https://catppuccin.github.io/discord/dist/catppuccin-mocha-red.theme.css"];
+            };
+            enabled = true;
+          };
+          nativeFixes = {
+            config = {
+              disableRendererBackgrounding = false;
+              linuxSpeechDispatcher = true;
+              vulkan = true;
+            };
+            enabled = true;
+          };
+          noHelp = true;
           noJoinMessageWave = true;
           noMaskedLinkPaste = true;
           noReplyChainNag = true;
-          replyChain = true;
-          staffTags = {
+          noRpc = true;
+          noTrack = true;
+          openExternally = {
+            config = {spotify = false;};
             enabled = true;
+          };
+          ownerCrown = true;
+          replyChain = true;
+          resolver = true;
+          sendTimestamps = true;
+          showMediaOptions = true;
+          showReplySelf = true;
+          staffTags = {
             config = {
               tags = [
                 {
-                  label = "Owner";
+                  color = 5793266;
                   icon = "crown";
-                  color = 5793266;
+                  label = "Owner";
+                  permissions = ["OWNER"];
                   useRoleColor = true;
-                  permissions = [
-                    "OWNER"
-                  ];
                 }
                 {
-                  label = "Admin";
+                  color = 5793266;
                   icon = "shield";
-                  color = 5793266;
+                  label = "Admin";
+                  permissions = ["ADMINISTRATOR"];
                   useRoleColor = true;
-                  permissions = [
-                    "ADMINISTRATOR"
-                  ];
                 }
                 {
-                  label = "Manager";
-                  icon = "wrench";
                   color = 5793266;
-                  useRoleColor = true;
+                  icon = "wrench";
+                  label = "Manager";
                   permissions = [
                     "MANAGE_CHANNELS"
                     "MANAGE_GUILD"
                     "MANAGE_ROLES"
                   ];
+                  useRoleColor = true;
                 }
                 {
-                  label = "Mod";
-                  icon = "hammer";
                   color = 5793266;
-                  useRoleColor = true;
+                  icon = "hammer";
+                  label = "Mod";
                   permissions = [
                     "KICK_MEMBERS"
                     "BAN_MEMBERS"
@@ -93,75 +125,18 @@
                     "MANAGE_NICKNAMES"
                     "MODERATE_MEMBERS"
                   ];
+                  useRoleColor = true;
                 }
               ];
             };
-          };
-          showReplySelf = true;
-
-          # commands
-          sendTimestamps = true;
-
-          # context menu
-          copyAvatarUrl = true;
-          copyWebp = true;
-          resolver = true;
-          showMediaOptions = true;
-
-          # fixes
-          nativeFixes = {
-            config = {
-              disableRendererBackgrounding = false;
-              vulkan = true;
-              linuxSpeechDispatcher = true;
-            };
             enabled = true;
           };
-
-          # privacy
-          betterEmbedsYT = true;
-          clearUrls = true;
-          disableSentry = true;
-          noHelp = true;
-          noRpc = true;
-          noTrack = true;
-
-          # qol
-          cloneExpressions = true;
-          freeScreenShare = true;
-          freeMoji = true;
-          imageViewer = true;
-          jumpToBlocked = true;
-          mediaTweaks = {
-            enabled = true;
-            config = {
-              imageUrls = false;
-              videoMetadata = false;
-              noStickerAutosend = false;
-              noGifAutosend = false;
-            };
-          };
-          openExternally = {
-            enabled = true;
-            config = {
-              spotify = false;
-            };
-          };
-
-          # voice
-          callIdling = true;
-          callTimer = true;
           whoJoined = {
+            config = {serverNicknames = false;};
             enabled = true;
-            config = {
-              serverNicknames = false;
-            };
           };
         };
-
-        repositories = [
-          "https://moonlight-mod.github.io/extensions-dist/repo.json"
-        ];
+        repositories = ["https://moonlight-mod.github.io/extensions-dist/repo.json"];
       };
     };
 
