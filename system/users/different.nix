@@ -39,5 +39,9 @@
     age.identityPaths = lib.mkIf config.nix-files.core.agenix.enable [
       "/persist/home/different/.ssh/id_ed25519"
     ];
+
+    nix.settings.trusted-users = [
+      "different"
+    ];
   };
 }

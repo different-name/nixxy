@@ -35,5 +35,9 @@
     age.identityPaths = lib.mkIf config.nix-files.core.agenix.enable [
       "/persist/home/iodine/.ssh/id_ed25519"
     ];
+
+    nix.settings.trusted-users = [
+      "iodine"
+    ];
   };
 }
