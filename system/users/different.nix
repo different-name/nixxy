@@ -40,6 +40,7 @@
       "/persist/home/different/.ssh/id_ed25519"
     ];
 
+    # used for remote nixos builds
     nix.settings.trusted-users = [
       "different"
     ];
