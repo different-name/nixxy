@@ -9,22 +9,11 @@
   config = lib.mkIf config.nix-files.terminal.television.enable {
     programs.television = {
       enable = true;
-      package = pkgs.symlinkJoin {
-        name = "television";
-        paths = [pkgs.television];
-        buildInputs = [pkgs.makeWrapper];
-        postBuild = "wrapProgram $out/bin/tv --add-flags '--exact'";
-      };
-
-      # TODO https://github.com/alexpasmantier/television/issues/520
-      # settings = {
-      #   default_channel = "nixpkgs";
-      # };
 
       channels = {
         nix = {
           cable_channel = let
-            nix-search-tv = pkgs.nix-search-tv + /bin/tv;
+            nix-search-tv = lib.getExe pkgs.nix-search-tv;
           in [
             {
               name = "nixpkgs";
@@ -38,6 +27,10 @@
       enableBashIntegration = false;
       enableFishIntegration = false;
       enableZshIntegration = false;
+    };
+
+    home.shellAliases = {
+      nixpkgs = "tv nixpkgs --exact";
     };
   };
 }
