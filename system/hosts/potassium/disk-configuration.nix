@@ -2,7 +2,7 @@
   disko.devices = {
     disk."main" = {
       type = "disk";
-      device = "/dev/disk/by-diskseq/9";
+      device = "/dev/disk/by-diskseq/1";
       content = {
         type = "gpt";
 
