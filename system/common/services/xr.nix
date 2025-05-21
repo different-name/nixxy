@@ -78,7 +78,10 @@
         description = "wlx-overlay-s";
         after = ["wait-for-wivrn.service"];
         requires = ["wait-for-wivrn.service"];
-        partOf = ["vr-session.service"];
+        partOf = [
+          "wivrn.service"
+          "vr-session.service"
+        ];
 
         serviceConfig = {
           ExecStart = "${lib.getExe pkgs.wlx-overlay-s} --openxr --replace";
