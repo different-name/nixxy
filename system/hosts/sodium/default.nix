@@ -36,7 +36,6 @@ in {
       };
 
       keyd.enable = true;
-      llm.enable = true;
     };
   };
 
