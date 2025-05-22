@@ -32,7 +32,7 @@
       # user defined fonts
       # Noto Color Emoji is used in all to override DejaVu's B&W emojis
       fontconfig.defaultFonts = let
-        addAll = builtins.mapAttrs (k: v: ["Symbols Nerd Font"] ++ v ++ ["Noto Color Emoji"]);
+        addAll = builtins.mapAttrs (k: v: v ++ ["Symbols Nerd Font"] ++ ["Noto Color Emoji"]);
       in
         addAll {
           serif = ["Noto Serif"];
