@@ -1,5 +1,13 @@
 # pgks
 
+## cats-blender-plugin-unofficial
+
+https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-
+
+## mcuuid
+
+A simple script for retrieving UUIDs for Minecraft users
+
 ## nt
 
 (Nix Tools)
