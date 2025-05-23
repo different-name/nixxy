@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./xr
-    ./discord.nix
+    ./discord
     ./steam.nix
   ];
 
