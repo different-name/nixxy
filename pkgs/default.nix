@@ -13,11 +13,11 @@
   in {
     packages =
       [
-        ./cats-blender-plugin-unofficial.nix
+        ./cats-blender-plugin-unofficial
         ./mcuuid
         ./nt
         ./tascam
-        ./wivrn-solarxr.nix
+        ./wivrn-solarxr
       ]
       |> map mkPackageAttr
       |> builtins.listToAttrs;
