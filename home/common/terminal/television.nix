@@ -32,5 +32,12 @@
     home.shellAliases = {
       nixpkgs = "tv nixpkgs --exact";
     };
+
+    home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
+      directories = [
+        ".local/share/television"
+        ".cache/nix-search-tv"
+      ];
+    };
   };
 }
