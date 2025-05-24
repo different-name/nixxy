@@ -1,11 +1,13 @@
 {
   lib,
   config,
+  self,
   inputs,
   pkgs,
   ...
 }: {
   imports = [
+    self.nixosModules.steam-launch-options
     inputs.nixpkgs-xr.nixosModules.nixpkgs-xr
   ];
 
@@ -19,6 +21,8 @@
         proton-ge-bin
         proton-ge-rtsp-bin
       ];
+
+      launchOptions.enable = true;
     };
 
     hardware.steam-hardware.enable = true;

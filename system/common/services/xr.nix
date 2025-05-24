@@ -114,6 +114,13 @@
       };
     };
 
+    programs.steam.launchOptions.games.VRChat = {
+      variables = {
+        PRESSURE_VESSEL_FILESYSTEMS_RW = "$XDG_RUNTIME_DIR/wivrn/comp_ipc";
+      };
+      unsetVariables = ["TZ"];
+    };
+
     environment.persistence."/persist/system" = lib.mkIf config.nix-files.core.persistence.enable {
       directories = [
         "/root/.config/dev.slimevr.SlimeVR"
