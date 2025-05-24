@@ -22,7 +22,14 @@
         proton-ge-rtsp-bin
       ];
 
-      launchOptions.enable = true;
+      launchOptions = {
+        enable = true;
+
+        games = {
+          # workaround for vrchat using incorrect timezone
+          VRChat.unsetVariables = ["TZ"];
+        };
+      };
     };
 
     hardware.steam-hardware.enable = true;
