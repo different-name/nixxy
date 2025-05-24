@@ -41,15 +41,24 @@
       };
 
       wait-for-slimevr-server = {
-        description = "Wait for SlimeVR Server to be ready";
+        description = "Wait for SlimeVR Server to be ready and remain active while it runs";
         after = ["slimevr-server.service"];
         requires = ["slimevr-server.service"];
 
         serviceConfig = {
-          Type = "oneshot";
-          ExecStart = ''
-            ${lib.getExe pkgs.bash} -c 'timeout 15s journalctl --user -fu slimevr-server.service | grep -m1 "\[SolarXR Bridge\] Socket /run/user/1000/SlimeVRRpc created"'
-          '';
+          Type = "notify";
+          ExecStart = lib.getExe (pkgs.writeShellScriptBin "wait-for-slimevr-server" ''
+            set -eu pipefail
+
+            timeout 15s journalctl --user -fu slimevr-server.service |
+              grep -m1 "\[SolarXR Bridge\] Socket /run/user/1000/SlimeVRRpc created"
+            set -o pipefail
+
+            ${pkgs.systemd}/bin/systemd-notify --ready
+
+            exec sleep infinity
+          '');
+          NotifyAccess = "all";
         };
       };
 
@@ -62,15 +71,26 @@
       };
 
       wait-for-wivrn = {
-        description = "Wait for Wivrn to be ready";
+        description = "Wait for Wivrn to be ready and remain active while it runs";
         after = ["wivrn.service"];
         requires = ["wivrn.service"];
+        partOf = ["wivrn.service"];
 
         serviceConfig = {
-          Type = "oneshot";
-          ExecStart = ''
-            ${lib.getExe pkgs.bash} -c 'timeout 15s journalctl --user -fu wivrn.service | grep -m1 "Service published: ${config.networking.hostName}" && sleep 0.5'
-          '';
+          Type = "notify";
+          ExecStart = lib.getExe (pkgs.writeShellScriptBin "wait-for-wivrn" ''
+            set -eu pipefail
+
+            timeout 15s journalctl --user -fu wivrn.service |
+              grep -m1 "Service published: ${config.networking.hostName}"
+            set -o pipefail
+
+            sleep 0.5
+            ${pkgs.systemd}/bin/systemd-notify --ready
+
+            exec sleep infinity
+          '');
+          NotifyAccess = "all";
         };
       };
 
