@@ -1,0 +1,80 @@
+diff --git a/src/backend/openvr/lines.rs b/src/backend/openvr/lines.rs
+index 1c590e6..6f67747 100644
+--- a/src/backend/openvr/lines.rs
++++ b/src/backend/openvr/lines.rs
+@@ -55,9 +55,9 @@ impl LinePool {
+             view,
+             colors: [
+                 Vec4::new(1., 1., 1., 1.),
+-                Vec4::new(0., 0.375, 0.5, 1.),
+-                Vec4::new(0.69, 0.188, 0., 1.),
+-                Vec4::new(0.375, 0., 0.5, 1.),
++                Vec4::new(0.953, 0.545, 0.689, 1.),
++                Vec4::new(0.537, 0.706, 0.980, 1.),
++                Vec4::new(0.796, 0.651, 0.969, 1.),
+                 Vec4::new(1., 0., 0., 1.),
+             ],
+         })
+diff --git a/src/backend/openxr/lines.rs b/src/backend/openxr/lines.rs
+index 144fe1e..d80dc80 100644
+--- a/src/backend/openxr/lines.rs
++++ b/src/backend/openxr/lines.rs
+@@ -28,9 +28,9 @@ pub(super) const LINE_WIDTH: f32 = 0.002;
+ static COLORS: [[f32; 6]; 5] = {
+     [
+         [1., 1., 1., 1., 0., 0.],
+-        [0., 0.375, 0.5, 1., 0., 0.],
+-        [0.69, 0.188, 0., 1., 0., 0.],
+-        [0.375, 0., 0.5, 1., 0., 0.],
++        [0.953, 0.545, 0.689, 1., 0., 0.],
++        [0.537, 0.706, 0.980, 1., 0., 0.],
++        [0.796, 0.651, 0.969, 1., 0., 0.],
+         [1., 0., 0., 1., 0., 0.],
+     ]
+ };
+diff --git a/src/overlays/keyboard.rs b/src/overlays/keyboard.rs
+index aa32415..6915f26 100644
+--- a/src/overlays/keyboard.rs
++++ b/src/overlays/keyboard.rs
+@@ -100,12 +100,12 @@ where
+         data,
+     )?;
+ 
+-    canvas.bg_color = color_parse("#181926").unwrap(); //safe
++    canvas.bg_color = color_parse("#1e1e2e").unwrap(); //safe
+     canvas.panel(0., 0., size.x, size.y, 12.);
+ 
+     canvas.font_size = 18;
+-    canvas.fg_color = color_parse("#cad3f5").unwrap(); //safe
+-    canvas.bg_color = color_parse("#1e2030").unwrap(); //safe
++    canvas.fg_color = color_parse("#cdd6f4").unwrap(); //safe
++    canvas.bg_color = color_parse("#313244").unwrap(); //safe
+ 
+     let has_altgr = keymap
+         .as_ref()
+diff --git a/src/overlays/toast.rs b/src/overlays/toast.rs
+index 7ed0893..90c275a 100644
+--- a/src/overlays/toast.rs
++++ b/src/overlays/toast.rs
+@@ -184,8 +184,8 @@ fn new_toast(toast: Toast, app: &mut AppState) -> Option<(OverlayState, Box<dyn
+     .ok()?;
+ 
+     canvas.font_size = FONT_SIZE;
+-    canvas.fg_color = color_parse("#cad3f5").unwrap(); // want panic
+-    canvas.bg_color = color_parse("#1e2030").unwrap(); // want panic
++    canvas.fg_color = color_parse("#cdd6f4").unwrap(); // want panic
++    canvas.bg_color = color_parse("#313244").unwrap(); // want panic
+     canvas.panel(0., 0., size.0, size.1, 16.);
+ 
+     if toast.body.is_empty() {
+@@ -193,8 +193,8 @@ fn new_toast(toast: Toast, app: &mut AppState) -> Option<(OverlayState, Box<dyn
+     } else {
+         canvas.label(PADDING.0, 54., og_width, size.1 - 54., 3., toast.body);
+ 
+-        canvas.fg_color = color_parse("#b8c0e0").unwrap(); // want panic
+-        canvas.bg_color = color_parse("#24273a").unwrap(); // want panic
++        canvas.fg_color = color_parse("#bac2de").unwrap(); // want panic
++        canvas.bg_color = color_parse("#45475a").unwrap(); // want panic
+         canvas.panel(0., 0., size.0, 30., 16.);
+         canvas.label_centered(PADDING.0, 16., og_width, FONT_SIZE as f32 + 2., 16., title);
+     }

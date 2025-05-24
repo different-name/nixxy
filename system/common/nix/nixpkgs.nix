@@ -29,6 +29,20 @@
               ];
           });
         })
+
+        (final: prev: {
+          wlx-overlay-s = prev.wlx-overlay-s.overrideAttrs (old: {
+            patches =
+              (old.patches or [])
+              ++ [
+                # https://nix.dev/guides/best-practices.html#reproducible-source-paths
+                (builtins.path {
+                  path = "${self}/patches/wlx-overlay-s/catppuccin-colors.patch";
+                  name = "wlx-overlay-s-catppuccin-colors";
+                })
+              ];
+          });
+        })
       ];
     };
 
