@@ -24,6 +24,13 @@ in {
         description = "A list of environment variables to unset";
         example = ["TZ"];
       };
+
+      extraArgs = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [];
+        description = "A list of arguments to append to %command%";
+        example = ["--fps=60"];
+      };
     };
   in {
     enable = lib.mkEnableOption "Steam game launch option configuration, requires launch options to be set to `steam-game-wrapper %command%` in Steam";
@@ -47,6 +54,8 @@ in {
 
   config.programs.steam = lib.mkIf cfg.enable {
     extraPackages = let
+      generateArgs = args: "( ${lib.concatStringsSep " " (map lib.escapeShellArg args)} )";
+
       generateExports = variables:
         variables
         |> lib.mapAttrsToList (k: v: ''export ${k}="${v}"'')
@@ -57,15 +66,17 @@ in {
         |> map (v: "unset ${v}")
         |> lib.concatStringsSep "\n";
 
-      globalEnv = ''
+      globalOpts = ''
+        EXTRA_ARGS+=${generateArgs cfg.global.extraArgs}
         ${generateUnsets cfg.global.unsetVariables}
         ${generateExports cfg.global.variables}
       '';
 
-      gameEnvs =
+      gameOpts =
         cfg.games
         |> lib.mapAttrsToList (game: options: ''
           ${lib.escapeShellArg game})
+            EXTRA_ARGS+=${generateArgs options.extraArgs}
             ${generateUnsets options.unsetVariables}
             ${generateExports options.variables}
             ;;
@@ -80,11 +91,11 @@ in {
         text =
           builtins.readFile ./steam-game-wrapper.sh
           |> lib.replaceStrings [
-            "# __GLOBAL_ENV__"
-            "# __GAME_ENVS__"
+            "# __GLOBAL_OPTS__"
+            "# __GAME_OPTS__"
           ] [
-            globalEnv
-            gameEnvs
+            globalOpts
+            gameOpts
           ];
       };
     in [steam-game-wrapper];

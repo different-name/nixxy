@@ -18,11 +18,11 @@ else
   exit 1
 fi
 
-# __GLOBAL_ENV__
+EXTRA_ARGS=()
+# __GLOBAL_OPTS__
 
 case "$GAME_NAME" in
-# __GAME_ENVS__
+# __GAME_OPTS__
 esac
 
-exec "$@"
-
+exec "$@" "${EXTRA_ARGS[@]}"
