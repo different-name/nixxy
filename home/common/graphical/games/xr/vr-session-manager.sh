@@ -12,15 +12,16 @@ SERVICE="vr-session.service"
 NOTIFY_TIME="5000"
 
 if [ "$ACTION" = "start" ]; then
+  # __ENTER_VR_HOOK__
   if systemctl --user start "$SERVICE"; then
     notify-send -t "$NOTIFY_TIME" "VR Session" "VR session started successfully"
-    hyprctl keyword input:follow_mouse 2
   else
+    # __EXIT_VR_HOOK__
     notify-send -t "$NOTIFY_TIME" "VR Session" "Failed to start VR session" -u critical
     exit 2
   fi
 elif [ "$ACTION" = "stop" ]; then
-  hyprctl keyword input:follow_mouse 1
+  # __EXIT_VR_HOOK__
   if systemctl --user stop "$SERVICE"; then
     notify-send -t "$NOTIFY_TIME" "VR Session" "VR session stopped successfully"
   else

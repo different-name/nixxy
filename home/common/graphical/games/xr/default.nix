@@ -3,10 +3,26 @@
   config,
   pkgs,
   ...
-}: {
-  options.nix-files.graphical.games.xr.enable = lib.mkEnableOption "XR config";
+}: let
+  cfg = config.nix-files.graphical.games.xr;
+in {
+  options.nix-files.graphical.games.xr = {
+    enable = lib.mkEnableOption "XR config";
 
-  config = lib.mkIf config.nix-files.graphical.games.xr.enable {
+    enterVrHook = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = "Command to run before entering VR";
+    };
+
+    exitVrHook = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = "Command to run after exiting VR";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     xdg.desktopEntries = let
       vr-session-manager = pkgs.writeShellApplication {
         name = "vr-session-manager";
@@ -15,7 +31,15 @@
           systemd
           config.wayland.windowManager.hyprland.package
         ];
-        text = builtins.readFile ./vr-session-manager.sh;
+        text =
+          builtins.readFile ./vr-session-manager.sh
+          |> lib.replaceStrings [
+            "# __ENTER_VR_HOOK__"
+            "# __EXIT_VR_HOOK__"
+          ] [
+            cfg.enterVrHook
+            cfg.exitVrHook
+          ];
       };
 
       baseEntry = {

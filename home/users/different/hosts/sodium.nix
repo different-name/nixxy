@@ -15,7 +15,22 @@
       graphical.enable = true;
     };
 
-    graphical.games.xr.enable = true;
+    graphical.games.xr = {
+      enable = true;
+
+      # lower monitor resolution in vr mode & change mouse focus mode
+      enterVrHook = ''
+        hyprctl keyword monitor "desc:BNQ BenQ EW3270U 5BL00174019, 1920x1080, 0x0, 0.75"
+        hyprctl keyword input:follow_mouse 2
+      '';
+
+      # defaults
+      exitVrHook = ''
+        hyprctl keyword monitor "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5"
+        hyprctl keyword input:follow_mouse 1
+      '';
+    };
+
     graphical.meta.nvidia.enable = true;
 
     services.goxlr-utility.enable = true;
