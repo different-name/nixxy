@@ -64,6 +64,12 @@
       enabled = true;
     };
     ownerCrown = true;
+    platformStyles = {
+      config = {
+        noMinimumSize = true;
+      };
+      enabled = true;
+    };
     replyChain = true;
     resolver = true;
     sendTimestamps = true;
