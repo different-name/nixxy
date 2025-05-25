@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  osConfig,
   ...
 }: let
   cfg = config.nix-files.graphical.games.xr;
@@ -104,6 +105,17 @@ in {
     };
 
     xdg.configFile."VRCX/custom.css".source = ./vrcx-catppuccin.css;
+
+    # TODO temporary workaround until https://www.github.com/hyprwm/xdg-desktop-portal-hyprland/issues/329 is implemented properly
+    wayland.windowManager.hyprland.xdg-desktop-portal-hyprland.settings = {
+      screencopy = {
+        custom_picker_binary = lib.getExe (pkgs.writeShellApplication {
+          name = "hyprland-share-picker-xr";
+          runtimeInputs = [osConfig.programs.hyprland.portalPackage];
+          text = builtins.readFile ./hyprland-share-picker-xr.sh;
+        });
+      };
+    };
 
     home.packages = with pkgs; [
       # https://github.com/tauri-apps/tauri/issues/9394
