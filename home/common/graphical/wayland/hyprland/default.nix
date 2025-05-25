@@ -4,10 +4,12 @@
   inputs,
   pkgs,
   osConfig,
+  self,
   ...
 }: {
   imports = [
     inputs.hyprland.homeManagerModules.default
+    self.homeManagerModules.xdg-desktop-portal-hyprland
 
     ./binds.nix
     ./rules.nix

@@ -8,6 +8,7 @@
       imports = [
         ./system/hosts
         ./system/modules
+        ./home/modules
         ./pkgs
       ];
 
