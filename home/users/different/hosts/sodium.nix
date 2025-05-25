@@ -1,6 +1,8 @@
 {
   pkgs,
   self,
+  config,
+  lib,
   ...
 }: {
   imports = [
@@ -49,6 +51,14 @@
   wayland.windowManager.hyprland.settings.bind = [
     "$mod, P, exec, pgrep tascam || tascam"
   ];
+
+  # persist syncthing configuration
+
+  home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
+    directories = [
+      ".config/syncthing"
+    ];
+  };
 
   ### required config
 

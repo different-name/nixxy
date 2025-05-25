@@ -39,5 +39,14 @@ in {
   "tokens/github.age".publicKeys = allKeys;
   "tokens/cloudflare.age".publicKeys = allKeys;
 
+  "syncthing/sodium/key.age".publicKeys = with keys.sodium; [
+    root
+    different
+  ];
+  "syncthing/sodium/cert.age".publicKeys = with keys.sodium; [
+    root
+    different
+  ];
+
   "minecraft/maocraft-discordsrv.age".publicKeys = allKeys;
 }

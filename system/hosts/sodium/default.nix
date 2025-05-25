@@ -1,6 +1,8 @@
 {
   inputs,
   pkgs,
+  self,
+  config,
   ...
 }: let
   machine-id = "9471422d94d34bb8807903179fb35f11";
@@ -86,6 +88,29 @@ in {
       };
     }
   ];
+
+  age.secrets."syncthing/sodium/key".file = "${self}/secrets/syncthing/sodium/key.age";
+  age.secrets."syncthing/sodium/cert".file = "${self}/secrets/syncthing/sodium/cert.age";
+
+  # sync files between vr headset and desktop
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+
+    user = "different";
+    dataDir = "/home/different";
+
+    key = config.age.secrets."syncthing/sodium/key".path;
+    cert = config.age.secrets."syncthing/sodium/cert".path;
+
+    settings = {
+      devices = {
+        "Pico" = {id = "4EZ7P3H-3G2YWUM-BZDVVN2-7M3OTFZ-IL4KQP5-Z733T66-7CP6J3H-724OCAG";};
+      };
+    };
+  };
+  # don't create default ~/Sync folder
+  systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";
 
   ### required config
 
