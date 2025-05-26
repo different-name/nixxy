@@ -10,7 +10,7 @@
   config = lib.mkIf config.nix-files.graphical.wayland.anyrun.enable {
     programs.anyrun = {
       enable = true;
-      package = inputs.anyrun.packages.x86_64-linux.default;
+      package = inputs.anyrun.packages.${pkgs.system}.default;
 
       config = {
         plugins = with inputs.anyrun.packages.${pkgs.system}; [
