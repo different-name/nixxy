@@ -16,7 +16,7 @@
         ./cats-blender-plugin-unofficial
         ./mcuuid
         ./nt
-        ./osc-goes-brr
+        ./osc-goes-brrr
         ./tascam
         ./wivrn-solarxr
       ]
