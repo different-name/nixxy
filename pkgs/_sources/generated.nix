@@ -17,14 +17,16 @@
   };
   wivrn-solarxr = {
     pname = "wivrn-solarxr";
-    version = "52ad3fa19ba8fe6a12fcca20d2794a414fc0a20c";
-    src = fetchFromGitHub {
-      owner = "notpeelz";
-      repo = "WiVRn";
-      rev = "52ad3fa19ba8fe6a12fcca20d2794a414fc0a20c";
+    version = "415bb70fd881e60a6bcaf95aaebc04eff0901e44";
+    src = fetchgit {
+      url = "https://github.com/notpeelz/WiVRn.git";
+      rev = "415bb70fd881e60a6bcaf95aaebc04eff0901e44";
       fetchSubmodules = false;
-      sha256 = "sha256-ZWox2mc/Y/n1ewaCed7d5VK+MCzzpjCq5yuvV2iqsyY=";
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-v38v3cyix5A7HM88ryJmvDOo0ycZqqBZwO+hqgxoSIA=";
     };
-    date = "2025-05-18";
+    date = "2025-05-22";
   };
 }
