@@ -19,6 +19,26 @@
         },
         "version": "45032046e3e77a0a397fe1dc482f68cb5444dc59"
     },
+    "osc-goes-brrr": {
+        "cargoLocks": null,
+        "date": "2024-10-13",
+        "extract": null,
+        "name": "osc-goes-brrr",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "a3f951756bdeefcc690b98d4c4f22c2230464be7",
+            "sha256": "sha256-KRx8rMsQFU7dYmjO/JCjkUp2JheTkQ8sUT56Q0Q+p8E=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/OscToys/OscGoesBrrr.git"
+        },
+        "version": "a3f951756bdeefcc690b98d4c4f22c2230464be7"
+    },
     "wivrn-solarxr": {
         "cargoLocks": null,
         "date": "2025-05-22",

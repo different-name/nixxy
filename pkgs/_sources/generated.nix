@@ -15,6 +15,20 @@
     };
     date = "2025-03-26";
   };
+  osc-goes-brrr = {
+    pname = "osc-goes-brrr";
+    version = "a3f951756bdeefcc690b98d4c4f22c2230464be7";
+    src = fetchgit {
+      url = "https://github.com/OscToys/OscGoesBrrr.git";
+      rev = "a3f951756bdeefcc690b98d4c4f22c2230464be7";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-KRx8rMsQFU7dYmjO/JCjkUp2JheTkQ8sUT56Q0Q+p8E=";
+    };
+    date = "2024-10-13";
+  };
   wivrn-solarxr = {
     pname = "wivrn-solarxr";
     version = "415bb70fd881e60a6bcaf95aaebc04eff0901e44";

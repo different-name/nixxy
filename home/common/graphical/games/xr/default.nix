@@ -3,6 +3,7 @@
   config,
   pkgs,
   osConfig,
+  self,
   ...
 }: let
   cfg = config.nix-files.graphical.games.xr;
@@ -118,6 +119,8 @@ in {
     };
 
     home.packages = with pkgs; [
+      self.packages.${pkgs.system}.osc-goes-brrr
+
       # https://github.com/tauri-apps/tauri/issues/9394
       (symlinkJoin {
         name = "slimevr";
@@ -137,6 +140,9 @@ in {
         # opencomposite
         ".local/state/OpenComposite"
         ".config/openvr"
+
+        # osc-goes-brrr
+        ".config/OscGoesBrrr"
 
         # slimevr
         ".config/dev.slimevr.SlimeVR"
