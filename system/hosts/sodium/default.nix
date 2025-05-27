@@ -98,6 +98,7 @@ in {
     openDefaultPorts = true;
 
     user = "different";
+    group = "users";
     dataDir = "/home/different";
 
     key = config.age.secrets."syncthing/sodium/key".path;
