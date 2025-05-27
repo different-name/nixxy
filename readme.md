@@ -12,6 +12,7 @@ My NixOS configuration files
 - Declarative disk partitioning with [disko](https://github.com/nix-community/disko) with btrfs & luks full disk encryption
 - Ephemeral root and home (state is opt in, managed by [impermanence](https://github.com/nix-community/impermanence))
 - Declarative home with [home-manager](https://github.com/nix-community/home-manager)
+- Package sources tracked using nvfetcher
 
 ## Structure
 
@@ -41,12 +42,12 @@ home - home level configuration
 │   ├── services  - services.* configuration
 │   └── terminal  - terminal programs.* configuration
 ├── profiles - home configuration "presets"
-└── users
-    └── <name> - user home configuration
-        ├──  hosts   - user@host home configuration
-        └──  scripts - scripts specific to a user / user's host
+├── users
+│   └── <name> - user home configuration
+│       └──  hosts   - user@host home configuration
+└── modules  - NixOS modules
 
-pkgs    - package definitions, using nvfetcher
+pkgs    - package definitions, sources tracked with nvfetcher
 patches - .patch files
 secrets - age secrets
 assets  - images, etc
