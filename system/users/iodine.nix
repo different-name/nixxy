@@ -35,10 +35,5 @@
     age.identityPaths = lib.mkIf config.nix-files.core.agenix.enable [
       "/persist/home/iodine/.ssh/id_ed25519"
     ];
-
-    # used for remote nixos builds
-    nix.settings.trusted-users = [
-      "iodine"
-    ];
   };
 }

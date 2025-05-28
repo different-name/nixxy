@@ -21,6 +21,8 @@ in {
 
     hardware.nvidia.enable = true;
 
+    nix.distributed-builds.enable = true;
+
     services.autologin = {
       enable = true;
       user = "different";

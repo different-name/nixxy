@@ -21,6 +21,8 @@ in {
 
     profiles.global.enable = true;
 
+    nix.distributed-builds.enable = true;
+
     services = {
       cloudflare-dyndns.enable = true;
       minecraft-server = {

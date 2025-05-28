@@ -29,7 +29,7 @@ in {
 
     hardware.nvidia.enable = true;
 
-    services.xr.enable = true;
+    nix.build-host.enable = true;
 
     services = {
       autologin = {
@@ -38,6 +38,7 @@ in {
       };
 
       keyd.enable = true;
+      xr.enable = true;
     };
   };
 
