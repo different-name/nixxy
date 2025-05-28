@@ -51,6 +51,13 @@
                     mountpoint = "/persist";
                   };
 
+                  "swap" = {
+                    mountpoint = "/.swapvol";
+                    swap = {
+                      swapfile.size = "16G";
+                    };
+                  };
+
                   # steam needs ~/.steam  and ~/.local/share/Steam to be regular folders or mounts
                   # these folders cannot be symlinks or bind mounts, else steam will crash
                   "steam" = {
