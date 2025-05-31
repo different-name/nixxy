@@ -10,7 +10,31 @@
   config = lib.mkIf config.nix-files.services.xr.enable {
     services.wivrn = {
       enable = true;
-      package = self.packages.${pkgs.system}.wivrn-solarxr;
+      # WORKAROUND inline package definition, cannot use unfree packages from flake package definition
+      # package = self.packages.${pkgs.system}.wivrn-solarxr;
+      package = let
+        sources = import "${self}/pkgs/_sources/generated.nix" {
+          inherit (pkgs) fetchgit fetchurl fetchFromGitHub dockerTools;
+        };
+      in
+        pkgs.wivrn.overrideAttrs (final: prev: {
+          inherit (sources.wivrn-solarxr) pname version src;
+
+          cmakeFlags =
+            (prev.cmakeFlags or [])
+            ++ [(lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)];
+
+          postUnpack = ''
+            ourMonadoRev="${final.monado.src.rev}"
+            theirMonadoRev=$(cat ${final.src.name}/monado-rev)
+            if [ ! "$theirMonadoRev" == "$ourMonadoRev" ]; then
+              echo "Our Monado source revision doesn't match CMakeLists.txt." >&2
+              echo "  theirs: $theirMonadoRev" >&2
+              echo "    ours: $ourMonadoRev" >&2
+              return 1
+            fi
+          '';
+        });
 
       openFirewall = true;
       defaultRuntime = true;
@@ -22,6 +46,17 @@
             Mbps = 100;
           in
             Mbps * 1000000;
+
+          encoders = [
+            {
+              encoder = "nvenc";
+              codec = "h264";
+              width = 1.0;
+              height = 1.0;
+              offset_x = 0.0;
+              offset_y = 0.0;
+            }
+          ];
         };
       };
     };
