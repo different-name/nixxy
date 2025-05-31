@@ -3,17 +3,17 @@
 {
   cats-blender-plugin-unofficial = {
     pname = "cats-blender-plugin-unofficial";
-    version = "45032046e3e77a0a397fe1dc482f68cb5444dc59";
+    version = "3bcf8d5f0678c1eb5336dd38540a346aaca39c90";
     src = fetchgit {
       url = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git";
-      rev = "45032046e3e77a0a397fe1dc482f68cb5444dc59";
+      rev = "3bcf8d5f0678c1eb5336dd38540a346aaca39c90";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-8n5VI2kAdxmuapSmiHtG2yrwy3wvtksbVtQ29cys2j8=";
+      sha256 = "sha256-Zo8D2P0Bsm1jsp9p/93ZRYO+4+cWljQn8yNotsnIQ/M=";
     };
-    date = "2025-03-26";
+    date = "2025-05-30";
   };
   osc-goes-brrr = {
     pname = "osc-goes-brrr";
@@ -31,16 +31,16 @@
   };
   wivrn-solarxr = {
     pname = "wivrn-solarxr";
-    version = "415bb70fd881e60a6bcaf95aaebc04eff0901e44";
+    version = "7da1bbc174aae5aaecb6a0bf4531d32bb11fcf23";
     src = fetchgit {
       url = "https://github.com/notpeelz/WiVRn.git";
-      rev = "415bb70fd881e60a6bcaf95aaebc04eff0901e44";
+      rev = "7da1bbc174aae5aaecb6a0bf4531d32bb11fcf23";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-v38v3cyix5A7HM88ryJmvDOo0ycZqqBZwO+hqgxoSIA=";
+      sha256 = "sha256-gadJupQjf6bPjKwbJXrIJ8gspOzPltrEaZoyT/4tlDc=";
     };
-    date = "2025-05-22";
+    date = "2025-05-31";
   };
 }
