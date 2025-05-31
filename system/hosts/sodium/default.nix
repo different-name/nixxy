@@ -110,6 +110,8 @@ in {
         "Pico" = {id = "4EZ7P3H-3G2YWUM-BZDVVN2-7M3OTFZ-IL4KQP5-Z733T66-7CP6J3H-724OCAG";};
       };
     };
+
+    overrideFolders = false;
   };
   # don't create default ~/Sync folder
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";
