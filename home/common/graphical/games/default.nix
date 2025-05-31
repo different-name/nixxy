@@ -22,8 +22,6 @@
           pkgs.temurin-bin
         ];
       })
-
-      rpcs3
     ];
 
     home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
@@ -40,10 +38,6 @@
 
         # osu-lazer
         ".local/share/osu"
-
-        # rpcs3
-        ".config/rpcs3"
-        ".cache/rpcs3"
 
         # prism launcher
         ".local/share/PrismLauncher"
