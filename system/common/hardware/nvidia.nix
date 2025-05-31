@@ -28,5 +28,20 @@
       #   persistencedSha256 = lib.fakeSha256;
       # };
     };
+
+    nixpkgs.overlays = [
+      # fails to build without CUDA_TOOLKIT_ROOT_DIR
+      (final: prev: {
+        rpcs3 = prev.rpcs3.overrideAttrs (old: {
+          cmakeFlags =
+            old.cmakeFlags
+            ++ [
+              "-DCUDA_TOOLKIT_ROOT_DIR=${prev.cudaPackages.cudatoolkit}"
+            ];
+        });
+      })
+    ];
+
+    nixpkgs.config.cudaSupport = true;
   };
 }
