@@ -39,6 +39,7 @@
       config = {
         paths = [
           "https://catppuccin.github.io/discord/dist/catppuccin-mocha-red.theme.css"
+          "~/.config/moonlight-mod/styles.css"
         ];
       };
       enabled = true;
