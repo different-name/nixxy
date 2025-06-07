@@ -88,6 +88,7 @@
             sponsorblock
             stylus
             youtube-nonstop
+            greasemonkey
           ];
 
           settings = {
