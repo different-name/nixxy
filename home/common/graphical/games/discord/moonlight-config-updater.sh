@@ -17,7 +17,7 @@ while [[ ! -f "$CONFIG_FILE" ]]; do
 done
 
 echo "Updating $OUTPUT_FILE"
-nix eval --impure --raw  --expr "
+nix eval --impure --raw --expr "
   let
     pkgs = import <nixpkgs> {};
     configuration = builtins.fromJSON (builtins.readFile \"${CONFIG_FILE}\");
