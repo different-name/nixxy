@@ -14,6 +14,7 @@
     packages =
       [
         ./cats-blender-plugin-unofficial
+        ./disblock-origin
         ./mcuuid
         ./nt
         ./osc-goes-brrr

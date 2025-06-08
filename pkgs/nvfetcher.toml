@@ -3,6 +3,10 @@ src.git = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
 src.branch = "blender-44"
 fetch.git = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
 
+[disblock-origin]
+src.git = "https://git.allpurposem.at/mat/Disblock-Origin.git"
+fetch.git = "https://git.allpurposem.at/mat/Disblock-Origin.git"
+
 [osc-goes-brrr]
 src.git = "https://github.com/OscToys/OscGoesBrrr.git"
 fetch.git = "https://github.com/OscToys/OscGoesBrrr.git"

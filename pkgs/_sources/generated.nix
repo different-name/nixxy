@@ -15,6 +15,20 @@
     };
     date = "2025-05-30";
   };
+  disblock-origin = {
+    pname = "disblock-origin";
+    version = "824ce0a736cc2a8c67206aa9324ce6d18e9d9554";
+    src = fetchgit {
+      url = "https://git.allpurposem.at/mat/Disblock-Origin.git";
+      rev = "824ce0a736cc2a8c67206aa9324ce6d18e9d9554";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-mCudsamoLDBLjmlAfPgQrw4rPWGZi4mhtXmFi+F1fY0=";
+    };
+    date = "2025-05-18";
+  };
   osc-goes-brrr = {
     pname = "osc-goes-brrr";
     version = "a3f951756bdeefcc690b98d4c4f22c2230464be7";
