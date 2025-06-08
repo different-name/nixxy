@@ -26,6 +26,7 @@
       settings = {
         gif-button = true;
         active-now = false;
+        clan-tags = false;
         settings-billing-header = false;
         settings-gift-inventory-tab = false;
       };
