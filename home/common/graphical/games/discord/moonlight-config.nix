@@ -39,6 +39,7 @@
       config = {
         paths = [
           "https://catppuccin.github.io/discord/dist/catppuccin-mocha-red.theme.css"
+          # TODO don't hardcode the data dir
           "/home/different/.local/share/disblock-origin/theme.css"
         ];
       };
