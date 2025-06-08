@@ -16,23 +16,12 @@ pkgs.wivrn.overrideAttrs (final: prev: {
       domain = "gitlab.freedesktop.org";
       owner = "monado";
       repo = "monado";
-      rev = "74772316c4516c48e132e5936626b972db61a3c3";
-      hash = "sha256-6wMTN7znss6iDW+BsuxrVu4BaF8kbDUGuisHzhg2lbI=";
+      rev = "9f9d26270ef5131f94adaecc4d6b87aebe50d841";
+      hash = "sha256-KSHnJ+H/JdLFg/oFERDk+dXTJY44yUP04WHxa7xp6LY=";
     };
 
     postPatch = ''
       ${sources.wivrn-solarxr.src}/patches/apply.sh ${sources.wivrn-solarxr.src}/patches/monado/*
     '';
   };
-
-  postUnpack = ''
-    ourMonadoRev="${final.monado.src.rev}"
-    theirMonadoRev=$(cat ${final.src.name}/monado-rev)
-    if [ ! "$theirMonadoRev" == "$ourMonadoRev" ]; then
-      echo "Our Monado source revision doesn't match CMakeLists.txt." >&2
-      echo "  theirs: $theirMonadoRev" >&2
-      echo "    ours: $ourMonadoRev" >&2
-      return 1
-    fi
-  '';
 })

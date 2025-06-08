@@ -41,7 +41,7 @@
     },
     "wivrn-solarxr": {
         "cargoLocks": null,
-        "date": "2025-06-02",
+        "date": "2025-06-06",
         "extract": null,
         "name": "wivrn-solarxr",
         "passthru": null,
@@ -51,12 +51,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "e434a917de6b81f5df65ef11139cfb75f2db08ba",
-            "sha256": "sha256-PloS95ISpoN+sb4w1Zwv5AGp2O57W+GXgKNyDe6kYzI=",
+            "rev": "78660045c01b3818b06771480957e60262481767",
+            "sha256": "sha256-QCU0bu1Rrptr3TUTFg0wypnqNpilxwShhpKRryL1Tug=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/notpeelz/WiVRn.git"
         },
-        "version": "e434a917de6b81f5df65ef11139cfb75f2db08ba"
+        "version": "78660045c01b3818b06771480957e60262481767"
     }
 }
