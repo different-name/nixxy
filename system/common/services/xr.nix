@@ -17,7 +17,7 @@
           inherit (pkgs) fetchgit fetchurl fetchFromGitHub dockerTools;
         };
       in
-        pkgs.wivrn.overrideAttrs (final: prev: {
+        pkgs.wivrn.overrideAttrs (final: prev: rec {
           inherit (sources.wivrn-solarxr) pname version src;
 
           cmakeFlags =
@@ -29,7 +29,7 @@
               domain = "gitlab.freedesktop.org";
               owner = "monado";
               repo = "monado";
-              rev = "9f9d26270ef5131f94adaecc4d6b87aebe50d841";
+              rev = builtins.readFile (src + /monado-rev);
               hash = "sha256-KSHnJ+H/JdLFg/oFERDk+dXTJY44yUP04WHxa7xp6LY=";
             };
 
