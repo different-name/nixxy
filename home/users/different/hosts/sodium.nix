@@ -44,13 +44,13 @@
 
   # goxlr / tascam
 
-  home.packages = [
-    self.packages.${pkgs.system}.tascam
-  ];
+  # home.packages = [
+  #   self.packages.${pkgs.system}.tascam
+  # ];
 
-  wayland.windowManager.hyprland.settings.bind = [
-    "$mod, P, exec, pgrep tascam || tascam"
-  ];
+  # wayland.windowManager.hyprland.settings.bind = [
+  #   "$mod, P, exec, pgrep tascam || tascam"
+  # ];
 
   # persist syncthing configuration
 
