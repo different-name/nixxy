@@ -40,7 +40,6 @@
         paths = [
           "https://catppuccin.github.io/discord/dist/catppuccin-mocha-red.theme.css"
           "/home/different/.local/share/disblock-origin/theme.css"
-          "/home/different/.config/moonlight-mod/styles.css"
         ];
       };
       enabled = true;

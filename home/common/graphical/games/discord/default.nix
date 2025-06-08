@@ -20,7 +20,6 @@
     };
 
     xdg.configFile."moonlight-mod/stable.json".force = true;
-    xdg.configFile."moonlight-mod/styles.css".source = ./styles.css;
 
     programs.disblock-origin = {
       enable = true;
