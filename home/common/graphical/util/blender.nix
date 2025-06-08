@@ -15,9 +15,9 @@
     in
       addons
       |> map (addon: {
-        name = ".config/blender/${addon.blenderInstallPath}";
+        name = "${config.xdg.configHome}/blender/${addon.blenderInstallPath}";
         value = {
-          source = "${addon}/${addon.pname}";
+          source = "${addon}/share";
           recursive = true;
         };
       })
