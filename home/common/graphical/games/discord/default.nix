@@ -2,11 +2,13 @@
   lib,
   config,
   inputs,
+  self,
   pkgs,
   ...
 }: {
   imports = [
     inputs.moonlight.homeModules.default
+    self.homeManagerModules.disblock-origin
   ];
 
   options.nix-files.graphical.games.discord.enable = lib.mkEnableOption "Discord config";
@@ -19,6 +21,16 @@
 
     xdg.configFile."moonlight-mod/stable.json".force = true;
     xdg.configFile."moonlight-mod/styles.css".source = ./styles.css;
+
+    programs.disblock-origin = {
+      enable = true;
+      settings = {
+        gif-button = true;
+        active-now = false;
+        settings-billing-header = false;
+        settings-gift-inventory-tab = false;
+      };
+    };
 
     home.packages = with pkgs; [
       (discord.override {withMoonlight = true;})
