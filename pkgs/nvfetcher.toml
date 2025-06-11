@@ -10,8 +10,3 @@ fetch.git = "https://git.allpurposem.at/mat/Disblock-Origin.git"
 [osc-goes-brrr]
 src.git = "https://github.com/OscToys/OscGoesBrrr.git"
 fetch.git = "https://github.com/OscToys/OscGoesBrrr.git"
-
-[wivrn-solarxr]
-src.git = "https://github.com/notpeelz/WiVRn.git"
-src.branch = "solarxr-patches"
-fetch.git = "https://github.com/notpeelz/WiVRn.git"

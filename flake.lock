@@ -795,6 +795,27 @@
         "type": "github"
       }
     },
+    "nixpkgs-unfree": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1749479043,
+        "narHash": "sha256-AcWSgGb2zGZTrBKYZCXtQ9U3YBPIrmFihNAS1Yw76Lg=",
+        "owner": "numtide",
+        "repo": "nixpkgs-unfree",
+        "rev": "406f75710c74a7351fbb1da37831550179532fc2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs-unfree",
+        "type": "github"
+      }
+    },
     "nixpkgs-xr": {
       "inputs": {
         "flake-compat": [
@@ -911,10 +932,12 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-unfree": "nixpkgs-unfree",
         "nixpkgs-xr": "nixpkgs-xr",
         "nur": "nur",
         "systems": "systems_2",
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": "treefmt-nix",
+        "wivrn-solarxr": "wivrn-solarxr"
       }
     },
     "systems": {
@@ -964,6 +987,30 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "wivrn-solarxr": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs-unfree"
+        ]
+      },
+      "locked": {
+        "lastModified": 1749440512,
+        "narHash": "sha256-ihCqjhmo3t1zzkyUw7xyMDm/P9Mj5TNZhvFpP1pEBrw=",
+        "owner": "notpeelz",
+        "repo": "WiVRn",
+        "rev": "42edc99e1ab40bf553f537e9cd1f9a459f85e1f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "notpeelz",
+        "ref": "solarxr-patches",
+        "repo": "WiVRn",
         "type": "github"
       }
     },

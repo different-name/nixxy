@@ -148,6 +148,13 @@
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # nixpkgs with allowUnfree, allowUnsupportedSystem & cudaSupport enabled
+    # workaround for https://discourse.nixos.org/t/unfree-package-from-flake-not-working/40984/7
+    nixpkgs-unfree = {
+      url = "github:numtide/nixpkgs-unfree/nixos-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nix xr/ar/vr packages
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
@@ -171,6 +178,15 @@
 
     # list of systems
     systems.url = "github:nix-systems/default-linux";
+
+    # slimevr solarxr protocol patches for wivrn
+    wivrn-solarxr = {
+      url = "github:notpeelz/WiVRn/solarxr-patches";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs-unfree";
+      };
+    };
 
     ### unused, but followed by other inputs
 

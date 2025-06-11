@@ -19,7 +19,6 @@
         ./nt
         ./osc-goes-brrr
         ./tascam
-        ./wivrn-solarxr
       ]
       |> map mkPackageAttr
       |> builtins.listToAttrs;

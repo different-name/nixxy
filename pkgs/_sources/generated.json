@@ -58,25 +58,5 @@
             "url": "https://github.com/OscToys/OscGoesBrrr.git"
         },
         "version": "a3f951756bdeefcc690b98d4c4f22c2230464be7"
-    },
-    "wivrn-solarxr": {
-        "cargoLocks": null,
-        "date": "2025-06-08",
-        "extract": null,
-        "name": "wivrn-solarxr",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "42edc99e1ab40bf553f537e9cd1f9a459f85e1f0",
-            "sha256": "sha256-ihCqjhmo3t1zzkyUw7xyMDm/P9Mj5TNZhvFpP1pEBrw=",
-            "sparseCheckout": [],
-            "type": "git",
-            "url": "https://github.com/notpeelz/WiVRn.git"
-        },
-        "version": "42edc99e1ab40bf553f537e9cd1f9a459f85e1f0"
     }
 }
