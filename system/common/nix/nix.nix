@@ -29,7 +29,7 @@
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
       settings = {
-        # enable flakes and 'nix' command
+        # enable flakes, 'nix' command and pipe operators
         experimental-features = "nix-command flakes pipe-operators";
         # disable global registry
         flake-registry = "";

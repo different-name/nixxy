@@ -1,6 +1,4 @@
 {
-  pkgs,
-  self,
   config,
   lib,
   ...
