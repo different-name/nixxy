@@ -52,6 +52,16 @@
           "nix.serverPath" = "nixd";
           "nix.serverSettings.nixd.formatting.command" = ["alejandra" "-" "--quiet"];
           "nix.serverSettings.nixd.options.nixos.expr" = "(builtins.getFlake \"${osConfig.programs.nh.flake}\").nixosConfigurations.<name>.options";
+          "nix.hiddenLanguageServerErrors" = [
+            "textDocument/inlayHint"
+            "textDocument/definition"
+            "textDocument/completion"
+            "textDocument/documentLink"
+            "textDocument/hover"
+            "textDocument/documentSymbol"
+            "textDocument/codeAction"
+            "textDocument/documentHighlight"
+          ];
         };
       };
     };
