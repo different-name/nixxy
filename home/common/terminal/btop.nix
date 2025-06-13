@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   osConfig,
   ...
 }: {
@@ -10,10 +9,6 @@
   config = lib.mkIf config.nix-files.terminal.btop.enable {
     programs.btop = {
       enable = true;
-
-      # nvidia GPU support
-      # https://github.com/aristocratos/btop/issues/426#issuecomment-2103598718
-      package = pkgs.btop.override {cudaSupport = true;};
 
       settings = {
         proc_gradient = false;
@@ -37,7 +32,8 @@
               "/boot"
               "${config.home.homeDirectory}/.steam"
             ];
-        in "exclude=${lib.concatStringsSep " " excludeDirectories}";
+        in
+          lib.mkIf config.nix-files.persistence.enable "exclude=${lib.concatStringsSep " " excludeDirectories}";
       };
     };
   };
