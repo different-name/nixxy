@@ -16,21 +16,17 @@
       inherit (osConfig.catppuccin) enable accent flavor;
 
       cursors = {
-        inherit (osConfig.catppuccin) flavor;
-        enable = true;
+        inherit (config.catppuccin) enable flavor;
         accent = "dark";
       };
 
       gtk = {
-        enable = true;
-        flavor = "mocha";
-        accent = "red";
+        inherit (config.catppuccin) enable flavor accent;
         size = "standard";
         tweaks = ["normal"];
         icon.enable = true;
       };
 
-      btop.enable = true;
       fish.enable = false;
       mpv.enable = false;
     };
