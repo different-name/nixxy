@@ -176,6 +176,17 @@
       };
     };
 
+    # set steam game launch options through nix config
+    steam-launch-nix = {
+      url = "github:different-name/steam-launch.nix";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
     # list of systems
     systems.url = "github:nix-systems/default-linux";
 

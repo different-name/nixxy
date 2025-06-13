@@ -935,9 +935,39 @@
         "nixpkgs-unfree": "nixpkgs-unfree",
         "nixpkgs-xr": "nixpkgs-xr",
         "nur": "nur",
+        "steam-launch-nix": "steam-launch-nix",
         "systems": "systems_2",
         "treefmt-nix": "treefmt-nix",
         "wivrn-solarxr": "wivrn-solarxr"
+      }
+    },
+    "steam-launch-nix": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1749847342,
+        "narHash": "sha256-5kj9hhfaJmWNIBHGzqF0DZZpQigV3VdZvsS2eyJWg40=",
+        "owner": "different-name",
+        "repo": "steam-launch.nix",
+        "rev": "30061224afc4d00415ad01dccb8863c14bbd9302",
+        "type": "github"
+      },
+      "original": {
+        "owner": "different-name",
+        "repo": "steam-launch.nix",
+        "type": "github"
       }
     },
     "systems": {
