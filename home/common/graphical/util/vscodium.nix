@@ -49,8 +49,8 @@
 
           # https://github.com/nix-community/vscode-nix-ide
           "nix.enableLanguageServer" = true;
-          "nix.serverPath" = "nixd";
-          "nix.serverSettings.nixd.formatting.command" = ["alejandra" "-" "--quiet"];
+          "nix.serverPath" = "${lib.getExe pkgs.nixd}";
+          "nix.serverSettings.nixd.formatting.command" = ["${lib.getExe pkgs.alejandra}" "-" "--quiet"];
           "nix.serverSettings.nixd.options.nixos.expr" = "(builtins.getFlake \"${osConfig.programs.nh.flake}\").nixosConfigurations.<name>.options";
           "nix.hiddenLanguageServerErrors" = [
             "textDocument/inlayHint"
@@ -65,11 +65,6 @@
         };
       };
     };
-
-    home.packages = with pkgs; [
-      alejandra # formatter
-      nixd # nix language server
-    ];
 
     xdg.mimeApps.defaultApplications = {
       "text/plain" = "codium.desktop";
