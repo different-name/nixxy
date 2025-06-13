@@ -29,7 +29,7 @@
 
               content = {
                 type = "btrfs";
-                extraArgs = ["-f"]; # Override existing partition
+                extraArgs = ["-f"]; # override existing partition
 
                 mountpoint = "/btrfs";
                 mountOptions = ["compress=zstd:1" "noatime"];
@@ -78,7 +78,7 @@
   };
 
   fileSystems = {
-    "/persist".neededForBoot = true; # Required for impermanence to work
+    "/persist".neededForBoot = true; # required for impermanence to work
   };
 
   systemd.tmpfiles.rules = [

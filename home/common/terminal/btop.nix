@@ -11,7 +11,7 @@
     programs.btop = {
       enable = true;
 
-      # Nvidia GPU support
+      # nvidia GPU support
       # https://github.com/aristocratos/btop/issues/426#issuecomment-2103598718
       package = pkgs.btop.override {cudaSupport = true;};
 

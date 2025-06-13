@@ -16,7 +16,7 @@
 
       polkit = {
         enable = true;
-        # Allow non root users to use reboot and poweroff commands
+        # allow non root users to use reboot and poweroff commands
         extraConfig = ''
           polkit.addRule(function(action, subject) {
             if (

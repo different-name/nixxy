@@ -32,7 +32,7 @@
           memtest86.enable = true;
         };
         efi.canTouchEfiVariables = true;
-        # Skip boot options after 3 seconds
+        # skip boot options after 3 seconds
         timeout = 3;
       };
 

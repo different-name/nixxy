@@ -13,7 +13,7 @@
   };
 
   config = lib.mkIf config.nix-files.services.autologin.enable {
-    # Autologin for tty1 only
+    # autologin for tty1 only
     # https://github.com/NixOS/nixpkgs/blob/53e81e790209e41f0c1efa9ff26ff2fd7ab35e27/nixos/modules/services/ttys/getty.nix#L107-L113
     systemd.services."getty@tty1" = let
       cfg = config.services.getty;

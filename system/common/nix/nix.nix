@@ -49,7 +49,7 @@
         !include ${config.age.secrets."tokens/github".path}
       '';
 
-      # Opinionated: disable channels
+      # opinionated: disable channels
       channel.enable = false;
     };
   };
