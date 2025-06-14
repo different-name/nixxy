@@ -13,6 +13,7 @@
   config = lib.mkIf config.nix-files.graphical.games.steam.enable {
     programs.steam-launch = {
       enable = true;
+      stopSteam = true;
       options = {
         "438100" = ''env -u TZ PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc" %command%'';
       };
