@@ -21,6 +21,7 @@
           editorconfig.editorconfig
           tamasfe.even-better-toml
           blueglassblock.better-json5
+          ms-python.python
         ];
 
         userSettings = {
