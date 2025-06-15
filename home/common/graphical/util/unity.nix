@@ -49,7 +49,7 @@
       unityhub
     ];
 
-    home.persistence."/persist${config.home.homeDirectory}" = {
+    home.persistence."/persist" = {
       directories = [
         # alcom
         ".local/share/ALCOM"

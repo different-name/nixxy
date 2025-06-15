@@ -135,7 +135,7 @@ in {
       wlx-overlay-s
     ];
 
-    home.persistence."/persist${config.home.homeDirectory}" = lib.mkIf config.nix-files.persistence.enable {
+    home.persistence."/persist" = lib.mkIf config.nix-files.persistence.enable {
       directories = [
         # opencomposite
         ".local/state/OpenComposite"

@@ -105,8 +105,14 @@
     };
 
     # manage persistent state
-    # TODO pinned to avoid https://github.com/nix-community/impermanence/issues/257
-    impermanence.url = "github:nix-community/impermanence?rev=c64bed13b562fc3bb454b48773d4155023ac31b7";
+    # TODO switch back to master once merged https://github.com/nix-community/impermanence/pull/272
+    impermanence = {
+      url = "github:nix-community/impermanence/home-manager-v2";
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
 
     # moonlight discord mod
     moonlight = {

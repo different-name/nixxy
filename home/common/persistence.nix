@@ -11,7 +11,7 @@
   options.nix-files.persistence.enable = lib.mkEnableOption "Persistence config";
 
   config = lib.mkIf config.nix-files.persistence.enable {
-    home.persistence."/persist${config.home.homeDirectory}" = {
+    home.persistence."/persist" = {
       directories = [
         "nix-files"
         ".ssh"
@@ -26,8 +26,6 @@
       files = [
         ".local/share/nix/repl-history"
       ];
-
-      allowOther = true;
     };
   };
 }

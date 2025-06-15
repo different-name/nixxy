@@ -10,7 +10,7 @@
       source = ./procaster.goxlrMicProfile;
     };
 
-    home.persistence."/persist${config.home.homeDirectory}".directories = [
+    home.persistence."/persist".directories = [
       ".config/goxlr-utility"
       ".local/share/goxlr-utility"
     ];

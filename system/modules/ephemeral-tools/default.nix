@@ -17,80 +17,54 @@ in {
   };
 
   config = let
-    dirListToPath = dirList: (lib.concatStringsSep "/" dirList);
+    homeConfigurations = lib.attrValues config.home-manager.users;
 
-    splitPath = paths:
-      paths
-      |> lib.concatMap (builtins.split "/")
-      |> lib.filter (s: builtins.typeOf s == "string" && s != "");
+    getHomeStorageDirs = userConf:
+      userConf.home.persistence
+      |> lib.attrNames
+      |> map (path: path + userConf.home.homeDirectory);
 
-    concatPaths = paths: let
-      prefix = paths |> lib.head |> lib.hasPrefix "/" |> (s: lib.optionalString s "/");
-      path = paths |> splitPath |> dirListToPath;
-    in
-      prefix + path;
-
-    # create a list of each system persistence configuration's key data
-    systemPersistenceKeyData = let
-      # data from system's persistence configs
-      persistenceData = builtins.attrValues config.environment.persistence;
-    in
-      map (
-        persistenceConfig: let
-          inherit (persistenceConfig) persistentStoragePath;
-          # each file is a set, we only want the file path
-          filePaths = map (file: file.filePath) persistenceConfig.files;
-          # each directory is a set, we only want the dir path
-          dirPaths = map (dir: dir.dirPath) persistenceConfig.directories;
-          # paths to persisted files & directories
-          paths = filePaths ++ dirPaths;
-          # path in persistent storage
-          persistentStoragePaths = map (path: concatPaths [persistentStoragePath path]) paths;
-        in {
-          inherit paths persistentStoragePaths persistentStoragePath;
-        }
+    storageDirs =
+      (
+        homeConfigurations
+        |> map getHomeStorageDirs
+        |> lib.flatten
       )
-      persistenceData;
+      ++ lib.attrNames config.environment.persistence;
 
-    # get all users in home-manager config
-    usernames = builtins.attrNames config.home-manager.users;
-
-    # create a list of each home persistence configuration's key data
-    homePersistenceKeyData = lib.flatten (map (
-        username: let
-          # user's home-manager config
-          userData = config.home-manager.users.${username};
-          # user's home directory
-          homeDirectory = userData.home.homeDirectory;
-          # data from user's persistence configs
-          persistenceData = builtins.attrValues userData.home.persistence;
-          # create a set containing the persistentStoragePath
-          # and absolute paths to persisted files & directories
-          keyData =
-            map (
-              persistenceConfig: let
-                inherit (persistenceConfig) persistentStoragePath;
-                # relative paths to persisted files & directories
-                relativePaths = persistenceConfig.files ++ persistenceConfig.directories;
-                # absolute paths to persisted files & directories
-                paths = map (relativePath: concatPaths [homeDirectory relativePath]) relativePaths;
-                # path in persistent storage
-                persistentStoragePaths = map (relativePath: concatPaths [persistentStoragePath relativePath]) relativePaths;
-              in {
-                inherit paths persistentStoragePaths persistentStoragePath;
-              }
-            )
-            persistenceData;
-        in
-          keyData
+    persistenceConfigs =
+      (
+        homeConfigurations
+        |> map (userConf: lib.attrValues userConf.home.persistence)
+        |> lib.flatten
       )
-      usernames);
+      ++ (lib.attrValues config.environment.persistence);
 
-    # combine data
-    persistenceKeyData = systemPersistenceKeyData ++ homePersistenceKeyData;
+    persistedDirData =
+      persistenceConfigs
+      |> map (config: config.directories)
+      |> lib.flatten
+      |> map (directory: {
+        path = directory.dirPath;
+        storagePath = directory.persistentStoragePath + directory.dirPath;
+      });
+
+    persistedFileData =
+      persistenceConfigs
+      |> map (config: config.files)
+      |> lib.flatten
+      |> map (file: {
+        path = file.filePath;
+        storagePath = file.persistentStoragePath + file.filePath;
+      });
+
+    persistedPathData = persistedDirData ++ persistedFileData;
+
+    persistedPaths = map (data: data.path) persistedPathData;
+    inStoragePaths = map (data: data.storagePath) persistedPathData;
 
     # always exclude /nix and virtual filesystems
-    exclude-paths =
+    excludedPaths =
       [
         "/nix"
         "/proc"
@@ -99,37 +73,19 @@ in {
       ]
       ++ cfg.exclude-paths;
 
-    # generate strings for use in script
+    # paths that `ephtools stray` will search
+    strayCmdSearch = lib.concatMapStringsSep " " lib.escapeShellArg storageDirs;
 
-    searchPathsToStr = searchPaths:
-      searchPaths
-      |> map lib.escapeShellArg
-      |> lib.concatStringsSep " ";
-
-    searchPathsNew =
-      searchPathsToStr ["/"];
-
-    searchPathsStray =
-      persistenceKeyData
-      |> map (data: data.persistentStoragePath)
-      |> searchPathsToStr;
-
-    excludePathsToStr = excludePaths:
+    mkExcludeOptions = excludePaths:
       excludePaths
       |> map (path: "-path ${lib.escapeShellArg path}")
       |> lib.concatStringsSep " -o ";
 
-    excludePathsNew =
-      persistenceKeyData
-      |> map (data: data.paths ++ [data.persistentStoragePath] ++ exclude-paths)
-      |> lib.flatten
-      |> excludePathsToStr;
+    # paths that `ephtools new` will exclude from search
+    newExcludeOpts = mkExcludeOptions (persistedPaths ++ storageDirs ++ excludedPaths);
 
-    excludePathsStray =
-      persistenceKeyData
-      |> map (data: data.persistentStoragePaths)
-      |> lib.flatten
-      |> excludePathsToStr;
+    # paths that `ephtools stray` will exclude from search
+    strayExcludeOpts = mkExcludeOptions inStoragePaths;
   in {
     environment.systemPackages = lib.mkIf cfg.enable [
       (pkgs.writeShellApplication {
@@ -183,19 +139,19 @@ in {
             "new")
               validate_directories "$@"
               if [ "$SEARCH_DIRS" = "" ]; then
-                find ${searchPathsNew} \( ${excludePathsNew} \) -prune -o -type f -print
+                find / \( ${newExcludeOpts} \) -prune -o -type f -print
               else
                 IFS=' ' read -r -a dir_array <<< "$SEARCH_DIRS"
-                find "${"\${dir_array[@]}"}" \( ${excludePathsNew} \) -prune -o -type f -print
+                find "${"\${dir_array[@]}"}" \( ${newExcludeOpts} \) -prune -o -type f -print
               fi
               ;;
             "stray")
               validate_directories "$@"
               if [ "$SEARCH_DIRS" = "" ]; then
-                find ${searchPathsStray} \( ${excludePathsStray} \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
+                find ${strayCmdSearch} \( ${strayExcludeOpts} \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
               else
                 IFS=' ' read -r -a dir_array <<< "$SEARCH_DIRS"
-                find "${"\${dir_array[@]}"}" \( ${excludePathsStray} \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
+                find "${"\${dir_array[@]}"}" \( ${strayExcludeOpts} \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
               fi
               ;;
             *)
