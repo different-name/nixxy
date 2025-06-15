@@ -8,7 +8,6 @@
     ./blender.nix
     ./firefox.nix
     ./kitty.nix
-    ./summary.nix
     ./unity.nix
     ./vscodium.nix
   ];

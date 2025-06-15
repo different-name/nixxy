@@ -96,6 +96,9 @@
           # color picker
           "$mod SHIFT, C, exec, ${uwsmSingleApp "hyprpicker"} --autocopy"
 
+          # display time as noficiation
+          ''$mod, D, exec, notify-send -t 5000 "$(date "+%a %-d %b %Y | %-I:%M%p")"''
+
           # ddcutil external monitor brightness
           "$mod, PAGE_UP, exec, ddcutil setvcp 10 + 10"
           "$mod, PAGE_DOWN, exec, ddcutil setvcp 10 - 10"
