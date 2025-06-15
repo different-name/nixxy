@@ -18,7 +18,6 @@
         ./mcuuid
         ./nt
         ./osc-goes-brrr
-        ./tascam
       ]
       |> map mkPackageAttr
       |> builtins.listToAttrs;
