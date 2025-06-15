@@ -40,16 +40,6 @@
 
   programs.btop.settings.cpu_sensor = "k10temp/Tctl";
 
-  # goxlr / tascam
-
-  # home.packages = [
-  #   self.packages.${pkgs.system}.tascam
-  # ];
-
-  # wayland.windowManager.hyprland.settings.bind = [
-  #   "$mod, P, exec, pgrep tascam || tascam"
-  # ];
-
   # persist syncthing configuration
 
   home.persistence."/persist" = lib.mkIf config.nix-files.persistence.enable {
