@@ -10,9 +10,13 @@
   config = lib.mkIf config.nix-files.services.xr.enable {
     services.wivrn = {
       enable = true;
-      package = inputs.wivrn-solarxr.packages.${pkgs.system}.default.override {
-        cudaSupport = true;
-      };
+      package = inputs.wivrn-solarxr.packages.${pkgs.system}.default.overrideAttrs (old: {
+        cmakeFlags =
+          old.cmakeFlags
+          ++ [
+            (lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)
+          ];
+      });
 
       openFirewall = true;
       defaultRuntime = true;
