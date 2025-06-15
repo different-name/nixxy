@@ -1,11 +1,18 @@
 {pkgs, ...}: let
-  wrapped = pkgs.writeShellApplication {
+  nt = pkgs.writeShellApplication {
     name = "nt";
+
     runtimeInputs = with pkgs; [
       nh
       nvfetcher
     ];
+
     text = builtins.readFile ./nt.sh;
+
+    meta = {
+      description = "Nix Tools - A wrapper for nh that runs nvfetcher when updating flake inputs";
+      mainProgram = "nt";
+    };
   };
 
   fishCompletions = pkgs.runCommand "nt-fish-completions" {} ''
@@ -21,9 +28,9 @@
   '';
 in
   pkgs.symlinkJoin {
-    inherit (wrapped) name;
+    inherit (nt) name meta;
     paths = [
-      wrapped
+      nt
       fishCompletions
     ];
   }
