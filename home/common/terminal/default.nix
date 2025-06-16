@@ -41,6 +41,7 @@
       nix-init
       nurl
       nix-output-monitor
+      pv
     ];
 
     home.persistence."/persist" = lib.mkIf config.nix-files.persistence.enable {
