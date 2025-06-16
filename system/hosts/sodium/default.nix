@@ -73,8 +73,8 @@ in {
     ];
   };
 
+  # mirror audio from goxlr outputs to wivrn output
   services.pipewire.wireplumber.connectPorts = [
-    # mirror audio from goxlr outputs to wivrn output
     {
       output = {
         constraint = "GoXLR:monitor_*";
@@ -90,10 +90,9 @@ in {
     }
   ];
 
+  # sync files between vr headset and desktop
   age.secrets."syncthing/sodium/key".file = "${self}/secrets/syncthing/sodium/key.age";
   age.secrets."syncthing/sodium/cert".file = "${self}/secrets/syncthing/sodium/cert.age";
-
-  # sync files between vr headset and desktop
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
@@ -113,8 +112,7 @@ in {
 
     overrideFolders = false;
   };
-  # don't create default ~/Sync folder
-  systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";
+  systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # don't create default ~/Sync folder
 
   ### required config
 
