@@ -43,8 +43,6 @@
         ]
         ++ (map (path: "/home/different/${path}") [
           # https://wiki.archlinux.org/title/XDG_Base_Directory
-          ".steam" # using a full mount to persist this, rather than the impermanence module
-          ".local/share/Steam" # ditto the above comment ^
           ".vscode-oss" # seems to be data written by the vscode home-manager module
           ".config/VSCodium" # some subfolders are persisted, but I should have everything I need now
           ".config/fish" # can configure declaratively
@@ -59,6 +57,8 @@
           ".config/gtk-2.0"
           ".config/gtk-3.0"
           ".config/pulse/cookie" # pulseaudio cookie, had no issues with this being unpersisted
+          ".local/state/btop.log" # just btop logs
+          ".cache/Microsoft/DeveloperTools/deviceid" # probably vsc, haven't had issues being eph
         ]);
     };
   };
