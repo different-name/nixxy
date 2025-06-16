@@ -31,7 +31,7 @@ LAST_BACKUP_SNAPSHOT=$(sudo btrfs subvolume list "$SNAPSHOT_DIR" | grep '^ID' | 
 echo "Creating read-only snapshot $SNAPSHOT_NAME..."
 sudo btrfs subvolume snapshot -r "$SOURCE_SUBVOL" "$SNAPSHOT_PATH"
 
-if [[ -n "$SNAPSHOT_DIR/$LAST_BACKUP_SNAPSHOT" && -d "$MOUNT_POINT/$LAST_BACKUP_SNAPSHOT" ]]; then
+if [[ -d "$SNAPSHOT_DIR/$LAST_BACKUP_SNAPSHOT" && -d "$MOUNT_POINT/$LAST_BACKUP_SNAPSHOT" ]]; then
   echo "Incremental send from $LAST_BACKUP_SNAPSHOT to $SNAPSHOT_NAME"
   sudo btrfs send -p "$SNAPSHOT_DIR/$LAST_BACKUP_SNAPSHOT" "$SNAPSHOT_PATH" | pv | sudo btrfs receive "$MOUNT_POINT"
   
