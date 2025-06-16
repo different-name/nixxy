@@ -47,31 +47,25 @@ in {
   hardware.keyboard.qmk.enable = true;
   services.goxlr-utility.enable = true;
 
-  environment = {
-    sessionVariables = {
-      STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
-      GDK_SCALE = "2";
-    };
-
-    # script used to backup to external hdd
-    systemPackages = [
-      (pkgs.writeShellApplication {
-        name = "runbackup";
-        text = let
-          source = "/persist";
-          partitionId = "usb-Seagate_Expansion_Desk_2HC015KJ-0:0-part1";
-          partitionPath = "/dev/disk/by-id/${partitionId}";
-          mountpoint = "/tmp/${partitionId}";
-        in ''
-          mkdir -p "${mountpoint}"
-          mount -t ext4 "${partitionPath}" "${mountpoint}"
-          rsync "${source}" "${mountpoint}" -avh --delete --progress
-          udisksctl unmount -b "${partitionPath}"
-          udisksctl power-off -b "${partitionPath}"
-        '';
-      })
-    ];
+  environment.sessionVariables = {
+    STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
+    GDK_SCALE = "2";
   };
+
+  # script used to backup persist subvolume to external hdd
+  environment.systemPackages = [
+    (pkgs.writeShellApplication {
+      name = "backup-persist";
+      text = builtins.readFile ./backup-persist.sh;
+
+      runtimeInputs = with pkgs; [
+        cryptsetup
+        btrfs-progs
+        pv
+        udisks
+      ];
+    })
+  ];
 
   # mirror audio from goxlr outputs to wivrn output
   services.pipewire.wireplumber.connectPorts = [
