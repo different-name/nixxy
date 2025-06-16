@@ -4,7 +4,7 @@
   lib,
   ...
 }:
-pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
+pkgs.stdenvNoCC.mkDerivation {
   inherit (sources.disblock-origin) pname version src;
 
   installPhase = ''
@@ -18,4 +18,4 @@ pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
     mainProgram = "disblock-origin";
     platforms = lib.platforms.all;
   };
-})
+}
