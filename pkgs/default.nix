@@ -18,6 +18,7 @@
         ./mcuuid
         ./nt
         ./osc-goes-brrr
+        ./vrcx-catppuccin-theme
       ]
       |> map mkPackageAttr
       |> builtins.listToAttrs;
