@@ -3,7 +3,9 @@
 My NixOS configuration files
 
 > [!WARNING]
-> This configuration is a work in progress, and is intended for personal use only
+> This flake is being actively developed for my specific use case. I don't guarantee that any of the packages, modules, or configurations have been tested or will be maintained
+> 
+> Please feel free to have a look around, contribute, or borrow ideas for your own project!
 
 - Multi host & multi user
 - Flake based
@@ -52,6 +54,24 @@ patches - .patch files
 secrets - age secrets
 assets  - images, etc
 ```
+
+### More options!
+
+Here, every configuration file is always imported - **except** for host-specific and home-manager user-specific files
+
+Instead of choosing functionality by importing configuration files, reusable configurations are bundled as modules, which can be enabled, disabled and overriden as desired. For example, to enable the hyprland configuration:
+
+```nix
+nix-files.programs.hyprland.enable = true;
+```
+
+To reduce boilerplate and simplify configuration, commonly used options are group into "profiles" based on their usecase. Instead of enabling `hyprland`, `xdg` & `pipewire` individually on all graphical systems, they are bundled into the `graphical` profile:
+
+```nix
+nix-files.profiles.graphical.enable = true;
+```
+
+As a result, host & user files mostly only work with high level `nix-files` options, where entire configurations and groups of configurations can be enabled and disabled
 
 ## Users
 
