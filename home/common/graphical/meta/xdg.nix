@@ -17,6 +17,8 @@
           "x-scheme-handler/unityhub" = "unityhub.desktop"; # unity login
         };
       };
+
+      configFile."mimeapps.list".force = true;
     };
   };
 }
