@@ -9,6 +9,7 @@
         ./modules/homeModules
         ./modules/nixosModules
         ./pkgs
+        ./lib
       ];
 
       systems = import inputs.systems;
