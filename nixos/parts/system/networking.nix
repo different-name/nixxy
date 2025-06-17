@@ -17,12 +17,10 @@
       };
     };
 
-    environment.persistence."/persist/system" =
-      lib.mkIf config.nix-files.parts.system.persistence.enable
-        {
-          directories = [
-            "/etc/NetworkManager/system-connections"
-          ];
-        };
+    nix-files.parts.system.persistence = {
+      directories = [
+        "/etc/NetworkManager/system-connections"
+      ];
+    };
   };
 }

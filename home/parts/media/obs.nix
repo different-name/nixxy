@@ -7,7 +7,7 @@
   options.nix-files.parts.media.obs.enable = lib.mkEnableOption "OBS config";
 
   config = lib.mkIf config.nix-files.parts.media.obs.enable {
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
         ".config/obs-studio"
       ];

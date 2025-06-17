@@ -39,8 +39,26 @@
         btrfs.enable = true;
         locale.enable = true;
         networking.enable = true;
-        persistence.enable = true;
         security.enable = true;
+
+        persistence = {
+          enable = true;
+
+          directories = [
+            "/var/log"
+            "/var/lib/nixos"
+            "/var/lib/systemd/coredump"
+            "/root/.cache"
+            "/var/cache"
+            "/var/lib/systemd/timesync"
+            "/root/.android"
+          ];
+
+          files = [
+            "/var/lib/logrotate.status"
+            "/var/lib/systemd/random-seed"
+          ];
+        };
       };
 
       theming = {

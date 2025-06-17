@@ -29,7 +29,7 @@
       };
     };
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
         ".local/share/fish"
         ".cache/fish"

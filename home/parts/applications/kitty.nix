@@ -16,7 +16,7 @@
       };
     };
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
         ".cache/kitty"
         ".local/share/kitty-ssh-kitten"

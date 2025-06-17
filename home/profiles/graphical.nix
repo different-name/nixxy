@@ -52,18 +52,17 @@
         mpv.enable = true;
         obs.enable = true;
       };
-    };
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
-      directories = [
-        # home folders
-        "Code"
-        "Documents"
-        "Downloads"
-        "Pictures"
-        "Videos"
-        "Media"
-      ];
+      system = {
+        persistence.directories = [
+          "Code"
+          "Documents"
+          "Downloads"
+          "Pictures"
+          "Videos"
+          "Media"
+        ];
+      };
     };
   };
 }

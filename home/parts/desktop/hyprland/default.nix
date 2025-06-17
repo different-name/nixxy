@@ -35,7 +35,7 @@
 
     services.hyprpolkitagent.enable = true;
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
         ".cache/hyprland"
         ".local/share/hyprland"

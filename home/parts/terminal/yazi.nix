@@ -9,7 +9,7 @@
   config = lib.mkIf config.nix-files.parts.terminal.yazi.enable {
     programs.yazi.enable = true;
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
         ".local/state/yazi"
       ];

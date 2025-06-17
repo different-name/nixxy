@@ -143,7 +143,7 @@ in
       wlx-overlay-s
     ];
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
         # opencomposite
         ".local/state/OpenComposite"

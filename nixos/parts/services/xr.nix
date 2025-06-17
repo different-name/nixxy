@@ -161,13 +161,11 @@
       };
     };
 
-    environment.persistence."/persist/system" =
-      lib.mkIf config.nix-files.parts.system.persistence.enable
-        {
-          directories = [
-            "/root/.config/dev.slimevr.SlimeVR"
-            "/root/.local/share/dev.slimevr.SlimeVR"
-          ];
-        };
+    nix-files.parts.system.persistence = {
+      directories = [
+        "/root/.config/dev.slimevr.SlimeVR"
+        "/root/.local/share/dev.slimevr.SlimeVR"
+      ];
+    };
   };
 }

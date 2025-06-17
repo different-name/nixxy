@@ -36,7 +36,7 @@
       nixpkgs = "tv nixpkgs --exact";
     };
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
         ".local/share/television"
         ".cache/nix-search-tv"

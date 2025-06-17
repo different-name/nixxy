@@ -30,7 +30,7 @@
         "L ${homeDirectory}/Pictures/VRChat - - - - ${vrchatPictures}"
       ];
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
         ".steam"
         ".local/share/Steam"

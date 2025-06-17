@@ -4,31 +4,36 @@
   inputs,
   ...
 }:
+let
+  cfg = config.nix-files.parts.system.persistence;
+in
 {
   imports = [
     inputs.impermanence.nixosModules.impermanence
   ];
 
-  options.nix-files.parts.system.persistence.enable = lib.mkEnableOption "Persistence config";
+  options.nix-files.parts.system.persistence = {
+    enable = lib.mkEnableOption "Persistence config";
 
-  config = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    # we accept a list of anything so that impermanence will handle the typing instead
+    # this is less maintenance in the event impermemance changes typing
+    directories = lib.mkOption {
+      type = lib.types.listOf lib.types.anything;
+      default = null;
+      description = "directories to pass to persistence config";
+    };
+
+    files = lib.mkOption {
+      type = lib.types.listOf lib.types.anything;
+      default = null;
+      description = "files to pass to persistence config";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     environment.persistence."/persist/system" = {
+      inherit (cfg) directories files;
       hideMounts = true;
-
-      directories = [
-        "/var/log"
-        "/var/lib/nixos"
-        "/var/lib/systemd/coredump"
-        "/root/.cache"
-        "/var/cache"
-        "/var/lib/systemd/timesync"
-        "/root/.android"
-      ];
-
-      files = [
-        "/var/lib/logrotate.status"
-        "/var/lib/systemd/random-seed"
-      ];
     };
 
     # required for impermanence to work

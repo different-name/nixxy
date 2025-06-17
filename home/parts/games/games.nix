@@ -19,7 +19,7 @@
       })
     ];
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
         # general
         ".nv" # OpenGL cache

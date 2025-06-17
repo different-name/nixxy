@@ -24,12 +24,10 @@
       openFirewall = true;
     };
 
-    environment.persistence."/persist/system" =
-      lib.mkIf config.nix-files.parts.system.persistence.enable
-        {
-          directories = [
-            "/srv/minecraft"
-          ];
-        };
+    nix-files.parts.system.persistence = {
+      directories = [
+        "/srv/minecraft"
+      ];
+    };
   };
 }

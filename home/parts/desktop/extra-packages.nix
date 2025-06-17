@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.nix-files.parts.desktop.extra-packages.enable = lib.mkEnableOption "extra wayland packages";
+  options.nix-files.parts.desktop.extra-packages.enable = lib.mkEnableOption "extra desktop packages";
 
   config = lib.mkIf config.nix-files.parts.desktop.extra-packages.enable {
     home.packages = with pkgs; [
@@ -14,9 +14,8 @@
       libnotify
     ];
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
-        # pavucontrol
         ".local/state/wireplumber" # audio settings
       ];
     };

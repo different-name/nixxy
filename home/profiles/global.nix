@@ -12,7 +12,24 @@
     nix-files.parts = {
       system = {
         home-manager.enable = true;
-        persistence.enable = true;
+
+        persistence = {
+          enable = true;
+
+          directories = [
+            "nix-files"
+            ".ssh"
+            ".terminfo"
+            ".local/share/Trash"
+            ".cache/fontconfig"
+            ".cache/nix"
+            ".cache/nix-output-monitor"
+          ];
+
+          files = [
+            ".local/share/nix/repl-history"
+          ];
+        };
       };
 
       terminal = {

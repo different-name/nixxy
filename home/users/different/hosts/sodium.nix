@@ -42,7 +42,7 @@
     programs.btop.settings.cpu_sensor = "k10temp/Tctl";
 
     # persist syncthing configuration
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
         ".config/syncthing"
       ];

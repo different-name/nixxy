@@ -81,7 +81,7 @@
       "EDITOR,codium --wait"
     ];
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
+    nix-files.parts.system.persistence = {
       directories = [
         ".config/VSCodium/CachedData"
         ".config/VSCodium/Cache"
