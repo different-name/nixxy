@@ -3,14 +3,14 @@
 
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = import inputs.systems;
-
       imports = [
-        ./system/hosts
-        ./system/modules
-        ./home/modules
+        ./configurations
+        ./modules/homeModules
+        ./modules/nixosModules
         ./pkgs
       ];
+
+      systems = import inputs.systems;
 
       perSystem = {pkgs, ...}: {
         formatter = pkgs.alejandra;
@@ -113,6 +113,9 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    # import modules recursively
+    import-tree.url = "github:vic/import-tree";
 
     # moonlight discord mod
     moonlight = {

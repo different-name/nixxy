@@ -6,61 +6,54 @@
   options.nix-files.profiles.graphical.enable = lib.mkEnableOption "Graphical profile";
 
   config = lib.mkIf config.nix-files.profiles.graphical.enable {
-    # programs
     programs.mpv.enable = true;
     programs.zathura.enable = true;
 
-    # services
     services.playerctld.enable = true;
 
-    # meta
     gtk.enable = true;
 
-    # modules
-    nix-files = {
-      graphical = {
-        games = {
-          enable = true; # games packages
-          discord.enable = true;
-          steam.enable = true;
-        };
+    nix-files.parts = {
+      applications = {
+        extra-packages.enable = true;
 
-        media = {
-          enable = true; # media packages
-          imv.enable = true;
-          mpv.enable = true;
-          obs.enable = true;
-        };
-
-        meta = {
-          qt.enable = true;
-          xdg.enable = true;
-        };
-
-        util = {
-          enable = true; # util packages
-          blender.enable = true;
-          firefox.enable = true;
-          kitty.enable = true;
-          unity.enable = true;
-          vscodium.enable = true;
-        };
-
-        wayland = {
-          enable = true; # wayland packages
-          anyrun.enable = true;
-          hyprland.enable = true;
-          hyprlock.enable = true;
-        };
+        blender.enable = true;
+        discord.enable = true;
+        firefox.enable = true;
+        kitty.enable = true;
+        unity.enable = true;
+        vscodium.enable = true;
       };
 
-      services = {
+      desktop = {
+        extra-packages.enable = true;
+
+        anyrun.enable = true;
+        hyprland.enable = true;
+        hyprlock.enable = true;
         hyprpaper.enable = true;
         mako.enable = true;
+        qt.enable = true;
+        xdg.enable = true;
+      };
+
+      games = {
+        extra-packages.enable = true;
+
+        steam.enable = true;
+      };
+
+      media = {
+        extra-packages.enable = true;
+
+        goxlr-utility.enable = true;
+        imv.enable = true;
+        mpv.enable = true;
+        obs.enable = true;
       };
     };
 
-    home.persistence."/persist" = lib.mkIf config.nix-files.persistence.enable {
+    home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
       directories = [
         # home folders
         "Code"

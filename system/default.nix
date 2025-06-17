@@ -1,7 +1,0 @@
-{
-  imports = [
-    ./common
-    ./profiles
-    ./users
-  ];
-}
