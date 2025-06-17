@@ -9,7 +9,7 @@
     inputs.steam-launch-nix.homeModules.steam-launch
   ];
 
-  options.nix-files.parts.games.steam.enable = lib.mkEnableOption "Steam config";
+  options.nix-files.parts.games.steam.enable = lib.mkEnableOption "steam config";
 
   config = lib.mkIf config.nix-files.parts.games.steam.enable {
     programs.steam-launch = {

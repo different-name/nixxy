@@ -6,7 +6,7 @@
   ...
 }:
 {
-  options.nix-files.parts.desktop.hyprland.enable = lib.mkEnableOption "Hyprland config";
+  options.nix-files.parts.desktop.hyprland.enable = lib.mkEnableOption "hyprland config";
 
   config = lib.mkIf config.nix-files.parts.desktop.hyprland.enable {
     programs.hyprland = {

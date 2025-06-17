@@ -11,7 +11,7 @@
     inputs.nixpkgs-xr.nixosModules.nixpkgs-xr
   ];
 
-  options.nix-files.parts.programs.steam.enable = lib.mkEnableOption "Steam config";
+  options.nix-files.parts.programs.steam.enable = lib.mkEnableOption "steam config";
 
   config = lib.mkIf config.nix-files.parts.programs.steam.enable {
     programs.steam = {

@@ -6,7 +6,7 @@
 }:
 {
   options.nix-files.parts.services.minecraft-server = {
-    maocraft.enable = lib.mkEnableOption "Maocraft Minecraft server";
+    maocraft.enable = lib.mkEnableOption "maocraft minecraft server";
   };
 
   config = lib.mkIf config.nix-files.parts.services.minecraft-server.maocraft.enable {

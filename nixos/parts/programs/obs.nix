@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.parts.programs.obs.enable = lib.mkEnableOption "OBS config";
+  options.nix-files.parts.programs.obs.enable = lib.mkEnableOption "obs config";
 
   config = lib.mkIf config.nix-files.parts.programs.obs.enable {
     programs.obs-studio = {

@@ -9,7 +9,7 @@
     inputs.self.nixosModules.wireplumber-connectPorts
   ];
 
-  options.nix-files.parts.services.pipewire.enable = lib.mkEnableOption "Pipewire config";
+  options.nix-files.parts.services.pipewire.enable = lib.mkEnableOption "pipewire config";
 
   config = lib.mkIf config.nix-files.parts.services.pipewire.enable {
     services.pipewire = {

@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.parts.media.goxlr-utility.enable = lib.mkEnableOption "GoXLR-utility config";
+  options.nix-files.parts.media.goxlr-utility.enable = lib.mkEnableOption "goxlr-utility config";
 
   config = lib.mkIf config.nix-files.parts.media.goxlr-utility.enable {
     home.file.".local/share/goxlr-utility/mic-profiles/procaster.goxlrMicProfile" = {

@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.nix-files.parts.programs.thunar.enable = lib.mkEnableOption "Thunar config";
+  options.nix-files.parts.programs.thunar.enable = lib.mkEnableOption "thunar config";
 
   config = lib.mkIf config.nix-files.parts.programs.thunar.enable {
     programs.thunar = {

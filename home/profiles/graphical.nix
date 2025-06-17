@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.profiles.graphical.enable = lib.mkEnableOption "Graphical profile";
+  options.nix-files.profiles.graphical.enable = lib.mkEnableOption "graphical profile";
 
   config = lib.mkIf config.nix-files.profiles.graphical.enable {
     programs.mpv.enable = true;

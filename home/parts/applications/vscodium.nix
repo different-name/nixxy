@@ -7,7 +7,7 @@
   ...
 }:
 {
-  options.nix-files.parts.applications.vscodium.enable = lib.mkEnableOption "VSCodium config";
+  options.nix-files.parts.applications.vscodium.enable = lib.mkEnableOption "vscodium config";
 
   config = lib.mkIf config.nix-files.parts.applications.vscodium.enable {
     programs.vscode = {

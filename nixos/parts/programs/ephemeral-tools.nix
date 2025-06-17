@@ -10,7 +10,7 @@
   ];
 
   options.nix-files.parts.programs.ephemeral-tools.enable =
-    lib.mkEnableOption "Ephemeral-tools config";
+    lib.mkEnableOption "ephemeral-tools config";
 
   config = lib.mkIf config.nix-files.parts.programs.ephemeral-tools.enable {
     programs.ephemeral-tools = {

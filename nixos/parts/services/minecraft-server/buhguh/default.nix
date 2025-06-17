@@ -6,7 +6,7 @@
 }:
 {
   options.nix-files.parts.services.minecraft-server = {
-    buhguh.enable = lib.mkEnableOption "Buhguh Minecraft server";
+    buhguh.enable = lib.mkEnableOption "buhguh minecraft server";
   };
 
   config = lib.mkIf config.nix-files.parts.services.minecraft-server.buhguh.enable {

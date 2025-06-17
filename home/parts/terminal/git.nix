@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.parts.terminal.git.enable = lib.mkEnableOption "Git config";
+  options.nix-files.parts.terminal.git.enable = lib.mkEnableOption "git config";
 
   config = lib.mkIf config.nix-files.parts.terminal.git.enable {
     programs.git = {

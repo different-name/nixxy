@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.nix-files.users.different.enable = lib.mkEnableOption "User different";
+  options.nix-files.users.different.enable = lib.mkEnableOption "user different";
 
   config = lib.mkIf config.nix-files.users.different.enable {
     age.secrets."user-pass/different".file = inputs.self + /secrets/user-pass/different.age;

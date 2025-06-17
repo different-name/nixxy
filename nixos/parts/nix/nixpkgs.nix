@@ -9,7 +9,7 @@
     inputs.nur.modules.nixos.default
   ];
 
-  options.nix-files.parts.nix.nixpkgs.enable = lib.mkEnableOption "Nixpkgs config";
+  options.nix-files.parts.nix.nixpkgs.enable = lib.mkEnableOption "nixpkgs config";
 
   config = lib.mkIf config.nix-files.parts.nix.nixpkgs.enable {
     nixpkgs = {

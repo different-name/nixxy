@@ -12,7 +12,7 @@
     inputs.nix-index-database.nixosModules.nix-index
   ];
 
-  options.nix-files.parts.nix.nix.enable = lib.mkEnableOption "Nix config";
+  options.nix-files.parts.nix.nix.enable = lib.mkEnableOption "nix config";
 
   config = lib.mkIf config.nix-files.parts.nix.nix.enable {
     age.secrets."tokens/github".file = inputs.self + /secrets/tokens/github.age;

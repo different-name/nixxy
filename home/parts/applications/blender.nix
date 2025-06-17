@@ -6,7 +6,7 @@
   ...
 }:
 {
-  options.nix-files.parts.applications.blender.enable = lib.mkEnableOption "Blender config";
+  options.nix-files.parts.applications.blender.enable = lib.mkEnableOption "blender config";
 
   config = lib.mkIf config.nix-files.parts.applications.blender.enable {
     home.file =

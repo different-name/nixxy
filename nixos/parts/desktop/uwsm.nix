@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.parts.desktop.uwsm.enable = lib.mkEnableOption "UWSM config";
+  options.nix-files.parts.desktop.uwsm.enable = lib.mkEnableOption "uwsm config";
 
   config = lib.mkIf config.nix-files.parts.desktop.uwsm.enable {
     programs.uwsm = {

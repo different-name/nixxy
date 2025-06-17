@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.parts.applications.kitty.enable = lib.mkEnableOption "Kitty config";
+  options.nix-files.parts.applications.kitty.enable = lib.mkEnableOption "kitty config";
 
   config = lib.mkIf config.nix-files.parts.applications.kitty.enable {
     programs.kitty = {

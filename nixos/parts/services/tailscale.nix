@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.parts.services.tailscale.enable = lib.mkEnableOption "Tailscale config";
+  options.nix-files.parts.services.tailscale.enable = lib.mkEnableOption "tailscale config";
 
   config = lib.mkIf config.nix-files.parts.services.tailscale.enable {
     services.tailscale.enable = true;

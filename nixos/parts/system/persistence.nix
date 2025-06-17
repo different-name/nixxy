@@ -13,7 +13,7 @@ in
   ];
 
   options.nix-files.parts.system.persistence = {
-    enable = lib.mkEnableOption "Persistence config";
+    enable = lib.mkEnableOption "persistence config";
 
     # we accept a list of anything so that impermanence will handle the typing instead
     # this is less maintenance in the event impermemance changes typing

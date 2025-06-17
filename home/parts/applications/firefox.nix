@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.nix-files.parts.applications.firefox.enable = lib.mkEnableOption "Firefox config";
+  options.nix-files.parts.applications.firefox.enable = lib.mkEnableOption "firefox config";
 
   config = lib.mkIf config.nix-files.parts.applications.firefox.enable {
     programs.firefox = {

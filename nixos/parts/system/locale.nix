@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.parts.system.locale.enable = lib.mkEnableOption "Locale config";
+  options.nix-files.parts.system.locale.enable = lib.mkEnableOption "locale config";
 
   config = lib.mkIf config.nix-files.parts.system.locale.enable {
     time.timeZone = "Australia/Brisbane";

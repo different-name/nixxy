@@ -11,7 +11,7 @@
     inputs.disko.nixosModules.default
   ];
 
-  options.nix-files.parts.system.boot.enable = lib.mkEnableOption "Boot config";
+  options.nix-files.parts.system.boot.enable = lib.mkEnableOption "boot config";
 
   config = lib.mkIf config.nix-files.parts.system.boot.enable {
     boot = {

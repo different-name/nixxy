@@ -10,7 +10,7 @@
   ];
 
   options.nix-files.parts.services.minecraft-server = {
-    enable = lib.mkEnableOption "Minecraft-server config";
+    enable = lib.mkEnableOption "minecraft-server config";
   };
 
   config = lib.mkIf config.nix-files.parts.services.minecraft-server.enable {

@@ -9,7 +9,7 @@ let
 in
 {
   options.nix-files.parts.system.autologin = {
-    enable = lib.mkEnableOption "Autologin config";
+    enable = lib.mkEnableOption "autologin config";
     user = lib.mkOption {
       description = "User to autologin as";
       type = lib.types.str;

@@ -5,7 +5,7 @@
 }:
 {
   options.nix-files.parts.nix.distributed-builds.enable =
-    lib.mkEnableOption "Distributed builds config";
+    lib.mkEnableOption "distributed builds config";
 
   config = lib.mkIf config.nix-files.parts.nix.distributed-builds.enable {
     nix = {

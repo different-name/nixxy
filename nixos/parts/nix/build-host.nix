@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.parts.nix.build-host.enable = lib.mkEnableOption "Distributed build host config";
+  options.nix-files.parts.nix.build-host.enable = lib.mkEnableOption "distributed build host config";
 
   config = lib.mkIf config.nix-files.parts.nix.build-host.enable {
     users.users.remotebuild = {

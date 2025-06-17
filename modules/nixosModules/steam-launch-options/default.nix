@@ -37,7 +37,7 @@ in
       };
     in
     {
-      enable = lib.mkEnableOption "Steam game launch option configuration, requires launch options to be set to `steam-game-wrapper %command%` in Steam";
+      enable = lib.mkEnableOption "steam game launch option configuration, requires launch options to be set to `steam-game-wrapper %command%` in steam";
 
       global = lib.mkOption {
         type = lib.types.submodule {

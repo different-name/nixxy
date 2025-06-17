@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.nix-files.parts.desktop.fonts.enable = lib.mkEnableOption "Fonts config";
+  options.nix-files.parts.desktop.fonts.enable = lib.mkEnableOption "fonts config";
 
   config = lib.mkIf config.nix-files.parts.desktop.fonts.enable {
     fonts = {

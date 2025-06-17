@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.parts.terminal.fastfetch.enable = lib.mkEnableOption "Fastfetch config";
+  options.nix-files.parts.terminal.fastfetch.enable = lib.mkEnableOption "fastfetch config";
 
   config = lib.mkIf config.nix-files.parts.terminal.fastfetch.enable {
     programs.fastfetch = {

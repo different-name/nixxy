@@ -9,7 +9,7 @@
     inputs.catppuccin.nixosModules.catppuccin
   ];
 
-  options.nix-files.parts.theming.catppuccin.enable = lib.mkEnableOption "Catppuccin config";
+  options.nix-files.parts.theming.catppuccin.enable = lib.mkEnableOption "catppuccin config";
 
   config = lib.mkIf config.nix-files.parts.theming.catppuccin.enable {
     catppuccin = {

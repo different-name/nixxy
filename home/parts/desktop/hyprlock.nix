@@ -6,7 +6,7 @@
   ...
 }:
 {
-  options.nix-files.parts.desktop.hyprlock.enable = lib.mkEnableOption "Hyprlock config";
+  options.nix-files.parts.desktop.hyprlock.enable = lib.mkEnableOption "hyprlock config";
 
   config = lib.mkIf config.nix-files.parts.desktop.hyprlock.enable {
     programs.hyprlock = {

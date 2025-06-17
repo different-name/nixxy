@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.nix-files.parts.terminal.television.enable = lib.mkEnableOption "Television config";
+  options.nix-files.parts.terminal.television.enable = lib.mkEnableOption "television config";
 
   config = lib.mkIf config.nix-files.parts.terminal.television.enable {
     programs.television = {

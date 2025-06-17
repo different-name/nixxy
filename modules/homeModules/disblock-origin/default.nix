@@ -130,7 +130,7 @@ let
 in
 {
   options.programs.disblock-origin = {
-    enable = lib.mkEnableOption "Disblock-Origin An ad-blocker \"Theme\" for Discord, creates a configured css file at $XDG_DATA_HOME/disblock-origin/theme.css";
+    enable = lib.mkEnableOption "disblock-origin";
     settings = lib.mapAttrs mkSetting disblock-origin-settings;
   };
 

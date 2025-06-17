@@ -6,7 +6,7 @@
   ...
 }:
 {
-  options.nix-files.parts.applications.unity.enable = lib.mkEnableOption "Unity config";
+  options.nix-files.parts.applications.unity.enable = lib.mkEnableOption "unity config";
 
   config = lib.mkIf config.nix-files.parts.applications.unity.enable {
     # generate scripts to launch unity editors directly, skipping the unity hub

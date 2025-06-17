@@ -10,7 +10,7 @@ let
   wallpaperImg = ./wallpaper.jpg;
 in
 {
-  options.nix-files.parts.desktop.hyprpaper.enable = lib.mkEnableOption "Hyprpaper config";
+  options.nix-files.parts.desktop.hyprpaper.enable = lib.mkEnableOption "hyprpaper config";
 
   config = lib.mkIf config.nix-files.parts.desktop.hyprpaper.enable {
     services.hyprpaper = {

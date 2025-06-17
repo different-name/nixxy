@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.nix-files.users.iodine.enable = lib.mkEnableOption "User iodine";
+  options.nix-files.users.iodine.enable = lib.mkEnableOption "user iodine";
 
   config = lib.mkIf config.nix-files.users.iodine.enable {
     age.secrets."user-pass/iodine".file = inputs.self + /secrets/user-pass/iodine.age;

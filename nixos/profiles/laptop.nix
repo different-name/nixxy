@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.profiles.laptop.enable = lib.mkEnableOption "Laptop profile";
+  options.nix-files.profiles.laptop.enable = lib.mkEnableOption "laptop profile";
 
   config = lib.mkIf config.nix-files.profiles.laptop.enable {
     # backlight control

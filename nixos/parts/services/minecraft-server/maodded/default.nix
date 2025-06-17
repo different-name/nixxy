@@ -7,7 +7,7 @@
 }:
 {
   options.nix-files.parts.services.minecraft-server = {
-    maodded.enable = lib.mkEnableOption "Maodded Minecraft server";
+    maodded.enable = lib.mkEnableOption "maodded minecraft server";
   };
 
   config = lib.mkIf config.nix-files.parts.services.minecraft-server.maodded.enable {

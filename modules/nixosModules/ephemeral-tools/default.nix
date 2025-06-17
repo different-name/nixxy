@@ -9,7 +9,7 @@ let
 in
 {
   options.programs.ephemeral-tools = {
-    enable = lib.mkEnableOption "Enable ephtools command, for finding new and stray files";
+    enable = lib.mkEnableOption "ephtools command, a utility for finding new and stray files";
 
     exclude-paths = lib.mkOption {
       description = "Paths to always exclude from the \"new\" command search results";

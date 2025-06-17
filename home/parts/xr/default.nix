@@ -11,7 +11,7 @@ let
 in
 {
   options.nix-files.parts.xr = {
-    enable = lib.mkEnableOption "XR config";
+    enable = lib.mkEnableOption "xr config";
 
     enterVrHook = lib.mkOption {
       type = lib.types.str;

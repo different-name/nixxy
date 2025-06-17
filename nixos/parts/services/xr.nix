@@ -6,7 +6,7 @@
   ...
 }:
 {
-  options.nix-files.parts.services.xr.enable = lib.mkEnableOption "XR config";
+  options.nix-files.parts.services.xr.enable = lib.mkEnableOption "xr config";
 
   config = lib.mkIf config.nix-files.parts.services.xr.enable {
     services.wivrn = {

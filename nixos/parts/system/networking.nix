@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.parts.system.networking.enable = lib.mkEnableOption "Networking config";
+  options.nix-files.parts.system.networking.enable = lib.mkEnableOption "networking config";
 
   config = lib.mkIf config.nix-files.parts.system.networking.enable {
     networking = {

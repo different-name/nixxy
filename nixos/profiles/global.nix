@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.profiles.global.enable = lib.mkEnableOption "Global profile";
+  options.nix-files.profiles.global.enable = lib.mkEnableOption "global profile";
 
   config = lib.mkIf config.nix-files.profiles.global.enable {
     programs.mosh.enable = true;

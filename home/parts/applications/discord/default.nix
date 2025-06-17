@@ -11,7 +11,7 @@
     inputs.self.homeManagerModules.disblock-origin
   ];
 
-  options.nix-files.parts.applications.discord.enable = lib.mkEnableOption "Discord config";
+  options.nix-files.parts.applications.discord.enable = lib.mkEnableOption "discord config";
 
   config = lib.mkIf config.nix-files.parts.applications.discord.enable {
     programs.moonlight-mod = {

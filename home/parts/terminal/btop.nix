@@ -9,7 +9,7 @@
     ./extra-packages.nix
   ];
 
-  options.nix-files.parts.terminal.btop.enable = lib.mkEnableOption "Btop config";
+  options.nix-files.parts.terminal.btop.enable = lib.mkEnableOption "btop config";
 
   config = lib.mkIf config.nix-files.parts.terminal.btop.enable {
     programs.btop = {

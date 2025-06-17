@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.nix-files.parts.programs.fish.enable = lib.mkEnableOption "Fish config";
+  options.nix-files.parts.programs.fish.enable = lib.mkEnableOption "fish config";
 
   config = lib.mkIf config.nix-files.parts.programs.fish.enable {
     programs.fish = {

@@ -6,7 +6,7 @@
   ...
 }:
 {
-  options.nix-files.parts.desktop.anyrun.enable = lib.mkEnableOption "Anyrun config";
+  options.nix-files.parts.desktop.anyrun.enable = lib.mkEnableOption "anyrun config";
 
   config = lib.mkIf config.nix-files.parts.desktop.anyrun.enable {
     programs.anyrun = {

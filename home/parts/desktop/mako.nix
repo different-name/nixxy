@@ -7,7 +7,7 @@ let
   hyprlandCfg = config.wayland.windowManager.hyprland;
 in
 {
-  options.nix-files.parts.desktop.mako.enable = lib.mkEnableOption "Mako config";
+  options.nix-files.parts.desktop.mako.enable = lib.mkEnableOption "mako config";
 
   config = lib.mkIf config.nix-files.parts.desktop.mako.enable {
     services.mako = {

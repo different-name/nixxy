@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.nix-files.parts.services.openssh.enable = lib.mkEnableOption "OpenSSH config";
+  options.nix-files.parts.services.openssh.enable = lib.mkEnableOption "openssh config";
 
   config = lib.mkIf config.nix-files.parts.services.openssh.enable {
     services.openssh = {

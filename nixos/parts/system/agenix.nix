@@ -10,7 +10,7 @@
     inputs.agenix.nixosModules.default
   ];
 
-  options.nix-files.parts.system.agenix.enable = lib.mkEnableOption "Agenix config";
+  options.nix-files.parts.system.agenix.enable = lib.mkEnableOption "agenix config";
 
   config = lib.mkIf config.nix-files.parts.system.agenix.enable {
     # access to the hostkey independent of impermanence activation
