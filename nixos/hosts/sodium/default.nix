@@ -3,7 +3,6 @@
   config,
   pkgs,
   inputs,
-  modulesPath,
   ...
 }@args:
 let
@@ -121,14 +120,14 @@ in
 
         programs.nh.flake = "/home/different/nix-files";
 
-        hardware.enableRedistributableFirmware = true;
-
         # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
         system.stateVersion = "24.05";
       }
 
-      (import ./_disk-configuration.nix)
-      (lib.removeAttrs (import ./_hardware-configuration.nix args) [ "imports" ])
+      (inputs.self.lib.flattenImports [
+        ./_hardware-configuration.nix
+        ./_disk-configuration.nix
+      ] args)
     ]
   );
 }

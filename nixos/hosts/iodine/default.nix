@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }@args:
 let
@@ -10,7 +11,6 @@ in
 {
   config = lib.mkIf (config.nix-files.host == "iodine") (
     lib.mkMerge [
-
       {
         nix-files = {
           users.iodine.enable = true;
@@ -51,14 +51,14 @@ in
 
         programs.nh.flake = "/home/iodine/nix-files";
 
-        hardware.enableRedistributableFirmware = true;
-
         # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
         system.stateVersion = "24.05";
       }
 
-      (import ./_disk-configuration.nix)
-      (lib.removeAttrs (import ./_hardware-configuration.nix args) [ "imports" ])
+      (inputs.self.lib.flattenImports [
+        ./_hardware-configuration.nix
+        ./_disk-configuration.nix
+      ] args)
     ]
   );
 }
