@@ -125,7 +125,6 @@
       url = "github:moonlight-mod/moonlight";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
       };
     };
 
@@ -139,8 +138,6 @@
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs = {
-        flake-compat.follows = "flake-compat";
-        flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -149,7 +146,6 @@
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs = {
-        flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -171,10 +167,7 @@
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
       inputs = {
-        flake-compat.follows = "flake-compat";
-        flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -184,7 +177,6 @@
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -192,7 +184,6 @@
     steam-launch-nix = {
       url = "github:different-name/steam-launch.nix";
       inputs = {
-        flake-utils.follows = "flake-utils";
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
@@ -209,20 +200,6 @@
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs-unfree";
       };
-    };
-
-    ### unused, but followed by other inputs
-
-    flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
-
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
-    };
-
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
