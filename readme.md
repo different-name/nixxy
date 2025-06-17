@@ -85,7 +85,7 @@ nixos
 
 > *Each system defines which users it has, but users can share common configuration across systems*
 
-### `/home`
+### `home/`
 
 home-manager modules for user environments, imported by `nixos/users/<user>` using `import-tree`
 
