@@ -33,6 +33,7 @@
         nurl
         nix-output-monitor
         pv
+        tree
       ])
       ++ (with inputs.self.packages.${pkgs.system}; [
         nt
