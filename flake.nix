@@ -5,7 +5,7 @@
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        ./configurations
+        ./configurations.nix
         ./modules/homeModules
         ./modules/nixosModules
         ./pkgs
