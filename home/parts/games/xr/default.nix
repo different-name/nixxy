@@ -7,10 +7,10 @@
   ...
 }:
 let
-  cfg = config.nix-files.parts.xr;
+  cfg = config.nix-files.parts.games.xr;
 in
 {
-  options.nix-files.parts.xr = {
+  options.nix-files.parts.games.xr = {
     enable = lib.mkEnableOption "xr config";
 
     enterVrHook = lib.mkOption {

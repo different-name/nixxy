@@ -53,8 +53,7 @@ home
 │   ├── media
 │   ├── system
 │   ├── terminal
-│   ├── theming
-│   └── xr
+│   └── theming
 ├── profiles
 │   ├── global
 │   └── graphical

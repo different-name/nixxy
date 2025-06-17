@@ -15,11 +15,15 @@
       };
 
       parts = {
-        hardware.nvidia.enable = true;
+        hardware = {
+          nvidia.enable = true;
+        };
 
-        media.goxlr-utility.enable = true;
+        media = {
+          goxlr-utility.enable = true;
+        };
 
-        xr = {
+        games.xr = {
           enable = true;
 
           # lower monitor resolution in vr mode & change mouse focus mode
