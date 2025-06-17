@@ -31,5 +31,11 @@
     };
 
     nixpkgs.config.cudaSupport = true;
+
+    nix-files.parts.system.persistence = {
+      home.directories = [
+        ".cache/nvidia"
+      ];
+    };
   };
 }

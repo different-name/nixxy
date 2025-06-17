@@ -15,10 +15,6 @@
       };
 
       parts = {
-        hardware = {
-          nvidia.enable = true;
-        };
-
         media = {
           goxlr-utility.enable = true;
         };

@@ -13,10 +13,6 @@
         global.enable = true;
         graphical.enable = true;
       };
-
-      parts = {
-        hardware.nvidia.enable = true;
-      };
     };
 
     ### host specific
