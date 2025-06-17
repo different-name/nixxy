@@ -16,9 +16,7 @@ My NixOS configuration files
 - **Hyprland-based** graphical session
 - Package versions **tracked** with [nvfetcher](https://github.com/berberman/nvfetcher)
 
-## Concepts
-
-### Import everything!
+## Modules modules modules
 
 Instead of choosing functionality through importing files, this flake utilizes **parts** - small, focused, reusable configuration files
 
@@ -40,7 +38,7 @@ This enables:
 - **Composition** from well-scoped building blocks
 - **Deduplication** of configuration across hosts and users
 
-### Special Files
+## Special files
 
 Files prefixed with `_` are ignored by `import-tree` and are imported manually instead
 
@@ -111,4 +109,3 @@ home
 - [Graham Christensen - Erase your darlings](https://grahamc.com/blog/erase-your-darlings/)
 - [Misterio77/nix-starter-configs](https://github.com/Misterio77/nix-starter-configs)
 - [fufexan/dotfiles](https://github.com/fufexan/dotfiles)
-- [mightyiam/dendritic](https://github.com/mightyiam/dendritic)
