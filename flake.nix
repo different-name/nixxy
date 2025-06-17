@@ -1,8 +1,9 @@
 {
   description = "Diffy's nix-files";
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./configurations
         ./modules/homeModules
@@ -12,9 +13,11 @@
 
       systems = import inputs.systems;
 
-      perSystem = {pkgs, ...}: {
-        formatter = pkgs.alejandra;
-      };
+      perSystem =
+        { pkgs, ... }:
+        {
+          formatter = pkgs.nixfmt-rfc-style;
+        };
     };
 
   inputs = {

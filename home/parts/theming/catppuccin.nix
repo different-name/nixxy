@@ -4,7 +4,8 @@
   inputs,
   osConfig,
   ...
-}: {
+}:
+{
   imports = [
     inputs.catppuccin.homeModules.catppuccin
   ];
@@ -23,7 +24,7 @@
       gtk = {
         inherit (config.catppuccin) enable flavor accent;
         size = "standard";
-        tweaks = ["normal"];
+        tweaks = [ "normal" ];
         icon.enable = true;
       };
 

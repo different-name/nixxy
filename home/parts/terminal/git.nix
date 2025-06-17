@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.terminal.git.enable = lib.mkEnableOption "Git config";
 
   config = lib.mkIf config.nix-files.parts.terminal.git.enable {

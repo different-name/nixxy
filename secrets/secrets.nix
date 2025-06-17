@@ -16,16 +16,10 @@ let
     };
   };
 
-  allKeys = with builtins; let
-    flatten = x:
-      if isList x
-      then concatMap (y: flatten y) x
-      else [x];
-  in
-    flatten (map
-      (host: attrValues host)
-      (attrValues keys));
-in {
+  flatten = x: if builtins.isList x then builtins.concatMap (y: flatten y) x else [ x ];
+  allKeys = keys |> builtins.attrValues |> map (host: builtins.attrValues host) |> flatten;
+in
+{
   # create/edit: nix run github:ryantm/agenix -- -e x.age
   # rekey:       nix run github:ryantm/agenix -- -r
   "user-pass/different.age".publicKeys = with keys; [

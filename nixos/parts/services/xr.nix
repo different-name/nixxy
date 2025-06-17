@@ -4,18 +4,17 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.services.xr.enable = lib.mkEnableOption "XR config";
 
   config = lib.mkIf config.nix-files.parts.services.xr.enable {
     services.wivrn = {
       enable = true;
       package = inputs.wivrn-solarxr.packages.${pkgs.system}.default.overrideAttrs (old: {
-        cmakeFlags =
-          old.cmakeFlags
-          ++ [
-            (lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)
-          ];
+        cmakeFlags = old.cmakeFlags ++ [
+          (lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)
+        ];
       });
 
       openFirewall = true;
@@ -24,9 +23,10 @@
       config = {
         enable = true;
         json = {
-          bitrate = let
-            Mbps = 100;
-          in
+          bitrate =
+            let
+              Mbps = 100;
+            in
             Mbps * 1000000;
 
           encoders = [
@@ -44,12 +44,12 @@
     };
 
     # slimevr server
-    networking.firewall.allowedUDPPorts = [6969];
+    networking.firewall.allowedUDPPorts = [ 6969 ];
 
     systemd.user.services = {
       slimevr-server = {
         description = "SlimeVR Server";
-        partOf = ["vr-session.service"];
+        partOf = [ "vr-session.service" ];
 
         serviceConfig = {
           ExecStart = "${lib.getExe pkgs.slimevr-server} run";
@@ -59,8 +59,8 @@
 
       wait-for-slimevr-server = {
         description = "Wait for SlimeVR Server to be ready and remain active while it runs";
-        after = ["slimevr-server.service"];
-        requires = ["slimevr-server.service"];
+        after = [ "slimevr-server.service" ];
+        requires = [ "slimevr-server.service" ];
 
         serviceConfig = {
           Type = "notify";
@@ -84,16 +84,16 @@
       # extends the service provided by services.wivrn
       # https://github.com/NixOS/nixpkgs/blob/adaa24fbf46737f3f1b5497bf64bae750f82942e/nixos/modules/services/video/wivrn.nix#L183-L213
       wivrn = {
-        after = ["wait-for-slimevr-server.service"];
-        requires = ["wait-for-slimevr-server.service"];
-        partOf = ["vr-session.service"];
+        after = [ "wait-for-slimevr-server.service" ];
+        requires = [ "wait-for-slimevr-server.service" ];
+        partOf = [ "vr-session.service" ];
       };
 
       wait-for-wivrn = {
         description = "Wait for Wivrn to be ready and remain active while it runs";
-        after = ["wivrn.service"];
-        requires = ["wivrn.service"];
-        partOf = ["wivrn.service"];
+        after = [ "wivrn.service" ];
+        requires = [ "wivrn.service" ];
+        partOf = [ "wivrn.service" ];
 
         serviceConfig = {
           Type = "notify";
@@ -117,8 +117,8 @@
 
       wlx-overlay-s = {
         description = "wlx-overlay-s";
-        after = ["wait-for-wivrn.service"];
-        requires = ["wait-for-wivrn.service"];
+        after = [ "wait-for-wivrn.service" ];
+        requires = [ "wait-for-wivrn.service" ];
         partOf = [
           "wivrn.service"
           "vr-session.service"
@@ -163,11 +163,11 @@
 
     environment.persistence."/persist/system" =
       lib.mkIf config.nix-files.parts.system.persistence.enable
-      {
-        directories = [
-          "/root/.config/dev.slimevr.SlimeVR"
-          "/root/.local/share/dev.slimevr.SlimeVR"
-        ];
-      };
+        {
+          directories = [
+            "/root/.config/dev.slimevr.SlimeVR"
+            "/root/.local/share/dev.slimevr.SlimeVR"
+          ];
+        };
   };
 }

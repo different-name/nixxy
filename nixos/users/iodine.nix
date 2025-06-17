@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   options.nix-files.users.iodine.enable = lib.mkEnableOption "User iodine";
 
   config = lib.mkIf config.nix-files.users.iodine.enable {
@@ -28,13 +29,15 @@
       ];
     };
 
-    home-manager.users.iodine = {inputs, ...}: {
-      imports = [
-        (inputs.import-tree (inputs.self + /home))
-      ];
+    home-manager.users.iodine =
+      { inputs, ... }:
+      {
+        imports = [
+          (inputs.import-tree (inputs.self + /home))
+        ];
 
-      nix-files.user = "iodine";
-    };
+        nix-files.user = "iodine";
+      };
 
     # access to the hostkey independent of impermanence activation
     age.identityPaths = lib.mkIf config.nix-files.parts.system.agenix.enable [

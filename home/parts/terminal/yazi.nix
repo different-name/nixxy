@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.terminal.yazi.enable = lib.mkEnableOption "Yazi config";
 
   config = lib.mkIf config.nix-files.parts.terminal.yazi.enable {

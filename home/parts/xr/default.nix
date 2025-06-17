@@ -5,9 +5,11 @@
   osConfig,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.nix-files.parts.xr;
-in {
+in
+{
   options.nix-files.parts.xr = {
     enable = lib.mkEnableOption "XR config";
 
@@ -25,48 +27,47 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    xdg.desktopEntries = let
-      vr-session-manager = pkgs.writeShellApplication {
-        name = "vr-session-manager";
-        runtimeInputs = with pkgs; [
-          libnotify
-          systemd
-          config.wayland.windowManager.hyprland.package
-        ];
-        text =
-          builtins.readFile ./vr-session-manager.sh
-          |> lib.replaceStrings
-          [
-            "# __ENTER_VR_HOOK__"
-            "# __EXIT_VR_HOOK__"
-          ]
-          [
-            cfg.enterVrHook
-            cfg.exitVrHook
+    xdg.desktopEntries =
+      let
+        vr-session-manager = pkgs.writeShellApplication {
+          name = "vr-session-manager";
+          runtimeInputs = with pkgs; [
+            libnotify
+            systemd
+            config.wayland.windowManager.hyprland.package
           ];
-      };
+          text =
+            builtins.readFile ./vr-session-manager.sh
+            |>
+              lib.replaceStrings
+                [
+                  "# __ENTER_VR_HOOK__"
+                  "# __EXIT_VR_HOOK__"
+                ]
+                [
+                  cfg.enterVrHook
+                  cfg.exitVrHook
+                ];
+        };
 
-      baseEntry = {
-        type = "Application";
-        terminal = false;
-        categories = ["Utility"];
-        startupNotify = false;
-      };
-    in {
-      start-vr-session =
-        {
+        baseEntry = {
+          type = "Application";
+          terminal = false;
+          categories = [ "Utility" ];
+          startupNotify = false;
+        };
+      in
+      {
+        start-vr-session = {
           name = "Start VR Session";
           exec = "${lib.getExe vr-session-manager} start";
-        }
-        // baseEntry;
+        } // baseEntry;
 
-      stop-vr-session =
-        {
+        stop-vr-session = {
           name = "Stop VR Session";
           exec = "${lib.getExe vr-session-manager} stop";
-        }
-        // baseEntry;
-    };
+        } // baseEntry;
+      };
 
     # https://lvra.gitlab.io/docs/distros/nixos/#recommendations
     xdg.configFile."openvr/openvrpaths.vrpath" = {
@@ -100,12 +101,14 @@ in {
     };
 
     # https://lvra.gitlab.io/docs/fossvr/opencomposite/#rebinding-controls
-    xdg.dataFile = let
-      steamDir = "Steam/steamapps/common";
-    in {
-      "${steamDir}/VRChat/OpenComposite/oculus_touch.json".source =
-        ./opencomposite/vrchat/oculus_touch.json;
-    };
+    xdg.dataFile =
+      let
+        steamDir = "Steam/steamapps/common";
+      in
+      {
+        "${steamDir}/VRChat/OpenComposite/oculus_touch.json".source =
+          ./opencomposite/vrchat/oculus_touch.json;
+      };
 
     xdg.configFile."VRCX/custom.css".source =
       inputs.self.packages.${pkgs.system}.vrcx-catppuccin-theme + /share/vrcx-catppuccin.css;
@@ -116,7 +119,7 @@ in {
         custom_picker_binary = lib.getExe (
           pkgs.writeShellApplication {
             name = "hyprland-share-picker-xr";
-            runtimeInputs = [osConfig.programs.hyprland.portalPackage];
+            runtimeInputs = [ osConfig.programs.hyprland.portalPackage ];
             text = builtins.readFile ./hyprland-share-picker-xr.sh;
           }
         );
@@ -129,8 +132,8 @@ in {
       # https://github.com/tauri-apps/tauri/issues/9394
       (symlinkJoin {
         name = "slimevr";
-        paths = [slimevr];
-        buildInputs = [makeWrapper];
+        paths = [ slimevr ];
+        buildInputs = [ makeWrapper ];
         postBuild = ''
           wrapProgram $out/bin/slimevr \
             --set WEBKIT_DISABLE_DMABUF_RENDERER 1

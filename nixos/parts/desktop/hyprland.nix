@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.desktop.hyprland.enable = lib.mkEnableOption "Hyprland config";
 
   config = lib.mkIf config.nix-files.parts.desktop.hyprland.enable {

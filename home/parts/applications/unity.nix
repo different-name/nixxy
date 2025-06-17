@@ -4,20 +4,22 @@
   pkgs,
   osConfig,
   ...
-}: {
+}:
+{
   options.nix-files.parts.applications.unity.enable = lib.mkEnableOption "Unity config";
 
   config = lib.mkIf config.nix-files.parts.applications.unity.enable {
     # generate scripts to launch unity editors directly, skipping the unity hub
     # can be used as unity editor in alcom
-    home.file = let
-      unityEditors = [
-        "2022.3.22f1"
-      ];
-      editorDir = "Documents/Unity/.hub/Editor";
+    home.file =
+      let
+        unityEditors = [
+          "2022.3.22f1"
+        ];
+        editorDir = "Documents/Unity/.hub/Editor";
 
-      uwsmCmd = lib.optionalString osConfig.programs.uwsm.enable "${lib.getExe pkgs.uwsm} app -- ";
-    in
+        uwsmCmd = lib.optionalString osConfig.programs.uwsm.enable "${lib.getExe pkgs.uwsm} app -- ";
+      in
       unityEditors
       |> map (version: "${editorDir}/${version}/Editor")
       |> map (path: {
@@ -36,8 +38,8 @@
       # https://github.com/tauri-apps/tauri/issues/9394
       (symlinkJoin {
         name = "alcom";
-        paths = [alcom];
-        buildInputs = [makeWrapper];
+        paths = [ alcom ];
+        buildInputs = [ makeWrapper ];
         postBuild = ''
           wrapProgram $out/bin/ALCOM \
             --set WEBKIT_DISABLE_DMABUF_RENDERER 1

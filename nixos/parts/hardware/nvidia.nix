@@ -2,12 +2,13 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.hardware.nvidia.enable = lib.mkEnableOption "Nvidia config";
 
   config = lib.mkIf config.nix-files.parts.hardware.nvidia.enable {
     # load nvidia driver for xorg and wayland
-    services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
       modesetting.enable = true;

@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.desktop.anyrun.enable = lib.mkEnableOption "Anyrun config";
 
   config = lib.mkIf config.nix-files.parts.desktop.anyrun.enable {

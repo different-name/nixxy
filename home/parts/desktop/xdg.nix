@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.desktop.xdg.enable = lib.mkEnableOption "XDG config";
 
   config = lib.mkIf config.nix-files.parts.desktop.xdg.enable {

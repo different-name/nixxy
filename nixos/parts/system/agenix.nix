@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.agenix.nixosModules.default
   ];

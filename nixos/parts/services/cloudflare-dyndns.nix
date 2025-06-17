@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.services.cloudflare-dyndns.enable =
     lib.mkEnableOption "cloudflare-dyndns config";
 

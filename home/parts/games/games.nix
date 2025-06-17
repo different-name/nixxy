@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.games.extra-packages.enable = lib.mkEnableOption "extra games packages";
 
   config = lib.mkIf config.nix-files.parts.games.extra-packages.enable {

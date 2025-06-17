@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.moonlight.homeModules.default
     inputs.self.homeManagerModules.disblock-origin
@@ -32,7 +33,7 @@
     };
 
     home.packages = with pkgs; [
-      (discord.override {withMoonlight = true;})
+      (discord.override { withMoonlight = true; })
       (pkgs.writeShellScriptBin "moonlight-config-updater" (
         builtins.readFile ./moonlight-config-updater.sh
       ))

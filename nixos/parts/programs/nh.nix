@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.programs.nh.enable = lib.mkEnableOption "nh config";
 
   config = lib.mkIf config.nix-files.parts.programs.nh.enable {

@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.self.nixosModules.ephemeral-tools
   ];

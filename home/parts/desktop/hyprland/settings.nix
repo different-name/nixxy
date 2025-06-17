@@ -3,7 +3,8 @@
   config,
   osConfig,
   ...
-}: {
+}:
+{
   config = lib.mkIf config.nix-files.parts.desktop.hyprland.enable {
     wayland.windowManager.hyprland = {
       settings = {
@@ -13,10 +14,11 @@
           "GRIMBLAST_NO_CURSOR,0" # TODO https://github.com/fufexan/dotfiles/blob/27b78fa5e824ebcadcdb45509ca1e80aec40d50f/system/programs/hyprland/settings.nix#L11-L12
         ];
 
-        exec-once = let
-          uwsmCmd = lib.optionalString osConfig.programs.uwsm.enable "uwsm app -- ";
-          uwsmSingleApp = cmd: "pgrep ${cmd} || ${uwsmCmd + cmd}";
-        in
+        exec-once =
+          let
+            uwsmCmd = lib.optionalString osConfig.programs.uwsm.enable "uwsm app -- ";
+            uwsmSingleApp = cmd: "pgrep ${cmd} || ${uwsmCmd + cmd}";
+          in
           map uwsmSingleApp [
             "goxlr-daemon"
             "steam -silent"

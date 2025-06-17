@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.services.minecraft-server = {
     buhguh.enable = lib.mkEnableOption "Buhguh Minecraft server";
   };

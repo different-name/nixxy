@@ -2,22 +2,25 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   configurations = [
     "sodium"
     "potassium"
     "iodine"
   ];
 
-  mkNixosSystem = configuration:
+  mkNixosSystem =
+    configuration:
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = { inherit inputs; };
 
       modules = [
         (inputs.self + /configurations + "/" + configuration)
         (inputs.import-tree ../nixos)
       ];
     };
-in {
+in
+{
   flake.nixosConfigurations = lib.genAttrs configurations mkNixosSystem;
 }

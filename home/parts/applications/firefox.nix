@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.applications.firefox.enable = lib.mkEnableOption "Firefox config";
 
   config = lib.mkIf config.nix-files.parts.applications.firefox.enable {
@@ -25,7 +26,7 @@
                     template = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
                   }
                 ];
-                definedAliases = [":np"];
+                definedAliases = [ ":np" ];
               };
 
               "Nix Options" = {
@@ -34,7 +35,7 @@
                     template = "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
                   }
                 ];
-                definedAliases = [":no"];
+                definedAliases = [ ":no" ];
               };
 
               "HM Options" = {
@@ -43,7 +44,7 @@
                     template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
                   }
                 ];
-                definedAliases = [":hm"];
+                definedAliases = [ ":hm" ];
               };
 
               "Proton DB" = {
@@ -52,7 +53,7 @@
                     template = "https://www.protondb.com/search?q={searchTerms}";
                   }
                 ];
-                definedAliases = [":pd"];
+                definedAliases = [ ":pd" ];
               };
 
               "Youtube" = {
@@ -61,7 +62,7 @@
                     template = "https://www.youtube.com/results?search_query={searchTerms}";
                   }
                 ];
-                definedAliases = [":yt"];
+                definedAliases = [ ":yt" ];
               };
 
               "Noogle" = {
@@ -70,7 +71,7 @@
                     template = "https://noogle.dev/q?term={searchTerms}";
                   }
                 ];
-                definedAliases = [":ng"];
+                definedAliases = [ ":ng" ];
               };
 
               "google".metaData.alias = ":g";

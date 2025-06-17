@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.programs.disblock-origin;
 
   disblock-origin-settings = {
@@ -101,30 +102,33 @@
     };
   };
 
-  mkSetting = name: setting:
+  mkSetting =
+    name: setting:
     lib.mkOption {
       inherit (setting) description default;
       type = lib.types.bool;
     };
 
-  settingToCss = name: value: let
-    setting = disblock-origin-settings.${name};
+  settingToCss =
+    name: value:
+    let
+      setting = disblock-origin-settings.${name};
 
-    prefix =
-      if setting.isBool
-      then "bool"
-      else "display";
+      prefix = if setting.isBool then "bool" else "display";
 
-    css-value =
-      if setting.isBool
-      then lib.boolToString value
-      else if value
-      then "unset"
-      else "none";
-  in "--${prefix}-${name}: ${css-value};";
+      css-value =
+        if setting.isBool then
+          lib.boolToString value
+        else if value then
+          "unset"
+        else
+          "none";
+    in
+    "--${prefix}-${name}: ${css-value};";
 
   disblock-origin = inputs.self.packages.${pkgs.system}.disblock-origin;
-in {
+in
+{
   options.programs.disblock-origin = {
     enable = lib.mkEnableOption "Disblock-Origin An ad-blocker \"Theme\" for Discord, creates a configured css file at $XDG_DATA_HOME/disblock-origin/theme.css";
     settings = lib.mapAttrs mkSetting disblock-origin-settings;

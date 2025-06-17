@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.desktop.xdg.enable = lib.mkEnableOption "xdg config";
 
   config = lib.mkIf config.nix-files.parts.desktop.xdg.enable {
@@ -12,7 +13,7 @@
       enable = true;
       xdgOpenUsePortal = true;
       config = {
-        common.default = ["gtk"];
+        common.default = [ "gtk" ];
         hyprland.default = [
           "gtk"
           "hyprland"

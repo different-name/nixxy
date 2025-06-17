@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.system.security.enable = lib.mkEnableOption "Security config";
 
   config = lib.mkIf config.nix-files.parts.system.security.enable {

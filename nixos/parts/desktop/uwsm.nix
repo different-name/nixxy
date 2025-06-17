@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.desktop.uwsm.enable = lib.mkEnableOption "UWSM config";
 
   config = lib.mkIf config.nix-files.parts.desktop.uwsm.enable {

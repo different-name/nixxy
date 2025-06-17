@@ -2,13 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.wayland.windowManager.hyprland.xdg-desktop-portal-hyprland;
 
-  valueToString = value:
-    if builtins.isBool value
-    then lib.boolToString value
-    else toString value;
+  valueToString = value: if builtins.isBool value then lib.boolToString value else toString value;
 
   generateBlock = name: attrs: ''
     ${name} {
@@ -16,8 +14,10 @@
     }
   '';
 
-  generateConfig = settings: settings |> lib.mapAttrsToList generateBlock |> lib.concatStringsSep "\n\n";
-in {
+  generateConfig =
+    settings: settings |> lib.mapAttrsToList generateBlock |> lib.concatStringsSep "\n\n";
+in
+{
   options.wayland.windowManager.hyprland.xdg-desktop-portal-hyprland = {
     settings = lib.mkOption {
       type = lib.types.attrsOf (
@@ -29,7 +29,7 @@ in {
           ]
         )
       );
-      default = {};
+      default = { };
       description = "Configuration for xdg-desktop-portal-hyprland https://wiki.hyprland.org/Hypr-Ecosystem/xdg-desktop-portal-hyprland/#configuration";
       example = {
         screencopy = {
@@ -42,7 +42,7 @@ in {
     };
   };
 
-  config = lib.mkIf (config.wayland.windowManager.hyprland.enable && cfg.settings != {}) {
+  config = lib.mkIf (config.wayland.windowManager.hyprland.enable && cfg.settings != { }) {
     xdg.configFile."hypr/xdph.conf".text = generateConfig cfg.settings;
   };
 }

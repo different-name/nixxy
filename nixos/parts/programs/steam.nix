@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.self.nixosModules.steam-launch-options
     inputs.nixpkgs-xr.nixosModules.nixpkgs-xr
@@ -26,7 +27,7 @@
 
         games = {
           # workaround for vrchat using incorrect timezone
-          VRChat.unsetVariables = ["TZ"];
+          VRChat.unsetVariables = [ "TZ" ];
         };
       };
     };

@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.services.keyd.enable = lib.mkEnableOption "keyd config";
 
   config = lib.mkIf config.nix-files.parts.services.keyd.enable {
@@ -11,7 +12,7 @@
       enable = true;
       keyboards = {
         ikki68aurora = {
-          ids = ["1ea7:7777"];
+          ids = [ "1ea7:7777" ];
           settings.main = {
             insert = "print";
           };

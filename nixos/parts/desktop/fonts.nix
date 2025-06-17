@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.desktop.fonts.enable = lib.mkEnableOption "Fonts config";
 
   config = lib.mkIf config.nix-files.parts.desktop.fonts.enable {
@@ -36,17 +37,18 @@
 
       # user defined fonts
       # Noto Color Emoji is used in all to override DejaVu's B&W emojis
-      fontconfig.defaultFonts = let
-        addAll = builtins.mapAttrs (k: v: v ++ ["Symbols Nerd Font"] ++ ["Noto Color Emoji"]);
-      in
+      fontconfig.defaultFonts =
+        let
+          addAll = builtins.mapAttrs (k: v: v ++ [ "Symbols Nerd Font" ] ++ [ "Noto Color Emoji" ]);
+        in
         addAll {
-          serif = ["Noto Serif"];
-          sansSerif = ["Inter"];
+          serif = [ "Noto Serif" ];
+          sansSerif = [ "Inter" ];
           monospace = [
             "JetBrains Mono"
             "Symbola"
           ];
-          emoji = [];
+          emoji = [ ];
         };
     };
   };

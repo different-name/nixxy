@@ -4,8 +4,10 @@
   pkgs,
   inputs,
   ...
-}: {
-  options.nix-files.parts.terminal.extra-packages.enable = lib.mkEnableOption "extra terminal packages";
+}:
+{
+  options.nix-files.parts.terminal.extra-packages.enable =
+    lib.mkEnableOption "extra terminal packages";
 
   config = lib.mkIf config.nix-files.parts.terminal.extra-packages.enable {
     home.packages =
@@ -20,7 +22,7 @@
         sshfs
         magic-wormhole
         exiftool
-        alejandra
+        nixfmt-tree
         qmk
         yt-dlp
         zip

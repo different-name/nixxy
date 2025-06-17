@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     # disko is required for boot & mounting
     inputs.disko.nixosModules.default
@@ -19,7 +20,7 @@
         systemd.enable = true;
         # ensure human input devices are functioning
         # need keyboard input to enter passphrase
-        availableKernelModules = ["hid_generic"];
+        availableKernelModules = [ "hid_generic" ];
       };
 
       kernelPackages = pkgs.linuxPackages_zen;
@@ -36,7 +37,7 @@
         timeout = 3;
       };
 
-      supportedFilesystems = ["ntfs"];
+      supportedFilesystems = [ "ntfs" ];
     };
   };
 }

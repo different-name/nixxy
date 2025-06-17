@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   options.nix-files.users.different.enable = lib.mkEnableOption "User different";
 
   config = lib.mkIf config.nix-files.users.different.enable {
@@ -32,13 +33,15 @@
       ];
     };
 
-    home-manager.users.different = {inputs, ...}: {
-      imports = [
-        (inputs.import-tree (inputs.self + /home))
-      ];
+    home-manager.users.different =
+      { inputs, ... }:
+      {
+        imports = [
+          (inputs.import-tree (inputs.self + /home))
+        ];
 
-      nix-files.user = "different";
-    };
+        nix-files.user = "different";
+      };
 
     # access to the hostkey independent of impermanence activation
     age.identityPaths = lib.mkIf config.nix-files.parts.system.agenix.enable [

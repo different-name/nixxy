@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.terminal.fastfetch.enable = lib.mkEnableOption "Fastfetch config";
 
   config = lib.mkIf config.nix-files.parts.terminal.fastfetch.enable {
@@ -27,12 +28,13 @@
           "OS"
           "Kernel"
           (
-            if config.wayland.windowManager.hyprland.enable
-            then {
-              key = "Compositor";
-              type = "WM";
-            }
-            else "Shell"
+            if config.wayland.windowManager.hyprland.enable then
+              {
+                key = "Compositor";
+                type = "WM";
+              }
+            else
+              "Shell"
           )
           "Terminal"
           "Bios"

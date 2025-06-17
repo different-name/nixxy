@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.desktop.hyprlock.enable = lib.mkEnableOption "Hyprlock config";
 
   config = lib.mkIf config.nix-files.parts.desktop.hyprlock.enable {
@@ -21,7 +22,7 @@
         };
 
         background = [
-          {monitor = "";}
+          { monitor = ""; }
         ];
 
         input-field = [

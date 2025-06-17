@@ -3,23 +3,26 @@
   config,
   pkgs,
   ...
-}: {
-  config =
-    lib.mkIf (config.nix-files.host == "sodium")
-    {
-      # kernel modules found with sensors-detect (from lm-sensors)
-      boot.kernelModules = ["lm83" "nct6775"];
+}:
+{
+  config = lib.mkIf (config.nix-files.host == "sodium") {
+    # kernel modules found with sensors-detect (from lm-sensors)
+    boot.kernelModules = [
+      "lm83"
+      "nct6775"
+    ];
 
-      # hwmon1/pwm1 - GPU left
-      # hwmon1/pwm2 - CPU
-      # hwmon1/pwm3 - CPU pump
-      # hwmon1/pwm4 - case fan, fresh intake for CPU AIO
-      # hwmon1/pwm5 - GPU middle
-      # hwmon1/pwm7 - GPU right
+    # hwmon1/pwm1 - GPU left
+    # hwmon1/pwm2 - CPU
+    # hwmon1/pwm3 - CPU pump
+    # hwmon1/pwm4 - case fan, fresh intake for CPU AIO
+    # hwmon1/pwm5 - GPU middle
+    # hwmon1/pwm7 - GPU right
 
-      hardware.fancontrol = {
-        enable = true;
-        config = let
+    hardware.fancontrol = {
+      enable = true;
+      config =
+        let
           minStart = "20";
           minStop = "0";
 
@@ -40,7 +43,8 @@
             maxTemp = "80";
             maxPWM = "210";
           };
-        in ''
+        in
+        ''
           INTERVAL=5
           DEVPATH=hwmon1=devices/platform/nct6775.656 hwmon2=devices/pci0000:00/0000:00:18.3
           DEVNAME=hwmon1=nct6798 hwmon2=k10temp
@@ -52,27 +56,27 @@
           MINSTOP=hwmon1/pwm1=${minStop} hwmon1/pwm2=${minStop} hwmon1/pwm3=${minStop} hwmon1/pwm4=${minStop} hwmon1/pwm5=${minStop} hwmon1/pwm7=${minStop}
           MAXPWM=hwmon1/pwm1=${GPU.maxPWM} hwmon1/pwm2=${CPU.maxPWM} hwmon1/pwm3=${CPU.maxPWM} hwmon1/pwm4=${caseFan.maxPWM} hwmon1/pwm5=${GPU.maxPWM} hwmon1/pwm7=${GPU.maxPWM}
         '';
-      };
-
-      # https://www.reddit.com/r/linuxquestions/comments/s8odfm/comment/htkp2td/
-      systemd.services.nvidia-temp = {
-        enable = true;
-        description = "Nvidia GPU temperature reader";
-        wantedBy = ["fancontrol.service"];
-        serviceConfig = {
-          Restart = "on-failure";
-        };
-        path = with pkgs; [
-          bash
-          config.hardware.nvidia.package
-        ];
-        script = ''
-          bash -c 'while :; do
-            t="$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits)";
-            echo "$((t * 1000))" > /run/nvidia-temp;
-            sleep 5;
-          done'
-        '';
-      };
     };
+
+    # https://www.reddit.com/r/linuxquestions/comments/s8odfm/comment/htkp2td/
+    systemd.services.nvidia-temp = {
+      enable = true;
+      description = "Nvidia GPU temperature reader";
+      wantedBy = [ "fancontrol.service" ];
+      serviceConfig = {
+        Restart = "on-failure";
+      };
+      path = with pkgs; [
+        bash
+        config.hardware.nvidia.package
+      ];
+      script = ''
+        bash -c 'while :; do
+          t="$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits)";
+          echo "$((t * 1000))" > /run/nvidia-temp;
+          sleep 5;
+        done'
+      '';
+    };
+  };
 }

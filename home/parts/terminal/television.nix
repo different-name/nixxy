@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.terminal.television.enable = lib.mkEnableOption "Television config";
 
   config = lib.mkIf config.nix-files.parts.terminal.television.enable {
@@ -12,15 +13,17 @@
 
       channels = {
         nix = {
-          cable_channel = let
-            nix-search-tv = lib.getExe pkgs.nix-search-tv;
-          in [
-            {
-              name = "nixpkgs";
-              source_command = "${nix-search-tv} print";
-              preview_command = "${nix-search-tv} preview {}";
-            }
-          ];
+          cable_channel =
+            let
+              nix-search-tv = lib.getExe pkgs.nix-search-tv;
+            in
+            [
+              {
+                name = "nixpkgs";
+                source_command = "${nix-search-tv} print";
+                preview_command = "${nix-search-tv} preview {}";
+              }
+            ];
         };
       };
 

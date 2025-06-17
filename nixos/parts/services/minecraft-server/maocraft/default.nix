@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.services.minecraft-server = {
     maocraft.enable = lib.mkEnableOption "Maocraft Minecraft server";
   };

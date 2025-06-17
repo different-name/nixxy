@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.nix.distributed-builds.enable =
     lib.mkEnableOption "Distributed builds config";
 

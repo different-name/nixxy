@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.profiles.global.enable = lib.mkEnableOption "Global profile";
 
   config = lib.mkIf config.nix-files.profiles.global.enable {

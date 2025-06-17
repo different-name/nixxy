@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkIf (config.nix-files.user == "iodine") {
     home = {
       username = "iodine";

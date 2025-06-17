@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.terminal.fish.enable = lib.mkEnableOption "Fish config";
 
   config = lib.mkIf config.nix-files.parts.terminal.fish.enable {
@@ -12,11 +13,7 @@
       shellInit = ''
         set -U fish_color_cwd red
         set -U fish_color_user red
-        ${
-          if config.programs.fastfetch.enable
-          then "fastfetch && echo"
-          else ""
-        }
+        ${if config.programs.fastfetch.enable then "fastfetch && echo" else ""}
       '';
 
       functions = {

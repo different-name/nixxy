@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.media.imv.enable = lib.mkEnableOption "imv config";
 
   config = lib.mkIf config.nix-files.parts.media.imv.enable {
@@ -17,7 +18,7 @@
           icon = "imv-dir";
           terminal = false;
           type = "Application";
-          categories = ["Graphics"];
+          categories = [ "Graphics" ];
         };
       };
 

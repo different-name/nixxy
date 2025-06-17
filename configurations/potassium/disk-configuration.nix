@@ -29,25 +29,34 @@
 
               content = {
                 type = "btrfs";
-                extraArgs = ["-f"]; # override existing partition
+                extraArgs = [ "-f" ]; # override existing partition
 
                 mountpoint = "/btrfs";
-                mountOptions = ["compress=zstd:1" "noatime"];
+                mountOptions = [
+                  "compress=zstd:1"
+                  "noatime"
+                ];
 
                 subvolumes = {
                   # current root, is swapped out each boot
                   "root/current" = {
-                    mountOptions = ["noatime"];
+                    mountOptions = [ "noatime" ];
                     mountpoint = "/";
                   };
 
                   "nix" = {
-                    mountOptions = ["compress=zstd:1" "noatime"];
+                    mountOptions = [
+                      "compress=zstd:1"
+                      "noatime"
+                    ];
                     mountpoint = "/nix";
                   };
 
                   "persist" = {
-                    mountOptions = ["compress=zstd:1" "noatime"];
+                    mountOptions = [
+                      "compress=zstd:1"
+                      "noatime"
+                    ];
                     mountpoint = "/persist";
                   };
 

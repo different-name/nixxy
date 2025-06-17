@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.system.locale.enable = lib.mkEnableOption "Locale config";
 
   config = lib.mkIf config.nix-files.parts.system.locale.enable {

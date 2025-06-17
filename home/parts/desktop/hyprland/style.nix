@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   activeColor = "ed507c";
   inactiveColor = "181825";
   alternateColor = "cba6f7";
-in {
+in
+{
   config = lib.mkIf config.nix-files.parts.desktop.hyprland.enable {
     wayland.windowManager.hyprland.settings = {
       general = {

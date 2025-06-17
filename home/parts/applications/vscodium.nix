@@ -5,7 +5,8 @@
   inputs,
   osConfig,
   ...
-}: {
+}:
+{
   options.nix-files.parts.applications.vscodium.enable = lib.mkEnableOption "VSCodium config";
 
   config = lib.mkIf config.nix-files.parts.applications.vscodium.enable {
@@ -52,9 +53,10 @@
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "${lib.getExe pkgs.nixd}";
           "nix.serverSettings.nixd.formatting.command" = [
-            "${lib.getExe pkgs.alejandra}"
+            "${lib.getExe pkgs.nixfmt-rfc-style}"
           ];
-          "nix.serverSettings.nixd.options.nixos.expr" = "(builtins.getFlake \"${osConfig.programs.nh.flake}\").nixosConfigurations.<name>.options";
+          "nix.serverSettings.nixd.options.nixos.expr" =
+            "(builtins.getFlake \"${osConfig.programs.nh.flake}\").nixosConfigurations.<name>.options";
           "nix.hiddenLanguageServerErrors" = [
             "textDocument/inlayHint"
             "textDocument/definition"

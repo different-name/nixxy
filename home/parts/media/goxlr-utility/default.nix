@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.media.goxlr-utility.enable = lib.mkEnableOption "GoXLR-utility config";
 
   config = lib.mkIf config.nix-files.parts.media.goxlr-utility.enable {

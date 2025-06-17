@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.nix-minecraft.nixosModules.minecraft-servers
   ];
@@ -25,10 +26,10 @@
 
     environment.persistence."/persist/system" =
       lib.mkIf config.nix-files.parts.system.persistence.enable
-      {
-        directories = [
-          "/srv/minecraft"
-        ];
-      };
+        {
+          directories = [
+            "/srv/minecraft"
+          ];
+        };
   };
 }

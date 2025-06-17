@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.steam-launch-nix.homeModules.steam-launch
   ];
@@ -19,13 +20,15 @@
       };
     };
 
-    systemd.user.tmpfiles.rules = let
-      inherit (config.home) homeDirectory;
-      vrchatPictures = "${homeDirectory}/.local/share/Steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/Pictures/VRChat";
-    in [
-      # link vrchat pictures to pictures folder
-      "L ${homeDirectory}/Pictures/VRChat - - - - ${vrchatPictures}"
-    ];
+    systemd.user.tmpfiles.rules =
+      let
+        inherit (config.home) homeDirectory;
+        vrchatPictures = "${homeDirectory}/.local/share/Steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/Pictures/VRChat";
+      in
+      [
+        # link vrchat pictures to pictures folder
+        "L ${homeDirectory}/Pictures/VRChat - - - - ${vrchatPictures}"
+      ];
 
     home.persistence."/persist" = lib.mkIf config.nix-files.parts.system.persistence.enable {
       directories = [

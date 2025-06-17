@@ -2,12 +2,14 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.services.pipewire.wireplumber.connectPorts;
-in {
+in
+{
   options.services.pipewire.wireplumber = {
     connectPorts = lib.mkOption {
-      default = [];
+      default = [ ];
       description = "list of port auto-connection rules based on port aliases";
 
       type = lib.types.listOf (
@@ -58,7 +60,7 @@ in {
     };
   };
 
-  config.services.pipewire.wireplumber = lib.mkIf (cfg != []) {
+  config.services.pipewire.wireplumber = lib.mkIf (cfg != [ ]) {
     extraConfig."99-auto-connect-ports" = {
       "wireplumber.components" = [
         {
@@ -75,22 +77,23 @@ in {
       };
     };
 
-    extraScripts."test/auto-connect-ports.lua" = let
-      autoConnectScript = builtins.readFile ./auto-connect-ports.lua;
+    extraScripts."test/auto-connect-ports.lua" =
+      let
+        autoConnectScript = builtins.readFile ./auto-connect-ports.lua;
 
-      genAutoConnectFunction = ports: ''
-        auto_connect_ports {
-          output = Constraint { "port.alias", "matches", "${ports.output.constraint}" },
-          input = Constraint { "port.alias", "matches", "${ports.input.constraint}" },
-          connect = {
-            ["${ports.output.leftAlias}"] = "${ports.input.leftAlias}",
-            ["${ports.output.rightAlias}"] = "${ports.input.rightAlias}"
+        genAutoConnectFunction = ports: ''
+          auto_connect_ports {
+            output = Constraint { "port.alias", "matches", "${ports.output.constraint}" },
+            input = Constraint { "port.alias", "matches", "${ports.input.constraint}" },
+            connect = {
+              ["${ports.output.leftAlias}"] = "${ports.input.leftAlias}",
+              ["${ports.output.rightAlias}"] = "${ports.input.rightAlias}"
+            }
           }
-        }
-      '';
+        '';
 
-      autoConnectFunctions = cfg |> map genAutoConnectFunction |> lib.concatStrings;
-    in
+        autoConnectFunctions = cfg |> map genAutoConnectFunction |> lib.concatStrings;
+      in
       autoConnectScript + autoConnectFunctions;
   };
 }

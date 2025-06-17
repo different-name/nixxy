@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.parts.nix.substituters.enable = lib.mkEnableOption "Substitutors config";
 
   config = lib.mkIf config.nix-files.parts.nix.substituters.enable {

@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nix-files.profiles.graphical.enable = lib.mkEnableOption "Graphical profile";
 
   config = lib.mkIf config.nix-files.profiles.graphical.enable {

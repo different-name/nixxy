@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options.nix-files.parts.applications.extra-packages.enable =
     lib.mkEnableOption "extra application packages";
 
