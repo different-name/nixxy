@@ -38,6 +38,25 @@ This enables:
 - **Composition** from well-scoped building blocks
 - **Deduplication** of configuration across hosts and users
 
+### Option paths mirror file paths
+
+In this flake, option paths directly mirror the directory structure:
+
+- `nixos/` is the root for the system-level (NixOS) `nix-files` options
+- `home/` is the root for the user-level (home-manager) `nix-files` options
+
+For example, the system option:
+
+```nix
+nix-files.parts.system.hyprland.enable = true;
+```
+
+Is defined in:
+
+```
+nixos/parts/system/hyprland
+```
+
 ## Special files
 
 Files prefixed with `_` are ignored by `import-tree` and are imported manually instead
