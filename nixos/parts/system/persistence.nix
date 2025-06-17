@@ -19,13 +19,13 @@ in
     # this is less maintenance in the event impermemance changes typing
     directories = lib.mkOption {
       type = lib.types.listOf lib.types.anything;
-      default = null;
+      default = [ ];
       description = "directories to pass to persistence config";
     };
 
     files = lib.mkOption {
       type = lib.types.listOf lib.types.anything;
-      default = null;
+      default = [ ];
       description = "files to pass to persistence config";
     };
   };
