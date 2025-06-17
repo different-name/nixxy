@@ -40,7 +40,7 @@ This enables:
 
 ## Structure
 
-### /configurations
+### `/configurations`
 
 `nixosConfigurations` are defined here. Each host has their own directory with:
 
@@ -58,7 +58,7 @@ configurations
 
 These are seperated from the modular config system due to their external constraints
 
-### /nixos
+### `/nixos`
 
 System-level modules for NixOS, organized as:
 
@@ -76,7 +76,7 @@ nixos
 
 > *Each system defines which users it has, but users can share common configuration across systems*
 
-### /home
+### `/home`
 
 home-manager modules for user environments, organized **user first**:
 
