@@ -10,7 +10,7 @@ My NixOS configuration files
 - **Flake-based** NixOS configuration
 - **Multi-host**, **multi-user**
 - **Modular structure**, everything imported by [import-tree](https://github.com/vic/import-tree)
-- **Declarative disk layout** with [disko](https://github.com/nix-community/disko) (*btrfs** + **LUKS**)
+- **Declarative disk layout** with [disko](https://github.com/nix-community/disko) (**btrfs** + **LUKS**)
 - **Ephemeral root and home** via [impermanence](https://github.com/nix-community/impermanence)
 - **Declarative user environments** using [home-manager](https://github.com/nix-community/home-manager)
 - **Hyprland-based** graphical session
