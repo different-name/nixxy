@@ -18,60 +18,56 @@ My NixOS configuration files
 
 ## Structure
 
+> [!WARNING]
+> This section is under construction following [cb28266](https://github.com/different-name/nix-files/commit/cb28266f5dfc95054a26952e705f68c19a309756)
+
 ```
-system - system level configuration
-├── common - configuration modules
-│   ├── core     - boot, networking, security, etc
-│   ├── hardware - bluetooth, video cards, etc
-│   ├── nix      - nix-related options
-│   ├── programs - programs.* configuration
-│   └── services - services.* configuration
-├── hosts - host specific config
-│   └── <host>
-│       ├── default.nix
-│       ├── hardware-configuration.nix
-│       ├── disk-configuration.nix - disk partitions & filesystems
-│       ├── fancontrol.nix - optional file for fan control
-│       └── scripts - scripts specific to a host
-├── profiles - configuration "presets"
-├── users    - user configuration
-└── modules  - NixOS modules
+configurations
+└── <host>
+    ├── default
+    ├── hardware-configuration
+    └── disk-configuration
 
-
-home - home level configuration 
-├── common - home configuration modules
-│   ├── graphical - graphical programs.* configuration
-│   ├── services  - services.* configuration
-│   └── terminal  - terminal programs.* configuration
-├── profiles - home configuration "presets"
+nixos
+├── parts
+│   ├── desktop
+│   ├── hardware
+│   ├── nix
+│   ├── programs
+│   ├── services
+│   ├── system
+│   └── theming
+├── profiles
+│   ├── global
+│   ├── graphical
+│   └── laptop
 ├── users
-│   └── <name> - user home configuration
-│       └──  hosts   - user@host home configuration
-└── modules  - NixOS modules
+└── hosts
 
-pkgs    - package definitions, sources tracked with nvfetcher
-patches - .patch files
-secrets - age secrets
-assets  - images, etc
+home
+├── parts
+│   ├── applications
+│   ├── desktop
+│   ├── games
+│   ├── hardware
+│   ├── media
+│   ├── system
+│   ├── terminal
+│   ├── theming
+│   └── xr
+├── profiles
+│   ├── global
+│   └── graphical
+└── users
+    └── <user>
+        └── hosts
+
+modules
+pkgs
+secrets
+patches
+assets
 ```
-
-### More options!
-
-Here, every configuration file is always imported - **except** for host-specific and home-manager user-specific files
-
-Instead of choosing functionality by importing configuration files, reusable configurations are bundled as modules, which can be enabled, disabled and overriden as desired. For example, to enable the hyprland configuration:
-
-```nix
-nix-files.programs.hyprland.enable = true;
-```
-
-To reduce boilerplate and simplify configuration, commonly used options are group into "profiles" based on their usecase. Instead of enabling `hyprland`, `xdg` & `pipewire` individually on all graphical systems, they are bundled into the `graphical` profile:
-
-```nix
-nix-files.profiles.graphical.enable = true;
-```
-
-As a result, host & user files mostly only work with high level `nix-files` options, where entire configurations and groups of configurations can be enabled and disabled
 
 ## Users
 
