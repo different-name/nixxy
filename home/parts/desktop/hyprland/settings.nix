@@ -20,7 +20,6 @@
             uwsmSingleApp = cmd: "pgrep ${cmd} || ${uwsmCmd + cmd}";
           in
           map uwsmSingleApp [
-            "goxlr-daemon"
             "steam -silent"
             "discord"
           ];
