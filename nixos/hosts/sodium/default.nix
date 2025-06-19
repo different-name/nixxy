@@ -39,6 +39,14 @@ in
                 enable = true;
                 user = "different";
               };
+
+              btrfs.backup-script = {
+                enable = true;
+                backup-disk-uuid = "a5091625-835c-492f-8d99-0fc8d27012a0";
+                crypt-name = "backup_drive";
+                mount = "/mnt/backup";
+                subvolume = "/btrfs/persist";
+              };
             };
           };
         };
@@ -52,21 +60,6 @@ in
           STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
           GDK_SCALE = "2";
         };
-
-        # script used to backup persist subvolume to external hdd
-        environment.systemPackages = [
-          (pkgs.writeShellApplication {
-            name = "backup-persist";
-            text = builtins.readFile ./backup-persist.sh;
-
-            runtimeInputs = with pkgs; [
-              cryptsetup
-              btrfs-progs
-              pv
-              udisks
-            ];
-          })
-        ];
 
         # mirror audio from goxlr outputs to wivrn output
         services.pipewire.wireplumber.connectPorts = [

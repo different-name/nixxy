@@ -1,9 +1,3 @@
-UUID="a5091625-835c-492f-8d99-0fc8d27012a0"
-CRYPT_NAME="backup_drive"
-MOUNT_POINT="/mnt/backup"
-SNAPSHOT_DIR="/btrfs"
-SOURCE_SUBVOL="${SNAPSHOT_DIR}/persist"
-
 DATETIME=$(date '+%Y-%m-%d_%H:%M:%S')
 SNAPSHOT_NAME="persist_${DATETIME}"
 SNAPSHOT_PATH="${SNAPSHOT_DIR}/${SNAPSHOT_NAME}"
