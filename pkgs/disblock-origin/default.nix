@@ -1,10 +1,10 @@
 {
-  pkgs,
   sources,
   lib,
+  stdenvNoCC,
   ...
 }:
-pkgs.stdenvNoCC.mkDerivation {
+stdenvNoCC.mkDerivation {
   inherit (sources.disblock-origin) pname version src;
 
   installPhase = ''

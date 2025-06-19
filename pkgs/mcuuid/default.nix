@@ -1,8 +1,13 @@
-{ pkgs, ... }:
-pkgs.writeShellApplication {
+{
+  writeShellApplication,
+  curl,
+  jq,
+  ...
+}:
+writeShellApplication {
   name = "mcuuid";
 
-  runtimeInputs = with pkgs; [
+  runtimeInputs = [
     curl
     jq
   ];

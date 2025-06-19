@@ -1,9 +1,9 @@
 {
-  pkgs,
   lib,
+  stdenvNoCC,
   ...
 }:
-pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "vrcx-catppuccin-theme";
   version = "0.1.0";
   src = builtins.path {

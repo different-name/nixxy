@@ -1,10 +1,10 @@
 {
-  pkgs,
   sources,
   lib,
+  stdenvNoCC,
   ...
 }:
-pkgs.stdenvNoCC.mkDerivation {
+stdenvNoCC.mkDerivation {
   inherit (sources.cats-blender-plugin-unofficial) pname version src;
 
   installPhase = ''
