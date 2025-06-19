@@ -21,8 +21,8 @@
             patches = (old.patches or [ ]) ++ [
               # https://nix.dev/guides/best-practices.html#reproducible-source-paths
               (builtins.path {
-                path = inputs.self + /patches/slimevr/launch-slimevr-server-seperately.patch;
-                name = "slimevr-launch-slimevr-server-seperately";
+                path = inputs.self + /patches/slimevr/launch-server-seperately.patch;
+                name = "slimevr-launch-server-seperately";
               })
             ];
           });
