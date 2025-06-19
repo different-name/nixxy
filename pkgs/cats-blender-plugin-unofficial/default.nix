@@ -4,7 +4,7 @@
   lib,
   ...
 }:
-pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
+pkgs.stdenvNoCC.mkDerivation {
   inherit (sources.cats-blender-plugin-unofficial) pname version src;
 
   installPhase = ''
@@ -21,4 +21,4 @@ pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
     mainProgram = "cats-blender-plugin-unofficial";
     platforms = lib.platforms.all;
   };
-})
+}

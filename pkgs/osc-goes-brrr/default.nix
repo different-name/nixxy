@@ -4,7 +4,7 @@
   sources,
   ...
 }:
-pkgs.buildNpmPackage (finalAttrs: {
+pkgs.buildNpmPackage {
   inherit (sources.osc-goes-brrr) pname version src;
 
   npmDepsHash = "sha256-HObRprVAnJWSay8x7+Apkp0sKx1CpnjIB1ze4xks/Lo=";
@@ -63,4 +63,4 @@ pkgs.buildNpmPackage (finalAttrs: {
     mainProgram = "osc-goes-brrr";
     platforms = lib.platforms.all;
   };
-})
+}

@@ -61,7 +61,7 @@ nixos/parts/system/hyprland
 
 Files prefixed with `_` are ignored by `import-tree` and are imported manually instead
 
-This prefix (`_`) is reserved for Nix files that cannot be structured as modules because they are either:
+This prefix is reserved for Nix files that cannot be structured as modules because they are either:
 
 - **Auto-generated**, such as `_hardware-configuration.nix`, or
 - **Required in a fixed format** by external tools such as [disko](https://github.com/nix-community/disko) - e.g. `_disk-configuration.nix`
