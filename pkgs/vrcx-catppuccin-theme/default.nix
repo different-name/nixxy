@@ -3,10 +3,13 @@
   lib,
   ...
 }:
-pkgs.stdenvNoCC.mkDerivation {
+pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "vrcx-catppuccin-theme";
   version = "0.1.0";
-  src = ./.;
+  src = builtins.path {
+    path = ./.;
+    name = finalAttrs.pname;
+  };
 
   unpackPhase = null;
 
@@ -19,4 +22,4 @@ pkgs.stdenvNoCC.mkDerivation {
     description = "Catppuccin mocha theme for VRCX";
     platforms = lib.platforms.all;
   };
-}
+})
