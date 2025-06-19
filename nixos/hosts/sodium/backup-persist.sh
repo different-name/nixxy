@@ -23,6 +23,7 @@ if ! mountpoint -q "$MOUNT_POINT"; then
   fi
 
   echo "Mounting backup drive..."
+  sudo mkdir -p /mnt/backup
   sudo mount /dev/mapper/"$CRYPT_NAME" "$MOUNT_POINT"
 fi
 
