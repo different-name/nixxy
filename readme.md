@@ -16,45 +16,67 @@ My NixOS configuration files
 - **Hyprland-based** graphical session
 - Package versions **tracked** with [nvfetcher](https://github.com/berberman/nvfetcher)
 
-## Modules modules modules
+## Module structure
 
-Instead of choosing functionality through importing files, this flake utilizes **parts** - small, focused, reusable configuration files
+Every configuration file in this flake is a **module**. This allows the entire `nixos/` and `home/` directories to be imported using `import-tree`, and for configuration to be toggled, instead of imported
 
-These are:
+With a lot of modules, organization is important. Typically configuration files are organized in one of two ways:
 
-- **Always imported**
-- **toggleable** through `enable` options
-- **Grouped logically** (e.g. `desktop`, `system`, `terminal`)
+- **By use-case** (e.g. `core`, `graphical`, `laptop`, `server`, `extra`), easy to import logical groups of configuration files, however forces every configuration to fit into a single rigid category, which can be awkward
+- **By function** (e.g. `hardware`, `programs`, `services`), mirrors the structure of NixOS options (e.g. `programs.fish`, `services.openssh`), making it clean and intuitive, but harder to import sets of related modules
 
-Common combinations of options are abstracted into **profiles**, which are preconfigured option sets that represent **high level** applications such as `graphical` or `laptop`
+Rather than picking a single approach, this flake uses two types of modules - **`parts`** and **`profiles`** - to get the best of both
 
-Users are defined as modules too, allowing complete user configurations to be enabled and disabled per host
+### Parts
 
-With these abstractions, host files are declarative configurations that compose systems by toggling `users`, `profiles`, and `parts`
+`parts` are the most granular modules, they:
 
-This enables:
+- Configure NixOS / home-manager options
+- Are toggleable & disabled by default
+- Implement a single function
 
-- **Modularity** and reusability
-- **Composition** from well-scoped building blocks
-- **Deduplication** of configuration across hosts and users
+Because `parts` are focused on a specific function, they are organized by function, not use-case. This avoids common issues like:
 
-### Option paths mirror file paths
+- Modules that don't clearly belong to a single use-case
+- Multi-purpose modules being forced into one category
 
-In this flake, option paths directly mirror the directory structure:
+### Profiles
 
-- `nixos/` is the root for the system-level (NixOS) `nix-files` options
-- `home/` is the root for the user-level (home-manager) `nix-files` options
+`Profiles` can be thought of as "import sets", they are high level modules that:
 
-For example, the system option:
+- Do not deal with lower level configuration
+- Enables various `parts`
+- Creates use-case based option sets
+
+For example, a `graphical` profile could enable the `hyprland`, `uwsm` & `xdg` `parts`, but does not configure any of those modules directly
+
+Through this approach, a single `part` can appear in multiple profiles, or none
+
+### Option paths
+
+In this flake, configuration options are namespaced under `nix-files.*`
+
+Because `parts` follow a function based directory structure, all options paths can cleanly match the file paths, for example:
+
+```
+nixos
+├── parts
+│   ├── hardware
+│   │   └── nvidia.nix
+│   └── services
+│       └── openssh.nix
+└── profiles
+    └── graphical.nix
+```
 
 ```nix
-nix-files.parts.system.hyprland.enable = true;
-```
-
-Is defined in:
-
-```
-nixos/parts/system/hyprland
+nix-files = {
+    parts = {
+        hardware.nvidia.enable = true;
+        services.openssh.enable = true;
+    };
+    profiles.graphical.enable = true;
+};
 ```
 
 ## Special files
@@ -70,7 +92,7 @@ These special files are typically imported by a `default.nix` file in the same d
 
 The sole exception is `_special-imports.nix` in `nixos/hosts/<host>`, which is explicitly imported by `configurations.nix`. It is reserved for importing modules that cannot be configured, such as those in `nixos-hardware`
 
-## Structure
+## Layout
 
 ### `configurations.nix`
 
