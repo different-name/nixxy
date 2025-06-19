@@ -35,10 +35,9 @@
         pv
         tree
       ])
-      ++ (with inputs.self.packages.${pkgs.system}; [
-        nt
-        mcuuid
-      ]);
+      ++ [
+        inputs.self.packages.${pkgs.system}.mcuuid
+      ];
 
     nix-files.parts.system.persistence = {
       directories = [

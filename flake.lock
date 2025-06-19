@@ -805,6 +805,26 @@
         "type": "github"
       }
     },
+    "nh": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1750263362,
+        "narHash": "sha256-n5XvEaSanFe9g1AF6l2o+6OE8THpErU44pu6tt0c9PE=",
+        "owner": "nix-community",
+        "repo": "nh",
+        "rev": "4b39f8496d5bc4f86d0f256ca4b2d7dbcbd9fc00",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nh",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -1022,6 +1042,7 @@
         "impermanence": "impermanence",
         "import-tree": "import-tree",
         "moonlight": "moonlight",
+        "nh": "nh",
         "nix-index-database": "nix-index-database",
         "nix-minecraft": "nix-minecraft",
         "nix-vscode-extensions": "nix-vscode-extensions",

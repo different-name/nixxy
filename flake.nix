@@ -127,6 +127,10 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
+
+    nh = {
+      url = "github:nix-community/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # weekly updated nix-index database

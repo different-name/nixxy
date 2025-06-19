@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs,
+  pkgs,
   ...
 }:
 {
@@ -10,6 +12,9 @@
     # nh is a nix cli helper, useful for rebuilding & cleaning
     programs.nh = {
       enable = true;
+      package = inputs.self.packages.${pkgs.system}.nt.override {
+        nh = inputs.nh.packages.${pkgs.system}.nh;
+      };
 
       # weekly garbage collection
       clean = {
