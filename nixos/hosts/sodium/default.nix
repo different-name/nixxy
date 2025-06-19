@@ -53,13 +53,13 @@ in
 
         ### host specific
 
-        hardware.keyboard.qmk.enable = true;
-        services.goxlr-utility.enable = true;
-
         environment.sessionVariables = {
           STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
           GDK_SCALE = "2";
         };
+
+        hardware.keyboard.qmk.enable = true;
+        services.goxlr-utility.enable = true;
 
         # mirror audio from goxlr outputs to wivrn output
         services.pipewire.wireplumber.connectPorts = [
@@ -78,29 +78,17 @@ in
           }
         ];
 
-        # sync files between vr headset and desktop
-        age.secrets."syncthing/sodium/key".file = inputs.self + /secrets/syncthing/sodium/key.age;
-        age.secrets."syncthing/sodium/cert".file = inputs.self + /secrets/syncthing/sodium/cert.age;
-        services.syncthing = {
+        age.secrets = {
+          "syncthing/sodium/key".file = inputs.self + /secrets/syncthing/sodium/key.age;
+          "syncthing/sodium/cert".file = inputs.self + /secrets/syncthing/sodium/cert.age;
+        };
+
+        nix-files.parts.services.syncthing = {
           enable = true;
-          openDefaultPorts = true;
-
           user = "different";
-          group = "users";
-          dataDir = "/home/different";
-
           key = config.age.secrets."syncthing/sodium/key".path;
           cert = config.age.secrets."syncthing/sodium/cert".path;
-
-          settings = {
-            devices = {
-              "Pico".id = "4EZ7P3H-3G2YWUM-BZDVVN2-7M3OTFZ-IL4KQP5-Z733T66-7CP6J3H-724OCAG";
-            };
-          };
-
-          overrideFolders = false;
         };
-        systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # don't create default ~/Sync folder
 
         ### boilerplate
 
