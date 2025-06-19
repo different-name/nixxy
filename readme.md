@@ -122,7 +122,7 @@ nixos
 - A user can be shared across multiple systems
 - Hosts define which users are present, but don't embed user config
 
-> *Each system defines which users it has, but users can share common configuration across systems*
+Each system defines which users it has, but users can share common configuration across systems
 
 ### `home/`
 
@@ -143,7 +143,7 @@ home
 - Hosts are configured in the context of a specific user
 - Configuration is shared across machines on a per-user basis
 
-> *Each user defines their own home environment, which adapts depending on the machine they're on*
+Each user defines their own home environment, which adapts depending on the machine they're on
 
 ## Acknowledgements
 
