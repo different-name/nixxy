@@ -90,6 +90,7 @@
             stylus
             youtube-nonstop
             greasemonkey
+            redirector
           ];
 
           settings = {
