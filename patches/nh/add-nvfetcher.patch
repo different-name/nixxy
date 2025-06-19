@@ -1,0 +1,74 @@
+diff --git a/src/commands.rs b/src/commands.rs
+index 2198434..9ab3bd7 100644
+--- a/src/commands.rs
++++ b/src/commands.rs
+@@ -30,6 +30,7 @@ pub struct Command {
+     elevate: bool,
+     ssh: Option<String>,
+     show_output: bool,
++    cwd: Option<std::path::PathBuf>,
+ }
+ 
+ impl Command {
+@@ -42,9 +43,15 @@ impl Command {
+             elevate: false,
+             ssh: None,
+             show_output: false,
++            cwd: None,
+         }
+     }
+ 
++    pub fn current_dir<P: Into<std::path::PathBuf>>(mut self, dir: P) -> Self {
++        self.cwd = Some(dir.into());
++        self
++    }
++
+     pub const fn elevate(mut self, elevate: bool) -> Self {
+         self.elevate = elevate;
+         self
+@@ -87,7 +94,7 @@ impl Command {
+     }
+ 
+     pub fn run(&self) -> Result<()> {
+-        let cmd = if self.elevate {
++        let mut cmd = if self.elevate {
+             let cmd = if cfg!(target_os = "macos") {
+                 // Check for if sudo has the preserve-env flag
+                 Exec::cmd("sudo").args(
+@@ -120,6 +127,11 @@ impl Command {
+         } else {
+             Exec::cmd(&self.command).args(&self.args)
+         };
++
++        if let Some(ref dir) = self.cwd {
++            cmd = cmd.cwd(dir);
++        }
++
+         // Configure output redirection based on show_output setting
+         let cmd = ssh_wrap(
+             if self.show_output {
+diff --git a/src/update.rs b/src/update.rs
+index 1bf123e..27d8b6b 100644
+--- a/src/update.rs
++++ b/src/update.rs
+@@ -4,9 +4,20 @@ use crate::Result;
+ use crate::commands::Command;
+ use crate::installable::Installable;
+ 
++use std::path::Path;
++
+ pub fn update(installable: &Installable, inputs: Option<Vec<String>>) -> Result<()> {
+     match installable {
+         Installable::Flake { reference, .. } => {
++            let pkgs_path = Path::new(reference).join("pkgs");
++            if pkgs_path.is_dir() {
++                let mut nvfetcher_cmd = Command::new("nvfetcher")
++                    .message("Updating package sources")
++                    .current_dir(&pkgs_path)
++                    .show_output(true);
++                nvfetcher_cmd.run()?;
++            }
++
+             let mut cmd = Command::new("nix").args(["flake", "update"]);
+ 
+             if let Some(inputs) = inputs {

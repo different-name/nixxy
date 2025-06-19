@@ -12,9 +12,25 @@
     # nh is a nix cli helper, useful for rebuilding & cleaning
     programs.nh = {
       enable = true;
-      package = inputs.self.packages.${pkgs.system}.nt.override {
-        nh = inputs.nh.packages.${pkgs.system}.nh;
-      };
+
+      package = inputs.nh.packages.${pkgs.system}.nh.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          (builtins.path {
+            path = inputs.self + /patches/nh/add-nvfetcher.patch;
+            name = "nh-add-nvfetcher";
+          })
+        ];
+
+        postFixup = ''
+          wrapProgram $out/bin/nh \
+            --prefix PATH : ${
+              lib.makeBinPath
+              <| lib.attrValues {
+                inherit (pkgs) nvd nix-output-monitor nvfetcher;
+              }
+            }
+        '';
+      });
 
       # weekly garbage collection
       clean = {
