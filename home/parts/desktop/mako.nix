@@ -27,9 +27,10 @@ in
     home.packages = [
       (pkgs.writeShellApplication {
         name = "mako-dnd";
-        runtimeInputs = lib.attrValues {
-          inherit (pkgs) hyprland mako;
-        };
+        runtimeInputs = [
+          hyprlandCfg.package
+          config.services.mako.package
+        ];
 
         text = ''
           if makoctl mode | grep -q '\<do-not-disturb\>'; then
