@@ -5,6 +5,9 @@
   pkgs,
   ...
 }:
+let
+  discordPackage = pkgs.discord.override { withMoonlight = true; };
+in
 {
   imports = [
     inputs.moonlight.homeModules.default
@@ -32,11 +35,15 @@
       };
     };
 
-    home.packages = with pkgs; [
-      (discord.override { withMoonlight = true; })
+    home.packages = [
+      discordPackage
       (pkgs.writeShellScriptBin "moonlight-config-updater" (
         builtins.readFile ./moonlight-config-updater.sh
       ))
+    ];
+
+    xdg.autostart.entries = [
+      "${discordPackage}/share/applications/discord.desktop"
     ];
 
     nix-files.parts.system.persistence = {

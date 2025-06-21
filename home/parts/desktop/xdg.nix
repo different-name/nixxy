@@ -9,6 +9,7 @@
   config = lib.mkIf config.nix-files.parts.desktop.xdg.enable {
     xdg = {
       enable = true;
+      autostart.enable = true;
       mime.enable = true;
 
       mimeApps = {

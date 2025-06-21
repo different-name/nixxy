@@ -21,7 +21,6 @@
           in
           map uwsmSingleApp [
             "steam -silent"
-            "discord"
           ];
 
         misc = {
