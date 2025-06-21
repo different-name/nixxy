@@ -100,6 +100,9 @@
             # display time as noficiation
             ''$mod, D, exec, notify-send -t 5000 "$(date "+%a %-d %b %Y | %-I:%M%p")"''
 
+            # toggle mako dnd
+            "$mod SHIFT, D, exec, mako-dnd"
+
             # ddcutil external monitor brightness
             "$mod, PAGE_UP, exec, ddcutil setvcp 10 + 10"
             "$mod, PAGE_DOWN, exec, ddcutil setvcp 10 - 10"
