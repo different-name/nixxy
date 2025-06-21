@@ -3,7 +3,6 @@
   config,
   pkgs,
   inputs,
-  osConfig,
   ...
 }:
 let
@@ -22,14 +21,5 @@ in
         wallpaper = [ ",${wallpaperImg}" ];
       };
     };
-
-    wayland.windowManager.hyprland.settings.exec-once =
-      let
-        uwsmEnabled = osConfig.programs.uwsm.enable;
-        hyprpaperPath = lib.getExe config.services.hyprpaper.package;
-      in
-      [
-        "${lib.optionalString uwsmEnabled "uwsm app -- "}${hyprpaperPath}"
-      ];
   };
 }
