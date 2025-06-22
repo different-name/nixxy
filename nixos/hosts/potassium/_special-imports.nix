@@ -4,6 +4,8 @@
 { inputs, ... }:
 {
   imports = [
+    ./_hardware-configuration.nix
+
     inputs.nixos-hardware.nixosModules.dell-xps-15-9500-nvidia
   ];
 }

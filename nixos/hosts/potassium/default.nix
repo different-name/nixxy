@@ -1,10 +1,8 @@
 {
   lib,
   config,
-  pkgs,
-  inputs,
   ...
-}@args:
+}:
 let
   machine-id = "ea3a24c5b3a84bc0a06ac47ef29ef2a8";
 in
@@ -61,10 +59,7 @@ in
         system.stateVersion = "24.05";
       }
 
-      (inputs.self.lib.flattenImports [
-        ./_hardware-configuration.nix
-        ./_disk-configuration.nix
-      ] args)
+      (import ./_disk-configuration.nix)
     ]
   );
 }

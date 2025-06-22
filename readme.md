@@ -79,18 +79,30 @@ nix-files = {
 };
 ```
 
-## Special files
+## Excluded files
 
-Files prefixed with `_` are ignored by `import-tree` and are imported manually instead
+### Manual imports
 
-This prefix is reserved for Nix files that cannot be structured as modules because they are either:
+Some files shouldn't be imported automatically by `import-tree`. This includes files that are auto-generated, required in a fixed format, or are directly imported as part of another expression. For example:
 
-- **Auto-generated**, such as `_hardware-configuration.nix`, or
-- **Required in a fixed format** by external tools such as [disko](https://github.com/nix-community/disko) - e.g. `_disk-configuration.nix`
+- [`_moonlight-config.nix`](https://github.com/different-name/nix-files/blob/fa7434ff3bf07b2e5062f904f8fc89f8db8afcfa/home/parts/applications/discord/_moonlight-config.nix) is auto-generated moonlight configuration imported directly by [`discord/default.nix`](https://github.com/different-name/nix-files/blob/fa7434ff3bf07b2e5062f904f8fc89f8db8afcfa/home/parts/applications/discord/default.nix#L22) so it is not a configuration module and shouldn't be imported by `import-tree`
+- [`_disk-configuration.nix`](https://github.com/different-name/nix-files/blob/fa7434ff3bf07b2e5062f904f8fc89f8db8afcfa/nixos/hosts/sodium/_disk-configuration.nixhttps://github.com/different-name/nix-files/blob/fa7434ff3bf07b2e5062f904f8fc89f8db8afcfa/nixos/hosts/sodium/_disk-configuration.nix) is required in a specific layout by the `disko` command, and so cannot be structured as a module
 
-These special files are typically imported by a `default.nix` file in the same directory
+Any manually imported files like these are prefixed with `_`, which causes `import-tree` to ignore them
 
-The sole exception is `_special-imports.nix` in `nixos/hosts/<host>`, which is explicitly imported by `configurations.nix`. It is reserved for importing modules that cannot be configured, such as those in `nixos-hardware`
+### Special imports
+
+`_special-imports.nix`, located in `nixos/hosts/<host>`, is a special file that imported exclusively by `configurations.nix` for the host it belongs to
+
+This is used for modules that both:
+
+- Cannot be imported by `import-tree` as they lack enable options
+- Cannot be manually imported as they define options
+
+For example:
+
+- Modules from [`nixos-hardware`](https://github.com/NixOS/nixos-hardware), which lack enable options and define options of their own
+- [`_hardware-configuration.nix`](https://github.com/different-name/nix-files/blob/fa7434ff3bf07b2e5062f904f8fc89f8db8afcfa/nixos/hosts/sodium/_hardware-configuration.nix) which lacks an enable option and contains an `imports` field. Handling `imports` manually would require a partial reimplementation of [`lib.modules.evalModules`](https://github.com/hsjobeki/nixpkgs/blob/f0efec9cacfa9aef98a3c70fda2753b9825e262f/lib/modules.nix#L84)
 
 ## Layout
 
