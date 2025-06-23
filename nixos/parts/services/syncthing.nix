@@ -44,6 +44,7 @@ in
 
       settings.devices = {
         "Pico".id = "4EZ7P3H-3G2YWUM-BZDVVN2-7M3OTFZ-IL4KQP5-Z733T66-7CP6J3H-724OCAG";
+        "S23".id = "E5WSI32-5GJCWWV-RAPUJIP-JSRKN3J-YAGYRAA-SMZ46KZ-4AQMQG6-S3UOIA3";
       };
     };
 
