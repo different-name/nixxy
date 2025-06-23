@@ -22,6 +22,7 @@
         discord.enable = true;
         firefox.enable = true;
         kitty.enable = true;
+        obsidian.enable = true;
         unity.enable = true;
         vscodium.enable = true;
       };
