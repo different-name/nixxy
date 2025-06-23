@@ -59,6 +59,8 @@
             "$mod, W, exec, ${uwsmApp "firefox"}"
             ## file explorer
             "$mod, E, exec, ${uwsmApp "thunar"}"
+            ## obsidian
+            "$mod, N, exec, ${uwsmApp "obsidian"}"
 
             # move focus
             "$mod, LEFT, movefocus, l"
