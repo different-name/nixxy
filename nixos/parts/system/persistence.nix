@@ -61,8 +61,5 @@ in
 
     # required for impermanence to work
     fileSystems."/persist".neededForBoot = true;
-
-    # needed for home-manager impermanence to mount it's directories
-    programs.fuse.userAllowOther = true;
   };
 }
