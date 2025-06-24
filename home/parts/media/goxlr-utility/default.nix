@@ -2,6 +2,7 @@
   lib,
   config,
   osConfig,
+  pkgs,
   ...
 }:
 {
@@ -13,7 +14,16 @@
     };
 
     xdg.autostart.entries = [
-      "${osConfig.services.goxlr-utility.package}/share/applications/goxlr-utility.desktop"
+      (
+        (pkgs.makeDesktopItem {
+          name = "goxlr-daemon";
+          destination = "/";
+          desktopName = "GoXLR Daemon";
+          noDisplay = true;
+          exec = lib.getExe' osConfig.services.goxlr-utility.package "goxlr-daemon";
+        })
+        + /goxlr-daemon.desktop
+      )
     ];
 
     home.persistence."/persist".directories = [
