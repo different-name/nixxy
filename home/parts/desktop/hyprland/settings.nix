@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  osConfig,
   ...
 }:
 {
@@ -13,15 +12,6 @@
           "XCURSOR_SIZE,16"
           "GRIMBLAST_NO_CURSOR,0" # TODO https://github.com/fufexan/dotfiles/blob/27b78fa5e824ebcadcdb45509ca1e80aec40d50f/system/programs/hyprland/settings.nix#L11-L12
         ];
-
-        exec-once =
-          let
-            uwsmCmd = lib.optionalString osConfig.programs.uwsm.enable "uwsm app -- ";
-            uwsmSingleApp = cmd: "pgrep ${cmd} || ${uwsmCmd + cmd}";
-          in
-          map uwsmSingleApp [
-            "steam -silent"
-          ];
 
         misc = {
           disable_autoreload = true; # disable auto polling for config file changes

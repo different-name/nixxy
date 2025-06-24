@@ -1,7 +1,9 @@
 {
   lib,
   config,
+  osConfig,
   inputs,
+  pkgs,
   ...
 }:
 {
@@ -29,6 +31,19 @@
         # link vrchat pictures to pictures folder
         "L ${homeDirectory}/Pictures/VRChat - - - - ${vrchatPictures}"
       ];
+
+    xdg.autostart.entries = [
+      (
+        (pkgs.makeDesktopItem {
+          name = "steam-silent";
+          destination = "/";
+          desktopName = "Steam Silent";
+          noDisplay = true;
+          exec = "${lib.getExe osConfig.programs.steam.package} -silent";
+        })
+        + /steam-silent.desktop
+      )
+    ];
 
     nix-files.parts.system.persistence = {
       directories = [
