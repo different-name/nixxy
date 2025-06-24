@@ -11,6 +11,11 @@ in
   config = lib.mkIf (config.nix-files.host == "sodium") (
     lib.mkMerge [
       {
+        age.secrets = {
+          "syncthing/sodium/key".file = inputs.self + /secrets/syncthing/sodium/key.age;
+          "syncthing/sodium/cert".file = inputs.self + /secrets/syncthing/sodium/cert.age;
+        };
+
         nix-files = {
           users.different.enable = true;
 
@@ -30,6 +35,14 @@ in
 
             services = {
               keyd.enable = true;
+
+              syncthing = {
+                enable = true;
+                user = "different";
+                key = config.age.secrets."syncthing/sodium/key".path;
+                cert = config.age.secrets."syncthing/sodium/cert".path;
+              };
+
               xr.enable = true;
             };
 
@@ -76,18 +89,6 @@ in
             };
           }
         ];
-
-        age.secrets = {
-          "syncthing/sodium/key".file = inputs.self + /secrets/syncthing/sodium/key.age;
-          "syncthing/sodium/cert".file = inputs.self + /secrets/syncthing/sodium/cert.age;
-        };
-
-        nix-files.parts.services.syncthing = {
-          enable = true;
-          user = "different";
-          key = config.age.secrets."syncthing/sodium/key".path;
-          cert = config.age.secrets."syncthing/sodium/cert".path;
-        };
 
         ### boilerplate
 
