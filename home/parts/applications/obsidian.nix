@@ -37,6 +37,10 @@ in
     programs.obsidian = {
       enable = true;
       defaultSettings = {
+        app = {
+          spellcheck = false;
+        };
+
         appearance = {
           theme = "obsidian"; # dark base color scheme
           accentColor = "#cba6f7";
