@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   ...
 }:
 let
@@ -10,6 +11,11 @@ in
   config = lib.mkIf (config.nix-files.host == "potassium") (
     lib.mkMerge [
       {
+        age.secrets = {
+          "syncthing/potassium/key".file = inputs.self + /secrets/syncthing/potassium/key.age;
+          "syncthing/potassium/cert".file = inputs.self + /secrets/syncthing/potassium/cert.age;
+        };
+
         nix-files = {
           users.different.enable = true;
 
@@ -26,6 +32,15 @@ in
 
             nix = {
               distributed-builds.enable = true;
+            };
+
+            services = {
+              syncthing = {
+                enable = true;
+                user = "different";
+                key = config.age.secrets."syncthing/potassium/key".path;
+                cert = config.age.secrets."syncthing/potassium/cert".path;
+              };
             };
 
             system = {

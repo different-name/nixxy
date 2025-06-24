@@ -42,5 +42,14 @@ in
     different
   ];
 
+  "syncthing/potassium/key.age".publicKeys = with keys.potassium; [
+    root
+    different
+  ];
+  "syncthing/potassium/cert.age".publicKeys = with keys.potassium; [
+    root
+    different
+  ];
+
   "minecraft/maocraft-discordsrv.age".publicKeys = allKeys;
 }
