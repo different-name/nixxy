@@ -21,7 +21,7 @@
     },
     "disblock-origin": {
         "cargoLocks": null,
-        "date": "2025-05-18",
+        "date": "2025-06-18",
         "extract": null,
         "name": "disblock-origin",
         "passthru": null,
@@ -31,13 +31,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "824ce0a736cc2a8c67206aa9324ce6d18e9d9554",
-            "sha256": "sha256-mCudsamoLDBLjmlAfPgQrw4rPWGZi4mhtXmFi+F1fY0=",
+            "rev": "a1c119899ffe2f3a1dfec620d4ad3963335c651f",
+            "sha256": "sha256-m9T5u7YvDm0p7wfKWMf4p0B0YH6b1ZhiOQdY4p+14go=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://git.allpurposem.at/mat/Disblock-Origin.git"
         },
-        "version": "824ce0a736cc2a8c67206aa9324ce6d18e9d9554"
+        "version": "a1c119899ffe2f3a1dfec620d4ad3963335c651f"
     },
     "osc-goes-brrr": {
         "cargoLocks": null,
