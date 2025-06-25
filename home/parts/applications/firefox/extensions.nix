@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -10,16 +11,21 @@
       force = true;
 
       packages = with pkgs.nur.repos.rycee.firefox-addons; [
-        ublock-origin
+        # util
         proton-pass
         proton-vpn
-        dearrow
-        sponsorblock
-        stylus
-        youtube-nonstop
         greasemonkey
         redirector
-        firefox-color
+
+        # style
+        stylus
+        inputs.self.packages.${pkgs.system}.catppuccin-firefox-mocha
+
+        # adblock
+        ublock-origin
+        dearrow
+        sponsorblock
+        youtube-nonstop
       ];
     };
   };
