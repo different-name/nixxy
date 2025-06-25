@@ -6,7 +6,10 @@
   ...
 }:
 let
-  discordPackage = pkgs.discord.override { withMoonlight = true; };
+  discordPackage = pkgs.discord.override {
+    withMoonlight = true;
+    moonlight = inputs.moonlight.packages.${pkgs.system}.moonlight-mod;
+  };
 in
 {
   imports = [
