@@ -11,6 +11,36 @@
       extensions = {
         force = true;
 
+        settings = {
+          # stylus
+          "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
+            force = true;
+            # put config in browser-extension-data dir instead of database
+            # ~/.mozilla/firefox/default/browser-extension-data/\{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d\}/storage.js
+            settings.dbInChromeStorage = true;
+          };
+
+          # redirector
+          # https://github.com/Anomalocaridid/dotfiles/blob/2eff267391847977118cef00baaac2ef690d2068/home-modules/librewolf.nix#L183-L201
+          "redirector@einaregilsson.com" = {
+            force = true;
+            settings = {
+              enableNotifications = false;
+              redirects = [
+                {
+                  description = "NixOS Wiki";
+                  exampleUrl = "https://nixos.wiki/wiki/Nix_package_manager";
+                  exampleResult = "https://wiki.nixos.org/wiki/Nix_package_manager";
+                  includePattern = "https://nixos.wiki/*";
+                  redirectUrl = "https://wiki.nixos.org/$1";
+                  patternType = "W"; # wildcard
+                  appliesTo = [ "main_frame" ];
+                }
+              ];
+            };
+          };
+        };
+
         packages = with pkgs.nur.repos.rycee.firefox-addons; [
           # util
           proton-pass
