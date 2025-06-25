@@ -111,7 +111,7 @@ in
       };
 
     xdg.configFile."VRCX/custom.css".source =
-      inputs.self.packages.${pkgs.system}.vrcx-catppuccin-theme + /share/vrcx-catppuccin.css;
+      inputs.self.packages.${pkgs.system}.catppuccin-vrcx-mocha + /share/vrcx-catppuccin.css;
 
     # TODO temporary workaround until https://www.github.com/hyprwm/xdg-desktop-portal-hyprland/issues/329 is implemented properly
     wayland.windowManager.hyprland.xdg-desktop-portal-hyprland.settings = {

@@ -24,11 +24,11 @@
     {
       packages =
         [
+          ./catppuccin-vrcx-mocha
           ./cats-blender-plugin-unofficial
           ./disblock-origin
           ./mcuuid
           ./osc-goes-brrr
-          ./vrcx-catppuccin-theme
         ]
         |> map mkPackageAttr
         |> builtins.listToAttrs;

@@ -4,14 +4,12 @@
   ...
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
-  pname = "vrcx-catppuccin-theme";
+  pname = "catppuccin-vrcx-mocha";
   version = "0.1.0";
   src = builtins.path {
     path = ./.;
-    name = finalAttrs.pname;
+    name = finalAttrs.pname + "-src";
   };
-
-  unpackPhase = null;
 
   installPhase = ''
     mkdir -p $out/share
