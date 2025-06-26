@@ -5,6 +5,31 @@
   inputs,
   ...
 }:
+let
+  # precompiled stylus settings with catppuccin themes
+  inherit (inputs.catppuccin-userstyles-nix.packages.${pkgs.system}) catppuccin-stylus-storage;
+
+  userstylesOptions = {
+    # apply settings globally
+    global = {
+      lightFlavor = "latte";
+      darkFlavor = "mocha";
+      accentColor = "red";
+    };
+
+    # apply settings per userstyle
+    # "Userstyle GitHub Catppuccin" = {
+    #   darkFlavor = "frappe";
+    #   accentColor = "mauve";
+    # };
+  };
+
+  stylusCatppuccinSettings =
+    (catppuccin-stylus-storage.override { inherit userstylesOptions; })
+    |> (dir: dir + /share/storage.js)
+    |> builtins.readFile
+    |> builtins.fromJSON;
+in
 {
   config = lib.mkIf config.nix-files.parts.applications.firefox.enable {
     programs.firefox.profiles.default = {
@@ -15,9 +40,9 @@
           # stylus
           "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
             force = true;
-            # put config in browser-extension-data dir instead of database
-            # ~/.mozilla/firefox/default/browser-extension-data/\{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d\}/storage.js
-            settings.dbInChromeStorage = true;
+            settings = stylusCatppuccinSettings // {
+              # set extra settings here
+            };
           };
 
           # redirector

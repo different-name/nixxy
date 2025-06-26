@@ -48,6 +48,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # declarative stylus themes
+    catppuccin-userstyles-nix = {
+      url = "github:different-name/catppuccin-userstyles-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
     # declarative partitioning and formatting
     disko = {
       url = "github:nix-community/disko";
