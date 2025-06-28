@@ -44,17 +44,8 @@
 
     # color theme
     catppuccin = {
-      url = "github:catppuccin/nix";
+      url = "github:different-name/catppuccin-nix/userstyles";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # declarative stylus themes
-    catppuccin-userstyles-nix = {
-      url = "github:different-name/catppuccin-userstyles-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
     };
 
     # declarative partitioning and formatting

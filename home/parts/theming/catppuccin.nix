@@ -21,6 +21,13 @@
         accent = "dark";
       };
 
+      firefox.profiles.default = {
+        userstyles = {
+          enable = true;
+          force = true;
+        };
+      };
+
       gtk = {
         inherit (config.catppuccin) enable flavor accent;
         size = "standard";

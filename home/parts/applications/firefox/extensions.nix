@@ -12,21 +12,6 @@
         force = true;
 
         settings = {
-          # stylus
-          "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
-            force = true;
-
-            # catppuccin userstyles
-            settings = inputs.catppuccin-userstyles-nix.stylusSettings.${pkgs.system} {
-              # global userstyle settings
-              global = {
-                lightFlavor = "latte";
-                darkFlavor = "mocha";
-                accentColor = "red";
-              };
-            };
-          };
-
           # redirector
           # https://github.com/Anomalocaridid/dotfiles/blob/2eff267391847977118cef00baaac2ef690d2068/home-modules/librewolf.nix#L183-L201
           "redirector@einaregilsson.com" = {
