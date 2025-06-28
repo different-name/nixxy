@@ -17,7 +17,7 @@
       inherit (osConfig.catppuccin) enable accent flavor;
 
       cursors = {
-        inherit (config.catppuccin) enable flavor;
+        inherit (config.catppuccin) enable;
         accent = "dark";
       };
 
@@ -29,7 +29,7 @@
       };
 
       gtk = {
-        inherit (config.catppuccin) enable flavor accent;
+        inherit (config.catppuccin) enable;
         size = "standard";
         tweaks = [ "normal" ];
         icon.enable = true;
