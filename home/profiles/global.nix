@@ -18,16 +18,8 @@
 
           directories = [
             "nix-files"
-            ".ssh"
             ".terminfo"
             ".local/share/Trash"
-            ".cache/fontconfig"
-            ".cache/nix"
-            ".cache/nix-output-monitor"
-          ];
-
-          files = [
-            ".local/share/nix/repl-history"
           ];
         };
       };

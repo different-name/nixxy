@@ -22,5 +22,12 @@
     };
 
     services.pulseaudio.enable = lib.mkForce false;
+
+    nix-files.parts.system.persistence = {
+      home.directories = [
+        # audio settings
+        ".local/state/wireplumber"
+      ];
+    };
   };
 }

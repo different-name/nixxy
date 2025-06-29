@@ -13,11 +13,5 @@
       wl-clipboard
       libnotify
     ];
-
-    nix-files.parts.system.persistence = {
-      directories = [
-        ".local/state/wireplumber" # audio settings
-      ];
-    };
   };
 }

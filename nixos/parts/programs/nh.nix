@@ -39,5 +39,11 @@
         extraArgs = "--keep-since 30d";
       };
     };
+
+    nix-files.parts.system.persistence = {
+      home.directories = [
+        ".cache/nix-output-monitor"
+      ];
+    };
   };
 }

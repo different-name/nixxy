@@ -54,5 +54,17 @@
         # opinionated: disable channels
         channel.enable = false;
       };
+
+    nix-files.parts.system.persistence = {
+      home = {
+        directories = [
+          ".cache/nix"
+        ];
+
+        files = [
+          ".local/share/nix/repl-history"
+        ];
+      };
+    };
   };
 }
