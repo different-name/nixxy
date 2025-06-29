@@ -12,28 +12,34 @@
   config = lib.mkIf config.nix-files.parts.terminal.extra-packages.enable {
     home.packages =
       (with pkgs; [
-        imagemagick
-        ffmpeg
-        trashy
-        ncdu
-        aspell
-        aspellDicts.en
-        libqalculate
-        sshfs
-        magic-wormhole
-        exiftool
-        nixfmt-tree
-        qmk
-        yt-dlp
-        zip
-        unzip
-        nvfetcher
-        nix-melt
-        nix-init
-        nurl
-        nix-output-monitor
-        pv
-        tree
+        # applications
+        libqalculate # calculator
+
+        # file management
+        ncdu # disk usage
+        sshfs # mount remote directories over ssh
+        magic-wormhole # transfer files between computers
+        zip # zip files
+        unzip # unzip files
+        trashy # move files to trash
+
+        # media
+        imagemagick # manipulate images
+        ffmpeg # manipulate videos
+        yt-dlp # audio/video downloader
+
+        # nix
+        nixfmt-tree # nixpkgs formatter
+        nvfetcher # generate nix sources for packages
+        nix-melt # flake.lock viewer
+        nix-init # generate package definitions
+        nurl # generate fetcher expressions
+
+        # misc
+        aspell # spell checker
+        aspellDicts.en # aspell english dictionary
+        pv # pipe viewer, monitor data flow through pipe
+        tree # directory listing
       ])
       ++ [
         inputs.self.packages.${pkgs.system}.mcuuid

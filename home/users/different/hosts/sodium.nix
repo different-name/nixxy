@@ -2,6 +2,7 @@
   lib,
   config,
   osConfig,
+  pkgs,
   ...
 }:
 {
@@ -47,6 +48,10 @@
         ".config/syncthing"
       ];
     };
+
+    home.packages = with pkgs; [
+      qmk
+    ];
 
     ### required config
 
