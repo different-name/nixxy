@@ -80,7 +80,8 @@
       inputs = {
         hyprgraphics.follows = "hyprland/hyprgraphics";
         hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
+        # TODO commented due to build failure until hyprland lockfile is updated
+        # hyprutils.follows = "hyprland/hyprutils";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
