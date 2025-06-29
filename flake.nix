@@ -43,8 +43,9 @@
     };
 
     # color theme
+    # fork with support for userstyles & xfce4-terminal
     catppuccin = {
-      url = "github:different-name/catppuccin-nix/userstyles";
+      url = "github:different-name/catppuccin-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
