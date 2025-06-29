@@ -74,21 +74,23 @@ in
         services.goxlr-utility.enable = true;
 
         # mirror audio from goxlr outputs to wivrn output
-        services.pipewire.wireplumber.connectPorts = [
-          {
-            output = {
-              constraint = "GoXLR:monitor_*";
-              leftAlias = "GoXLR:monitor_FL";
-              rightAlias = "GoXLR:monitor_FR";
-            };
+        services.pipewire.wireplumber.scripts = {
+          autoConnectPorts = [
+            {
+              output = {
+                subject = "port.alias";
+                leftPort = "GoXLR:monitor_FL";
+                rightPort = "GoXLR:monitor_FR";
+              };
 
-            input = {
-              constraint = "WiVRn:playback_*";
-              leftAlias = "WiVRn:playback_1";
-              rightAlias = "WiVRn:playback_2";
-            };
-          }
-        ];
+              input = {
+                subject = "port.alias";
+                leftPort = "WiVRn:playback_1";
+                rightPort = "WiVRn:playback_2";
+              };
+            }
+          ];
+        };
 
         ### boilerplate
 
