@@ -6,8 +6,8 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./configurations.nix
-        ./modules/homeModules
-        ./modules/nixosModules
+        ./modules/home-modules
+        ./modules/nixos-modules
         ./pkgs
         ./lib
       ];

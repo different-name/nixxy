@@ -6,14 +6,13 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.ephemeral-tools
+    inputs.self.nixosModules.ephemeralTools
   ];
 
-  options.nix-files.parts.programs.ephemeral-tools.enable =
-    lib.mkEnableOption "ephemeral-tools config";
+  options.nix-files.parts.programs.ephemeralTools.enable = lib.mkEnableOption "ephtools config";
 
-  config = lib.mkIf config.nix-files.parts.programs.ephemeral-tools.enable {
-    programs.ephemeral-tools = {
+  config = lib.mkIf config.nix-files.parts.programs.ephemeralTools.enable {
+    programs.ephemeralTools = {
       enable = true;
 
       exclude-paths =

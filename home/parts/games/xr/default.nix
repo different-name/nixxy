@@ -114,7 +114,7 @@ in
       inputs.self.packages.${pkgs.system}.catppuccin-vrcx-mocha + /share/vrcx-catppuccin.css;
 
     # TODO temporary workaround until https://www.github.com/hyprwm/xdg-desktop-portal-hyprland/issues/329 is implemented properly
-    wayland.windowManager.hyprland.xdg-desktop-portal-hyprland.settings = {
+    wayland.windowManager.hyprland.xdgDesktopPortalHyprland.settings = {
       screencopy = {
         custom_picker_binary = lib.getExe (
           pkgs.writeShellApplication {

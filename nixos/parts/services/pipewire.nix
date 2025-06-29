@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.wireplumber-scripts
+    inputs.self.nixosModules.wireplumberScripts
   ];
 
   options.nix-files.parts.services.pipewire.enable = lib.mkEnableOption "pipewire config";

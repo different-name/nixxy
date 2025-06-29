@@ -6,9 +6,9 @@
   ...
 }:
 let
-  cfg = config.programs.disblock-origin;
+  cfg = config.programs.disblockOrigin;
 
-  disblock-origin-settings = {
+  disblockOriginSettings = {
     badges = {
       isBool = false;
       default = false;
@@ -112,7 +112,7 @@ let
   settingToCss =
     name: value:
     let
-      setting = disblock-origin-settings.${name};
+      setting = disblockOriginSettings.${name};
 
       prefix = if setting.isBool then "bool" else "display";
 
@@ -129,9 +129,9 @@ let
   disblock-origin = inputs.self.packages.${pkgs.system}.disblock-origin;
 in
 {
-  options.programs.disblock-origin = {
-    enable = lib.mkEnableOption "disblock-origin";
-    settings = lib.mapAttrs mkSetting disblock-origin-settings;
+  options.programs.disblockOrigin = {
+    enable = lib.mkEnableOption "Disblock Origin";
+    settings = lib.mapAttrs mkSetting disblockOriginSettings;
   };
 
   config = lib.mkIf cfg.enable {

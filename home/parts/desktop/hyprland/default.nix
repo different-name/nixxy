@@ -9,7 +9,7 @@
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
-    inputs.self.homeManagerModules.xdg-desktop-portal-hyprland
+    inputs.self.homeManagerModules.xdgDesktopPortalHyprland
   ];
 
   options.nix-files.parts.desktop.hyprland.enable = lib.mkEnableOption "hyprland config";

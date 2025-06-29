@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.programs.ephemeral-tools;
+  cfg = config.programs.ephemeralTools;
 in
 {
-  options.programs.ephemeral-tools = {
+  options.programs.ephemeralTools = {
     enable = lib.mkEnableOption "ephtools command, a utility for finding new and stray files";
 
     exclude-paths = lib.mkOption {

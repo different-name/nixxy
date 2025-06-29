@@ -68,7 +68,7 @@
         };
       };
 
-      xdg-desktop-portal-hyprland.settings = {
+      xdgDesktopPortalHyprland.settings = {
         screencopy = {
           allow_token_by_default = true;
         };

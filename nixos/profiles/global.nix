@@ -23,7 +23,7 @@
       };
 
       programs = {
-        ephemeral-tools.enable = true;
+        ephemeralTools.enable = true;
         fish.enable = true;
         nh.enable = true;
       };

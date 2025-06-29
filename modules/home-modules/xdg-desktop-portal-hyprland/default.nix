@@ -4,7 +4,7 @@
   ...
 }:
 let
-  cfg = config.wayland.windowManager.hyprland.xdg-desktop-portal-hyprland;
+  cfg = config.wayland.windowManager.hyprland.xdgDesktopPortalHyprland;
 
   valueToString = value: if builtins.isBool value then lib.boolToString value else toString value;
 
@@ -18,7 +18,7 @@ let
     settings: settings |> lib.mapAttrsToList generateBlock |> lib.concatStringsSep "\n\n";
 in
 {
-  options.wayland.windowManager.hyprland.xdg-desktop-portal-hyprland = {
+  options.wayland.windowManager.hyprland.xdgDesktopPortalHyprland = {
     settings = lib.mkOption {
       type = lib.types.attrsOf (
         lib.types.attrsOf (

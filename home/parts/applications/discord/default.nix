@@ -14,7 +14,7 @@ in
 {
   imports = [
     inputs.moonlight.homeModules.default
-    inputs.self.homeManagerModules.disblock-origin
+    inputs.self.homeManagerModules.disblockOrigin
   ];
 
   options.nix-files.parts.applications.discord.enable = lib.mkEnableOption "discord config";
@@ -27,7 +27,7 @@ in
 
     xdg.configFile."moonlight-mod/stable.json".force = true;
 
-    programs.disblock-origin = {
+    programs.disblockOrigin = {
       enable = true;
       settings = {
         gif-button = true;

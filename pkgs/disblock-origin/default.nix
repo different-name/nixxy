@@ -15,7 +15,6 @@ stdenvNoCC.mkDerivation {
   meta = {
     description = "An ad-blocker \"Theme\" for Discord that hides all Nitro and \"boost\" upsells, alongside some annoyances.";
     homepage = "https://git.allpurposem.at/mat/Disblock-Origin.git";
-    mainProgram = "disblock-origin";
     platforms = lib.platforms.all;
   };
 }
