@@ -7,7 +7,6 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.steam-launch-options
     inputs.nixpkgs-xr.nixosModules.nixpkgs-xr
   ];
 
@@ -21,15 +20,6 @@
         proton-ge-bin
         proton-ge-rtsp-bin
       ];
-
-      launchOptions = {
-        enable = true;
-
-        games = {
-          # workaround for vrchat using incorrect timezone
-          VRChat.unsetVariables = [ "TZ" ];
-        };
-      };
     };
 
     hardware.steam-hardware.enable = true;
