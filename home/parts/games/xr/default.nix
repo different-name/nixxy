@@ -126,22 +126,25 @@ in
       };
     };
 
-    home.packages = with pkgs; [
-      inputs.self.packages.${pkgs.system}.osc-goes-brrr
-
-      # https://github.com/tauri-apps/tauri/issues/9394
-      (symlinkJoin {
-        name = "slimevr";
-        paths = [ slimevr ];
-        buildInputs = [ makeWrapper ];
-        postBuild = ''
-          wrapProgram $out/bin/slimevr \
-            --set WEBKIT_DISABLE_DMABUF_RENDERER 1
-        '';
-      })
-      vrcx
-      wlx-overlay-s
-    ];
+    home.packages =
+      (with pkgs; [
+        # https://github.com/tauri-apps/tauri/issues/9394
+        (symlinkJoin {
+          name = "slimevr";
+          paths = [ slimevr ];
+          buildInputs = [ makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/slimevr \
+              --set WEBKIT_DISABLE_DMABUF_RENDERER 1
+          '';
+        })
+        vrcx
+        wlx-overlay-s
+      ])
+      ++ (with inputs.self.packages.${pkgs.system}; [
+        osc-goes-brrr
+        slimevr-cli
+      ]);
 
     nix-files.parts.system.persistence = {
       directories = [

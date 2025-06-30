@@ -29,6 +29,7 @@
           ./cats-blender-plugin-unofficial
           ./disblock-origin
           ./mcuuid
+          ./slimevr-cli
           ./osc-goes-brrr
         ]
         |> map mkPackageAttr
