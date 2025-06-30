@@ -190,7 +190,7 @@
     };
 
     # list of systems
-    systems.url = "github:nix-systems/default-linux";
+    systems.url = "github:nix-systems/x86_64-linux";
 
     # slimevr solarxr protocol patches for wivrn
     wivrn-solarxr = {
