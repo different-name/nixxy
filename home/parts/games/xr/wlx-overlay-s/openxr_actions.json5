@@ -54,6 +54,10 @@
     },
     show_hide: {
       left: "/user/hand/left/input/menu/click"
+    },
+    yaw_reset: {
+      double_click: true,
+      left: "/user/hand/left/input/y/click",
     }
   },
   // Oculus Touch Controller. Compatible with Quest 2, Quest 3, Quest Pro
@@ -107,6 +111,10 @@
       // used with focus_follows_mouse_mode
       left: "/user/hand/left/input/trigger/touch",
       right: "/user/hand/right/input/trigger/touch"
+    },
+    yaw_reset: {
+      double_click: true,
+      left: "/user/hand/left/input/y/click",
     }
   },
   // Index controller
@@ -168,6 +176,10 @@
       // used with focus_follows_mouse_mode
       left: "/user/hand/left/input/trigger/touch",
       right: "/user/hand/right/input/trigger/touch"
+    },
+    yaw_reset: {
+      double_click: true,
+      left: "/user/hand/left/input/y/click",
     }
   },
   // Vive controller
@@ -206,6 +218,10 @@
     haptic: {
       left: "/user/hand/left/output/haptic",
       right: "/user/hand/right/output/haptic"
+    },
+    yaw_reset: {
+      double_click: true,
+      left: "/user/hand/left/input/y/click",
     }
   },
   // Windows Mixed Reality controller
@@ -245,6 +261,10 @@
       double_click: true,
       right: "/user/hand/right/input/menu/click",
     },
+    yaw_reset: {
+      double_click: true,
+      left: "/user/hand/left/input/y/click",
+    },
   },
   // HP Reverb G2 controller
   {
@@ -282,6 +302,10 @@
     space_reset: {
       double_click: true,
       right: "/user/hand/right/input/menu/click",
+    },
+    yaw_reset: {
+      double_click: true,
+      left: "/user/hand/left/input/y/click",
     },
   },
 ]

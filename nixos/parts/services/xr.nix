@@ -155,6 +155,10 @@
       };
     };
 
+    environment.systemPackages = [
+      inputs.self.packages.${pkgs.system}.slimevr-cli
+    ];
+
     nix-files.parts.system.persistence = {
       directories = [
         "/root/.config/dev.slimevr.SlimeVR"

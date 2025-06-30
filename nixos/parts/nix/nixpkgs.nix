@@ -36,6 +36,10 @@
                 path = inputs.self + /patches/wlx-overlay-s/catppuccin-colors.patch;
                 name = "wlx-overlay-s-catppuccin-colors";
               })
+              (builtins.path {
+                path = inputs.self + /patches/wlx-overlay-s/yaw-reset.patch;
+                name = "wlx-overlay-s-yaw-reset";
+              })
             ];
           });
         })
