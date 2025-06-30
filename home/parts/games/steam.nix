@@ -8,17 +8,20 @@
 }:
 {
   imports = [
-    inputs.steam-launch-nix.homeModules.steam-launch
+    inputs.steam-localconfig-nix.homeModules.default
   ];
 
   options.nix-files.parts.games.steam.enable = lib.mkEnableOption "steam config";
 
   config = lib.mkIf config.nix-files.parts.games.steam.enable {
-    programs.steam-launch = {
+    programs.steam.localConfig = {
       enable = true;
-      stopSteam = true;
-      options = {
-        "438100" = ''env -u TZ PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc" %command%'';
+      closeSteam = true;
+
+      users."875898227" = {
+        launchOptions = {
+          "438100" = ''env -u TZ PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc" %command%'';
+        };
       };
     };
 

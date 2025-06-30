@@ -180,11 +180,10 @@
       };
     };
 
-    # set steam game launch options through nix config
-    steam-launch-nix = {
-      url = "github:different-name/steam-launch.nix";
+    # manage steam game launch options and other local config
+    steam-localconfig-nix = {
+      url = "github:different-name/steam-localconfig-nix";
       inputs = {
-        home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };
