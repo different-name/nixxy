@@ -42,8 +42,6 @@
 
           # style
           stylus
-          firefox-color
-          # firefox color takes a second to start up, so i use the legacy theme too
           inputs.self.packages.${pkgs.system}.catppuccin-firefox-mocha
 
           # adblock

@@ -22,7 +22,7 @@
       };
 
       firefox.profiles.default = {
-        force = true;
+        enable = false;
         userstyles.force = true;
       };
 
