@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.nix-files.parts.terminal.fish.enable = lib.mkEnableOption "fish config";
 

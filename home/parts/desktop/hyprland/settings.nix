@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   config = lib.mkIf config.nix-files.parts.desktop.hyprland.enable {
     wayland.windowManager.hyprland = {

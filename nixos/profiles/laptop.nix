@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.nix-files.profiles.laptop.enable = lib.mkEnableOption "laptop profile";
 

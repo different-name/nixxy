@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.nix-files.parts.services.tailscale.enable = lib.mkEnableOption "tailscale config";
 

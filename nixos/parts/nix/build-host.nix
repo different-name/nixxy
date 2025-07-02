@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.nix-files.parts.nix.build-host.enable = lib.mkEnableOption "distributed build host config";
 

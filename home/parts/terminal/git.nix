@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.nix-files.parts.terminal.git.enable = lib.mkEnableOption "git config";
 

@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.nix-files.parts.system.home-manager.enable = lib.mkEnableOption "home-manager config";
 

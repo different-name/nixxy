@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
   activeColor = "ed507c";
   inactiveColor = "181825";

@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.nix-files.parts.applications.firefox.enable = lib.mkEnableOption "firefox config";
 

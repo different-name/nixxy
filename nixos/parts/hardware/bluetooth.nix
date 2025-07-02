@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.nix-files.parts.hardware.bluetooth.enable = lib.mkEnableOption "bluetooth config";
 

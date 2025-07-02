@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   config = lib.mkIf config.nix-files.parts.applications.firefox.enable {
     programs.firefox.profiles.default.settings = {

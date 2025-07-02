@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.nix-files.parts.hardware.nvidia.enable = lib.mkEnableOption "nvidia config";
 

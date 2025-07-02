@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
   machine-id = "294b0aee9a634611a9ddef5e843f4035";
 in
