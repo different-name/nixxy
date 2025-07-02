@@ -9,7 +9,12 @@ let
   mkNixosSystem =
     configuration:
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = {
+        inherit inputs;
+        lib = lib // {
+          nix-files = inputs.self.lib;
+        };
+      };
 
       modules = [
         { nix-files.host = configuration; }

@@ -3,7 +3,6 @@
   config,
   pkgs,
   inputs,
-  osConfig,
   ...
 }:
 {
@@ -57,7 +56,7 @@
             "${lib.getExe pkgs.nixfmt-rfc-style}"
           ];
           "nix.serverSettings.nixd.options.nixos.expr" =
-            "(builtins.getFlake \"${osConfig.programs.nh.flake}\").nixosConfigurations.<name>.options";
+            "(builtins.getFlake \"${config.nix-files.home.flake}\").nixosConfigurations.<name>.options";
           "nix.hiddenLanguageServerErrors" = [
             "textDocument/inlayHint"
             "textDocument/definition"

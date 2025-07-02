@@ -1,20 +1,24 @@
 { lib, config, ... }:
-let
-  machine-id = "294b0aee9a634611a9ddef5e843f4035";
-in
-{
-  config = lib.mkIf (config.nix-files.host == "iodine") (
-    lib.mkMerge [
-      {
-        nix-files = {
-          users.iodine.enable = true;
+lib.nix-files.mkHost {
+  inherit config;
 
-          profiles.global.enable = true;
+  hostName = "iodine";
+  machineId = "294b0aee9a634611a9ddef5e843f4035";
+  diskConfiguration = ./_disk-configuration.nix;
+  stateVersion = "24.05";
 
-          parts = {
-            nix = {
-              distributed-builds.enable = true;
-            };
+  content = {
+    ### nix-files modules
+
+    nix-files = {
+      users.iodine.enable = true;
+
+      profiles.global.enable = true;
+
+      parts = {
+        nix = {
+          distributed-builds.enable = true;
+        };
 
         # services = {
         #   cloudflare-dyndns.enable = true;
@@ -26,30 +30,12 @@ in
         #     maodded.enable = true;
         #   };
         # };
-          };
-        };
+      };
+    };
 
-        ### host specific
+    ### host specific
 
-        # TODO temporary rollback on iodine for password issues
-        security.sudo.wheelNeedsPassword = lib.mkForce false;
-
-        ### boilerplate
-
-        networking = {
-          hostName = "iodine";
-          hostId = builtins.substring 0 8 machine-id;
-        };
-
-        environment.etc.machine-id.text = machine-id;
-
-        programs.nh.flake = "/home/iodine/nix-files";
-
-        # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
-        system.stateVersion = "24.05";
-      }
-
-      (import ./_disk-configuration.nix)
-    ]
-  );
+    # TODO temporary rollback on iodine for password issues
+    security.sudo.wheelNeedsPassword = lib.mkForce false;
+  };
 }

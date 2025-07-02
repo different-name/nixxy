@@ -4,110 +4,91 @@
   inputs,
   ...
 }:
-let
-  machine-id = "9471422d94d34bb8807903179fb35f11";
-in
-{
-  config = lib.mkIf (config.nix-files.host == "sodium") (
-    lib.mkMerge [
-      {
-        age.secrets = {
-          "syncthing/sodium/key".file = inputs.self + /secrets/syncthing/sodium/key.age;
-          "syncthing/sodium/cert".file = inputs.self + /secrets/syncthing/sodium/cert.age;
-        };
+lib.nix-files.mkHost {
+  inherit config;
 
-        nix-files = {
-          users.different.enable = true;
+  hostName = "sodium";
+  machineId = "9471422d94d34bb8807903179fb35f11";
+  diskConfiguration = ./_disk-configuration.nix;
+  stateVersion = "24.05";
 
-          profiles = {
-            global.enable = true;
-            graphical.enable = true;
+  content = {
+    ### nix-files modules
+
+    age.secrets = {
+      "syncthing/sodium/key".file = inputs.self + /secrets/syncthing/sodium/key.age;
+      "syncthing/sodium/cert".file = inputs.self + /secrets/syncthing/sodium/cert.age;
+    };
+
+    nix-files = {
+      users.different.enable = true;
+
+      profiles = {
+        global.enable = true;
+        graphical.enable = true;
+      };
+
+      parts = {
+        hardware.nvidia.enable = true;
+        nix.build-host.enable = true;
+
+        services = {
+          keyd.enable = true;
+
+          syncthing = {
+            enable = true;
+            user = "different";
+            key = config.age.secrets."syncthing/sodium/key".path;
+            cert = config.age.secrets."syncthing/sodium/cert".path;
           };
 
-          parts = {
-            hardware = {
-              nvidia.enable = true;
-            };
+          xr.enable = true;
+        };
 
-            nix = {
-              build-host.enable = true;
-            };
+        system = {
+          autologin = {
+            enable = true;
+            user = "different";
+          };
 
-            services = {
-              keyd.enable = true;
-
-              syncthing = {
-                enable = true;
-                user = "different";
-                key = config.age.secrets."syncthing/sodium/key".path;
-                cert = config.age.secrets."syncthing/sodium/cert".path;
-              };
-
-              xr.enable = true;
-            };
-
-            system = {
-              autologin = {
-                enable = true;
-                user = "different";
-              };
-
-              btrfs.backup-script = {
-                enable = true;
-                backup-disk-uuid = "a5091625-835c-492f-8d99-0fc8d27012a0";
-                crypt-name = "backup_drive";
-                mount = "/mnt/backup";
-                subvolume = "/btrfs/persist";
-              };
-            };
+          btrfs.backup-script = {
+            enable = true;
+            backup-disk-uuid = "a5091625-835c-492f-8d99-0fc8d27012a0";
+            crypt-name = "backup_drive";
+            mount = "/mnt/backup";
+            subvolume = "/btrfs/persist";
           };
         };
+      };
+    };
 
-        ### host specific
+    ### host specific
 
-        environment.sessionVariables = {
-          STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
-          GDK_SCALE = "2";
-        };
+    environment.sessionVariables = {
+      STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
+      GDK_SCALE = "2";
+    };
 
-        hardware.keyboard.qmk.enable = true;
-        services.goxlr-utility.enable = true;
+    hardware.keyboard.qmk.enable = true;
+    services.goxlr-utility.enable = true;
 
-        # mirror audio from goxlr outputs to wivrn output
-        services.pipewire.wireplumber.scripts = {
-          autoConnectPorts = [
-            {
-              output = {
-                subject = "port.alias";
-                leftPort = "GoXLR:monitor_FL";
-                rightPort = "GoXLR:monitor_FR";
-              };
+    # mirror audio from goxlr outputs to wivrn output
+    services.pipewire.wireplumber.scripts = {
+      autoConnectPorts = [
+        {
+          output = {
+            subject = "port.alias";
+            leftPort = "GoXLR:monitor_FL";
+            rightPort = "GoXLR:monitor_FR";
+          };
 
-              input = {
-                subject = "port.alias";
-                leftPort = "WiVRn:playback_1";
-                rightPort = "WiVRn:playback_2";
-              };
-            }
-          ];
-        };
-
-        ### boilerplate
-
-        networking = {
-          hostName = "sodium";
-          hostId = builtins.substring 0 8 machine-id;
-        };
-
-        environment.etc.machine-id.text = machine-id;
-
-        programs.nh.flake = "/home/different/nix-files";
-
-        # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
-        system.stateVersion = "24.05";
-      }
-
-      (import ./_disk-configuration.nix)
-    ]
-  );
+          input = {
+            subject = "port.alias";
+            leftPort = "WiVRn:playback_1";
+            rightPort = "WiVRn:playback_2";
+          };
+        }
+      ];
+    };
+  };
 }

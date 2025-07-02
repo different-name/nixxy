@@ -4,10 +4,11 @@
   inputs,
   ...
 }:
-{
-  options.nix-files.users.different.enable = lib.mkEnableOption "user different";
+lib.nix-files.mkUser {
+  inherit config;
+  username = "different";
 
-  config = lib.mkIf config.nix-files.users.different.enable {
+  content = {
     age.secrets."user-pass/different".file = inputs.self + /secrets/user-pass/different.age;
 
     users.users."different" = {
@@ -32,16 +33,6 @@
         "i2c" # for nix-files.parts.hardware.ddcutil
       ];
     };
-
-    home-manager.users.different =
-      { inputs, ... }:
-      {
-        imports = [
-          (inputs.import-tree (inputs.self + /home))
-        ];
-
-        nix-files.user = "different";
-      };
 
     # access to the hostkey independent of impermanence activation
     age.identityPaths = lib.mkIf config.nix-files.parts.system.agenix.enable [

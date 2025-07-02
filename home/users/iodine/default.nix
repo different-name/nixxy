@@ -1,9 +1,5 @@
 { lib, config, ... }:
-{
-  config = lib.mkIf (config.nix-files.user == "iodine") {
-    home = {
-      username = "iodine";
-      homeDirectory = "/home/${config.home.username}";
-    };
-  };
+lib.mkIf (config.nix-files.home.user == "iodine") {
+  # user specific home configuration shared hosts
+
 }

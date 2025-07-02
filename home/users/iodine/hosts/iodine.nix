@@ -1,20 +1,14 @@
-{
-  lib,
-  config,
-  osConfig,
-  ...
-}:
-{
-  config = lib.mkIf (config.nix-files.user == "iodine" && osConfig.nix-files.host == "iodine") {
-    ### modules
+{ lib, config, ... }:
+let
+  cfg = config.nix-files.home;
+in
+lib.mkIf (cfg.user == "iodine" && cfg.host == "iodine") {
+  ### nix-files modules
 
-    nix-files = {
-      profiles.global.enable = true;
-    };
-
-    ### required config
-
-    # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
-    home.stateVersion = "24.05";
+  nix-files = {
+    profiles.global.enable = true;
   };
+
+  ### host specific
+
 }
