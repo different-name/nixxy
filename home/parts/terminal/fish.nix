@@ -1,4 +1,9 @@
 { lib, config, ... }:
+let
+  catppuccinPalette = lib.importJSON "${config.catppuccin.sources.palette}/palette.json";
+  themeColors = catppuccinPalette.${config.catppuccin.flavor}.colors;
+  accentColor = themeColors.${config.catppuccin.accent}.hex;
+in
 {
   options.nix-files.parts.terminal.fish.enable = lib.mkEnableOption "fish config";
 
@@ -7,8 +12,8 @@
       enable = true;
 
       shellInit = ''
-        set -U fish_color_cwd red
-        set -U fish_color_user red
+        set -U fish_color_cwd "${accentColor}"
+        set -U fish_color_user "${accentColor}"
         ${if config.programs.fastfetch.enable then "fastfetch && echo" else ""}
       '';
 

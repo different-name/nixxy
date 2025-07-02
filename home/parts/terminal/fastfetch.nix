@@ -1,4 +1,9 @@
 { lib, config, ... }:
+let
+  catppuccinPalette = lib.importJSON "${config.catppuccin.sources.palette}/palette.json";
+  themeColors = catppuccinPalette.${config.catppuccin.flavor}.colors;
+  accentColor = themeColors.${config.catppuccin.accent}.hex;
+in
 {
   options.nix-files.parts.terminal.fastfetch.enable = lib.mkEnableOption "fastfetch config";
 
@@ -12,9 +17,9 @@
         display = {
           separator = ": ";
           color = {
-            title = "red";
+            title = accentColor;
             separator = "dim_white";
-            keys = "red";
+            keys = accentColor;
           };
         };
 

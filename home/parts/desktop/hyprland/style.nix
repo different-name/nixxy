@@ -1,8 +1,12 @@
 { lib, config, ... }:
 let
-  activeColor = "ed507c";
-  inactiveColor = "181825";
-  alternateColor = "cba6f7";
+  catppuccinPalette = lib.importJSON "${config.catppuccin.sources.palette}/palette.json";
+  themeColors = catppuccinPalette.${config.catppuccin.flavor}.colors;
+  getColor = color: lib.removePrefix "#" themeColors.${color}.hex;
+
+  activeColor = getColor config.catppuccin.accent;
+  inactiveColor = getColor "mantle";
+  alternateColor = getColor "mauve";
 in
 {
   config = lib.mkIf config.nix-files.parts.desktop.hyprland.enable {

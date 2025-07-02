@@ -5,8 +5,11 @@
   ...
 }:
 let
+  catppuccinPalette = lib.importJSON "${config.catppuccin.sources.palette}/palette.json";
+  themeColors = catppuccinPalette.${config.catppuccin.flavor}.colors;
+  borderColor = themeColors.${config.catppuccin.accent}.hex;
+
   hyprlandCfg = config.wayland.windowManager.hyprland;
-  borderColor = "ed507c";
 in
 {
   options.nix-files.parts.desktop.mako.enable = lib.mkEnableOption "mako config";
@@ -15,7 +18,7 @@ in
     services.mako = {
       enable = true;
       settings = {
-        "border-color" = lib.mkForce "#${borderColor}";
+        "border-color" = lib.mkForce "${borderColor}";
         "border-radius" = hyprlandCfg.settings.decoration.rounding;
 
         "mode=do-not-disturb" = {
