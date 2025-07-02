@@ -32,6 +32,7 @@
       system = {
         agenix.enable = true;
         boot.enable = true;
+        home-manager.enable = true;
         btrfs.enable = true;
         locale.enable = true;
         networking.enable = true;
