@@ -16,16 +16,16 @@ in
               distributed-builds.enable = true;
             };
 
-            services = {
-              cloudflare-dyndns.enable = true;
+        # services = {
+        #   cloudflare-dyndns.enable = true;
 
-              minecraft-server = {
-                enable = true;
-                maocraft.enable = true;
-                buhguh.enable = true;
-                maodded.enable = true;
-              };
-            };
+        #   minecraft-server = {
+        #     enable = true;
+        #     maocraft.enable = true;
+        #     buhguh.enable = true;
+        #     maodded.enable = true;
+        #   };
+        # };
           };
         };
 
