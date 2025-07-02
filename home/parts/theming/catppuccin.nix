@@ -22,10 +22,8 @@
       };
 
       firefox.profiles.default = {
-        userstyles = {
-          enable = true;
-          force = true;
-        };
+        force = true;
+        userstyles.force = true;
       };
 
       gtk = {

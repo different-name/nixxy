@@ -42,6 +42,7 @@
 
           # style
           stylus
+          firefox-color
           inputs.self.packages.${pkgs.system}.catppuccin-firefox-mocha
 
           # adblock
