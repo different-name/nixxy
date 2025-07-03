@@ -23,6 +23,7 @@
           blueglassblock.better-json5
           ms-python.python
           editorconfig.editorconfig
+          prettiercode.code-prettier
         ];
 
         userSettings = {
