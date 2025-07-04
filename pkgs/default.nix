@@ -25,6 +25,7 @@
       packages =
         [
           ./catppuccin-firefox-mocha
+          ./catppuccin-obsidian-theme
           ./catppuccin-vrcx-mocha
           ./cats-blender-plugin-unofficial
           ./disblock-origin
