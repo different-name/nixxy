@@ -16,7 +16,6 @@
       profiles.default = {
         extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
           jnoortheen.nix-ide
-          catppuccin.catppuccin-vsc
           catppuccin.catppuccin-vsc-icons
           editorconfig.editorconfig
           tamasfe.even-better-toml
