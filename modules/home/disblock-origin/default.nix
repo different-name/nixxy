@@ -1,8 +1,7 @@
 {
   lib,
   config,
-  inputs,
-  pkgs,
+  self',
   ...
 }:
 let
@@ -126,7 +125,7 @@ let
     in
     "--${prefix}-${name}: ${css-value};";
 
-  disblock-origin = inputs.self.packages.${pkgs.system}.disblock-origin;
+  disblock-origin = self'.packages.disblock-origin;
 in
 {
   options.programs.disblockOrigin = {

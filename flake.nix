@@ -5,10 +5,10 @@
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        ./configurations.nix
-        ./modules
-        ./pkgs
+        ./configurations/hosts
         ./lib
+        ./modules
+        ./packages
       ];
 
       systems = import inputs.systems;
