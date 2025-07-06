@@ -1,24 +1,7 @@
 {
   description = "Diffy's nix-files";
 
-  outputs =
-    inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        ./configurations/hosts
-        ./lib
-        ./modules
-        ./packages
-      ];
-
-      systems = import inputs.systems;
-
-      perSystem =
-        { pkgs, ... }:
-        {
-          formatter = pkgs.nixfmt-rfc-style;
-        };
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./parts.nix ]; };
 
   inputs = {
     # secrets management
@@ -167,7 +150,10 @@
     # nix xr/ar/vr packages
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
 
     # nix user repository
@@ -176,6 +162,7 @@
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -190,6 +177,11 @@
 
     # list of systems
     systems.url = "github:nix-systems/x86_64-linux";
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "treefmt-nix";
+    };
 
     # slimevr solarxr protocol patches for wivrn
     wivrn-solarxr = {
