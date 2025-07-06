@@ -10,7 +10,7 @@
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
-    self.homeManagerModules.xdgDesktopPortalHyprland
+    self.homeModules.xdgDesktopPortalHyprland
   ];
 
   options.dyad.desktop.hyprland.enable = lib.mkEnableOption "hyprland config";

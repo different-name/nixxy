@@ -16,7 +16,7 @@ in
 {
   imports = [
     inputs.moonlight.homeModules.default
-    self.homeManagerModules.disblockOrigin
+    self.homeModules.disblockOrigin
   ];
 
   options.dyad.applications.discord.enable = lib.mkEnableOption "discord config";
