@@ -1,8 +1,4 @@
-{
-  lib,
-  stdenvNoCC,
-  ...
-}:
+{ lib, stdenvNoCC, ... }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "catppuccin-vrcx-mocha";
   version = "0.1.0";
