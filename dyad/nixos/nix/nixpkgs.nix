@@ -17,7 +17,7 @@
       config.allowUnfree = true;
 
       overlays = [
-        (final: prev: {
+        (_final: prev: {
           slimevr = prev.slimevr.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [
               # https://nix.dev/guides/best-practices.html#reproducible-source-paths
@@ -29,7 +29,7 @@
           });
         })
 
-        (final: prev: {
+        (_final: prev: {
           wlx-overlay-s = prev.wlx-overlay-s.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [
               # https://nix.dev/guides/best-practices.html#reproducible-source-paths

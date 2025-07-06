@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 mkdir -p /btrfs
 mount -t btrfs -o subvol=/ "$ROOT_DEVICE" /btrfs
 

@@ -1,9 +1,11 @@
+#!/usr/bin/env bash
+
 DATETIME=$(date '+%Y-%m-%d_%H:%M:%S')
 SNAPSHOT_NAME="persist_${DATETIME}"
 SNAPSHOT_PATH="${SNAPSHOT_DIR}/${SNAPSHOT_NAME}"
 
-DEVICE=$(readlink -f /dev/disk/by-uuid/$UUID)
-if [[ -z "$DEVICE" ]]; then
+DEVICE=$(readlink -f /dev/disk/by-uuid/"$UUID")
+if [[ -z $DEVICE ]]; then
   echo "ERROR: Backup device with UUID $UUID not found."
   exit 1
 fi
@@ -29,7 +31,7 @@ sudo btrfs subvolume snapshot -r "$SOURCE_SUBVOL" "$SNAPSHOT_PATH"
 if [[ -d "$SNAPSHOT_DIR/$LAST_BACKUP_SNAPSHOT" && -d "$MOUNT_POINT/$LAST_BACKUP_SNAPSHOT" ]]; then
   echo "Incremental send from $LAST_BACKUP_SNAPSHOT to $SNAPSHOT_NAME"
   sudo btrfs send -p "$SNAPSHOT_DIR/$LAST_BACKUP_SNAPSHOT" "$SNAPSHOT_PATH" | pv | sudo btrfs receive "$MOUNT_POINT"
-  
+
   echo "Backup complete."
 
   echo "Deleting old local snapshot $SNAPSHOT_NAME..."
@@ -37,7 +39,7 @@ if [[ -d "$SNAPSHOT_DIR/$LAST_BACKUP_SNAPSHOT" && -d "$MOUNT_POINT/$LAST_BACKUP_
 else
   echo "No previous snapshot found, doing full send."
   sudo btrfs send "$SNAPSHOT_PATH" | pv | sudo btrfs receive "$MOUNT_POINT"
-  
+
   echo "Backup complete."
 fi
 
@@ -51,4 +53,3 @@ echo "Powering off the device..."
 sudo udisksctl power-off -b "$DEVICE"
 
 echo "Backup and shutdown complete."
-

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 delete_subvolume_recursively() {
   local subvol="$1"
   while IFS= read -r line; do
@@ -16,13 +18,13 @@ total=${#sorted_subvols[@]}
 
 # number of candidates for deletion
 candidates=$((total - KEEP_MIN_NUM))
-if (( candidates <= 0 )); then
+if ((candidates <= 0)); then
   exit 0
 fi
 
 now=$(date +%s)
 
-for (( i=0; i < candidates; i++ )); do
+for ((i = 0; i < candidates; i++)); do
   subvol="${sorted_subvols[i]}"
   basename=$(basename "$subvol")
 
@@ -36,9 +38,9 @@ for (( i=0; i < candidates; i++ )); do
   fi
 
   # calculate age in days
-  age_days=$(( (now - subvol_epoch) / 86400 ))
+  age_days=$(((now - subvol_epoch) / 86400))
 
-  if (( age_days > KEEP_AGE_DAYS )); then
+  if ((age_days > KEEP_AGE_DAYS)); then
     delete_subvolume_recursively "$subvol"
   fi
 done

@@ -1,9 +1,11 @@
+#!/usr/bin/env bash
+
 usage() {
   echo "Usage: ${0##*/} [start|stop]"
   exit 1
 }
 
-if [[ -z "${1+x}" ]]; then
+if [[ -z ${1+x} ]]; then
   usage
 fi
 
