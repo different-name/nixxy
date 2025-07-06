@@ -1,10 +1,10 @@
-# <img src="https://raw.githubusercontent.com/Different-Name/nix-files/master/assets/nixoscolorful.svg" height=26> nix-files
+# <img src="https://raw.githubusercontent.com/Different-Name/nix-files/master/assets/nixoscolorful.svg" height="26px" style="height: 26px;"> nix-files
 
 My NixOS configuration files
 
 > [!WARNING]
 > This flake is tailored for my personal setup and is under active development. I can’t guarantee that any modules, packages, or configurations are tested, stable, or maintained
-> 
+>
 > Feel free to explore, adapt, or contribute as you like <3
 
 - **Flake-based** NixOS configuration
