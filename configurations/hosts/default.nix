@@ -7,7 +7,6 @@
 }:
 let
   hosts = {
-    iodine = "x86_64-linux";
     potassium = "x86_64-linux";
     sodium = "x86_64-linux";
   };
