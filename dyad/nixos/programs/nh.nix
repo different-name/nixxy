@@ -2,8 +2,6 @@
   lib,
   config,
   inputs',
-  self,
-  pkgs,
   ...
 }:
 {
@@ -14,24 +12,7 @@
     programs.nh = {
       enable = true;
 
-      package = inputs'.nh.packages.nh.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [
-          (builtins.path {
-            path = self + /patches/nh/add-nvfetcher.patch;
-            name = "nh-add-nvfetcher";
-          })
-        ];
-
-        postFixup = ''
-          wrapProgram $out/bin/nh \
-            --prefix PATH : ${
-              lib.makeBinPath
-              <| lib.attrValues {
-                inherit (pkgs) nvd nix-output-monitor nvfetcher;
-              }
-            }
-        '';
-      });
+      package = inputs'.nh.packages.nh;
 
       # weekly garbage collection
       clean = {

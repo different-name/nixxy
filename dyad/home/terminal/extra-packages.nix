@@ -41,6 +41,7 @@
         tree # directory listing
         bat # cat with syntax highlighting
         cocogitto # git toolbox
+        just # command runner
       ])
       ++ [
         self'.packages.mcuuid

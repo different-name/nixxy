@@ -23,6 +23,7 @@
           ms-python.python
           editorconfig.editorconfig
           prettiercode.code-prettier
+          nefrob.vscode-just-syntax
         ];
 
         userSettings = {

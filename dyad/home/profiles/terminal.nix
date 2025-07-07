@@ -10,6 +10,7 @@
         extra-packages.enable = true;
 
         btop.enable = true;
+        dyad.enable = true;
         fastfetch.enable = true;
         fish.enable = true;
         git.enable = true;
