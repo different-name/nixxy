@@ -111,6 +111,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # nixos helper
     nh = {
       url = "github:nix-community/nh";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -177,6 +178,7 @@
     # list of systems
     systems.url = "github:nix-systems/x86_64-linux";
 
+    # formatter module for flake-parts
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "treefmt-nix";
