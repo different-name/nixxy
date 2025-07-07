@@ -60,7 +60,7 @@ index 1bf123e..27d8b6b 100644
  pub fn update(installable: &Installable, inputs: Option<Vec<String>>) -> Result<()> {
      match installable {
          Installable::Flake { reference, .. } => {
-+            let pkgs_path = Path::new(reference).join("pkgs");
++            let pkgs_path = Path::new(reference);
 +            if pkgs_path.is_dir() {
 +                let mut nvfetcher_cmd = Command::new("nvfetcher")
 +                    .message("Updating package sources")

@@ -1,7 +1,7 @@
 {
   description = "Diffy's nix-files";
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./parts.nix ]; };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./parts ]; };
 
   inputs = {
     # secrets management

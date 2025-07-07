@@ -1,15 +1,8 @@
 { inputs, ... }:
 {
   imports = [
-    ./configurations/hosts
-    ./lib
-    ./modules
-    ./packages
-
     inputs.treefmt-nix.flakeModule
   ];
-
-  systems = import inputs.systems;
 
   perSystem =
     { pkgs, config, ... }:
@@ -20,14 +13,14 @@
         projectRootFile = "flake.nix";
 
         settings.global.excludes = [
-          "packages/_sources/*"
+          "_sources/generated.nix"
+          "_sources/generated.json"
+          "*.age"
         ];
 
         programs = {
           shellcheck.enable = true;
-
           deadnix.enable = true;
-
           statix.enable = true;
 
           nixfmt = {
@@ -38,10 +31,7 @@
           prettier = {
             enable = true;
             package = pkgs.prettierd;
-            excludes = [ "*.age" ];
-            settings = {
-              editorconfig = true;
-            };
+            settings.editorconfig = true;
           };
 
           stylua.enable = true;

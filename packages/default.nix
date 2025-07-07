@@ -1,39 +1,11 @@
+{ lib, ... }:
 {
   perSystem =
-    { pkgs, ... }:
-    let
-      sources = import ./_sources/generated.nix {
-        inherit (pkgs)
-          fetchgit
-          fetchurl
-          fetchFromGitHub
-          dockerTools
-          ;
-      };
-
-      mkPackageAttr =
-        path:
-        let
-          package = pkgs.callPackage path { inherit sources; };
-        in
-        {
-          name = package.pname or package.name;
-          value = package;
-        };
-    in
+    { pkgs, self', ... }:
     {
       packages =
-        [
-          ./catppuccin-firefox-mocha
-          ./catppuccin-obsidian-theme
-          ./catppuccin-vrcx-mocha
-          ./cats-blender-plugin-unofficial
-          ./disblock-origin
-          ./mcuuid
-          ./slimevr-cli
-          ./osc-goes-brrr
-        ]
-        |> map mkPackageAttr
-        |> builtins.listToAttrs;
+        builtins.readDir ../packages
+        |> lib.filterAttrs (_: value: value == "directory")
+        |> lib.mapAttrs (name: _: pkgs.callPackage ./${name} { inherit (self') sources; });
     };
 }
