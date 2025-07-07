@@ -39,6 +39,7 @@
         aspellDicts.en # aspell english dictionary
         pv # pipe viewer, monitor data flow through pipe
         tree # directory listing
+        bat # cat with syntax highlighting
       ])
       ++ [
         self'.packages.mcuuid
