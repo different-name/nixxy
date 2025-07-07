@@ -1,16 +1,12 @@
 { lib, config, ... }:
 {
-  options.dyad.profiles.global.enable = lib.mkEnableOption "global profile";
+  options.dyad.profiles.minimal.enable = lib.mkEnableOption "minimal profile";
 
-  config = lib.mkIf config.dyad.profiles.global.enable {
-    programs.mosh.enable = true;
-
+  config = lib.mkIf config.dyad.profiles.minimal.enable {
     services.fstrim.enable = true;
 
     dyad = {
-      hardware = {
-        fwupd.enable = true;
-      };
+      hardware.fwupd.enable = true;
 
       nix = {
         nix.enable = true;
@@ -19,14 +15,12 @@
       };
 
       programs = {
-        ephemeralTools.enable = true;
         fish.enable = true;
         nh.enable = true;
       };
 
       services = {
         openssh.enable = true;
-        tailscale.enable = true;
       };
 
       system = {
@@ -56,10 +50,6 @@
             "/var/lib/systemd/random-seed"
           ];
         };
-      };
-
-      theming = {
-        catppuccin.enable = true;
       };
     };
   };

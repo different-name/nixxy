@@ -10,7 +10,8 @@ lib.mkIf (osConfig.dyad.host == "sodium") {
   dyad = {
     ## profiles
     profiles = {
-      global.enable = true;
+      minimal.enable = true;
+      terminal.enable = true;
       graphical.enable = true;
     };
 

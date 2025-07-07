@@ -34,7 +34,8 @@ self.lib.mkHost
 
       ## profiles
       profiles = {
-        global.enable = true;
+        minimal.enable = true;
+        terminal.enable = true;
         graphical.enable = true;
       };
 
