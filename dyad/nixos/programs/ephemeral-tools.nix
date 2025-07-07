@@ -19,6 +19,7 @@
         [
           "/btrfs" # default btrfs subvolume
           "/boot" # non ephemeral
+          "/.swapvol" # swap
           "/run" # runtime files
           "/tmp" # temporary files
           "/var/tmp" # temporary files
