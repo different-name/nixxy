@@ -12,6 +12,13 @@ build command *args:
 [group("build")]
 boot *args: (build "boot" args)
 
+# add config to bootloader & power off
+[group("build")]
+goodnight:
+  @sudo true # to ask for password first
+  @nh os boot
+  @poweroff
+
 # activate and add config to bootloader
 [group("build")]
 switch *args: (build "switch" args)
