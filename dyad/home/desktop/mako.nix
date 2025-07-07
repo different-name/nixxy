@@ -5,10 +5,7 @@
   ...
 }:
 let
-  catppuccinPalette = lib.importJSON (config.catppuccin.sources.palette + /palette.json);
-  themeColors = catppuccinPalette.${config.catppuccin.flavor}.colors;
-  borderColor = themeColors.${config.catppuccin.accent}.hex;
-
+  borderColor = "#ed507c";
   hyprlandCfg = config.wayland.windowManager.hyprland;
 in
 {
