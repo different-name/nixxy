@@ -16,7 +16,7 @@
   options.dyad.nix.nix.enable = lib.mkEnableOption "nix config";
 
   config = lib.mkIf config.dyad.nix.nix.enable {
-    age.secrets."tokens/github".file = self + /secrets/tokens/github.age;
+    age.secrets."different/tokens/github".file = self + /secrets/different/tokens/github.age;
 
     # need git for flakes
     environment.systemPackages = [ pkgs.git ];
@@ -49,7 +49,7 @@
 
         # read-only github token for rate limit
         extraOptions = ''
-          !include ${config.age.secrets."tokens/github".path}
+          !include ${config.age.secrets."different/tokens/github".path}
         '';
 
         # opinionated: disable channels

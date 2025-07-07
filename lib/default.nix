@@ -76,8 +76,8 @@ let
                 "/persist/home/different/.ssh/id_ed25519"
               ];
               # user password secret
-              age.secrets."user-pass/${username}".file = self + /secrets/user-pass/${username}.age;
-              users.users.${username}.hashedPasswordFile = config.age.secrets."user-pass/${username}".path;
+              age.secrets."different/user-password".file = self + /secrets/different/user-password.age;
+              users.users.${username}.hashedPasswordFile = config.age.secrets."different/user-password".path;
             })
 
             userConfig

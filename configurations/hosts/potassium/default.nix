@@ -21,8 +21,8 @@ self.lib.mkHost
     ### dyad modules
 
     age.secrets = {
-      "syncthing/potassium/key".file = self + /secrets/syncthing/potassium/key.age;
-      "syncthing/potassium/cert".file = self + /secrets/syncthing/potassium/cert.age;
+      "different/syncthing/potassium/key".file = self + /secrets/different/syncthing/potassium/key.age;
+      "different/syncthing/potassium/cert".file = self + /secrets/different/syncthing/potassium/cert.age;
     };
 
     dyad = {
@@ -43,8 +43,8 @@ self.lib.mkHost
       services.syncthing = {
         enable = true;
         user = "different";
-        key = config.age.secrets."syncthing/potassium/key".path;
-        cert = config.age.secrets."syncthing/potassium/cert".path;
+        key = config.age.secrets."different/syncthing/potassium/key".path;
+        cert = config.age.secrets."different/syncthing/potassium/cert".path;
       };
 
       system.autologin = {

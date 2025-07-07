@@ -24,8 +24,8 @@ self.lib.mkHost
     ### dyad modules
 
     age.secrets = {
-      "syncthing/sodium/key".file = self + /secrets/syncthing/sodium/key.age;
-      "syncthing/sodium/cert".file = self + /secrets/syncthing/sodium/cert.age;
+      "different/syncthing/sodium/key".file = self + /secrets/different/syncthing/sodium/key.age;
+      "different/syncthing/sodium/cert".file = self + /secrets/different/syncthing/sodium/cert.age;
     };
 
     dyad = {
@@ -48,8 +48,8 @@ self.lib.mkHost
         syncthing = {
           enable = true;
           user = "different";
-          key = config.age.secrets."syncthing/sodium/key".path;
-          cert = config.age.secrets."syncthing/sodium/cert".path;
+          key = config.age.secrets."different/syncthing/sodium/key".path;
+          cert = config.age.secrets."different/syncthing/sodium/cert".path;
         };
 
         xr.enable = true;
