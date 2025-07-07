@@ -40,6 +40,7 @@
         pv # pipe viewer, monitor data flow through pipe
         tree # directory listing
         bat # cat with syntax highlighting
+        cocogitto # git toolbox
       ])
       ++ [
         self'.packages.mcuuid
