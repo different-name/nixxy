@@ -8,20 +8,19 @@
 }:
 {
   imports = [
-    inputs.steam-localconfig-nix.homeModules.default
+    inputs.steam-config-nix.homeModules.default
   ];
 
   options.dyad.games.steam.enable = lib.mkEnableOption "steam config";
 
   config = lib.mkIf config.dyad.games.steam.enable {
-    programs.steam.localConfig = {
+    programs.steam.config = {
       enable = true;
       closeSteam = true;
 
-      users."875898227" = {
-        launchOptions = {
-          "438100" = ''env -u TZ PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc" %command%'';
-        };
+      apps."438100" = {
+        compatTool = "proton_experimental";
+        launchOptions = ''env -u TZ PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc" %command%'';
       };
     };
 

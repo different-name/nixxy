@@ -1056,13 +1056,13 @@
         "nixpkgs-unfree": "nixpkgs-unfree",
         "nixpkgs-xr": "nixpkgs-xr",
         "nur": "nur",
-        "steam-localconfig-nix": "steam-localconfig-nix",
+        "steam-config-nix": "steam-config-nix",
         "systems": "systems_6",
         "treefmt-nix": "treefmt-nix",
         "wivrn-solarxr": "wivrn-solarxr"
       }
     },
-    "steam-localconfig-nix": {
+    "steam-config-nix": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -1072,16 +1072,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1751260865,
-        "narHash": "sha256-azseZAHpfZ5+eOCjFvtVJ6oUs2C5/0pKOkj4r6IG0cE=",
+        "lastModified": 1751859063,
+        "narHash": "sha256-PCLHZD99umziJXjoLashsxzRNcCXaRCRyRHOeJkWoaE=",
         "owner": "different-name",
-        "repo": "steam-localconfig-nix",
-        "rev": "339d5b9582dcbdb962382800121fbd1ed59e9767",
+        "repo": "steam-config-nix",
+        "rev": "56267a5945b093103bbb0c19da445bb88a4dd182",
         "type": "github"
       },
       "original": {
         "owner": "different-name",
-        "repo": "steam-localconfig-nix",
+        "repo": "steam-config-nix",
         "type": "github"
       }
     },
