@@ -51,11 +51,9 @@ in
       (discordPackage + /share/applications/discord.desktop)
     ];
 
-    dyad.system.persistence = {
-      directories = [
-        ".config/discord"
-        ".config/moonlight-mod"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      ".config/discord"
+      ".config/moonlight-mod"
+    ];
   };
 }

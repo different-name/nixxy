@@ -35,7 +35,7 @@
         persistence = {
           enable = true;
 
-          directories = [
+          dirs = [
             "/var/log"
             "/var/lib/nixos"
             "/var/lib/systemd/coredump"

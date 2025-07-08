@@ -24,10 +24,8 @@
       openFirewall = true;
     };
 
-    dyad.system.persistence = {
-      directories = [
-        "/srv/minecraft"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      "/srv/minecraft"
+    ];
   };
 }

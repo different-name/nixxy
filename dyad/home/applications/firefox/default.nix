@@ -14,11 +14,9 @@
       };
     };
 
-    dyad.system.persistence = {
-      directories = [
-        ".mozilla/firefox"
-        ".cache/mozilla/firefox"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      ".mozilla/firefox"
+      ".cache/mozilla/firefox"
+    ];
   };
 }

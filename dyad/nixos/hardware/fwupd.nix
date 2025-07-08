@@ -6,7 +6,7 @@
     services.fwupd.enable = true;
 
     dyad.system.persistence = {
-      directories = map (path: "/var/lib/fwupd/${path}") [
+      dirs = map (path: "/var/lib/fwupd/${path}") [
         "metadata"
         "gnupg"
         "pki"

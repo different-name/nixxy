@@ -54,10 +54,8 @@
       })
       |> lib.listToAttrs;
 
-    dyad.system.persistence = {
-      directories = [
-        ".config/obsidian"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      ".config/obsidian"
+    ];
   };
 }

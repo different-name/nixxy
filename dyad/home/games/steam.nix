@@ -47,15 +47,13 @@
       )
     ];
 
-    dyad.system.persistence = {
-      directories = [
-        ".steam"
-        ".local/share/Steam"
+    dyad.system.persistence.dirs = [
+      ".steam"
+      ".local/share/Steam"
 
-        ".factorio"
-        ".local/share/Terraria"
-        ".local/share/TerraTech"
-      ];
-    };
+      ".factorio"
+      ".local/share/Terraria"
+      ".local/share/TerraTech"
+    ];
   };
 }

@@ -47,15 +47,13 @@
         self'.packages.mcuuid
       ];
 
-    dyad.system.persistence = {
-      directories = [
-        # nvfetcher
-        ".local/share/nvfetcher"
+    dyad.system.persistence.dirs = [
+      # nvfetcher
+      ".local/share/nvfetcher"
 
-        # qalculate
-        ".config/qalculate"
-        ".local/share/qalculate"
-      ];
-    };
+      # qalculate
+      ".config/qalculate"
+      ".local/share/qalculate"
+    ];
   };
 }

@@ -49,21 +49,19 @@
       unityhub
     ];
 
-    home.persistence."/persist" = {
-      directories = [
-        # alcom
-        ".local/share/ALCOM"
-        ".local/share/VRChatCreatorCompanion"
-        ".local/share/com.anatawa12.vrc-get-gui"
-        ".cache/ALCOM"
+    home.persistence."/persist".dirs = [
+      # alcom
+      ".local/share/ALCOM"
+      ".local/share/VRChatCreatorCompanion"
+      ".local/share/com.anatawa12.vrc-get-gui"
+      ".cache/ALCOM"
 
-        # unityhub
-        ".config/unityhub"
-        ".config/Unity"
-        ".config/unity3d" # seems to also be for unity games
-        ".local/share/unity3d"
-        ".cache/unity3d"
-      ];
-    };
+      # unityhub
+      ".config/unityhub"
+      ".config/Unity"
+      ".config/unity3d" # seems to also be for unity games
+      ".local/share/unity3d"
+      ".cache/unity3d"
+    ];
   };
 }

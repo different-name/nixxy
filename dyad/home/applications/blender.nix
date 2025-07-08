@@ -20,11 +20,9 @@
       ];
     };
 
-    dyad.system.persistence = {
-      directories = [
-        ".config/blender"
-        ".cache/blender"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      ".config/blender"
+      ".cache/blender"
+    ];
   };
 }

@@ -58,7 +58,7 @@
 
     dyad.system.persistence = {
       home = {
-        directories = [
+        dirs = [
           ".cache/nix"
         ];
 

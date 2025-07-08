@@ -24,7 +24,7 @@
     services.pulseaudio.enable = lib.mkForce false;
 
     dyad.system.persistence = {
-      home.directories = [
+      home.dirs = [
         # audio settings
         ".local/state/wireplumber"
       ];

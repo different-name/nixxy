@@ -44,9 +44,7 @@ lib.mkIf (osConfig.dyad.host == "sodium") {
   ];
 
   # persist syncthing configuration
-  dyad.system.persistence = {
-    directories = [
-      ".config/syncthing"
-    ];
-  };
+  dyad.system.persistence.dirs = [
+    ".config/syncthing"
+  ];
 }

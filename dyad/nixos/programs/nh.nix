@@ -23,7 +23,7 @@
     };
 
     dyad.system.persistence = {
-      home.directories = [
+      home.dirs = [
         ".cache/nix-output-monitor"
       ];
     };

@@ -146,31 +146,29 @@ in
         slimevr-cli
       ]);
 
-    dyad.system.persistence = {
-      directories = [
-        # opencomposite
-        ".local/state/OpenComposite"
-        ".config/openvr"
+    dyad.system.persistence.dirs = [
+      # opencomposite
+      ".local/state/OpenComposite"
+      ".config/openvr"
 
-        # osc-goes-brrr
-        ".config/OscGoesBrrr"
+      # osc-goes-brrr
+      ".config/OscGoesBrrr"
 
-        # slimevr
-        ".config/dev.slimevr.SlimeVR"
-        ".local/share/dev.slimevr.SlimeVR"
-        ".local/share/.slimevr-wrapped_"
-        ".cache/.slimevr-wrapped_"
+      # slimevr
+      ".config/dev.slimevr.SlimeVR"
+      ".local/share/dev.slimevr.SlimeVR"
+      ".local/share/.slimevr-wrapped_"
+      ".cache/.slimevr-wrapped_"
 
-        # vrcx
-        ".config/VRCX"
+      # vrcx
+      ".config/VRCX"
 
-        # wivrn
-        ".config/wivrn"
-        ".cache/wivrn"
+      # wivrn
+      ".config/wivrn"
+      ".cache/wivrn"
 
-        # wlx-overlay-s
-        ".config/wlxoverlay"
-      ];
-    };
+      # wlx-overlay-s
+      ".config/wlxoverlay"
+    ];
   };
 }

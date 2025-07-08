@@ -36,11 +36,9 @@
 
     services.hyprpolkitagent.enable = true;
 
-    dyad.system.persistence = {
-      directories = [
-        ".cache/hyprland"
-        ".local/share/hyprland"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      ".cache/hyprland"
+      ".local/share/hyprland"
+    ];
   };
 }

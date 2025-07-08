@@ -19,7 +19,7 @@
     ];
 
     dyad.system.persistence = {
-      directories = [
+      dirs = [
         # android-tools
         ".android"
 

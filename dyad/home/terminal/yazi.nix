@@ -5,10 +5,8 @@
   config = lib.mkIf config.dyad.terminal.yazi.enable {
     programs.yazi.enable = true;
 
-    dyad.system.persistence = {
-      directories = [
-        ".local/state/yazi"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      ".local/state/yazi"
+    ];
   };
 }

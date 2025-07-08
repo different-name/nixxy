@@ -19,24 +19,22 @@
       })
     ];
 
-    dyad.system.persistence = {
-      directories = [
-        # general
-        ".nv" # OpenGL cache
-        ".local/share/vulkan/" # shader cache files?
-        ".cache/mesa_shader_cache_db" # shader cache
+    dyad.system.persistence.dirs = [
+      # general
+      ".nv" # OpenGL cache
+      ".local/share/vulkan/" # shader cache files?
+      ".cache/mesa_shader_cache_db" # shader cache
 
-        # lutris
-        ".local/share/lutris"
-        ".cache/lutris"
-        ".local/share/umu" # proton runtime
+      # lutris
+      ".local/share/lutris"
+      ".cache/lutris"
+      ".local/share/umu" # proton runtime
 
-        # osu-lazer
-        ".local/share/osu"
+      # osu-lazer
+      ".local/share/osu"
 
-        # prism launcher
-        ".local/share/PrismLauncher"
-      ];
-    };
+      # prism launcher
+      ".local/share/PrismLauncher"
+    ];
   };
 }

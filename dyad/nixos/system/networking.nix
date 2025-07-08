@@ -13,10 +13,8 @@
       };
     };
 
-    dyad.system.persistence = {
-      directories = [
-        "/etc/NetworkManager/system-connections"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      "/etc/NetworkManager/system-connections"
+    ];
   };
 }

@@ -160,11 +160,9 @@
       self'.packages.slimevr-cli
     ];
 
-    dyad.system.persistence = {
-      directories = [
-        "/root/.config/dev.slimevr.SlimeVR"
-        "/root/.local/share/dev.slimevr.SlimeVR"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      "/root/.config/dev.slimevr.SlimeVR"
+      "/root/.local/share/dev.slimevr.SlimeVR"
+    ];
   };
 }

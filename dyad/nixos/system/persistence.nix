@@ -20,7 +20,7 @@ in
 
     # we accept a list of anything so that impermanence will handle the typing instead
     # this is less maintenance in the event impermemance changes typing
-    directories = lib.mkOption {
+    dirs = lib.mkOption {
       type = lib.types.listOf lib.types.anything;
       default = [ ];
       description = "directories to pass to persistence config";
@@ -33,7 +33,7 @@ in
     };
 
     home = {
-      directories = lib.mkOption {
+      dirs = lib.mkOption {
         type = lib.types.listOf lib.types.anything;
         default = [ ];
         description = "directories to pass to home-manager persistence config";
@@ -49,13 +49,14 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.persistence."/persist/system" = {
-      inherit (cfg) directories files;
+      inherit (cfg) files;
+      directories = cfg.dirs;
       hideMounts = true;
     };
 
     home-manager.users = setHomeCfg {
       dyad.system.persistence = {
-        inherit (cfg.home) directories files;
+        inherit (cfg.home) dirs files;
       };
     };
 

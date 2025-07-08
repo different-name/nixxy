@@ -52,7 +52,7 @@
       };
 
       system = {
-        persistence.directories = [
+        persistence.dirs = [
           "Code"
           "Documents"
           "Downloads"

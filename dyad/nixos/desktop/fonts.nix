@@ -53,7 +53,7 @@
     };
 
     dyad.system.persistence = {
-      home.directories = [
+      home.dirs = [
         ".cache/fontconfig"
       ];
     };

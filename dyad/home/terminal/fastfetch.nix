@@ -44,10 +44,8 @@ in
       };
     };
 
-    dyad.system.persistence = {
-      directories = [
-        ".cache/fastfetch"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      ".cache/fastfetch"
+    ];
   };
 }

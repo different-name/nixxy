@@ -12,11 +12,9 @@
       };
     };
 
-    dyad.system.persistence = {
-      directories = [
-        ".cache/kitty"
-        ".local/share/kitty-ssh-kitten"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      ".cache/kitty"
+      ".local/share/kitty-ssh-kitten"
+    ];
   };
 }

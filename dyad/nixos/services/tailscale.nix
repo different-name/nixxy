@@ -5,10 +5,8 @@
   config = lib.mkIf config.dyad.services.tailscale.enable {
     services.tailscale.enable = true;
 
-    dyad.system.persistence = {
-      directories = [
-        "/var/lib/tailscale"
-      ];
-    };
+    dyad.system.persistence.dirs = [
+      "/var/lib/tailscale"
+    ];
   };
 }
