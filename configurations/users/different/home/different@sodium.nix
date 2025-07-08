@@ -55,9 +55,4 @@ lib.mkIf (osConfig.networking.hostName == "sodium") {
     pkgs.qmk
     # keep-sorted end
   ];
-
-  # persist syncthing configuration
-  home.persistence-wrapper.dirs = [
-    ".config/syncthing"
-  ];
 }

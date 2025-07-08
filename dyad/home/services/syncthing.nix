@@ -36,5 +36,9 @@ in
       ${keyPath}.file = self + "/secrets/${keyPath}.age";
       ${certPath}.file = self + "/secrets/${certPath}.age";
     };
+
+    home.persistence-wrapper.dirs = [
+      ".local/state/syncthing"
+    ];
   };
 }
