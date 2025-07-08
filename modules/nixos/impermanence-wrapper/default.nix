@@ -2,7 +2,6 @@
   lib,
   config,
   inputs,
-  self,
   pkgs,
   ...
 }:
@@ -76,10 +75,12 @@ in
         persistence.${cfg.persistentStorage} = { inherit directories files; };
       };
 
-      home-manager.users = self.lib.forAllUsers config {
-        home.persistence-wrapper = {
-          inherit (cfg.home) dirs files;
-        };
-      };
+      home-manager.sharedModules = [
+        {
+          home.persistence-wrapper = {
+            inherit (cfg.home) dirs files;
+          };
+        }
+      ];
     };
 }
