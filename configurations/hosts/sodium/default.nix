@@ -48,8 +48,6 @@ self.lib.mkHost
         syncthing.enable = true;
         xr.enable = true;
       };
-
-      system.btrfs.enable = true;
       # keep-sorted end
     };
 
