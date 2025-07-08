@@ -48,7 +48,6 @@
         goxlr-utility.enable = true;
         imv.enable = true;
         mpv.enable = true;
-        obs.enable = true;
       };
 
       system = {

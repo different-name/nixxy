@@ -7,5 +7,11 @@
       enable = true;
       enableVirtualCamera = true;
     };
+
+    dyad.system.persistence = {
+      home.dirs = [
+        ".config/obs-studio"
+      ];
+    };
   };
 }
