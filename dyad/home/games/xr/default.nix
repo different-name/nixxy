@@ -126,49 +126,51 @@ in
       };
     };
 
-    home.packages =
-      (with pkgs; [
-        # https://github.com/tauri-apps/tauri/issues/9394
-        (symlinkJoin {
-          name = "slimevr";
-          paths = [ slimevr ];
-          buildInputs = [ makeWrapper ];
-          postBuild = ''
-            wrapProgram $out/bin/slimevr \
-              --set WEBKIT_DISABLE_DMABUF_RENDERER 1
-          '';
-        })
-        vrcx
-        wlx-overlay-s
-      ])
-      ++ (with self'.packages; [
-        osc-goes-brrr
-        slimevr-cli
-      ]);
+    dyad.system.persistence = {
+      installPkgsWithPersistence = {
+        slimevr = {
+          # https://github.com/tauri-apps/tauri/issues/9394
+          package = pkgs.symlinkJoin {
+            name = "slimevr";
+            paths = [ pkgs.slimevr ];
+            buildInputs = [ pkgs.makeWrapper ];
+            postBuild = ''
+              wrapProgram $out/bin/slimevr \
+                --set WEBKIT_DISABLE_DMABUF_RENDERER 1
+            '';
+          };
+          dirs = [
+            ".config/dev.slimevr.SlimeVR"
+            ".local/share/dev.slimevr.SlimeVR"
+            ".local/share/.slimevr-wrapped_"
+            ".cache/.slimevr-wrapped_"
+          ];
+        };
 
-    dyad.system.persistence.dirs = [
-      # opencomposite
-      ".local/state/OpenComposite"
-      ".config/openvr"
+        vrcx.dirs = [
+          ".config/VRCX"
+        ];
 
-      # osc-goes-brrr
-      ".config/OscGoesBrrr"
+        wlx-overlay-s.dirs = [
+          ".config/wlxoverlay"
+        ];
 
-      # slimevr
-      ".config/dev.slimevr.SlimeVR"
-      ".local/share/dev.slimevr.SlimeVR"
-      ".local/share/.slimevr-wrapped_"
-      ".cache/.slimevr-wrapped_"
+        osc-goes-brrr = {
+          package = self'.packages.osc-goes-brrr;
+          dirs = [
+            ".config/OscGoesBrrr"
+          ];
+        };
 
-      # vrcx
-      ".config/VRCX"
+        slimevr-cli.package = self'.packages.slimevr-cli;
+      };
 
-      # wivrn
-      ".config/wivrn"
-      ".cache/wivrn"
-
-      # wlx-overlay-s
-      ".config/wlxoverlay"
-    ];
+      dirs = [
+        ".local/state/OpenComposite"
+        ".config/openvr"
+        ".config/wivrn"
+        ".cache/wivrn"
+      ];
+    };
   };
 }

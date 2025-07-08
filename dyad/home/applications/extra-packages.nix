@@ -8,39 +8,32 @@
   options.dyad.applications.extra-packages.enable = lib.mkEnableOption "extra application packages";
 
   config = lib.mkIf config.dyad.applications.extra-packages.enable {
-    home.packages = with pkgs; [
-      android-tools
-      gimp-with-plugins
-      protonvpn-gui
-      qalculate-gtk
-      qbittorrent
-      scrcpy
-      qpwgraph
-    ];
-
-    dyad.system.persistence = {
-      dirs = [
-        # android-tools
+    dyad.system.persistence.installPkgsWithPersistence = {
+      android-tools.dirs = [
         ".android"
+      ];
 
-        # bambu-studio
-        ".config/BambuStudio"
-        ".local/share/bambu-studio"
-        ".cache/bambu-studio"
-
-        # gimp
+      gimp-with-plugins.dirs = [
         ".config/GIMP"
         ".cache/gimp"
+      ];
 
-        # qbittorrent
-        ".config/qBittorrent"
-        ".local/share/qBittorrent"
-        ".cache/qBittorrent"
-
-        # protonvpn-gui
+      protonvpn-gui.dirs = [
         ".config/Proton"
         ".cache/Proton"
       ];
+
+      qbittorrent.dirs = [
+        ".config/qBittorrent"
+        ".local/share/qBittorrent"
+        ".cache/qBittorrent"
+      ];
     };
+
+    home.packages = with pkgs; [
+      qalculate-gtk
+      qpwgraph
+      scrcpy
+    ];
   };
 }

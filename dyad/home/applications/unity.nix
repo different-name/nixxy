@@ -34,34 +34,34 @@
       })
       |> lib.listToAttrs;
 
-    home.packages = with pkgs; [
-      # https://github.com/tauri-apps/tauri/issues/9394
-      (symlinkJoin {
-        name = "alcom";
-        paths = [ alcom ];
-        buildInputs = [ makeWrapper ];
-        postBuild = ''
-          wrapProgram $out/bin/ALCOM \
-            --set WEBKIT_DISABLE_DMABUF_RENDERER 1
-        '';
-      })
-      # use -force-vulkan when launching unity editor
-      unityhub
-    ];
+    home.persistence.installPkgsWithPersistence = {
+      alcom = {
+        # https://github.com/tauri-apps/tauri/issues/9394
+        package = pkgs.symlinkJoin {
+          name = "alcom";
+          paths = [ pkgs.alcom ];
+          buildInputs = [ pkgs.makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/ALCOM \
+              --set WEBKIT_DISABLE_DMABUF_RENDERER 1
+          '';
+        };
+        dirs = [
+          ".local/share/ALCOM"
+          ".local/share/VRChatCreatorCompanion"
+          ".local/share/com.anatawa12.vrc-get-gui"
+          ".cache/ALCOM"
+        ];
+      };
 
-    home.persistence."/persist".dirs = [
-      # alcom
-      ".local/share/ALCOM"
-      ".local/share/VRChatCreatorCompanion"
-      ".local/share/com.anatawa12.vrc-get-gui"
-      ".cache/ALCOM"
-
-      # unityhub
-      ".config/unityhub"
-      ".config/Unity"
-      ".config/unity3d" # seems to also be for unity games
-      ".local/share/unity3d"
-      ".cache/unity3d"
-    ];
+      # note: use -force-vulkan when launching unity editor
+      unityhub.dirs = [
+        ".config/unityhub"
+        ".config/Unity"
+        ".config/unity3d" # seems to also be for unity games
+        ".local/share/unity3d"
+        ".cache/unity3d"
+      ];
+    };
   };
 }
