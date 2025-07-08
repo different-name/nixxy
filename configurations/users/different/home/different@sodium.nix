@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-lib.mkIf (osConfig.dyad.host == "sodium") {
+lib.mkIf (osConfig.networking.hostName == "sodium") {
   ### dyad modules
 
   dyad = {

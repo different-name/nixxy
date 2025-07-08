@@ -1,5 +1,5 @@
 { lib, osConfig, ... }:
-lib.mkIf (osConfig.dyad.host == "potassium") {
+lib.mkIf (osConfig.networking.hostName == "potassium") {
   ### dyad modules
 
   dyad = {

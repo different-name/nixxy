@@ -33,8 +33,6 @@ let
           (self + /dyad/nixos)
         ])
 
-        { dyad.host = hostName; }
-
         {
           _module.args = withSystem system (
             { self', inputs', ... }:
