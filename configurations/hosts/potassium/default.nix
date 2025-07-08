@@ -14,7 +14,10 @@ self.lib.mkHost
       ./hardware.nix
       ./disko.nix
 
+      # keep-sorted start
       inputs.nixos-hardware.nixosModules.dell-xps-15-9500-nvidia
+      self.nixosModules.tty1Autologin
+      # keep-sorted end
     ];
 
     ### dyad modules
@@ -45,15 +48,15 @@ self.lib.mkHost
       nix.distributed-builds.enable = true;
 
       services.syncthing.enable = true;
-
-      system.autologin = {
-        enable = true;
-        user = "different";
-      };
       # keep-sorted end
     };
 
     ### host specific
+
+    services.tty1Autologin = {
+      enable = true;
+      user = "different";
+    };
 
     hardware.nvidia.prime = {
       nvidiaBusId = "PCI:1:0:0";

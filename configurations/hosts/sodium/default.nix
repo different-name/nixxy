@@ -15,9 +15,12 @@ self.lib.mkHost
       ./disko.nix
       ./fancontrol.nix
 
+      # keep-sorted start
       inputs.nixos-hardware.nixosModules.common-cpu-amd
       inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
       inputs.nixos-hardware.nixosModules.common-pc-ssd
+      self.nixosModules.tty1Autologin
+      # keep-sorted end
     ];
 
     ### dyad modules
@@ -46,18 +49,16 @@ self.lib.mkHost
         xr.enable = true;
       };
 
-      system = {
-        autologin = {
-          enable = true;
-          user = "different";
-        };
-
-        btrfs.enable = true;
-      };
+      system.btrfs.enable = true;
       # keep-sorted end
     };
 
     ### host specific
+
+    services.tty1Autologin = {
+      enable = true;
+      user = "different";
+    };
 
     environment.sessionVariables = {
       STEAM_FORCE_DESKTOPUI_SCALING = "1.5";

@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.dyad.system.autologin;
+  cfg = config.services.tty1Autologin;
 in
 {
-  options.dyad.system.autologin = {
-    enable = lib.mkEnableOption "autologin config";
+  options.services.tty1Autologin = {
+    enable = lib.mkEnableOption "autologin on tty1";
     user = lib.mkOption {
       description = "User to autologin as";
       type = lib.types.str;
