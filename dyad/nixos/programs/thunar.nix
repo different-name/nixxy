@@ -23,5 +23,16 @@
 
     # archive support
     programs.file-roller.enable = true;
+
+    dyad.system.persistence = {
+      home.dirs = [
+        ".config/Thunar"
+        ".local/share/gvfs-metadata" # gnome virtual file system data / cache
+      ];
+
+      home.files = [
+        ".config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml"
+      ];
+    };
   };
 }

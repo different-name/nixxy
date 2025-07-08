@@ -40,17 +40,6 @@
         # protonvpn-gui
         ".config/Proton"
         ".cache/Proton"
-
-        ### system level
-
-        # thunar
-        ".config/Thunar"
-        ".local/share/gvfs-metadata" # gnome virtual file system data / cache
-      ];
-
-      files = [
-        # thunar
-        ".config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml"
       ];
     };
   };
