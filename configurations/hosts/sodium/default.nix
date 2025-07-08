@@ -27,13 +27,17 @@ self.lib.mkHost
 
       ## profiles
       profiles = {
+        # keep-sorted start
+        graphical.enable = true;
         minimal.enable = true;
         terminal.enable = true;
-        graphical.enable = true;
+        # keep-sorted end
       };
 
       ## modules
+      # keep-sorted start block=yes newline_separated=yes
       hardware.nvidia.enable = true;
+
       nix.build-host.enable = true;
 
       services = {
@@ -50,6 +54,7 @@ self.lib.mkHost
 
         btrfs.enable = true;
       };
+      # keep-sorted end
     };
 
     ### host specific

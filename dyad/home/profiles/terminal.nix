@@ -5,6 +5,8 @@
   config = lib.mkIf config.dyad.profiles.terminal.enable {
     dyad = {
       # keep-sorted start block=yes newline_separated=yes
+      style.catppuccin.enable = true;
+
       terminal = {
         # keep-sorted start
         btop.enable = true;
@@ -17,8 +19,6 @@
         yazi.enable = true;
         # keep-sorted end
       };
-
-      style.catppuccin.enable = true;
       # keep-sorted end
     };
 

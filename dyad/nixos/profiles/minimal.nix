@@ -34,8 +34,8 @@
         home-manager.enable = true;
         locale.enable = true;
         networking.enable = true;
-        security.enable = true;
         persistence-wrapper.enable = true;
+        security.enable = true;
         # keep-sorted end
       };
       # keep-sorted end

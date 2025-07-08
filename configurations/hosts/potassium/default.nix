@@ -30,14 +30,18 @@ self.lib.mkHost
 
       ## profiles
       profiles = {
-        minimal.enable = true;
-        terminal.enable = true;
+        # keep-sorted start
         graphical.enable = true;
         laptop.enable = true;
+        minimal.enable = true;
+        terminal.enable = true;
+        # keep-sorted end
       };
 
       ## modules
+      # keep-sorted start block=yes newline_separated=yes
       hardware.nvidia.enable = true;
+
       nix.distributed-builds.enable = true;
 
       services.syncthing.enable = true;
@@ -46,6 +50,7 @@ self.lib.mkHost
         enable = true;
         user = "different";
       };
+      # keep-sorted end
     };
 
     ### host specific
