@@ -47,20 +47,24 @@
           '';
         };
         dirs = [
+          # keep-sorted start
+          ".cache/ALCOM"
           ".local/share/ALCOM"
           ".local/share/VRChatCreatorCompanion"
           ".local/share/com.anatawa12.vrc-get-gui"
-          ".cache/ALCOM"
+          # keep-sorted end
         ];
       };
 
       # note: use -force-vulkan when launching unity editor
       unityhub.dirs = [
-        ".config/unityhub"
+        # keep-sorted start
+        ".cache/unity3d"
         ".config/Unity"
         ".config/unity3d" # seems to also be for unity games
+        ".config/unityhub"
         ".local/share/unity3d"
-        ".cache/unity3d"
+        # keep-sorted end
       ];
     };
   };

@@ -18,10 +18,12 @@
     home-manager = {
       extraSpecialArgs = {
         inherit
+          # keep-sorted start
           inputs
           inputs'
           self
           self'
+          # keep-sorted end
           ;
       };
 

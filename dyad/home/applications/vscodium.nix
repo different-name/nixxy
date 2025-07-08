@@ -15,67 +15,67 @@
 
       profiles.default = {
         extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
-          jnoortheen.nix-ide
+          # keep-sorted start
+          blueglassblock.better-json5
           catppuccin.catppuccin-vsc-icons
           editorconfig.editorconfig
-          tamasfe.even-better-toml
-          blueglassblock.better-json5
+          jnoortheen.nix-ide
           ms-python.python
-          editorconfig.editorconfig
-          prettiercode.code-prettier
           nefrob.vscode-just-syntax
+          prettiercode.code-prettier
+          tamasfe.even-better-toml
+          # keep-sorted end
         ];
 
         userSettings = {
-          "window.titleBarStyle" = "custom";
-          "workbench.colorTheme" = "Catppuccin Mocha";
-          "workbench.startupEditor" = "none";
-
+          # keep-sorted start block=yes
           "editor.fontFamily" = "'JetBrains Mono', 'monospace', monospace";
-          "editor.tabSize" = 2;
-          "editor.formatOnSave" = true;
           "editor.fontLigatures" = true;
-
-          "files.enableTrash" = false;
+          "editor.formatOnSave" = true;
+          "editor.tabSize" = 2;
           "explorer.confirmDragAndDrop" = false;
           "explorer.confirmPasteNative" = false;
-
-          "scm.alwaysShowRepositories" = true;
-
-          "git.detectSubmodules" = false;
-          "git.confirmSync" = false;
-          "git.repositoryScanMaxDepth" = 3;
-
           "files.associations" = {
             "*.poiTemplateCollection" = "hlsl";
           };
-
-          # https://github.com/nix-community/vscode-nix-ide
+          "files.enableTrash" = false;
+          "git.confirmSync" = false;
+          "git.detectSubmodules" = false;
+          "git.repositoryScanMaxDepth" = 3;
           "nix.enableLanguageServer" = true;
+          "nix.hiddenLanguageServerErrors" = [
+            # keep-sorted start
+            "textDocument/codeAction"
+            "textDocument/completion"
+            "textDocument/definition"
+            "textDocument/documentHighlight"
+            "textDocument/documentLink"
+            "textDocument/documentSymbol"
+            "textDocument/hover"
+            "textDocument/inlayHint"
+            # keep-sorted end
+          ];
           "nix.serverPath" = "${lib.getExe pkgs.nixd}";
           "nix.serverSettings.nixd.formatting.command" = [
             "${lib.getExe pkgs.nixfmt-rfc-style}"
           ];
           "nix.serverSettings.nixd.options.nixos.expr" =
             "(builtins.getFlake \"${config.dyad.flake}\").nixosConfigurations.<name>.options";
-          "nix.hiddenLanguageServerErrors" = [
-            "textDocument/inlayHint"
-            "textDocument/definition"
-            "textDocument/completion"
-            "textDocument/documentLink"
-            "textDocument/hover"
-            "textDocument/documentSymbol"
-            "textDocument/codeAction"
-            "textDocument/documentHighlight"
-          ];
+          "scm.alwaysShowRepositories" = true;
+          "window.titleBarStyle" = "custom";
+          "workbench.colorTheme" = "Catppuccin Mocha";
+          "workbench.startupEditor" = "none";
+          # keep-sorted end
         };
       };
     };
 
     xdg.mimeApps.defaultApplications = {
-      "text/plain" = "codium.desktop";
+      # keep-sorted start
       "application/json" = "codium.desktop";
       "text/markdown" = "codium.desktop";
+      "text/plain" = "codium.desktop";
+      # keep-sorted end
     };
 
     wayland.windowManager.hyprland.settings.env = [
@@ -83,9 +83,10 @@
     ];
 
     dyad.system.persistence.dirs = [
-      ".config/VSCodium/CachedData"
-      ".config/VSCodium/Cache"
+      # keep-sorted start
       ".config/VSCodium/Backups"
+      ".config/VSCodium/Cache"
+      ".config/VSCodium/CachedData"
       ".config/VSCodium/Code Cache"
       ".config/VSCodium/DawnCache"
       ".config/VSCodium/GPUCache"
@@ -93,6 +94,7 @@
       ".config/VSCodium/User/globalStorage"
       ".config/VSCodium/User/workspaceStorage"
       ".config/VSCodium/logs"
+      # keep-sorted end
     ];
   };
 }

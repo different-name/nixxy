@@ -17,8 +17,10 @@
       enable = true;
 
       extraCompatPackages = with pkgs; [
+        # keep-sorted start
         proton-ge-bin
         proton-ge-rtsp-bin
+        # keep-sorted end
       ];
     };
 

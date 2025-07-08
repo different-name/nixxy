@@ -14,10 +14,12 @@
 
       config = {
         plugins = with inputs'.anyrun.packages; [
-          uwsm_app
+          # keep-sorted start
           rink
           shell
           translate
+          uwsm_app
+          # keep-sorted end
         ];
 
         width.fraction = 0.25;

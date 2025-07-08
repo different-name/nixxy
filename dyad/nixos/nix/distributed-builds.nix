@@ -13,10 +13,13 @@
           sshUser = "remotebuild";
           sshKey = "/etc/ssh/ssh_host_ed25519_key";
           system = "x86_64-linux";
+
           supportedFeatures = [
-            "nixos-test"
+            # keep-sorted start
             "big-parallel"
             "kvm"
+            "nixos-test"
+            # keep-sorted end
           ];
         }
       ];

@@ -37,8 +37,10 @@
     };
 
     dyad.system.persistence.dirs = [
-      ".local/share/television"
+      # keep-sorted start
       ".cache/nix-search-tv"
+      ".local/share/television"
+      # keep-sorted end
     ];
   };
 }

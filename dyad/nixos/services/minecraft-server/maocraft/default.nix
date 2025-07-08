@@ -26,18 +26,23 @@
       };
 
       whitelist = {
+        # keep-sorted start
         Lazy_Diffy = "be0f57d1-a79c-49d1-a126-4536c476ee51";
         Nerowy = "23b6e97d-d186-4bc2-8312-8a569013426a";
+        # keep-sorted end
       };
 
       symlinks."server-icon.png" = ./server-icon.png;
 
       files = {
+        # keep-sorted start block=yes newline_separated=yes
         "plugins/DiscordSRV-Build-1.29.0.jar" = pkgs.fetchurl {
           url = "https://cdn.modrinth.com/data/UmLGoGij/versions/MK210KrY/DiscordSRV-Build-1.29.0.jar";
           hash = "sha256-rd2qPbaQNLF2fqyv90CVhdxzTGxffSE4gJnYxHUIxic=";
         };
+
         "plugins/DiscordSRV/messages.yml" = ./maocraft-messages.yml;
+        # keep-sorted end
       };
     };
 

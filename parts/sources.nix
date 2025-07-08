@@ -20,10 +20,12 @@ in
     {
       sources = import ../_sources/generated.nix {
         inherit (pkgs)
+          # keep-sorted start
+          dockerTools
+          fetchFromGitHub
           fetchgit
           fetchurl
-          fetchFromGitHub
-          dockerTools
+          # keep-sorted end
           ;
       };
     };

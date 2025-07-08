@@ -6,9 +6,11 @@
     dyad.system.persistence = {
       enable = true;
       dirs = [
-        "nix-files"
-        ".terminfo"
+        # keep-sorted start
         ".local/share/Trash"
+        ".terminfo"
+        "nix-files"
+        # keep-sorted end
       ];
     };
   };

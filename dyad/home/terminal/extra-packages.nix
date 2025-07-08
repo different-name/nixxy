@@ -10,6 +10,7 @@
 
   config = lib.mkIf config.dyad.terminal.extra-packages.enable {
     dyad.system.persistence.installPkgsWithPersistence = {
+      # keep-sorted start block=yes newline_separated=yes
       # calculator
       libqalculate.dirs = [
         ".config/qalculate"
@@ -23,9 +24,11 @@
       nvfetcher.dirs = [
         ".local/share/nvfetcher"
       ];
+      # keep-sorted end
     };
 
     home.packages = with pkgs; [
+      # keep-sorted start
       aspell # spell checker
       aspellDicts.en # aspell english dictionary
       bat # cat with syntax highlighting
@@ -46,6 +49,7 @@
       unzip # unzip files
       yt-dlp # audio/video downloader
       zip # zip files
+      # keep-sorted end
     ];
   };
 }

@@ -9,9 +9,11 @@
 
   config = lib.mkIf config.dyad.desktop.extra-packages.enable {
     home.packages = with pkgs; [
+      # keep-sorted start
+      libnotify
       pavucontrol
       wl-clipboard
-      libnotify
+      # keep-sorted end
     ];
   };
 }

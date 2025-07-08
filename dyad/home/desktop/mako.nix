@@ -28,8 +28,10 @@ in
       (pkgs.writeShellApplication {
         name = "mako-dnd";
         runtimeInputs = [
-          hyprlandCfg.package
+          # keep-sorted start
           config.services.mako.package
+          hyprlandCfg.package
+          # keep-sorted end
         ];
 
         text = ''

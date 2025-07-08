@@ -4,13 +4,16 @@
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./parts ]; };
 
   inputs = {
+    # keep-sorted start block=yes newline_separated=yes
     # secrets management
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
+        # keep-sorted start
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
+        # keep-sorted end
       };
     };
 
@@ -18,9 +21,11 @@
     anyrun = {
       url = "github:fufexan/anyrun/launch-prefix";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        # keep-sorted start
         flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
+        # keep-sorted end
       };
     };
 
@@ -49,45 +54,55 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprwm
-    hyprland.url = "github:hyprwm/hyprland";
-
+    # hypr community scripts
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
 
+    # hyprland compositor
+    hyprland.url = "github:hyprwm/hyprland";
+
+    # hypr session locker
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs = {
+        # keep-sorted start
         hyprgraphics.follows = "hyprland/hyprgraphics";
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
+        # keep-sorted end
       };
     };
 
+    # hypr wallpaper utility
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs = {
+        # keep-sorted start
         hyprgraphics.follows = "hyprland/hyprgraphics";
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
+        # keep-sorted end
       };
     };
 
+    # hypr color picker utility
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
       inputs = {
+        # keep-sorted start
         hyprutils.follows = "hyprland/hyprutils";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
+        # keep-sorted end
       };
     };
 
@@ -96,8 +111,10 @@
     impermanence = {
       url = "github:nix-community/impermanence/home-manager-v2";
       inputs = {
+        # keep-sorted start
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
+        # keep-sorted end
       };
     };
 
@@ -137,9 +154,6 @@
     # hardware configurations
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
-    # nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
     # nixpkgs with allowUnfree, allowUnsupportedSystem & cudaSupport enabled
     # workaround for https://discourse.nixos.org/t/unfree-package-from-flake-not-working/40984/7
     nixpkgs-unfree = {
@@ -151,17 +165,24 @@
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
       inputs = {
+        # keep-sorted start
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
+        # keep-sorted end
       };
     };
+
+    # nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # nix user repository
     nur = {
       url = "github:nix-community/NUR";
       inputs = {
+        # keep-sorted start
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
+        # keep-sorted end
       };
     };
 
@@ -169,8 +190,10 @@
     steam-config-nix = {
       url = "github:different-name/steam-config-nix";
       inputs = {
+        # keep-sorted start
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
+        # keep-sorted end
       };
     };
 
@@ -187,9 +210,12 @@
     wivrn-solarxr = {
       url = "github:notpeelz/WiVRn/solarxr-patches";
       inputs = {
+        # keep-sorted start
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs-unfree";
+        # keep-sorted end
       };
     };
+    # keep-sorted end
   };
 }

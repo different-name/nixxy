@@ -27,8 +27,10 @@
     ];
 
     home.persistence."/persist".directories = [
+      # keep-sorted start
       ".config/goxlr-utility"
       ".local/share/goxlr-utility"
+      # keep-sorted end
     ];
   };
 }

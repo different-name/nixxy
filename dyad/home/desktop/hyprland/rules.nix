@@ -4,13 +4,15 @@
     wayland.windowManager.hyprland.settings.windowrule =
       let
         gameClasses = [
-          "steam_app_default"
-          "hl2_linux"
+          # keep-sorted start
           "Paradox Launcher"
+          "hl2_linux"
+          "osu!"
+          "steam_app_default"
           ''AcrossTheObelisk\.x86_64''
           ''TerraTechLinux64\.x86_64''
           ''diablo iv\.exe''
-          "osu!"
+          # keep-sorted end
         ];
         gameClassesStr = lib.concatStringsSep "|" gameClasses;
         gameRule = rule: (rule + ", class:steam_app_[0-9]+|${gameClassesStr}, title:.+");

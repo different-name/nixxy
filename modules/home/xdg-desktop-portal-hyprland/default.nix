@@ -19,9 +19,11 @@ in
       type = lib.types.attrsOf (
         lib.types.attrsOf (
           lib.types.oneOf [
+            # keep-sorted start
             lib.types.bool
             lib.types.int
             lib.types.str
+            # keep-sorted end
           ]
         )
       );

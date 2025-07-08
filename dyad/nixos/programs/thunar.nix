@@ -26,8 +26,10 @@
 
     dyad.system.persistence = {
       home.dirs = [
+        # keep-sorted start
         ".config/Thunar"
         ".local/share/gvfs-metadata" # gnome virtual file system data / cache
+        # keep-sorted end
       ];
 
       home.files = [

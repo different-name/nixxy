@@ -5,16 +5,22 @@
   config = lib.mkIf config.dyad.hardware.fwupd.enable {
     services.fwupd.enable = true;
 
-    dyad.system.persistence = {
-      dirs = map (path: "/var/lib/fwupd/${path}") [
-        "metadata"
-        "gnupg"
-        "pki"
-      ];
+    dyad.system.persistence =
+      let
+        fwuptDir = "/var/lib/fwupd";
+      in
+      {
+        dirs = [
+          # keep-sorted start
+          "${fwuptDir}/gnupg"
+          "${fwuptDir}/metadata"
+          "${fwuptDir}/pki"
+          # keep-sorted end
+        ];
 
-      files = map (path: "/var/lib/fwupd/${path}") [
-        "pending.db"
-      ];
-    };
+        files = [
+          "${fwuptDir}/pending.db"
+        ];
+      };
   };
 }

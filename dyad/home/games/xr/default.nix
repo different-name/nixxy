@@ -128,6 +128,16 @@ in
 
     dyad.system.persistence = {
       installPkgsWithPersistence = {
+        # keep-sorted start block=yes newline_separated=yes
+        osc-goes-brrr = {
+          package = self'.packages.osc-goes-brrr;
+          dirs = [
+            ".config/OscGoesBrrr"
+          ];
+        };
+
+        slimevr-cli.package = self'.packages.slimevr-cli;
+
         slimevr = {
           # https://github.com/tauri-apps/tauri/issues/9394
           package = pkgs.symlinkJoin {
@@ -140,10 +150,12 @@ in
             '';
           };
           dirs = [
-            ".config/dev.slimevr.SlimeVR"
-            ".local/share/dev.slimevr.SlimeVR"
-            ".local/share/.slimevr-wrapped_"
+            # keep-sorted start
             ".cache/.slimevr-wrapped_"
+            ".config/dev.slimevr.SlimeVR"
+            ".local/share/.slimevr-wrapped_"
+            ".local/share/dev.slimevr.SlimeVR"
+            # keep-sorted end
           ];
         };
 
@@ -154,22 +166,16 @@ in
         wlx-overlay-s.dirs = [
           ".config/wlxoverlay"
         ];
-
-        osc-goes-brrr = {
-          package = self'.packages.osc-goes-brrr;
-          dirs = [
-            ".config/OscGoesBrrr"
-          ];
-        };
-
-        slimevr-cli.package = self'.packages.slimevr-cli;
+        # keep-sorted end
       };
 
       dirs = [
-        ".local/state/OpenComposite"
+        # keep-sorted start
+        ".cache/wivrn"
         ".config/openvr"
         ".config/wivrn"
-        ".cache/wivrn"
+        ".local/state/OpenComposite"
+        # keep-sorted end
       ];
     };
   };

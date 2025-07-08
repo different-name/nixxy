@@ -59,10 +59,12 @@ in
 
       # always exclude /nix and virtual filesystems
       excludedPaths = [
+        # keep-sorted start
+        "/dev"
         "/nix"
         "/proc"
         "/sys"
-        "/dev"
+        # keep-sorted end
       ] ++ cfg.exclude-paths;
 
       # paths that `ephtools stray` will search

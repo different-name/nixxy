@@ -17,50 +17,55 @@
 
       exclude-paths =
         [
-          "/btrfs" # default btrfs subvolume
-          "/boot" # non ephemeral
+          # keep-sorted start
           "/.swapvol" # swap
-          "/run" # runtime files
-          "/tmp" # temporary files
-          "/var/tmp" # temporary files
-          "/etc/shadow"
-          "/etc/group"
-          "/etc/sudoers"
-          "/etc/NIXOS"
-          "/etc/subuid"
-          "/etc/passwd"
-          "/etc/resolv.conf" # dns config
+          "/boot" # non ephemeral
+          "/btrfs" # default btrfs subvolume
           "/etc/.clean"
           "/etc/.updated"
-          "/etc/subgid"
-          "/etc/ssh/authorized_keys.d" # openssh.authorizedKeys
+          "/etc/NIXOS"
           "/etc/fwupd/fwupd.conf" # services.fwupd
+          "/etc/group"
+          "/etc/passwd"
           "/etc/printcap"
+          "/etc/resolv.conf" # dns config
+          "/etc/shadow"
+          "/etc/ssh/authorized_keys.d" # openssh.authorizedKeys
+          "/etc/subgid"
+          "/etc/subuid"
+          "/etc/sudoers"
+          "/run" # runtime files
+          "/tmp" # temporary files
           "/var/.updated"
+          "/var/lib/NetworkManager/NetworkManager-intern.conf"
+          "/var/lib/NetworkManager/secret_key" # cannot be persisted as file
+          "/var/lib/NetworkManager/timestamps" # cannot be persisted as file
           "/var/lib/systemd/catalog"
           "/var/lib/systemd/timers"
-          "/var/lib/NetworkManager/NetworkManager-intern.conf"
-          "/var/lib/NetworkManager/timestamps" # cannot be persisted as file
-          "/var/lib/NetworkManager/secret_key" # cannot be persisted as file
+          "/var/tmp" # temporary files
+          # keep-sorted end
         ]
+        # https://wiki.archlinux.org/title/XDG_Base_Directory
+        # TODO this should not be hard coded
         ++ (map (path: "/home/different/${path}") [
-          # https://wiki.archlinux.org/title/XDG_Base_Directory
-          ".vscode-oss" # seems to be data written by the vscode home-manager module
+          # keep-sorted start
+          ".cache/Microsoft/DeveloperTools/deviceid" # probably vsc, haven't had issues being ephemeral
           ".config/VSCodium" # some subfolders are persisted, but I should have everything I need now
-          ".config/fish" # can configure declaratively
-          ".local/share/applications/mimeapps.list" # can configure declaratively
-          ".pki" # seems to be from chromium, see above link. I haven't noticed anything wrong having this ephemeral
-          ".local/share/Paradox Interactive" # across the obelisk launcher
-          ".paradoxlauncher" # across the obelisk launcher
-          ".local/share/mimeapps.list" # xdg mimeapps, managed in config
-          ".local/share/recently-used.xbel" # recent files list used by some applications
           ".config/dconf/user" # gnome settings database
-          ".local/state/lesshst" # less history file
+          ".config/fish" # can configure declaratively
           ".config/gtk-2.0"
           ".config/gtk-3.0"
           ".config/pulse/cookie" # pulseaudio cookie, had no issues with this being unpersisted
+          ".local/share/Paradox Interactive" # across the obelisk launcher
+          ".local/share/applications/mimeapps.list" # can configure declaratively
+          ".local/share/mimeapps.list" # xdg mimeapps, managed in config
+          ".local/share/recently-used.xbel" # recent files list used by some applications
           ".local/state/btop.log" # just btop logs
-          ".cache/Microsoft/DeveloperTools/deviceid" # probably vsc, haven't had issues being eph
+          ".local/state/lesshst" # less history file
+          ".paradoxlauncher" # across the obelisk launcher
+          ".pki" # seems to be from chromium, see above link. I haven't noticed anything wrong having this ephemeral
+          ".vscode-oss" # seems to be data written by the vscode home-manager module
+          # keep-sorted end
         ]);
     };
   };

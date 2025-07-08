@@ -42,19 +42,23 @@
         };
 
         whitelist = {
+          # keep-sorted start
+          BeakedBubble8 = "37cb2b80-a717-45c3-b982-816f3f5fff25";
           Lazy_Diffy = "be0f57d1-a79c-49d1-a126-4536c476ee51";
           Nerowy = "23b6e97d-d186-4bc2-8312-8a569013426a";
-          jacobkingsman = "255c3ff3-bb6e-43fd-b224-6e0ad913fa91";
-          BeakedBubble8 = "37cb2b80-a717-45c3-b982-816f3f5fff25";
-          Shmezzy7 = "a03f2619-e480-4671-950c-fb97e9e60c46";
-          Zeypriannah = "1d37fc18-a7a9-42b8-a40d-0b93603d02c0";
-          TheOldFool154 = "a362b48d-0abf-4734-898c-53b2ea53945b";
           Saltybutcooler = "d7bc605a-4ffd-458a-999b-e6a5f5f47eeb";
+          Shmezzy7 = "a03f2619-e480-4671-950c-fb97e9e60c46";
+          TheOldFool154 = "a362b48d-0abf-4734-898c-53b2ea53945b";
+          Zeypriannah = "1d37fc18-a7a9-42b8-a40d-0b93603d02c0";
+          jacobkingsman = "255c3ff3-bb6e-43fd-b224-6e0ad913fa91";
+          # keep-sorted end
         };
 
         symlinks = {
-          mods = modpack + /mods;
+          # keep-sorted start
           "server-icon.png" = ./server-icon.png;
+          mods = modpack + /mods;
+          # keep-sorted end
         };
 
         files = collectFilesAt modpack "config";

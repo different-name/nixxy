@@ -5,13 +5,14 @@
       force = true;
       default = "google";
       engines = {
-        "Nix Packages" = {
+        # keep-sorted start block=yes newline_separated=yes
+        "HM Options" = {
           urls = [
             {
-              template = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
+              template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
             }
           ];
-          definedAliases = [ ":np" ];
+          definedAliases = [ ":hm" ];
         };
 
         "Nix Options" = {
@@ -23,13 +24,22 @@
           definedAliases = [ ":no" ];
         };
 
-        "HM Options" = {
+        "Nix Packages" = {
           urls = [
             {
-              template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
+              template = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
             }
           ];
-          definedAliases = [ ":hm" ];
+          definedAliases = [ ":np" ];
+        };
+
+        "Noogle" = {
+          urls = [
+            {
+              template = "https://noogle.dev/q?term={searchTerms}";
+            }
+          ];
+          definedAliases = [ ":ng" ];
         };
 
         "Proton DB" = {
@@ -49,20 +59,14 @@
           ];
           definedAliases = [ ":yt" ];
         };
+        # keep-sorted end
 
-        "Noogle" = {
-          urls = [
-            {
-              template = "https://noogle.dev/q?term={searchTerms}";
-            }
-          ];
-          definedAliases = [ ":ng" ];
-        };
-
-        "google".metaData.alias = ":g";
-        "ddg".metaData.hidden = true;
-        "bing".metaData.hidden = true;
+        # keep-sorted start
         "Wikipedia".metaData.hidden = true;
+        "bing".metaData.hidden = true;
+        "ddg".metaData.hidden = true;
+        "google".metaData.alias = ":g";
+        # keep-sorted end
       };
     };
   };

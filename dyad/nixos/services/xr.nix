@@ -121,8 +121,10 @@
         after = [ "wait-for-wivrn.service" ];
         requires = [ "wait-for-wivrn.service" ];
         partOf = [
-          "wivrn.service"
+          # keep-sorted start
           "vr-session.service"
+          "wivrn.service"
+          # keep-sorted end
         ];
 
         serviceConfig = {
@@ -135,25 +137,27 @@
         };
       };
 
-      vr-session = {
-        description = "VR session meta service";
-        after = [
-          "slimevr-server.service"
-          "wivrn.service"
-          "wlx-overlay-s.service"
-        ];
-        wants = [
-          "slimevr-server.service"
-          "wivrn.service"
-          "wlx-overlay-s.service"
-        ];
+      vr-session =
+        let
+          deps = [
+            # keep-sorted start
+            "slimevr-server.service"
+            "wivrn.service"
+            "wlx-overlay-s.service"
+            # keep-sorted end
+          ];
+        in
+        {
+          description = "VR session meta service";
+          after = deps;
+          wants = deps;
 
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = pkgs.coreutils + /bin/true;
-          RemainAfterExit = "yes";
+          serviceConfig = {
+            Type = "oneshot";
+            ExecStart = pkgs.coreutils + /bin/true;
+            RemainAfterExit = "yes";
+          };
         };
-      };
     };
 
     environment.systemPackages = [
@@ -161,8 +165,10 @@
     ];
 
     dyad.system.persistence.dirs = [
+      # keep-sorted start
       "/root/.config/dev.slimevr.SlimeVR"
       "/root/.local/share/dev.slimevr.SlimeVR"
+      # keep-sorted end
     ];
   };
 }

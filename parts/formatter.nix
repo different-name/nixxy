@@ -13,15 +13,21 @@
         projectRootFile = "flake.nix";
 
         settings.global.excludes = [
-          "_sources/generated.nix"
-          "_sources/generated.json"
+          # keep-sorted start
           "*.age"
+          "_sources/generated.json"
+          "_sources/generated.nix"
+          # keep-sorted end
         ];
 
         programs = {
-          shellcheck.enable = true;
+          # keep-sorted start block=yes newline_separated=yes
           deadnix.enable = true;
-          statix.enable = true;
+
+          keep-sorted = {
+            enable = true;
+            includes = [ "*" ];
+          };
 
           nixfmt = {
             enable = true;
@@ -34,12 +40,17 @@
             settings.editorconfig = true;
           };
 
-          stylua.enable = true;
+          shellcheck.enable = true;
 
           shfmt = {
             enable = true;
             indent_size = 2;
           };
+
+          statix.enable = true;
+
+          stylua.enable = true;
+          # keep-sorted end
         };
       };
     };

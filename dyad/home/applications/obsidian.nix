@@ -31,15 +31,14 @@
         ];
       };
 
-      vaults = {
-        "Diffy Notes" = {
-          target = "Documents/Obsidian/Diffy Notes";
-        };
+      vaults."Diffy Notes" = {
+        target = "Documents/Obsidian/Diffy Notes";
       };
     };
 
     home.file =
       [
+        # keep-sorted start
         "app.json"
         "appearance.json"
         "community-plugins.json"
@@ -47,6 +46,7 @@
         "core-plugins.json"
         "hotkeys.json"
         "themes/Catppuccin"
+        # keep-sorted end
       ]
       |> map (path: {
         name = "Documents/Obsidian/Diffy Notes/.obsidian/${path}";

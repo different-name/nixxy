@@ -11,8 +11,10 @@
       mimeApps = {
         enable = true;
         defaultApplications = {
+          # keep-sorted start
           "inode/directory" = "thunar.desktop"; # directories
           "x-scheme-handler/unityhub" = "unityhub.desktop"; # unity login
+          # keep-sorted end
         };
       };
 

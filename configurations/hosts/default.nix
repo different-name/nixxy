@@ -7,8 +7,10 @@
 }:
 let
   hosts = {
+    # keep-sorted start
     potassium = "x86_64-linux";
     sodium = "x86_64-linux";
+    # keep-sorted end
   };
 
   mkNixosSystem =
@@ -16,8 +18,10 @@ let
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit
+          # keep-sorted start
           inputs
           self
+          # keep-sorted end
           ;
       };
 

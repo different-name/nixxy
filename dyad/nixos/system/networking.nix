@@ -6,11 +6,6 @@
     networking = {
       networkmanager.enable = true;
       enableIPv6 = false;
-
-      firewall = {
-        allowedUDPPorts = [ ];
-        allowedTCPPorts = [ ];
-      };
     };
 
     dyad.system.persistence.dirs = [

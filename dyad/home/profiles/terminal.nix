@@ -3,22 +3,25 @@
   options.dyad.profiles.terminal.enable = lib.mkEnableOption "terminal profile";
 
   config = lib.mkIf config.dyad.profiles.terminal.enable {
-    programs.fd.enable = true;
-
     dyad = {
+      # keep-sorted start block=yes newline_separated=yes
       terminal = {
-        extra-packages.enable = true;
-
+        # keep-sorted start
         btop.enable = true;
         dyad.enable = true;
+        extra-packages.enable = true;
         fastfetch.enable = true;
         fish.enable = true;
         git.enable = true;
         television.enable = true;
         yazi.enable = true;
+        # keep-sorted end
       };
 
       theming.catppuccin.enable = true;
+      # keep-sorted end
     };
+
+    programs.fd.enable = true;
   };
 }

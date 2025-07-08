@@ -14,9 +14,11 @@
         name = "dyad";
 
         runtimeInputs = with pkgs; [
+          # keep-sorted start
           just
           nvfetcher
           osConfig.programs.nh.package
+          # keep-sorted end
         ];
 
         text = ''

@@ -31,8 +31,10 @@ in
     };
 
     dyad.system.persistence.dirs = [
-      ".local/share/fish"
+      # keep-sorted start
       ".cache/fish"
+      ".local/share/fish"
+      # keep-sorted end
     ];
   };
 }

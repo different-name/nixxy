@@ -12,8 +12,8 @@
         force = true;
 
         settings = {
-          # redirector
-          # https://github.com/Anomalocaridid/dotfiles/blob/2eff267391847977118cef00baaac2ef690d2068/home-modules/librewolf.nix#L183-L201
+          # keep-sorted start block=yes newline_separated=yes
+          # redirector, credit to https://github.com/Anomalocaridid/dotfiles/blob/2eff267391847977118cef00baaac2ef690d2068/home-modules/librewolf.nix#L183-L201
           "redirector@einaregilsson.com" = {
             force = true;
             settings = {
@@ -31,24 +31,22 @@
               ];
             };
           };
+          # keep-sorted end
         };
 
         packages = with pkgs.nur.repos.rycee.firefox-addons; [
-          # util
+          # keep-sorted start
+          dearrow
+          greasemonkey
           proton-pass
           proton-vpn
-          greasemonkey
           redirector
-
-          # style
-          stylus
           self'.packages.catppuccin-firefox-mocha
-
-          # adblock
-          ublock-origin
-          dearrow
           sponsorblock
+          stylus
+          ublock-origin
           youtube-nonstop
+          # keep-sorted end
         ];
       };
 

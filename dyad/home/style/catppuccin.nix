@@ -16,6 +16,7 @@
     catppuccin = {
       inherit (osConfig.catppuccin) enable accent flavor;
 
+      # keep-sorted start block=yes newline_separated=yes
       cursors = {
         inherit (config.catppuccin) enable;
         accent = "dark";
@@ -26,6 +27,8 @@
         userstyles.force = true;
       };
 
+      fish.enable = false;
+
       gtk = {
         inherit (config.catppuccin) enable;
         size = "standard";
@@ -33,8 +36,8 @@
         icon.enable = true;
       };
 
-      fish.enable = false;
       mpv.enable = false;
+      # keep-sorted end
     };
   };
 }

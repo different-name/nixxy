@@ -19,12 +19,14 @@
       };
 
       mimeApps.defaultApplications = {
-        "image/png" = "imv-dir.desktop";
-        "image/jpeg" = "imv-dir.desktop";
-        "image/gif" = "imv-dir.desktop";
+        # keep-sorted start
         "image/bmp" = "imv-dir.desktop";
+        "image/gif" = "imv-dir.desktop";
+        "image/jpeg" = "imv-dir.desktop";
+        "image/png" = "imv-dir.desktop";
         "image/tiff" = "imv-dir.desktop";
         "image/x-icon" = "imv-dir.desktop";
+        # keep-sorted end
       };
     };
   };

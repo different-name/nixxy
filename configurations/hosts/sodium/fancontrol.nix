@@ -2,8 +2,10 @@
 {
   # kernel modules found with sensors-detect (from lm-sensors)
   boot.kernelModules = [
+    # keep-sorted start
     "lm83"
     "nct6775"
+    # keep-sorted end
   ];
 
   # hwmon1/pwm1 - GPU left
@@ -60,9 +62,11 @@
     serviceConfig = {
       Restart = "on-failure";
     };
-    path = with pkgs; [
-      bash
+    path = [
+      # keep-sorted start
       config.hardware.nvidia.package
+      pkgs.bash
+      # keep-sorted end
     ];
     script = ''
       bash -c 'while :; do
