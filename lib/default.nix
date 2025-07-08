@@ -92,8 +92,9 @@ let
       config: value:
       let
         usernames = config.dyad.users |> lib.filterAttrs (name: value: value.enable) |> lib.attrNames;
+        attrset = lib.genAttrs usernames (name: value);
       in
-      lib.genAttrs usernames (name: value);
+      lib.mkIf (attrset != { }) attrset;
   };
 in
 {
