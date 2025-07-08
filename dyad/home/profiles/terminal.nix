@@ -18,7 +18,7 @@
         # keep-sorted end
       };
 
-      theming.catppuccin.enable = true;
+      style.catppuccin.enable = true;
       # keep-sorted end
     };
 

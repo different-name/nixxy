@@ -10,9 +10,9 @@
     inputs.catppuccin.homeModules.catppuccin
   ];
 
-  options.dyad.theming.catppuccin.enable = lib.mkEnableOption "catppuccin config";
+  options.dyad.style.catppuccin.enable = lib.mkEnableOption "catppuccin config";
 
-  config = lib.mkIf config.dyad.theming.catppuccin.enable {
+  config = lib.mkIf config.dyad.style.catppuccin.enable {
     catppuccin = {
       inherit (osConfig.catppuccin) enable accent flavor;
 

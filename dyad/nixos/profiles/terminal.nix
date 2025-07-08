@@ -9,7 +9,7 @@
 
       services.tailscale.enable = true;
 
-      theming.catppuccin.enable = true;
+      style.catppuccin.enable = true;
       # keep-sorted end
     };
 
