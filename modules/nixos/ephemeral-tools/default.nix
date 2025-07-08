@@ -5,6 +5,7 @@
   ...
 }:
 let
+  inherit (lib) types;
   cfg = config.programs.ephemeralTools;
 in
 {
@@ -13,7 +14,7 @@ in
 
     exclude-paths = lib.mkOption {
       description = "Paths to always exclude from the \"new\" command search results";
-      type = lib.types.listOf lib.types.str;
+      type = types.listOf types.str;
       default = [ ];
     };
   };

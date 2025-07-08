@@ -12,12 +12,12 @@ let
   # this is less maintenance in the event typing changes
   persistOptions = {
     dirs = lib.mkOption {
-      type = lib.types.listOf lib.types.anything;
+      type = types.listOf types.anything;
       default = [ ];
       description = "directories to pass to persistence config";
     };
     files = lib.mkOption {
-      type = lib.types.listOf lib.types.anything;
+      type = types.listOf types.anything;
       default = [ ];
       description = "files to pass to persistence config";
     };

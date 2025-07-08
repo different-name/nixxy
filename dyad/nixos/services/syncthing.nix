@@ -1,5 +1,6 @@
 { lib, config, ... }:
 let
+  inherit (lib) types;
   cfg = config.dyad.services.syncthing;
 in
 {
@@ -7,18 +8,18 @@ in
     enable = lib.mkEnableOption "syncthing config";
 
     user = lib.mkOption {
-      type = lib.types.str;
+      type = types.str;
       description = "User to run syncthing as";
       example = "different";
     };
 
     key = lib.mkOption {
-      type = lib.types.path;
+      type = types.path;
       description = "Path to key file";
     };
 
     cert = lib.mkOption {
-      type = lib.types.path;
+      type = types.path;
       description = "Path to cert file";
     };
   };

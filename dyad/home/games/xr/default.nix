@@ -7,6 +7,8 @@
   ...
 }:
 let
+  inherit (lib) types;
+
   cfg = config.dyad.games.xr;
 in
 {
@@ -14,13 +16,13 @@ in
     enable = lib.mkEnableOption "xr config";
 
     enterVrHook = lib.mkOption {
-      type = lib.types.str;
+      type = types.str;
       default = "";
       description = "Command to run before entering VR";
     };
 
     exitVrHook = lib.mkOption {
-      type = lib.types.str;
+      type = types.str;
       default = "";
       description = "Command to run after exiting VR";
     };

@@ -1,5 +1,7 @@
 { lib, config, ... }:
 let
+  inherit (lib) types;
+
   cfg = config.wayland.windowManager.hyprland.xdgDesktopPortalHyprland;
 
   valueToString = value: if builtins.isBool value then lib.boolToString value else toString value;
@@ -16,13 +18,13 @@ in
 {
   options.wayland.windowManager.hyprland.xdgDesktopPortalHyprland = {
     settings = lib.mkOption {
-      type = lib.types.attrsOf (
-        lib.types.attrsOf (
-          lib.types.oneOf [
+      type = types.attrsOf (
+        types.attrsOf (
+          types.oneOf [
             # keep-sorted start
-            lib.types.bool
-            lib.types.int
-            lib.types.str
+            types.bool
+            types.int
+            types.str
             # keep-sorted end
           ]
         )

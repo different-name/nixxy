@@ -5,6 +5,8 @@
   ...
 }:
 let
+  inherit (lib) types;
+
   cfg = config.dyad.system.persistence;
 
   usernames = config.dyad.users |> lib.filterAttrs (name: value: value.enable) |> lib.attrNames;
@@ -21,26 +23,26 @@ in
     # we accept a list of anything so that impermanence will handle the typing instead
     # this is less maintenance in the event impermemance changes typing
     dirs = lib.mkOption {
-      type = lib.types.listOf lib.types.anything;
+      type = types.listOf types.anything;
       default = [ ];
       description = "directories to pass to persistence config";
     };
 
     files = lib.mkOption {
-      type = lib.types.listOf lib.types.anything;
+      type = types.listOf types.anything;
       default = [ ];
       description = "files to pass to persistence config";
     };
 
     home = {
       dirs = lib.mkOption {
-        type = lib.types.listOf lib.types.anything;
+        type = types.listOf types.anything;
         default = [ ];
         description = "directories to pass to home-manager persistence config";
       };
 
       files = lib.mkOption {
-        type = lib.types.listOf lib.types.anything;
+        type = types.listOf types.anything;
         default = [ ];
         description = "files to pass to home-manager persistence config";
       };

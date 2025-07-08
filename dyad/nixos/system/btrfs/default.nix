@@ -5,6 +5,7 @@
   ...
 }:
 let
+  inherit (lib) types;
   cfg = config.dyad.system.btrfs;
 in
 {
@@ -15,25 +16,25 @@ in
       enable = lib.mkEnableOption "btrfs config";
 
       backup-disk-uuid = lib.mkOption {
-        type = lib.types.str;
+        type = types.str;
         description = "UUID of disk to perform backup to";
         example = "a5091625-835c-492f-8d99-0fc8d27012a0";
       };
 
       crypt-name = lib.mkOption {
-        type = lib.types.str;
+        type = types.str;
         description = "cryptsetup device name";
         example = "backup_drive";
       };
 
       mount = lib.mkOption {
-        type = lib.types.path;
+        type = types.path;
         description = "path to mount backup drive, will check here for existing mount";
         example = "/mnt/backup";
       };
 
       subvolume = lib.mkOption {
-        type = lib.types.str;
+        type = types.str;
         description = "subvolume to backup";
         example = "/btrfs/persist";
       };

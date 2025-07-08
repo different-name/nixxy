@@ -1,5 +1,7 @@
 { config, lib, ... }:
 let
+  inherit (lib) types;
+
   cfg = config.services.pipewire.wireplumber.scripts;
 
   genScriptConfig =
@@ -38,24 +40,24 @@ in
       default = [ ];
       description = "A List of port auto-connection rules";
 
-      type = lib.types.listOf (
-        lib.types.submodule {
+      type = types.listOf (
+        types.submodule {
           options = {
             output = {
               subject = lib.mkOption {
-                type = lib.types.str;
+                type = types.str;
                 description = "The property to match using";
                 example = "port.alias";
               };
 
               leftPort = lib.mkOption {
-                type = lib.types.str;
+                type = types.str;
                 description = "Left port object to match";
                 example = "GoXLR:monitor_FL";
               };
 
               rightPort = lib.mkOption {
-                type = lib.types.str;
+                type = types.str;
                 description = "Right port object to match";
                 example = "GoXLR:monitor_FR";
               };
@@ -63,19 +65,19 @@ in
 
             input = {
               subject = lib.mkOption {
-                type = lib.types.str;
+                type = types.str;
                 description = "The property to match using";
                 example = "port.alias";
               };
 
               leftPort = lib.mkOption {
-                type = lib.types.str;
+                type = types.str;
                 description = "Left port object to match";
                 example = "WiVRn:playback_1";
               };
 
               rightPort = lib.mkOption {
-                type = lib.types.str;
+                type = types.str;
                 description = "Right port object to match";
                 example = "WiVRn:playback_2";
               };
@@ -89,23 +91,23 @@ in
       default = [ ];
       description = "A list of node volume rules";
 
-      type = lib.types.listOf (
-        lib.types.submodule {
+      type = types.listOf (
+        types.submodule {
           options = {
             subject = lib.mkOption {
-              type = lib.types.str;
+              type = types.str;
               description = "The property to match using";
               example = "node.name";
             };
 
             object = lib.mkOption {
-              type = lib.types.str;
+              type = types.str;
               description = "Object to match";
               example = "wivrn.source";
             };
 
             volume = lib.mkOption {
-              type = lib.types.float;
+              type = types.float;
               description = "Default volume";
               example = "0.5";
             };
