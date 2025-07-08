@@ -8,7 +8,7 @@
   options.dyad.applications.extra-packages.enable = lib.mkEnableOption "extra application packages";
 
   config = lib.mkIf config.dyad.applications.extra-packages.enable {
-    dyad.system.persistence.installPkgsWithPersistence = {
+    home.persistence-wrapper.installPkgsWithPersistence = {
       # keep-sorted start block=yes newline_separated=yes
       android-tools.dirs = [
         ".android"

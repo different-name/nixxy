@@ -53,7 +53,7 @@ in
       (discordPackage + /share/applications/discord.desktop)
     ];
 
-    dyad.system.persistence.dirs = [
+    home.persistence-wrapper.dirs = [
       # keep-sorted start
       ".config/discord"
       ".config/moonlight-mod"

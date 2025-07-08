@@ -8,7 +8,7 @@
   options.dyad.games.extra-packages.enable = lib.mkEnableOption "extra games packages";
 
   config = lib.mkIf config.dyad.games.extra-packages.enable {
-    dyad.system.persistence = {
+    home.persistence-wrapper = {
       installPkgsWithPersistence = {
         # keep-sorted start block=yes newline_separated=yes
         lutris.dirs = [

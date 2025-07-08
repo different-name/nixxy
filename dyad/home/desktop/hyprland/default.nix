@@ -38,7 +38,7 @@
       # keep-sorted end
     ];
 
-    dyad.system.persistence.dirs = [
+    home.persistence-wrapper.dirs = [
       # keep-sorted start
       ".cache/hyprland"
       ".local/share/hyprland"

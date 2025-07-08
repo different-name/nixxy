@@ -54,7 +54,7 @@
       })
       |> lib.listToAttrs;
 
-    dyad.system.persistence.dirs = [
+    home.persistence-wrapper.dirs = [
       ".config/obsidian"
     ];
   };

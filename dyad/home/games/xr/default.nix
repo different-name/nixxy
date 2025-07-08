@@ -128,7 +128,7 @@ in
       };
     };
 
-    dyad.system.persistence = {
+    home.persistence-wrapper = {
       installPkgsWithPersistence = {
         # keep-sorted start block=yes newline_separated=yes
         osc-goes-brrr = {

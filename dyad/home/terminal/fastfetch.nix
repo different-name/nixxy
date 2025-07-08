@@ -44,7 +44,7 @@ in
       };
     };
 
-    dyad.system.persistence.dirs = [
+    home.persistence-wrapper.dirs = [
       ".cache/fastfetch"
     ];
   };

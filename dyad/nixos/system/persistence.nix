@@ -54,7 +54,7 @@ in
     };
 
     home-manager.users = self.lib.forAllUsers config {
-      dyad.system.persistence = {
+      home.persistence-wrapper = {
         inherit (cfg.home) dirs files;
       };
     };

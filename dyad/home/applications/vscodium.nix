@@ -82,7 +82,7 @@
       "EDITOR,codium --wait"
     ];
 
-    dyad.system.persistence.dirs = [
+    home.persistence-wrapper.dirs = [
       # keep-sorted start
       ".config/VSCodium/Backups"
       ".config/VSCodium/Cache"

@@ -36,7 +36,7 @@
       nixpkgs = "tv nixpkgs --exact";
     };
 
-    dyad.system.persistence.dirs = [
+    home.persistence-wrapper.dirs = [
       # keep-sorted start
       ".cache/nix-search-tv"
       ".local/share/television"

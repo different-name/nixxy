@@ -12,7 +12,7 @@
       };
     };
 
-    dyad.system.persistence.dirs = [
+    home.persistence-wrapper.dirs = [
       # keep-sorted start
       ".cache/kitty"
       ".local/share/kitty-ssh-kitten"

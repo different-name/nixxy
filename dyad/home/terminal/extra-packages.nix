@@ -9,7 +9,7 @@
   options.dyad.terminal.extra-packages.enable = lib.mkEnableOption "extra terminal packages";
 
   config = lib.mkIf config.dyad.terminal.extra-packages.enable {
-    dyad.system.persistence.installPkgsWithPersistence = {
+    home.persistence-wrapper.installPkgsWithPersistence = {
       # keep-sorted start block=yes newline_separated=yes
       # calculator
       libqalculate.dirs = [

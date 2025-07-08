@@ -20,7 +20,7 @@
       ];
     };
 
-    dyad.system.persistence.dirs = [
+    home.persistence-wrapper.dirs = [
       # keep-sorted start
       ".cache/blender"
       ".config/blender"

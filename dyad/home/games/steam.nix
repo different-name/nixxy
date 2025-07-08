@@ -47,7 +47,7 @@
       )
     ];
 
-    dyad.system.persistence.dirs = [
+    home.persistence-wrapper.dirs = [
       ".steam"
       ".local/share/Steam"
 

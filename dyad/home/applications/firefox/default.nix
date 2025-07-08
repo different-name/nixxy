@@ -14,7 +14,7 @@
       };
     };
 
-    dyad.system.persistence.dirs = [
+    home.persistence-wrapper.dirs = [
       # keep-sorted start
       ".cache/mozilla/firefox"
       ".mozilla/firefox"

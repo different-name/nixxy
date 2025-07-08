@@ -5,7 +5,7 @@
   config = lib.mkIf config.dyad.media.mpv.enable {
     programs.mpv.enable = true;
 
-    dyad.system.persistence.dirs = [
+    home.persistence-wrapper.dirs = [
       ".cache/mpv"
     ];
   };

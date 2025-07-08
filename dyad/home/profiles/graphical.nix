@@ -46,21 +46,19 @@
         mpv.enable = true;
         # keep-sorted end
       };
-
-      system = {
-        persistence.dirs = [
-          # keep-sorted start
-          "Code"
-          "Documents"
-          "Downloads"
-          "Media"
-          "Pictures"
-          "Videos"
-          # keep-sorted end
-        ];
-      };
       # keep-sorted end
     };
+
+    home.persistence-wrapper.dirs = [
+      # keep-sorted start
+      "Code"
+      "Documents"
+      "Downloads"
+      "Media"
+      "Pictures"
+      "Videos"
+      # keep-sorted end
+    ];
 
     # keep-sorted start
     gtk.enable = true;
