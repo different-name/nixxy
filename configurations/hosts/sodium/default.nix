@@ -1,5 +1,4 @@
 {
-  config,
   inputs,
   self,
   ...
@@ -22,12 +21,6 @@ self.lib.mkHost
     ];
 
     ### dyad modules
-
-    age.secrets = {
-      "different/syncthing/sodium/key".file = self + /secrets/different/syncthing/sodium/key.age;
-      "different/syncthing/sodium/cert".file = self + /secrets/different/syncthing/sodium/cert.age;
-    };
-
     dyad = {
       ## users
       users.different.enable = true;
@@ -45,14 +38,7 @@ self.lib.mkHost
 
       services = {
         keyd.enable = true;
-
-        syncthing = {
-          enable = true;
-          user = "different";
-          key = config.age.secrets."different/syncthing/sodium/key".path;
-          cert = config.age.secrets."different/syncthing/sodium/cert".path;
-        };
-
+        syncthing.enable = true;
         xr.enable = true;
       };
 

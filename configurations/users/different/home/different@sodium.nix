@@ -34,6 +34,8 @@ lib.mkIf (osConfig.networking.hostName == "sodium") {
         hyprctl keyword input:follow_mouse 1
       '';
     };
+
+    services.syncthing.enable = true;
   };
 
   ### host specific

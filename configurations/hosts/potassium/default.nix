@@ -1,5 +1,4 @@
 {
-  config,
   inputs,
   self,
   ...
@@ -41,12 +40,7 @@ self.lib.mkHost
       hardware.nvidia.enable = true;
       nix.distributed-builds.enable = true;
 
-      services.syncthing = {
-        enable = true;
-        user = "different";
-        key = config.age.secrets."different/syncthing/potassium/key".path;
-        cert = config.age.secrets."different/syncthing/potassium/cert".path;
-      };
+      services.syncthing.enable = true;
 
       system.autologin = {
         enable = true;

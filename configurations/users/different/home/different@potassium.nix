@@ -9,6 +9,9 @@ lib.mkIf (osConfig.networking.hostName == "potassium") {
       terminal.enable = true;
       graphical.enable = true;
     };
+
+    ## modules
+    services.syncthing.enable = true;
   };
 
   ### host specific
