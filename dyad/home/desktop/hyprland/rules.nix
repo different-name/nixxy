@@ -45,7 +45,7 @@
         "float, class:codium, title:Open Folder"
 
         # hyprland share picker
-        "float, title:MainPicker"
+        "float, title:Select what to share"
 
         # obsidian
         "float, class: obsidian"
