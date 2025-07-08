@@ -62,13 +62,7 @@ self.lib.mkHost
           user = "different";
         };
 
-        btrfs.backup-script = {
-          enable = true;
-          backup-disk-uuid = "a5091625-835c-492f-8d99-0fc8d27012a0";
-          crypt-name = "backup_drive";
-          mount = "/mnt/backup";
-          subvolume = "/btrfs/persist";
-        };
+        btrfs.enable = true;
       };
     };
 

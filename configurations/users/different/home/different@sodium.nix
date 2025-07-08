@@ -1,6 +1,7 @@
 {
   lib,
   osConfig,
+  self',
   pkgs,
   ...
 }:
@@ -39,8 +40,18 @@ lib.mkIf (osConfig.networking.hostName == "sodium") {
 
   programs.btop.settings.cpu_sensor = "k10temp/Tctl";
 
-  home.packages = with pkgs; [
-    qmk
+  home.packages = [
+    # keep-sorted start block=yes
+    (self'.packages.btrfs-backup.override {
+      backupConfig = {
+        backupDiskUuid = "a5091625-835c-492f-8d99-0fc8d27012a0";
+        cryptName = "backup_drive";
+        mountPoint = "/mnt/backup";
+        subvolumePath = "/btrfs/persist";
+      };
+    })
+    pkgs.qmk
+    # keep-sorted end
   ];
 
   # persist syncthing configuration
