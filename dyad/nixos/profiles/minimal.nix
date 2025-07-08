@@ -35,30 +35,8 @@
         locale.enable = true;
         networking.enable = true;
         security.enable = true;
+        persistence-wrapper.enable = true;
         # keep-sorted end
-
-        persistence = {
-          enable = true;
-
-          dirs = [
-            # keep-sorted start
-            "/root/.android"
-            "/root/.cache"
-            "/var/cache"
-            "/var/lib/nixos"
-            "/var/lib/systemd/coredump"
-            "/var/lib/systemd/timesync"
-            "/var/log"
-            # keep-sorted end
-          ];
-
-          files = [
-            # keep-sorted start
-            "/var/lib/logrotate.status"
-            "/var/lib/systemd/random-seed"
-            # keep-sorted end
-          ];
-        };
       };
       # keep-sorted end
     };

@@ -54,10 +54,8 @@
         };
     };
 
-    dyad.system.persistence = {
-      home.dirs = [
-        ".cache/fontconfig"
-      ];
-    };
+    environment.persistence-wrapper.home.dirs = [
+      ".cache/fontconfig"
+    ];
   };
 }

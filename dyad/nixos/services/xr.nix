@@ -164,7 +164,7 @@
       self'.packages.slimevr-cli
     ];
 
-    dyad.system.persistence.dirs = [
+    environment.persistence-wrapper.dirs = [
       # keep-sorted start
       "/root/.config/dev.slimevr.SlimeVR"
       "/root/.local/share/dev.slimevr.SlimeVR"

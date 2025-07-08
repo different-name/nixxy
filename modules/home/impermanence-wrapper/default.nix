@@ -27,7 +27,7 @@ let
 in
 {
   imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
+    inputs.impermanence.homeManagerModules.impermanence
   ];
 
   options.home.persistence-wrapper = {

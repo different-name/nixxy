@@ -28,10 +28,8 @@
 
     nixpkgs.config.cudaSupport = true;
 
-    dyad.system.persistence = {
-      home.dirs = [
-        ".cache/nvidia"
-      ];
-    };
+    environment.persistence-wrapper.home.dirs = [
+      ".cache/nvidia"
+    ];
   };
 }

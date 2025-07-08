@@ -22,10 +22,8 @@
       };
     };
 
-    dyad.system.persistence = {
-      home.dirs = [
-        ".cache/nix-output-monitor"
-      ];
-    };
+    environment.persistence-wrapper.home.dirs = [
+      ".cache/nix-output-monitor"
+    ];
   };
 }

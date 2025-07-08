@@ -31,15 +31,15 @@
       };
     };
 
-    dyad.system.persistence = {
-      home.dirs = [
+    environment.persistence-wrapper.home = {
+      dirs = [
         # keep-sorted start
         ".config/Thunar"
         ".local/share/gvfs-metadata" # gnome virtual file system data / cache
         # keep-sorted end
       ];
 
-      home.files = [
+      files = [
         ".config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml"
       ];
     };

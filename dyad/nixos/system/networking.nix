@@ -8,7 +8,7 @@
       enableIPv6 = false;
     };
 
-    dyad.system.persistence.dirs = [
+    environment.persistence-wrapper.dirs = [
       "/etc/NetworkManager/system-connections"
     ];
   };

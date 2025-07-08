@@ -56,16 +56,14 @@
         channel.enable = false;
       };
 
-    dyad.system.persistence = {
-      home = {
-        dirs = [
-          ".cache/nix"
-        ];
+    environment.persistence-wrapper.home = {
+      dirs = [
+        ".cache/nix"
+      ];
 
-        files = [
-          ".local/share/nix/repl-history"
-        ];
-      };
+      files = [
+        ".local/share/nix/repl-history"
+      ];
     };
   };
 }

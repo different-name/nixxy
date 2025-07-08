@@ -11,7 +11,7 @@
       };
     };
 
-    dyad.system.persistence = {
+    environment.persistence-wrapper = {
       files = [
         # keep-sorted start
         "/etc/ssh/ssh_host_ed25519_key"
