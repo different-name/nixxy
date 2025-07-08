@@ -34,6 +34,10 @@
       })
       |> lib.listToAttrs;
 
+    xdg.mimeApps.defaultApplications = {
+      "x-scheme-handler/unityhub" = "unityhub.desktop"; # unity login
+    };
+
     home.persistence.installPkgsWithPersistence = {
       alcom = {
         # https://github.com/tauri-apps/tauri/issues/9394

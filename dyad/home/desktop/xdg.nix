@@ -8,15 +8,7 @@
       autostart.enable = true;
       mime.enable = true;
 
-      mimeApps = {
-        enable = true;
-        defaultApplications = {
-          # keep-sorted start
-          "inode/directory" = "thunar.desktop"; # directories
-          "x-scheme-handler/unityhub" = "unityhub.desktop"; # unity login
-          # keep-sorted end
-        };
-      };
+      mimeApps.enable = true;
 
       configFile."mimeapps.list".force = true;
     };
