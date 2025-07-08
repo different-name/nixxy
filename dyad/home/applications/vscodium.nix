@@ -60,7 +60,7 @@
             "${lib.getExe pkgs.nixfmt-rfc-style}"
           ];
           "nix.serverSettings.nixd.options.nixos.expr" =
-            "(builtins.getFlake \"${config.dyad.flake}\").nixosConfigurations.<name>.options";
+            "(builtins.getFlake \"${config.programs.nh.flake}\").nixosConfigurations.<name>.options";
           "scm.alwaysShowRepositories" = true;
           "window.titleBarStyle" = "custom";
           "workbench.colorTheme" = "Catppuccin Mocha";

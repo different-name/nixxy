@@ -56,12 +56,15 @@ let
                 {
                   imports = [
                     {
-                      dyad.flake = "${config.home.homeDirectory}/nix-files";
-
                       home = {
                         inherit username;
                         inherit (osConfig.system) stateVersion;
-                        sessionVariables.NH_FLAKE = config.dyad.flake;
+                      };
+
+                      programs.nh = {
+                        enable = true;
+                        package = lib.mkDefault osConfig.programs.nh.package;
+                        flake = "${config.home.homeDirectory}/nix-files";
                       };
                     }
                     (inputs.import-tree (self + /dyad/home))

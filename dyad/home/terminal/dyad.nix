@@ -22,7 +22,7 @@
         ];
 
         text = ''
-          cd ${config.dyad.flake}
+          cd ${config.programs.nh.flake}
           exec just "$@"
         '';
       })
