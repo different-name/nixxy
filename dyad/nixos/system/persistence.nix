@@ -2,15 +2,12 @@
   lib,
   config,
   inputs,
+  self,
   ...
 }:
 let
   inherit (lib) types;
-
   cfg = config.dyad.system.persistence;
-
-  usernames = config.dyad.users |> lib.filterAttrs (name: value: value.enable) |> lib.attrNames;
-  setHomeCfg = config: lib.genAttrs usernames (name: config);
 in
 {
   imports = [
@@ -56,7 +53,7 @@ in
       hideMounts = true;
     };
 
-    home-manager.users = setHomeCfg {
+    home-manager.users = self.lib.forAllUsers config {
       dyad.system.persistence = {
         inherit (cfg.home) dirs files;
       };

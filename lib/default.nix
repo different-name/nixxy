@@ -84,6 +84,13 @@ let
           ]
         );
       };
+
+    forAllUsers =
+      config: value:
+      let
+        usernames = config.dyad.users |> lib.filterAttrs (name: value: value.enable) |> lib.attrNames;
+      in
+      lib.genAttrs usernames (name: value);
   };
 in
 {
