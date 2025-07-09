@@ -75,12 +75,10 @@ in
         persistence.${cfg.persistentStorage} = { inherit directories files; };
       };
 
-      home-manager.sharedModules = [
-        {
-          home.persistence-wrapper = {
-            inherit (cfg.home) dirs files;
-          };
-        }
-      ];
+      home-manager.sharedModules = lib.singleton {
+        home.persistence-wrapper = {
+          inherit (cfg.home) dirs files;
+        };
+      };
     };
 }

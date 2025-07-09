@@ -48,11 +48,7 @@ let
           lib.mkMerge [
             (lib.mkIf (homeConfig != null) {
               home-manager.users.${username} =
-                {
-                  config,
-                  osConfig,
-                  ...
-                }:
+                { config, osConfig, ... }:
                 {
                   imports = [
                     {

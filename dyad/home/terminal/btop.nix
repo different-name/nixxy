@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.dyad.terminal.btop.enable = lib.mkEnableOption "btop config";
 

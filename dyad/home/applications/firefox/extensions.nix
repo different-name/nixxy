@@ -18,17 +18,15 @@
             force = true;
             settings = {
               enableNotifications = false;
-              redirects = [
-                {
-                  description = "NixOS Wiki";
-                  exampleUrl = "https://nixos.wiki/wiki/Nix_package_manager";
-                  exampleResult = "https://wiki.nixos.org/wiki/Nix_package_manager";
-                  includePattern = "https://nixos.wiki/*";
-                  redirectUrl = "https://wiki.nixos.org/$1";
-                  patternType = "W"; # wildcard
-                  appliesTo = [ "main_frame" ];
-                }
-              ];
+              redirects = lib.singleton {
+                description = "NixOS Wiki";
+                exampleUrl = "https://nixos.wiki/wiki/Nix_package_manager";
+                exampleResult = "https://wiki.nixos.org/wiki/Nix_package_manager";
+                includePattern = "https://nixos.wiki/*";
+                redirectUrl = "https://wiki.nixos.org/$1";
+                patternType = "W"; # wildcard
+                appliesTo = [ "main_frame" ];
+              };
             };
           };
           # keep-sorted end

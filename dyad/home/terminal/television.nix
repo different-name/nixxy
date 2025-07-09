@@ -17,13 +17,11 @@
             let
               nix-search-tv = lib.getExe pkgs.nix-search-tv;
             in
-            [
-              {
-                name = "nixpkgs";
-                source_command = "${nix-search-tv} print";
-                preview_command = "${nix-search-tv} preview {}";
-              }
-            ];
+            lib.singleton {
+              name = "nixpkgs";
+              source_command = "${nix-search-tv} print";
+              preview_command = "${nix-search-tv} preview {}";
+            };
         };
       };
 

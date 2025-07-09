@@ -29,9 +29,7 @@ let
         ./${hostName}
         ../users
 
-        (inputs.import-tree [
-          (self + /dyad/nixos)
-        ])
+        (inputs.import-tree [ (self + /dyad/nixos) ])
 
         {
           _module.args = withSystem system (

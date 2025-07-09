@@ -7,22 +7,20 @@
       distributedBuilds = true;
       settings.builders-use-substitutes = true;
 
-      buildMachines = [
-        {
-          hostName = "sodium";
-          sshUser = "remotebuild";
-          sshKey = "/etc/ssh/ssh_host_ed25519_key";
-          system = "x86_64-linux";
+      buildMachines = lib.singleton {
+        hostName = "sodium";
+        sshUser = "remotebuild";
+        sshKey = "/etc/ssh/ssh_host_ed25519_key";
+        system = "x86_64-linux";
 
-          supportedFeatures = [
-            # keep-sorted start
-            "big-parallel"
-            "kvm"
-            "nixos-test"
-            # keep-sorted end
-          ];
-        }
-      ];
+        supportedFeatures = [
+          # keep-sorted start
+          "big-parallel"
+          "kvm"
+          "nixos-test"
+          # keep-sorted end
+        ];
+      };
     };
   };
 }

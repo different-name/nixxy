@@ -13,18 +13,14 @@ let
     }:
     {
       extraConfig."99-${name}" = {
-        "wireplumber.components" = [
-          {
-            name = "test/${name}.lua";
-            type = "script/lua";
-            provides = "custom.${name}";
-          }
-        ];
+        "wireplumber.components" = lib.singleton {
+          name = "test/${name}.lua";
+          type = "script/lua";
+          provides = "custom.${name}";
+        };
 
-        "wireplumber.profiles" = {
-          main = {
-            "custom.${name}" = "required";
-          };
+        "wireplumber.profiles".main = {
+          "custom.${name}" = "required";
         };
       };
 

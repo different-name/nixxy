@@ -1,8 +1,4 @@
-{
-  inputs,
-  self,
-  ...
-}:
+{ inputs, self, ... }:
 self.lib.mkHost
   {
     hostName = "potassium";

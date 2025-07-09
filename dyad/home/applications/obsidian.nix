@@ -23,12 +23,10 @@
           monospaceFontFamily = "Jetbrains Mono";
         };
 
-        themes = [
-          {
-            enable = true;
-            pkg = self'.packages.catppuccin-obsidian-theme;
-          }
-        ];
+        themes = lib.singleton {
+          enable = true;
+          pkg = self'.packages.catppuccin-obsidian-theme;
+        };
       };
 
       vaults."Diffy Notes" = {

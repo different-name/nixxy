@@ -30,16 +30,14 @@
             in
             Mbps * 1000000;
 
-          encoders = [
-            {
-              encoder = "nvenc";
-              codec = "h264";
-              width = 1.0;
-              height = 1.0;
-              offset_x = 0.0;
-              offset_y = 0.0;
-            }
-          ];
+          encoders = lib.singleton {
+            encoder = "nvenc";
+            codec = "h264";
+            width = 1.0;
+            height = 1.0;
+            offset_x = 0.0;
+            offset_y = 0.0;
+          };
         };
       };
     };

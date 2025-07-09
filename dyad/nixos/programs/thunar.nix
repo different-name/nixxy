@@ -24,13 +24,11 @@
     # archive support
     programs.file-roller.enable = true;
 
-    home-manager.sharedModules = [
-      {
-        xdg.mimeApps.defaultApplications = {
-          "inode/directory" = lib.mkDefault "thunar.desktop";
-        };
-      }
-    ];
+    home-manager.sharedModules = lib.singleton {
+      xdg.mimeApps.defaultApplications = {
+        "inode/directory" = lib.mkDefault "thunar.desktop";
+      };
+    };
 
     environment.persistence-wrapper.home = {
       dirs = [
