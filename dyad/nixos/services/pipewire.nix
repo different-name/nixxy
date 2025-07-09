@@ -23,8 +23,10 @@
 
     services.pulseaudio.enable = lib.mkForce false;
 
-    environment.persistence-wrapper.home.dirs = [
-      ".local/state/wireplumber" # audio settings
-    ];
+    home-manager.sharedModules = lib.singleton {
+      home.perpetual.default.dirs = [
+        "$stateHome/wireplumber" # audio settings
+      ];
+    };
   };
 }

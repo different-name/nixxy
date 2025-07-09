@@ -49,7 +49,14 @@
       # keep-sorted end
     };
 
-    home.persistence-wrapper.dirs = [
+    # keep-sorted start
+    gtk.enable = true;
+    programs.mpv.enable = true;
+    programs.zathura.enable = true;
+    services.playerctld.enable = true;
+    # keep-sorted end
+
+    home.perpetual.default.dirs = [
       # keep-sorted start
       "Code"
       "Documents"
@@ -59,12 +66,5 @@
       "Videos"
       # keep-sorted end
     ];
-
-    # keep-sorted start
-    gtk.enable = true;
-    programs.mpv.enable = true;
-    programs.zathura.enable = true;
-    services.playerctld.enable = true;
-    # keep-sorted end
   };
 }

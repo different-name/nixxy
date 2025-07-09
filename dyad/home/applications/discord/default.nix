@@ -53,10 +53,10 @@ in
       (discordPackage + /share/applications/discord.desktop)
     ];
 
-    home.persistence-wrapper.dirs = [
+    home.perpetual.default.dirs = [
       # keep-sorted start
-      ".config/discord"
-      ".config/moonlight-mod"
+      "$configHome/discord"
+      "$configHome/moonlight-mod"
       # keep-sorted end
     ];
   };

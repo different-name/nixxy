@@ -38,10 +38,10 @@
       # keep-sorted end
     ];
 
-    home.persistence-wrapper.dirs = [
+    home.perpetual.default.dirs = [
       # keep-sorted start
-      ".cache/hyprland"
-      ".local/share/hyprland"
+      "$cacheHome/hyprland"
+      "$dataHome/hyprland"
       # keep-sorted end
     ];
   };

@@ -162,7 +162,7 @@
       self'.packages.slimevr-cli
     ];
 
-    environment.persistence-wrapper.dirs = [
+    environment.perpetual.default.dirs = [
       # keep-sorted start
       "/root/.config/dev.slimevr.SlimeVR"
       "/root/.local/share/dev.slimevr.SlimeVR"

@@ -34,10 +34,10 @@
       nixpkgs = "tv nixpkgs --exact";
     };
 
-    home.persistence-wrapper.dirs = [
+    home.perpetual.default.dirs = [
       # keep-sorted start
-      ".cache/nix-search-tv"
-      ".local/share/television"
+      "$cacheHome/nix-search-tv"
+      "$dataHome/television"
       # keep-sorted end
     ];
   };

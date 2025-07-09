@@ -54,8 +54,10 @@
         };
     };
 
-    environment.persistence-wrapper.home.dirs = [
-      ".cache/fontconfig"
-    ];
+    home-manager.sharedModules = lib.singleton {
+      home.perpetual.default.dirs = [
+        "$cacheHome/fontconfig"
+      ];
+    };
   };
 }

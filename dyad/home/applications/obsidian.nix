@@ -52,8 +52,8 @@
       })
       |> lib.listToAttrs;
 
-    home.persistence-wrapper.dirs = [
-      ".config/obsidian"
+    home.perpetual.default.dirs = [
+      "$configHome/obsidian"
     ];
   };
 }

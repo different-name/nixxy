@@ -47,13 +47,13 @@
       )
     ];
 
-    home.persistence-wrapper.dirs = [
+    home.perpetual.default.dirs = [
       ".steam"
-      ".local/share/Steam"
+      "$dataHome/Steam"
 
       ".factorio"
-      ".local/share/Terraria"
-      ".local/share/TerraTech"
+      "$dataHome/Terraria"
+      "$dataHome/TerraTech"
     ];
   };
 }

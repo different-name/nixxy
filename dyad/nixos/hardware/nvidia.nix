@@ -28,8 +28,10 @@
 
     nixpkgs.config.cudaSupport = true;
 
-    environment.persistence-wrapper.home.dirs = [
-      ".cache/nvidia"
-    ];
+    home-manager.sharedModules = lib.singleton {
+      home.perpetual.default.dirs = [
+        "$cacheHome/nvidia"
+      ];
+    };
   };
 }

@@ -30,10 +30,10 @@ in
       };
     };
 
-    home.persistence-wrapper.dirs = [
+    home.perpetual.default.dirs = [
       # keep-sorted start
-      ".cache/fish"
-      ".local/share/fish"
+      "$cacheHome/fish"
+      "$dataHome/fish"
       # keep-sorted end
     ];
   };

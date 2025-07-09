@@ -56,14 +56,15 @@
         channel.enable = false;
       };
 
-    environment.persistence-wrapper.home = {
-      dirs = [
-        ".cache/nix"
-      ];
-
-      files = [
-        ".local/share/nix/repl-history"
-      ];
+    home-manager.sharedModules = lib.singleton {
+      home.perpetual.default = {
+        dirs = [
+          "$cacheHome/nix"
+        ];
+        files = [
+          "$dataHome/nix/repl-history"
+        ];
+      };
     };
   };
 }

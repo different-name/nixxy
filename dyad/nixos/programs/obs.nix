@@ -8,8 +8,10 @@
       enableVirtualCamera = true;
     };
 
-    environment.persistence-wrapper.home.dirs = [
-      ".config/obs-studio"
-    ];
+    home-manager.sharedModules = lib.singleton {
+      home.perpetual.default.dirs = [
+        "$configHome/obs-studio"
+      ];
+    };
   };
 }

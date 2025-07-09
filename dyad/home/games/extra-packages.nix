@@ -8,18 +8,18 @@
   options.dyad.games.extra-packages.enable = lib.mkEnableOption "extra games packages";
 
   config = lib.mkIf config.dyad.games.extra-packages.enable {
-    home.persistence-wrapper = {
-      installPkgsWithPersistence = {
+    home.perpetual.default = {
+      packages = {
         # keep-sorted start block=yes newline_separated=yes
         lutris.dirs = [
           # keep-sorted start
-          ".cache/lutris"
-          ".local/share/lutris"
+          "$cacheHome/lutris"
+          "$dataHome/lutris"
           # keep-sorted end
         ];
 
         osu-lazer-bin.dirs = [
-          ".local/share/osu"
+          "$dataHome/osu"
         ];
 
         prismlauncher = {
@@ -29,7 +29,7 @@
             ];
           };
           dirs = [
-            ".local/share/PrismLauncher"
+            "$dataHome/PrismLauncher"
           ];
         };
         # keep-sorted end
@@ -37,9 +37,9 @@
 
       dirs = [
         # keep-sorted start
-        ".cache/mesa_shader_cache_db" # shader cache
-        ".local/share/umu" # proton runtime
-        ".local/share/vulkan/" # shader cache files?
+        "$cacheHome/mesa_shader_cache_db" # shader cache
+        "$dataHome/umu" # proton runtime
+        "$dataHome/vulkan/" # shader cache files?
         ".nv" # OpenGL cache
         # keep-sorted end
       ];

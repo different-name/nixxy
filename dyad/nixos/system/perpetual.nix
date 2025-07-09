@@ -1,21 +1,28 @@
 {
   lib,
   config,
+  inputs,
   self,
   ...
 }:
 {
   imports = [
-    self.nixosModules.impermanenceWrapper
+    # keep-sorted start
+    inputs.impermanence.nixosModules.default
+    self.nixosModules.perpetual # impermanence option bindings
+    # keep-sorted end
   ];
 
-  options.dyad.system.persistence-wrapper.enable = lib.mkEnableOption "persistence-wrapper config";
+  options.dyad.system.persistence.enable = lib.mkEnableOption "persistence config";
 
-  config = lib.mkIf config.dyad.system.persistence-wrapper.enable {
-    environment.persistence-wrapper = {
-      enable = true;
-      persistentStorage = "/persist/system";
+  config = lib.mkIf config.dyad.system.persistence.enable {
+    environment.persistence.default = {
+      persistentStoragePath = "/persist/system";
+      hideMounts = true;
+      enableWarnings = true;
+    };
 
+    environment.perpetual.default = {
       dirs = [
         # keep-sorted start
         "/root/.android"

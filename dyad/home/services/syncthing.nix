@@ -37,8 +37,8 @@ in
       ${certPath}.file = self + "/secrets/${certPath}.age";
     };
 
-    home.persistence-wrapper.dirs = [
-      ".local/state/syncthing"
+    home.perpetual.default.dirs = [
+      "$stateHome/syncthing"
     ];
   };
 }

@@ -5,7 +5,7 @@
   config = lib.mkIf config.dyad.hardware.fwupd.enable {
     services.fwupd.enable = true;
 
-    environment.persistence-wrapper =
+    environment.perpetual.default =
       let
         fwuptDir = "/var/lib/fwupd";
       in

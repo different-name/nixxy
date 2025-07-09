@@ -20,10 +20,10 @@
       ];
     };
 
-    home.persistence-wrapper.dirs = [
+    home.perpetual.default.dirs = [
       # keep-sorted start
-      ".cache/blender"
-      ".config/blender"
+      "$cacheHome/blender"
+      "$configHome/blender"
       # keep-sorted end
     ];
   };

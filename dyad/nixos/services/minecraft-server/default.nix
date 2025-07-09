@@ -24,7 +24,7 @@
       openFirewall = true;
     };
 
-    environment.persistence-wrapper.dirs = [
+    environment.perpetual.default.dirs = [
       "/srv/minecraft"
     ];
   };

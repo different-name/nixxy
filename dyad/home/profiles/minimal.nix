@@ -7,7 +7,7 @@
       system = {
         # keep-sorted start
         agenix.enable = true;
-        persistence-wrapper.enable = true;
+        perpetual.enable = true;
         # keep-sorted end
       };
     };

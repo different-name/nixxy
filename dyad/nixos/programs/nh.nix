@@ -22,8 +22,10 @@
       };
     };
 
-    environment.persistence-wrapper.home.dirs = [
-      ".cache/nix-output-monitor"
-    ];
+    home-manager.sharedModules = lib.singleton {
+      home.perpetual.default.dirs = [
+        "$cacheHome/nix-output-monitor"
+      ];
+    };
   };
 }

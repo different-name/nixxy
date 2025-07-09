@@ -12,10 +12,10 @@
       };
     };
 
-    home.persistence-wrapper.dirs = [
+    home.perpetual.default.dirs = [
       # keep-sorted start
-      ".cache/kitty"
-      ".local/share/kitty-ssh-kitten"
+      "$cacheHome/kitty"
+      "$dataHome/kitty-ssh-kitten"
       # keep-sorted end
     ];
   };

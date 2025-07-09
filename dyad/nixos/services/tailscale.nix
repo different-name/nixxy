@@ -5,7 +5,7 @@
   config = lib.mkIf config.dyad.services.tailscale.enable {
     services.tailscale.enable = true;
 
-    environment.persistence-wrapper.dirs = [
+    environment.perpetual.default.dirs = [
       "/var/lib/tailscale"
     ];
   };

@@ -14,9 +14,9 @@
       };
     };
 
-    home.persistence-wrapper.dirs = [
+    home.perpetual.default.dirs = [
       # keep-sorted start
-      ".cache/mozilla/firefox"
+      "$cacheHome/mozilla/firefox"
       ".mozilla/firefox"
       # keep-sorted end
     ];

@@ -11,17 +11,17 @@
       };
     };
 
-    environment.persistence-wrapper = {
-      files = [
-        # keep-sorted start
-        "/etc/ssh/ssh_host_ed25519_key"
-        "/etc/ssh/ssh_host_ed25519_key.pub"
-        "/etc/ssh/ssh_host_rsa_key"
-        "/etc/ssh/ssh_host_rsa_key.pub"
-        # keep-sorted end
-      ];
+    environment.perpetual.default.files = [
+      # keep-sorted start
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+      # keep-sorted end
+    ];
 
-      home.dirs = [
+    home-manager.sharedModules = lib.singleton {
+      home.perpetual.default.dirs = [
         ".ssh"
       ];
     };

@@ -9,12 +9,12 @@
   options.dyad.terminal.extra-packages.enable = lib.mkEnableOption "extra terminal packages";
 
   config = lib.mkIf config.dyad.terminal.extra-packages.enable {
-    home.persistence-wrapper.installPkgsWithPersistence = {
+    home.perpetual.default.packages = {
       # keep-sorted start block=yes newline_separated=yes
       # calculator
       libqalculate.dirs = [
-        ".config/qalculate"
-        ".local/share/qalculate"
+        "$configHome/qalculate"
+        "$dataHome/qalculate"
       ];
 
       # fetch minecraft user uuids
@@ -22,7 +22,7 @@
 
       # generate nix sources for packages
       nvfetcher.dirs = [
-        ".local/share/nvfetcher"
+        "$dataHome/nvfetcher"
       ];
       # keep-sorted end
     };

@@ -8,7 +8,7 @@
       enableIPv6 = false;
     };
 
-    environment.persistence-wrapper.dirs = [
+    environment.perpetual.default.dirs = [
       "/etc/NetworkManager/system-connections"
     ];
   };

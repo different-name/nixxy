@@ -44,8 +44,8 @@ in
       };
     };
 
-    home.persistence-wrapper.dirs = [
-      ".cache/fastfetch"
+    home.perpetual.default.dirs = [
+      "$cacheHome/fastfetch"
     ];
   };
 }

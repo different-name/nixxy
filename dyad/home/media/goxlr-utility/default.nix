@@ -9,7 +9,7 @@
   options.dyad.media.goxlr-utility.enable = lib.mkEnableOption "goxlr-utility config";
 
   config = lib.mkIf config.dyad.media.goxlr-utility.enable {
-    home.file.".local/share/goxlr-utility/mic-profiles/procaster.goxlrMicProfile" = {
+    xdg.dataFile."goxlr-utility/mic-profiles/procaster.goxlrMicProfile" = {
       source = ./procaster.goxlrMicProfile;
     };
 
@@ -26,10 +26,10 @@
       )
     ];
 
-    home.persistence."/persist".directories = [
+    home.perpetual.default.dirs = [
       # keep-sorted start
-      ".config/goxlr-utility"
-      ".local/share/goxlr-utility"
+      "$configHome/goxlr-utility"
+      "$dataHome/goxlr-utility"
       # keep-sorted end
     ];
   };

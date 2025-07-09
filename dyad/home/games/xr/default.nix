@@ -128,13 +128,13 @@ in
       };
     };
 
-    home.persistence-wrapper = {
-      installPkgsWithPersistence = {
+    home.perpetual.default = {
+      packages = {
         # keep-sorted start block=yes newline_separated=yes
         osc-goes-brrr = {
           package = self'.packages.osc-goes-brrr;
           dirs = [
-            ".config/OscGoesBrrr"
+            "$configHome/OscGoesBrrr"
           ];
         };
 
@@ -153,30 +153,30 @@ in
           };
           dirs = [
             # keep-sorted start
-            ".cache/.slimevr-wrapped_"
-            ".config/dev.slimevr.SlimeVR"
-            ".local/share/.slimevr-wrapped_"
-            ".local/share/dev.slimevr.SlimeVR"
+            "$cacheHome/.slimevr-wrapped_"
+            "$configHome/dev.slimevr.SlimeVR"
+            "$dataHome/.slimevr-wrapped_"
+            "$dataHome/dev.slimevr.SlimeVR"
             # keep-sorted end
           ];
         };
 
         vrcx.dirs = [
-          ".config/VRCX"
+          "$configHome/VRCX"
         ];
 
         wlx-overlay-s.dirs = [
-          ".config/wlxoverlay"
+          "$configHome/wlxoverlay"
         ];
         # keep-sorted end
       };
 
       dirs = [
         # keep-sorted start
-        ".cache/wivrn"
-        ".config/openvr"
-        ".config/wivrn"
-        ".local/state/OpenComposite"
+        "$cacheHome/wivrn"
+        "$configHome/openvr"
+        "$configHome/wivrn"
+        "$stateHome/OpenComposite"
         # keep-sorted end
       ];
     };

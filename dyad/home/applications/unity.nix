@@ -38,7 +38,7 @@
       "x-scheme-handler/unityhub" = "unityhub.desktop"; # unity login
     };
 
-    home.persistence.installPkgsWithPersistence = {
+    home.perpetual.packages = {
       alcom = {
         # https://github.com/tauri-apps/tauri/issues/9394
         package = pkgs.symlinkJoin {
@@ -52,10 +52,10 @@
         };
         dirs = [
           # keep-sorted start
-          ".cache/ALCOM"
-          ".local/share/ALCOM"
-          ".local/share/VRChatCreatorCompanion"
-          ".local/share/com.anatawa12.vrc-get-gui"
+          "$cacheHome/ALCOM"
+          "$dataHome/ALCOM"
+          "$dataHome/VRChatCreatorCompanion"
+          "$dataHome/com.anatawa12.vrc-get-gui"
           # keep-sorted end
         ];
       };
@@ -63,11 +63,11 @@
       # note: use -force-vulkan when launching unity editor
       unityhub.dirs = [
         # keep-sorted start
-        ".cache/unity3d"
-        ".config/Unity"
-        ".config/unity3d" # seems to also be for unity games
-        ".config/unityhub"
-        ".local/share/unity3d"
+        "$cacheHome/unity3d"
+        "$configHome/Unity"
+        "$configHome/unity3d" # seems to also be for unity games
+        "$configHome/unityhub"
+        "$dataHome/unity3d"
         # keep-sorted end
       ];
     };

@@ -5,8 +5,8 @@
   config = lib.mkIf config.dyad.terminal.yazi.enable {
     programs.yazi.enable = true;
 
-    home.persistence-wrapper.dirs = [
-      ".local/state/yazi"
+    home.perpetual.default.dirs = [
+      "$stateHome/yazi"
     ];
   };
 }

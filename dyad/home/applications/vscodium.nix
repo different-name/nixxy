@@ -82,18 +82,18 @@
       "EDITOR,codium --wait"
     ];
 
-    home.persistence-wrapper.dirs = [
+    home.perpetual.default.dirs = [
       # keep-sorted start
-      ".config/VSCodium/Backups"
-      ".config/VSCodium/Cache"
-      ".config/VSCodium/CachedData"
-      ".config/VSCodium/Code Cache"
-      ".config/VSCodium/DawnCache"
-      ".config/VSCodium/GPUCache"
-      ".config/VSCodium/User/History"
-      ".config/VSCodium/User/globalStorage"
-      ".config/VSCodium/User/workspaceStorage"
-      ".config/VSCodium/logs"
+      "$configHome/VSCodium/Backups"
+      "$configHome/VSCodium/Cache"
+      "$configHome/VSCodium/CachedData"
+      "$configHome/VSCodium/Code Cache"
+      "$configHome/VSCodium/DawnCache"
+      "$configHome/VSCodium/GPUCache"
+      "$configHome/VSCodium/User/History"
+      "$configHome/VSCodium/User/globalStorage"
+      "$configHome/VSCodium/User/workspaceStorage"
+      "$configHome/VSCodium/logs"
       # keep-sorted end
     ];
   };

@@ -25,11 +25,15 @@ in
 
       getHomeStorageDirs =
         userConf:
-        userConf.home.persistence |> lib.attrNames |> map (path: path + userConf.home.homeDirectory);
+        userConf.home.persistence
+        |> lib.attrValues
+        |> map (persistCfg: persistCfg.persistentStoragePath + userConf.home.homeDirectory);
 
       storageDirs =
         (homeConfigurations |> map getHomeStorageDirs |> lib.flatten)
-        ++ lib.attrNames config.environment.persistence;
+        ++ (lib.mapAttrsToList (
+          _: persistCfg: persistCfg.persistentStoragePath
+        ) config.environment.persistence);
 
       persistenceConfigs =
         (homeConfigurations |> map (userConf: lib.attrValues userConf.home.persistence) |> lib.flatten)
