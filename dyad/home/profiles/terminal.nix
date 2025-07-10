@@ -12,7 +12,6 @@
         btop.enable = true;
         dyad.enable = true;
         extra-packages.enable = true;
-        fastfetch.enable = true;
         fish.enable = true;
         git.enable = true;
         helix.enable = true;

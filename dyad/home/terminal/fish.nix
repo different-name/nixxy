@@ -14,7 +14,6 @@ in
       shellInit = ''
         set -U fish_color_cwd "${accentColor}"
         set -U fish_color_user "${accentColor}"
-        ${if config.programs.fastfetch.enable then "fastfetch && echo" else ""}
       '';
 
       functions = {
