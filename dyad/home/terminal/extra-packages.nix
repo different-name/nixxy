@@ -36,6 +36,7 @@
       ffmpeg # manipulate videos
       imagemagick # manipulate images
       just # command runner
+      lazygit # git tui
       magic-wormhole # transfer files between computers
       ncdu # disk usage
       nix-init # generate package definitions
