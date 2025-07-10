@@ -16,6 +16,7 @@
         git.enable = true;
         helix.enable = true;
         television.enable = true;
+        tmux.enable = true;
         yazi.enable = true;
         # keep-sorted end
       };

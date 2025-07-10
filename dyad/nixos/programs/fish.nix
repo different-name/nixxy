@@ -13,6 +13,12 @@
 
       interactiveShellInit = ''
         set fish_greeting # disable greeting
+
+        # launch tmux
+        if status is-interactive
+        and not set -q TMUX
+            exec ${lib.getExe config.programs.tmux.package}
+        end
       '';
     };
 
