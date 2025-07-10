@@ -31,7 +31,7 @@
                 type = "btrfs";
                 extraArgs = [ "-f" ]; # override existing partition
                 mountOptions = [
-                  "compress=zstd:1"
+                  "compress=lzo"
                   "noatime"
                 ];
                 mountpoint = "/btrfs";
@@ -45,7 +45,7 @@
 
                   "nix" = {
                     mountOptions = [
-                      "compress=zstd:1"
+                      "compress=lzo"
                       "noatime"
                     ];
                     mountpoint = "/nix";
@@ -53,7 +53,7 @@
 
                   "persist" = {
                     mountOptions = [
-                      "compress=zstd:1"
+                      "compress=lzo"
                       "noatime"
                     ];
                     mountpoint = "/persist";
