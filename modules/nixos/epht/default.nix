@@ -27,7 +27,7 @@ let
 
   inherit (allPersistentStoragePaths) files directories;
 
-  storageDirs = map (value: value.persistentStoragePath) (nixosConfigs ++ homeManagerConfigs);
+  storageDirs = lib.catAttrs "persistentStoragePath" (nixosConfigs ++ homeManagerConfigs);
 
   allNormalizedStoragePaths =
     let
