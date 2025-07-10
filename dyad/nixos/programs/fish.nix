@@ -19,6 +19,11 @@
         and not set -q TMUX
             exec ${lib.getExe config.programs.tmux.package}
         end
+
+        set fish_greeting # disable greeting
+
+        # https://github.com/fish-shell/fish-shell/issues/11538
+        bind ctrl-h backward-kill-word
       '';
     };
 
