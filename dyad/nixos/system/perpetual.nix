@@ -13,9 +13,9 @@
     # keep-sorted end
   ];
 
-  options.dyad.system.persistence.enable = lib.mkEnableOption "persistence config";
+  options.dyad.system.perpetual.enable = lib.mkEnableOption "perpetual config";
 
-  config = lib.mkIf config.dyad.system.persistence.enable {
+  config = lib.mkIf config.dyad.system.perpetual.enable {
     environment.persistence.default = {
       persistentStoragePath = "/persist/system";
       hideMounts = true;
