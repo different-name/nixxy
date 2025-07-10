@@ -64,6 +64,7 @@
           "scm.alwaysShowRepositories" = true;
           "window.titleBarStyle" = "custom";
           "workbench.colorTheme" = "Catppuccin Mocha";
+          "workbench.iconTheme" = "catppuccin-mocha";
           "workbench.startupEditor" = "none";
           # keep-sorted end
         };
