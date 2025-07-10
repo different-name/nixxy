@@ -4,6 +4,11 @@
   pkgs,
   ...
 }:
+let
+  catppuccinPalette = lib.importJSON (config.catppuccin.sources.palette + /palette.json);
+  themeColors = catppuccinPalette.${config.catppuccin.flavor}.colors;
+  accentColor = themeColors."mauve".hex;
+in
 {
   options.dyad.programs.fish.enable = lib.mkEnableOption "fish config";
 
@@ -12,7 +17,8 @@
       enable = true;
 
       interactiveShellInit = ''
-        set fish_greeting # disable greeting
+        set -U fish_color_cwd "${accentColor}"
+        set -U fish_color_user "${accentColor}"
 
         # launch tmux
         if status is-interactive
