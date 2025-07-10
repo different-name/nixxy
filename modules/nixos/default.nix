@@ -1,6 +1,6 @@
 {
   # keep-sorted start
-  ephemeralTools = ./ephemeral-tools;
+  epht = ./epht;
   perpetual = ./perpetual;
   tty1Autologin = ./tty1-autologin;
   wireplumberScripts = ./wireplumber-scripts;

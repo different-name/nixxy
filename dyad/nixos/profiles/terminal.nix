@@ -5,7 +5,7 @@
   config = lib.mkIf config.dyad.profiles.terminal.enable {
     dyad = {
       # keep-sorted start block=yes newline_separated=yes
-      programs.ephemeralTools.enable = true;
+      programs.epht.enable = true;
 
       services.tailscale.enable = true;
 

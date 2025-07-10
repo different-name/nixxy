@@ -6,18 +6,22 @@
 }:
 {
   imports = [
-    self.nixosModules.ephemeralTools
+    self.nixosModules.epht
   ];
 
-  options.dyad.programs.ephemeralTools.enable = lib.mkEnableOption "ephtools config";
+  options.dyad.programs.epht.enable = lib.mkEnableOption "epht config";
 
-  config = lib.mkIf config.dyad.programs.ephemeralTools.enable {
-    programs.ephemeralTools = {
+  config = lib.mkIf config.dyad.programs.epht.enable {
+    programs.epht = {
       enable = true;
 
       exclude-paths =
         [
           # keep-sorted start
+          "/dev"
+          "/nix"
+          "/proc"
+          "/sys"
           "/.swapvol" # swap
           "/boot" # non ephemeral
           "/btrfs" # default btrfs subvolume

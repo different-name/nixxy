@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 display_help() {
-  echo "Usage: ephtools <command> [search paths...]"
+  echo "Usage: epht <command> [search paths...]"
   echo
   echo "Commands:"
   echo "  new   - List new files & directories that are not yet persisted"
