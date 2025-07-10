@@ -2,7 +2,7 @@
 let
   catppuccinPalette = lib.importJSON (config.catppuccin.sources.palette + /palette.json);
   themeColors = catppuccinPalette.${config.catppuccin.flavor}.colors;
-  accentColor = themeColors.${config.catppuccin.accent}.hex;
+  accentColor = themeColors."mauve".hex;
 in
 {
   options.dyad.terminal.fish.enable = lib.mkEnableOption "fish config";
