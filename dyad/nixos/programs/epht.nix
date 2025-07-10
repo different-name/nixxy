@@ -18,13 +18,10 @@
       exclude-paths =
         [
           # keep-sorted start
-          "/dev"
-          "/nix"
-          "/proc"
-          "/sys"
           "/.swapvol" # swap
           "/boot" # non ephemeral
           "/btrfs" # default btrfs subvolume
+          "/dev"
           "/etc/.clean"
           "/etc/.updated"
           "/etc/NIXOS"
@@ -38,7 +35,10 @@
           "/etc/subgid"
           "/etc/subuid"
           "/etc/sudoers"
+          "/nix"
+          "/proc"
           "/run" # runtime files
+          "/sys"
           "/tmp" # temporary files
           "/var/.updated"
           "/var/lib/NetworkManager/NetworkManager-intern.conf"
