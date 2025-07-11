@@ -18,11 +18,6 @@ self.lib.mkHost
 
     ### dyad modules
 
-    age.secrets = {
-      "different/syncthing/potassium/key".file = self + /secrets/different/syncthing/potassium/key.age;
-      "different/syncthing/potassium/cert".file = self + /secrets/different/syncthing/potassium/cert.age;
-    };
-
     dyad = {
       ## users
       users.different.enable = true;
