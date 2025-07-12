@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 {
@@ -9,7 +10,22 @@
   config = lib.mkIf config.dyad.terminal.tmux.enable {
     programs.tmux = {
       enable = true;
-      # wip!
+
+      plugins = with pkgs.tmuxPlugins; [
+        sensible
+      ];
+
+      # keep-sorted start
+      baseIndex = 1;
+      keyMode = "vi";
+      mouse = true;
+      shell = lib.getExe config.programs.fish.package;
+      shortcut = "a";
+      # keep-sorted end
+
+      extraConfig = ''
+        set -g renumber-windows on
+      '';
     };
   };
 }
