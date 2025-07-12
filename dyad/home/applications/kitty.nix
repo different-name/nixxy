@@ -5,11 +5,18 @@
   config = lib.mkIf config.dyad.applications.kitty.enable {
     programs.kitty = {
       enable = true;
+
       settings = {
         font_size = 11;
         window_padding_width = 6;
         placement_strategy = "top-left";
       };
+
+      extraConfig = ''
+        ${lib.optionalString config.programs.tmux.enable ''
+          shell ${lib.getExe config.programs.tmux.package}
+        ''}
+      '';
     };
 
     home.perpetual.default.dirs = [
