@@ -5,7 +5,7 @@
   ...
 }:
 let
-  borderColor = "#ed507c";
+  borderColor = "ed507c";
   hyprlandCfg = config.wayland.windowManager.hyprland;
 in
 {
@@ -15,7 +15,7 @@ in
     services.mako = {
       enable = true;
       settings = {
-        "border-color" = lib.mkForce "${borderColor}";
+        "border-color" = lib.mkForce "#${borderColor}";
         "border-radius" = hyprlandCfg.settings.decoration.rounding;
 
         "mode=do-not-disturb" = {
@@ -27,6 +27,7 @@ in
     home.packages = [
       (pkgs.writeShellApplication {
         name = "mako-dnd";
+
         runtimeInputs = [
           # keep-sorted start
           config.services.mako.package
