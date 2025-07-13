@@ -13,6 +13,7 @@ My NixOS configuration files
 - Ephemeral root and home with [impermanence](https://github.com/nix-community/impermanence)
 - [Home Manager](https://github.com/nix-community/home-manager)
 - [Hyprland](https://github.com/hyprwm/Hyprland) with [UWSM](https://github.com/Vladimir-csp/uwsm)
+- Secrets managed by [agenix](https://github.com/ryantm/agenix)
 - Package sources tracked using [nvfetcher](https://github.com/berberman/nvfetcher)
 
 ## Structure
