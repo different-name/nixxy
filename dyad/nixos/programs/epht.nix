@@ -51,7 +51,7 @@
         ]
         # https://wiki.archlinux.org/title/XDG_Base_Directory
         # TODO this should not be hard coded
-        ++ (map (path: "/home/different/${path}") [
+        ++ (map (path: "/home/diffy/${path}") [
           # keep-sorted start
           ".cache/Microsoft/DeveloperTools/deviceid" # probably vsc, haven't had issues being ephemeral
           ".config/VSCodium" # some subfolders are persisted, but I should have everything I need now

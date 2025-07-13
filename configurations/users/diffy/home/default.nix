@@ -1,7 +1,8 @@
 {
   imports = [
     # keep-sorted start
-    ./diffy
+    (./. + "/diffy@potassium.nix")
+    (./. + "/diffy@sodium.nix")
     # keep-sorted end
   ];
 }

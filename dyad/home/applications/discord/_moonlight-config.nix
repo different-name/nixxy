@@ -1,6 +1,6 @@
 {
   devSearchPaths = [
-    "/home/different/Code/my-moonlight-extensions/dist"
+    "/home/diffy/Code/my-moonlight-extensions/dist"
   ];
   extensions = {
     alwaysShowForwardTime = true;

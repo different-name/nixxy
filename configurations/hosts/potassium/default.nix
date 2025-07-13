@@ -22,7 +22,7 @@ self.lib.mkHost
 
     dyad = {
       ## users
-      users.different.enable = true;
+      users.diffy.enable = true;
 
       ## profiles
       profiles = {
@@ -48,7 +48,7 @@ self.lib.mkHost
 
     services.tty1Autologin = {
       enable = true;
-      user = "different";
+      user = "diffy";
     };
 
     hardware.nvidia.prime = {

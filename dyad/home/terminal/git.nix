@@ -5,7 +5,7 @@
   config = lib.mkIf config.dyad.terminal.git.enable {
     programs.git = {
       enable = true;
-      userName = "Different";
+      userName = "diffy";
       userEmail = "hello@different-name.dev";
       lfs.enable = true;
     };

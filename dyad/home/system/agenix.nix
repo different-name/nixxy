@@ -14,7 +14,7 @@
 
   config = lib.mkIf config.dyad.system.agenix.enable {
     age.identityPaths = [
-      "/persist/home/different/.ssh/id_ed25519"
+      "${config.home.homeDirectory}/.ssh/id_ed25519"
     ];
 
     home.packages = [

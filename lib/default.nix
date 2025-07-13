@@ -72,11 +72,11 @@ let
             (lib.mkIf config.dyad.system.agenix.enable {
               # access to the hostkey independent of impermanence activation
               age.identityPaths = lib.mkIf config.dyad.system.agenix.enable [
-                "/persist/home/different/.ssh/id_ed25519"
+                "/persist/home/${username}/.ssh/id_ed25519"
               ];
               # user password secret
-              age.secrets."different/user-password".file = self + /secrets/different/user-password.age;
-              users.users.${username}.hashedPasswordFile = config.age.secrets."different/user-password".path;
+              age.secrets."${username}/user-password".file = self + /secrets/${username}/user-password.age;
+              users.users.${username}.hashedPasswordFile = config.age.secrets."${username}/user-password".path;
             })
 
             userConfig
