@@ -3,15 +3,7 @@
   options.dyad.desktop.uwsm.enable = lib.mkEnableOption "uwsm config";
 
   config = lib.mkIf config.dyad.desktop.uwsm.enable {
-    programs.uwsm = {
-      enable = true;
-
-      waylandCompositors.hyprland = lib.mkIf config.dyad.desktop.hyprland.enable {
-        binPath = "/run/current-system/sw/bin/Hyprland";
-        comment = "Hyprland session managed by uwsm";
-        prettyName = "Hyprland";
-      };
-    };
+    programs.uwsm.enable = true;
 
     # auto launch hyprland on tty1
     environment.loginShellInit = ''

@@ -14,6 +14,12 @@
       portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
     };
 
+    programs.uwsm.waylandCompositors.hyprland = {
+      binPath = lib.getExe config.programs.hyprland.package;
+      comment = "Hyprland session managed by uwsm";
+      prettyName = "Hyprland";
+    };
+
     # hint electron apps to use wayland
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
