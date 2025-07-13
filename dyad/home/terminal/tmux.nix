@@ -20,7 +20,7 @@
       keyMode = "vi";
       mouse = true;
       shell = lib.getExe config.programs.fish.package;
-      shortcut = "a";
+      shortcut = "Space";
       # keep-sorted end
 
       extraConfig = ''
