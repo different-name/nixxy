@@ -2,7 +2,7 @@
 
 My NixOS configuration files
 
-> [!WARNING]
+> [!IMPORTANT]
 > This repo is my personal nixos configuration and is only intended for my use. I can’t guarantee that any modules, packages, or configurations are tested, stable, or maintained
 >
 > Feel free to explore, adapt, or contribute as you like <3
