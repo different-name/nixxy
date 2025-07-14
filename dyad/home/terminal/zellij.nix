@@ -14,6 +14,7 @@ in
 
       settings = {
         theme = "catppuccin-mocha-custom";
+        show_startup_tips = false;
       };
 
       themes.catppuccin-mocha-custom.themes.catppuccin-mocha-custom = {
