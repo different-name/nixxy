@@ -37,6 +37,10 @@
       };
 
       mpv.enable = false;
+
+      yazi.accent = "mauve";
+
+      zellij.enable = false;
       # keep-sorted end
     };
   };
