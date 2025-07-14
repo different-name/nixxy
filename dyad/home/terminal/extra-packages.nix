@@ -24,6 +24,11 @@
       nvfetcher.dirs = [
         "$dataHome/nvfetcher"
       ];
+
+      # git tui
+      lazygit.dirs = [
+        "$stateHome/lazygit"
+      ];
       # keep-sorted end
     };
 
@@ -36,7 +41,6 @@
       ffmpeg # manipulate videos
       imagemagick # manipulate images
       just # command runner
-      lazygit # git tui
       magic-wormhole # transfer files between computers
       ncdu # disk usage
       nix-init # generate package definitions
