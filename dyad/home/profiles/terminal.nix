@@ -16,8 +16,8 @@
         git.enable = true;
         helix.enable = true;
         television.enable = true;
-        tmux.enable = true;
         yazi.enable = true;
+        zellij.enable = true;
         # keep-sorted end
       };
       # keep-sorted end

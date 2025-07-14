@@ -12,8 +12,8 @@
       };
 
       extraConfig = ''
-        ${lib.optionalString config.programs.tmux.enable ''
-          shell ${lib.getExe config.programs.tmux.package}
+        ${lib.optionalString config.programs.zellij.enable ''
+          shell ${lib.getExe config.programs.zellij.package}
         ''}
       '';
     };
