@@ -208,7 +208,7 @@
 
     # slimevr solarxr protocol patches for wivrn
     wivrn-solarxr = {
-      url = "github:notpeelz/WiVRn/solarxr-patches";
+      url = "github:notpeelz/WiVRn/6e15951add57138243ff3698c1f30517de1d639e";
       inputs = {
         # keep-sorted start
         flake-parts.follows = "flake-parts";

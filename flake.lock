@@ -1180,17 +1180,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1752268969,
-        "narHash": "sha256-li2CuJVfv4U1Ed29ntXWi7HTZCEzYEmK0dIW3Rytbps=",
+        "lastModified": 1751225656,
+        "narHash": "sha256-tc3Y/+hH+Hw8T9GgveDo+P0dtTFIXywLXiSxqv88U/I=",
         "owner": "notpeelz",
         "repo": "WiVRn",
-        "rev": "c5e8ffd3f207eafab48bd13284696e6197a2c214",
+        "rev": "6e15951add57138243ff3698c1f30517de1d639e",
         "type": "github"
       },
       "original": {
         "owner": "notpeelz",
-        "ref": "solarxr-patches",
         "repo": "WiVRn",
+        "rev": "6e15951add57138243ff3698c1f30517de1d639e",
         "type": "github"
       }
     },
