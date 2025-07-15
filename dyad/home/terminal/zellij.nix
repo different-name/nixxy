@@ -149,5 +149,9 @@ in
         };
       };
     };
+
+    home.perpetual.default.dirs = [
+      "$cacheHome/zellij"
+    ];
   };
 }
