@@ -17,12 +17,7 @@ let
     hostName: system:
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit
-          # keep-sorted start
-          inputs
-          self
-          # keep-sorted end
-          ;
+        inherit inputs self;
       };
 
       modules = [
