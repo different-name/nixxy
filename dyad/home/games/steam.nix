@@ -24,15 +24,10 @@
       };
     };
 
-    systemd.user.tmpfiles.rules =
-      let
-        inherit (config.home) homeDirectory;
-        vrchatPictures = "${homeDirectory}/.local/share/Steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/Pictures/VRChat";
-      in
-      [
-        # link vrchat pictures to pictures folder
-        "L ${homeDirectory}/Pictures/VRChat - - - - ${vrchatPictures}"
-      ];
+    home.file."Pictures/VRChat" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/Steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/Pictures/VRChat";
+      force = true;
+    };
 
     xdg.autostart.entries = [
       (
