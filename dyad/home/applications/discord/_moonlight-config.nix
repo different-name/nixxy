@@ -3,9 +3,11 @@
     "/home/diffy/Code/my-moonlight-extensions/dist"
   ];
   extensions = {
+    alwaysFocus = true;
     alwaysShowForwardTime = true;
     betterCodeblocks = true;
     betterEmbedsYT = true;
+    betterTags = true;
     callIdling = true;
     callTimer = true;
     clearUrls = true;
@@ -14,8 +16,18 @@
     copyAvatarUrl = true;
     copyWebp = true;
     disableSentry = true;
+    domOptimizer = true;
+    doubleClickActions = true;
+    favouriteGifSearch = true;
     freeMoji = true;
     freeScreenShare = true;
+    freeStickers = true;
+    hideBlocked = {
+      config = {
+        ignored = true;
+      };
+      enabled = true;
+    };
     imageViewer = true;
     jumpToBlocked = true;
     mediaTweaks = {
@@ -27,6 +39,7 @@
       };
       enabled = true;
     };
+    memberCount = true;
     mentionAvatars = true;
     moonbase = {
       config = {
@@ -38,7 +51,7 @@
     moonlight-css = {
       config = {
         paths = [
-          "https://catppuccin.github.io/discord/dist/catppuccin-mocha-red.theme.css"
+          "https://catppuccin.github.io/discord/dist/catppuccin-mocha-mauve.theme.css"
           "~/.local/share/disblock-origin/theme.css"
         ];
       };
@@ -52,6 +65,7 @@
       };
       enabled = true;
     };
+    neatSettingsContext = true;
     noHelp = true;
     noJoinMessageWave = true;
     noMaskedLinkPaste = true;
@@ -65,12 +79,19 @@
       enabled = true;
     };
     ownerCrown = true;
+    platformIcons = {
+      config = {
+        messages = true;
+      };
+      enabled = false;
+    };
     platformStyles = {
       config = {
         noMinimumSize = true;
       };
       enabled = true;
     };
+    removeTopBar = true;
     replyChain = true;
     resolver = true;
     sendTimestamps = true;
@@ -128,12 +149,16 @@
       };
       enabled = true;
     };
+    svgEmbed = true;
+    typingTweaks = true;
+    unindent = true;
     whoJoined = {
       config = {
         serverNicknames = false;
       };
       enabled = true;
     };
+    whosWatching = true;
   };
   repositories = [
     "https://moonlight-mod.github.io/extensions-dist/repo.json"
