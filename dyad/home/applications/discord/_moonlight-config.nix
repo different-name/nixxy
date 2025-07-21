@@ -72,6 +72,14 @@
     noReplyChainNag = true;
     noRpc = true;
     noTrack = true;
+    onePingPerDM = {
+      config = {
+        allowAtEveryoneBypass = true;
+        allowMentionsBypass = true;
+        typeOfDM = "group_dm";
+      };
+      enabled = true;
+    };
     openExternally = {
       config = {
         spotify = false;
@@ -150,6 +158,14 @@
       enabled = true;
     };
     svgEmbed = true;
+    textReplacer = {
+      config = {
+        patterns = {
+          "://x.com/" = "://girlcockx.com/";
+        };
+      };
+      enabled = true;
+    };
     typingTweaks = true;
     unindent = true;
     whoJoined = {
@@ -158,7 +174,7 @@
       };
       enabled = true;
     };
-    whosWatching = true;
+    whosWatching = false;
   };
   repositories = [
     "https://moonlight-mod.github.io/extensions-dist/repo.json"
