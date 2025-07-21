@@ -19,7 +19,7 @@
 
       programs = {
         # keep-sorted start
-        obs.enable = true;
+        obs-studio.enable = true;
         steam.enable = true;
         thunar.enable = true;
         # keep-sorted end

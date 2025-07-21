@@ -1,8 +1,8 @@
 { lib, config, ... }:
 {
-  options.dyad.programs.obs.enable = lib.mkEnableOption "obs config";
+  options.dyad.programs.obs-studio.enable = lib.mkEnableOption "obs-studio config";
 
-  config = lib.mkIf config.dyad.programs.obs.enable {
+  config = lib.mkIf config.dyad.programs.obs-studio.enable {
     programs.obs-studio = {
       enable = true;
       enableVirtualCamera = true;
