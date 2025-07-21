@@ -14,6 +14,7 @@
         kitty.enable = true;
         obsidian.enable = true;
         # unity.enable = true; # TODO disabled until https://github.com/NixOS/nixpkgs/issues/418451 is closed
+        vscodium.enable = true;
         # keep-sorted end
       };
 
