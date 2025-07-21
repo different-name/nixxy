@@ -9,6 +9,8 @@
     };
 
     home-manager.sharedModules = lib.singleton {
+      programs.obs-studio.enable = true;
+
       home.perpetual.default.dirs = [
         "$configHome/obs-studio"
       ];
