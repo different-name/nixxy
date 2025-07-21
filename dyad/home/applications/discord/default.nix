@@ -10,7 +10,7 @@
 let
   discordPackage = pkgs.discord.override {
     withMoonlight = true;
-    moonlight = inputs'.moonlight.packages.moonlight-mod;
+    inherit (inputs'.moonlight.packages) moonlight;
   };
 in
 {
@@ -24,7 +24,7 @@ in
   options.dyad.applications.discord.enable = lib.mkEnableOption "discord config";
 
   config = lib.mkIf config.dyad.applications.discord.enable {
-    programs.moonlight-mod = {
+    programs.moonlight = {
       enable = true;
       configs.stable = import ./_moonlight-config.nix;
     };
