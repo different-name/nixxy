@@ -60,6 +60,8 @@
         # "stayfocused, class:steam_app_[0-9]+, title:.+"
         "stayfocused, class:osu!, title:.+"
 
+        "noinitialfocus, class:steam_app_438100" # vrchat
+
         ''renderunfocused, initialTitle:Minecraft(\*)? [0-9\.]+''
         ''suppressevent fullscreen, initialTitle:Minecraft(\*)? [0-9\.]+''
         ''fullscreen, initialTitle:Minecraft(\*)? [0-9\.]+''
