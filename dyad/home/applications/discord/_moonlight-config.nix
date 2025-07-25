@@ -1,7 +1,4 @@
 {
-  devSearchPaths = [
-    "/home/diffy/Code/my-moonlight-extensions/dist"
-  ];
   extensions = {
     alwaysFocus = true;
     alwaysShowForwardTime = true;
@@ -161,6 +158,15 @@
     textReplacer = {
       config = {
         patterns = {
+          "://bsky.app/" = "://fxbsky.app/";
+          "://instagram.com/" = "://ddinstagram.com/";
+          "://reddit.com/" = "://rxddit.com/";
+          "://tiktok.com/" = "://tfxktok.com/";
+          "://twitter.com/" = "://girlcockx.com/";
+          "://vm.tiktok.com/" = "://vm.vxtiktok.com/";
+          "://www.instagram.com/" = "://ddinstagram.com/";
+          "://www.reddit.com/" = "://rxddit.com/";
+          "://www.tiktok.com/" = "://tfxktok.com/";
           "://x.com/" = "://girlcockx.com/";
         };
       };
