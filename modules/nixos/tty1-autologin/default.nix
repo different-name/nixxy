@@ -23,18 +23,17 @@ in
       let
         gettyCfg = config.services.getty;
 
-        baseArgs =
-          [
-            "--login-program"
-            "${gettyCfg.loginProgram}"
-            "--autologin"
-            cfg.user
-          ]
-          ++ lib.optionals (gettyCfg.loginOptions != null) [
-            "--login-options"
-            gettyCfg.loginOptions
-          ]
-          ++ gettyCfg.extraArgs;
+        baseArgs = [
+          "--login-program"
+          "${gettyCfg.loginProgram}"
+          "--autologin"
+          cfg.user
+        ]
+        ++ lib.optionals (gettyCfg.loginOptions != null) [
+          "--login-options"
+          gettyCfg.loginOptions
+        ]
+        ++ gettyCfg.extraArgs;
 
         gettyCmd = args: "@${pkgs.util-linux}/sbin/agetty agetty ${lib.escapeShellArgs baseArgs} ${args}";
       in

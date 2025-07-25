@@ -63,12 +63,14 @@ in
         start-vr-session = {
           name = "Start VR Session";
           exec = "${lib.getExe vr-session-manager} start";
-        } // baseEntry;
+        }
+        // baseEntry;
 
         stop-vr-session = {
           name = "Stop VR Session";
           exec = "${lib.getExe vr-session-manager} stop";
-        } // baseEntry;
+        }
+        // baseEntry;
       };
 
     # https://lvra.gitlab.io/docs/distros/nixos/#recommendations
@@ -113,7 +115,8 @@ in
       };
 
     xdg.configFile."VRCX/custom.css".source =
-      self'.packages.catppuccin-vrcx-mocha + /share/vrcx-catppuccin.css;
+      self'.packages.catppuccin-vrcx-mocha
+      + /share/vrcx-catppuccin.css;
 
     # TODO temporary workaround until https://www.github.com/hyprwm/xdg-desktop-portal-hyprland/issues/329 is implemented properly
     wayland.windowManager.hyprland.xdgDesktopPortalHyprland.settings = {
