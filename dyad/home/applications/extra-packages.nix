@@ -14,7 +14,7 @@
         ".android"
       ];
 
-      gimp-with-plugins.dirs = [
+      gimp3-with-plugins.dirs = [
         # keep-sorted start
         "$cacheHome/gimp"
         "$configHome/GIMP"
