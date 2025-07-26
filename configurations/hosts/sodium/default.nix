@@ -64,6 +64,7 @@ self.lib.mkHost
       GDK_SCALE = "2";
     };
 
+    hardware.brillo.enable = true; # backlight control
     hardware.keyboard.qmk.enable = true;
     services.goxlr-utility.enable = true;
 

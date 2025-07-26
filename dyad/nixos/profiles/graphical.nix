@@ -15,7 +15,12 @@
         # keep-sorted end
       };
 
-      hardware.ddcutil.enable = true;
+      hardware = {
+        # keep-sorted start
+        bluetooth.enable = true;
+        ddcutil.enable = true;
+        # keep-sorted end
+      };
 
       programs = {
         # keep-sorted start
