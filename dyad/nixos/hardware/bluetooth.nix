@@ -9,6 +9,10 @@
       powerOnBoot = true;
     };
 
+    boot.kernelModules = [
+      "btusb"
+    ];
+
     services.blueman.enable = true;
   };
 }
