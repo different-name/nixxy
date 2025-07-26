@@ -1,8 +1,8 @@
 {
   lib,
   config,
-  pkgs,
   osConfig,
+  pkgs,
   ...
 }:
 {
@@ -38,7 +38,7 @@
       "x-scheme-handler/unityhub" = "unityhub.desktop"; # unity login
     };
 
-    home.perpetual.packages = {
+    home.perpetual.default.packages = {
       alcom = {
         # https://github.com/tauri-apps/tauri/issues/9394
         package = pkgs.symlinkJoin {
@@ -50,6 +50,7 @@
               --set WEBKIT_DISABLE_DMABUF_RENDERER 1
           '';
         };
+
         dirs = [
           # keep-sorted start
           "$cacheHome/ALCOM"
