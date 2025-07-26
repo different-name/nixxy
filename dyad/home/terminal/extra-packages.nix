@@ -37,6 +37,7 @@
       aspell # spell checker
       aspellDicts.en # aspell english dictionary
       bat # cat with syntax highlighting
+      busybox # unix utils
       cocogitto # git toolbox
       ffmpeg # manipulate videos
       imagemagick # manipulate images
