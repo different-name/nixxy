@@ -9,6 +9,9 @@
       # disable about:config warning
       "browser.aboutConfig.showWarning" = false;
 
+      # force dark style
+      "layout.css.prefers-color-scheme.content-override" = 0;
+
       ### startup
       # disable sponsored content on Firefox Home (Activity Stream)
       "browser.newtabpage.activity-stream.showSponsored" = false;
