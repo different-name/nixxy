@@ -162,6 +162,10 @@
       self'.packages.slimevr-cli
     ];
 
+    services.udev.packages = [
+      self'.packages.slimevr-udev-rules
+    ];
+
     environment.perpetual.default.dirs = [
       # keep-sorted start
       "/root/.config/dev.slimevr.SlimeVR"
