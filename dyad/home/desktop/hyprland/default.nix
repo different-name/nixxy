@@ -1,10 +1,11 @@
 {
   lib,
   config,
+  osConfig,
   inputs,
   inputs',
   self,
-  osConfig,
+  pkgs,
   ...
 }:
 {
@@ -18,7 +19,6 @@
   config = lib.mkIf config.dyad.desktop.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
-
       package = inputs'.hyprland.packages.hyprland;
 
       systemd = {
@@ -27,6 +27,10 @@
       };
 
       xwayland.enable = true;
+
+      settings.exec-once = [
+        "${lib.getExe pkgs.wl-clip-persist} --clipboard regular"
+      ];
     };
 
     services.hyprpolkitagent.enable = true;
