@@ -40,6 +40,7 @@
       cocogitto # git toolbox
       ffmpeg # manipulate videos
       imagemagick # manipulate images
+      jq # json parser
       just # command runner
       magic-wormhole # transfer files between computers
       ncdu # disk usage
@@ -48,10 +49,12 @@
       nixfmt-tree # nixpkgs formatter
       nurl # generate fetcher expressions
       pv # pipe viewer, monitor data flow through pipe
+      screen # used for serial terminal
       sshfs # mount remote directories over ssh
       trashy # move files to trash
       tree # directory listing
       unzip # unzip files
+      usbutils # tools for usb devices
       yt-dlp # audio/video downloader
       zip # zip files
       # keep-sorted end
