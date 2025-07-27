@@ -37,19 +37,19 @@
         # keep-sorted end
       };
 
-      style = {
-        # keep-sorted start
-        stylix.enable = true;
-        catppuccin.enable = true;
-        # keep-sorted end
-      };
-
       media = {
         # keep-sorted start
         goxlr-utility.enable = true;
         imv.enable = true;
         media-pkgs.enable = true;
         mpv.enable = true;
+        # keep-sorted end
+      };
+
+      style = {
+        # keep-sorted start
+        catppuccin.enable = true;
+        stylix.enable = true;
         # keep-sorted end
       };
       # keep-sorted end
