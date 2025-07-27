@@ -197,6 +197,19 @@
       };
     };
 
+    # theming framework
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs = {
+        # keep-sorted start
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        nur.follows = "nur";
+        systems.follows = "systems";
+        # keep-sorted end
+      };
+    };
+
     # list of systems
     systems.url = "github:nix-systems/x86_64-linux";
 

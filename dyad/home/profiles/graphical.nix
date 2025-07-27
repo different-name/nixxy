@@ -37,6 +37,8 @@
         # keep-sorted end
       };
 
+      style.stylix.enable = true;
+
       media = {
         # keep-sorted start
         goxlr-utility.enable = true;
