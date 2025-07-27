@@ -43,7 +43,7 @@ bump:
 # reformat code
 [group("nice and tidy")]
 fmt *args:
-  @nix fmt {{ args }}
+  @dyad-fmt {{ args }}
 
 # clean all profiles
 [group("nice and tidy")]
