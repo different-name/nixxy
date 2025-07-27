@@ -33,7 +33,10 @@
     };
 
     home.packages = with pkgs; [
-      # keep-sorted start
+      # keep-sorted start block=yes
+      (pkgs.writeShellScriptBin "dyad-fmt" ''
+        exec ${lib.getExe self'.formatter} "$@"
+      '')
       aspell # spell checker
       aspellDicts.en # aspell english dictionary
       bat # cat with syntax highlighting
