@@ -21,7 +21,6 @@
       desktop = {
         # keep-sorted start
         anyrun.enable = true;
-        desktop-pkgs.enable = true;
         hyprland.enable = true;
         hyprlock.enable = true;
         hyprpaper.enable = true;

@@ -41,6 +41,7 @@
 
     home.packages = with pkgs; [
       # keep-sorted start
+      pavucontrol
       qalculate-gtk
       qpwgraph
       scrcpy

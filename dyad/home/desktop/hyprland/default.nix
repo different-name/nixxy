@@ -35,10 +35,12 @@
 
     services.hyprpolkitagent.enable = true;
 
-    home.packages = with inputs'; [
+    home.packages = [
       # keep-sorted start
-      hyprland-contrib.packages.grimblast
-      hyprpicker.packages.default
+      inputs'.hyprland-contrib.packages.grimblast
+      inputs'.hyprpicker.packages.default
+      pkgs.libnotify
+      pkgs.wl-clipboard
       # keep-sorted end
     ];
 
