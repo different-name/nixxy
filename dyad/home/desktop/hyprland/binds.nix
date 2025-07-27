@@ -51,7 +51,7 @@
           ## terminal
           "$mod, RETURN, exec, ${uwsmApp "kitty"}"
           ## lock screen
-          "$mod, B, exec, ${uwsmSingleApp "hyprlock"}"
+          "$mod, L, exec, ${uwsmSingleApp "hyprlock"}"
           ## launcher
           "$mod, S, exec, anyrun" # not using uwsm as it introduces latency
           ## browser
@@ -62,16 +62,16 @@
           "$mod, N, exec, ${uwsmApp "obsidian"}"
 
           # move focus
-          "$mod, H, movefocus, l"
-          "$mod, J, movefocus, d"
-          "$mod, K, movefocus, u"
-          "$mod, L, movefocus, r"
+          "$mod, LEFT, movefocus, l"
+          "$mod, RIGHT, movefocus, r"
+          "$mod, UP, movefocus, u"
+          "$mod, DOWN, movefocus, d"
 
           # swap windows
-          "$mod SHIFT, H, swapwindow, l"
-          "$mod SHIFT, J, swapwindow, d"
-          "$mod SHIFT, K, swapwindow, u"
-          "$mod SHIFT, L, swapwindow, r"
+          "$mod SHIFT, LEFT, swapwindow, l"
+          "$mod SHIFT, RIGHT, swapwindow, r"
+          "$mod SHIFT, UP, swapwindow, u"
+          "$mod SHIFT, DOWN, swapwindow, d"
 
           # screenshot
           ## area
@@ -140,10 +140,10 @@
 
         binde = [
           # resize with arrowkeys
-          "$mod CTRL, H, resizeactive, -20 0"
-          "$mod CTRL, J, resizeactive, 0 20"
-          "$mod CTRL, K, resizeactive, 0 -20"
-          "$mod CTRL, L, resizeactive, 20 0"
+          "$mod CTRL, UP, resizeactive, 0 -20"
+          "$mod CTRL, DOWN, resizeactive, 0 20"
+          "$mod CTRL, LEFT, resizeactive, -20 0"
+          "$mod CTRL, RIGHT, resizeactive, 20 0"
         ];
 
         bindl = [
