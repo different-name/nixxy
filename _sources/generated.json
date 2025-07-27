@@ -1,7 +1,7 @@
 {
     "cats-blender-plugin-unofficial": {
         "cargoLocks": null,
-        "date": "2025-05-30",
+        "date": "2025-06-04",
         "extract": null,
         "name": "cats-blender-plugin-unofficial",
         "passthru": null,
@@ -11,13 +11,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "3bcf8d5f0678c1eb5336dd38540a346aaca39c90",
-            "sha256": "sha256-Zo8D2P0Bsm1jsp9p/93ZRYO+4+cWljQn8yNotsnIQ/M=",
+            "rev": "7f6b7c3bf9ecc32fb888b09ec18748f41c3dd38b",
+            "sha256": "sha256-MhHd1kDL/m6IBcb+MBULvI5rKPcU4WdwRSmse4OsZCE=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
         },
-        "version": "3bcf8d5f0678c1eb5336dd38540a346aaca39c90"
+        "version": "7f6b7c3bf9ecc32fb888b09ec18748f41c3dd38b"
     },
     "disblock-origin": {
         "cargoLocks": null,

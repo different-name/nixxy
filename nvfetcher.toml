@@ -1,6 +1,6 @@
 [cats-blender-plugin-unofficial]
 src.git = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
-src.branch = "blender-44"
+src.branch = "blender-45"
 fetch.git = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
 
 [disblock-origin]

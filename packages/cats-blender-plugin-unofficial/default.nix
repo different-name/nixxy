@@ -12,7 +12,7 @@ stdenvNoCC.mkDerivation {
     cp -r $src/. $out/share/
   '';
 
-  blenderInstallPath = "4.4/extensions/user_default/cats_blender_plugin";
+  blenderInstallPath = "4.5/extensions/user_default/cats_blender_plugin";
 
   meta = {
     description = "A continuation of the Cats Blender Plugin which is tool designed to shorten steps needed to import and optimize models into VRChat. Compatible models are: MMD, XNALara, Mixamo, DAZ/Poser, Blender Rigify, Sims 2, Motion Builder, 3DS Max and potentially more, originally by absolute-quantum. Not Official";

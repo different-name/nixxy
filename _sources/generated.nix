@@ -3,17 +3,17 @@
 {
   cats-blender-plugin-unofficial = {
     pname = "cats-blender-plugin-unofficial";
-    version = "3bcf8d5f0678c1eb5336dd38540a346aaca39c90";
+    version = "7f6b7c3bf9ecc32fb888b09ec18748f41c3dd38b";
     src = fetchgit {
       url = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git";
-      rev = "3bcf8d5f0678c1eb5336dd38540a346aaca39c90";
+      rev = "7f6b7c3bf9ecc32fb888b09ec18748f41c3dd38b";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-Zo8D2P0Bsm1jsp9p/93ZRYO+4+cWljQn8yNotsnIQ/M=";
+      sha256 = "sha256-MhHd1kDL/m6IBcb+MBULvI5rKPcU4WdwRSmse4OsZCE=";
     };
-    date = "2025-05-30";
+    date = "2025-06-04";
   };
   disblock-origin = {
     pname = "disblock-origin";
