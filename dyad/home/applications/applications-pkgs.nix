@@ -5,9 +5,10 @@
   ...
 }:
 {
-  options.dyad.applications.extra-packages.enable = lib.mkEnableOption "extra application packages";
+  options.dyad.applications.applications-pkgs.enable =
+    lib.mkEnableOption "extra application packages";
 
-  config = lib.mkIf config.dyad.applications.extra-packages.enable {
+  config = lib.mkIf config.dyad.applications.applications-pkgs.enable {
     home.perpetual.default.packages = {
       # keep-sorted start block=yes newline_separated=yes
       android-tools.dirs = [

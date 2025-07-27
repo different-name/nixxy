@@ -7,9 +7,9 @@
       # keep-sorted start block=yes newline_separated=yes
       applications = {
         # keep-sorted start
+        applications-pkgs.enable = true;
         blender.enable = true;
         discord.enable = true;
-        extra-packages.enable = true;
         firefox.enable = true;
         kitty.enable = true;
         obsidian.enable = true;
@@ -21,7 +21,7 @@
       desktop = {
         # keep-sorted start
         anyrun.enable = true;
-        extra-packages.enable = true;
+        desktop-pkgs.enable = true;
         hyprland.enable = true;
         hyprlock.enable = true;
         hyprpaper.enable = true;
@@ -33,16 +33,16 @@
 
       games = {
         # keep-sorted start
-        extra-packages.enable = true;
+        games-pkgs.enable = true;
         steam.enable = true;
         # keep-sorted end
       };
 
       media = {
         # keep-sorted start
-        extra-packages.enable = true;
         goxlr-utility.enable = true;
         imv.enable = true;
+        media-pkgs.enable = true;
         mpv.enable = true;
         # keep-sorted end
       };

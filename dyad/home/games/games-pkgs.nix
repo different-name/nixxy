@@ -5,9 +5,9 @@
   ...
 }:
 {
-  options.dyad.games.extra-packages.enable = lib.mkEnableOption "extra games packages";
+  options.dyad.games.games-pkgs.enable = lib.mkEnableOption "extra games packages";
 
-  config = lib.mkIf config.dyad.games.extra-packages.enable {
+  config = lib.mkIf config.dyad.games.games-pkgs.enable {
     home.perpetual.default = {
       packages = {
         # keep-sorted start block=yes newline_separated=yes

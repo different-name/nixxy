@@ -6,9 +6,9 @@
   ...
 }:
 {
-  options.dyad.terminal.extra-packages.enable = lib.mkEnableOption "extra terminal packages";
+  options.dyad.terminal.terminal-pkgs.enable = lib.mkEnableOption "extra terminal packages";
 
-  config = lib.mkIf config.dyad.terminal.extra-packages.enable {
+  config = lib.mkIf config.dyad.terminal.terminal-pkgs.enable {
     home.perpetual.default.packages = {
       # keep-sorted start block=yes newline_separated=yes
       # calculator

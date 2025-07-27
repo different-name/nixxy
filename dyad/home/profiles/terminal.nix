@@ -11,11 +11,11 @@
         # keep-sorted start
         btop.enable = true;
         dyad.enable = true;
-        extra-packages.enable = true;
         fish.enable = true;
         git.enable = true;
         helix.enable = true;
         television.enable = true;
+        terminal-pkgs.enable = true;
         yazi.enable = true;
         zellij.enable = true;
         # keep-sorted end
