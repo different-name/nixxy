@@ -37,7 +37,12 @@
         # keep-sorted end
       };
 
-      style.stylix.enable = true;
+      style = {
+        # keep-sorted start
+        stylix.enable = true;
+        catppuccin.enable = true;
+        # keep-sorted end
+      };
 
       media = {
         # keep-sorted start
