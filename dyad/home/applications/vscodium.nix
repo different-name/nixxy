@@ -18,7 +18,6 @@
         extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
           # keep-sorted start
           blueglassblock.better-json5
-          catppuccin.catppuccin-vsc-icons
           editorconfig.editorconfig
           jnoortheen.nix-ide
           ms-python.python
