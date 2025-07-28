@@ -32,6 +32,7 @@
         imageUrls = false;
         noGifAutosend = false;
         noStickerAutosend = false;
+        openGifPickerFavorites = false;
         videoMetadata = false;
       };
       enabled = true;
