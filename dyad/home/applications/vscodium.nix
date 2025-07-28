@@ -1,9 +1,8 @@
 {
   lib,
   config,
-  inputs,
-  self',
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -57,10 +56,7 @@
           ];
           "nix.serverPath" = "${lib.getExe pkgs.nixd}";
           "nix.serverSettings.nixd.formatting.command" = [
-            (lib.getExe self'.formatter)
-            "--quiet"
-            "--stdin"
-            "stump.nix"
+            "${lib.getExe pkgs.nixfmt-rfc-style}"
           ];
           "nix.serverSettings.nixd.options.nixos.expr" =
             "(builtins.getFlake \"${config.programs.nh.flake}\").nixosConfigurations.<name>.options";
