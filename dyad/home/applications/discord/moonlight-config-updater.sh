@@ -26,3 +26,5 @@ nix eval --impure --raw --expr "
   in
     pkgs.lib.generators.toPretty { multiline = true; } configuration
 " >"$OUTPUT_FILE"
+
+tail -c1 "$OUTPUT_FILE" | read -r _ || echo >>"$OUTPUT_FILE"
