@@ -14,6 +14,10 @@
       };
     };
 
+    xdg.mimeApps.defaultApplications = {
+      "application/pdf" = "firefox.desktop";
+    };
+
     home.perpetual.default.dirs = [
       # keep-sorted start
       "$cacheHome/mozilla/firefox"
