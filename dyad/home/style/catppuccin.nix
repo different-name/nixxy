@@ -22,7 +22,7 @@
         accent = "dark";
       };
 
-      firefox.profiles.default = {
+      firefox = {
         enable = false;
         userstyles.force = true;
       };
