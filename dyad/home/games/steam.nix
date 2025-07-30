@@ -38,18 +38,16 @@
       force = true;
     };
 
-    xdg.autostart.entries = [
-      (
-        (pkgs.makeDesktopItem {
-          name = "steam-silent";
-          destination = "/";
-          desktopName = "Steam Silent";
-          noDisplay = true;
-          exec = "${lib.getExe osConfig.programs.steam.package} -silent";
-        })
-        + /steam-silent.desktop
-      )
-    ];
+    xdg.autostart.entries = lib.singleton (
+      pkgs.makeDesktopItem {
+        name = "steam-silent";
+        destination = "/";
+        desktopName = "Steam Silent";
+        noDisplay = true;
+        exec = "${lib.getExe osConfig.programs.steam.package} -silent";
+      }
+      + /steam-silent.desktop
+    );
 
     home.perpetual.default.dirs = [
       ".steam"
