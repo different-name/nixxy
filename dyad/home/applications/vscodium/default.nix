@@ -63,18 +63,7 @@
     ];
 
     home.perpetual.default.dirs = [
-      # keep-sorted start
-      "$configHome/VSCodium/Backups"
-      "$configHome/VSCodium/Cache"
-      "$configHome/VSCodium/CachedData"
-      "$configHome/VSCodium/Code Cache"
-      "$configHome/VSCodium/DawnCache"
-      "$configHome/VSCodium/GPUCache"
-      "$configHome/VSCodium/User/History"
-      "$configHome/VSCodium/User/globalStorage"
-      "$configHome/VSCodium/User/workspaceStorage"
-      "$configHome/VSCodium/logs"
-      # keep-sorted end
+      "$configHome/VSCodium"
     ];
   };
 }
