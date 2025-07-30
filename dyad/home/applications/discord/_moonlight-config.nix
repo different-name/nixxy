@@ -163,12 +163,12 @@
           "://instagram.com/" = "://ddinstagram.com/";
           "://reddit.com/" = "://rxddit.com/";
           "://tiktok.com/" = "://tfxktok.com/";
-          "://twitter.com/" = "://girlcockx.com/";
+          "://twitter.com/" = "://stupidpenisx.com/";
           "://vm.tiktok.com/" = "://vm.vxtiktok.com/";
           "://www.instagram.com/" = "://ddinstagram.com/";
           "://www.reddit.com/" = "://rxddit.com/";
           "://www.tiktok.com/" = "://tfxktok.com/";
-          "://x.com/" = "://girlcockx.com/";
+          "://x.com/" = "://stupidpenisx.com/";
         };
       };
       enabled = true;
