@@ -18,9 +18,18 @@
       enable = true;
       closeSteam = true;
 
-      apps."438100" = {
-        compatTool = "proton_experimental";
-        launchOptions = ''env -u TZ PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc" %command%'';
+      apps = {
+        # vrchat
+        "438100" = {
+          compatTool = "proton_experimental";
+          launchOptions = ''env -u TZ PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc" %command%'';
+        };
+
+        # warhammer 40k: darktide
+        "1361210" = {
+          compatTool = "proton_experimental";
+          launchOptions = ''LD_PRELOAD="" eval $( echo "%command%" | sed "s/\/launcher\/Launcher.exe'.*/\/binaries\/Darktide.exe'/" )'';
+        };
       };
     };
 
