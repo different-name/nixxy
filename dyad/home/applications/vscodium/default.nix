@@ -18,7 +18,6 @@
           # keep-sorted start
           blueglassblock.better-json5
           editorconfig.editorconfig
-          jnoortheen.nix-ide
           ms-python.python
           nefrob.vscode-just-syntax
           prettiercode.code-prettier
@@ -41,25 +40,6 @@
           "git.confirmSync" = false;
           "git.detectSubmodules" = false;
           "git.repositoryScanMaxDepth" = 3;
-          "nix.enableLanguageServer" = true;
-          "nix.hiddenLanguageServerErrors" = [
-            # keep-sorted start
-            "textDocument/codeAction"
-            "textDocument/completion"
-            "textDocument/definition"
-            "textDocument/documentHighlight"
-            "textDocument/documentLink"
-            "textDocument/documentSymbol"
-            "textDocument/hover"
-            "textDocument/inlayHint"
-            # keep-sorted end
-          ];
-          "nix.serverPath" = "${lib.getExe pkgs.nixd}";
-          "nix.serverSettings.nixd.formatting.command" = [
-            "${lib.getExe pkgs.nixfmt-rfc-style}"
-          ];
-          "nix.serverSettings.nixd.options.nixos.expr" =
-            "(builtins.getFlake \"${config.programs.nh.flake}\").nixosConfigurations.<name>.options";
           "scm.alwaysShowRepositories" = true;
           "window.titleBarStyle" = "custom";
           "workbench.colorTheme" = "Catppuccin Mocha";
