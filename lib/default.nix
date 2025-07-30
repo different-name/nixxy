@@ -6,6 +6,13 @@
 }:
 let
   dyadLib = {
+    collectAspectModules =
+      type:
+      builtins.readDir (self + /aspects)
+      |> lib.filterAttrs (name: _: lib.pathIsDirectory (self + /aspects/${name}/${type}))
+      |> lib.mapAttrsToList (name: _: self + /aspects/${name}/${type})
+      |> inputs.import-tree;
+
     mkHost =
       {
         hostName,
@@ -14,6 +21,8 @@ let
       }:
       hostConfig: {
         imports = [
+          hostConfig
+
           {
             networking = {
               inherit hostName;
@@ -25,7 +34,6 @@ let
             # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
             system = { inherit stateVersion; };
           }
-          hostConfig
         ];
       };
 
@@ -51,6 +59,9 @@ let
                 { config, osConfig, ... }:
                 {
                   imports = [
+                    homeConfig
+                    (dyadLib.collectAspectModules "home")
+
                     {
                       home = {
                         inherit username;
@@ -63,8 +74,6 @@ let
                         flake = "${config.home.homeDirectory}/nix-files";
                       };
                     }
-                    (inputs.import-tree (self + /dyad/home))
-                    homeConfig
                   ];
                 };
             })
