@@ -18,13 +18,9 @@ self.lib.mkHost
       # keep-sorted end
     ];
 
-    ### dyad modules
-
     dyad = {
-      ## users
       users.diffy.enable = true;
 
-      ## profiles
       profiles = {
         # keep-sorted start
         graphical.enable = true;
@@ -33,7 +29,6 @@ self.lib.mkHost
         # keep-sorted end
       };
 
-      ## modules
       # keep-sorted start block=yes newline_separated=yes
       hardware.nvidia.enable = true;
 
@@ -42,8 +37,6 @@ self.lib.mkHost
       services.syncthing.enable = true;
       # keep-sorted end
     };
-
-    ### host specific
 
     services.tty1Autologin = {
       enable = true;

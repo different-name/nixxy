@@ -1,20 +1,16 @@
 { lib, osConfig, ... }:
 lib.mkIf (osConfig.networking.hostName == "potassium") {
-  ### dyad modules
-
   dyad = {
-    ## profiles
     profiles = {
+      # keep-sorted start
+      graphical.enable = true;
       minimal.enable = true;
       terminal.enable = true;
-      graphical.enable = true;
+      # keep-sorted end
     };
 
-    ## modules
     services.syncthing.enable = true;
   };
-
-  ### host specific
 
   # display battery as notification
   wayland.windowManager.hyprland.settings.bind = [

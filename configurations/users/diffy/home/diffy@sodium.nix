@@ -6,37 +6,33 @@
   ...
 }:
 lib.mkIf (osConfig.networking.hostName == "sodium") {
-  ### dyad modules
-
   dyad = {
-    ## profiles
     profiles = {
+      # keep-sorted start
+      graphical.enable = true;
       minimal.enable = true;
       terminal.enable = true;
-      graphical.enable = true;
+      # keep-sorted end
     };
 
-    ## modules
-    media.goxlr-utility.enable = true;
-
+    # keep-sorted start block=yes newline_separated=yes
     games.xr = {
       enable = true;
-
       # lower monitor resolution in vr mode & change mouse focus mode
       enterVrHook = ''
         hyprctl keyword input:follow_mouse 2
       '';
-
-      # defaults
+      # restore defaults
       exitVrHook = ''
         hyprctl keyword input:follow_mouse 1
       '';
     };
 
-    services.syncthing.enable = true;
-  };
+    media.goxlr-utility.enable = true;
 
-  ### host specific
+    services.syncthing.enable = true;
+    # keep-sorted end
+  };
 
   programs.btop.settings.cpu_sensor = "k10temp/Tctl";
 
