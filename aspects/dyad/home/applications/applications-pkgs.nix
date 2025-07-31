@@ -36,6 +36,10 @@
         "$dataHome/qBittorrent"
         # keep-sorted end
       ];
+
+      ente-desktop.dirs = [
+        "$configHome/ente"
+      ];
       # keep-sorted end
     };
 
