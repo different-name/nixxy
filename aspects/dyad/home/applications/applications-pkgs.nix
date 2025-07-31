@@ -15,6 +15,10 @@
         ".android"
       ];
 
+      ente-desktop.dirs = [
+        "$configHome/ente"
+      ];
+
       gimp3-with-plugins.dirs = [
         # keep-sorted start
         "$cacheHome/gimp"
@@ -35,10 +39,6 @@
         "$configHome/qBittorrent"
         "$dataHome/qBittorrent"
         # keep-sorted end
-      ];
-
-      ente-desktop.dirs = [
-        "$configHome/ente"
       ];
       # keep-sorted end
     };
