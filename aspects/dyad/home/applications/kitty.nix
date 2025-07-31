@@ -10,12 +10,6 @@
         font_size = 11;
         window_padding_width = 6;
       };
-
-      extraConfig = ''
-        ${lib.optionalString config.programs.zellij.enable ''
-          shell ${lib.getExe config.programs.zellij.package}
-        ''}
-      '';
     };
 
     home.perpetual.default.dirs = [
