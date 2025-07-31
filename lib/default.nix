@@ -41,6 +41,7 @@ let
       {
         config,
         username,
+        uid,
         homeConfig ? null,
       }:
       userConfig:
@@ -96,6 +97,7 @@ let
               }
             )
 
+            { users.users.${username} = { inherit uid; }; }
             userConfig
           ]
         );

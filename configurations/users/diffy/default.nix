@@ -8,12 +8,12 @@ self.lib.mkUser
   {
     inherit config;
     username = "diffy";
+    uid = 1000;
     homeConfig = inputs.import-tree ./home;
   }
   {
     users.users."diffy" = {
       isNormalUser = true;
-      uid = 1000;
 
       openssh.authorizedKeys.keys = [
         # keep-sorted start
