@@ -8,6 +8,7 @@
 let
   hosts = {
     # keep-sorted start
+    iodine = "x86_64-linux";
     potassium = "x86_64-linux";
     sodium = "x86_64-linux";
     # keep-sorted end

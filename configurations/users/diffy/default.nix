@@ -1,9 +1,14 @@
-{ config, self, ... }:
+{
+  config,
+  inputs,
+  self,
+  ...
+}:
 self.lib.mkUser
   {
     inherit config;
     username = "diffy";
-    homeConfig = import ./home;
+    homeConfig = inputs.import-tree ./home;
   }
   {
     users.users."diffy" = {
