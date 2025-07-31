@@ -18,7 +18,7 @@ let
 in
 {
   # keep-sorted start
-  "diffy/maocraft-discordsrv.age".publicKeys = userKeys "diffy";
+  "diffy/maocraft-discordsrv.age".publicKeys = userHostKey "diffy" "iodine";
   "diffy/syncthing/potassium/cert.age".publicKeys = userHostKey "diffy" "potassium";
   "diffy/syncthing/potassium/key.age".publicKeys = userHostKey "diffy" "potassium";
   "diffy/syncthing/sodium/cert.age".publicKeys = userHostKey "diffy" "sodium";
@@ -26,5 +26,7 @@ in
   "diffy/tokens/cloudflare.age".publicKeys = userKeys "diffy";
   "diffy/tokens/github.age".publicKeys = userKeys "diffy";
   "diffy/user-password.age".publicKeys = userKeys "diffy";
+  "diffy/copyparty/diffy.age".publicKeys = userHostKey "diffy" "iodine";
+  "diffy/copyparty/nero.age".publicKeys = userHostKey "diffy" "iodine";
   # keep-sorted end
 }
