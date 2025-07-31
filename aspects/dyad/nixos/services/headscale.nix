@@ -35,7 +35,11 @@ in
     services.cloudflare-dyndns.domains = [ serverDomain ];
 
     environment.perpetual.default.dirs = [
-      "/var/lib/headscale"
+      {
+        directory = "/var/lib/headscale";
+        user = "headscale";
+        group = "headscale";
+      }
     ];
   };
 }
