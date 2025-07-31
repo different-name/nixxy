@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/Different-Name/nix-files/master/assets/nixoscolorful.svg" height="26px" style="height: 26px;"> nix-files
+# <img src="https://raw.githubusercontent.com/different-name/nix-files/master/assets/nixoscolorful.svg" height="26px" style="height: 26px;"> nix-files
 
 My NixOS configuration files
 
