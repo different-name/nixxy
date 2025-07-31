@@ -28,9 +28,10 @@ self.lib.mkHost
       };
 
       services = {
-        # keep-sorted start block=yes newline_separated=yes
+        # keep-sorted start block=yes
+        caddy.enable = true;
         cloudflare-dyndns.enable = true;
-
+        headscale.enable = true;
         minecraft-server = {
           # enable = true;
           # keep-sorted start
