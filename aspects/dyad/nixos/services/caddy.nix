@@ -9,5 +9,13 @@
       80
       443
     ];
+
+    environment.perpetual.default.dirs = [
+      {
+        directory = "/var/lib/caddy";
+        user = "caddy";
+        group = "caddy";
+      }
+    ];
   };
 }
