@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  osConfig,
+  self',
   pkgs,
   ...
 }:
@@ -9,36 +9,25 @@
   options.dyad.applications.unity.enable = lib.mkEnableOption "unity config";
 
   config = lib.mkIf config.dyad.applications.unity.enable {
-    # generate scripts to launch unity editors directly, skipping the unity hub
-    # can be used as unity editor in alcom
-    home.file =
-      let
-        unityEditors = [
-          "2022.3.22f1"
-        ];
-        editorDir = "Documents/Unity/.hub/Editor";
-
-        uwsmCmd = lib.optionalString osConfig.programs.uwsm.enable "${lib.getExe pkgs.uwsm} app -- ";
-      in
-      unityEditors
-      |> map (version: "${editorDir}/${version}/Editor")
-      |> map (path: {
-        name = "${path}/unity-run";
-        value = {
-          executable = true;
-          text = ''
-            #! /bin/sh
-            exec ${lib.getExe pkgs.unityhub.fhsEnv} ${uwsmCmd} ${path}/Unity "$@"
-          '';
-        };
-      })
-      |> lib.listToAttrs;
-
     xdg.mimeApps.defaultApplications = {
       "x-scheme-handler/unityhub" = "unityhub.desktop"; # unity login
     };
 
     home.perpetual.default.packages = {
+      # keep-sorted start block=yes newline-separated=yes
+      # note: use -force-vulkan when launching unity editor
+      unity-2022-3-22 = {
+        package = self'.packages.unity-2022-3-22;
+        dirs = [
+          # keep-sorted start
+          "$cacheHome/unity3d"
+          "$configHome/Unity"
+          "$configHome/unity3d" # seems to also be for unity games
+          "$dataHome/unity3d"
+          # keep-sorted end
+        ];
+      };
+
       alcom = {
         # https://github.com/tauri-apps/tauri/issues/9394
         package = pkgs.symlinkJoin {
@@ -50,7 +39,6 @@
               --set WEBKIT_DISABLE_DMABUF_RENDERER 1
           '';
         };
-
         dirs = [
           # keep-sorted start
           "$cacheHome/ALCOM"
@@ -61,16 +49,11 @@
         ];
       };
 
-      # note: use -force-vulkan when launching unity editor
+      # required to activate license, but not used to install anything
       unityhub.dirs = [
-        # keep-sorted start
-        "$cacheHome/unity3d"
-        "$configHome/Unity"
-        "$configHome/unity3d" # seems to also be for unity games
         "$configHome/unityhub"
-        "$dataHome/unity3d"
-        # keep-sorted end
       ];
+      # keep-sorted end
     };
   };
 }
