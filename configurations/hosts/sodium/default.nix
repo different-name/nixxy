@@ -38,8 +38,6 @@ self.lib.mkHost
       # keep-sorted start block=yes newline_separated=yes
       hardware.nvidia.enable = true;
 
-      nix.build-host.enable = true;
-
       services = {
         # keep-sorted start
         keyd.enable = true;

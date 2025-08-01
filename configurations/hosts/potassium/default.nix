@@ -32,8 +32,6 @@ self.lib.mkHost
       # keep-sorted start block=yes newline_separated=yes
       hardware.nvidia.enable = true;
 
-      nix.distributed-builds.enable = true;
-
       services.syncthing.enable = true;
       # keep-sorted end
     };
