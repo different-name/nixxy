@@ -14,6 +14,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   meta = {
     description = "Catppuccin mocha theme for VRCX";
+    maintainers = with lib.maintainers; [ different-name ];
     platforms = lib.platforms.all;
   };
 })

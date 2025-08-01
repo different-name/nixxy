@@ -18,6 +18,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   meta = {
     description = "Unofficial Catppuccin Mocha theme for Firefox";
+    maintainers = with lib.maintainers; [ different-name ];
     platforms = lib.platforms.all;
   };
 })

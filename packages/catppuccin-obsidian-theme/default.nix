@@ -24,6 +24,7 @@ stdenv.mkDerivation rec {
     description = "Soothing pastel theme for Obsidian";
     homepage = "https://github.com/catppuccin/obsidian";
     license = lib.licenses.mit;
+    maintainers = with lib.maintainers; [ different-name ];
     mainProgram = "catppuccin-obsidian-theme";
     platforms = lib.platforms.all;
   };

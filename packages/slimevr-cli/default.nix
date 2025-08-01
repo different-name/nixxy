@@ -30,6 +30,7 @@ buildNpmPackage (finalAttrs: {
   meta = {
     description = "A very simple command line tool for interacting with the SlimeVR server";
     license = lib.licenses.mit;
+    maintainers = with lib.maintainers; [ different-name ];
     mainProgram = "slimevr-cli";
   };
 })

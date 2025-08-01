@@ -1,4 +1,5 @@
 {
+  lib,
   writeShellApplication,
   cryptsetup,
   btrfs-progs,
@@ -25,4 +26,9 @@ writeShellApplication {
 
     ${builtins.readFile ./btrfs-backup.sh}
   '';
+
+  meta = {
+    description = "Little backup script for my BTRFS persistent subvolume";
+    maintainers = with lib.maintainers; [ different-name ];
+  };
 }

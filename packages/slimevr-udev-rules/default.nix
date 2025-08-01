@@ -27,6 +27,7 @@ stdenv.mkDerivation {
   meta = with lib; {
     description = "udev rules for SlimeVR";
     license = licenses.asl20;
+    maintainers = with lib.maintainers; [ different-name ];
     platforms = platforms.linux;
     homepage = "https://github.com/SlimeVR/SlimeVR-Server";
   };
