@@ -62,7 +62,7 @@ buildNpmPackage {
   meta = {
     description = "Make haptics in real life go BRRR from VRChat";
     homepage = "https://github.com/OscToys/OscGoesBrrr";
-    # license = lib.licenses.cc-by-nc-sa-40;
+    license = lib.licenses.cc-by-nc-sa-40;
     mainProgram = "osc-goes-brrr";
     platforms = lib.platforms.all;
   };

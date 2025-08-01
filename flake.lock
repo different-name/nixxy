@@ -1050,27 +1050,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-unfree": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1753539813,
-        "narHash": "sha256-gGQBQOtw0cTTeqwDU+0miEgk04idA7OTb3OeP/Jnxkc=",
-        "owner": "numtide",
-        "repo": "nixpkgs-unfree",
-        "rev": "5babecf0fa5adc12bf5ab4687f7f6b63f9148bbd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs-unfree",
-        "type": "github"
-      }
-    },
     "nixpkgs-xr": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1181,7 +1160,6 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-unfree": "nixpkgs-unfree",
         "nixpkgs-xr": "nixpkgs-xr",
         "nur": "nur",
         "steam-config-nix": "steam-config-nix",
@@ -1451,7 +1429,7 @@
           "flake-parts"
         ],
         "nixpkgs": [
-          "nixpkgs-unfree"
+          "nixpkgs"
         ]
       },
       "locked": {

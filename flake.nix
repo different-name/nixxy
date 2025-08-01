@@ -160,13 +160,6 @@
     # hardware configurations
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
-    # nixpkgs with allowUnfree, allowUnsupportedSystem & cudaSupport enabled
-    # workaround for https://discourse.nixos.org/t/unfree-package-from-flake-not-working/40984/7
-    nixpkgs-unfree = {
-      url = "github:numtide/nixpkgs-unfree/nixos-unstable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # nix xr/ar/vr packages
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
@@ -231,7 +224,7 @@
       inputs = {
         # keep-sorted start
         flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs-unfree";
+        nixpkgs.follows = "nixpkgs";
         # keep-sorted end
       };
     };

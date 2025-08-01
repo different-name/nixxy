@@ -1,8 +1,21 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 {
   perSystem =
-    { pkgs, self', ... }:
     {
+      pkgs,
+      system,
+      self',
+      ...
+    }:
+    {
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          cudaSupport = true;
+        };
+      };
+
       packages =
         builtins.readDir ./.
         |> lib.filterAttrs (_: value: value == "directory")
