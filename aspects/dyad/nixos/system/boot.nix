@@ -28,6 +28,7 @@
 
           additionalFiles = {
             "efi/memtest86/memtest.efi" = "${pkgs.memtest86plus}/memtest.efi";
+            "efi/netbootxyz/netboot.xyz.efi" = "${pkgs.netbootxyz-efi}";
           };
 
           extraEntries = ''
@@ -35,6 +36,9 @@
             //MemTest86
               protocol: efi
               path: boot():/limine/efi/memtest86/memtest.efi
+            //Netboot.xyz
+              protocol: efi
+              path: boot():/limine/efi/netbootxyz/netboot.xyz.efi
 
             /+Windows
             //Windows 10
