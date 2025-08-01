@@ -7,7 +7,6 @@
 }:
 {
   imports = [
-    # disko is required for boot & mounting
     inputs.disko.nixosModules.default
   ];
 
@@ -16,24 +15,35 @@
   config = lib.mkIf config.dyad.system.boot.enable {
     boot = {
       initrd = {
-        # enable systemd in initial ramdisk
         systemd.enable = true;
-        # ensure human input devices are functioning
-        # need keyboard input to enter passphrase
         availableKernelModules = [ "hid_generic" ];
       };
 
       kernelPackages = pkgs.linuxPackages_zen;
 
       loader = {
-        # systemd-boot on UEFI
-        systemd-boot = {
+        limine = {
           enable = true;
+          maxGenerations = 25;
 
-          memtest86.enable = true;
+          additionalFiles = {
+            "efi/memtest86/memtest.efi" = "${pkgs.memtest86plus}/memtest.efi";
+          };
+
+          extraEntries = ''
+            /+Tools
+            //MemTest86
+              protocol: efi
+              path: boot():/limine/efi/memtest86/memtest.efi
+
+            /+Windows
+            //Windows 10
+              protocol: efi
+              path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
+          '';
         };
+
         efi.canTouchEfiVariables = true;
-        # skip boot options after 3 seconds
         timeout = 3;
       };
 
