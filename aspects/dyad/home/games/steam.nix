@@ -37,7 +37,16 @@
         # warhammer 40k: darktide
         "1361210" = {
           compatTool = "proton_experimental";
-          launchOptions = ''LD_PRELOAD="" eval $( echo "%command%" | sed "s/\/launcher\/Launcher.exe'.*/\/binaries\/Darktide.exe'/" )'';
+          launchOptions = pkgs.writeShellScriptBin "darktide-wrapper" ''
+            unset LD_PRELOAD
+
+            args=()
+            for arg in "$@"; do
+              args+=( "''${arg//\/launcher\/Launcher.exe/\/binaries\/Darktide.exe}" )
+            done
+
+            exec "''${args[@]}"
+          '';
         };
       };
     };
