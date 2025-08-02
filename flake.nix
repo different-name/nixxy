@@ -6,12 +6,13 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         # keep-sorted start
-        ./configurations/hosts
-        ./lib
+        ./dyad
+        ./formatter.nix
+        ./hosts
         ./modules
         ./packages
-        ./formatter.nix
         ./sources
+        inputs.home-manager.flakeModules.home-manager
         # keep-sorted end
       ];
 

@@ -18,53 +18,7 @@ My NixOS configuration files
 
 ## Structure
 
-### `configurations/`
-
-User and host configurations
-
-```
-configurations
-├── hosts
-│   └── <host>
-│       ├── default.nix  # host nixos config
-│       ├── disko.nix    # disk config
-│       └── hardware.nix # hardware config
-└── users
-    └── <user>
-        ├── default.nix  # user nixos config
-        └── home
-            ├── default.nix       # user home-manager config
-            └── <user>@<host>.nix # user@host home-manager config
-```
-
-### `modules/`
-
-NixOS and Home Manager modules, which are:
-
-- Standard modules
-- Reusable in other contexts
-- Exposed by the flake
-- Not guaranteed to be tested, stable or maintained
-
-### `dyad/`
-
-A set of configuration modules namespaced under `dyad` which:
-
-- Are specific to my usecase
-- Wrap features in enable options
-- Implement a features through simple configuration
-- Don't implement extra options or complex logic
-
-`dyad` also provides profile modules that wrap feature enable options together by use case, e.g. `graphical`, `terminal`, `minimal`
-
-### The rest
-
-- `lib` - helper lambdas
-- `packages` - packaged applications exposed by the flake
-- `parts` - flake-parts configuration modules
-- `patches` - .patch files
-- `secrets` - secrets managed by agenix
-- `_sources` & `nvfetcher.toml` - package sources tracked by nvfetcher
+Docs wip after recent refactor!
 
 ## Acknowledgements
 

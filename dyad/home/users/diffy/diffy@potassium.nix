@@ -1,5 +1,14 @@
-{ lib, osConfig, ... }:
-lib.mkIf (osConfig.networking.hostName == "potassium") {
+{
+  lib,
+  config,
+  osConfig,
+  ...
+}:
+let
+  inherit (config.home) username;
+  inherit (osConfig.networking) hostName;
+in
+lib.mkIf (username == "diffy" && hostName == "potassium") {
   dyad = {
     profiles = {
       # keep-sorted start

@@ -22,10 +22,19 @@
       };
     };
 
-    home-manager.sharedModules = lib.singleton {
-      home.perpetual.default.dirs = [
-        "$cacheHome/nix-output-monitor"
-      ];
-    };
+    home-manager.sharedModules = lib.singleton (
+      { config, osConfig, ... }:
+      {
+        programs.nh = {
+          enable = true;
+          package = lib.mkDefault osConfig.programs.nh.package;
+          flake = "${config.home.homeDirectory}/nix-files";
+        };
+
+        home.perpetual.default.dirs = [
+          "$cacheHome/nix-output-monitor"
+        ];
+      }
+    );
   };
 }
