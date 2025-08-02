@@ -41,6 +41,8 @@
       inherit (config.home-manager.users.diffy.age) identityPaths;
     };
 
+    dyad.system.home-manager.enable = true;
+
     home-manager.users.diffy = {
       imports = [
         self.homeModules.dyad
