@@ -9,14 +9,18 @@ let
 
   cfg = config.environment.perpetual;
 
-  baseOptions = lib.genAttrs [ "dirs" "files" ] (
-    type:
-    lib.mkOption {
-      type = types.listOf types.anything; # leave typing to impermanence
-      default = [ ];
-      description = "${lib.toSentenceCase type} to pass to impermanence";
-    }
-  );
+  baseOptions =
+    lib.genAttrs [ "dirs" "files" ] (
+      type:
+      lib.mkOption {
+        type = types.listOf types.anything; # leave typing to impermanence
+        default = [ ];
+        description = "${lib.toSentenceCase type} to pass to impermanence";
+      }
+    )
+    // {
+      enable = lib.mkEnableOption "perpetual";
+    };
 in
 {
   options.environment.perpetual = lib.mkOption {
@@ -59,10 +63,13 @@ in
   };
 
   config = {
-    environment.persistence = lib.mapAttrs (_: persistCfg: {
-      inherit (persistCfg) files;
-      directories = persistCfg.dirs;
-    }) cfg;
+    environment.persistence = lib.mapAttrs (
+      _: persistCfg:
+      lib.mkIf persistCfg.enable {
+        inherit (persistCfg) files;
+        directories = persistCfg.dirs;
+      }
+    ) cfg;
 
     environment.systemPackages = lib.flatten (
       lib.mapAttrsToList (_: c: lib.mapAttrsToList (_: p: p.package) c.packages) cfg

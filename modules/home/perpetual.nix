@@ -9,14 +9,18 @@ let
 
   cfg = config.home.perpetual;
 
-  baseOptions = lib.genAttrs [ "dirs" "files" ] (
-    type:
-    lib.mkOption {
-      type = types.listOf types.str; # TODO support full config
-      default = [ ];
-      description = "${lib.toSentenceCase type} to pass to impermanence";
-    }
-  );
+  baseOptions =
+    lib.genAttrs [ "dirs" "files" ] (
+      type:
+      lib.mkOption {
+        type = types.listOf types.str; # TODO support full config
+        default = [ ];
+        description = "${lib.toSentenceCase type} to pass to impermanence";
+      }
+    )
+    // {
+      enable = lib.mkEnableOption "perpetual";
+    };
 
   xdgHomes = map (type: "${type}Home") [
     # keep-sorted start
@@ -75,10 +79,13 @@ in
   };
 
   config = {
-    home.persistence = lib.mapAttrs (_: persistCfg: {
-      files = map replaceXdgVars persistCfg.files;
-      directories = map replaceXdgVars persistCfg.dirs;
-    }) cfg;
+    home.persistence = lib.mapAttrs (
+      _: persistCfg:
+      lib.mkIf persistCfg.enable {
+        files = map replaceXdgVars persistCfg.files;
+        directories = map replaceXdgVars persistCfg.dirs;
+      }
+    ) cfg;
 
     home.packages = lib.flatten (
       lib.mapAttrsToList (_: c: lib.mapAttrsToList (_: p: p.package) c.packages) cfg
