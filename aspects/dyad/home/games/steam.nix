@@ -21,8 +21,17 @@
       apps = {
         # vrchat
         "438100" = {
-          compatTool = "proton_experimental";
-          launchOptions = ''env -u TZ PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc" %command%'';
+          compatTool = "GE-Proton";
+          launchOptions = pkgs.writeShellScriptBin "vrchat-wrapper" ''
+            unset TZ
+            export PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc"
+
+            if [[ "$*" != *"--no-vr"* ]]; then
+                export PROTON_ENABLE_WAYLAND=1
+            fi
+
+            exec "$@"
+          '';
         };
 
         # warhammer 40k: darktide
