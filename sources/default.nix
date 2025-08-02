@@ -1,15 +1,6 @@
-{ lib, flake-parts-lib, ... }:
 {
   imports = [
-    (flake-parts-lib.mkTransposedPerSystemModule {
-      name = "sources";
-      option = lib.mkOption {
-        type = lib.types.attrs;
-        default = { };
-        description = "An attribute set of nvfetcher sources";
-      };
-      file = ./default.nix;
-    })
+    ../modules/flake/sources.nix
   ];
 
   perSystem =
