@@ -1,31 +1,26 @@
 { lib, flake-parts-lib, ... }:
-let
-  inherit (lib) types;
-in
 {
   imports = [
     (flake-parts-lib.mkTransposedPerSystemModule {
       name = "sources";
       option = lib.mkOption {
-        type = types.attrs;
+        type = lib.types.attrs;
         default = { };
         description = "An attribute set of nvfetcher sources";
       };
-      file = ./sources.nix;
+      file = ./default.nix;
     })
   ];
 
   perSystem =
     { pkgs, ... }:
     {
-      sources = import ../_sources/generated.nix {
+      sources = import ./_sources/generated.nix {
         inherit (pkgs)
-          # keep-sorted start
-          dockerTools
-          fetchFromGitHub
           fetchgit
           fetchurl
-          # keep-sorted end
+          fetchFromGitHub
+          dockerTools
           ;
       };
     };

@@ -15,8 +15,8 @@
         settings.global.excludes = [
           # keep-sorted start
           "*.age"
-          "_sources/generated.json"
-          "_sources/generated.nix"
+          "sources/_sources/generated.json"
+          "sources/_sources/generated.nix"
           # keep-sorted end
         ];
 

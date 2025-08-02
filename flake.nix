@@ -1,7 +1,22 @@
 {
   description = "Diffy's nix-files";
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./parts ]; };
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        # keep-sorted start
+        ./configurations/hosts
+        ./lib
+        ./modules
+        ./packages
+        ./formatter.nix
+        ./sources
+        # keep-sorted end
+      ];
+
+      systems = import inputs.systems;
+    };
 
   inputs = {
     # keep-sorted start block=yes newline_separated=yes
