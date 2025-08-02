@@ -6,7 +6,6 @@
     dyad = {
       system = {
         # keep-sorted start
-        agenix.enable = true;
         perpetual.enable = true;
         # keep-sorted end
       };

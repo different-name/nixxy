@@ -39,5 +39,8 @@ in
     home.perpetual.default.dirs = [
       "$stateHome/syncthing"
     ];
+
+    # hard dependency
+    dyad.system.agenix.enable = true;
   };
 }

@@ -38,14 +38,7 @@
 
     age = {
       secrets."user-passwords/diffy".file = self + /secrets/user-passwords/diffy.age;
-
-      # access to the hostkey independent of impermanence activation
-      identityPaths =
-        let
-          inherit (config.home-manager.users.diffy.home) persistence homeDirectory;
-          persistentHomePath = persistence.default.persistentStoragePath + homeDirectory;
-        in
-        lib.singleton "${persistentHomePath}/.ssh/id_ed25519";
+      inherit (config.home-manager.users.diffy.age) identityPaths;
     };
 
     home-manager.users.diffy = {
@@ -58,6 +51,8 @@
         homeDirectory = "/home/diffy";
         inherit (config.system) stateVersion;
       };
+
+      dyad.system.agenix.enable = true;
     };
   };
 }
