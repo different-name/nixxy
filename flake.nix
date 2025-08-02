@@ -174,6 +174,12 @@
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # used for cudaSupport for wivrn flake
+    nixpkgs-unfree = {
+      url = "github:numtide/nixpkgs-unfree";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nix user repository
     nur = {
       url = "github:nix-community/NUR";
@@ -211,7 +217,7 @@
       inputs = {
         # keep-sorted start
         flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
+        nixpkgs.follows = "nixpkgs-unfree";
         # keep-sorted end
       };
     };
