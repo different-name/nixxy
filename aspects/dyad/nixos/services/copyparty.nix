@@ -13,7 +13,6 @@ let
   ];
 
   serverDomain = "copyparty.different-name.com";
-  secretsPath = "diffy/copyparty";
 in
 {
   imports = [
@@ -43,15 +42,15 @@ in
       };
 
       accounts = lib.genAttrs accounts (account: {
-        passwordFile = config.age.secrets."${secretsPath}/${account}".path;
+        passwordFile = config.age.secrets."copyparty/${account}".path;
       });
     };
 
     age.secrets = lib.listToAttrs (
       map (account: {
-        name = "${secretsPath}/${account}";
+        name = "copyparty/${account}";
         value = {
-          file = self + "/secrets/${secretsPath}/${account}.age";
+          file = self + /secrets/copyparty/${account}.age;
           owner = "copyparty";
           group = "copyparty";
         };

@@ -6,8 +6,7 @@
   ...
 }:
 let
-  inherit (config.home) username;
-  secretsPath = "${username}/syncthing/${osConfig.networking.hostName}";
+  secretsPath = "syncthing/${osConfig.networking.hostName}";
   keyPath = "${secretsPath}/key";
   certPath = "${secretsPath}/cert";
 in
@@ -33,8 +32,8 @@ in
     };
 
     age.secrets = {
-      ${keyPath}.file = self + "/secrets/${keyPath}.age";
-      ${certPath}.file = self + "/secrets/${certPath}.age";
+      ${keyPath}.file = self + /secrets/${keyPath}.age;
+      ${certPath}.file = self + /secrets/${certPath}.age;
     };
 
     home.perpetual.default.dirs = [

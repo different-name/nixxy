@@ -92,8 +92,8 @@ let
                   "${persistentHomeDirectory}/.ssh/id_ed25519"
                 ];
                 # user password secret
-                age.secrets."${username}/user-password".file = self + /secrets/${username}/user-password.age;
-                users.users.${username}.hashedPasswordFile = config.age.secrets."${username}/user-password".path;
+                age.secrets."user-passwords/${username}".file = self + /secrets/user-passwords/${username}.age;
+                users.users.${username}.hashedPasswordFile = config.age.secrets."user-passwords/${username}".path;
               }
             )
 
