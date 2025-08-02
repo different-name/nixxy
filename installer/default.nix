@@ -49,12 +49,16 @@ in
                   # keep-sorted end
                 };
 
+                # keep-sorted start block=yes newline_separated=yes
+                hardware.nvidia.enable = true;
+
                 system = {
                   # keep-sorted start
                   boot.enable = lib.mkForce false;
                   home-manager.enable = true;
                   # keep-sorted end
                 };
+                # keep-sorted end
               };
 
               services.tty1Autologin = {
@@ -97,6 +101,13 @@ in
                   username = "silly";
                   homeDirectory = "/home/silly";
                   inherit (config.system) stateVersion;
+                };
+
+                dyad.profiles = {
+                  # keep-sorted start
+                  graphical-minimal.enable = true;
+                  terminal.enable = true;
+                  # keep-sorted end
                 };
               };
             }
