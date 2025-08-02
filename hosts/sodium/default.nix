@@ -39,7 +39,12 @@
       # keep-sorted end
     };
 
-    system.btrfs.enable = true;
+    system = {
+      # keep-sorted start
+      btrfs.enable = true;
+      perpetual.enable = true;
+      # keep-sorted end
+    };
     # keep-sorted end
   };
 

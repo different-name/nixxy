@@ -31,7 +31,6 @@
         boot.enable = true;
         locale.enable = true;
         networking.enable = true;
-        perpetual.enable = true;
         security.enable = true;
         # keep-sorted end
       };
