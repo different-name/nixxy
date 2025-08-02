@@ -75,5 +75,8 @@ in
         group = "copyparty";
       }
     ];
+
+    # dependency
+    dyad.system.agenix.enable = true;
   };
 }

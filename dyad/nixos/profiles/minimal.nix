@@ -28,7 +28,6 @@
 
       system = {
         # keep-sorted start
-        agenix.enable = true;
         boot.enable = true;
         btrfs.enable = true;
         home-manager.enable = true;

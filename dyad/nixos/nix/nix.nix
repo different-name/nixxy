@@ -66,5 +66,8 @@
         ];
       };
     };
+
+    # dependency
+    dyad.system.agenix.enable = true;
   };
 }

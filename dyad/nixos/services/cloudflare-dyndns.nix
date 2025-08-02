@@ -14,5 +14,8 @@
       enable = true;
       apiTokenFile = config.age.secrets."tokens/cloudflare".path;
     };
+
+    # hard dependency
+    dyad.system.agenix.enable = true;
   };
 }
