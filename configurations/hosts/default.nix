@@ -24,7 +24,7 @@ let
       modules = [
         ./${hostName}
         ../users
-        (self.lib.collectAspectModules "nixos")
+        (inputs.import-tree (self + /dyad/nixos))
 
         {
           _module.args = withSystem system (

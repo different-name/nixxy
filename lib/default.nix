@@ -6,13 +6,6 @@
 }:
 {
   flake.lib = {
-    collectAspectModules =
-      type:
-      builtins.readDir (self + /aspects)
-      |> lib.filterAttrs (name: _: lib.pathIsDirectory (self + /aspects/${name}/${type}))
-      |> lib.mapAttrsToList (name: _: self + /aspects/${name}/${type})
-      |> inputs.import-tree;
-
     mkHost =
       {
         hostName,
@@ -61,7 +54,7 @@
                 {
                   imports = [
                     homeConfig
-                    (self.lib.collectAspectModules "home")
+                    (inputs.import-tree (self + /dyad/home))
 
                     {
                       home = {

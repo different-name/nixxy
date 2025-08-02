@@ -5,7 +5,7 @@ if [[ -z $NH_FLAKE ]]; then
   exit 1
 fi
 
-OUTPUT_FILE="${NH_FLAKE}/aspects/dyad/home/applications/discord/_moonlight-config.nix"
+OUTPUT_FILE="${NH_FLAKE}/dyad/home/applications/discord/_moonlight-config.nix"
 CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/moonlight-mod/stable.json"
 
 if [[ -f $CONFIG_FILE ]]; then

@@ -46,16 +46,16 @@ NixOS and Home Manager modules, which are:
 - Exposed by the flake
 - Not guaranteed to be tested, stable or maintained
 
-### `aspects/`
+### `dyad/`
 
-Contains "`aspects`". An `aspect` is a set of configuration modules which:
+A set of configuration modules namespaced under `dyad` which:
 
-- Are specific to a single person's usecase
+- Are specific to my usecase
 - Wrap features in enable options
 - Implement a features through simple configuration
 - Don't implement extra options or complex logic
 
-An `aspect` can also provide profile modules that wrap feature enable options together by use case, e.g. `graphical`, `terminal`, `minimal`
+`dyad` also provides profile modules that wrap feature enable options together by use case, e.g. `graphical`, `terminal`, `minimal`
 
 ### The rest
 
