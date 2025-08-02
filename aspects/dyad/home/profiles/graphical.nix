@@ -46,12 +46,7 @@
         # keep-sorted end
       };
 
-      style = {
-        # keep-sorted start
-        catppuccin.enable = true;
-        stylix.enable = true;
-        # keep-sorted end
-      };
+      style.catppuccin.enable = true;
       # keep-sorted end
     };
 
