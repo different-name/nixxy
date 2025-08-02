@@ -13,12 +13,14 @@ lib.mkIf (username == "diffy" && hostName == "potassium") {
     profiles = {
       # keep-sorted start
       graphical.enable = true;
-      minimal.enable = true;
       terminal.enable = true;
       # keep-sorted end
     };
 
+    # keep-sorted start
     services.syncthing.enable = true;
+    system.perpetual.enable = true;
+    # keep-sorted end
   };
 
   # display battery as notification

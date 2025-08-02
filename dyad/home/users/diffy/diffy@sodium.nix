@@ -15,7 +15,6 @@ lib.mkIf (username == "diffy" && hostName == "sodium") {
     profiles = {
       # keep-sorted start
       graphical.enable = true;
-      minimal.enable = true;
       terminal.enable = true;
       # keep-sorted end
     };
@@ -36,6 +35,8 @@ lib.mkIf (username == "diffy" && hostName == "sodium") {
     media.goxlr-utility.enable = true;
 
     services.syncthing.enable = true;
+
+    system.perpetual.enable = true;
     # keep-sorted end
   };
 
