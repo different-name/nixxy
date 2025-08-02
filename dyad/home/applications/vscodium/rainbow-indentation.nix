@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   config = lib.mkIf config.dyad.applications.vscodium.enable {
     programs.vscode.profiles.default.userSettings = {
