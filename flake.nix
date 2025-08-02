@@ -9,6 +9,7 @@
         ./dyad
         ./formatter.nix
         ./hosts
+        ./installer
         ./modules
         ./packages
         ./sources
@@ -170,6 +171,12 @@
     # vscode extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # collection of image builders
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
