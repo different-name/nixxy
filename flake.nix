@@ -160,6 +160,12 @@
     # hardware configurations
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
+    # used for cudaSupport for wivrn flake
+    nixpkgs-unfree = {
+      url = "github:numtide/nixpkgs-unfree";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nix xr/ar/vr packages
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
@@ -173,12 +179,6 @@
 
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # used for cudaSupport for wivrn flake
-    nixpkgs-unfree = {
-      url = "github:numtide/nixpkgs-unfree";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # nix user repository
     nur = {
