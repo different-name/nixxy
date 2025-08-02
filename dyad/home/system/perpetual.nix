@@ -7,9 +7,13 @@
 }:
 {
   imports = [
-    # keep-sorted start
+    # keep-sorted start block=yes
     inputs.impermanence.homeManagerModules.impermanence
     self.homeModules.perpetual # impermanence option bindings
+    {
+      # required since other configs try to use 'default'
+      home.persistence.default.persistentStoragePath = lib.mkDefault "/persist";
+    }
     # keep-sorted end
   ];
 

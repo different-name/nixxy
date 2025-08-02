@@ -10,6 +10,10 @@
     # keep-sorted start
     inputs.impermanence.nixosModules.default
     self.nixosModules.perpetual # impermanence option bindings
+    {
+      # required since other configs try to use 'default'
+      environment.persistence.default.persistentStoragePath = lib.mkDefault "/persist/system";
+    }
     # keep-sorted end
   ];
 
