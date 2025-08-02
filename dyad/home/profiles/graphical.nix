@@ -34,7 +34,5 @@
       style.catppuccin.enable = true;
       # keep-sorted end
     };
-
-    programs.zathura.enable = true;
   };
 }
