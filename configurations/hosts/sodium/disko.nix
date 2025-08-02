@@ -2,7 +2,7 @@
   disko.devices = {
     disk."main" = {
       type = "disk";
-      device = "/dev/disk/by-diskseq/1";
+      device = "/dev/disk/by-id/nvme-TEAM_TM8FPW004T_112409130300339";
       content = {
         type = "gpt";
 
