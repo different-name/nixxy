@@ -27,6 +27,8 @@
     hardware.nvidia.enable = true;
 
     services.syncthing.enable = true;
+
+    system.btrfs.enable = true;
     # keep-sorted end
   };
 

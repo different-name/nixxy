@@ -38,6 +38,8 @@
       xr.enable = true;
       # keep-sorted end
     };
+
+    system.btrfs.enable = true;
     # keep-sorted end
   };
 

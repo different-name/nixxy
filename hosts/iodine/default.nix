@@ -21,6 +21,7 @@
       # keep-sorted end
     };
 
+    # keep-sorted start block=yes newline_separated=yes
     services = {
       # keep-sorted start block=yes
       caddy.enable = true;
@@ -37,5 +38,8 @@
       };
       # keep-sorted end
     };
+
+    system.btrfs.enable = true;
+    # keep-sorted end
   };
 }

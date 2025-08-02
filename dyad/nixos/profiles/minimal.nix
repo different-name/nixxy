@@ -29,7 +29,6 @@
       system = {
         # keep-sorted start
         boot.enable = true;
-        btrfs.enable = true;
         home-manager.enable = true;
         locale.enable = true;
         networking.enable = true;
