@@ -1,8 +1,8 @@
 {
   # keep-sorted start
-  blender = ./blender;
-  disblockOrigin = ./disblock-origin;
-  perpetual = ./perpetual;
-  xdgDesktopPortalHyprland = ./xdg-desktop-portal-hyprland;
+  blender = ./blender.nix;
+  disblockOrigin = ./disblock-origin.nix;
+  perpetual = ./perpetual.nix;
+  xdgDesktopPortalHyprland = ./xdg-desktop-portal-hyprland.nix;
   # keep-sorted end
 }
