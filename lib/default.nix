@@ -4,8 +4,8 @@
   self,
   ...
 }:
-let
-  dyadLib = {
+{
+  flake.lib = {
     collectAspectModules =
       type:
       builtins.readDir (self + /aspects)
@@ -61,7 +61,7 @@ let
                 {
                   imports = [
                     homeConfig
-                    (dyadLib.collectAspectModules "home")
+                    (self.lib.collectAspectModules "home")
 
                     {
                       home = {
@@ -103,7 +103,4 @@ let
         );
       };
   };
-in
-{
-  flake.lib = dyadLib;
 }
