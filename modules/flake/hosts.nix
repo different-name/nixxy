@@ -30,11 +30,25 @@ let
 
           (pkgs.closureInfo { rootPaths = [ ]; }).drvPath
         ]
+        # TODO this does not include dependencies of flake inputs
         ++ map (input: input.outPath) (lib.attrValues self.inputs);
 
       closureInfo = pkgs.closureInfo { rootPaths = dependencies; };
 
-      inherit (config.flake.nixosConfigurations.${host.hostName}.config.disko.devices) disk;
+      hostConfig = config.flake.nixosConfigurations.${host.hostName}.config;
+      normalUsers = lib.filterAttrs (_: user: user.isNormalUser) hostConfig.users.users;
+      mainDisk = hostConfig.disko.devices.disk.main.device;
+
+      installConfig = {
+        users.users = lib.mapAttrs (_: _: {
+          # set a default password for the first install, since secrets wont be available yet
+          password = lib.mkForce "nixos";
+          initialPassword = lib.mkForce null;
+          initialHashedPassword = lib.mkForce null;
+          hashedPassword = lib.mkForce null;
+          hashedPasswordFile = lib.mkForce null;
+        }) normalUsers;
+      };
     in
     {
       environment = {
@@ -43,7 +57,10 @@ let
         systemPackages = lib.singleton (
           pkgs.writeShellScriptBin "install-nixos-unattended" ''
             set -eux
-            exec ${lib.getExe' pkgs.disko "disko-install"} --flake "${self}#${host.hostName}" --disk main "${disk.main.device}"
+            exec ${lib.getExe' pkgs.disko "disko-install"} \
+              --flake "${self}#${host.hostName}" \
+              --disk main "${mainDisk}" \
+              --system-config ${lib.escapeShellArg (builtins.toJSON installConfig)}
           ''
         );
       };
