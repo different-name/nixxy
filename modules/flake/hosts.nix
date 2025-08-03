@@ -129,7 +129,7 @@ in
     lib.mapAttrsToList (_: host: {
       ${host.system}."${host.hostName}-installer" = inputs.nixos-generators.nixosGenerate {
         inherit (host) system;
-        format = "iso";
+        format = "install-iso";
         specialArgs = { inherit self; };
         modules = [
           (diskoInstallModule host)
