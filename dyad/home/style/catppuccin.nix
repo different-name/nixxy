@@ -1,8 +1,8 @@
 {
   lib,
   config,
-  inputs,
   osConfig,
+  inputs,
   ...
 }:
 {
@@ -29,12 +29,7 @@
 
       fish.enable = false;
 
-      gtk = {
-        inherit (config.catppuccin) enable;
-        size = "standard";
-        tweaks = [ "normal" ];
-        icon.enable = true;
-      };
+      gtk.icon.enable = true;
 
       mpv.enable = false;
 
