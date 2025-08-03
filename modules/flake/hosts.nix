@@ -64,6 +64,8 @@ let
           ''
         );
       };
+
+      nix.settings = { inherit (hostConfig.nix.settings) experimental-features; };
     };
 in
 {
