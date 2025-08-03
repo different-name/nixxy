@@ -6,6 +6,8 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         # keep-sorted start
+        # manually import all flake modules, since they can't be imported through `self`
+        (inputs.import-tree ./modules/flake)
         ./dyad
         ./formatter.nix
         ./hosts

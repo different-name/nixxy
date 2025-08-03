@@ -1,9 +1,5 @@
 { inputs, ... }:
 {
-  imports = [
-    ../modules/flake/hosts.nix
-  ];
-
   nix-files.hosts = {
     # keep-sorted start block=yes newline_separated=yes
     iodine = {

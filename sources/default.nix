@@ -1,8 +1,4 @@
 {
-  imports = [
-    ../modules/flake/sources.nix
-  ];
-
   perSystem =
     { pkgs, ... }:
     {
