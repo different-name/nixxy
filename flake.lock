@@ -807,11 +807,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753293216,
-        "narHash": "sha256-4hAm9PYNHAsR3MxH8MhSZt7mTiR8MlhyQilLJEPdaZs=",
+        "lastModified": 1754073210,
+        "narHash": "sha256-raqn8TVqD/VFgPw6kiv69JoBmUUVp9Ltj9n2EeEg85U=",
         "owner": "moonlight-mod",
         "repo": "moonlight",
-        "rev": "297a1b57c14ff18890382b2fe89f493ba349a730",
+        "rev": "e08bd0ee0abb061d879b69db84999cfb04abdc9e",
         "type": "github"
       },
       "original": {
