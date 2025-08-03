@@ -9,7 +9,6 @@
         ./dyad
         ./formatter.nix
         ./hosts
-        ./installer
         ./modules
         ./packages
         ./sources
