@@ -32,13 +32,10 @@ test *args: (build "test" args)
 update *args:
   @nix flake update {{ args }}
 
-# bump dependencies
+# update package sources
 [group("dependencies")]
-bump:
-  @echo -e "\e[35m>\e[0m Updating package sources"
-  @nvfetcher
-  @echo -e "\n\e[32m>\e[0m Updating all flake inputs"
-  @nix flake update
+fetch *args:
+  @nvfetcher {{ args }}
 
 # reformat code
 [group("nice and tidy")]
