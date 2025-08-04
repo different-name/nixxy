@@ -9,6 +9,17 @@
 let
   inherit (lib) types;
 
+  flakeOutPaths =
+    let
+      collector =
+        parent:
+        map (
+          child:
+          [ child.outPath ] ++ (if child ? inputs && child.inputs != { } then (collector child) else [ ])
+        ) (lib.attrValues parent.inputs);
+    in
+    lib.unique (lib.flatten (collector self));
+
   # https://github.com/nix-community/disko/blob/master/docs/disko-install.md#example-for-a-nixos-installer
   diskoInstallModule =
     host:
@@ -30,8 +41,7 @@ let
 
           (pkgs.closureInfo { rootPaths = [ ]; }).drvPath
         ]
-        # TODO this does not include dependencies of flake inputs
-        ++ map (input: input.outPath) (lib.attrValues self.inputs);
+        ++ flakeOutPaths;
 
       closureInfo = pkgs.closureInfo { rootPaths = dependencies; };
 
