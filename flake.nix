@@ -232,7 +232,7 @@
     # formatter module for flake-parts
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # slimevr solarxr protocol patches for wivrn

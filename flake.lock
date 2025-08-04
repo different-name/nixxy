@@ -1226,7 +1226,7 @@
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
-          "treefmt-nix"
+          "nixpkgs"
         ]
       },
       "locked": {
