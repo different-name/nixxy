@@ -35,7 +35,7 @@ update *args:
 # update package sources
 [group("dependencies")]
 fetch *args:
-  @nvfetcher {{ args }}
+  @cd sources && nvfetcher {{ args }}
 
 # reformat code
 [group("nice and tidy")]
