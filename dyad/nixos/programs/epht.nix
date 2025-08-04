@@ -4,6 +4,18 @@
   self,
   ...
 }:
+let
+  genHomeDirPaths =
+    paths:
+    if config ? home-manager then
+      lib.flatten (
+        lib.mapAttrsToList (
+          _: user: map (path: "${user.home.homeDirectory}/${path}") paths
+        ) config.home-manager.users
+      )
+    else
+      [ ];
+in
 {
   imports = [
     self.nixosModules.epht
@@ -48,12 +60,11 @@
         "/var/tmp" # temporary files
         # keep-sorted end
       ]
-      # https://wiki.archlinux.org/title/XDG_Base_Directory
-      # TODO this should not be hard coded
-      ++ (map (path: "/home/diffy/${path}") [
+
+      # helpful reference: https://wiki.archlinux.org/title/XDG_Base_Directory
+      ++ (genHomeDirPaths [
         # keep-sorted start
         ".cache/Microsoft/DeveloperTools/deviceid" # probably vsc, haven't had issues being ephemeral
-        ".config/VSCodium" # some subfolders are persisted, but I should have everything I need now
         ".config/dconf/user" # gnome settings database
         ".config/fish" # can configure declaratively
         ".config/gtk-2.0"
