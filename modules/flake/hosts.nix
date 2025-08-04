@@ -18,7 +18,7 @@ let
           [ child.outPath ] ++ (if child ? inputs && child.inputs != { } then (collector child) else [ ])
         ) (lib.attrValues parent.inputs);
     in
-    lib.unique (lib.flatten (collector self));
+    self |> collector |> lib.flatten |> lib.unique;
 
   # https://github.com/nix-community/disko/blob/master/docs/disko-install.md#example-for-a-nixos-installer
   diskoInstallModule =
