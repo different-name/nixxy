@@ -25,7 +25,10 @@
           launchOptions = pkgs.writeShellScriptBin "vrchat-wrapper" ''
             unset TZ
             export PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc"
-            export PROTON_ENABLE_WAYLAND=1
+
+            if [[ "$*" != *"--no-vr"* ]]; then
+                export PROTON_ENABLE_WAYLAND=1
+            fi
 
             exec "$@"
           '';
