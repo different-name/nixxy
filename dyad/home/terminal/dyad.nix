@@ -6,6 +6,18 @@
   pkgs,
   ...
 }:
+let
+  flakeRepl = ''
+    let
+      flake = builtins.getFlake "${config.programs.nh.flake}";
+      inherit (flake.nixosConfigurations."${osConfig.networking.hostName}") lib pkgs;
+    in
+    {
+      inherit flake lib pkgs;
+      f = flake;
+    }
+  '';
+in
 {
   options.dyad.terminal.dyad.enable = lib.mkEnableOption "dyad config";
 
@@ -30,6 +42,11 @@
 
       (pkgs.writeShellScriptBin "dyad-fmt" ''
         exec ${lib.getExe self'.formatter} "$@"
+      '')
+
+      (pkgs.writeShellScriptBin "dyad-flake-repl" ''
+        exec ${lib.getExe pkgs.nix} repl --expr \
+          ${lib.escapeShellArg flakeRepl} "$@"
       '')
     ];
   };
