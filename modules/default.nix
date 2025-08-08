@@ -1,28 +1,37 @@
-{
-  flake = {
-    flakeModules = {
-      # keep-sorted start
-      hosts = import ./flake/hosts.nix;
-      sources = import ./flake/sources.nix;
-      # keep-sorted end
-    };
+{ lib, ... }:
+let
+  isImportable =
+    path: type:
+    (type == "directory" && lib.pathExists (lib.path.append path "default.nix"))
+    || (type == "regular" && lib.hasSuffix ".nix" path);
 
-    homeModules = {
-      # keep-sorted start
-      blender = ./home/blender.nix;
-      disblockOrigin = ./home/disblock-origin.nix;
-      perpetual = ./home/perpetual.nix;
-      xdgDesktopPortalHyprland = ./home/xdg-desktop-portal-hyprland.nix;
-      # keep-sorted end
-    };
+  kebabToSnakeCase =
+    string:
+    let
+      words = lib.splitString "-" string;
+      wordsToSnakeCase = pos: word: if pos > 1 then lib.toSentenceCase word else word;
+    in
+    lib.concatImapStrings wordsToSnakeCase words;
 
-    nixosModules = {
-      # keep-sorted start
-      epht = ./nixos/epht;
-      perpetual = ./nixos/perpetual.nix;
-      tty1Autologin = ./nixos/tty1-autologin.nix;
-      wireplumberScripts = ./nixos/wireplumber-scripts;
-      # keep-sorted end
-    };
+  importModules =
+    dir:
+    builtins.readDir dir
+    |> lib.filterAttrs (name: type: isImportable (lib.path.append dir name) type)
+    |> lib.mapAttrs' (
+      name: _: {
+        name = kebabToSnakeCase (lib.removeSuffix ".nix" name);
+        value = import (lib.path.append dir name);
+      }
+    );
+
+  genModuleAttrs = type: {
+    flake."${type}Modules" = importModules ./${type};
   };
+in
+{
+  imports = map genModuleAttrs [
+    "flake"
+    "home"
+    "nixos"
+  ];
 }
