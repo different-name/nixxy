@@ -1,9 +1,9 @@
 { lib, ... }:
 let
   isImportable =
-    path: type:
-    (type == "directory" && lib.pathExists (lib.path.append path "default.nix"))
-    || (type == "regular" && lib.hasSuffix ".nix" path);
+    path: pathType:
+    (pathType == "directory" && lib.pathExists (lib.path.append path "default.nix"))
+    || (pathType == "regular" && lib.hasSuffix ".nix" path);
 
   kebabToSnakeCase =
     string:
@@ -16,7 +16,7 @@ let
   importModules =
     dir:
     builtins.readDir dir
-    |> lib.filterAttrs (name: type: isImportable (lib.path.append dir name) type)
+    |> lib.filterAttrs (name: pathType: isImportable (lib.path.append dir name) pathType)
     |> lib.mapAttrs' (
       name: _: {
         name = kebabToSnakeCase (lib.removeSuffix ".nix" name);
@@ -24,14 +24,11 @@ let
       }
     );
 
-  genModuleAttrs = type: {
-    flake."${type}Modules" = importModules ./${type};
-  };
+  moduleTypes =
+    builtins.readDir ./. |> lib.filterAttrs (_: pathType: pathType == "directory") |> lib.attrNames;
 in
 {
-  imports = map genModuleAttrs [
-    "flake"
-    "home"
-    "nixos"
-  ];
+  imports = map (moduleType: {
+    flake."${moduleType}Modules" = importModules ./${moduleType};
+  }) moduleTypes;
 }
