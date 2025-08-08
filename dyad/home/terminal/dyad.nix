@@ -2,6 +2,7 @@
   lib,
   config,
   osConfig,
+  self',
   pkgs,
   ...
 }:
@@ -26,6 +27,10 @@
           exec just "$@"
         '';
       })
+
+      (pkgs.writeShellScriptBin "dyad-fmt" ''
+        exec ${lib.getExe self'.formatter} "$@"
+      '')
     ];
   };
 }
