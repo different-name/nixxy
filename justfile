@@ -51,3 +51,8 @@ clean *args:
 [group("tools")]
 repl *args:
   @nh os repl {{ args }}
+
+# load flake in a repl
+[group("tools")]
+flake-repl *args:
+  @dyad-flake-repl {{ args }}
