@@ -17,8 +17,8 @@ boot *args: (build "boot" args)
 goodnight update_flag="":
   @sudo true # to ask for password first
   @bash -c 'if [ "{{update_flag}}" = "-u" ]; then \
-    nix flake update; \
     cd sources && nvfetcher; \
+    nix flake update; \
   fi'
   @timeout 1500 nh os boot || true # timeout after 25 mins, continue regardless of output
   @poweroff # bye bye!
