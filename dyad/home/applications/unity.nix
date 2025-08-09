@@ -50,9 +50,11 @@
       };
 
       # required to activate license, but not used to install anything
-      unityhub.dirs = [
-        "$configHome/unityhub"
-      ];
+      # TODO: removed temporarily due to https://github.com/NixOS/nixpkgs/blob/c2ae88e026f9525daf89587f3cbee584b92b6134/pkgs/by-name/un/unityhub/package.nix#L106-L108
+      # waiting for https://github.com/NixOS/nixpkgs/pull/421740
+      # unityhub.dirs = [
+      #   "$configHome/unityhub"
+      # ];
       # keep-sorted end
     };
   };
