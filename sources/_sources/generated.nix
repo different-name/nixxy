@@ -3,31 +3,31 @@
 {
   cats-blender-plugin-unofficial = {
     pname = "cats-blender-plugin-unofficial";
-    version = "9266abbd4fb51ce953ddf40a4eaa057b18cc18c4";
+    version = "8e68dede5d9afb557de4b92078c6b1b26f3c1faa";
     src = fetchgit {
       url = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git";
-      rev = "9266abbd4fb51ce953ddf40a4eaa057b18cc18c4";
+      rev = "8e68dede5d9afb557de4b92078c6b1b26f3c1faa";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-su4YHNyc6jmAftaYHE9UpuvuDk5YxZqhGoIEFrMobsM=";
+      sha256 = "sha256-lKtlUaEp2qapkJcrLd7/29eMh3WEuRVwYX3iIkCXNVw=";
     };
-    date = "2025-07-29";
+    date = "2025-08-04";
   };
   disblock-origin = {
     pname = "disblock-origin";
-    version = "6709893e5c35a1770868cc5bf193e088bdd903c7";
+    version = "9b3d5572d0761ec7a3c3b33bf5af83c9622403c5";
     src = fetchgit {
       url = "https://git.allpurposem.at/mat/Disblock-Origin.git";
-      rev = "6709893e5c35a1770868cc5bf193e088bdd903c7";
+      rev = "9b3d5572d0761ec7a3c3b33bf5af83c9622403c5";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-p9aJUA3eGf1pHFVLgBRzQVPVk9aL4a/v/VUYBeWe0SA=";
+      sha256 = "sha256-Rb1kNp8Wvo11rIGeRz2u5kCmG16xS/O5tcEtkMBeyhc=";
     };
-    date = "2025-08-04";
+    date = "2025-08-06";
   };
   osc-goes-brrr = {
     pname = "osc-goes-brrr";
