@@ -12,7 +12,7 @@
         ./formatter.nix
         ./hosts
         ./modules
-        ./packages
+        ./pkgs
         ./sources
         inputs.home-manager.flakeModules.home-manager
         # keep-sorted end
