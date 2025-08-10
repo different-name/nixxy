@@ -9,7 +9,7 @@
 {
   imports = [
     inputs.catppuccin.homeModules.catppuccin
-    self.homeModules.catppuccinMagneticGtk
+    self.homeModules.catppuccinGtk
   ];
 
   options.dyad.style.catppuccin.enable = lib.mkEnableOption "catppuccin config";
@@ -38,8 +38,6 @@
       yazi.accent = "mauve";
 
       zellij.enable = false;
-
-      gtk.magnetic.accent = "red";
       # keep-sorted end
     };
   };
