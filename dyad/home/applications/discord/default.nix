@@ -49,9 +49,20 @@ in
       ))
     ];
 
-    xdg.autostart.entries = [
-      (discordPackage + /share/applications/discord.desktop)
-    ];
+    xdg.autostart.entries = lib.singleton (
+      (pkgs.makeDesktopItem {
+        name = "discord";
+        destination = "/";
+        desktopName = "Discord";
+        noDisplay = true;
+        exec = pkgs.writeShellScript "discord-delay-autostart" ''
+          # workaround for starting before network is available
+          sleep 2
+          exec ${lib.getExe discordPackage}
+        '';
+      })
+      + /discord.desktop
+    );
 
     home.perpetual.default.dirs = [
       # keep-sorted start
