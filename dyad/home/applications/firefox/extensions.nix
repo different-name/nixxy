@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs,
+  inputs',
   self',
   ...
 }:
@@ -32,7 +32,7 @@
           # keep-sorted end
         };
 
-        packages = with pkgs.nur.repos.rycee.firefox-addons; [
+        packages = with inputs'.nur.legacyPackages.repos.rycee.firefox-addons; [
           # keep-sorted start
           dearrow
           greasemonkey

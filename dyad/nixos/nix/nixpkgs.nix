@@ -1,15 +1,10 @@
 {
   lib,
   config,
-  inputs,
   self,
   ...
 }:
 {
-  imports = [
-    inputs.nur.modules.nixos.default
-  ];
-
   options.dyad.nix.nixpkgs.enable = lib.mkEnableOption "nixpkgs config";
 
   config = lib.mkIf config.dyad.nix.nixpkgs.enable {
