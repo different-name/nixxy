@@ -25,8 +25,6 @@
 
               settings = {
                 allowDiscards = true;
-                keyFile = "/dev/disk/by-id/usb-USB_SanDisk_3.2Gen1_0101072cd798698d6112016d3dfc0ebdc692ee055cfa9fd65c515e148961c19d82360000000000000000000008299247008b1400a9558107642d3973-0:0";
-                keyFileSize = 4096;
               };
 
               content = {
