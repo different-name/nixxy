@@ -22,6 +22,8 @@
           nefrob.vscode-just-syntax
           prettiercode.code-prettier
           tamasfe.even-better-toml
+          graphql.vscode-graphql
+          dbaeumer.vscode-eslint
           # keep-sorted end
         ];
 
