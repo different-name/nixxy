@@ -14,7 +14,8 @@ lib.mkIf (username == "diffy" && hostName == "sodium") {
   dyad = {
     profiles = {
       # keep-sorted start
-      graphical.enable = true;
+      graphical-minimal.enable = true;
+      graphical-extras.enable = true;
       terminal.enable = true;
       # keep-sorted end
     };

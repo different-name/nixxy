@@ -1,11 +1,9 @@
 { lib, config, ... }:
 {
-  options.dyad.profiles.graphical.enable = lib.mkEnableOption "graphical profile";
+  options.dyad.profiles.graphical-extras.enable = lib.mkEnableOption "graphical-extras profile";
 
-  config = lib.mkIf config.dyad.profiles.graphical.enable {
+  config = lib.mkIf config.dyad.profiles.graphical-extras.enable {
     dyad = {
-      profiles.graphical-minimal.enable = true;
-
       # keep-sorted start block=yes newline_separated=yes
       applications = {
         # keep-sorted start
