@@ -17,8 +17,8 @@
 
     profiles = {
       # keep-sorted start
-      graphical.enable = true;
       graphical-extras.enable = true;
+      graphical.enable = true;
       minimal.enable = true;
       terminal.enable = true;
       # keep-sorted end

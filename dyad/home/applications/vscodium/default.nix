@@ -17,14 +17,14 @@
         extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
           # keep-sorted start
           blueglassblock.better-json5
+          dbaeumer.vscode-eslint
           editorconfig.editorconfig
+          graphql.vscode-graphql
+          graphql.vscode-graphql-syntax
           ms-python.python
           nefrob.vscode-just-syntax
           prettiercode.code-prettier
           tamasfe.even-better-toml
-          graphql.vscode-graphql
-          graphql.vscode-graphql-syntax
-          dbaeumer.vscode-eslint
           # keep-sorted end
         ];
 
