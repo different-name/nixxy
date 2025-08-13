@@ -23,6 +23,7 @@
           prettiercode.code-prettier
           tamasfe.even-better-toml
           graphql.vscode-graphql
+          graphql.vscode-graphql-syntax
           dbaeumer.vscode-eslint
           # keep-sorted end
         ];
