@@ -1,4 +1,24 @@
 {
+    "catppuccin-userstyles": {
+        "cargoLocks": null,
+        "date": "2025-08-11",
+        "extract": null,
+        "name": "catppuccin-userstyles",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "5337f4dbc51223e94c7d3d53f1fafe68dcb4d56c",
+            "sha256": "sha256-Ddmq9h4v687yqK3/7LEGajLrtEpLJria4gztJvJ8mn8=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/catppuccin/userstyles.git"
+        },
+        "version": "5337f4dbc51223e94c7d3d53f1fafe68dcb4d56c"
+    },
     "cats-blender-plugin-unofficial": {
         "cargoLocks": null,
         "date": "2025-08-04",

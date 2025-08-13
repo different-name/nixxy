@@ -18,25 +18,15 @@
     catppuccin = {
       inherit (osConfig.catppuccin) enable accent flavor;
 
-      # keep-sorted start block=yes newline_separated=yes
+      # keep-sorted start block=yes
       cursors = {
         inherit (config.catppuccin) enable;
         accent = "dark";
       };
-
-      firefox = {
-        enable = false;
-        userstyles.force = true;
-      };
-
+      firefox.enable = false;
       fish.enable = false;
-
-      gtk.icon.enable = true;
-
       mpv.enable = false;
-
       yazi.accent = "mauve";
-
       zellij.enable = false;
       # keep-sorted end
     };

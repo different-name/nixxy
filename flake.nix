@@ -48,9 +48,8 @@
     };
 
     # color theme
-    # fork with support for userstyles
     catppuccin = {
-      url = "github:different-name/catppuccin-nix";
+      url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

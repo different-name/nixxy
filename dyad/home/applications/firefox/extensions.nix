@@ -29,6 +29,33 @@
               };
             };
           };
+
+          # stylus
+          "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
+            force = true;
+            settings =
+              let
+                inherit (config.catppuccin) flavor accent;
+
+                userstylesConfig = {
+                  # default settings applied to all userstyles
+                  defaultSettings = {
+                    lightFlavor = flavor;
+                    darkFlavor = flavor;
+                    accentColor = accent;
+                  };
+
+                  # settings applied per userstyle
+                  # userstyles = lib.mapAttrs' (name: value: {
+                  #   name = "${name} catppuccin";
+                  #   value = { inherit (value) enable settings exclusions; };
+                  # }) { };
+                };
+
+                settingsPackage = self'.packages.catppuccin-userstyles.override { inherit userstylesConfig; };
+              in
+              lib.importJSON "${settingsPackage}/share/storage.js";
+          };
           # keep-sorted end
         };
 
