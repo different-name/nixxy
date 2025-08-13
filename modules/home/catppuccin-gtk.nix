@@ -7,7 +7,6 @@
   pkgs,
   ...
 }:
-
 let
   inherit (lib)
     concatStringsSep
@@ -18,14 +17,12 @@ let
     ;
 
   catppuccinLib = import (inputs.catppuccin + /modules/lib) { inherit lib config pkgs; };
-  renamedGtkOption = "i-still-want-to-use-the-archived-gtk-theme-because-it-works-better-than-everything-else";
 
-  cfg = config.catppuccin.${renamedGtkOption};
+  cfg = config.catppuccin-workarounds.gtk;
   enable = cfg.enable && config.gtk.enable;
 in
-
 {
-  options.catppuccin.${renamedGtkOption} =
+  options.catppuccin-workarounds.gtk =
     catppuccinLib.mkCatppuccinOption {
       name = "gtk";
 
@@ -65,7 +62,7 @@ in
           name =
             "catppuccin-${cfg.flavor}-${cfg.accent}-${cfg.size}+"
             + (if (cfg.tweaks == [ ]) then "default" else gtkTweaks);
-          package = config.catppuccin.sources.${renamedGtkOption}.override {
+          package = config.catppuccin.sources.gtk.override {
             inherit (cfg) flavor size tweaks;
             accents = [ cfg.accent ];
           };
@@ -83,7 +80,7 @@ in
     })
 
     {
-      catppuccin.sources.${renamedGtkOption} = inputs'.catppuccin-gtk.packages.gtk;
+      catppuccin.sources.gtk = inputs'.catppuccin-gtk.packages.gtk;
     }
   ];
 }
