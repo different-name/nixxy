@@ -1,8 +1,8 @@
 { lib, config, ... }:
 {
-  options.dyad.profiles.graphical-minimal.enable = lib.mkEnableOption "minimal graphical profile";
+  options.dyad.profiles.graphical.enable = lib.mkEnableOption "graphical profile";
 
-  config = lib.mkIf config.dyad.profiles.graphical-minimal.enable {
+  config = lib.mkIf config.dyad.profiles.graphical.enable {
     dyad = {
       # keep-sorted start block=yes newline_separated=yes
       desktop = {
