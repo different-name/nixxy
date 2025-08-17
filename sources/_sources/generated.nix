@@ -3,45 +3,45 @@
 {
   catppuccin-userstyles = {
     pname = "catppuccin-userstyles";
-    version = "5337f4dbc51223e94c7d3d53f1fafe68dcb4d56c";
+    version = "6a64dd4146de1928673919a34c49eef8ccb057a8";
     src = fetchgit {
       url = "https://github.com/catppuccin/userstyles.git";
-      rev = "5337f4dbc51223e94c7d3d53f1fafe68dcb4d56c";
+      rev = "6a64dd4146de1928673919a34c49eef8ccb057a8";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-Ddmq9h4v687yqK3/7LEGajLrtEpLJria4gztJvJ8mn8=";
+      sha256 = "sha256-tws/UIymHxFpRIGiRlglSe6tHfSRMT8nJyJ4EykoESQ=";
     };
-    date = "2025-08-11";
+    date = "2025-08-13";
   };
   cats-blender-plugin-unofficial = {
     pname = "cats-blender-plugin-unofficial";
-    version = "8e68dede5d9afb557de4b92078c6b1b26f3c1faa";
+    version = "fac0c9a98d4e776359c7d6f985ef1f265c3f9161";
     src = fetchgit {
       url = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git";
-      rev = "8e68dede5d9afb557de4b92078c6b1b26f3c1faa";
+      rev = "fac0c9a98d4e776359c7d6f985ef1f265c3f9161";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-lKtlUaEp2qapkJcrLd7/29eMh3WEuRVwYX3iIkCXNVw=";
+      sha256 = "sha256-2i3vMFk8JBPcDvqbdiVLuIjmWLnIvETopD4A7nDhiIM=";
     };
-    date = "2025-08-04";
+    date = "2025-08-13";
   };
   disblock-origin = {
     pname = "disblock-origin";
-    version = "9b3d5572d0761ec7a3c3b33bf5af83c9622403c5";
+    version = "f1291027c97803a1fc68a9728c52d1936810c20c";
     src = fetchgit {
       url = "https://git.allpurposem.at/mat/Disblock-Origin.git";
-      rev = "9b3d5572d0761ec7a3c3b33bf5af83c9622403c5";
+      rev = "f1291027c97803a1fc68a9728c52d1936810c20c";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-Rb1kNp8Wvo11rIGeRz2u5kCmG16xS/O5tcEtkMBeyhc=";
+      sha256 = "sha256-adPZ5gcZkDIKFlsBhU2Hkj4UISecrTTprfnTGQP80No=";
     };
-    date = "2025-08-06";
+    date = "2025-08-10";
   };
   osc-goes-brrr = {
     pname = "osc-goes-brrr";

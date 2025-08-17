@@ -1,7 +1,7 @@
 {
     "catppuccin-userstyles": {
         "cargoLocks": null,
-        "date": "2025-08-11",
+        "date": "2025-08-13",
         "extract": null,
         "name": "catppuccin-userstyles",
         "passthru": null,
@@ -11,17 +11,17 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "5337f4dbc51223e94c7d3d53f1fafe68dcb4d56c",
-            "sha256": "sha256-Ddmq9h4v687yqK3/7LEGajLrtEpLJria4gztJvJ8mn8=",
+            "rev": "6a64dd4146de1928673919a34c49eef8ccb057a8",
+            "sha256": "sha256-tws/UIymHxFpRIGiRlglSe6tHfSRMT8nJyJ4EykoESQ=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/catppuccin/userstyles.git"
         },
-        "version": "5337f4dbc51223e94c7d3d53f1fafe68dcb4d56c"
+        "version": "6a64dd4146de1928673919a34c49eef8ccb057a8"
     },
     "cats-blender-plugin-unofficial": {
         "cargoLocks": null,
-        "date": "2025-08-04",
+        "date": "2025-08-13",
         "extract": null,
         "name": "cats-blender-plugin-unofficial",
         "passthru": null,
@@ -31,17 +31,17 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "8e68dede5d9afb557de4b92078c6b1b26f3c1faa",
-            "sha256": "sha256-lKtlUaEp2qapkJcrLd7/29eMh3WEuRVwYX3iIkCXNVw=",
+            "rev": "fac0c9a98d4e776359c7d6f985ef1f265c3f9161",
+            "sha256": "sha256-2i3vMFk8JBPcDvqbdiVLuIjmWLnIvETopD4A7nDhiIM=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
         },
-        "version": "8e68dede5d9afb557de4b92078c6b1b26f3c1faa"
+        "version": "fac0c9a98d4e776359c7d6f985ef1f265c3f9161"
     },
     "disblock-origin": {
         "cargoLocks": null,
-        "date": "2025-08-06",
+        "date": "2025-08-10",
         "extract": null,
         "name": "disblock-origin",
         "passthru": null,
@@ -51,13 +51,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "9b3d5572d0761ec7a3c3b33bf5af83c9622403c5",
-            "sha256": "sha256-Rb1kNp8Wvo11rIGeRz2u5kCmG16xS/O5tcEtkMBeyhc=",
+            "rev": "f1291027c97803a1fc68a9728c52d1936810c20c",
+            "sha256": "sha256-adPZ5gcZkDIKFlsBhU2Hkj4UISecrTTprfnTGQP80No=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://git.allpurposem.at/mat/Disblock-Origin.git"
         },
-        "version": "9b3d5572d0761ec7a3c3b33bf5af83c9622403c5"
+        "version": "f1291027c97803a1fc68a9728c52d1936810c20c"
     },
     "osc-goes-brrr": {
         "cargoLocks": null,
