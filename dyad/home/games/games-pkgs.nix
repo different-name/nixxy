@@ -11,6 +11,15 @@
     home.perpetual.default = {
       packages = {
         # keep-sorted start block=yes newline_separated=yes
+        bottles = {
+          package = pkgs.bottles.override {
+            removeWarningPopup = true;
+          };
+          dirs = [
+            "$dataHome/bottles"
+          ];
+        };
+
         lutris.dirs = [
           # keep-sorted start
           "$cacheHome/lutris"
