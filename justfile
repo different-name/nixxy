@@ -20,7 +20,7 @@ goodnight update_flag="":
     cd sources && nvfetcher; \
     nix flake update; \
   fi'
-  @timeout 1500 nh os boot || true # timeout after 25 mins, continue regardless of output
+  @timeout 5400 nh os boot || true # timeout after 1h 30m, continue regardless of output
   @poweroff # bye bye!
 
 # activate and add config to bootloader
