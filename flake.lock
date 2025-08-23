@@ -1275,17 +1275,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1751225656,
-        "narHash": "sha256-tc3Y/+hH+Hw8T9GgveDo+P0dtTFIXywLXiSxqv88U/I=",
+        "lastModified": 1754866729,
+        "narHash": "sha256-IInUGSpAEX2SFTDMzXpjUp4Y6swiHXaLd9m5aRCNtp4=",
         "owner": "notpeelz",
         "repo": "WiVRn",
-        "rev": "6e15951add57138243ff3698c1f30517de1d639e",
+        "rev": "debdbac87184b598cc064fcff7f4759dd527a048",
         "type": "github"
       },
       "original": {
         "owner": "notpeelz",
         "repo": "WiVRn",
-        "rev": "6e15951add57138243ff3698c1f30517de1d639e",
+        "rev": "debdbac87184b598cc064fcff7f4759dd527a048",
         "type": "github"
       }
     },
