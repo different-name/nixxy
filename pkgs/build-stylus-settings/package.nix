@@ -2,7 +2,6 @@
   lib,
   buildNpmPackage,
   fetchurl,
-  ...
 }:
 let
   stylusSectionsUtil = fetchurl {

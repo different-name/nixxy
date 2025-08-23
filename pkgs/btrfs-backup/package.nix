@@ -6,7 +6,6 @@
   pv,
   udisks,
   backupConfig ? { },
-  ...
 }:
 writeShellApplication {
   name = "btrfs-backup";

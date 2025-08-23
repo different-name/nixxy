@@ -3,7 +3,6 @@
   writeShellApplication,
   curl,
   jq,
-  ...
 }:
 writeShellApplication {
   name = "mcuuid";

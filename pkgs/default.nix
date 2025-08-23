@@ -16,11 +16,9 @@
         };
       };
 
-      packages =
-        builtins.readDir ./.
-        |> lib.filterAttrs (_: value: value == "directory")
-        |> lib.mapAttrs (
-          name: _: pkgs.callPackage ./${name} ({ inherit (self') sources; } // self'.packages)
-        );
+      packages = lib.removeAttrs (lib.packagesFromDirectoryRecursive {
+        callPackage = lib.callPackageWith (pkgs // self'.packages // { inherit (self') sources; });
+        directory = ./.;
+      }) [ "default" ];
     };
 }

@@ -3,7 +3,6 @@
   stdenv,
   slimevr,
   udevCheckHook,
-  ...
 }:
 
 stdenv.mkDerivation {

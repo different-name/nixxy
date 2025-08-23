@@ -2,7 +2,6 @@
   sources,
   lib,
   stdenvNoCC,
-  ...
 }:
 stdenvNoCC.mkDerivation {
   inherit (sources.cats-blender-plugin-unofficial) pname version src;

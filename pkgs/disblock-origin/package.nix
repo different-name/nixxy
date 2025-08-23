@@ -2,7 +2,6 @@
   sources,
   lib,
   stdenvNoCC,
-  ...
 }:
 stdenvNoCC.mkDerivation {
   inherit (sources.disblock-origin) pname version src;

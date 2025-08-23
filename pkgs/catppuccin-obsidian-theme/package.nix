@@ -2,7 +2,6 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  ...
 }:
 stdenv.mkDerivation rec {
   pname = "catppuccin-obsidian-theme";

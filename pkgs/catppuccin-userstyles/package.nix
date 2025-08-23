@@ -4,7 +4,6 @@
   stdenvNoCC,
   build-stylus-settings,
   userstylesConfig ? { },
-  ...
 }:
 let
   userstylesOptionsFile = builtins.toFile "catppuccin-userstyles-options" (

@@ -2,7 +2,6 @@
   lib,
   buildNpmPackage,
   fetchFromGitHub,
-  ...
 }:
 let
   solarXrProtocol = fetchFromGitHub {

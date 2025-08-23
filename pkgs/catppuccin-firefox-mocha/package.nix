@@ -1,4 +1,4 @@
-{ lib, stdenvNoCC, ... }:
+{ lib, stdenvNoCC }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "catppuccin-firefox-mocha";
   version = "1.0";

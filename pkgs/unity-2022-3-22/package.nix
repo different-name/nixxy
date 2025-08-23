@@ -10,7 +10,6 @@
   withAndroidSupport ? true,
   withWindowsSupport ? true,
   makeWrapper,
-  ...
 }:
 let
   androidSupport = fetchurl {

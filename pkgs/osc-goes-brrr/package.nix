@@ -5,7 +5,6 @@
   copyDesktopItems,
   makeDesktopItem,
   electron,
-  ...
 }:
 buildNpmPackage {
   inherit (sources.osc-goes-brrr) pname version src;
