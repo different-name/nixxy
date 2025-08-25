@@ -29,14 +29,25 @@ in
       volumes = {
         "/" = {
           path = "/srv/copyparty";
-          access.rwmda = [ "diffy" ];
+          access.A = "diffy";
         };
 
         "/shared/nero" = {
           path = "/srv/copyparty/shared/nero";
           access = {
-            rwmda = [ "diffy" ];
-            rwmd = [ "nero" ];
+            A = "diffy";
+            rwmd = "nero";
+          };
+        };
+
+        "/public" = {
+          path = "/srv/copyparty/public";
+          access = {
+            A = "diffy";
+            g = "*";
+          };
+          flags = {
+            fk = 4;
           };
         };
       };
