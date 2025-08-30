@@ -40,6 +40,10 @@
         "$dataHome/qBittorrent"
         # keep-sorted end
       ];
+
+      signal-desktop.dirs = [
+        "$configHome/Signal"
+      ];
       # keep-sorted end
     };
 
