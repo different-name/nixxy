@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  self',
   pkgs,
   ...
 }:
@@ -14,20 +13,7 @@
     };
 
     home.perpetual.default.packages = {
-      # keep-sorted start block=yes newline-separated=yes
-      # note: use -force-vulkan when launching unity editor
-      unity-2022-3-22 = {
-        package = self'.packages.unity-2022-3-22;
-        dirs = [
-          # keep-sorted start
-          "$cacheHome/unity3d"
-          "$configHome/Unity"
-          "$configHome/unity3d" # seems to also be for unity games
-          "$dataHome/unity3d"
-          # keep-sorted end
-        ];
-      };
-
+      # keep-sorted start block=yes newline_separated=yes
       alcom = {
         # https://github.com/tauri-apps/tauri/issues/9394
         package = pkgs.symlinkJoin {
@@ -49,12 +35,16 @@
         ];
       };
 
-      # required to activate license, but not used to install anything
-      # TODO: removed temporarily due to https://github.com/NixOS/nixpkgs/blob/c2ae88e026f9525daf89587f3cbee584b92b6134/pkgs/by-name/un/unityhub/package.nix#L106-L108
-      # waiting for https://github.com/NixOS/nixpkgs/pull/421740
-      # unityhub.dirs = [
-      #   "$configHome/unityhub"
-      # ];
+      # note: use -force-vulkan when launching unity editor
+      unityhub.dirs = [
+        # keep-sorted start
+        "$cacheHome/unity3d"
+        "$configHome/Unity"
+        "$configHome/unity3d" # seems to also be for unity games
+        "$configHome/unityhub"
+        "$dataHome/unity3d"
+        # keep-sorted end
+      ];
       # keep-sorted end
     };
   };
