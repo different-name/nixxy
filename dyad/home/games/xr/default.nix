@@ -148,7 +148,7 @@ in
           package = pkgs.symlinkJoin {
             name = "slimevr";
             paths = [ pkgs.slimevr ];
-            buildInputs = [ pkgs.makeWrapper ];
+            nativeBuildInputs = [ pkgs.makeWrapper ];
             postBuild = ''
               wrapProgram $out/bin/slimevr \
                 --set WEBKIT_DISABLE_DMABUF_RENDERER 1
