@@ -15,13 +15,15 @@
     home.perpetual.default.packages = {
       # keep-sorted start block=yes newline_separated=yes
       alcom = {
-        # https://github.com/tauri-apps/tauri/issues/9394
+        # wrapping with unityhub fhs env so alcom can launch unity properly
+        # env var is workaround for https://github.com/tauri-apps/tauri/issues/9394
         package = pkgs.symlinkJoin {
           name = "alcom";
           paths = [ pkgs.alcom ];
-          buildInputs = [ pkgs.makeWrapper ];
+          nativeBuildInputs = [ pkgs.makeWrapper ];
           postBuild = ''
             wrapProgram $out/bin/ALCOM \
+              --run ${lib.getExe pkgs.unityhub.fhsEnv} \
               --set WEBKIT_DISABLE_DMABUF_RENDERER 1
           '';
         };
