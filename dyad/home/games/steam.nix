@@ -19,6 +19,7 @@
       closeSteam = true;
 
       apps = {
+        # keep-sorted start block=yes newline_separated=yes
         # vrchat
         "438100" = {
           compatTool = "GE-Proton";
@@ -48,6 +49,13 @@
             exec "''${args[@]}"
           '';
         };
+
+        # cyberpunk 2077
+        "1091500".launchOptions = pkgs.writeShellScriptBin "cyberpunk-wrapper" ''
+          export WINEDLLOVERRIDES="winmm,version=n,b"
+          exec "$@" -modded --launcher-skip
+        '';
+        # keep-sorted end
       };
     };
 
