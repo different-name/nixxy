@@ -34,10 +34,10 @@
           # keep-sorted end
         ];
 
-        gestures = {
-          workspace_swipe = true;
-          workspace_swipe_forever = true;
-        };
+        gesture = [
+          "3, left, workspace, m-1"
+          "3, right, workspace, m+1"
+        ];
 
         input = {
           kb_layout = "us";
