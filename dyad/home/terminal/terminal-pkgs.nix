@@ -11,6 +11,11 @@
   config = lib.mkIf config.dyad.terminal.terminal-pkgs.enable {
     home.perpetual.default.packages = {
       # keep-sorted start block=yes newline_separated=yes
+      # git tui
+      lazygit.dirs = [
+        "$stateHome/lazygit"
+      ];
+
       # calculator
       libqalculate.dirs = [
         "$configHome/qalculate"
@@ -20,14 +25,12 @@
       # fetch minecraft user uuids
       mcuuid.package = self'.packages.mcuuid;
 
+      # video compression for discord (10 MB)
+      ffmpeg4discord.package = self'.packages.ffmpeg4discord;
+
       # generate nix sources for packages
       nvfetcher.dirs = [
         "$dataHome/nvfetcher"
-      ];
-
-      # git tui
-      lazygit.dirs = [
-        "$stateHome/lazygit"
       ];
       # keep-sorted end
     };
