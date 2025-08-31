@@ -14,3 +14,7 @@ fetch.git = "https://git.allpurposem.at/mat/Disblock-Origin.git"
 [osc-goes-brrr]
 src.git = "https://github.com/OscToys/OscGoesBrrr.git"
 fetch.git = "https://github.com/OscToys/OscGoesBrrr.git"
+
+[winetricks]
+src.git = "https://github.com/Winetricks/winetricks.git"
+fetch.git = "https://github.com/Winetricks/winetricks.git"

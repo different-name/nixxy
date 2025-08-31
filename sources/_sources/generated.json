@@ -78,5 +78,25 @@
             "url": "https://github.com/OscToys/OscGoesBrrr.git"
         },
         "version": "a3f951756bdeefcc690b98d4c4f22c2230464be7"
+    },
+    "winetricks": {
+        "cargoLocks": null,
+        "date": "2025-08-25",
+        "extract": null,
+        "name": "winetricks",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "9a399f26a42db7c0c8c9c9688c8b98ffc38d22f6",
+            "sha256": "sha256-TfimgUJ6bXp3tu3p2b0CEabUb9e0qyWVNMmM57g6PMU=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://github.com/Winetricks/winetricks.git"
+        },
+        "version": "9a399f26a42db7c0c8c9c9688c8b98ffc38d22f6"
     }
 }
