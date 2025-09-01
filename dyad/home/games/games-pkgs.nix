@@ -27,6 +27,10 @@
           # keep-sorted end
         ];
 
+        nexusmods-app.dirs = [
+          "$stateHome/NexusMods.App"
+        ];
+
         osu-lazer-bin.dirs = [
           "$dataHome/osu"
         ];
@@ -59,6 +63,10 @@
         ".nv" # OpenGL cache
         # keep-sorted end
       ];
+    };
+
+    xdg.mimeApps.defaultApplications = {
+      "x-scheme-handler/nxm" = "com.nexusmods.app.desktop";
     };
   };
 }
