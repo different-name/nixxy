@@ -20,18 +20,11 @@
 
       apps = {
         # keep-sorted start block=yes newline_separated=yes
-        # vrchat
-        "438100" = {
-          compatTool = "GE-Proton";
-          launchOptions = pkgs.writeShellScriptBin "vrchat-wrapper" ''
-            unset TZ
-            export PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc"
-
-            if [[ "$*" != *"--no-vr"* ]]; then
-                export PROTON_ENABLE_WAYLAND=1
-            fi
-
-            exec "$@"
+        # cyberpunk 2077
+        "1091500" = {
+          launchOptions = pkgs.writeShellScriptBin "cyberpunk-wrapper" ''
+            export WINEDLLOVERRIDES="winmm,version=n,b"
+            exec "$@" -modded --launcher-skip -skipStartScreen
           '';
         };
 
@@ -50,11 +43,20 @@
           '';
         };
 
-        # cyberpunk 2077
-        "1091500".launchOptions = pkgs.writeShellScriptBin "cyberpunk-wrapper" ''
-          export WINEDLLOVERRIDES="winmm,version=n,b"
-          exec "$@" -modded --launcher-skip
-        '';
+        # vrchat
+        "438100" = {
+          compatTool = "GE-Proton";
+          launchOptions = pkgs.writeShellScriptBin "vrchat-wrapper" ''
+            unset TZ
+            export PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc"
+
+            if [[ "$*" != *"--no-vr"* ]]; then
+                export PROTON_ENABLE_WAYLAND=1
+            fi
+
+            exec "$@"
+          '';
+        };
         # keep-sorted end
       };
     };
