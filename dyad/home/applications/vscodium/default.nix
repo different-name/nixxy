@@ -21,6 +21,9 @@
           editorconfig.editorconfig
           graphql.vscode-graphql
           graphql.vscode-graphql-syntax
+          ms-pyright.pyright
+          ms-python.black-formatter
+          ms-python.pylint
           ms-python.python
           nefrob.vscode-just-syntax
           prettiercode.code-prettier
