@@ -3,17 +3,17 @@
 {
   catppuccin-userstyles = {
     pname = "catppuccin-userstyles";
-    version = "847828e9f7a1dcefbb8526f01e8111e3d06d3ff7";
+    version = "c9b357f2c40b1eea88e73c071b5d5587598f5206";
     src = fetchgit {
       url = "https://github.com/catppuccin/userstyles.git";
-      rev = "847828e9f7a1dcefbb8526f01e8111e3d06d3ff7";
+      rev = "c9b357f2c40b1eea88e73c071b5d5587598f5206";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-TEQZG0QZTElUwVjqURerTULwWR8Vt62bnSycuQLlEf4=";
+      sha256 = "sha256-ylSK0yj9x3CqMXkXdzoav7RmOfddJ5WhUYJvLe9Gljg=";
     };
-    date = "2025-08-30";
+    date = "2025-09-05";
   };
   cats-blender-plugin-unofficial = {
     pname = "cats-blender-plugin-unofficial";
@@ -59,16 +59,16 @@
   };
   winetricks = {
     pname = "winetricks";
-    version = "9a399f26a42db7c0c8c9c9688c8b98ffc38d22f6";
+    version = "75118236ac5cb6f51918460a14f7bc40162a115e";
     src = fetchgit {
       url = "https://github.com/Winetricks/winetricks.git";
-      rev = "9a399f26a42db7c0c8c9c9688c8b98ffc38d22f6";
+      rev = "75118236ac5cb6f51918460a14f7bc40162a115e";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-TfimgUJ6bXp3tu3p2b0CEabUb9e0qyWVNMmM57g6PMU=";
+      sha256 = "sha256-vIUbDZINaBnsSCdQEba6Ym34p/Ww3ApHG/i4Xe34Uck=";
     };
-    date = "2025-08-25";
+    date = "2025-09-02";
   };
 }
