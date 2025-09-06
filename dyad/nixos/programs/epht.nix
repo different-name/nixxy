@@ -65,6 +65,7 @@ in
       ++ (genHomeDirPaths [
         # keep-sorted start
         ".cache/Microsoft/DeveloperTools/deviceid" # probably vsc, haven't had issues being ephemeral
+        ".cache/thumbnails"
         ".config/dconf/user" # gnome settings database
         ".config/fish" # can configure declaratively
         ".config/gtk-2.0"
