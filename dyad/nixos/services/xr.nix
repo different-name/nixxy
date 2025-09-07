@@ -26,7 +26,7 @@
         json = {
           bitrate =
             let
-              Mbps = 100;
+              Mbps = 80;
             in
             Mbps * 1000000;
 
