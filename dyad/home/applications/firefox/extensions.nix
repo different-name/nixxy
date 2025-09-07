@@ -69,6 +69,7 @@
           self'.packages.catppuccin-firefox-mocha
           sponsorblock
           stylus
+          twitch-auto-points
           ublock-origin
           youtube-nonstop
           # keep-sorted end
