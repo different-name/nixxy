@@ -3,45 +3,59 @@
   config = lib.mkIf config.dyad.applications.firefox.enable {
     programs.firefox.profiles.default.search = {
       force = true;
-      default = "google";
+      default = "kagi";
       engines = {
         # keep-sorted start block=yes newline_separated=yes
-        "HM Options" = {
+        hm-options = {
+          name = "HM Options";
           urls = lib.singleton {
             template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
           };
           definedAliases = [ ":hm" ];
         };
 
-        "Nix Options" = {
+        kagi = {
+          name = "Kagi";
+          urls = lib.singleton {
+            template = "https://kagi.com/search?q={searchTerms}";
+          };
+          definedAliases = [ ":kg" ];
+        };
+
+        nixos-options = {
+          name = "NixOS Options";
           urls = lib.singleton {
             template = "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
           };
           definedAliases = [ ":no" ];
         };
 
-        "Nix Packages" = {
+        nixpkgs = {
+          name = "Nix Packages";
           urls = lib.singleton {
             template = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
           };
           definedAliases = [ ":np" ];
         };
 
-        "Noogle" = {
+        noogle = {
+          name = "Noogle";
           urls = lib.singleton {
             template = "https://noogle.dev/q?term={searchTerms}";
           };
           definedAliases = [ ":ng" ];
         };
 
-        "Proton DB" = {
+        proton-db = {
+          name = "Proton DB";
           urls = lib.singleton {
             template = "https://www.protondb.com/search?q={searchTerms}";
           };
           definedAliases = [ ":pd" ];
         };
 
-        "Youtube" = {
+        youtube = {
+          name = "Youtube";
           urls = lib.singleton {
             template = "https://www.youtube.com/results?search_query={searchTerms}";
           };
@@ -53,7 +67,7 @@
         "Wikipedia".metaData.hidden = true;
         "bing".metaData.hidden = true;
         "ddg".metaData.hidden = true;
-        "google".metaData.alias = ":g";
+        "google".metaData.hidden = true;
         # keep-sorted end
       };
     };
