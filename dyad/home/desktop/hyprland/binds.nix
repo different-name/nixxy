@@ -60,6 +60,8 @@
           "$mod, E, exec, ${uwsmApp "thunar"}"
           ## obsidian
           "$mod, N, exec, ${uwsmApp "obsidian"}"
+          ## emoji picker
+          "$mod SHIFT, E, exec, ${uwsmApp "emote"}"
 
           # move focus
           "$mod, LEFT, movefocus, l"

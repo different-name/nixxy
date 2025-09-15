@@ -1,1 +1,0 @@
-export function calcStyleDigest(userstyle: unknown): Promise<string>;

@@ -29,33 +29,6 @@
               };
             };
           };
-
-          # stylus
-          "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
-            force = true;
-            settings =
-              let
-                inherit (config.catppuccin) flavor accent;
-
-                userstylesConfig = {
-                  # default settings applied to all userstyles
-                  defaultSettings = {
-                    lightFlavor = flavor;
-                    darkFlavor = flavor;
-                    accentColor = accent;
-                  };
-
-                  # settings applied per userstyle
-                  # userstyles = lib.mapAttrs' (name: value: {
-                  #   name = "${name} catppuccin";
-                  #   value = { inherit (value) enable settings exclusions; };
-                  # }) { };
-                };
-
-                settingsPackage = self'.packages.catppuccin-userstyles.override { inherit userstylesConfig; };
-              in
-              lib.importJSON "${settingsPackage}/share/storage.js";
-          };
           # keep-sorted end
         };
 
@@ -81,5 +54,10 @@
         "extensions.autoDisableScopes" = 0;
       };
     };
+
+    # download update import file for stylus catppuccin userstyles
+    home.shellAliases.ctpuserstyles = ''
+      curl -sL https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json | sed -E 's/"default":"(rosewater|flamingo|pink|mauve|red|maroon|peach|green|yellow|teal|blue|sapphire|grey|lavender)"/"default":"red"/g' > ~/import.json
+    '';
   };
 }

@@ -1,7 +1,3 @@
-[catppuccin-userstyles]
-src.git = "https://github.com/catppuccin/userstyles.git"
-fetch.git = "https://github.com/catppuccin/userstyles.git"
-
 [cats-blender-plugin-unofficial]
 src.git = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
 src.branch = "blender-45"

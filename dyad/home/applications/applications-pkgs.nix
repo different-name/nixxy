@@ -19,6 +19,10 @@
         "$configHome/ente"
       ];
 
+      emote.dirs = [
+        "$dataHome/Emote"
+      ];
+
       gimp3-with-plugins.dirs = [
         # keep-sorted start
         "$cacheHome/gimp"
