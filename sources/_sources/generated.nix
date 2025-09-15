@@ -45,16 +45,16 @@
   };
   winetricks = {
     pname = "winetricks";
-    version = "75118236ac5cb6f51918460a14f7bc40162a115e";
+    version = "13bf50cbf84e00a7d5a0f13e1beefad306d58622";
     src = fetchgit {
       url = "https://github.com/Winetricks/winetricks.git";
-      rev = "75118236ac5cb6f51918460a14f7bc40162a115e";
+      rev = "13bf50cbf84e00a7d5a0f13e1beefad306d58622";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-vIUbDZINaBnsSCdQEba6Ym34p/Ww3ApHG/i4Xe34Uck=";
+      sha256 = "sha256-ZiUm5HjDtRLeUyH3jdCa7SPmz8rjnW98b14chYTdBiA=";
     };
-    date = "2025-09-02";
+    date = "2025-09-14";
   };
 }
