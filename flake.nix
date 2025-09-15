@@ -85,7 +85,8 @@
 
     # hypr community scripts
     hyprland-contrib = {
-      url = "github:hyprwm/contrib";
+      # TODO pinned until https://github.com/hyprwm/contrib/issues/176 closed
+      url = "github:hyprwm/contrib/9c4057e6f667e7f7cd043bc8ec3ee4a473f360f0";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
 
