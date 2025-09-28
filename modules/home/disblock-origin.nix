@@ -102,7 +102,7 @@ let
   };
 
   mkSetting =
-    name: setting:
+    _name: setting:
     lib.mkOption {
       inherit (setting) description default;
       type = lib.types.bool;

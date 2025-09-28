@@ -15,12 +15,12 @@
         ".android"
       ];
 
-      ente-desktop.dirs = [
-        "$configHome/ente"
-      ];
-
       emote.dirs = [
         "$dataHome/Emote"
+      ];
+
+      ente-desktop.dirs = [
+        "$configHome/ente"
       ];
 
       gimp3-with-plugins.dirs = [
