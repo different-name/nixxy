@@ -143,6 +143,8 @@ in
 
         slimevr-cli.package = self'.packages.slimevr-cli;
 
+        eyetrackvr.package = self'.packages.eyetrackvr;
+
         slimevr = {
           # https://github.com/tauri-apps/tauri/issues/9394
           package = pkgs.symlinkJoin {
