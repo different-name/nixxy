@@ -143,7 +143,12 @@ in
 
         slimevr-cli.package = self'.packages.slimevr-cli;
 
-        eyetrackvr.package = self'.packages.eyetrackvr;
+        eyetrackvr = {
+          package = self'.packages.eyetrackvr;
+          dirs = [
+            "$configHome/EyeTrackVR"
+          ];
+        };
 
         slimevr = {
           # https://github.com/tauri-apps/tauri/issues/9394
