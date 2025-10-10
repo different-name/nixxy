@@ -14,7 +14,7 @@
     copyWebp = true;
     disableSentry = true;
     domOptimizer = true;
-    doubleClickActions = true;
+    doubleClickActions = false;
     favouriteGifSearch = true;
     freeMoji = true;
     freeScreenShare = true;
