@@ -114,10 +114,10 @@ pypkgs.buildPythonApplication rec {
   version = "0.2.4";
 
   src = fetchFromGitHub {
-    owner = "EyeTrackVR";
+    owner = "jojos38";
     repo = "EyeTrackVR";
-    rev = "EyeTrackApp-${version}";
-    hash = "sha256-KAjyhiTf+UP94f4+cNZX3EiFaHyxtNjIjDX2359BE6s=";
+    rev = "e3e72c7a35f9caba5d95da6f741bb25944c18ce8";
+    hash = "sha256-pmkUJpnkUhHICyl3MQ5wPZpUGMeLqcPX3n0iLtk9oGU=";
   };
 
   dependencies = [
