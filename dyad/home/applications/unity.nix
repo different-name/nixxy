@@ -4,6 +4,22 @@
   pkgs,
   ...
 }:
+let
+  unityhub-fixed-fonts = pkgs.unityhub.override {
+    buildFHSEnv =
+      args:
+      let
+        excludedPackages = [
+          "corefonts"
+          "dejavu-fonts"
+          "liberation-fonts"
+        ];
+        filterPackages = lib.filter (package: !(lib.elem package.pname excludedPackages));
+        filteredMultiPkgs = pkgs: filterPackages (args.multiPkgs pkgs);
+      in
+      pkgs.buildFHSEnv (args // { multiPkgs = filteredMultiPkgs; });
+  };
+in
 {
   options.dyad.applications.unity.enable = lib.mkEnableOption "unity config";
 
@@ -22,8 +38,9 @@
           paths = [ pkgs.alcom ];
           nativeBuildInputs = [ pkgs.makeWrapper ];
           postBuild = ''
-            wrapProgram $out/bin/ALCOM \
-              --run ${lib.getExe pkgs.unityhub.fhsEnv} \
+            mv $out/bin/ALCOM $out/bin/.ALCOM-real
+            makeWrapper ${lib.getExe unityhub-fixed-fonts.fhsEnv} $out/bin/ALCOM \
+              --add-flags "$out/bin/.ALCOM-real" \
               --set WEBKIT_DISABLE_DMABUF_RENDERER 1
           '';
         };
@@ -38,15 +55,18 @@
       };
 
       # note: use -force-vulkan when launching unity editor
-      unityhub.dirs = [
-        # keep-sorted start
-        "$cacheHome/unity3d"
-        "$configHome/Unity"
-        "$configHome/unity3d" # seems to also be for unity games
-        "$configHome/unityhub"
-        "$dataHome/unity3d"
-        # keep-sorted end
-      ];
+      unityhub = {
+        package = unityhub-fixed-fonts;
+        dirs = [
+          # keep-sorted start
+          "$cacheHome/unity3d"
+          "$configHome/Unity"
+          "$configHome/unity3d" # seems to also be for unity games
+          "$configHome/unityhub"
+          "$dataHome/unity3d"
+          # keep-sorted end
+        ];
+      };
       # keep-sorted end
     };
   };
