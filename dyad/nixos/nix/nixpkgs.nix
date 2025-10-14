@@ -8,8 +8,12 @@
   options.dyad.nix.nixpkgs.enable = lib.mkEnableOption "nixpkgs config";
 
   config = lib.mkIf config.dyad.nix.nixpkgs.enable {
+
     nixpkgs = {
-      config.allowUnfree = true;
+      config = {
+        allowUnfree = true;
+        segger-jlink.acceptLicense = true;
+      };
 
       overlays = [
         # keep-sorted start block=yes newline_separated=yes

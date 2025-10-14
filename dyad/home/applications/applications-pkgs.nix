@@ -30,6 +30,11 @@
         # keep-sorted end
       ];
 
+      nrfconnect.dirs = [
+        "$configHome/nrfconnect"
+        ".nrfconnect-apps"
+      ];
+
       protonvpn-gui.dirs = [
         # keep-sorted start
         "$cacheHome/Proton"
