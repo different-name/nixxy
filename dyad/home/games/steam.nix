@@ -45,10 +45,9 @@
 
         # vrchat
         "438100" = {
-          compatTool = "GE-Proton";
+          compatTool = "proton_experimental";
           launchOptions = pkgs.writeShellScriptBin "vrchat-wrapper" ''
             unset TZ
-            export PRESSURE_VESSEL_FILESYSTEMS_RW="$XDG_RUNTIME_DIR/wivrn/comp_ipc"
 
             if [[ "$*" != *"--no-vr"* ]]; then
                 export PROTON_ENABLE_WAYLAND=1

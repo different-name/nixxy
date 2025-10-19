@@ -20,6 +20,9 @@
 
       openFirewall = true;
       defaultRuntime = true;
+      extraServerFlags = [ "--no-manage-active-runtime" ];
+
+      steam.importOXRRuntimes = true;
 
       config = {
         enable = true;

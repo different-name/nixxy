@@ -97,6 +97,11 @@ in
       force = true;
     };
 
+    xdg.configFile."openxr/1/active_runtime.json" = {
+      source = osConfig.environment.etc."xdg/openxr/1/active_runtime.json".source;
+      force = true;
+    };
+
     # https://github.com/galister/wlx-overlay-s/wiki
     xdg.configFile."wlxoverlay" = {
       source = ./wlx-overlay-s;
@@ -115,8 +120,7 @@ in
       };
 
     xdg.configFile."VRCX/custom.css".source =
-      self'.packages.catppuccin-vrcx-mocha
-      + /share/vrcx-catppuccin.css;
+      self'.packages.catppuccin-vrcx-mocha + /share/vrcx-catppuccin.css;
 
     # TODO temporary workaround until https://www.github.com/hyprwm/xdg-desktop-portal-hyprland/issues/329 is implemented properly
     wayland.windowManager.hyprland.xdgDesktopPortalHyprland.settings = {
