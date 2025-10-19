@@ -21,7 +21,7 @@
     },
     "disblock-origin": {
         "cargoLocks": null,
-        "date": "2025-09-16",
+        "date": "2025-10-17",
         "extract": null,
         "name": "disblock-origin",
         "passthru": null,
@@ -31,13 +31,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "82211588692d9b2d60ad53568d11a73bac219f91",
-            "sha256": "sha256-897zieKa2EL6w3PpKR/LlX6Hck8YgZaU54UH88Ajbbk=",
+            "rev": "06792b9d62f788cf890052f878907db1da277a81",
+            "sha256": "sha256-uVvuy2dF7VnMt+p9kn1xhA4dO4h+btj4TjuQfHKW2as=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://git.allpurposem.at/mat/Disblock-Origin.git"
         },
-        "version": "82211588692d9b2d60ad53568d11a73bac219f91"
+        "version": "06792b9d62f788cf890052f878907db1da277a81"
     },
     "osc-goes-brrr": {
         "cargoLocks": null,
@@ -61,7 +61,7 @@
     },
     "winetricks": {
         "cargoLocks": null,
-        "date": "2025-09-14",
+        "date": "2025-09-27",
         "extract": null,
         "name": "winetricks",
         "passthru": null,
@@ -71,12 +71,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "13bf50cbf84e00a7d5a0f13e1beefad306d58622",
-            "sha256": "sha256-ZiUm5HjDtRLeUyH3jdCa7SPmz8rjnW98b14chYTdBiA=",
+            "rev": "5a543dbc7bcb2465f3fb77bcfb28c0fc21d508b5",
+            "sha256": "sha256-05AAQMv5vUCP8x69AMxnOC+NW/AH7tHzBOGQJk5uPyo=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/Winetricks/winetricks.git"
         },
-        "version": "13bf50cbf84e00a7d5a0f13e1beefad306d58622"
+        "version": "5a543dbc7bcb2465f3fb77bcfb28c0fc21d508b5"
     }
 }
