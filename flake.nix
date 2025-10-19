@@ -79,7 +79,7 @@
 
     hexecute = {
       url = "github:ThatOtherAndrew/Hexecute";
-      # inputs.nixpkgs.follows = "nixpkgs"; # TODO follow after flake.lock update
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # manages user environment
