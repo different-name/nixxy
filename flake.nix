@@ -77,6 +77,11 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    hexecute = {
+      url = "github:ThatOtherAndrew/Hexecute";
+      # inputs.nixpkgs.follows = "nixpkgs"; # TODO follow after flake.lock update
+    };
+
     # manages user environment
     home-manager = {
       url = "github:nix-community/home-manager";
