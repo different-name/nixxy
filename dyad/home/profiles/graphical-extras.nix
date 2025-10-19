@@ -11,7 +11,6 @@
         blender.enable = true;
         discord.enable = true;
         obsidian.enable = true;
-        unity.enable = true;
         # keep-sorted end
       };
 
