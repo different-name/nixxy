@@ -1,56 +1,74 @@
 { config, pkgs, ... }:
 {
-  # kernel modules found with sensors-detect (from lm-sensors)
-  boot.kernelModules = [
-    # keep-sorted start
-    "lm83"
-    "nct6775"
-    # keep-sorted end
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.nct6687d
   ];
-
-  # hwmon1/pwm1 - GPU left
-  # hwmon1/pwm2 - CPU
-  # hwmon1/pwm3 - CPU pump
-  # hwmon1/pwm4 - case fan, fresh intake for CPU AIO
-  # hwmon1/pwm5 - GPU middle
-  # hwmon1/pwm7 - GPU right
+  boot.kernelModules = [ "nct6687" ];
+  boot.blacklistedKernelModules = [ "nct6683" ];
 
   hardware.fancontrol = {
     enable = true;
     config =
       let
+        sensors = {
+          cpu = "hwmon4/temp1_input";
+          gpu = "/run/nvidia-temp";
+        };
+
+        fans = {
+          cpu = {
+            pwm = "hwmon4/pwm1";
+            rpm = "hwmon4/fan1_input";
+          };
+          pump = {
+            pwm = "hwmon4/pwm2";
+            rpm = "hwmon4/fan2_input";
+          };
+          rear = {
+            pwm = "hwmon4/pwm4";
+            rpm = "hwmon4/fan4_input";
+          };
+          gpu = {
+            pwm = "hwmon4/pwm5";
+            rpm = "hwmon4/fan5_input";
+          };
+        };
+
         minStart = "20";
         minStop = "0";
 
-        CPU = {
-          minTemp = "45";
-          maxTemp = "80";
-          maxPWM = "210";
-        };
+        curves = {
+          cpu = {
+            minTemp = "45";
+            maxTemp = "80";
+            maxPWM = "210";
+          };
 
-        GPU = {
-          minTemp = "45";
-          maxTemp = "70";
-          maxPWM = "210";
-        };
+          gpu = {
+            minTemp = "45";
+            maxTemp = "70";
+            maxPWM = "210";
+          };
 
-        caseFan = {
-          minTemp = "45";
-          maxTemp = "80";
-          maxPWM = "210";
+          rearFan = {
+            minTemp = "45";
+            maxTemp = "80";
+            maxPWM = "210";
+          };
         };
       in
       ''
         INTERVAL=5
-        DEVPATH=hwmon1=devices/platform/nct6775.656 hwmon2=devices/pci0000:00/0000:00:18.3
-        DEVNAME=hwmon1=nct6798 hwmon2=k10temp
-        FCTEMPS=hwmon1/pwm1=/run/nvidia-temp hwmon1/pwm2=hwmon2/temp1_input hwmon1/pwm3=hwmon2/temp1_input hwmon1/pwm4=hwmon2/temp1_input hwmon1/pwm5=/run/nvidia-temp hwmon1/pwm7=/run/nvidia-temp
-        FCFANS=hwmon1/pwm1=hwmon1/fan1_input hwmon1/pwm2=hwmon1/fan2_input hwmon1/pwm3=hwmon1/fan3_input hwmon1/pwm4=hwmon1/fan4_input hwmon1/pwm5=hwmon1/fan5_input hwmon1/pwm7=hwmon1/fan7_input
-        MINTEMP=hwmon1/pwm1=${GPU.minTemp} hwmon1/pwm2=${CPU.minTemp} hwmon1/pwm3=${CPU.minTemp} hwmon1/pwm4=${caseFan.minTemp} hwmon1/pwm5=${GPU.minTemp} hwmon1/pwm7=${GPU.minTemp}
-        MAXTEMP=hwmon1/pwm1=${GPU.maxTemp} hwmon1/pwm2=${CPU.maxTemp} hwmon1/pwm3=${CPU.maxTemp} hwmon1/pwm4=${caseFan.maxTemp} hwmon1/pwm5=${GPU.maxTemp} hwmon1/pwm7=${GPU.maxTemp}
-        MINSTART=hwmon1/pwm1=${minStart} hwmon1/pwm2=${minStart} hwmon1/pwm3=${minStart} hwmon1/pwm4=${minStart} hwmon1/pwm5=${minStart} hwmon1/pwm7=${minStart}
-        MINSTOP=hwmon1/pwm1=${minStop} hwmon1/pwm2=${minStop} hwmon1/pwm3=${minStop} hwmon1/pwm4=${minStop} hwmon1/pwm5=${minStop} hwmon1/pwm7=${minStop}
-        MAXPWM=hwmon1/pwm1=${GPU.maxPWM} hwmon1/pwm2=${CPU.maxPWM} hwmon1/pwm3=${CPU.maxPWM} hwmon1/pwm4=${caseFan.maxPWM} hwmon1/pwm5=${GPU.maxPWM} hwmon1/pwm7=${GPU.maxPWM}
+        DEVPATH=hwmon4=devices/platform/nct6687.2592
+        DEVNAME=hwmon4=nct6687
+
+        FCTEMPS=${fans.cpu.pwm}=${sensors.cpu} ${fans.pump.pwm}=${sensors.cpu} ${fans.rear.pwm}=${sensors.cpu} ${fans.gpu.pwm}=${sensors.gpu}
+        FCFANS=${fans.cpu.pwm}=${fans.cpu.rpm} ${fans.pump.pwm}=${fans.pump.rpm} ${fans.rear.pwm}=${fans.rear.rpm} ${fans.gpu.pwm}=${fans.gpu.rpm}
+        MINTEMP=${fans.cpu.pwm}=${curves.cpu.minTemp} ${fans.pump.pwm}=${curves.cpu.minTemp} ${fans.rear.pwm}=${curves.cpu.minTemp} ${fans.gpu.pwm}=${curves.gpu.minTemp}
+        MAXTEMP=${fans.cpu.pwm}=${curves.cpu.maxTemp} ${fans.pump.pwm}=${curves.cpu.maxTemp} ${fans.rear.pwm}=${curves.cpu.maxTemp} ${fans.gpu.pwm}=${curves.gpu.maxTemp}
+        MINSTART=${fans.cpu.pwm}=${minStart} ${fans.pump.pwm}=${minStart} ${fans.rear.pwm}=${minStart} ${fans.gpu.pwm}=${minStart}
+        MINSTOP=${fans.cpu.pwm}=${minStop} ${fans.pump.pwm}=${minStop} ${fans.rear.pwm}=${minStop} ${fans.gpu.pwm}=${minStop}
+        MAXPWM=${fans.cpu.pwm}=${curves.cpu.maxPWM} ${fans.pump.pwm}=${curves.cpu.maxPWM} ${fans.rear.pwm}=${curves.cpu.maxPWM} ${fans.gpu.pwm}=${curves.gpu.maxPWM}
       '';
   };
 
