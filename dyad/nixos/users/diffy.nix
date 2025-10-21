@@ -28,6 +28,7 @@
         "dialout"
         "i2c" # for dyad.hardware.ddcutil
         "input"
+        "kvm"
         "libvirtd"
         "networkmanager"
         "video"

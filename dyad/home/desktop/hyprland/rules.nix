@@ -88,6 +88,10 @@
 
         # render discord in background, potential crash workaround while screencasting
         ''renderunfocused, class:discord, initialTitle:Discord''
+
+        # looking glass
+        "workspace 2, class:looking-glass-client"
+        "fullscreen, class:looking-glass-client"
       ];
   };
 }
