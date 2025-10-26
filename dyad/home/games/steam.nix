@@ -21,16 +21,19 @@
       apps = {
         # keep-sorted start block=yes newline_separated=yes
         # cyberpunk 2077
-        "1091500" = {
-          launchOptions = pkgs.writeShellScriptBin "cyberpunk-wrapper" ''
-            export WINEDLLOVERRIDES="winmm,version=n,b"
-            exec "$@" -modded --launcher-skip -skipStartScreen
-          '';
+        "1091500".launchOptions = {
+          env.WINEDLLOVERRIDES = "winmm,version=n,b";
+          args = [
+            "-modded"
+            "--launcher-skip"
+            "-skipStartScreen"
+          ];
         };
 
         # warhammer 40k: darktide
         "1361210" = {
           compatTool = "proton_experimental";
+
           launchOptions = pkgs.writeShellScriptBin "darktide-wrapper" ''
             unset LD_PRELOAD
 
@@ -46,15 +49,15 @@
         # vrchat
         "438100" = {
           compatTool = "proton_experimental";
-          launchOptions = pkgs.writeShellScriptBin "vrchat-wrapper" ''
-            unset TZ
 
-            if [[ "$*" != *"--no-vr"* ]]; then
+          launchOptions = {
+            env.TZ = null;
+            extraConfig = ''
+              if [[ "$*" != *"--no-vr"* ]]; then
                 export PROTON_ENABLE_WAYLAND=1
-            fi
-
-            exec "$@"
-          '';
+              fi
+            '';
+          };
         };
         # keep-sorted end
       };
