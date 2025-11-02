@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  inputs,
+  inputs',
   pkgs,
   ...
 }:
@@ -14,7 +14,7 @@
       package = pkgs.vscodium;
 
       profiles.default = {
-        extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
+        extensions = with inputs'.nix-vscode-extensions.extensions.vscode-marketplace; [
           # keep-sorted start
           blueglassblock.better-json5
           dbaeumer.vscode-eslint

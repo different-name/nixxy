@@ -1,14 +1,14 @@
 {
   lib,
   config,
-  inputs,
+  inputs',
   pkgs,
   ...
 }:
 {
   config = lib.mkIf config.dyad.applications.vscodium.enable {
     programs.vscode.profiles.default = {
-      extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
+      extensions = with inputs'.nix-vscode-extensions.extensions.vscode-marketplace; [
         jnoortheen.nix-ide
       ];
 
