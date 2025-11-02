@@ -37,7 +37,7 @@
 
     home.packages = [
       # keep-sorted start
-      inputs'.hyprland-contrib.packages.grimblast
+      inputs'.hyprwm-contrib.packages.grimblast
       inputs'.hyprpicker.packages.default
       pkgs.libnotify
       pkgs.wl-clipboard
