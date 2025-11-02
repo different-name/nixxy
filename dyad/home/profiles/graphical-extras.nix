@@ -10,7 +10,6 @@
         applications-pkgs.enable = true;
         blender.enable = true;
         discord.enable = true;
-        obsidian.enable = true;
         # keep-sorted end
       };
 

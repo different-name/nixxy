@@ -8,6 +8,10 @@
       userName = "diffy";
       userEmail = "hello@different-name.dev";
       lfs.enable = true;
+      # settings.user = {
+      #   name = "diffy";
+      #   email = "hello@different-name.dev";
+      # };
     };
   };
 }

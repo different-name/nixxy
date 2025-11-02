@@ -47,10 +47,6 @@
         # hyprland share picker
         "float, title:Select what to share"
 
-        # obsidian
-        "float, class: obsidian"
-        "size 1000 900, class: obsidian"
-
         # games
         (gameRule "suppressevent fullscreen")
         (gameRule "fullscreen")
