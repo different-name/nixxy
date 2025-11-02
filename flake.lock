@@ -977,26 +977,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-unfree": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1755249704,
-        "narHash": "sha256-J1mqsd/gqZ32G3YOzWk9sppLbXXLEpu37hrZfRcTtdg=",
-        "owner": "numtide",
-        "repo": "nixpkgs-unfree",
-        "rev": "12d82a604d21a65df008bdb1515eecb96f9e55dc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "nixpkgs-unfree",
-        "type": "github"
-      }
-    },
     "nixpkgs-xr": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1111,13 +1091,16 @@
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-unfree": "nixpkgs-unfree",
         "nixpkgs-xr": "nixpkgs-xr",
         "nur": "nur",
         "steam-config-nix": "steam-config-nix",
         "systems": "systems_4",
         "treefmt-nix": "treefmt-nix",
-        "wivrn-solarxr": "wivrn-solarxr"
+        "wivrn-solarxr": "wivrn-solarxr",
+        "wivrn-solarxr-nixpkgs-unfree": "wivrn-solarxr-nixpkgs-unfree",
+        "wivrn-solarxr-unfree": [
+          "wivrn-solarxr"
+        ]
       }
     },
     "steam-config-nix": {
@@ -1229,7 +1212,7 @@
           "flake-parts"
         ],
         "nixpkgs": [
-          "nixpkgs-unfree"
+          "nixpkgs"
         ]
       },
       "locked": {
@@ -1244,6 +1227,27 @@
         "owner": "notpeelz",
         "repo": "WiVRn",
         "rev": "2387037261f294a76b51a50a9c093e1095673883",
+        "type": "github"
+      }
+    },
+    "wivrn-solarxr-nixpkgs-unfree": {
+      "inputs": {
+        "nixpkgs": [
+          "wivrn-solarxr",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1755249704,
+        "narHash": "sha256-J1mqsd/gqZ32G3YOzWk9sppLbXXLEpu37hrZfRcTtdg=",
+        "owner": "numtide",
+        "repo": "nixpkgs-unfree",
+        "rev": "12d82a604d21a65df008bdb1515eecb96f9e55dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nixpkgs-unfree",
         "type": "github"
       }
     },
