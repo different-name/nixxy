@@ -1,16 +1,12 @@
 {
   lib,
   config,
-  inputs,
+  inputs',
   self',
   pkgs,
   ...
 }:
 {
-  imports = [
-    inputs.nixpkgs-xr.nixosModules.nixpkgs-xr
-  ];
-
   options.dyad.programs.steam.enable = lib.mkEnableOption "steam config";
 
   config = lib.mkIf config.dyad.programs.steam.enable {
@@ -30,8 +26,8 @@
 
       extraCompatPackages = with pkgs; [
         # keep-sorted start
+        inputs'.nixpkgs-xr.packages.proton-ge-rtsp-bin
         proton-ge-bin
-        proton-ge-rtsp-bin
         # keep-sorted end
       ];
     };
