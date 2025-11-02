@@ -7,10 +7,8 @@
 }:
 {
   imports = [
-    # keep-sorted start
     inputs.impermanence.nixosModules.default
     self.nixosModules.perpetual # impermanence option bindings
-    # keep-sorted end
   ];
 
   options.dyad.system.perpetual.enable = lib.mkEnableOption "perpetual config";
@@ -38,10 +36,8 @@
       ];
 
       files = [
-        # keep-sorted start
         "/var/lib/logrotate.status"
         "/var/lib/systemd/random-seed"
-        # keep-sorted end
       ];
     };
 

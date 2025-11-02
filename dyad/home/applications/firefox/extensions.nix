@@ -12,7 +12,6 @@
         force = true;
 
         settings = {
-          # keep-sorted start block=yes newline_separated=yes
           # redirector, credit to https://github.com/Anomalocaridid/dotfiles/blob/2eff267391847977118cef00baaac2ef690d2068/home-modules/librewolf.nix#L183-L201
           "redirector@einaregilsson.com" = {
             force = true;
@@ -29,7 +28,6 @@
               };
             };
           };
-          # keep-sorted end
         };
 
         packages = with inputs'.nur.legacyPackages.repos.rycee.firefox-addons; [

@@ -122,10 +122,8 @@
         after = [ "wait-for-wivrn.service" ];
         requires = [ "wait-for-wivrn.service" ];
         partOf = [
-          # keep-sorted start
           "vr-session.service"
           "wivrn.service"
-          # keep-sorted end
         ];
 
         serviceConfig = {
@@ -170,10 +168,8 @@
     ];
 
     environment.perpetual.default.dirs = [
-      # keep-sorted start
       "/root/.config/dev.slimevr.SlimeVR"
       "/root/.local/share/dev.slimevr.SlimeVR"
-      # keep-sorted end
     ];
   };
 }

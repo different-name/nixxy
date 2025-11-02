@@ -26,10 +26,8 @@
       };
 
       whitelist = {
-        # keep-sorted start
         Lazy_Diffy = "be0f57d1-a79c-49d1-a126-4536c476ee51";
         Nerowy = "23b6e97d-d186-4bc2-8312-8a569013426a";
-        # keep-sorted end
       };
 
       symlinks."server-icon.png" = ./server-icon.png;

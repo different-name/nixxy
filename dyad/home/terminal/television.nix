@@ -35,10 +35,8 @@
     };
 
     home.perpetual.default.dirs = [
-      # keep-sorted start
       "$cacheHome/nix-search-tv"
       "$dataHome/television"
-      # keep-sorted end
     ];
   };
 }

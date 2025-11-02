@@ -18,10 +18,8 @@
       };
 
       programs = {
-        # keep-sorted start
         fish.enable = true;
         nh.enable = true;
-        # keep-sorted end
       };
 
       services.openssh.enable = true;

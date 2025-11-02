@@ -146,10 +146,8 @@
     impermanence = {
       url = "github:nix-community/impermanence/home-manager-v2";
       inputs = {
-        # keep-sorted start
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
-        # keep-sorted end
       };
     };
 
@@ -199,10 +197,8 @@
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
       inputs = {
-        # keep-sorted start
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
-        # keep-sorted end
       };
     };
 
@@ -213,10 +209,8 @@
     nur = {
       url = "github:nix-community/NUR";
       inputs = {
-        # keep-sorted start
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
-        # keep-sorted end
       };
     };
 
@@ -224,10 +218,8 @@
     steam-config-nix = {
       url = "github:different-name/steam-config-nix";
       inputs = {
-        # keep-sorted start
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-        # keep-sorted end
       };
     };
 

@@ -15,10 +15,8 @@ let
 in
 {
   imports = [
-    # keep-sorted start
     inputs.moonlight.homeModules.default
     self.homeModules.disblockOrigin
-    # keep-sorted end
   ];
 
   options.dyad.applications.discord.enable = lib.mkEnableOption "discord config";
@@ -65,10 +63,8 @@ in
     );
 
     home.perpetual.default.dirs = [
-      # keep-sorted start
       "$configHome/discord"
       "$configHome/moonlight-mod"
-      # keep-sorted end
     ];
   };
 }

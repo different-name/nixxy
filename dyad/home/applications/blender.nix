@@ -21,10 +21,8 @@
     };
 
     home.perpetual.default.dirs = [
-      # keep-sorted start
       "$cacheHome/blender"
       "$configHome/blender"
-      # keep-sorted end
     ];
   };
 }

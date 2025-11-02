@@ -81,10 +81,8 @@
       Restart = "on-failure";
     };
     path = [
-      # keep-sorted start
       config.hardware.nvidia.package
       pkgs.bash
-      # keep-sorted end
     ];
     script = ''
       bash -c 'while :; do

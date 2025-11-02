@@ -66,10 +66,8 @@ in
     };
 
     home.perpetual.default.dirs = [
-      # keep-sorted start
       "$cacheHome/fish"
       "$dataHome/fish"
-      # keep-sorted end
     ];
   };
 }

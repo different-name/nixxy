@@ -27,20 +27,16 @@
       };
 
       media = {
-        # keep-sorted start
         imv.enable = true;
         mpv.enable = true;
-        # keep-sorted end
       };
 
       style.catppuccin.enable = true;
       # keep-sorted end
     };
 
-    # keep-sorted start
     gtk.enable = true;
     services.playerctld.enable = true;
-    # keep-sorted end
 
     home.perpetual.default.dirs = [
       # keep-sorted start

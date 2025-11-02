@@ -8,10 +8,8 @@
       hardware.ddcutil.enable = true;
 
       programs = {
-        # keep-sorted start
         obs-studio.enable = true;
         steam.enable = true;
-        # keep-sorted end
       };
       # keep-sorted end
     };

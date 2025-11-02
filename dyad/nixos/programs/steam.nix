@@ -25,10 +25,8 @@
       };
 
       extraCompatPackages = with pkgs; [
-        # keep-sorted start
         inputs'.nixpkgs-xr.packages.proton-ge-rtsp-bin
         proton-ge-bin
-        # keep-sorted end
       ];
     };
 

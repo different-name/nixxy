@@ -11,7 +11,6 @@
     fonts = {
       packages = with pkgs; [
         # sans(serif) fonts
-        # keep-sorted start block=yes
         (google-fonts.override {
           fonts = [
             "Inter"
@@ -22,7 +21,6 @@
         noto-fonts-cjk-sans
         noto-fonts-emoji
         roboto
-        # keep-sorted end
 
         # monospace fonts
         jetbrains-mono

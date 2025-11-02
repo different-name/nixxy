@@ -21,10 +21,8 @@
         };
 
         lutris.dirs = [
-          # keep-sorted start
           "$cacheHome/lutris"
           "$dataHome/lutris"
-          # keep-sorted end
         ];
 
         nexusmods-app.dirs = [
@@ -47,10 +45,8 @@
         };
 
         r2modman.dirs = [
-          # keep-sorted start
           "$configHome/r2modman"
           "$configHome/r2modmanPlus-local"
-          # keep-sorted end
         ];
         # keep-sorted end
       };

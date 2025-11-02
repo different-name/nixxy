@@ -7,10 +7,8 @@
 }:
 {
   imports = [
-    # keep-sorted start block=yes
     inputs.impermanence.homeManagerModules.impermanence
     self.homeModules.perpetual # impermanence option bindings
-    # keep-sorted end
   ];
 
   options.dyad.system.perpetual.enable = lib.mkEnableOption "perpetual config";

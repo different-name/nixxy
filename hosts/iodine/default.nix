@@ -15,13 +15,10 @@
     users.diffy.enable = true;
 
     profiles = {
-      # keep-sorted start
       minimal.enable = true;
       terminal.enable = true;
-      # keep-sorted end
     };
 
-    # keep-sorted start block=yes newline_separated=yes
     services = {
       # keep-sorted start block=yes
       caddy.enable = true;
@@ -30,21 +27,16 @@
       headscale.enable = true;
       minecraft-server = {
         # enable = true;
-        # keep-sorted start
         buhguh.enable = true;
         maocraft.enable = true;
         maodded.enable = true;
-        # keep-sorted end
       };
       # keep-sorted end
     };
 
     system = {
-      # keep-sorted start
       btrfs.enable = true;
       perpetual.enable = true;
-      # keep-sorted end
     };
-    # keep-sorted end
   };
 }

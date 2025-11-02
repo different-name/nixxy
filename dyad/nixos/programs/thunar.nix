@@ -31,10 +31,8 @@
 
       home.perpetual.default = {
         dirs = [
-          # keep-sorted start
           "$configHome/Thunar"
           "$dataHome/gvfs-metadata" # gnome virtual file system data / cache
-          # keep-sorted end
         ];
         files = [
           "$configHome/xfce4/xfconf/xfce-perchannel-xml/thunar.xml"

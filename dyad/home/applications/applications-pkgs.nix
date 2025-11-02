@@ -24,10 +24,8 @@
       ];
 
       gimp3-with-plugins.dirs = [
-        # keep-sorted start
         "$cacheHome/gimp"
         "$configHome/GIMP"
-        # keep-sorted end
       ];
 
       nrfconnect.dirs = [
@@ -36,10 +34,8 @@
       ];
 
       protonvpn-gui.dirs = [
-        # keep-sorted start
         "$cacheHome/Proton"
         "$configHome/Proton"
-        # keep-sorted end
       ];
 
       qbittorrent.dirs = [

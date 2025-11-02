@@ -19,10 +19,8 @@
     };
 
     home.perpetual.default.dirs = [
-      # keep-sorted start
       "$cacheHome/mozilla/firefox"
       ".mozilla/firefox"
-      # keep-sorted end
     ];
   };
 }

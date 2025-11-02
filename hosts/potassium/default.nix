@@ -24,18 +24,14 @@
       # keep-sorted end
     };
 
-    # keep-sorted start block=yes newline_separated=yes
     hardware.nvidia.enable = true;
 
     services.syncthing.enable = true;
 
     system = {
-      # keep-sorted start
       btrfs.enable = true;
       perpetual.enable = true;
-      # keep-sorted end
     };
-    # keep-sorted end
   };
 
   services.tty1Autologin = {

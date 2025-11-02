@@ -10,12 +10,7 @@ let
 in
 lib.mkIf (username == "diffy" && hostName == "iodine") {
   dyad = {
-    profiles = {
-      # keep-sorted start
-      terminal.enable = true;
-      # keep-sorted end
-    };
-
+    profiles.terminal.enable = true;
     system.perpetual.enable = true;
   };
 }

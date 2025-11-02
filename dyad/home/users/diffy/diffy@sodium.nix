@@ -44,7 +44,6 @@ lib.mkIf (username == "diffy" && hostName == "sodium") {
   programs.btop.settings.cpu_sensor = "k10temp/Tctl";
 
   home.packages = [
-    # keep-sorted start block=yes
     (self'.packages.btrfs-backup.override {
       backupConfig = {
         backupDiskUuid = "a5091625-835c-492f-8d99-0fc8d27012a0";
@@ -54,6 +53,5 @@ lib.mkIf (username == "diffy" && hostName == "sodium") {
       };
     })
     pkgs.qmk
-    # keep-sorted end
   ];
 }

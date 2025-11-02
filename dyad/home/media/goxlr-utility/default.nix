@@ -40,10 +40,8 @@
       ];
 
     home.perpetual.default.dirs = [
-      # keep-sorted start
       "$configHome/goxlr-utility"
       "$dataHome/goxlr-utility"
-      # keep-sorted end
     ];
   };
 }

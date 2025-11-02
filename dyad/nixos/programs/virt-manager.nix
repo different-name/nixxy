@@ -21,10 +21,8 @@
     };
 
     environment.perpetual.default.dirs = [
-      # keep-sorted start
       "/var/lib/libvirt"
       "/var/lib/swtpm-localca"
-      # keep-sorted end
     ];
   };
 }

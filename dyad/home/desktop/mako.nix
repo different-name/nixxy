@@ -29,10 +29,8 @@ in
         name = "mako-dnd";
 
         runtimeInputs = [
-          # keep-sorted start
           config.services.mako.package
           hyprlandCfg.package
-          # keep-sorted end
         ];
 
         text = ''

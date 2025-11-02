@@ -55,10 +55,8 @@
         };
 
         symlinks = {
-          # keep-sorted start
           "server-icon.png" = ./server-icon.png;
           mods = modpack + /mods;
-          # keep-sorted end
         };
 
         files = collectFilesAt modpack "config";

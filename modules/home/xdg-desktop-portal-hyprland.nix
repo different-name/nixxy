@@ -21,11 +21,9 @@ in
       type = types.attrsOf (
         types.attrsOf (
           types.oneOf [
-            # keep-sorted start
             types.bool
             types.int
             types.str
-            # keep-sorted end
           ]
         )
       );

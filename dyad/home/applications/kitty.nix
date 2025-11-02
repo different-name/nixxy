@@ -16,10 +16,8 @@
     };
 
     home.perpetual.default.dirs = [
-      # keep-sorted start
       "$cacheHome/kitty"
       "$dataHome/kitty-ssh-kitten"
-      # keep-sorted end
     ];
   };
 }

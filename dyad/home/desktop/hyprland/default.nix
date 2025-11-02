@@ -45,10 +45,8 @@
     ];
 
     home.perpetual.default.dirs = [
-      # keep-sorted start
       "$cacheHome/hyprland"
       "$dataHome/hyprland"
-      # keep-sorted end
     ];
   };
 }

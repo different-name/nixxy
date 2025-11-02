@@ -18,10 +18,8 @@ lib.mkIf (username == "diffy" && hostName == "potassium") {
       # keep-sorted end
     };
 
-    # keep-sorted start
     services.syncthing.enable = true;
     system.perpetual.enable = true;
-    # keep-sorted end
   };
 
   # display battery as notification

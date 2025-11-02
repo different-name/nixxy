@@ -15,17 +15,13 @@
       };
 
       games = {
-        # keep-sorted start
         games-pkgs.enable = true;
         steam.enable = true;
-        # keep-sorted end
       };
 
       media = {
-        # keep-sorted start
         goxlr-utility.enable = true;
         media-pkgs.enable = true;
-        # keep-sorted end
       };
 
       style.catppuccin.enable = true;
