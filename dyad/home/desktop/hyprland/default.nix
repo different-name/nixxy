@@ -36,12 +36,8 @@
     services.hyprpolkitagent.enable = true;
 
     home.packages = [
-      # keep-sorted start
-      inputs'.hyprwm-contrib.packages.grimblast
       inputs'.hyprpicker.packages.default
-      pkgs.libnotify
-      pkgs.wl-clipboard
-      # keep-sorted end
+      inputs'.hyprwm-contrib.packages.grimblast
     ];
 
     home.perpetual.default.dirs = [

@@ -15,8 +15,10 @@
 
       desktop = {
         # keep-sorted start
+        desktop-pkgs.enable = true;
         anyrun.enable = true;
         hexecute.enable = true;
+        niri.enable = true;
         hyprland.enable = true;
         hyprlock.enable = true;
         hyprpaper.enable = true;
