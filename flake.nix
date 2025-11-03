@@ -88,12 +88,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hypr community scripts
-    hyprwm-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-    };
-
     # hyprland compositor
     hyprland.url = "github:hyprwm/hyprland";
 
@@ -138,6 +132,12 @@
         systems.follows = "hyprland/systems";
         # keep-sorted end
       };
+    };
+
+    # hypr community scripts
+    hyprwm-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
 
     # manage persistent state
