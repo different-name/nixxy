@@ -14,16 +14,16 @@ SERVICE="vr-session.service"
 NOTIFY_TIME="5000"
 
 if [ "$ACTION" = "start" ]; then
-  # __ENTER_VR_HOOK__
+  @enter_vr_hook@
   if systemctl --user restart "$SERVICE"; then
     notify-send -t "$NOTIFY_TIME" "VR Session" "VR session started successfully"
   else
-    # __EXIT_VR_HOOK__
+    @exit_vr_hook@
     notify-send -t "$NOTIFY_TIME" "VR Session" "Failed to start VR session" -u critical
     exit 2
   fi
 elif [ "$ACTION" = "stop" ]; then
-  # __EXIT_VR_HOOK__
+  @exit_vr_hook@
   if systemctl --user stop "$SERVICE"; then
     notify-send -t "$NOTIFY_TIME" "VR Session" "VR session stopped successfully"
   else

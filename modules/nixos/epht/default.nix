@@ -63,21 +63,15 @@ in
         name = "epht";
         runtimeInputs = [ pkgs.findutils ];
         text =
-          lib.replaceStrings
-            [
-              "__STRAY_CMD_SEARCH__"
-              "__NEW_EXCLUDE_OPTS__"
-              "__STRAY_EXCLUDE_OPTS__"
-            ]
-            [
-              # paths that `epht stray` will search
-              (lib.concatMapStringsSep " " lib.escapeShellArg storageDirs)
-              # paths that `epht new` will exclude from search
-              (mkExcludeOptions (paths ++ storageDirs ++ cfg.exclude-paths))
-              # paths that `epht stray` will exclude from search
-              (mkExcludeOptions storagePaths)
-            ]
-            (builtins.readFile ./epht.sh);
+          lib.readFile
+          <| pkgs.replaceVars ./epht.sh {
+            # paths that `epht stray` will search
+            stray_cmd_search = lib.concatMapStringsSep " " lib.escapeShellArg storageDirs;
+            # paths that `epht new` will exclude from search
+            new_exclude_opts = mkExcludeOptions (paths ++ storageDirs ++ cfg.exclude-paths);
+            # paths that `epht stray` will exclude from search
+            stray_exclude_opts = mkExcludeOptions storagePaths;
+          };
       })
     ];
   };

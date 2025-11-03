@@ -47,19 +47,19 @@ case "$COMMAND" in
 "new")
   validate_directories "$@"
   if [ "$SEARCH_DIRS" = "" ]; then
-    find / \( __NEW_EXCLUDE_OPTS__ \) -prune -o -type f -print
+    find / \( @new_exclude_opts@ \) -prune -o -type f -print
   else
     IFS=' ' read -r -a dir_array <<<"$SEARCH_DIRS"
-    find "${dir_array[@]}" \( __NEW_EXCLUDE_OPTS__ \) -prune -o -type f -print
+    find "${dir_array[@]}" \( @new_exclude_opts@ \) -prune -o -type f -print
   fi
   ;;
 "stray")
   validate_directories "$@"
   if [ "$SEARCH_DIRS" = "" ]; then
-    find __STRAY_CMD_SEARCH__ \( __STRAY_EXCLUDE_OPTS__ \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
+    find @stray_cmd_search@ \( @stray_exclude_opts@ \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
   else
     IFS=' ' read -r -a dir_array <<<"$SEARCH_DIRS"
-    find "${dir_array[@]}" \( __STRAY_EXCLUDE_OPTS__ \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
+    find "${dir_array[@]}" \( @stray_exclude_opts@ \) -prune -o \( -empty -type d -print \) -o \( -type f -print \)
   fi
   ;;
 *)

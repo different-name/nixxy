@@ -25,7 +25,7 @@
         };
 
         mcVersion = modpack.manifest.versions.minecraft;
-        serverVersion = lib.replaceStrings [ "." ] [ "_" ] "fabric-${mcVersion}";
+        serverVersion = lib.replaceString "." "_" "fabric-${mcVersion}";
       in
       {
         enable = true;

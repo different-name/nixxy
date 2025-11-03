@@ -38,18 +38,12 @@ in
             systemd
             config.wayland.windowManager.hyprland.package
           ];
-          text =
-            builtins.readFile ./vr-session-manager.sh
-            |>
-              lib.replaceStrings
-                [
-                  "# __ENTER_VR_HOOK__"
-                  "# __EXIT_VR_HOOK__"
-                ]
-                [
-                  cfg.enterVrHook
-                  cfg.exitVrHook
-                ];
+          text = lib.readFile (
+            pkgs.replaceVars ./vr-session-manager.sh {
+              enter_vr_hook = cfg.enterVrHook;
+              exit_vr_hook = cfg.exitVrHook;
+            }
+          );
         };
 
         baseEntry = {
