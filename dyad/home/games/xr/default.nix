@@ -92,7 +92,7 @@ in
     };
 
     xdg.configFile."openxr/1/active_runtime.json" = {
-      source = osConfig.environment.etc."xdg/openxr/1/active_runtime.json".source;
+      inherit (osConfig.environment.etc."xdg/openxr/1/active_runtime.json") source;
       force = true;
     };
 

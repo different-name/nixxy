@@ -15,14 +15,14 @@
 
       desktop = {
         # keep-sorted start
-        desktop-pkgs.enable = true;
         anyrun.enable = true;
+        desktop-pkgs.enable = true;
         hexecute.enable = true;
-        niri.enable = true;
         hyprland.enable = true;
         hyprlock.enable = true;
         hyprpaper.enable = true;
         mako.enable = true;
+        niri.enable = true;
         qt.enable = true;
         xdg.enable = true;
         # keep-sorted end
