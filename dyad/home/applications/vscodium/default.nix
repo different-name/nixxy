@@ -21,6 +21,7 @@
           editorconfig.editorconfig
           graphql.vscode-graphql
           graphql.vscode-graphql-syntax
+          kdl-org.kdl
           ms-pyright.pyright
           ms-python.black-formatter
           ms-python.pylint
