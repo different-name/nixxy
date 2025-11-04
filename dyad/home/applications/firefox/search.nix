@@ -54,6 +54,14 @@
           definedAliases = [ ":pd" ];
         };
 
+        warframe-wiki = {
+          name = "Warframe Wiki";
+          urls = lib.singleton {
+            template = "https://wiki.warframe.com/?title=Special:Search&search={searchTerms}";
+          };
+          definedAliases = [ ":wf" ];
+        };
+
         youtube = {
           name = "Youtube";
           urls = lib.singleton {
