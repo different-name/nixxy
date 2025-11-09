@@ -1092,6 +1092,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-xr": "nixpkgs-xr",
         "nur": "nur",
+        "solarxr-cli": "solarxr-cli",
         "steam-config-nix": "steam-config-nix",
         "systems": "systems_4",
         "treefmt-nix": "treefmt-nix",
@@ -1100,6 +1101,32 @@
         "wivrn-solarxr-unfree": [
           "wivrn-solarxr"
         ]
+      }
+    },
+    "solarxr-cli": {
+      "inputs": {
+        "nixpkgs": [
+          "wivrn-solarxr",
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762143936,
+        "narHash": "sha256-gY076QFXdlVacBvxdtW4tP3asHsOgl63DRWLSeSVQA4=",
+        "ref": "refs/heads/master",
+        "rev": "b9c24e5863e0d8c7c475478ef7208d5114a20644",
+        "revCount": 3,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/notpeelz/solarxr-cli"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/notpeelz/solarxr-cli"
       }
     },
     "steam-config-nix": {

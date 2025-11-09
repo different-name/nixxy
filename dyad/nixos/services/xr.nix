@@ -160,7 +160,7 @@
     };
 
     environment.systemPackages = [
-      self'.packages.slimevr-cli
+      inputs'.solarxr-cli.packages.default
     ];
 
     services.udev.packages = [

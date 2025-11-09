@@ -213,6 +213,15 @@
       };
     };
 
+    # cli tool for interacting with slimevr server
+    solarxr-cli = {
+      url = "git+https://github.com/notpeelz/solarxr-cli?submodules=1";
+      inputs = {
+        nixpkgs.follows = "wivrn-solarxr/nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
     # manage steam game launch options and other local config
     steam-config-nix = {
       url = "github:different-name/steam-config-nix";

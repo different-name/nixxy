@@ -139,8 +139,6 @@ in
           ];
         };
 
-        slimevr-cli.package = self'.packages.slimevr-cli;
-
         eyetrackvr = {
           package = self'.packages.eyetrackvr;
           dirs = [
