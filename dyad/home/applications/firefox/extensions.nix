@@ -32,8 +32,8 @@
 
         packages = with inputs'.nur.legacyPackages.repos.rycee.firefox-addons; [
           # keep-sorted start
+          adnauseam
           dearrow
-          greasemonkey
           proton-pass
           proton-vpn
           redirector
@@ -41,7 +41,6 @@
           sponsorblock
           stylus
           twitch-auto-points
-          ublock-origin
           youtube-nonstop
           # keep-sorted end
         ];

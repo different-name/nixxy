@@ -223,7 +223,7 @@
 
       ### ETP (ENHANCED TRACKING PROTECTION)
       # enable ETP Strict Mode
-      "browser.contentblocking.category" = "strict";
+      "browser.contentblocking.category" = "standard"; # adnauseum: modified from "strict"
 
       ### fingerprinting protection
       # enforce links targeting new windows to open in a new tab instead
@@ -233,7 +233,7 @@
 
       ### don't touch
       # enforce Firefox blocklist
-      "extensions.blocklist.enabled" = true;
+      "extensions.blocklist.enabled" = false; # adnauseum: modified from true
       # enforce no referer spoofing
       "network.http.referer.spoofSource" = false;
       # enforce a (shortened) security delay on some confirmation dialogs such as install, open/save
