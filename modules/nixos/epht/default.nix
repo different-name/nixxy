@@ -62,16 +62,16 @@ in
       (pkgs.writeShellApplication {
         name = "epht";
         runtimeInputs = [ pkgs.findutils ];
-        text =
-          lib.readFile
-          <| pkgs.replaceVars ./epht.sh {
+        text = lib.readFile (
+          pkgs.replaceVars ./epht.sh {
             # paths that `epht stray` will search
             stray_cmd_search = lib.concatMapStringsSep " " lib.escapeShellArg storageDirs;
             # paths that `epht new` will exclude from search
             new_exclude_opts = mkExcludeOptions (paths ++ storageDirs ++ cfg.exclude-paths);
             # paths that `epht stray` will exclude from search
             stray_exclude_opts = mkExcludeOptions storagePaths;
-          };
+          }
+        );
       })
     ];
   };
