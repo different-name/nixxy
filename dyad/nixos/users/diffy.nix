@@ -31,6 +31,7 @@
         "libvirtd"
         "networkmanager"
         "openrazer"
+        "podman"
         "video"
         "wheel"
         # keep-sorted end
