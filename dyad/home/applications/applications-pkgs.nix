@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  self',
   pkgs,
   ...
 }:
@@ -54,6 +55,13 @@
       signal-desktop.dirs = [
         "$configHome/Signal"
       ];
+
+      spinshare-client-next = {
+        package = self'.packages.spinshare-client-next;
+        dirs = [
+          "$configHome/SpinShare"
+        ];
+      };
       # keep-sorted end
     };
 
