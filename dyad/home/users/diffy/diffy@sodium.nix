@@ -44,12 +44,12 @@ lib.mkIf (username == "diffy" && hostName == "sodium") {
   programs.btop.settings.cpu_sensor = "k10temp/Tctl";
 
   home.packages = [
-    (self'.packages.btrfs-backup.override {
+    (self'.packages.btrbk-backup.override {
       backupConfig = {
         backupDiskUuid = "a5091625-835c-492f-8d99-0fc8d27012a0";
         cryptName = "backup_drive";
         mountPoint = "/mnt/backup";
-        subvolumePath = "/btrfs/persist";
+        configPath = "/etc/btrbk/persist.conf";
       };
     })
     pkgs.qmk

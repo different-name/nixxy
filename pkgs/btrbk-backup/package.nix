@@ -1,30 +1,32 @@
 {
   lib,
   writeShellApplication,
+  replaceVars,
   cryptsetup,
   btrfs-progs,
   pv,
   udisks,
+  btrbk,
   backupConfig ? { },
 }:
 writeShellApplication {
-  name = "btrfs-backup";
+  name = "btrbk-backup";
   runtimeInputs = [
     cryptsetup
     btrfs-progs
     pv
     udisks
+    btrbk
   ];
 
-  text = ''
-    UUID="${backupConfig.backupDiskUuid}"
-    CRYPT_NAME="${backupConfig.cryptName}"
-    MOUNT_POINT="${backupConfig.mountPoint}"
-    SNAPSHOT_DIR="${builtins.dirOf backupConfig.subvolumePath}"
-    SOURCE_SUBVOL="${backupConfig.subvolumePath}"
-
-    ${builtins.readFile ./btrfs-backup.sh}
-  '';
+  text = builtins.readFile (
+    replaceVars ./btrbk-backup.sh {
+      uuid = backupConfig.backupDiskUuid;
+      crypt_name = backupConfig.cryptName;
+      mount_point = backupConfig.mountPoint;
+      config_path = backupConfig.configPath;
+    }
+  );
 
   meta = {
     description = "Little backup script for my BTRFS persistent subvolume";

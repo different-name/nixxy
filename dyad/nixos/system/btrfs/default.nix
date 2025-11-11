@@ -62,5 +62,21 @@
       };
 
     services.fstrim.enable = true;
+
+    services.btrbk = {
+      instances."persist" = {
+        onCalendar = "daily";
+        settings = {
+          target_preserve_min = "1w";
+          target_preserve = "2w";
+          volume = {
+            "/btrfs" = {
+              target = "/mnt/backup";
+              subvolume = "persist";
+            };
+          };
+        };
+      };
+    };
   };
 }
