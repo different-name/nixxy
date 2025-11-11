@@ -33,6 +33,11 @@
         ".nrfconnect-apps"
       ];
 
+      polychromatic.dirs = [
+        "$configHome/polychromatic"
+        "$cacheHome/polychromatic"
+      ];
+
       protonvpn-gui.dirs = [
         "$cacheHome/Proton"
         "$configHome/Proton"

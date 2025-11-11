@@ -30,6 +30,7 @@
         "kvm"
         "libvirtd"
         "networkmanager"
+        "openrazer"
         "video"
         "wheel"
         # keep-sorted end
