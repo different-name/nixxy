@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   options.dyad.programs.obs-studio.enable = lib.mkEnableOption "obs-studio config";
 
@@ -9,10 +14,16 @@
     };
 
     home-manager.sharedModules = lib.singleton {
-      programs.obs-studio.enable = true;
+      programs.obs-studio = {
+        enable = true;
+        plugins = [
+          pkgs.obs-studio-plugins.obs-move-transition
+        ];
+      };
 
       home.perpetual.default.dirs = [
         "$configHome/obs-studio"
+        "$cacheHome/obs-studio"
       ];
     };
   };
