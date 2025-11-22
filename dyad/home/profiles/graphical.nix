@@ -22,7 +22,7 @@
         hyprlock.enable = true;
         hyprpaper.enable = true;
         mako.enable = true;
-        niri.enable = true;
+        # niri.enable = true;
         qt.enable = true;
         xdg.enable = true;
         # keep-sorted end
