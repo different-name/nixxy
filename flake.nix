@@ -1,5 +1,6 @@
 {
   description = "Diffy's nix-files";
+  nixConfig.extra-experimental-features = [ "pipe-operators" ];
 
   outputs =
     inputs:
