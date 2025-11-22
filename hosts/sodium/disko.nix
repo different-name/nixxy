@@ -8,7 +8,7 @@
 
         partitions = {
           ESP = {
-            size = "500M";
+            size = "2G";
             type = "EF00";
             content = {
               type = "filesystem";
