@@ -25,7 +25,6 @@
           launchOptions = {
             env.WINEDLLOVERRIDES = "winmm,version=n,b";
             args = [
-              "-modded"
               "--launcher-skip"
               "-skipStartScreen"
             ];
