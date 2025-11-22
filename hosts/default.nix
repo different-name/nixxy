@@ -2,6 +2,12 @@
 {
   nix-files.hosts = {
     # keep-sorted start block=yes newline_separated=yes
+    chinchilla = {
+      system = "x86_64-linux";
+      machine-id = "7047404f861348299434d987ffcd50b2";
+      modules = [ (inputs.import-tree ./chinchilla) ];
+    };
+
     iodine = {
       system = "x86_64-linux";
       machine-id = "294b0aee9a634611a9ddef5e843f4035";
