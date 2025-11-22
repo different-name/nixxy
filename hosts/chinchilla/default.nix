@@ -19,4 +19,7 @@
       perpetual.enable = true;
     };
   };
+
+  networking.firewall.allowedUDPPorts = [ 25565 ];
+  networking.firewall.allowedTCPPorts = [ 25565 ];
 }
