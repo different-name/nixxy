@@ -192,6 +192,12 @@
     # hardware configurations
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
+    # used for cudaSupport for wivrn flake
+    nixpkgs-unfree = {
+      url = "github:numtide/nixpkgs-unfree";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nix xr/ar/vr packages
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
@@ -242,25 +248,12 @@
 
     # slimevr solarxr protocol patches for wivrn
     wivrn-solarxr = {
-      url = "github:notpeelz/WiVRn/2387037261f294a76b51a50a9c093e1095673883";
+      url = "github:notpeelz/WiVRn/1407b1f0a63cfe7beae18ec1cb634cd804262c0d";
       inputs = {
+        # keep-sorted start
         flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    # wivrn-solarxr nixpkgs instance with cudaSupport enabled
-    wivrn-solarxr-nixpkgs-unfree = {
-      url = "github:numtide/nixpkgs-unfree";
-      inputs.nixpkgs.follows = "wivrn-solarxr/nixpkgs";
-    };
-
-    # wivrn-solarxr with cudaSupport enabled
-    wivrn-solarxr-unfree = {
-      follows = "wivrn-solarxr";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "wivrn-solarxr-nixpkgs-unfree";
+        nixpkgs.follows = "nixpkgs-unfree";
+        # keep-sorted end
       };
     };
     # keep-sorted end

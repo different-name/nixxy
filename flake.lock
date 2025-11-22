@@ -976,6 +976,26 @@
         "type": "github"
       }
     },
+    "nixpkgs-unfree": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1755249704,
+        "narHash": "sha256-J1mqsd/gqZ32G3YOzWk9sppLbXXLEpu37hrZfRcTtdg=",
+        "owner": "numtide",
+        "repo": "nixpkgs-unfree",
+        "rev": "12d82a604d21a65df008bdb1515eecb96f9e55dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nixpkgs-unfree",
+        "type": "github"
+      }
+    },
     "nixpkgs-xr": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1028,11 +1048,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762200885,
-        "narHash": "sha256-IPrbvJWU+Gwgg6RBFHW1pgBTZi2uDzgBvEZm3phAId0=",
+        "lastModified": 1763618846,
+        "narHash": "sha256-fBBRAYmQoaxvOAD3QRITQa6G/qVEZakxRNyeDL1jMk0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "0fbd67c5f81aa452afad41ed95f0e6d161f339cc",
+        "rev": "1804f2932674dfda4a6a74947cced5dcb0220ef9",
         "type": "github"
       },
       "original": {
@@ -1090,17 +1110,14 @@
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-unfree": "nixpkgs-unfree",
         "nixpkgs-xr": "nixpkgs-xr",
         "nur": "nur",
         "solarxr-cli": "solarxr-cli",
         "steam-config-nix": "steam-config-nix",
         "systems": "systems_4",
         "treefmt-nix": "treefmt-nix",
-        "wivrn-solarxr": "wivrn-solarxr",
-        "wivrn-solarxr-nixpkgs-unfree": "wivrn-solarxr-nixpkgs-unfree",
-        "wivrn-solarxr-unfree": [
-          "wivrn-solarxr"
-        ]
+        "wivrn-solarxr": "wivrn-solarxr"
       }
     },
     "solarxr-cli": {
@@ -1238,42 +1255,21 @@
           "flake-parts"
         ],
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-unfree"
         ]
       },
       "locked": {
-        "lastModified": 1760478457,
-        "narHash": "sha256-JgMax2szJbO4q/Paqjj4lX/t9qL6h1vM0Shqnlrsj64=",
+        "lastModified": 1762662116,
+        "narHash": "sha256-qd0CryriX6OSyACGkTZvOAYiHLIkmCqv2zneYC/7meM=",
         "owner": "notpeelz",
         "repo": "WiVRn",
-        "rev": "2387037261f294a76b51a50a9c093e1095673883",
+        "rev": "1407b1f0a63cfe7beae18ec1cb634cd804262c0d",
         "type": "github"
       },
       "original": {
         "owner": "notpeelz",
         "repo": "WiVRn",
-        "rev": "2387037261f294a76b51a50a9c093e1095673883",
-        "type": "github"
-      }
-    },
-    "wivrn-solarxr-nixpkgs-unfree": {
-      "inputs": {
-        "nixpkgs": [
-          "wivrn-solarxr",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1755249704,
-        "narHash": "sha256-J1mqsd/gqZ32G3YOzWk9sppLbXXLEpu37hrZfRcTtdg=",
-        "owner": "numtide",
-        "repo": "nixpkgs-unfree",
-        "rev": "12d82a604d21a65df008bdb1515eecb96f9e55dc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "nixpkgs-unfree",
+        "rev": "1407b1f0a63cfe7beae18ec1cb634cd804262c0d",
         "type": "github"
       }
     },
