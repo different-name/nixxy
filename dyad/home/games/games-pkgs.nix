@@ -37,6 +37,7 @@
           package = pkgs.prismlauncher.override {
             jdks = [
               pkgs.temurin-bin
+              pkgs.javaPackages.compiler.temurin-bin.jre-17
             ];
           };
           dirs = [
