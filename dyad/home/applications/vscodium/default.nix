@@ -51,6 +51,7 @@
           "window.titleBarStyle" = "custom";
           "workbench.colorTheme" = "Catppuccin Mocha";
           "workbench.iconTheme" = "catppuccin-mocha";
+          "workbench.secondarySideBar.defaultVisibility" = "hidden";
           "workbench.startupEditor" = "none";
           # keep-sorted end
         };
