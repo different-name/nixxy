@@ -57,6 +57,10 @@
       };
 
     home-manager.sharedModules = lib.singleton {
+      xdg.dataFile."nix/trusted-settings.json".text = builtins.toJSON {
+        extra-experimental-features.pipe-operators = true;
+      };
+
       home.perpetual.default = {
         dirs = [
           "$cacheHome/nix"
