@@ -19,12 +19,7 @@
     freeMoji = true;
     freeScreenShare = true;
     freeStickers = true;
-    hideBlocked = {
-      config = {
-        ignored = true;
-      };
-      enabled = true;
-    };
+    hideBlocked = false;
     imageViewer = true;
     jumpToBlocked = true;
     mediaTweaks = {
