@@ -181,7 +181,7 @@
     # vscode extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs"; # TODO uncomment when fixed
     };
 
     # collection of image builders
@@ -196,7 +196,7 @@
     # used for cudaSupport for wivrn flake
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "wivrn-solarxr-nixpkgs";
     };
 
     # nix xr/ar/vr packages
@@ -247,9 +247,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wivrn-solarxr-nixpkgs.url = "github:nixos/nixpkgs/e643668fd71b949c53f8626614b21ff71a07379d";
+
     # slimevr solarxr protocol patches for wivrn
     wivrn-solarxr = {
-      url = "github:notpeelz/WiVRn/1407b1f0a63cfe7beae18ec1cb634cd804262c0d";
+      url = "github:notpeelz/WiVRn/ae4dd3753eb466e978e243d673d8b7b53188dc41";
       inputs = {
         # keep-sorted start
         flake-parts.follows = "flake-parts";
