@@ -13,7 +13,5 @@
       };
       # keep-sorted end
     };
-
-    hardware.openrazer.enable = true;
   };
 }

@@ -30,7 +30,6 @@
         "kvm"
         "libvirtd"
         "networkmanager"
-        "openrazer"
         "podman"
         "video"
         "wheel"
