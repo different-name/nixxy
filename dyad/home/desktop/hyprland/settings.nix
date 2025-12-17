@@ -58,7 +58,8 @@
         };
 
         monitor = [
-          "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5" # home monitor
+          "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5" # main monitor
+          "desc:Microstep MAG 244F BC4H015300312, 1920x1080@200, auto-right, 1, transform, 3" # secondary monitor
           ",preferred,auto,1" # everything else
         ];
 
