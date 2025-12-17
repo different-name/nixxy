@@ -35,8 +35,9 @@
           id = 438100;
           compatTool = "proton_experimental";
           launchOptions = {
-            env.TZ = null;
             extraConfig = ''
+              unset TZ
+
               if [[ "$*" != *"--no-vr"* ]]; then
                 export PROTON_ENABLE_WAYLAND=1
               fi
