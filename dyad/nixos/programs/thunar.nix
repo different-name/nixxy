@@ -21,8 +21,10 @@
     # thumbnail support for images
     services.tumbler.enable = true;
 
-    # archive support
-    programs.file-roller.enable = true;
+    environment.systemPackages = [
+      # archive support
+      pkgs.file-roller
+    ];
 
     home-manager.sharedModules = lib.singleton {
       xdg.mimeApps.defaultApplications = {

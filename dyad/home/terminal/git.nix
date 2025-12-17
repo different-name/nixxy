@@ -5,13 +5,11 @@
   config = lib.mkIf config.dyad.terminal.git.enable {
     programs.git = {
       enable = true;
-      userName = "diffy";
-      userEmail = "hello@different-name.dev";
       lfs.enable = true;
-      # settings.user = {
-      #   name = "diffy";
-      #   email = "hello@different-name.dev";
-      # };
+      settings.user = {
+        name = "diffy";
+        email = "hello@different-name.dev";
+      };
     };
   };
 }
