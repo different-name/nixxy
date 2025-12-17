@@ -9,7 +9,7 @@
 buildNpmPackage {
   inherit (sources.osc-goes-brrr) pname version src;
 
-  npmDepsHash = "sha256-HObRprVAnJWSay8x7+Apkp0sKx1CpnjIB1ze4xks/Lo=";
+  npmDepsHash = "sha256-krdVx5Ci/hsQMzXhRmMbSZ+3YoQOTKH24Ejd4ykopdE=";
 
   env.ELECTRON_SKIP_BINARY_DOWNLOAD = 1;
 

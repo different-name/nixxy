@@ -3,58 +3,58 @@
 {
   cats-blender-plugin-unofficial = {
     pname = "cats-blender-plugin-unofficial";
-    version = "9a7a29e9fb47c63281f7e15bbefd226097c7ad54";
+    version = "b1a8cbb525e995d48423a1b55381c0d64e65c54f";
     src = fetchgit {
       url = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git";
-      rev = "9a7a29e9fb47c63281f7e15bbefd226097c7ad54";
+      rev = "b1a8cbb525e995d48423a1b55381c0d64e65c54f";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-Byt2cu+Pj1g3w6DlDQPsXw7DzltyKRsJz9YFszpZvFg=";
+      sha256 = "sha256-Yuq9g+PjrT8H7nEYLs7TfX/zUbEf8Txgblc/xjNMNuE=";
     };
-    date = "2025-08-23";
+    date = "2025-11-20";
   };
   disblock-origin = {
     pname = "disblock-origin";
-    version = "06792b9d62f788cf890052f878907db1da277a81";
+    version = "230a9a9c25d4d51be2200e8aecec7274967a1090";
     src = fetchgit {
       url = "https://git.allpurposem.at/mat/Disblock-Origin.git";
-      rev = "06792b9d62f788cf890052f878907db1da277a81";
+      rev = "230a9a9c25d4d51be2200e8aecec7274967a1090";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-uVvuy2dF7VnMt+p9kn1xhA4dO4h+btj4TjuQfHKW2as=";
+      sha256 = "sha256-6yPmcKNNWaejRGHDgtkhOcsiDSldcH80HSdmTym2Jqw=";
     };
-    date = "2025-10-17";
+    date = "2025-12-16";
   };
   osc-goes-brrr = {
     pname = "osc-goes-brrr";
-    version = "a3f951756bdeefcc690b98d4c4f22c2230464be7";
+    version = "6a3421f0a755e990238b2d75b71b66430f029929";
     src = fetchgit {
       url = "https://github.com/OscToys/OscGoesBrrr.git";
-      rev = "a3f951756bdeefcc690b98d4c4f22c2230464be7";
+      rev = "6a3421f0a755e990238b2d75b71b66430f029929";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-KRx8rMsQFU7dYmjO/JCjkUp2JheTkQ8sUT56Q0Q+p8E=";
+      sha256 = "sha256-JC86IHzntcgqdAcGAUotX7iwj3iIQwC2j2O3+QA77Tw=";
     };
-    date = "2024-10-13";
+    date = "2025-11-17";
   };
   winetricks = {
     pname = "winetricks";
-    version = "5a543dbc7bcb2465f3fb77bcfb28c0fc21d508b5";
+    version = "533f41704766765cfb3706fb2aa197acbb05df32";
     src = fetchgit {
       url = "https://github.com/Winetricks/winetricks.git";
-      rev = "5a543dbc7bcb2465f3fb77bcfb28c0fc21d508b5";
+      rev = "533f41704766765cfb3706fb2aa197acbb05df32";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-05AAQMv5vUCP8x69AMxnOC+NW/AH7tHzBOGQJk5uPyo=";
+      sha256 = "sha256-Bt5wo7zEAN9Mh9dwbGPsSW8pt1ruBrn0Br9BdprtIRY=";
     };
-    date = "2025-09-27";
+    date = "2025-11-04";
   };
 }

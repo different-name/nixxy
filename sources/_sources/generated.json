@@ -1,7 +1,7 @@
 {
     "cats-blender-plugin-unofficial": {
         "cargoLocks": null,
-        "date": "2025-08-23",
+        "date": "2025-11-20",
         "extract": null,
         "name": "cats-blender-plugin-unofficial",
         "passthru": null,
@@ -11,17 +11,17 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "9a7a29e9fb47c63281f7e15bbefd226097c7ad54",
-            "sha256": "sha256-Byt2cu+Pj1g3w6DlDQPsXw7DzltyKRsJz9YFszpZvFg=",
+            "rev": "b1a8cbb525e995d48423a1b55381c0d64e65c54f",
+            "sha256": "sha256-Yuq9g+PjrT8H7nEYLs7TfX/zUbEf8Txgblc/xjNMNuE=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
         },
-        "version": "9a7a29e9fb47c63281f7e15bbefd226097c7ad54"
+        "version": "b1a8cbb525e995d48423a1b55381c0d64e65c54f"
     },
     "disblock-origin": {
         "cargoLocks": null,
-        "date": "2025-10-17",
+        "date": "2025-12-16",
         "extract": null,
         "name": "disblock-origin",
         "passthru": null,
@@ -31,17 +31,17 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "06792b9d62f788cf890052f878907db1da277a81",
-            "sha256": "sha256-uVvuy2dF7VnMt+p9kn1xhA4dO4h+btj4TjuQfHKW2as=",
+            "rev": "230a9a9c25d4d51be2200e8aecec7274967a1090",
+            "sha256": "sha256-6yPmcKNNWaejRGHDgtkhOcsiDSldcH80HSdmTym2Jqw=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://git.allpurposem.at/mat/Disblock-Origin.git"
         },
-        "version": "06792b9d62f788cf890052f878907db1da277a81"
+        "version": "230a9a9c25d4d51be2200e8aecec7274967a1090"
     },
     "osc-goes-brrr": {
         "cargoLocks": null,
-        "date": "2024-10-13",
+        "date": "2025-11-17",
         "extract": null,
         "name": "osc-goes-brrr",
         "passthru": null,
@@ -51,17 +51,17 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "a3f951756bdeefcc690b98d4c4f22c2230464be7",
-            "sha256": "sha256-KRx8rMsQFU7dYmjO/JCjkUp2JheTkQ8sUT56Q0Q+p8E=",
+            "rev": "6a3421f0a755e990238b2d75b71b66430f029929",
+            "sha256": "sha256-JC86IHzntcgqdAcGAUotX7iwj3iIQwC2j2O3+QA77Tw=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/OscToys/OscGoesBrrr.git"
         },
-        "version": "a3f951756bdeefcc690b98d4c4f22c2230464be7"
+        "version": "6a3421f0a755e990238b2d75b71b66430f029929"
     },
     "winetricks": {
         "cargoLocks": null,
-        "date": "2025-09-27",
+        "date": "2025-11-04",
         "extract": null,
         "name": "winetricks",
         "passthru": null,
@@ -71,12 +71,12 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "5a543dbc7bcb2465f3fb77bcfb28c0fc21d508b5",
-            "sha256": "sha256-05AAQMv5vUCP8x69AMxnOC+NW/AH7tHzBOGQJk5uPyo=",
+            "rev": "533f41704766765cfb3706fb2aa197acbb05df32",
+            "sha256": "sha256-Bt5wo7zEAN9Mh9dwbGPsSW8pt1ruBrn0Br9BdprtIRY=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/Winetricks/winetricks.git"
         },
-        "version": "5a543dbc7bcb2465f3fb77bcfb28c0fc21d508b5"
+        "version": "533f41704766765cfb3706fb2aa197acbb05df32"
     }
 }
