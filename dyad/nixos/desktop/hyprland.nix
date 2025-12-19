@@ -11,14 +11,9 @@
     programs = {
       hyprland = {
         enable = true;
+        withUWSM = true;
         package = inputs'.hyprland.packages.hyprland;
         portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
-      };
-
-      uwsm.waylandCompositors.hyprland = {
-        binPath = lib.getExe config.programs.hyprland.package;
-        comment = "Hyprland session managed by uwsm";
-        prettyName = "Hyprland";
       };
     };
   };
