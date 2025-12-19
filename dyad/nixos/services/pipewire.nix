@@ -1,14 +1,9 @@
 {
   lib,
   config,
-  self,
   ...
 }:
 {
-  imports = [
-    self.nixosModules.wireplumberScripts
-  ];
-
   options.dyad.services.pipewire.enable = lib.mkEnableOption "pipewire config";
 
   config = lib.mkIf config.dyad.services.pipewire.enable {

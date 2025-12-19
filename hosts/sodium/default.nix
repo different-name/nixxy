@@ -1,5 +1,4 @@
 {
-  lib,
   inputs,
   self,
   ...
@@ -58,21 +57,4 @@
   hardware.brillo.enable = true; # backlight control
   hardware.keyboard.qmk.enable = true;
   services.goxlr-utility.enable = true;
-
-  # mirror audio from goxlr outputs to wivrn output
-  services.pipewire.wireplumber.scripts = {
-    autoConnectPorts = lib.singleton {
-      output = {
-        subject = "port.alias";
-        leftPort = "GoXLR:monitor_FL";
-        rightPort = "GoXLR:monitor_FR";
-      };
-
-      input = {
-        subject = "port.alias";
-        leftPort = "WiVRn:playback_1";
-        rightPort = "WiVRn:playback_2";
-      };
-    };
-  };
 }
