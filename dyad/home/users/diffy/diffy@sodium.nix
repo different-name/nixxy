@@ -3,7 +3,6 @@
   config,
   osConfig,
   self',
-  pkgs,
   ...
 }:
 let
@@ -52,6 +51,6 @@ lib.mkIf (username == "diffy" && hostName == "sodium") {
         configPath = "/etc/btrbk/persist.conf";
       };
     })
-    pkgs.qmk
+    # pkgs.qmk TODO uncomment when fixed: https://github.com/nixos/nixpkgs/issues/472891
   ];
 }

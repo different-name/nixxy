@@ -55,6 +55,6 @@
   };
 
   hardware.brillo.enable = true; # backlight control
-  hardware.keyboard.qmk.enable = true;
+  # hardware.keyboard.qmk.enable = true; TODO uncomment when fixed: https://github.com/nixos/nixpkgs/issues/472891
   services.goxlr-utility.enable = true;
 }

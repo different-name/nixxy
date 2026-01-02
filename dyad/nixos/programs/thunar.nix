@@ -10,8 +10,8 @@
   config = lib.mkIf config.dyad.programs.thunar.enable {
     programs.thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
+      plugins = [
+        pkgs.thunar-archive-plugin
       ];
     };
 

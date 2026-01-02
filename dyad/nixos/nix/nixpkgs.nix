@@ -17,6 +17,13 @@
 
       overlays = [
         # keep-sorted start block=yes newline_separated=yes
+        # TODO remove overlay once cache miss for firefox / librewolf is fixed
+        (_final: prev: {
+          onnxruntime = prev.onnxruntime.override {
+            cudaSupport = false;
+          };
+        })
+
         (_final: prev: {
           slimevr = prev.slimevr.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [

@@ -78,6 +78,7 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    # launch apps with cursor gestures
     hexecute = {
       url = "github:ThatOtherAndrew/Hexecute";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -209,7 +210,8 @@
     };
 
     # nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:flox/nixpkgs/unstable"; # latest nixpkgs revision in flox cache
 
     # nix user repository
     nur = {
