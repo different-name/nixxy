@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  inputs',
-  ...
-}:
+{ lib, config, ... }:
 {
   options.dyad.programs.nh.enable = lib.mkEnableOption "nh config";
 
@@ -11,8 +6,6 @@
     # nh is a nix cli helper, useful for rebuilding & cleaning
     programs.nh = {
       enable = true;
-
-      package = inputs'.nh.packages.nh;
 
       # weekly garbage collection
       clean = {

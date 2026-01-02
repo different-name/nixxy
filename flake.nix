@@ -90,58 +90,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprland compositor
-    hyprland.url = "github:hyprwm/hyprland";
-
-    # hypr session locker
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs = {
-        # keep-sorted start
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-        # keep-sorted end
-      };
-    };
-
-    # hypr wallpaper utility
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs = {
-        # keep-sorted start
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-        # keep-sorted end
-      };
-    };
-
-    # hypr color picker utility
-    hyprpicker = {
-      url = "github:hyprwm/hyprpicker";
-      inputs = {
-        # keep-sorted start
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-        # keep-sorted end
-      };
-    };
-
-    # hypr community scripts
-    hyprwm-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-    };
-
     # manage persistent state
     # TODO switch back to master once merged https://github.com/nix-community/impermanence/pull/272
     impermanence = {
@@ -158,12 +106,6 @@
     # moonlight discord mod
     moonlight = {
       url = "github:moonlight-mod/moonlight";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # nixos helper
-    nh = {
-      url = "github:nix-community/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

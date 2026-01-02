@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  inputs',
   ...
 }:
 let
@@ -13,7 +12,6 @@ in
   config = lib.mkIf config.dyad.desktop.hyprpaper.enable {
     services.hyprpaper = {
       enable = true;
-      package = inputs'.hyprpaper.packages.default;
 
       settings = {
         preload = [ "${wallpaperImg}" ];

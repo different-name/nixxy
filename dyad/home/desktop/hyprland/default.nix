@@ -2,15 +2,12 @@
   lib,
   config,
   osConfig,
-  inputs,
-  inputs',
   self,
   pkgs,
   ...
 }:
 {
   imports = [
-    inputs.hyprland.homeManagerModules.default
     self.homeModules.xdgDesktopPortalHyprland
   ];
 
@@ -19,7 +16,6 @@
   config = lib.mkIf config.dyad.desktop.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs'.hyprland.packages.hyprland;
 
       systemd = {
         enable = !osConfig.programs.uwsm.enable; # conflicts with uwsm
@@ -36,8 +32,8 @@
     services.hyprpolkitagent.enable = true;
 
     home.packages = [
-      inputs'.hyprpicker.packages.default
-      inputs'.hyprwm-contrib.packages.grimblast
+      pkgs.hyprpicker
+      pkgs.grimblast
     ];
 
     home.perpetual.default.dirs = [
