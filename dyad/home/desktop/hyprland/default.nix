@@ -17,8 +17,8 @@
   config = lib.mkIf config.dyad.desktop.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs'.hyprland.packages.hyprland;
-      portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
+      package = null;
+      portalPackage = null;
 
       systemd = {
         enable = !osConfig.programs.uwsm.enable; # conflicts with uwsm

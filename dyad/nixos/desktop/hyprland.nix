@@ -21,6 +21,7 @@ in
       portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
     };
 
+    # TODO remove when withUWSM option sets env vars correctly
     programs.uwsm.waylandCompositors.hyprland.binPath = lib.mkForce (
       pkgs.writeTextFile {
         name = "start-hyprland-wrapper";
