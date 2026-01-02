@@ -196,7 +196,7 @@
     # used for cudaSupport for wivrn flake
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
-      inputs.nixpkgs.follows = "wivrn-solarxr-nixpkgs";
+      inputs.nixpkgs.follows = "wivrn-nixpkgs";
     };
 
     # nix xr/ar/vr packages
@@ -224,7 +224,7 @@
     solarxr-cli = {
       url = "git+https://github.com/notpeelz/solarxr-cli?submodules=1";
       inputs = {
-        nixpkgs.follows = "wivrn-solarxr/nixpkgs";
+        nixpkgs.follows = "wivrn/nixpkgs";
         systems.follows = "systems";
       };
     };
@@ -250,18 +250,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wivrn-solarxr-nixpkgs.url = "github:nixos/nixpkgs/e643668fd71b949c53f8626614b21ff71a07379d";
-
-    # slimevr solarxr protocol patches for wivrn
-    wivrn-solarxr = {
-      url = "github:notpeelz/WiVRn/ae4dd3753eb466e978e243d673d8b7b53188dc41";
+    # openxr streamer for standalone headsets
+    wivrn = {
+      url = "github:notpeelz/WiVRn/1e488a8a9c4be6fefae1fc63d9f23f65ebf53a06";
       inputs = {
-        # keep-sorted start
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs-unfree";
-        # keep-sorted end
       };
     };
+
+    wivrn-nixpkgs.url = "github:nixos/nixpkgs/e643668fd71b949c53f8626614b21ff71a07379d";
     # keep-sorted end
   };
 }

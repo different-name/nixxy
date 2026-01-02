@@ -1147,7 +1147,7 @@
     "nixpkgs-unfree": {
       "inputs": {
         "nixpkgs": [
-          "wivrn-solarxr-nixpkgs"
+          "wivrn-nixpkgs"
         ]
       },
       "locked": {
@@ -1301,14 +1301,14 @@
         "steam-config-nix": "steam-config-nix",
         "systems": "systems_4",
         "treefmt-nix": "treefmt-nix",
-        "wivrn-solarxr": "wivrn-solarxr",
-        "wivrn-solarxr-nixpkgs": "wivrn-solarxr-nixpkgs"
+        "wivrn": "wivrn",
+        "wivrn-nixpkgs": "wivrn-nixpkgs"
       }
     },
     "solarxr-cli": {
       "inputs": {
         "nixpkgs": [
-          "wivrn-solarxr",
+          "wivrn",
           "nixpkgs"
         ],
         "systems": [
@@ -1437,7 +1437,7 @@
         "type": "github"
       }
     },
-    "wivrn-solarxr": {
+    "wivrn": {
       "inputs": {
         "flake-parts": [
           "flake-parts"
@@ -1447,21 +1447,21 @@
         ]
       },
       "locked": {
-        "lastModified": 1764809407,
-        "narHash": "sha256-QCxC8dwiSPPKSIJFYrGjWTet2Qbx2LlrKcXVNKbAL34=",
+        "lastModified": 1767304998,
+        "narHash": "sha256-acsxbb3XKzpCkZUtkL3jfpk7qoBc7LU+VtQ7bA6JMCc=",
         "owner": "notpeelz",
         "repo": "WiVRn",
-        "rev": "ae4dd3753eb466e978e243d673d8b7b53188dc41",
+        "rev": "1e488a8a9c4be6fefae1fc63d9f23f65ebf53a06",
         "type": "github"
       },
       "original": {
         "owner": "notpeelz",
         "repo": "WiVRn",
-        "rev": "ae4dd3753eb466e978e243d673d8b7b53188dc41",
+        "rev": "1e488a8a9c4be6fefae1fc63d9f23f65ebf53a06",
         "type": "github"
       }
     },
-    "wivrn-solarxr-nixpkgs": {
+    "wivrn-nixpkgs": {
       "locked": {
         "lastModified": 1758690382,
         "narHash": "sha256-NY3kSorgqE5LMm1LqNwGne3ZLMF2/ILgLpFr1fS4X3o=",

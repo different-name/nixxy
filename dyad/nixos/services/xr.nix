@@ -12,11 +12,7 @@
   config = lib.mkIf config.dyad.services.xr.enable {
     services.wivrn = {
       enable = true;
-      package = inputs'.wivrn-solarxr.packages.default.overrideAttrs (old: {
-        cmakeFlags = old.cmakeFlags ++ [
-          (lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)
-        ];
-      });
+      package = inputs'.wivrn.packages.default;
 
       openFirewall = true;
       defaultRuntime = true;
