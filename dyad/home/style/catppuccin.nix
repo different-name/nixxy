@@ -23,8 +23,8 @@
         inherit (config.catppuccin) enable;
         accent = "dark";
       };
-      firefox.enable = false;
       fish.enable = false;
+      librewolf.enable = false;
       mpv.enable = false;
       yazi.accent = "mauve";
       zellij.enable = false;

@@ -55,7 +55,7 @@
           ## launcher
           "$mod, S, exec, anyrun" # not using uwsm as it introduces latency
           ## browser
-          "$mod, W, exec, ${uwsmApp "firefox"}"
+          "$mod, W, exec, ${uwsmApp "librewolf"}"
           ## file explorer
           "$mod, E, exec, ${uwsmApp "thunar"}"
           ## emoji picker

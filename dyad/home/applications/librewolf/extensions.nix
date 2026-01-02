@@ -6,8 +6,8 @@
   ...
 }:
 {
-  config = lib.mkIf config.dyad.applications.firefox.enable {
-    programs.firefox.profiles.default = {
+  config = lib.mkIf config.dyad.applications.librewolf.enable {
+    programs.librewolf.profiles.default = {
       extensions = {
         force = true;
 

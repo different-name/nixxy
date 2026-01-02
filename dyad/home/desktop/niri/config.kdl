@@ -97,7 +97,7 @@ window-rule {
 
 // small floating windows
 window-rule {
-  match app-id="firefox$" title="^Picture-in-Picture$"
+  match app-id="librewolf$" title="^Picture-in-Picture$"
   match app-id="^qalculate-gtk$" title="^Qalculate!$"
   match app-id="^$" title="^Select what to share$"
   match app-id="^thunar$" title="^File Operation Progress$"
@@ -131,7 +131,7 @@ binds {
   Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
   Mod+S hotkey-overlay-title="Run an Application: anyrun" { spawn "anyrun"; }
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-  Mod+W hotkey-overlay-title="Open a browser: firefox" { spawn "firefox"; }
+  Mod+W hotkey-overlay-title="Open a browser: librewolf" { spawn "librewolf"; }
 
   Mod+D { spawn-sh "notify-send -t 5000 \"$(date \"+%a %-d %b %Y | %-I:%M%p\")\""; }
   Mod+Z { spawn "goxlr-utility-tg-mute"; }
