@@ -1333,6 +1333,9 @@
     },
     "steam-config-nix": {
       "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -1341,11 +1344,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764068241,
-        "narHash": "sha256-3oZ4/AMQqWgOFIv3QmwuofizKlXGvXQQpktdlHA/bz8=",
+        "lastModified": 1767321682,
+        "narHash": "sha256-83uHdEVOXoJsNe4QKKzr6X89Kn0kfcLFf7TcT0SPehk=",
         "owner": "different-name",
         "repo": "steam-config-nix",
-        "rev": "e6ab9bf052cf21030101e232e52b971ef1888313",
+        "rev": "1294ede49b3aa1a9df3e19f41e19f19fbf2c69f1",
         "type": "github"
       },
       "original": {

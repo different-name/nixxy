@@ -17,11 +17,13 @@
     programs.steam.config = {
       enable = true;
       closeSteam = true;
+      defaultCompatTool = "GE-Proton";
 
       apps = {
         # keep-sorted start block=yes newline_separated=yes
         cyberpunk-2077 = {
           id = 1091500;
+          compatTool = "GE-Proton";
           launchOptions = {
             env.WINEDLLOVERRIDES = "winmm,version=n,b";
             args = [
@@ -33,11 +35,10 @@
 
         vrchat = {
           id = 438100;
-          compatTool = "proton_experimental";
+          compatTool = "GE-Proton-rtsp";
           launchOptions = {
+            env.TZ = null;
             extraConfig = ''
-              unset TZ
-
               if [[ "$*" != *"--no-vr"* ]]; then
                 export PROTON_ENABLE_WAYLAND=1
               fi
@@ -47,7 +48,7 @@
 
         warhammer-40k-darktide = {
           id = 1361210;
-          compatTool = "proton_experimental";
+          compatTool = "GE-Proton";
           launchOptions = pkgs.writeShellScriptBin "darktide-wrapper" ''
             unset LD_PRELOAD
 

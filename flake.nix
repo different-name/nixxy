@@ -233,8 +233,11 @@
     steam-config-nix = {
       url = "github:different-name/steam-config-nix";
       inputs = {
+        # keep-sorted start
+        flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
+        # keep-sorted end
       };
     };
 
