@@ -139,13 +139,6 @@ in
           ];
         };
 
-        eyetrackvr = {
-          package = self'.packages.eyetrackvr;
-          dirs = [
-            "$configHome/EyeTrackVR"
-          ];
-        };
-
         slimevr = {
           # https://github.com/tauri-apps/tauri/issues/9394
           package = pkgs.symlinkJoin {
