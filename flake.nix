@@ -90,6 +90,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # dwm-like workspaces numbering for hyprland
+    hypr-split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    # hyprland wayland compositor
+    hyprland.url = "github:hyprwm/Hyprland";
+
     # manage persistent state
     # TODO switch back to master once merged https://github.com/nix-community/impermanence/pull/272
     impermanence = {

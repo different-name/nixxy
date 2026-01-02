@@ -2,6 +2,7 @@
   lib,
   config,
   osConfig,
+  inputs',
   self,
   pkgs,
   ...
@@ -16,6 +17,8 @@
   config = lib.mkIf config.dyad.desktop.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
+      package = inputs'.hyprland.packages.hyprland;
+      portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
 
       systemd = {
         enable = !osConfig.programs.uwsm.enable; # conflicts with uwsm
@@ -23,6 +26,10 @@
       };
 
       xwayland.enable = true;
+
+      plugins = [
+        inputs'.hypr-split-monitor-workspaces.packages.split-monitor-workspaces
+      ];
 
       settings.exec-once = [
         "${lib.getExe pkgs.wl-clip-persist} --clipboard regular"

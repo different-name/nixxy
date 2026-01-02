@@ -82,10 +82,10 @@
           "$mod SHIFT CTRL, S, exec, ${uwsmSingleApp "grimblast"} --notify --cursor copy output"
 
           # cycle workspaces
-          "$mod, bracketleft, workspace, m-1"
-          "$mod, bracketright, workspace, m+1"
-          ",mouse:275, workspace, m-1" # two buttons on the side of my mouse
-          ",mouse:276, workspace, m+1"
+          "$mod, bracketleft, split-workspace, m-1"
+          "$mod, bracketright, split-workspace, m+1"
+          ",mouse:275, split-workspace, m-1" # two buttons on the side of my mouse
+          ",mouse:276, split-workspace, m+1"
 
           # cycle monitors
           "$mod SHIFT, bracketleft, focusmonitor, l"
@@ -115,7 +115,7 @@
           )
         ]
         # workspace keys
-        ++ (map (ws: "$mod, ${ws}, workspace, ${ws}") [
+        ++ (map (ws: "$mod, ${ws}, split-workspace, ${ws}") [
           "1"
           "2"
           "3"
@@ -126,7 +126,7 @@
           "8"
           "9"
         ])
-        ++ (map (ws: "$mod SHIFT, ${ws}, movetoworkspace, ${ws}") [
+        ++ (map (ws: "$mod SHIFT, ${ws}, split-movetoworkspace, ${ws}") [
           "1"
           "2"
           "3"
