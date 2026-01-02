@@ -155,7 +155,7 @@ index e233083..10979bb 100644
 +            if pointer.now.yaw_reset && !pointer.before.yaw_reset {
 +                log::info!("Yaw reset");
 +                thread::spawn(|| {
-+                    let _ = Command::new("/run/current-system/sw/bin/solarcr-cli")
++                    let _ = Command::new("/run/current-system/sw/bin/solarxr-cli")
 +                        .arg("reset").arg("yaw")
 +                        .spawn();
 +                });
