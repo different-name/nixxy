@@ -48,8 +48,6 @@
           };
 
           statix.enable = true;
-
-          stylua.enable = true;
           # keep-sorted end
         };
       };
