@@ -1,13 +1,11 @@
 {
   lib,
   config,
-  inputs,
   self,
   ...
 }:
 {
   imports = [
-    inputs.impermanence.homeManagerModules.impermanence
     self.homeModules.perpetual # impermanence option bindings
   ];
 

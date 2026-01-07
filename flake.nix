@@ -100,9 +100,8 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     # manage persistent state
-    # TODO switch back to master once merged https://github.com/nix-community/impermanence/pull/272
     impermanence = {
-      url = "github:nix-community/impermanence/home-manager-v2";
+      url = "github:nix-community/impermanence";
       inputs = {
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
