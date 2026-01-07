@@ -35,7 +35,7 @@
 
         vrchat = {
           id = 438100;
-          compatTool = "GE-Proton-rtsp";
+          compatTool = "proton-experimental";
           launchOptions = {
             env.TZ = null;
             extraConfig = ''
