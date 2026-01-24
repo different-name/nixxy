@@ -6,7 +6,7 @@ help:
 [group("build")]
 [private]
 build command *args:
-  @nh os {{ command }} {{ args }}
+  @nh os {{ command }} --accept-flake-config {{ args }}
 
 # add config to bootloader
 [group("build")]
