@@ -1,11 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
-let
-  wallpaperImg = ./wallpaper.jpg;
-in
+{ lib, config, ... }:
 {
   options.dyad.desktop.hyprpaper.enable = lib.mkEnableOption "hyprpaper config";
 
@@ -13,9 +6,9 @@ in
     services.hyprpaper = {
       enable = true;
 
-      settings = {
-        preload = [ "${wallpaperImg}" ];
-        wallpaper = [ ",${wallpaperImg}" ];
+      settings.wallpaper = lib.singleton {
+        monitor = "";
+        path = toString ./wallpaper.jpg;
       };
     };
   };
