@@ -1,6 +1,25 @@
 {
   description = "Diffy's nix-files";
-  nixConfig.extra-experimental-features = [ "pipe-operators" ];
+
+  nixConfig = {
+    extra-experimental-features = [ "pipe-operators" ];
+
+    trusted-substituters = [
+      "https://cache.nixos.org?priority=10"
+
+      "https://hyprland.cachix.org"
+      "https://nix-community.cachix.org"
+      "https://cache.nixos-cuda.org"
+    ];
+
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+    ];
+  };
 
   outputs =
     inputs:
@@ -144,6 +163,9 @@
     # hardware configurations
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
+    # TODO remove after fix for https://github.com/nixos/nixpkgs/issues/482250 is merged
+    nixpkgs-librewolf.url = "github:nixos/nixpkgs/cad22e7d996aea55ecab064e84834289143e44a0";
+
     # used for cudaSupport for wivrn flake
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
@@ -161,8 +183,6 @@
 
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # TODO remove after fix for https://github.com/nixos/nixpkgs/issues/482250 is merged
-    nixpkgs-librewolf.url = "github:nixos/nixpkgs/cad22e7d996aea55ecab064e84834289143e44a0";
 
     # nix user repository
     nur = {
