@@ -2,6 +2,7 @@
   extensions = {
     alwaysFocus = true;
     alwaysShowForwardTime = true;
+    antinonce = true;
     betterCodeblocks = true;
     betterEmbedsYT = true;
     betterTags = true;
@@ -62,6 +63,7 @@
     noHelp = true;
     noJoinMessageWave = true;
     noMaskedLinkPaste = true;
+    noOnboardingDelay = true;
     noReplyChainNag = true;
     noRpc = true;
     noTrack = true;
