@@ -16,14 +16,6 @@
       };
 
       overlays = [
-        # keep-sorted start block=yes newline_separated=yes
-        # TODO remove overlay once cache miss for firefox / librewolf is fixed
-        (_final: prev: {
-          onnxruntime = prev.onnxruntime.override {
-            cudaSupport = false;
-          };
-        })
-
         (_final: prev: {
           slimevr = prev.slimevr.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [
@@ -34,25 +26,6 @@
             ];
           });
         })
-
-        (_final: prev: {
-          wlx-overlay-s = prev.wlx-overlay-s.overrideAttrs (old: {
-            patches = (old.patches or [ ]) ++ [
-              # keep-sorted start block=yes newline_separated=yes
-              (builtins.path {
-                path = self + /patches/wlx-overlay-s/catppuccin-colors.patch;
-                name = "wlx-overlay-s-catppuccin-colors";
-              })
-
-              (builtins.path {
-                path = self + /patches/wlx-overlay-s/yaw-reset.patch;
-                name = "wlx-overlay-s-yaw-reset";
-              })
-              # keep-sorted end
-            ];
-          });
-        })
-        # keep-sorted end
       ];
     };
 

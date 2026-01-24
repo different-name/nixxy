@@ -9,7 +9,7 @@
 }:
 let
   discordPackage = pkgs.discord.override {
-    withMoonlight = true;
+    # withMoonlight = true; TODO uncomment when moonlight is fixed
     inherit (inputs'.moonlight.packages) moonlight;
   };
 in

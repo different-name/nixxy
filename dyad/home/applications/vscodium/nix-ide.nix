@@ -32,7 +32,7 @@
         "nix.serverPath" = "${lib.getExe pkgs.nixd}";
 
         "nix.serverSettings.nixd.formatting.command" = [
-          "${lib.getExe pkgs.nixfmt-rfc-style}"
+          "${lib.getExe pkgs.nixfmt}"
         ];
 
         "nix.serverSettings.nixd.options.nixos.expr" =

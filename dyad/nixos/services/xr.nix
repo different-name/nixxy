@@ -113,8 +113,8 @@
         };
       };
 
-      wlx-overlay-s = {
-        description = "wlx-overlay-s";
+      wayvr = {
+        description = "wayvr";
         after = [ "wait-for-wivrn.service" ];
         requires = [ "wait-for-wivrn.service" ];
         partOf = [
@@ -123,7 +123,7 @@
         ];
 
         serviceConfig = {
-          ExecStart = "${lib.getExe pkgs.wlx-overlay-s} --openxr --replace";
+          ExecStart = "${lib.getExe pkgs.wayvr} --openxr --replace";
           Restart = "on-failure";
           ExecStopSignal = "SIGKILL";
           KillSignal = "SIGKILL";
@@ -137,8 +137,8 @@
           deps = [
             # keep-sorted start
             "slimevr-server.service"
+            "wayvr.service"
             "wivrn.service"
-            "wlx-overlay-s.service"
             # keep-sorted end
           ];
         in

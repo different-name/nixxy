@@ -96,9 +96,9 @@ in
       force = true;
     };
 
-    # https://github.com/galister/wlx-overlay-s/wiki
-    xdg.configFile."wlxoverlay" = {
-      source = ./wlx-overlay-s;
+    # https://github.com/wlx-team/wayvr/wiki/Customization
+    xdg.configFile."wayvr" = {
+      source = ./wayvr;
       recursive = true;
       force = true;
     };
@@ -164,8 +164,8 @@ in
           "$configHome/VRCX"
         ];
 
-        wlx-overlay-s.dirs = [
-          "$configHome/wlxoverlay"
+        wayvr.dirs = [
+          "$configHome/wayvr"
         ];
         # keep-sorted end
       };

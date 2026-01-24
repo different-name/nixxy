@@ -25,10 +25,6 @@
           "$dataHome/lutris"
         ];
 
-        nexusmods-app.dirs = [
-          "$stateHome/NexusMods.App"
-        ];
-
         osu-lazer-bin.dirs = [
           "$dataHome/osu"
         ];

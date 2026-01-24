@@ -160,8 +160,9 @@
     };
 
     # nixpkgs
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:flox/nixpkgs/unstable"; # latest nixpkgs revision in flox cache
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # TODO remove after fix for https://github.com/nixos/nixpkgs/issues/482250 is merged
+    nixpkgs-librewolf.url = "github:nixos/nixpkgs/cad22e7d996aea55ecab064e84834289143e44a0";
 
     # nix user repository
     nur = {
