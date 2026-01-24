@@ -1,7 +1,7 @@
 {
     "cats-blender-plugin-unofficial": {
-        "cargoLocks": null,
-        "date": "2025-11-20",
+        "cargoLock": null,
+        "date": "2025-12-17",
         "extract": null,
         "name": "cats-blender-plugin-unofficial",
         "passthru": null,
@@ -11,17 +11,17 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "b1a8cbb525e995d48423a1b55381c0d64e65c54f",
-            "sha256": "sha256-Yuq9g+PjrT8H7nEYLs7TfX/zUbEf8Txgblc/xjNMNuE=",
+            "rev": "57de0a2c88b4208579978b160383011e565a153c",
+            "sha256": "sha256-dW1t2lhRRAwzLTvn+6bG48XwdKWfdVfjWw9QHJNGLU8=",
             "sparseCheckout": [],
             "type": "git",
-            "url": "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
+            "url": "https://git.disroot.org/Neoneko/Cats-Blender-Plugin.git"
         },
-        "version": "b1a8cbb525e995d48423a1b55381c0d64e65c54f"
+        "version": "57de0a2c88b4208579978b160383011e565a153c"
     },
     "disblock-origin": {
-        "cargoLocks": null,
-        "date": "2025-12-22",
+        "cargoLock": null,
+        "date": "2026-01-14",
         "extract": null,
         "name": "disblock-origin",
         "passthru": null,
@@ -31,16 +31,16 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "cd485601a37ca760a814ecd130e96862931415c9",
-            "sha256": "sha256-IgWKOHXfKTO1S9jyNINHsKgIfcCjUiowYGaHy6BDjiA=",
+            "rev": "15cbab89197af9f4af6b404ad0c5ea922cc9c380",
+            "sha256": "sha256-mIDj3gf4I1f+u/jzqeNiIqLaR173bkxO9Nq0PBXhws8=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://git.allpurposem.at/mat/Disblock-Origin.git"
         },
-        "version": "cd485601a37ca760a814ecd130e96862931415c9"
+        "version": "15cbab89197af9f4af6b404ad0c5ea922cc9c380"
     },
     "osc-goes-brrr": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-11-17",
         "extract": null,
         "name": "osc-goes-brrr",
@@ -60,7 +60,7 @@
         "version": "6a3421f0a755e990238b2d75b71b66430f029929"
     },
     "winetricks": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-12-23",
         "extract": null,
         "name": "winetricks",

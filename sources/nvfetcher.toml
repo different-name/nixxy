@@ -1,7 +1,7 @@
 [cats-blender-plugin-unofficial]
-src.git = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
-src.branch = "blender-45"
-fetch.git = "https://github.com/teamneoneko/Cats-Blender-Plugin-Unofficial-.git"
+src.git = "https://git.disroot.org/Neoneko/Cats-Blender-Plugin.git"
+src.branch = "Blender-5x"
+fetch.git = "https://git.disroot.org/Neoneko/Cats-Blender-Plugin.git"
 
 [disblock-origin]
 src.git = "https://git.allpurposem.at/mat/Disblock-Origin.git"
