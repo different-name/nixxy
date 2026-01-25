@@ -9,9 +9,7 @@
         # keep-sorted start
         fonts.enable = true;
         hyprland.enable = true;
-        # niri.enable = true;
         qt.enable = true;
-        uwsm.enable = true;
         xdg.enable = true;
         # keep-sorted end
       };
