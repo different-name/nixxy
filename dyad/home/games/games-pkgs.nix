@@ -29,6 +29,10 @@
           "$dataHome/osu"
         ];
 
+        vintagestory.dirs = [
+          "$configHome/VintagestoryData"
+        ];
+
         prismlauncher = {
           package = pkgs.prismlauncher.override {
             jdks = [

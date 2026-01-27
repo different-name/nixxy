@@ -48,6 +48,7 @@
             "diablo iv.exe"
             ''Minecraft(\*)? [0-9\.]+''
             "looking-glass-client"
+            "Vintage Story"
           ];
           suppress_event = "fullscreen";
           fullscreen = true;
