@@ -1,4 +1,12 @@
-{ self, ... }:
+{ lib, self, ... }:
+let
+  ports = {
+    minecraft = 25565;
+    vintagestory = 42420;
+  };
+
+  portList = lib.attrValues ports;
+in
 {
   imports = [
     self.nixosModules.dyad
@@ -20,6 +28,8 @@
     };
   };
 
-  networking.firewall.allowedUDPPorts = [ 25565 ];
-  networking.firewall.allowedTCPPorts = [ 25565 ];
+  networking.firewall = {
+    allowedUDPPorts = portList;
+    allowedTCPPorts = portList;
+  };
 }
