@@ -4,56 +4,110 @@
     programs.librewolf.profiles.default = {
       bookmarks = {
         force = true;
+
         settings = [
           {
-            # how'd you end up here?
-            name = "Jamie's Page";
-            url = "https://jamies.page/";
+            name = "Media";
+            bookmarks = [
+              {
+                name = "YouTube";
+                url = "https://www.youtube.com/";
+              }
+              {
+                name = "VRChat";
+                url = "https://vrchat.com/home";
+              }
+            ];
           }
+
           {
-            name = "YouTube";
-            url = "https://www.youtube.com/";
+            name = "Personal";
+            bookmarks = [
+              {
+                name = "Mail";
+                url = "https://account.proton.me/mail";
+              }
+              {
+                name = "Drive";
+                url = "https://account.proton.me/drive";
+              }
+              {
+                name = "Copyparty";
+                url = "https://copyparty.different-name.com/";
+              }
+              {
+                name = "Photos";
+                url = "https://web.ente.io/gallery";
+              }
+              {
+                name = "Kagi Assistant";
+                url = "https://kagi.com/assistant";
+              }
+            ];
           }
+
           {
-            name = "Mail";
-            url = "https://account.proton.me/mail";
+            name = "GitHub";
+            bookmarks = [
+              {
+                name = "nix-files";
+                url = "https://github.com/different-name/nix-files";
+              }
+              {
+                name = "steam-config-nix";
+                url = "https://github.com/different-name/steam-config-nix";
+              }
+              {
+                name = "moonlight-mod";
+                url = "https://github.com/moonlight-mod/moonlight";
+              }
+            ];
           }
+
           {
-            name = "Drive";
-            url = "https://account.proton.me/drive";
-          }
-          {
-            name = "Copyparty";
-            url = "https://copyparty.different-name.com/";
-          }
-          {
-            name = "Photos";
-            url = "https://web.ente.io/gallery";
-          }
-          {
-            name = "nix-files";
-            url = "https://github.com/different-name/nix-files";
-          }
-          {
-            name = "Kagi Assistant";
-            url = "https://kagi.com/assistant";
-          }
-          "separator"
-          {
-            name = "My Raywhite";
-            url = "https://my.raywhite.com/dashboard/home";
-          }
-          {
-            name = "RW - One System";
-            url = "https://sites.google.com/raywhite.com/raywhite-onesystem/home";
-          }
-          {
-            name = "Monday.com";
-            url = "https://raywhite816007.monday.com/";
-          }
-          {
-            name = "Developmenti";
-            url = "https://developmenti.sunshinecoast.qld.gov.au";
+            name = "Work";
+            bookmarks = [
+              {
+                name = "Vault";
+                url = "https://login.vaultre.com.au/cgi-bin/clientvault/login.cgi?id=rw";
+              }
+              {
+                name = "id4me";
+                url = "https://id4me.me/";
+              }
+              {
+                name = "Monday.com";
+                url = "https://raywhite816007.monday.com/";
+              }
+              {
+                name = "Google Sheets";
+                url = "https://docs.google.com/spreadsheets/u/1/";
+              }
+              {
+                name = "Google Mail";
+                url = "https://mail.google.com/mail/u/1/";
+              }
+              {
+                name = "PriceFinder";
+                url = "https://app.pricefinder.com.au/v4/app";
+              }
+              {
+                name = "One System";
+                url = "https://sites.google.com/raywhite.com/raywhite-onesystem/au";
+              }
+              {
+                name = "My Raywhite";
+                url = "https://my.raywhite.com/dashboard/home";
+              }
+              {
+                name = "Developmenti";
+                url = "https://developmenti.sunshinecoast.qld.gov.au";
+              }
+              {
+                name = "VentraIP";
+                url = "https://vip.ventraip.com.au/dashboard";
+              }
+            ];
           }
         ];
       };
