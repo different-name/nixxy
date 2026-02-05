@@ -57,13 +57,37 @@
           anr_missed_pings = 10;
         };
 
-        monitor = [
-          "desc:BNQ BenQ EX3210U ETA5R01980SL0, 3840x2160@144, 0x0, 1.5" # main monitor
-          "desc:Microstep MAG 244F BC4H015300312, 1920x1080@200, auto-right, 1, transform, 3" # secondary monitor
-          # legacy
-          "desc:BNQ BenQ EW3270U 5BL00174019, preferred, 0x0, 1.5"
-          # everything else
-          ",preferred,auto,1"
+        monitorv2 = [
+          {
+            # main monitor
+            output = "desc:BNQ BenQ EX3210U ETA5R01980SL0";
+            mode = "3840x2160@144";
+            position = "0x0";
+            scale = 1.5;
+            bitdepth = 10;
+          }
+          {
+            # second monitor
+            output = "desc:Microstep MAG 244F BC4H015300312";
+            mode = "1920x1080@200";
+            position = "auto-right";
+            scale = 1;
+            transform = 3;
+          }
+          {
+            # previous main monitor
+            output = "desc:BNQ BenQ EW3270U 5BL00174019";
+            mode = "preferred";
+            position = "0x0";
+            scale = 1.5;
+          }
+          {
+            # everything else
+            output = "";
+            mode = "preferred";
+            position = "auto";
+            scale = 1;
+          }
         ];
 
         render.direct_scanout = false;
