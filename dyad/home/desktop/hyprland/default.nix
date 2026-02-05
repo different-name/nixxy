@@ -2,7 +2,6 @@
   lib,
   config,
   osConfig,
-  inputs',
   self,
   pkgs,
   ...
@@ -26,10 +25,6 @@
       };
 
       xwayland.enable = true;
-
-      plugins = [
-        inputs'.hypr-split-monitor-workspaces.packages.split-monitor-workspaces
-      ];
 
       settings.exec-once = [
         "${lib.getExe pkgs.wl-clip-persist} --clipboard regular"
