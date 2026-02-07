@@ -12,6 +12,9 @@
   config = lib.mkIf config.dyad.programs.steam.enable {
     programs.steam = {
       enable = true;
+
+      gamescopeSession.enable = true;
+
       protontricks = {
         enable = true;
         package = pkgs.protontricks.override {
@@ -29,6 +32,15 @@
         proton-ge-bin
       ];
     };
+
+    programs.gamescope = {
+      enable = true;
+      capSysNice = false;
+    };
+
+    environment.systemPackages = [
+      pkgs.gamescope-wsi # gamescope hdr support
+    ];
 
     hardware.steam-hardware.enable = true;
   };
