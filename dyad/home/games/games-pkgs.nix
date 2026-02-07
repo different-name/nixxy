@@ -29,10 +29,6 @@
           "$dataHome/osu"
         ];
 
-        vintagestory.dirs = [
-          "$configHome/VintagestoryData"
-        ];
-
         prismlauncher = {
           package = pkgs.prismlauncher.override {
             jdks = [
@@ -48,6 +44,10 @@
         r2modman.dirs = [
           "$configHome/r2modman"
           "$configHome/r2modmanPlus-local"
+        ];
+
+        vintagestory.dirs = [
+          "$configHome/VintagestoryData"
         ];
         # keep-sorted end
       };
