@@ -55,8 +55,20 @@
     GDK_SCALE = "2";
   };
 
+  programs.steam.gamescopeSession.args = [
+    "-W"
+    "3840"
+    "-H"
+    "2160"
+    "-r"
+    "144"
+    "-f"
+    "--hdr-enabled"
+    "--prefer-output"
+    "HDMI-A-1"
+  ];
+
   hardware.brillo.enable = true; # backlight control
-  # hardware.keyboard.qmk.enable = true; TODO uncomment when fixed: https://github.com/nixos/nixpkgs/issues/472891
   services.goxlr-utility.enable = true;
 
   services.postgresql = {
