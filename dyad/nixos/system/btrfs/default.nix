@@ -67,8 +67,8 @@
       instances."persist" = {
         onCalendar = "daily";
         settings = {
-          target_preserve_min = "1w";
-          target_preserve = "2w";
+          target_preserve_min = "2w";
+          target_preserve = "4w";
           volume = {
             "/btrfs" = {
               target = "/mnt/backup";
