@@ -21,7 +21,7 @@
         programs.nh = {
           enable = true;
           package = lib.mkDefault osConfig.programs.nh.package;
-          flake = "${config.home.homeDirectory}/nix-files";
+          flake = "${config.home.homeDirectory}/nixxy";
         };
 
         home.perpetual.default.dirs = [

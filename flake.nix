@@ -1,5 +1,5 @@
 {
-  description = "Diffy's nix-files";
+  description = "diffy's nixos configuration files";
 
   nixConfig = {
     extra-experimental-features = [ "pipe-operators" ];

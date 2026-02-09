@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  nix-files.hosts = {
+  nixxy.hosts = {
     # keep-sorted start block=yes newline_separated=yes
     chinchilla = {
       system = "x86_64-linux";

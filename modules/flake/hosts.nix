@@ -79,7 +79,7 @@ let
     };
 in
 {
-  options.nix-files.hosts = lib.mkOption {
+  options.nixxy.hosts = lib.mkOption {
     type = types.attrsOf (
       types.submodule (
         { name, ... }:
@@ -152,7 +152,7 @@ in
         }
       )
     );
-  }) config.nix-files.hosts;
+  }) config.nixxy.hosts;
 
   config.flake.packages = lib.mkMerge (
     lib.mapAttrsToList (_: host: {
@@ -168,6 +168,6 @@ in
           }
         ];
       };
-    }) config.nix-files.hosts
+    }) config.nixxy.hosts
   );
 }

@@ -25,7 +25,7 @@
         # keep-sorted start
         "$dataHome/Trash"
         ".terminfo"
-        "nix-files"
+        "nixxy"
         # keep-sorted end
       ];
     };
