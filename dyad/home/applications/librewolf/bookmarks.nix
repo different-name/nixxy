@@ -50,8 +50,8 @@
             name = "GitHub";
             bookmarks = [
               {
-                name = "nix-files";
-                url = "https://github.com/different-name/nix-files";
+                name = "nixxy";
+                url = "https://github.com/different-name/nixxy";
               }
               {
                 name = "steam-config-nix";

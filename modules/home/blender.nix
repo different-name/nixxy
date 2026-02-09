@@ -18,7 +18,7 @@ in
       default = [ ];
       description = "Addon packages to be installed";
       example = lib.literalExample ''
-        with inputs.nix-files.packages; [
+        with inputs.nixxy.packages; [
           cats-blender-plugin-unofficial
         ]
       '';
