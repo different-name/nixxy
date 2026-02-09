@@ -57,6 +57,16 @@
       };
 
     home-manager.sharedModules = lib.singleton {
+      xdg.dataFile."nix/trusted-settings.json".text =
+        let
+          inherit (import "${self}/flake.nix") nixConfig;
+        in
+        builtins.toJSON (
+          lib.mapAttrs (_: list: {
+            ${lib.concatStringsSep " " list} = true;
+          }) nixConfig
+        );
+
       home.perpetual.default = {
         dirs = [
           "$cacheHome/nix"
