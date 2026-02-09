@@ -72,7 +72,7 @@
 
     home.perpetual.default.dirs = [
       "$configHome/VSCodium"
-      "$dataHome/VSCodium"
+      "$stateHome/VSCodium"
     ];
   };
 }
