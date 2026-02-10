@@ -1,7 +1,7 @@
 {
     "cats-blender-plugin-unofficial": {
-        "cargoLock": null,
-        "date": "2025-12-17",
+        "cargoLocks": null,
+        "date": "2026-01-24",
         "extract": null,
         "name": "cats-blender-plugin-unofficial",
         "passthru": null,
@@ -11,16 +11,16 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "57de0a2c88b4208579978b160383011e565a153c",
-            "sha256": "sha256-dW1t2lhRRAwzLTvn+6bG48XwdKWfdVfjWw9QHJNGLU8=",
+            "rev": "f7f6962c41e342202729dd2020586bf5a27dde4d",
+            "sha256": "sha256-a6WBgPgjXZXgZqfCIuk1xlzdDbkbj+W40cAMXEgAFrI=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://git.disroot.org/Neoneko/Cats-Blender-Plugin.git"
         },
-        "version": "57de0a2c88b4208579978b160383011e565a153c"
+        "version": "f7f6962c41e342202729dd2020586bf5a27dde4d"
     },
     "disblock-origin": {
-        "cargoLock": null,
+        "cargoLocks": null,
         "date": "2026-01-14",
         "extract": null,
         "name": "disblock-origin",
@@ -40,7 +40,7 @@
         "version": "15cbab89197af9f4af6b404ad0c5ea922cc9c380"
     },
     "osc-goes-brrr": {
-        "cargoLock": null,
+        "cargoLocks": null,
         "date": "2025-11-17",
         "extract": null,
         "name": "osc-goes-brrr",
@@ -58,25 +58,5 @@
             "url": "https://github.com/OscToys/OscGoesBrrr.git"
         },
         "version": "6a3421f0a755e990238b2d75b71b66430f029929"
-    },
-    "winetricks": {
-        "cargoLock": null,
-        "date": "2025-12-23",
-        "extract": null,
-        "name": "winetricks",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "81a692e2ee6b311367f18a17a9a61a0ef1c0ad18",
-            "sha256": "sha256-5yUKmLrj/nUFzgRv/afAcOjO3pwQWFWWD9pvKY2upbI=",
-            "sparseCheckout": [],
-            "type": "git",
-            "url": "https://github.com/Winetricks/winetricks.git"
-        },
-        "version": "81a692e2ee6b311367f18a17a9a61a0ef1c0ad18"
     }
 }
