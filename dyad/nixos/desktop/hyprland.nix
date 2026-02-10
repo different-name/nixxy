@@ -16,7 +16,6 @@ in
   config = lib.mkIf config.dyad.desktop.hyprland.enable {
     programs.hyprland = {
       enable = true;
-      withUWSM = true;
       package = inputs'.hyprland.packages.hyprland;
       portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
     };
@@ -33,8 +32,16 @@ in
         fi
       '';
 
-      # hint electron apps to use wayland
-      sessionVariables.NIXOS_OZONE_WL = 1;
+      sessionVariables = {
+        # hint electron apps to use wayland
+        NIXOS_OZONE_WL = 1;
+
+        # required for UWSM to find hyprland
+        # TODO remove after fixed: https://github.com/NixOS/nixpkgs/issues/485123
+        XDG_DATA_DIRS = [
+          "${config.programs.hyprland.package}/share"
+        ];
+      };
     };
   };
 }
