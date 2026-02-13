@@ -1,0 +1,20 @@
+{ lib, config, ... }:
+{
+  options.dyad.hardware.bluetooth.enable = lib.mkEnableOption "bluetooth config";
+
+  config = lib.mkIf config.dyad.hardware.bluetooth.enable {
+    nixos = {
+      hardware.bluetooth = {
+        enable = true;
+        # power the default bluetooth controller on boot
+        powerOnBoot = true;
+      };
+
+      boot.kernelModules = [
+        "btusb"
+      ];
+
+      services.blueman.enable = true;
+    };
+  };
+}
