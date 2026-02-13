@@ -43,19 +43,5 @@
     };
 
     dyad.system.home-manager.enable = true;
-
-    home-manager.users.diffy = {
-      imports = [
-        self.homeModules.dyad
-      ];
-
-      home = {
-        username = "diffy";
-        homeDirectory = "/home/diffy";
-        inherit (config.system) stateVersion;
-      };
-
-      dyad.system.agenix.enable = true;
-    };
   };
 }
