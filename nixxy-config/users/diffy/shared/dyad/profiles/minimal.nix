@@ -15,11 +15,6 @@
         # keep-sorted end
       };
 
-      programs = {
-        fish.enable = true;
-        nh.enable = true;
-      };
-
       services.openssh.enable = true;
 
       system = {
@@ -29,6 +24,11 @@
         networking.enable = true;
         security.enable = true;
         # keep-sorted end
+      };
+
+      terminal = {
+        fish.enable = true;
+        nh.enable = true;
       };
       # keep-sorted end
     };

@@ -1,8 +1,8 @@
 { lib, config, ... }:
 {
-  options.dyad.programs.virt-manager.enable = lib.mkEnableOption "virt-manager config";
+  options.dyad.applications.virt-manager.enable = lib.mkEnableOption "virt-manager config";
 
-  config = lib.mkIf config.dyad.programs.virt-manager.enable {
+  config = lib.mkIf config.dyad.applications.virt-manager.enable {
     nixos =
       { pkgs, ... }:
       {

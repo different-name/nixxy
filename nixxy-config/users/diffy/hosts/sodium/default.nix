@@ -2,6 +2,7 @@
   lib,
   inputs,
   self,
+  self',
   ...
 }:
 let
@@ -23,17 +24,16 @@ in
     hardware.nvidia.enable = true;
 
     services = {
-      # keep-sorted start
       keyd.enable = true;
       syncthing.enable = true;
-      xr.enable = true;
-      # keep-sorted end
     };
 
     system = {
       btrfs.enable = true;
       perpetual.enable = true;
     };
+    games.xr.enable = true;
+    media.goxlr-utility.enable = true;
   };
 
   nixos =
@@ -95,4 +95,20 @@ in
         '';
       };
     };
+
+  hm = {
+    programs.btop.settings.cpu_sensor = "k10temp/Tctl";
+
+    home.packages = [
+      (self'.packages.btrbk-backup.override {
+        backupConfig = {
+          backupDiskUuid = "a5091625-835c-492f-8d99-0fc8d27012a0";
+          cryptName = "backup_drive";
+          mountPoint = "/mnt/backup";
+          configPath = "/etc/btrbk/persist.conf";
+        };
+      })
+      # pkgs.qmk TODO uncomment when fixed: https://github.com/nixos/nixpkgs/issues/472891
+    ];
+  };
 }
