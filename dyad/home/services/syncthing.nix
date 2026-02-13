@@ -39,7 +39,6 @@ in
       "$stateHome/syncthing"
     ];
 
-    # hard dependency
     dyad.system.agenix.enable = true;
   };
 }
