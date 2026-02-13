@@ -87,6 +87,21 @@
         "type": "github"
       }
     },
+    "bundle": {
+      "locked": {
+        "lastModified": 1770992110,
+        "narHash": "sha256-CkIowDJ6I8IOEXWAe4Dbz/5L9yCKKXc3gLkp8+/29MQ=",
+        "owner": "different-name",
+        "repo": "bundle-of-nix",
+        "rev": "b80c7dfe889518b9defc7f4e9230deb705403279",
+        "type": "github"
+      },
+      "original": {
+        "owner": "different-name",
+        "repo": "bundle-of-nix",
+        "type": "github"
+      }
+    },
     "catppuccin": {
       "inputs": {
         "nixpkgs": [
@@ -740,11 +755,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770599450,
-        "narHash": "sha256-SFyn79nMBMJHF9KZkc2yJEH11nsPtesRgMJ6WduWIFM=",
+        "lastModified": 1770835386,
+        "narHash": "sha256-Yp0ooU66hXjGq0cAG9WwhmLCfqCVzRxGXx7+nggPlqI=",
         "owner": "moonlight-mod",
         "repo": "moonlight",
-        "rev": "7d8bd772e95c8092471c5d3c3e7ab8c8c4fc314d",
+        "rev": "6e0829e81d363e4ebb7c3f04601a50853f752c99",
         "type": "github"
       },
       "original": {
@@ -1054,6 +1069,7 @@
       "inputs": {
         "agenix": "agenix",
         "anyrun": "anyrun",
+        "bundle": "bundle",
         "catppuccin": "catppuccin",
         "catppuccin-gtk": "catppuccin-gtk",
         "copyparty": "copyparty",
