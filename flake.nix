@@ -30,8 +30,9 @@
         (inputs.import-tree ./modules/flake)
         ./dyad
         ./formatter.nix
-        ./hosts
         ./modules
+        ./nixxy
+        ./nixxy-config
         ./pkgs
         ./sources
         inputs.home-manager.flakeModules.home-manager

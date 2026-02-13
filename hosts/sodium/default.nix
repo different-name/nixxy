@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   self,
   pkgs,
@@ -16,6 +17,13 @@
   ];
 
   system.stateVersion = "24.05";
+
+  networking = {
+    hostName = "sodium";
+    hostId = lib.substring 0 8 "9471422d94d34bb8807903179fb35f11";
+  };
+
+  environment.etc.machine-id.text = "9471422d94d34bb8807903179fb35f11";
 
   dyad = {
     users.diffy.enable = true;
