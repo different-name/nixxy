@@ -48,5 +48,31 @@
         fileSystems."/persist".neededForBoot = true;
       };
     };
+
+    hm = {
+      imports = [
+        self.homeModules.perpetual # impermanence option bindings
+      ];
+
+      config = {
+        home.persistence.default = {
+          persistentStoragePath = "/persist";
+          hideMounts = true;
+          enableWarnings = true;
+        };
+
+        home.perpetual.default = {
+          enable = true;
+
+          dirs = [
+            # keep-sorted start
+            "$dataHome/Trash"
+            ".terminfo"
+            "nixxy"
+            # keep-sorted end
+          ];
+        };
+      };
+    };
   };
 }

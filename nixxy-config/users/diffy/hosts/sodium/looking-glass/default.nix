@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  dyad.programs.virt-manager.enable = true;
+  dyad.applications.virt-manager.enable = true;
 
   nixos =
     { config, pkgs, ... }:

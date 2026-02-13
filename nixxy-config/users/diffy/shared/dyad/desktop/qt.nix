@@ -8,5 +8,11 @@
       style = "kvantum";
       platformTheme = "qt5ct";
     };
+
+    hm.qt = {
+      enable = true;
+      style.name = "kvantum";
+      platformTheme.name = "kvantum";
+    };
   };
 }

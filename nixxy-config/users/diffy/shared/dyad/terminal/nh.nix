@@ -1,8 +1,8 @@
 { lib, config, ... }:
 {
-  options.dyad.programs.nh.enable = lib.mkEnableOption "nh config";
+  options.dyad.terminal.nh.enable = lib.mkEnableOption "nh config";
 
-  config = lib.mkIf config.dyad.programs.nh.enable {
+  config = lib.mkIf config.dyad.terminal.nh.enable {
     # nh is a nix cli helper, useful for rebuilding & cleaning
     nixos.programs.nh = {
       enable = true;

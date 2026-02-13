@@ -8,7 +8,10 @@
   options.dyad.users.diffy.enable = lib.mkEnableOption "user diffy";
 
   config = lib.mkIf config.dyad.users.diffy.enable {
-    dyad.system.home-manager.enable = true;
+    dyad.system = {
+      home-manager.enable = true;
+      agenix.enable = true;
+    };
 
     nixos =
       { config, ... }:
@@ -51,17 +54,11 @@
     hm =
       { osConfig, ... }:
       {
-        imports = [
-          self.homeModules.dyad
-        ];
-
         home = {
           username = "diffy";
           homeDirectory = "/home/diffy";
           inherit (osConfig.system) stateVersion;
         };
-
-        dyad.system.agenix.enable = true;
       };
   };
 }

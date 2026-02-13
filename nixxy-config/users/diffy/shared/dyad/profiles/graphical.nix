@@ -5,16 +5,34 @@
   config = lib.mkIf config.dyad.profiles.graphical.enable {
     dyad = {
       # keep-sorted start block=yes newline_separated=yes
+      applications = {
+        # keep-sorted start
+        kitty.enable = true;
+        librewolf.enable = true;
+        thunar.enable = true;
+        vscodium.enable = true;
+        # keep-sorted end
+      };
+
       desktop = {
         # keep-sorted start
+        anyrun.enable = true;
+        desktop-pkgs.enable = true;
         fonts.enable = true;
+        hexecute.enable = true;
         hyprland.enable = true;
+        hyprlock.enable = true;
+        hyprpaper.enable = true;
+        mako.enable = true;
         qt.enable = true;
         xdg.enable = true;
         # keep-sorted end
       };
 
-      programs.thunar.enable = true;
+      media = {
+        imv.enable = true;
+        mpv.enable = true;
+      };
 
       services.pipewire.enable = true;
 
@@ -23,5 +41,21 @@
     };
 
     nixos.hardware.graphics.enable = true;
+
+    hm = {
+      gtk.enable = true;
+      services.playerctld.enable = true;
+
+      home.perpetual.default.dirs = [
+        # keep-sorted start
+        "Code"
+        "Documents"
+        "Downloads"
+        "Media"
+        "Pictures"
+        "Videos"
+        # keep-sorted end
+      ];
+    };
   };
 }

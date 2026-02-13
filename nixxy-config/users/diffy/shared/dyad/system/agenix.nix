@@ -25,5 +25,28 @@
         ];
       };
     };
+
+    hm =
+      { config, ... }:
+      let
+        inherit (config.home) persistence;
+        inherit (persistence.default) persistentStoragePath;
+        persistEnabled = lib.hasAttr "default" persistence && persistence.default.enable;
+      in
+      {
+        imports = [
+          inputs.agenix.homeManagerModules.default
+        ];
+
+        config = {
+          age.identityPaths = lib.mkIf persistEnabled [
+            "${persistentStoragePath}${config.home.homeDirectory}/.ssh/id_ed25519"
+          ];
+
+          home.packages = [
+            inputs'.agenix.packages.agenix
+          ];
+        };
+      };
   };
 }

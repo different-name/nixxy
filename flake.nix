@@ -28,7 +28,6 @@
         # keep-sorted start
         # manually import all flake modules, since they can't be imported through `self`
         (inputs.import-tree ./modules/flake)
-        ./dyad
         ./formatter.nix
         ./modules
         ./nixxy
@@ -163,9 +162,6 @@
 
     # hardware configurations
     nixos-hardware.url = "github:nixos/nixos-hardware";
-
-    # TODO remove after fix for https://github.com/nixos/nixpkgs/issues/482250 is merged
-    nixpkgs-librewolf.url = "github:nixos/nixpkgs/cad22e7d996aea55ecab064e84834289143e44a0";
 
     # used for cudaSupport for wivrn flake
     nixpkgs-unfree = {

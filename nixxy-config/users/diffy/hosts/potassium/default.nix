@@ -62,4 +62,9 @@ in
       };
     };
   };
+
+  # display battery as notification
+  hm.wayland.windowManager.hyprland.settings.bind = [
+    ''$mod, B, exec, notify-send -t 5000 "Battery: $(cat /sys/class/power_supply/BAT0/capacity)%"''
+  ];
 }

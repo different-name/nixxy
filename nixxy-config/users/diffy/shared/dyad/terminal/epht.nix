@@ -5,9 +5,9 @@
   ...
 }:
 {
-  options.dyad.programs.epht.enable = lib.mkEnableOption "epht config";
+  options.dyad.terminal.epht.enable = lib.mkEnableOption "epht config";
 
-  config = lib.mkIf config.dyad.programs.epht.enable {
+  config = lib.mkIf config.dyad.terminal.epht.enable {
     nixos =
       { config, ... }:
       let

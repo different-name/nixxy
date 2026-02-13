@@ -1,8 +1,8 @@
 { lib, config, ... }:
 {
-  options.dyad.programs.thunar.enable = lib.mkEnableOption "thunar config";
+  options.dyad.applications.thunar.enable = lib.mkEnableOption "thunar config";
 
-  config = lib.mkIf config.dyad.programs.thunar.enable {
+  config = lib.mkIf config.dyad.applications.thunar.enable {
     nixos =
       { pkgs, ... }:
       {

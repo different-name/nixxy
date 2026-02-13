@@ -3,6 +3,7 @@
   config,
   inputs,
   inputs',
+  self,
   ...
 }:
 {
@@ -30,5 +31,30 @@
         });
       };
     };
+
+    hm =
+      { osConfig, ... }:
+      {
+        imports = [
+          inputs.catppuccin.homeModules.catppuccin
+          self.homeModules.catppuccinGtk
+        ];
+
+        config.catppuccin = {
+          inherit (osConfig.catppuccin) enable accent flavor;
+
+          # keep-sorted start block=yes
+          cursors = {
+            inherit (config.catppuccin) enable;
+            accent = "dark";
+          };
+          fish.enable = false;
+          librewolf.enable = false;
+          mpv.enable = false;
+          yazi.accent = "mauve";
+          zellij.enable = false;
+          # keep-sorted end
+        };
+      };
   };
 }

@@ -1,8 +1,8 @@
 { lib, config, ... }:
 {
-  options.dyad.programs.distrobox.enable = lib.mkEnableOption "distrobox config";
+  options.dyad.terminal.distrobox.enable = lib.mkEnableOption "distrobox config";
 
-  config = lib.mkIf config.dyad.programs.distrobox.enable {
+  config = lib.mkIf config.dyad.terminal.distrobox.enable {
     nixos =
       { pkgs, ... }:
       {
