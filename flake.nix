@@ -28,16 +28,17 @@
         # keep-sorted start
         # manually import all flake modules, since they can't be imported through `self`
         (inputs.import-tree ./modules/flake)
+        ./bundles
         ./formatter.nix
         ./modules
-        ./nixxy
-        ./nixxy-config
         ./pkgs
         ./sources
-        inputs.home-manager.flakeModules.home-manager
+        inputs.bundle.flakeModules.default
+        inputs.home-manager.flakeModules.default
         # keep-sorted end
       ];
 
+      debug = true;
       systems = import inputs.systems;
     };
 
@@ -66,6 +67,9 @@
         # keep-sorted end
       };
     };
+
+    # bundle nixos, darwin, home-manager, and other classes' config together
+    bundle.url = "github:different-name/bundle-of-nix";
 
     # color theme
     catppuccin = {

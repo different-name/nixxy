@@ -1,0 +1,37 @@
+{ lib, config, ... }:
+{
+  options.dyad.desktop.xdg.enable = lib.mkEnableOption "xdg config";
+
+  config = lib.mkIf config.dyad.desktop.xdg.enable {
+    nixos =
+      { pkgs, ... }:
+      {
+        # credit https://github.com/fufexan/dotfiles/blob/5f26e650e3b5ab6c116b8a0e2671f568f79d77d7/system/programs/xdg.nix
+        xdg.portal = {
+          enable = true;
+          xdgOpenUsePortal = true;
+          config = {
+            common.default = [ "gtk" ];
+            hyprland.default = [
+              "gtk"
+              "hyprland"
+            ];
+          };
+
+          extraPortals = [
+            pkgs.xdg-desktop-portal-gtk
+          ];
+        };
+      };
+
+    home-manager.xdg = {
+      enable = true;
+      autostart.enable = true;
+      mime.enable = true;
+
+      mimeApps.enable = true;
+
+      configFile."mimeapps.list".force = true;
+    };
+  };
+}

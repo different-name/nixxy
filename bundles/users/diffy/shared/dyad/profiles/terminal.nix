@@ -1,0 +1,34 @@
+{ lib, config, ... }:
+{
+  options.dyad.profiles.terminal.enable = lib.mkEnableOption "terminal profile";
+
+  config = lib.mkIf config.dyad.profiles.terminal.enable {
+    dyad = {
+      # keep-sorted start block=yes newline_separated=yes
+      services.tailscale.enable = true;
+
+      style.catppuccin.enable = true;
+
+      terminal = {
+        # keep-sorted start
+        btop.enable = true;
+        distrobox.enable = true;
+        dyad.enable = true;
+        epht.enable = true;
+        fish.enable = true;
+        git.enable = true;
+        helix.enable = true;
+        television.enable = true;
+        terminal-pkgs.enable = true;
+        yazi.enable = true;
+        zellij.enable = true;
+        # keep-sorted end
+      };
+      # keep-sorted end
+    };
+
+    nixos.programs.mosh.enable = true;
+
+    home-manager.programs.fd.enable = true;
+  };
+}
