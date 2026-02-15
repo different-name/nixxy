@@ -26,16 +26,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.file =
-      cfg.addons
-      |> map (addon: {
-        name = "${config.xdg.configHome}/blender/${addon.blenderInstallPath}";
-        value = {
-          source = addon + /share;
-          recursive = true;
-        };
-      })
-      |> lib.listToAttrs;
+    home.file = lib.genAttrs' cfg.addons (addon: {
+      name = "${config.xdg.configHome}/blender/${addon.blenderInstallPath}";
+      value = {
+        source = addon + /share;
+        recursive = true;
+      };
+    });
 
     home.packages = lib.mkIf (cfg.package != null) [ pkgs.blender ];
   };

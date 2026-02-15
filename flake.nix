@@ -2,8 +2,6 @@
   description = "diffy's nixos configuration files";
 
   nixConfig = {
-    extra-experimental-features = [ "pipe-operators" ];
-
     trusted-substituters = [
       "https://cache.nixos.org?priority=10"
 

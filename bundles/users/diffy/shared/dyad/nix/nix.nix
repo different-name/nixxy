@@ -37,10 +37,8 @@
               nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
               settings = {
-                # enable flakes, 'nix' command and pipe operators
-                experimental-features = "nix-command flakes pipe-operators";
-                # disable global registry
-                flake-registry = "";
+                experimental-features = "nix-command flakes";
+                flake-registry = ""; # disable global registry
 
                 # https://jackson.dev/post/nix-reasonable-defaults/
                 connect-timeout = 5;

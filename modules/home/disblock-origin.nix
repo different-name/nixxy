@@ -125,7 +125,9 @@ let
     in
     "--${prefix}-${name}: ${css-value};";
 
-  disblock-origin = self'.packages.disblock-origin;
+  settingsCss = lib.concatMapAttrsStringSep "\n  " settingToCss cfg.settings;
+
+  inherit (self'.packages) disblock-origin;
 in
 {
   options.programs.disblockOrigin = {
@@ -138,7 +140,7 @@ in
       ${builtins.readFile (disblock-origin + /share/DisblockOrigin.theme.css)}
 
       :root {
-        ${cfg.settings |> lib.mapAttrsToList settingToCss |> lib.concatStringsSep "\n  "}
+        ${settingsCss}
       }
     '';
   };

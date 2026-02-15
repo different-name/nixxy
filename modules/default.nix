@@ -7,17 +7,22 @@ let
 
   importModules =
     dir:
-    builtins.readDir dir
-    |> lib.filterAttrs (name: pathType: isImportable (lib.path.append dir name) pathType)
-    |> lib.mapAttrs' (
-      name: _: {
-        name = lib.toCamelCase (lib.removeSuffix ".nix" name);
-        value = import (lib.path.append dir name);
-      }
-    );
+    lib.pipe dir [
+      builtins.readDir
+      (lib.filterAttrs (name: pathType: isImportable (lib.path.append dir name) pathType))
+      (lib.mapAttrs' (
+        name: _: {
+          name = lib.toCamelCase (lib.removeSuffix ".nix" name);
+          value = import (lib.path.append dir name);
+        }
+      ))
+    ];
 
-  moduleTypes =
-    builtins.readDir ./. |> lib.filterAttrs (_: pathType: pathType == "directory") |> lib.attrNames;
+  moduleTypes = lib.pipe ./. [
+    builtins.readDir
+    (lib.filterAttrs (_: pathType: pathType == "directory"))
+    lib.attrNames
+  ];
 in
 {
   imports = map (moduleType: {

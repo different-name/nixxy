@@ -8,12 +8,11 @@ let
 
   generateBlock = name: attrs: ''
     ${name} {
-      ${attrs |> lib.mapAttrsToList (k: v: "${k} = ${valueToString v}") |> lib.concatStringsSep "\n  "}
+      ${lib.concatMapAttrsStringSep "\n  " (k: v: "${k} = ${valueToString v}") attrs}
     }
   '';
 
-  generateConfig =
-    settings: settings |> lib.mapAttrsToList generateBlock |> lib.concatStringsSep "\n\n";
+  generateConfig = settings: lib.concatMapAttrsStringSep "\n\n" generateBlock settings;
 in
 {
   options.wayland.windowManager.hyprland.xdgDesktopPortalHyprland = {
