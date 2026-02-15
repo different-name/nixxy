@@ -14,7 +14,6 @@
         btop.enable = true;
         distrobox.enable = true;
         dyad.enable = true;
-        epht.enable = true;
         fish.enable = true;
         git.enable = true;
         helix.enable = true;
