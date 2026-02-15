@@ -1,14 +1,11 @@
 {
+  bundleLib,
   lib,
   config,
   ...
 }:
-{
-  options.dyad.services.minecraft-server = {
-    buhguh.enable = lib.mkEnableOption "buhguh minecraft server";
-  };
-
-  config = lib.mkIf config.dyad.services.minecraft-server.buhguh.enable {
+bundleLib.mkEnableModule [ "dyad" "services" "minecraft-server" "buhguh" ] (
+  lib.mkIf config.dyad.services.minecraft-server.enable {
     nixos =
       { pkgs, ... }:
       {
@@ -43,5 +40,5 @@
           "buhguh.different-name.com"
         ];
       };
-  };
-}
+  }
+)

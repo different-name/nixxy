@@ -1,14 +1,11 @@
 {
+  bundleLib,
   lib,
   config,
   ...
 }:
-{
-  options.dyad.services.minecraft-server = {
-    maocraft.enable = lib.mkEnableOption "maocraft minecraft server";
-  };
-
-  config = lib.mkIf config.dyad.services.minecraft-server.maocraft.enable {
+bundleLib.mkEnableModule [ "dyad" "services" "minecraft-server" "maocraft" ] (
+  lib.mkIf config.dyad.services.minecraft-server.enable {
     nixos =
       { pkgs, ... }:
       {
@@ -50,5 +47,5 @@
           "maocraft.different-name.com"
         ];
       };
-  };
-}
+  }
+)

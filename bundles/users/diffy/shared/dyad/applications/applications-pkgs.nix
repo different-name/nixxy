@@ -50,6 +50,10 @@ bundleLib.mkEnableModule [ "dyad" "applications" "applications-pkgs" ] {
             "$configHome/SpinShare"
           ];
         };
+
+        proton-pass.dirs = [
+          "$configHome/Proton Pass"
+        ];
         # keep-sorted end
       };
 
