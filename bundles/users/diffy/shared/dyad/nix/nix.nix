@@ -17,7 +17,8 @@
         imports = [
           # weekly updated nix-index database
           # needed due to nix channels being disabled, breaking command-not-found
-          inputs.nix-index-database.nixosModules.nix-index
+          # also used for comma: https://github.com/nix-community/comma
+          inputs.nix-index-database.nixosModules.default
         ];
 
         config = {
@@ -56,6 +57,8 @@
 
               channel.enable = false;
             };
+
+          programs.nix-index-database.comma.enable = true;
         };
       };
 
