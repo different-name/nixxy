@@ -49,6 +49,7 @@
               "git.confirmSync" = false;
               "git.detectSubmodules" = false;
               "git.repositoryScanMaxDepth" = 3;
+              "html.format.templating" = true;
               "scm.alwaysShowRepositories" = true;
               "window.titleBarStyle" = "custom";
               "workbench.colorTheme" = "Catppuccin Mocha";
