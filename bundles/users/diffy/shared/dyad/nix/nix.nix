@@ -42,7 +42,6 @@
 
                 # https://jackson.dev/post/nix-reasonable-defaults/
                 connect-timeout = 5;
-                log-lines = 25;
                 min-free = 128000000;
                 max-free = 1000000000;
                 fallback = true;
@@ -55,7 +54,6 @@
                 !include ${config.age.secrets."tokens/github".path}
               '';
 
-              # opinionated: disable channels
               channel.enable = false;
             };
         };
