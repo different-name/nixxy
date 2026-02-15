@@ -1,14 +1,10 @@
-{ lib, config, ... }:
-{
-  options.dyad.services.tailscale.enable = lib.mkEnableOption "tailscale config";
+{ bundleLib, ... }:
+bundleLib.mkEnableModule [ "dyad" "services" "tailscale" ] {
+  nixos = {
+    services.tailscale.enable = true;
 
-  config = lib.mkIf config.dyad.services.tailscale.enable {
-    nixos = {
-      services.tailscale.enable = true;
-
-      environment.perpetual.default.dirs = [
-        "/var/lib/tailscale"
-      ];
-    };
+    environment.perpetual.default.dirs = [
+      "/var/lib/tailscale"
+    ];
   };
 }

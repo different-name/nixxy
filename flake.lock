@@ -89,11 +89,11 @@
     },
     "bundle": {
       "locked": {
-        "lastModified": 1770992110,
-        "narHash": "sha256-CkIowDJ6I8IOEXWAe4Dbz/5L9yCKKXc3gLkp8+/29MQ=",
+        "lastModified": 1771169835,
+        "narHash": "sha256-gzkvTUtgG7jDtAS2R2U2uarjT9/IBFOSYCLAP4sGA/g=",
         "owner": "different-name",
         "repo": "bundle-of-nix",
-        "rev": "b80c7dfe889518b9defc7f4e9230deb705403279",
+        "rev": "3283e90f0cc3ea689d5e1f468e793c3210dafd0b",
         "type": "github"
       },
       "original": {

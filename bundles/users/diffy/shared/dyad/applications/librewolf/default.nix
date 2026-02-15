@@ -1,29 +1,25 @@
-{ lib, config, ... }:
-{
-  options.dyad.applications.librewolf.enable = lib.mkEnableOption "librewolf config";
+{ bundleLib, ... }:
+bundleLib.mkEnableModule [ "dyad" "applications" "librewolf" ] {
+  home-manager = {
+    programs.librewolf = {
+      enable = true;
 
-  config = lib.mkIf config.dyad.applications.librewolf.enable {
-    home-manager = {
-      programs.librewolf = {
-        enable = true;
-
-        profiles = {
-          default = {
-            id = 0;
-            name = "default";
-            isDefault = true;
-          };
+      profiles = {
+        default = {
+          id = 0;
+          name = "default";
+          isDefault = true;
         };
       };
-
-      xdg.mimeApps.defaultApplications = {
-        "application/pdf" = "librewolf.desktop";
-      };
-
-      home.perpetual.default.dirs = [
-        "$cacheHome/librewolf"
-        ".librewolf"
-      ];
     };
+
+    xdg.mimeApps.defaultApplications = {
+      "application/pdf" = "librewolf.desktop";
+    };
+
+    home.perpetual.default.dirs = [
+      "$cacheHome/librewolf"
+      ".librewolf"
+    ];
   };
 }

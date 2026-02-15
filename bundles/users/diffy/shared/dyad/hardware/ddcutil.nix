@@ -1,14 +1,10 @@
-{ lib, config, ... }:
-{
-  options.dyad.hardware.ddcutil.enable = lib.mkEnableOption "ddcutil config";
+{ bundleLib, ... }:
+bundleLib.mkEnableModule [ "dyad" "hardware" "ddcutil" ] {
+  nixos =
+    { pkgs, ... }:
+    {
+      hardware.i2c.enable = true;
 
-  config = lib.mkIf config.dyad.hardware.ddcutil.enable {
-    nixos =
-      { pkgs, ... }:
-      {
-        hardware.i2c.enable = true;
-
-        environment.systemPackages = with pkgs; [ ddcutil ];
-      };
-  };
+      environment.systemPackages = with pkgs; [ ddcutil ];
+    };
 }

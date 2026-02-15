@@ -1,23 +1,14 @@
-{
-  lib,
-  config,
-  inputs',
-  ...
-}:
-{
-  options.dyad.desktop.hexecute.enable = lib.mkEnableOption "hexecute config";
+{ bundleLib, inputs', ... }:
+bundleLib.mkEnableModule [ "dyad" "desktop" "hexecute" ] {
+  home-manager = {
+    home.packages = [
+      inputs'.hexecute.packages.hexecute
+    ];
 
-  config = lib.mkIf config.dyad.desktop.hexecute.enable {
-    home-manager = {
-      home.packages = [
-        inputs'.hexecute.packages.hexecute
-      ];
+    home.perpetual.default.dirs = [
+      "$configHome/hexecute"
+    ];
 
-      home.perpetual.default.dirs = [
-        "$configHome/hexecute"
-      ];
-
-      # TODO setup json config
-    };
+    # TODO setup json config
   };
 }

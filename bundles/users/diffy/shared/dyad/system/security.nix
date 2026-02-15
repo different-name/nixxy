@@ -1,36 +1,32 @@
-{ lib, config, ... }:
-{
-  options.dyad.system.security.enable = lib.mkEnableOption "security config";
+{ bundleLib, ... }:
+bundleLib.mkEnableModule [ "dyad" "system" "security" ] {
+  nixos.security = {
+    rtkit.enable = true;
 
-  config = lib.mkIf config.dyad.system.security.enable {
-    nixos.security = {
-      rtkit.enable = true;
+    sudo.extraConfig = ''
+      Defaults lecture=never # don't give the sudo lecture
+      Defaults timestamp_timeout=190 # increase timeout to 3 hours
+    '';
 
-      sudo.extraConfig = ''
-        Defaults lecture=never # don't give the sudo lecture
-        Defaults timestamp_timeout=190 # increase timeout to 3 hours
-      '';
-
-      polkit = {
-        enable = true;
-        # allow non root users to use reboot and poweroff commands
-        extraConfig = ''
-          polkit.addRule(function(action, subject) {
-            if (
-              subject.isInGroup("users")
-                && (
-                  action.id == "org.freedesktop.login1.reboot" ||
-                  action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-                  action.id == "org.freedesktop.login1.power-off" ||
-                  action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-                )
+    polkit = {
+      enable = true;
+      # allow non root users to use reboot and poweroff commands
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (
+            subject.isInGroup("users")
+              && (
+                action.id == "org.freedesktop.login1.reboot" ||
+                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                action.id == "org.freedesktop.login1.power-off" ||
+                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
               )
-            {
-              return polkit.Result.YES;
-            }
-          })
-        '';
-      };
+            )
+          {
+            return polkit.Result.YES;
+          }
+        })
+      '';
     };
   };
 }

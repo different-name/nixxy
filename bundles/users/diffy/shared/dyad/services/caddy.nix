@@ -1,23 +1,19 @@
-{ lib, config, ... }:
-{
-  options.dyad.services.caddy.enable = lib.mkEnableOption "caddy config";
+{ bundleLib, ... }:
+bundleLib.mkEnableModule [ "dyad" "services" "caddy" ] {
+  nixos = {
+    services.caddy.enable = true;
 
-  config = lib.mkIf config.dyad.services.caddy.enable {
-    nixos = {
-      services.caddy.enable = true;
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
 
-      networking.firewall.allowedTCPPorts = [
-        80
-        443
-      ];
-
-      environment.perpetual.default.dirs = [
-        {
-          directory = "/var/lib/caddy";
-          user = "caddy";
-          group = "caddy";
-        }
-      ];
-    };
+    environment.perpetual.default.dirs = [
+      {
+        directory = "/var/lib/caddy";
+        user = "caddy";
+        group = "caddy";
+      }
+    ];
   };
 }

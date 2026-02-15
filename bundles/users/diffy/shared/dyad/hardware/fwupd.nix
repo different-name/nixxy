@@ -1,28 +1,24 @@
-{ lib, config, ... }:
-{
-  options.dyad.hardware.fwupd.enable = lib.mkEnableOption "fwupd config";
+{ bundleLib, ... }:
+bundleLib.mkEnableModule [ "dyad" "hardware" "fwupd" ] {
+  nixos = {
+    services.fwupd.enable = true;
 
-  config = lib.mkIf config.dyad.hardware.fwupd.enable {
-    nixos = {
-      services.fwupd.enable = true;
+    environment.perpetual.default =
+      let
+        fwuptDir = "/var/lib/fwupd";
+      in
+      {
+        dirs = [
+          # keep-sorted start
+          "${fwuptDir}/gnupg"
+          "${fwuptDir}/metadata"
+          "${fwuptDir}/pki"
+          # keep-sorted end
+        ];
 
-      environment.perpetual.default =
-        let
-          fwuptDir = "/var/lib/fwupd";
-        in
-        {
-          dirs = [
-            # keep-sorted start
-            "${fwuptDir}/gnupg"
-            "${fwuptDir}/metadata"
-            "${fwuptDir}/pki"
-            # keep-sorted end
-          ];
-
-          files = [
-            "${fwuptDir}/pending.db"
-          ];
-        };
-    };
+        files = [
+          "${fwuptDir}/pending.db"
+        ];
+      };
   };
 }

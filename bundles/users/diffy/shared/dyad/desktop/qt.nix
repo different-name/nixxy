@@ -1,18 +1,14 @@
-{ lib, config, ... }:
-{
-  options.dyad.desktop.qt.enable = lib.mkEnableOption "qt config";
+{ bundleLib, ... }:
+bundleLib.mkEnableModule [ "dyad" "desktop" "qt" ] {
+  nixos.qt = {
+    enable = true;
+    style = "kvantum";
+    platformTheme = "qt5ct";
+  };
 
-  config = lib.mkIf config.dyad.desktop.qt.enable {
-    nixos.qt = {
-      enable = true;
-      style = "kvantum";
-      platformTheme = "qt5ct";
-    };
-
-    home-manager.qt = {
-      enable = true;
-      style.name = "kvantum";
-      platformTheme.name = "kvantum";
-    };
+  home-manager.qt = {
+    enable = true;
+    style.name = "kvantum";
+    platformTheme.name = "kvantum";
   };
 }

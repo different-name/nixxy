@@ -1,52 +1,48 @@
 {
+  bundleLib,
   lib,
-  config,
   inputs,
   inputs',
   ...
 }:
-{
-  options.dyad.system.agenix.enable = lib.mkEnableOption "agenix config";
+bundleLib.mkEnableModule [ "dyad" "system" "agenix" ] {
+  nixos = {
+    imports = [
+      inputs.agenix.nixosModules.default
+    ];
 
-  config = lib.mkIf config.dyad.system.agenix.enable {
-    nixos = {
+    config = {
+      # access to the hostkey independent of impermanence activation
+      age.identityPaths = [
+        "/persist/system/etc/ssh/ssh_host_ed25519_key"
+      ];
+
+      environment.systemPackages = [
+        inputs'.agenix.packages.agenix
+      ];
+    };
+  };
+
+  home-manager =
+    { config, ... }:
+    let
+      inherit (config.home) persistence;
+      inherit (persistence.default) persistentStoragePath;
+      persistEnabled = lib.hasAttr "default" persistence && persistence.default.enable;
+    in
+    {
       imports = [
-        inputs.agenix.nixosModules.default
+        inputs.agenix.homeManagerModules.default
       ];
 
       config = {
-        # access to the hostkey independent of impermanence activation
-        age.identityPaths = [
-          "/persist/system/etc/ssh/ssh_host_ed25519_key"
+        age.identityPaths = lib.mkIf persistEnabled [
+          "${persistentStoragePath}${config.home.homeDirectory}/.ssh/id_ed25519"
         ];
 
-        environment.systemPackages = [
+        home.packages = [
           inputs'.agenix.packages.agenix
         ];
       };
     };
-
-    home-manager =
-      { config, ... }:
-      let
-        inherit (config.home) persistence;
-        inherit (persistence.default) persistentStoragePath;
-        persistEnabled = lib.hasAttr "default" persistence && persistence.default.enable;
-      in
-      {
-        imports = [
-          inputs.agenix.homeManagerModules.default
-        ];
-
-        config = {
-          age.identityPaths = lib.mkIf persistEnabled [
-            "${persistentStoragePath}${config.home.homeDirectory}/.ssh/id_ed25519"
-          ];
-
-          home.packages = [
-            inputs'.agenix.packages.agenix
-          ];
-        };
-      };
-  };
 }

@@ -1,20 +1,16 @@
-{ lib, config, ... }:
-{
-  options.dyad.terminal.distrobox.enable = lib.mkEnableOption "distrobox config";
+{ bundleLib, ... }:
+bundleLib.mkEnableModule [ "dyad" "terminal" "distrobox" ] {
+  nixos =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        pkgs.distrobox
+      ];
 
-  config = lib.mkIf config.dyad.terminal.distrobox.enable {
-    nixos =
-      { pkgs, ... }:
-      {
-        environment.systemPackages = [
-          pkgs.distrobox
-        ];
+      virtualisation.podman.enable = true;
+    };
 
-        virtualisation.podman.enable = true;
-      };
-
-    home-manager.home.perpetual.default.dirs = [
-      "$dataHome/containers"
-    ];
-  };
+  home-manager.home.perpetual.default.dirs = [
+    "$dataHome/containers"
+  ];
 }
