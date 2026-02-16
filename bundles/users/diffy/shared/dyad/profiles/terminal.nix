@@ -16,7 +16,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
       helix.enable = true;
       television.enable = true;
       terminal-pkgs.enable = true;
-      yazi.enable = true;
       zellij.enable = true;
       # keep-sorted end
     };

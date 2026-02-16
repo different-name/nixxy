@@ -47,7 +47,6 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
         fish.enable = false;
         librewolf.enable = false;
         mpv.enable = false;
-        yazi.accent = "mauve";
         zellij.enable = false;
         # keep-sorted end
       };
