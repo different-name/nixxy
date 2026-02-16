@@ -11,8 +11,11 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
     };
 
     games = {
+      # keep-sorted start
       games-pkgs.enable = true;
       steam.enable = true;
+      vrcx.enable = true;
+      # keep-sorted end
     };
 
     hardware.ddcutil.enable = true;

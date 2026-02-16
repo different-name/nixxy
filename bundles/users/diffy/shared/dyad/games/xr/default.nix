@@ -260,9 +260,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
             ./opencomposite/vrchat/oculus_touch.json;
         };
 
-      xdg.configFile."VRCX/custom.css".source =
-        self'.packages.catppuccin-vrcx-mocha + /share/vrcx-catppuccin.css;
-
       # TODO temporary workaround until https://www.github.com/hyprwm/xdg-desktop-portal-hyprland/issues/329 is implemented properly
       wayland.windowManager.hyprland.xdgDesktopPortalHyprland.settings = {
         screencopy = {
@@ -306,10 +303,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
               # keep-sorted end
             ];
           };
-
-          vrcx.dirs = [
-            "$configHome/VRCX"
-          ];
 
           wayvr.dirs = [
             "$configHome/wayvr"

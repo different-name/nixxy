@@ -1,0 +1,177 @@
+:root {
+  --ctp-rosewater: #f5e0dc;
+  --ctp-flamingo: #f2cdcd;
+  --ctp-pink: #f5c2e7;
+  --ctp-mauve: #cba6f7;
+  --ctp-red: #f38ba8;
+  --ctp-maroon: #eba0ac;
+  --ctp-peach: #fab387;
+  --ctp-yellow: #f9e2af;
+  --ctp-green: #a6e3a1;
+  --ctp-teal: #94e2d5;
+  --ctp-sky: #89dceb;
+  --ctp-sapphire: #74c7ec;
+  --ctp-blue: #89b4fa;
+  --ctp-lavendar: #b4befe;
+
+  --ctp-text: #cdd6f4;
+  --ctp-subtext-1: #bac2de;
+  --ctp-subtext-0: #a6adc8;
+
+  --ctp-overlay-2: #9399b2;
+  --ctp-overlay-1: #7f849c;
+  --ctp-overlay-0: #6c7086;
+
+  --ctp-surface-2: #585b70;
+  --ctp-surface-1: #45475a;
+  --ctp-surface-0: #313244;
+
+  --ctp-base: #1e1e2e;
+  --ctp-mantle: #181825;
+  --ctp-crust: #11111b;
+
+  --ctp-red-background: #f38ba833;
+  --ctp-green-background: #a6e3a133;
+
+  --ctp-accent: var(--ctp-red);
+  --ctp-accent-foreground: var(--ctp-base);
+}
+
+.dark {
+  --background: var(--ctp-base);
+  --foreground: var(--ctp-text);
+  --card: var(--ctp-surface-0);
+  --card-foreground: var(--ctp-text);
+  --popover: var(--ctp-surface-0);
+  --popover-foreground: var(--ctp-text);
+  --primary: var(--ctp-accent);
+  --primary-foreground: var(--ctp-accent-foreground);
+  --secondary: var(--ctp-surface-0);
+  --secondary-foreground: var(--ctp-text);
+  --muted: var(--ctp-surface-1);
+  --muted-foreground: var(--ctp-subtext-0);
+  --accent: var(--ctp-accent);
+  --accent-foreground: var(--ctp-accent-foreground);
+  --destructive: var(--ctp-red);
+  --border: var(--ctp-surface-0);
+  --input: var(--ctp-surface-1);
+  --ring: var(--ctp-accent);
+  /*
+  these don't seem to be used yet
+  https://github.com/search?q=repo%3Avrcx-team%2FVRCX%20%22--chart-1%22&type=code
+  --chart-1: ;
+  --chart-2: ;
+  --chart-3: ;
+  --chart-4: ;
+  --chart-5: ;
+  */
+  --sidebar: var(--ctp-base);
+  --sidebar-foreground: var(--ctp-text);
+  --sidebar-primary: var(--ctp-accent);
+  --sidebar-primary-foreground: var(--ctp-accent-foreground);
+  --sidebar-accent: var(--ctp-accent);
+  --sidebar-accent-foreground: var(--ctp-accent-foreground);
+  --sidebar-border: var(--ctp-accent);
+  --sidebar-ring: var(--ctp-accent);
+}
+
+/* Visitor */
+span.name[style="color: rgb(204, 204, 204);"],
+.x-tag-untrusted {
+  color: var(--ctp-subtext-1) !important;
+  border-color: var(--ctp-subtext-1) !important;
+}
+
+/* New User */
+span.name[style="color: rgb(23, 120, 255);"],
+.x-tag-basic {
+  color: var(--ctp-blue) !important;
+  border-color: var(--ctp-blue) !important;
+}
+
+/* User */
+span.name[style="color: rgb(43, 207, 92);"],
+.x-tag-known {
+  color: var(--ctp-green) !important;
+  border-color: var(--ctp-green) !important;
+}
+
+/* Known */
+span.name[style="color: rgb(255, 123, 66);"],
+.x-tag-trusted {
+  color: var(--ctp-peach) !important;
+  border-color: var(--ctp-peach) !important;
+}
+
+/* Trusted */
+span.name[style="color: rgb(177, 143, 255);"],
+.x-tag-veteran {
+  color: var(--ctp-mauve) !important;
+  border-color: var(--ctp-mauve) !important;
+}
+
+/* Friend */
+.x-tag-friend {
+  color: var(--ctp-yellow) !important;
+  border-color: var(--ctp-yellow) !important;
+}
+
+/* VRChat Team */
+span.name[style="color: rgb(255, 38, 38);"],
+.x-tag-vip {
+  color: var(--ctp-red) !important;
+  border-color: var(--ctp-red) !important;
+}
+
+/* Nuisance */
+span.name[style="color: rgb(120, 47, 47);"],
+.x-tag-troll {
+  color: var(--ctp-overlay-1) !important;
+  border-color: var(--ctp-overlay-1) !important;
+}
+
+/* PC */
+.x-tag-platform-pc {
+  color: var(--ctp-blue) !important;
+  border-color: var(--ctp-blue) !important;
+}
+
+/* Android */
+.x-tag-platform-quest {
+  color: var(--ctp-green) !important;
+  border-color: var(--ctp-green) !important;
+}
+
+/* 18+ */
+.x-tag-age-verification {
+  color: var(--ctp-lavendar) !important;
+  border-color: var(--ctp-lavendar) !important;
+}
+
+/* Join Me */
+.x-friend-item>.avatar.joinme::after,
+i.x-user-status.joinme,
+.friend-card__status-dot--join {
+  background-color: var(--ctp-blue) !important;
+}
+
+/* Online */
+.x-friend-item>.avatar.online::after,
+i.x-user-status.online,
+.friend-card__status-dot--online {
+  background-color: var(--ctp-green) !important;
+}
+
+/* Ask Me */
+.x-friend-item>.avatar.askme::after,
+i.x-user-status.askme,
+.friend-card__status-dot--ask {
+  background-color: var(--ctp-peach) !important;
+}
+
+/* Busy */
+.x-friend-item>.avatar.busy::after,
+i.x-user-status.busy,
+.friend-card__status-dot--busy {
+  background-color: var(--ctp-red) !important;
+}
