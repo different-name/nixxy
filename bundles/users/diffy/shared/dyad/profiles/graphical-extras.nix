@@ -5,7 +5,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
     applications = {
       # keep-sorted start
       applications-pkgs.enable = true;
-      blender.enable = true;
       discord.enable = true;
       obs-studio.enable = true;
       # keep-sorted end

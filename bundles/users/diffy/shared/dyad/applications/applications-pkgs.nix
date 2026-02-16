@@ -54,6 +54,11 @@ bundleLib.mkEnableModule [ "dyad" "applications" "applications-pkgs" ] {
         proton-pass.dirs = [
           "$configHome/Proton Pass"
         ];
+
+        blender.dirs = [
+          "$cacheHome/blender"
+          "$configHome/blender"
+        ];
         # keep-sorted end
       };
 
