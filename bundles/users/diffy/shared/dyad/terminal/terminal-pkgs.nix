@@ -16,9 +16,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "terminal-pkgs" ] {
           "$dataHome/qalculate"
         ];
 
-        # fetch minecraft user uuids
-        mcuuid.package = self'.packages.mcuuid;
-
         # video compression for discord (10 MB)
         ffmpeg4discord.package = self'.packages.ffmpeg4discord;
 
