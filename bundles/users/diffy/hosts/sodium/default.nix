@@ -23,8 +23,6 @@ in
 
     hardware.nvidia.enable = true;
 
-    services.keyd.enable = true;
-
     system = {
       btrfs.enable = true;
       perpetual.enable = true;
