@@ -38,7 +38,7 @@
 }
 
 .dark {
-  --background: var(--ctp-base);
+  --background: var(--ctp-mantle);
   --foreground: var(--ctp-text);
   --card: var(--ctp-surface-0);
   --card-foreground: var(--ctp-text);
@@ -65,7 +65,7 @@
   --chart-4: ;
   --chart-5: ;
   */
-  --sidebar: var(--ctp-base);
+  --sidebar: var(--ctp-mantle);
   --sidebar-foreground: var(--ctp-text);
   --sidebar-primary: var(--ctp-accent);
   --sidebar-primary-foreground: var(--ctp-accent-foreground);
