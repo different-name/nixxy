@@ -10,7 +10,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
       # keep-sorted start
       btop.enable = true;
       distrobox.enable = true;
-      dyad.enable = true;
       fish.enable = true;
       git.enable = true;
       helix.enable = true;

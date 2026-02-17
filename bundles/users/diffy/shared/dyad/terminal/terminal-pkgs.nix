@@ -1,10 +1,27 @@
-{ bundleLib, self', ... }:
+{
+  bundleLib,
+  self',
+  lib,
+  ...
+}:
 bundleLib.mkEnableModule [ "dyad" "terminal" "terminal-pkgs" ] {
   home-manager =
     { pkgs, ... }:
     {
       home.perpetual.default.packages = {
         # keep-sorted start block=yes newline_separated=yes
+        # video compression for discord (10 MB)
+        ffmpeg4discord.package = self'.packages.ffmpeg4discord;
+
+        nixxy-fmt.package = pkgs.writeShellScriptBin "nixxy-fmt" ''
+          exec ${lib.getExe self'.formatter} "$@"
+        '';
+
+        # generate nix sources for packages
+        nvfetcher.dirs = [
+          "$dataHome/nvfetcher"
+        ];
+
         # git tui
         lazygit.dirs = [
           "$stateHome/lazygit"
@@ -14,14 +31,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "terminal-pkgs" ] {
         libqalculate.dirs = [
           "$configHome/qalculate"
           "$dataHome/qalculate"
-        ];
-
-        # video compression for discord (10 MB)
-        ffmpeg4discord.package = self'.packages.ffmpeg4discord;
-
-        # generate nix sources for packages
-        nvfetcher.dirs = [
-          "$dataHome/nvfetcher"
         ];
         # keep-sorted end
       };

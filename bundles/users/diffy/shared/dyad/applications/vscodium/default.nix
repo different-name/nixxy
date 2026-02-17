@@ -20,7 +20,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
             ms-python.black-formatter
             ms-python.pylint
             ms-python.python
-            nefrob.vscode-just-syntax
             prettiercode.code-prettier
             tamasfe.even-better-toml
             # keep-sorted end
