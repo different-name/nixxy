@@ -14,7 +14,6 @@ let
 in
 {
   # keep-sorted start
-  "maocraft-discordsrv.age".publicKeys = [ hosts.iodine ];
   "tokens/cloudflare.age".publicKeys = allHosts;
   "tokens/github.age".publicKeys = allHosts;
   "user-passwords/diffy.age".publicKeys = allHosts;

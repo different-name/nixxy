@@ -137,12 +137,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # better minecraft server module
-    nix-minecraft = {
-      url = "github:Infinidoge/nix-minecraft";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # vscode extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";

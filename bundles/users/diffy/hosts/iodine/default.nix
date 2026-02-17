@@ -16,12 +16,6 @@ in
       caddy.enable = true;
       cloudflare-dyndns.enable = true;
       headscale.enable = true;
-      minecraft-server = {
-        # enable = true;
-        buhguh.enable = true;
-        maocraft.enable = true;
-        maodded.enable = true;
-      };
       # keep-sorted end
     };
 
