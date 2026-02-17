@@ -14,8 +14,6 @@ let
 in
 {
   # keep-sorted start
-  "copyparty/diffy.age".publicKeys = [ hosts.iodine ];
-  "copyparty/nero.age".publicKeys = [ hosts.iodine ];
   "maocraft-discordsrv.age".publicKeys = [ hosts.iodine ];
   "syncthing/potassium/cert.age".publicKeys = [ hosts.potassium ];
   "syncthing/potassium/key.age".publicKeys = [ hosts.potassium ];

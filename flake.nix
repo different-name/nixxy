@@ -81,12 +81,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # portable file server
-    copyparty = {
-      url = "github:9001/copyparty";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # declarative partitioning and formatting
     disko = {
       url = "github:nix-community/disko";

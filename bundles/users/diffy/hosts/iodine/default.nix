@@ -15,7 +15,6 @@ in
       # keep-sorted start block=yes
       caddy.enable = true;
       cloudflare-dyndns.enable = true;
-      copyparty.enable = true;
       headscale.enable = true;
       minecraft-server = {
         # enable = true;
