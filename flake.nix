@@ -36,7 +36,6 @@
         # keep-sorted end
       ];
 
-      debug = true;
       systems = import inputs.systems;
     };
 
