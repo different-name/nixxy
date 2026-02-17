@@ -22,8 +22,6 @@ in
 
     hardware.nvidia.enable = true;
 
-    services.syncthing.enable = true;
-
     system = {
       btrfs.enable = true;
       perpetual.enable = true;

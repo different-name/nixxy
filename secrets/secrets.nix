@@ -15,10 +15,6 @@ in
 {
   # keep-sorted start
   "maocraft-discordsrv.age".publicKeys = [ hosts.iodine ];
-  "syncthing/potassium/cert.age".publicKeys = [ hosts.potassium ];
-  "syncthing/potassium/key.age".publicKeys = [ hosts.potassium ];
-  "syncthing/sodium/cert.age".publicKeys = [ hosts.sodium ];
-  "syncthing/sodium/key.age".publicKeys = [ hosts.sodium ];
   "tokens/cloudflare.age".publicKeys = allHosts;
   "tokens/github.age".publicKeys = allHosts;
   "user-passwords/diffy.age".publicKeys = allHosts;
