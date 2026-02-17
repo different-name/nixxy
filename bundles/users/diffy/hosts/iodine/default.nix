@@ -19,31 +19,31 @@ in
       # keep-sorted end
     };
 
-    nixos = {
-      imports = [
-        # keep-sorted start
-        (inputs.import-tree ./_nixos)
-        inputs.nixos-hardware.nixosModules.common-cpu-intel
-        inputs.nixos-hardware.nixosModules.common-gpu-intel
-        inputs.nixos-hardware.nixosModules.common-pc-ssd
-        # keep-sorted end
-      ];
+    system = {
+      btrfs.enable = true;
+      perpetual.enable = true;
+    };
+  };
 
-      config = {
-        networking = {
-          hostName = "iodine";
-          hostId = lib.substring 0 8 machineId;
-        };
+  nixos = {
+    imports = [
+      # keep-sorted start
+      (inputs.import-tree ./_nixos)
+      inputs.nixos-hardware.nixosModules.common-cpu-intel
+      inputs.nixos-hardware.nixosModules.common-gpu-intel
+      inputs.nixos-hardware.nixosModules.common-pc-ssd
+      # keep-sorted end
+    ];
 
-        environment.etc.machine-id.text = machineId;
-
-        system.stateVersion = "24.05";
-
-        system = {
-          btrfs.enable = true;
-          perpetual.enable = true;
-        };
+    config = {
+      networking = {
+        hostName = "iodine";
+        hostId = lib.substring 0 8 machineId;
       };
+
+      environment.etc.machine-id.text = machineId;
+
+      system.stateVersion = "24.05";
     };
   };
 }
