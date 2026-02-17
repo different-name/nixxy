@@ -2,12 +2,10 @@
 let
   machineId = "7047404f861348299434d987ffcd50b2";
 
-  ports = {
+  ports = lib.attrValues {
     minecraft = 25565;
     vintagestory = 42420;
   };
-
-  portList = lib.attrValues ports;
 in
 {
   dyad = {
@@ -40,8 +38,8 @@ in
       system.stateVersion = "24.05";
 
       networking.firewall = {
-        allowedUDPPorts = portList;
-        allowedTCPPorts = portList;
+        allowedUDPPorts = ports;
+        allowedTCPPorts = ports;
       };
     };
   };
