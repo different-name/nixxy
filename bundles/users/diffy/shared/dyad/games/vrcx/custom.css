@@ -33,7 +33,7 @@
   --ctp-red-background: #f38ba833;
   --ctp-green-background: #a6e3a133;
 
-  --ctp-accent: var(--ctp-red);
+  --ctp-accent: var(--ctp-mauve);
   --ctp-accent-foreground: var(--ctp-base);
 }
 
