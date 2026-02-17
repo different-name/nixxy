@@ -8,6 +8,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "minimal" ] {
       # keep-sorted start
       nix.enable = true;
       nixpkgs.enable = true;
+      patches.enable = true;
       substituters.enable = true;
       # keep-sorted end
     };
