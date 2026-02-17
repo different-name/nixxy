@@ -1,9 +1,6 @@
 {
   bundleLib,
   inputs,
-  inputs',
-  self,
-  self',
   ...
 }:
 bundleLib.mkEnableModule [ "dyad" "system" "home-manager" ] {
@@ -13,15 +10,6 @@ bundleLib.mkEnableModule [ "dyad" "system" "home-manager" ] {
     ];
 
     config.home-manager = {
-      extraSpecialArgs = {
-        inherit
-          inputs
-          inputs'
-          self
-          self'
-          ;
-      };
-
       useGlobalPkgs = true;
       useUserPackages = true;
     };

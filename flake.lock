@@ -91,15 +91,15 @@
       "locked": {
         "lastModified": 1771367806,
         "narHash": "sha256-WdLQR45oBZbOzduiB/5zmvo+lWVHx6v9uKpSmP9XcKM=",
-        "ref": "refs/heads/master",
+        "owner": "different-name",
+        "repo": "bundle-of-nix",
         "rev": "65e524c854a9fdb6ce43b01a56c4e4a7716feb61",
-        "revCount": 5,
-        "type": "git",
-        "url": "file:///home/diffy/Code/bundle-of-nix"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/diffy/Code/bundle-of-nix"
+        "owner": "different-name",
+        "repo": "bundle-of-nix",
+        "type": "github"
       }
     },
     "catppuccin": {
