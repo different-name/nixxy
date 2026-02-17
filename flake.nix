@@ -118,7 +118,7 @@
     };
 
     # hyprland wayland compositor
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland/f68ac7ef7589e1536d438f7fbfb3ad987538fe0f";
 
     # manage persistent state
     impermanence = {
