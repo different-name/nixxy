@@ -51,7 +51,7 @@
               ## lock screen
               "$mod, L, exec, ${uwsmSingleApp "hyprlock"}"
               ## launcher
-              "$mod, S, exec, anyrun" # not using uwsm as it introduces latency
+              "$mod, S, exec, vicinae toggle" # not using uwsm as it introduces latency
               ## browser
               "$mod, W, exec, ${uwsmApp "librewolf"}"
               ## file explorer

@@ -53,19 +53,7 @@
       };
     };
 
-    # launcher
-    anyrun = {
-      url = "github:fufexan/anyrun/launch-prefix";
-      inputs = {
-        # keep-sorted start
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        # keep-sorted end
-      };
-    };
-
-    # bundle nixos, darwin, home-manager, and other classes' config together
+    # bundle nixos, darwin, home-manager, and other config together
     bundle.url = "github:different-name/bundle-of-nix";
 
     # color theme
@@ -206,6 +194,12 @@
     # formatter module for flake-parts
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # launcher
+    vicinae-extensions = {
+      url = "github:vicinaehq/extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

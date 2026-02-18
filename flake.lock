@@ -27,33 +27,6 @@
         "type": "github"
       }
     },
-    "anyrun": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": [
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1731186561,
-        "narHash": "sha256-+jwC6oo7yx40SowZW4SCpTlYS+e0mPKmIuXvsBFNw3g=",
-        "owner": "fufexan",
-        "repo": "anyrun",
-        "rev": "3bc08db41dec30cd4278597c1c4bd7cf66b15fe0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fufexan",
-        "ref": "launch-prefix",
-        "repo": "anyrun",
-        "type": "github"
-      }
-    },
     "aquamarine": {
       "inputs": {
         "hyprutils": [
@@ -994,7 +967,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "anyrun": "anyrun",
         "bundle": "bundle",
         "catppuccin": "catppuccin",
         "catppuccin-gtk": "catppuccin-gtk",
@@ -1019,6 +991,7 @@
         "steam-config-nix": "steam-config-nix",
         "systems": "systems_3",
         "treefmt-nix": "treefmt-nix",
+        "vicinae-extensions": "vicinae-extensions",
         "wivrn": "wivrn",
         "wivrn-nixpkgs": "wivrn-nixpkgs"
       }
@@ -1120,6 +1093,21 @@
         "type": "github"
       }
     },
+    "systems_4": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
@@ -1137,6 +1125,53 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "vicinae": {
+      "inputs": {
+        "nixpkgs": [
+          "vicinae-extensions",
+          "nixpkgs"
+        ],
+        "systems": [
+          "vicinae-extensions",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768856963,
+        "narHash": "sha256-u5bWDuwk6oieTnvm1YjNotcYK8iJSddH5+S68+X4TSc=",
+        "owner": "vicinaehq",
+        "repo": "vicinae",
+        "rev": "934bc0ad47be6dbd6498a0dac655c4613fd0ab27",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vicinaehq",
+        "repo": "vicinae",
+        "type": "github"
+      }
+    },
+    "vicinae-extensions": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": "systems_4",
+        "vicinae": "vicinae"
+      },
+      "locked": {
+        "lastModified": 1771358594,
+        "narHash": "sha256-KwNv+THKbNUey10q26NZPDMSzYTObRHaSDr81QP9CPY=",
+        "owner": "vicinaehq",
+        "repo": "extensions",
+        "rev": "cf30b80f619282d45b1748eb76e784a4f875bb01",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vicinaehq",
+        "repo": "extensions",
         "type": "github"
       }
     },

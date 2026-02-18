@@ -13,7 +13,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
 
     desktop = {
       # keep-sorted start
-      anyrun.enable = true;
       desktop-pkgs.enable = true;
       fonts.enable = true;
       hexecute.enable = true;
@@ -22,6 +21,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
       hyprpaper.enable = true;
       mako.enable = true;
       qt.enable = true;
+      vicinae.enable = true;
       xdg.enable = true;
       # keep-sorted end
     };
