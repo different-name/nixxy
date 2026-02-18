@@ -62,8 +62,10 @@ bundleLib.mkEnableModule [ "dyad" "system" "btrfs" ] {
         instances."persist" = {
           onCalendar = "daily";
           settings = {
+            snapshot_preserve_min = "2w";
+            snapshot_preserve = "3w";
             target_preserve_min = "2w";
-            target_preserve = "4w";
+            target_preserve = "3w";
             volume = {
               "/btrfs" = {
                 target = "/mnt/backup";
