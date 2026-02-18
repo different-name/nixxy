@@ -128,7 +128,7 @@
     # vscode extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
-      # inputs.nixpkgs.follows = "nixpkgs"; # TODO uncomment when fixed
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # collection of image builders
