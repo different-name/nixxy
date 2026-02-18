@@ -103,7 +103,6 @@ in
           configPath = "/etc/btrbk/persist.conf";
         };
       })
-      # pkgs.qmk TODO uncomment when fixed: https://github.com/nixos/nixpkgs/issues/472891
     ];
   };
 }
