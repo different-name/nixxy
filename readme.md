@@ -1,10 +1,8 @@
 # <img src="/assets/nixoscolorful.svg" height="26px" style="height: 26px;"> nixxy
 
-diffy's nixos configuration files
+diffy's nixos configuration files, written with love using [bundle](https://github.com/different-name/bundle-of-nix)!
 
-## acknowledgements
+### look, a bird
 
-- [Graham Christensen - Erase your darlings](https://grahamc.com/blog/erase-your-darlings/)
-- [Misterio77/nix-starter-configs](https://github.com/Misterio77/nix-starter-configs)
-- [fufexan/dotfiles](https://github.com/fufexan/dotfiles)
 - [isabelroses/dotfiles](https://github.com/isabelroses/dotfiles)
+- [skilet.ro/gaia](https://tangled.org/skilet.ro/gaia)
