@@ -11,14 +11,14 @@ in
   bundle = {
     hosts = lib.genAttrs diffyHosts (_: {
       system = "x86_64-linux";
-      class = "nixos";
+      systemPlatform = "nixos";
     });
 
     users.diffy = {
-      shared.imports = lib.singleton (inputs.import-tree ./users/diffy/shared);
+      shared.imports = [ (inputs.import-tree ./users/diffy/shared) ];
 
       hosts = lib.genAttrs diffyHosts (host: {
-        imports = lib.singleton (inputs.import-tree ./users/diffy/hosts/${host});
+        imports = [ (inputs.import-tree ./users/diffy/hosts/${host}) ];
       });
     };
   };
