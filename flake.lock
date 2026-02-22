@@ -839,7 +839,9 @@
           "nixpkgs"
         ],
         "nvfetcher": "nvfetcher",
-        "systems": "systems_2",
+        "systems": [
+          "systems"
+        ],
         "treefmt-nix": [
           "treefmt-nix"
         ]
@@ -975,7 +977,7 @@
         "nur": "nur",
         "solarxr-cli": "solarxr-cli",
         "steam-config-nix": "steam-config-nix",
-        "systems": "systems_3",
+        "systems": "systems_2",
         "treefmt-nix": "treefmt-nix",
         "vicinae": "vicinae",
         "vicinae-extensions": "vicinae-extensions",
@@ -1053,21 +1055,6 @@
     },
     "systems_2": {
       "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "type": "github"
-      }
-    },
-    "systems_3": {
-      "locked": {
         "lastModified": 1680978846,
         "narHash": "sha256-Gtqg8b/v49BFDpDetjclCYXm8mAnTrUzR0JnE2nv5aw=",
         "owner": "nix-systems",
@@ -1081,7 +1068,7 @@
         "type": "github"
       }
     },
-    "systems_4": {
+    "systems_3": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -1119,20 +1106,16 @@
     "vicinae": {
       "inputs": {
         "nixpkgs": [
-          "vicinae-extensions",
           "nixpkgs"
         ],
-        "systems": [
-          "vicinae-extensions",
-          "systems"
-        ]
+        "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1768856963,
-        "narHash": "sha256-u5bWDuwk6oieTnvm1YjNotcYK8iJSddH5+S68+X4TSc=",
+        "lastModified": 1771631873,
+        "narHash": "sha256-Q1Y7stQX07bDX+SeEdeIZP5Mp8X71kJfIKQuFwAE8Tg=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "934bc0ad47be6dbd6498a0dac655c4613fd0ab27",
+        "rev": "f84874d1268c4a59b23aea6a2fa9585390a204f5",
         "type": "github"
       },
       "original": {
@@ -1146,8 +1129,12 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_4",
-        "vicinae": "vicinae"
+        "systems": [
+          "systems"
+        ],
+        "vicinae": [
+          "vicinae"
+        ]
       },
       "locked": {
         "lastModified": 1771358594,

@@ -45,11 +45,9 @@
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
-        # keep-sorted start
-        home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-        # keep-sorted end
+        home-manager.follows = "home-manager";
       };
     };
 
@@ -151,6 +149,7 @@
       url = "github:nix-community/nixpkgs-xr";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
         treefmt-nix.follows = "treefmt-nix";
       };
     };
@@ -180,11 +179,9 @@
     steam-config-nix = {
       url = "github:different-name/steam-config-nix/non-steam-apps";
       inputs = {
-        # keep-sorted start
-        flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-        # keep-sorted end
+        flake-parts.follows = "flake-parts";
       };
     };
 
