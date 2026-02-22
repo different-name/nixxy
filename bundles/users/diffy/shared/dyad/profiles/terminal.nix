@@ -12,7 +12,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
       distrobox.enable = true;
       fish.enable = true;
       git.enable = true;
-      helix.enable = true;
       television.enable = true;
       terminal-pkgs.enable = true;
       zellij.enable = true;
