@@ -20,6 +20,13 @@
           "browser.newtabpage.activity-stream.trendingSearch.defaultSearchEngine" =
             config.programs.librewolf.profiles.default.search.default;
 
+          ### privacy stuff
+
+          # prevent websites from probing local network
+          "network.lna.blocking" = true;
+          "network.lna.local-network-to-localhost.skip-checks" = false;
+          "network.lna.websocket.enabled" = true;
+
           ### anti privacy stuff
 
           # breaks dark mode when enabled
