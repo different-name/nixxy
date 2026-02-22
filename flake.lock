@@ -977,6 +977,7 @@
         "steam-config-nix": "steam-config-nix",
         "systems": "systems_3",
         "treefmt-nix": "treefmt-nix",
+        "vicinae": "vicinae",
         "vicinae-extensions": "vicinae-extensions",
         "wivrn": "wivrn",
         "wivrn-nixpkgs": "wivrn-nixpkgs"

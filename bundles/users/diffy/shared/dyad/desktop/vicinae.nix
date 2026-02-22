@@ -3,6 +3,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "vicinae" ] {
   home-manager = {
     programs.vicinae = {
       enable = true;
+      package = inputs'.vicinae.packages.default;
 
       systemd.enable = true;
 

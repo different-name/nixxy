@@ -198,9 +198,22 @@
     };
 
     # launcher
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
+    # launcher extensions
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        vicinae.follows = "vicinae";
+      };
     };
 
     # openxr streamer for standalone headsets
