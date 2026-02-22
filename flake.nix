@@ -178,7 +178,7 @@
 
     # manage steam game launch options and other local config
     steam-config-nix = {
-      url = "github:different-name/steam-config-nix";
+      url = "github:different-name/steam-config-nix/non-steam-apps";
       inputs = {
         # keep-sorted start
         flake-parts.follows = "flake-parts";

@@ -70,7 +70,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
               compatTool = "proton-experimental";
               launchOptions = {
                 env.TZ = null;
-                extraConfig = ''
+                preHook = ''
                   if [[ "$*" != *"--no-vr"* ]]; then
                     export PROTON_ENABLE_WAYLAND=1
                   fi
@@ -81,18 +81,25 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
             warhammer-40k-darktide = {
               id = 1361210;
               compatTool = "GE-Proton";
-              launchOptions = pkgs.writeShellScriptBin "darktide-wrapper" ''
-                unset LD_PRELOAD
-
-                args=()
-                for arg in "$@"; do
-                  args+=( "''${arg//\/launcher\/Launcher.exe/\/binaries\/Darktide.exe}" )
-                done
-
-                exec "''${args[@]}"
-              '';
+              launchOptions = {
+                env.LD_PRELOAD = null;
+                preHook = ''
+                  for i in "''${!game_command[@]}"; do
+                    game_command[i]="''${game_command[i]//\/launcher\/Launcher.exe/\/binaries\/Darktide.exe}"
+                  done
+                '';
+              };
             };
             # keep-sorted end
+          };
+
+          nonSteamApps = {
+            vintage-story = {
+              id = 980457983475;
+              name = "Vintage Story";
+              icon = ./icons/vintage-story.png;
+              target = pkgs.vintagestory;
+            };
           };
         };
 
