@@ -44,6 +44,23 @@ in
       environment.etc.machine-id.text = machineId;
 
       system.stateVersion = "24.05";
+
+      nix = {
+        distributedBuilds = true;
+        buildMachines = lib.singleton {
+          hostName = "sodium";
+          system = "x86_64-linux";
+          maxJobs = 3;
+          speedFactor = 2;
+          supportedFeatures = [
+            "nixos-test"
+            "benchmark"
+            "big-parallel"
+            "kvm"
+          ];
+          mandatoryFeatures = [ ];
+        };
+      };
     };
   };
 }

@@ -45,6 +45,8 @@ bundleLib.mkEnableModule [ "dyad" "nix" "nix" ] {
               fallback = true;
               auto-optimise-store = true;
               warn-dirty = false;
+
+              builders-use-substitutes = true;
             };
 
             # read-only github token for rate limit

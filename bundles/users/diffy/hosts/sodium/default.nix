@@ -27,6 +27,9 @@ in
       btrfs.enable = true;
       perpetual.enable = true;
     };
+
+    nix.build-machine.enable = true;
+
     games.xr.enable = true;
     media.goxlr-utility.enable = true;
   };
