@@ -43,7 +43,7 @@
               "ALT SHIFT, TAB, changegroupactive, b"
               "$mod, T, pin"
               "CTRL ALT, DELETE, exec, ${uwsmApp "hyprctl kill"}"
-              "CTRL ALT SHIFT, DELETE, exec, loginctl terminate-user \"\""
+              ''CTRL ALT SHIFT, DELETE, exec, systemctl --user stop wayland-wm@hyprland\\x2duwsm.desktop.service''
 
               # utility
               ## terminal
