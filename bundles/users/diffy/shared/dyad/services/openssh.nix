@@ -11,6 +11,7 @@ bundleLib.mkEnableModule [ "dyad" "services" "openssh" ] {
 
     environment.perpetual.default.dirs = [
       "/etc/ssh"
+      "/root/.ssh"
     ];
   };
 
