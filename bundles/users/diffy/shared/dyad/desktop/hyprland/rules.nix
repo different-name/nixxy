@@ -12,20 +12,24 @@ in
 
       float-by-class = {
         "match:class" = lib.concatStringsSep "|" [
+          # keep-sorted start
           "file-roller"
           "org.gnome.FileRoller"
           "xdg-desktop-portal-gtk"
+          # keep-sorted end
         ];
         float = true;
       };
 
       float-by-title = {
         "match:title" = lib.concatStringsSep "|" [
+          # keep-sorted start
           "File Operation Progress"
           "Open Folder"
-          "Select what to share"
           "Protontricks"
+          "Select what to share"
           "Winetricks.*"
+          # keep-sorted end
         ];
         float = true;
       };
@@ -41,16 +45,18 @@ in
       games-by-class = {
         "match:class" = lib.concatStringsSep "|" [
           "steam_app_[0-9]+"
+          # keep-sorted start
+          "AcrossTheObelisk.x86_64"
           "Paradox Launcher"
+          "TerraTechLinux64.x86_64"
+          "Vintage Story"
+          "diablo iv.exe"
           "hl2_linux"
+          "looking-glass-client"
           "osu!"
           "steam_app_default"
-          "AcrossTheObelisk.x86_64"
-          "TerraTechLinux64.x86_64"
-          "diablo iv.exe"
           ''Minecraft(\*)? [0-9\.]+''
-          "looking-glass-client"
-          "Vintage Story"
+          # keep-sorted end
         ];
         suppress_event = "fullscreen";
         fullscreen = true;
