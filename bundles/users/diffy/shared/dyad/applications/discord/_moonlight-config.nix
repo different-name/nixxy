@@ -157,12 +157,12 @@
       config = {
         patterns = {
           "://bsky.app/" = "://fxbsky.app/";
-          "://instagram.com/" = "://ddinstagram.com/";
+          "://instagram.com/" = "://vxinstagram.com/";
           "://reddit.com/" = "://rxddit.com/";
           "://tiktok.com/" = "://tfxktok.com/";
           "://twitter.com/" = "://stupidpenisx.com/";
           "://vm.tiktok.com/" = "://vm.vxtiktok.com/";
-          "://www.instagram.com/" = "://ddinstagram.com/";
+          "://www.instagram.com/" = "://vxinstagram.com/";
           "://www.reddit.com/" = "://rxddit.com/";
           "://www.tiktok.com/" = "://tfxktok.com/";
           "://x.com/" = "://stupidpenisx.com/";
