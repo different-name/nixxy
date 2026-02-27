@@ -48,7 +48,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
       "Code"
       "Documents"
       "Downloads"
-      "Media"
       "Pictures"
       "Videos"
       # keep-sorted end
