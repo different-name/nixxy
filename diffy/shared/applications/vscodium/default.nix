@@ -1,14 +1,19 @@
-{ bundleLib, inputs', ... }:
+{ bundleLib, inputs, ... }:
 bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
   home-manager =
     { pkgs, ... }:
+    let
+      # cannot use inputs' due to https://github.com/nix-community/nix-vscode-extensions/issues/157
+      inherit (pkgs.stdenv.hostPlatform) system;
+      inherit (inputs.nix-vscode-extensions.extensions.${system}) vscode-marketplace;
+    in
     {
       programs.vscode = {
         enable = true;
         package = pkgs.vscodium;
 
         profiles.default = {
-          extensions = with inputs'.nix-vscode-extensions.extensions.vscode-marketplace; [
+          extensions = with vscode-marketplace; [
             # keep-sorted start
             blueglassblock.better-json5
             dbaeumer.vscode-eslint
