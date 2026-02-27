@@ -66,7 +66,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
         # keep-sorted start
         pavucontrol
         qalculate-gtk
-        qpwgraph
         scrcpy
         # keep-sorted end
       ];

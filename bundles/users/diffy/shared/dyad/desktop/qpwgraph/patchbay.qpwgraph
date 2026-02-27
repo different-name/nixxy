@@ -1,0 +1,54 @@
+<!DOCTYPE patchbay>
+<patchbay name="patchbay" version="0.9.9">
+ <items>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="GoXLR Game" port="GoXLR:monitor_FR"/>
+   <input node="WiVRn" port="WiVRn:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="GoXLR Game" port="GoXLR:monitor_FL"/>
+   <input node="WiVRn" port="WiVRn:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="GoXLR Sample" port="GoXLR:monitor_FL"/>
+   <input node="WiVRn" port="WiVRn:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="GoXLR Music" port="GoXLR:monitor_FR"/>
+   <input node="WiVRn" port="WiVRn:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="GoXLR Chat" port="GoXLR:monitor_FR"/>
+   <input node="WiVRn" port="WiVRn:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="GoXLR Chat" port="GoXLR:monitor_FL"/>
+   <input node="WiVRn" port="WiVRn:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="GoXLR Music" port="GoXLR:monitor_FL"/>
+   <input node="WiVRn" port="WiVRn:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="GoXLR Sample" port="GoXLR:monitor_FR"/>
+   <input node="WiVRn" port="WiVRn:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="GoXLR System" port="GoXLR:monitor_FR"/>
+   <input node="WiVRn" port="WiVRn:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Elgato HD60 X Analog Stereo" port="Elgato HD60 X:capture_FR"/>
+   <input node="GoXLR Game" port="GoXLR:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Elgato HD60 X Analog Stereo" port="Elgato HD60 X:capture_FL"/>
+   <input node="GoXLR Game" port="GoXLR:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="GoXLR System" port="GoXLR:monitor_FL"/>
+   <input node="WiVRn" port="WiVRn:playback_FL"/>
+  </item>
+ </items>
+</patchbay>
+

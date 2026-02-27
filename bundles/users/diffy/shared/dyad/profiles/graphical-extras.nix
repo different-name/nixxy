@@ -10,6 +10,8 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
       # keep-sorted end
     };
 
+    desktop.qpwgraph.enable = true;
+
     games = {
       # keep-sorted start
       extraPackages.enable = true;
