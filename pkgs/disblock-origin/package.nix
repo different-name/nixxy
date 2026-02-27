@@ -1,10 +1,12 @@
 {
-  sources,
   lib,
+  inputs,
   stdenvNoCC,
 }:
 stdenvNoCC.mkDerivation {
-  inherit (sources.disblock-origin) pname version src;
+  pname = "disblock-origin";
+  version = inputs.disblock-origin.shortRev;
+  src = inputs.disblock-origin.outPath;
 
   installPhase = ''
     mkdir -p $out/share

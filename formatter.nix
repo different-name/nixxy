@@ -13,11 +13,7 @@
         projectRootFile = "flake.nix";
 
         settings.global.excludes = [
-          # keep-sorted start
           "*.age"
-          "sources/_sources/generated.json"
-          "sources/_sources/generated.nix"
-          # keep-sorted end
         ];
 
         programs = {

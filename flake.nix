@@ -30,7 +30,6 @@
         ./formatter.nix
         ./modules
         ./pkgs
-        ./sources
         inputs.bundle.flakeModules.default
         inputs.home-manager.flakeModules.default
         # keep-sorted end
@@ -64,6 +63,12 @@
     catppuccin-gtk = {
       url = "github:catppuccin/nix/06f0ea19334bcc8112e6d671fd53e61f9e3ad63a";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # discord ad blocker theme
+    disblock-origin = {
+      url = "git+https://git.allpurposem.at/mat/Disblock-Origin.git";
+      flake = false;
     };
 
     # declarative partitioning and formatting
@@ -158,6 +163,12 @@
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
       };
+    };
+
+    # oscgoesbrrr o.o
+    oscgoesbrrr = {
+      url = "git+https://github.com/OscToys/OscGoesBrrr.git";
+      flake = false;
     };
 
     # cli tool for interacting with slimevr server

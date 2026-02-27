@@ -118,8 +118,8 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
       home.perpetual.default = {
         packages = {
           # keep-sorted start block=yes newline_separated=yes
-          osc-goes-brrr = {
-            package = self'.packages.osc-goes-brrr;
+          oscgoesbrrr = {
+            package = self'.packages.oscgoesbrrr;
             dirs = [
               "$configHome/OscGoesBrrr"
             ];

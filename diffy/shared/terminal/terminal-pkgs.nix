@@ -17,11 +17,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
           exec ${lib.getExe self'.formatter} "$@"
         '';
 
-        # generate nix sources for packages
-        nvfetcher.dirs = [
-          "$dataHome/nvfetcher"
-        ];
-
         # git tui
         lazygit.dirs = [
           "$stateHome/lazygit"

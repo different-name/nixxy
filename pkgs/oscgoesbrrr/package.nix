@@ -1,13 +1,15 @@
 {
   lib,
-  sources,
+  inputs,
   buildNpmPackage,
   copyDesktopItems,
   makeDesktopItem,
   electron,
 }:
 buildNpmPackage {
-  inherit (sources.osc-goes-brrr) pname version src;
+  pname = "oscgoesbrrr";
+  version = inputs.oscgoesbrrr.shortRev;
+  src = inputs.oscgoesbrrr.outPath;
 
   npmDepsHash = "sha256-krdVx5Ci/hsQMzXhRmMbSZ+3YoQOTKH24Ejd4ykopdE=";
 
@@ -30,13 +32,13 @@ buildNpmPackage {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p "$out/share/lib/osc-goes-brrr"
-    cp -r . "$out/share/lib/osc-goes-brrr/"
+    mkdir -p "$out/share/lib/oscgoesbrrr"
+    cp -r . "$out/share/lib/oscgoesbrrr/"
 
-    install -m 444 -D "src/icons/ogb-logo.png" "$out/share/icons/hicolor/512x512/apps/osc-goes-brrr.png"
+    install -m 444 -D "src/icons/ogb-logo.png" "$out/share/icons/hicolor/512x512/apps/oscgoesbrrr.png"
 
-    makeShellWrapper '${lib.getExe electron}' "$out/bin/osc-goes-brrr" \
-      --add-flags "$out/share/lib/osc-goes-brrr" \
+    makeShellWrapper '${lib.getExe electron}' "$out/bin/oscgoesbrrr" \
+      --add-flags "$out/share/lib/oscgoesbrrr" \
       --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-wayland-ime=true}}" \
       --inherit-argv0
 
@@ -45,9 +47,9 @@ buildNpmPackage {
 
   desktopItems = [
     (makeDesktopItem {
-      name = "osc-goes-brrr";
-      exec = "osc-goes-brrr";
-      icon = "osc-goes-brrr";
+      name = "oscgoesbrrr";
+      exec = "oscgoesbrrr";
+      icon = "oscgoesbrrr";
       desktopName = "OscGoesBrrr";
       comment = "VRChat OSC haptic control";
       categories = [
@@ -63,7 +65,7 @@ buildNpmPackage {
     homepage = "https://github.com/OscToys/OscGoesBrrr";
     license = lib.licenses.cc-by-nc-sa-40;
     maintainers = with lib.maintainers; [ different-name ];
-    mainProgram = "osc-goes-brrr";
+    mainProgram = "oscgoesbrrr";
     platforms = lib.platforms.all;
   };
 }

@@ -138,6 +138,22 @@
         "type": "github"
       }
     },
+    "disblock-origin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1770994172,
+        "narHash": "sha256-RWlRStfm40LeuqxAez6zcnvHt8Howij9bO/+1+6VUjc=",
+        "ref": "refs/heads/master",
+        "rev": "7bddf6c48c3a3e17c00181e28a75aa032b081fb2",
+        "revCount": 229,
+        "type": "git",
+        "url": "https://git.allpurposem.at/mat/Disblock-Origin.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.allpurposem.at/mat/Disblock-Origin.git"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -909,6 +925,22 @@
         "type": "github"
       }
     },
+    "oscgoesbrrr": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763394408,
+        "narHash": "sha256-JC86IHzntcgqdAcGAUotX7iwj3iIQwC2j2O3+QA77Tw=",
+        "ref": "refs/heads/main",
+        "rev": "6a3421f0a755e990238b2d75b71b66430f029929",
+        "revCount": 136,
+        "type": "git",
+        "url": "https://github.com/OscToys/OscGoesBrrr.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/OscToys/OscGoesBrrr.git"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -938,6 +970,7 @@
         "bundle": "bundle",
         "catppuccin": "catppuccin",
         "catppuccin-gtk": "catppuccin-gtk",
+        "disblock-origin": "disblock-origin",
         "disko": "disko",
         "flake-parts": "flake-parts",
         "hexecute": "hexecute",
@@ -954,6 +987,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-xr": "nixpkgs-xr",
         "nur": "nur",
+        "oscgoesbrrr": "oscgoesbrrr",
         "solarxr-cli": "solarxr-cli",
         "steam-config-nix": "steam-config-nix",
         "systems": "systems_2",

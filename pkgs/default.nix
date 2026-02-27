@@ -17,7 +17,7 @@
       };
 
       packages = lib.removeAttrs (lib.packagesFromDirectoryRecursive {
-        callPackage = lib.callPackageWith (pkgs // self'.packages // { inherit (self') sources; });
+        callPackage = lib.callPackageWith (pkgs // self'.packages // { inherit inputs; });
         directory = ./.;
       }) [ "default" ];
     };
