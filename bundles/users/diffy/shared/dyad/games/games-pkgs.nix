@@ -6,20 +6,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "games-pkgs" ] {
       home.perpetual.default = {
         packages = {
           # keep-sorted start block=yes newline_separated=yes
-          bottles = {
-            package = pkgs.bottles.override {
-              removeWarningPopup = true;
-            };
-            dirs = [
-              "$dataHome/bottles"
-            ];
-          };
-
-          lutris.dirs = [
-            "$cacheHome/lutris"
-            "$dataHome/lutris"
-          ];
-
           osu-lazer-bin.dirs = [
             "$dataHome/osu"
           ];
