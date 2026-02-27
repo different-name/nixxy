@@ -26,7 +26,7 @@
         # keep-sorted start
         # manually import all flake modules, since they can't be imported through `self`
         (inputs.import-tree ./modules/flake)
-        ./bundles
+        ./bundles.nix
         ./formatter.nix
         ./modules
         ./pkgs

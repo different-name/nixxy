@@ -15,10 +15,10 @@ in
     });
 
     users.diffy = {
-      shared.imports = [ (inputs.import-tree ./users/diffy/shared) ];
+      shared.imports = [ (inputs.import-tree ./diffy/shared) ];
 
       hosts = lib.genAttrs diffyHosts (host: {
-        imports = [ (inputs.import-tree ./users/diffy/hosts/${host}) ];
+        imports = [ (inputs.import-tree ./diffy/hosts/${host}) ];
       });
     };
   };
