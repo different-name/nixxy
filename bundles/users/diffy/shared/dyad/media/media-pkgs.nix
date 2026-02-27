@@ -1,5 +1,5 @@
 { bundleLib, ... }:
-bundleLib.mkEnableModule [ "dyad" "media" "media-pkgs" ] {
+bundleLib.mkEnableModule [ "dyad" "media" "extraPackages" ] {
   home-manager =
     { pkgs, ... }:
     {

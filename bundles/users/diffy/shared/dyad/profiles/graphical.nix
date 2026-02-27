@@ -13,7 +13,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
 
     desktop = {
       # keep-sorted start
-      desktop-pkgs.enable = true;
+      extraPackages.enable = true;
       fonts.enable = true;
       hexecute.enable = true;
       hyprland.enable = true;

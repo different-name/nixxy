@@ -4,7 +4,7 @@
   lib,
   ...
 }:
-bundleLib.mkEnableModule [ "dyad" "terminal" "terminal-pkgs" ] {
+bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
   home-manager =
     { pkgs, ... }:
     {

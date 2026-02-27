@@ -1,5 +1,5 @@
 { bundleLib, ... }:
-bundleLib.mkEnableModule [ "dyad" "games" "games-pkgs" ] {
+bundleLib.mkEnableModule [ "dyad" "games" "extraPackages" ] {
   home-manager =
     { pkgs, ... }:
     {

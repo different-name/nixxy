@@ -1,5 +1,5 @@
 { bundleLib, self', ... }:
-bundleLib.mkEnableModule [ "dyad" "applications" "applications-pkgs" ] {
+bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
   home-manager =
     { pkgs, ... }:
     {

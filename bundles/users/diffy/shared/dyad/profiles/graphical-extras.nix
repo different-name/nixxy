@@ -4,15 +4,15 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
     # keep-sorted start block=yes newline_separated=yes
     applications = {
       # keep-sorted start
-      applications-pkgs.enable = true;
       discord.enable = true;
+      extraPackages.enable = true;
       obs-studio.enable = true;
       # keep-sorted end
     };
 
     games = {
       # keep-sorted start
-      games-pkgs.enable = true;
+      extraPackages.enable = true;
       steam.enable = true;
       vrcx.enable = true;
       # keep-sorted end
@@ -22,7 +22,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
 
     media = {
       goxlr-utility.enable = true;
-      media-pkgs.enable = true;
+      extraPackages.enable = true;
     };
 
     style.catppuccin.enable = true;
