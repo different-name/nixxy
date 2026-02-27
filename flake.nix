@@ -1,6 +1,23 @@
 {
   description = "diffy's nixos configuration files";
 
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        # keep-sorted start prefix_order=inputs.,./
+        inputs.bundle.flakeModules.default
+        inputs.home-manager.flakeModules.default
+        ./bundle.nix
+        ./formatter.nix
+        ./modules
+        ./pkgs
+        # keep-sorted end
+      ];
+
+      systems = import inputs.systems;
+    };
+
   nixConfig = {
     trusted-substituters = [
       "https://cache.nixos.org?priority=10"
@@ -18,23 +35,6 @@
       "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
     ];
   };
-
-  outputs =
-    inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        # keep-sorted start
-        ./bundles.nix
-        ./formatter.nix
-        ./modules
-        ./pkgs
-        inputs.bundle.flakeModules.default
-        inputs.home-manager.flakeModules.default
-        # keep-sorted end
-      ];
-
-      systems = import inputs.systems;
-    };
 
   inputs = {
     # keep-sorted start block=yes newline_separated=yes
