@@ -9,7 +9,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
     terminal = {
       # keep-sorted start
       btop.enable = true;
-      distrobox.enable = true;
       fish.enable = true;
       git.enable = true;
       television.enable = true;
