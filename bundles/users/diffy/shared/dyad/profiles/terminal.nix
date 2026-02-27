@@ -11,6 +11,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
       btop.enable = true;
       fish.enable = true;
       git.enable = true;
+      shellAliases.enable = true;
       television.enable = true;
       terminal-pkgs.enable = true;
       zellij.enable = true;
