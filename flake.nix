@@ -110,6 +110,12 @@
     # import modules recursively
     import-tree.url = "github:vic/import-tree";
 
+    # convenience lib for creating wrappers
+    wrappers = {
+      url = "github:lassulus/wrappers";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # moonlight discord mod
     moonlight = {
       url = "github:moonlight-mod/moonlight";

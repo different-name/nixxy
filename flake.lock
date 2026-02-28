@@ -993,7 +993,8 @@
         "systems": "systems_2",
         "treefmt-nix": "treefmt-nix",
         "vicinae": "vicinae",
-        "vicinae-extensions": "vicinae-extensions"
+        "vicinae-extensions": "vicinae-extensions",
+        "wrappers": "wrappers"
       }
     },
     "solarxr-cli": {
@@ -1144,6 +1145,26 @@
       "original": {
         "owner": "vicinaehq",
         "repo": "extensions",
+        "type": "github"
+      }
+    },
+    "wrappers": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772137435,
+        "narHash": "sha256-dqkfxxpIiIs4wdWhT4lfQi1lfA0CgIftPiYGvw0tUOk=",
+        "owner": "lassulus",
+        "repo": "wrappers",
+        "rev": "4e12f430ae705d9bbb591ca9c51cbccbee050a23",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lassulus",
+        "repo": "wrappers",
         "type": "github"
       }
     },

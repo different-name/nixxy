@@ -1,6 +1,7 @@
 {
   bundleLib,
   lib,
+  inputs,
   inputs',
   self',
   ...
@@ -124,14 +125,10 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
 
           slimevr = {
             # https://github.com/tauri-apps/tauri/issues/9394
-            package = pkgs.symlinkJoin {
-              name = "slimevr";
-              paths = [ pkgs.slimevr ];
-              nativeBuildInputs = [ pkgs.makeWrapper ];
-              postBuild = ''
-                wrapProgram $out/bin/slimevr \
-                  --set WEBKIT_DISABLE_DMABUF_RENDERER 1
-              '';
+            package = inputs.wrappers.lib.wrapPackage {
+              inherit pkgs;
+              package = pkgs.slimevr;
+              env.WEBKIT_DISABLE_DMABUF_RENDERER = 1;
             };
             dirs = [
               # keep-sorted start
