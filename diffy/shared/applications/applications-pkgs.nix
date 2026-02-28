@@ -1,4 +1,4 @@
-{ bundleLib, self', ... }:
+{ bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
   home-manager =
     { pkgs, ... }:
@@ -7,6 +7,11 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
         # keep-sorted start block=yes newline_separated=yes
         android-tools.dirs = [
           ".android"
+        ];
+
+        blender.dirs = [
+          "$cacheHome/blender"
+          "$configHome/blender"
         ];
 
         emote.dirs = [
@@ -27,6 +32,10 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
           ".nrfconnect-apps"
         ];
 
+        proton-pass.dirs = [
+          "$configHome/Proton Pass"
+        ];
+
         protonvpn-gui.dirs = [
           "$cacheHome/Proton"
           "$configHome/Proton"
@@ -42,22 +51,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
 
         signal-desktop.dirs = [
           "$configHome/Signal"
-        ];
-
-        spinshare-client-next = {
-          package = self'.packages.spinshare-client-next;
-          dirs = [
-            "$configHome/SpinShare"
-          ];
-        };
-
-        proton-pass.dirs = [
-          "$configHome/Proton Pass"
-        ];
-
-        blender.dirs = [
-          "$cacheHome/blender"
-          "$configHome/blender"
         ];
         # keep-sorted end
       };
