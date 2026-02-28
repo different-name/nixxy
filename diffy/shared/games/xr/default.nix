@@ -66,11 +66,8 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
       # slimevr server
       networking.firewall.allowedUDPPorts = [ 6969 ];
 
-      services.udev.packages = [
-        self'.packages.slimevr-udev-rules
-      ];
-
       environment.systemPackages = [
+        pkgs.slimevr # installed at system level for udev rules
         inputs'.solarxr-cli.packages.default
       ];
 
