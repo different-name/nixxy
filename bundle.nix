@@ -8,6 +8,10 @@ let
   ];
 in
 {
+  imports = [
+    inputs.bundle.flakeModules.default
+  ];
+
   bundle = {
     hosts = lib.genAttrs diffyHosts (_: {
       system = "x86_64-linux";

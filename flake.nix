@@ -5,14 +5,10 @@
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        # keep-sorted start prefix_order=inputs.,./
-        inputs.bundle.flakeModules.default
-        inputs.home-manager.flakeModules.default
         ./bundle.nix
         ./formatter.nix
         ./modules
         ./pkgs
-        # keep-sorted end
       ];
 
       systems = import inputs.systems;
