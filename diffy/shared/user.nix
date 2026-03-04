@@ -35,6 +35,8 @@ bundleLib.mkEnableModule [ "dyad" "users" "diffy" ] {
         ];
       };
 
+      nix.settings.trusted-users = [ "diffy" ];
+
       age = {
         secrets."user-passwords/diffy".file = self + /secrets/user-passwords/diffy.age;
         inherit (config.home-manager.users.diffy.age) identityPaths;
