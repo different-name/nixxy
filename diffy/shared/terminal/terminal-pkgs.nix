@@ -32,14 +32,11 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
 
       home.packages = with pkgs; [
         # keep-sorted start block=yes
-        aspell # spell checker
-        aspellDicts.en # aspell english dictionary
         bat # cat with syntax highlighting
         cocogitto # git toolbox
         ffmpeg # manipulate videos
         imagemagick # manipulate images
         jq # json parser
-        just # command runner
         magic-wormhole # transfer files between computers
         ncdu # disk usage
         nix-init # generate package definitions
