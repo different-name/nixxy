@@ -19,7 +19,7 @@ bundleLib.mkEnableModule [ "dyad" "nix" "nix" ] {
       ];
 
       config = {
-        age.secrets."tokens/github".file = self + /secrets/tokens/github.age;
+        age.secrets."tokens/nix-access-tokens".file = self + /secrets/tokens/nix-access-tokens.age;
 
         # need git for flakes
         environment.systemPackages = [ pkgs.git ];
@@ -51,7 +51,7 @@ bundleLib.mkEnableModule [ "dyad" "nix" "nix" ] {
 
             # read-only github token for rate limit
             extraOptions = ''
-              !include ${config.age.secrets."tokens/github".path}
+              !include ${config.age.secrets."tokens/nix-access-tokens".path}
             '';
 
             channel.enable = false;
