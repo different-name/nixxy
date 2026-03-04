@@ -134,12 +134,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # collection of image builders
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # hardware configurations
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
