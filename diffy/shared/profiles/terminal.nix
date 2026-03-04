@@ -12,6 +12,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
       extraPackages.enable = true;
       fish.enable = true;
       git.enable = true;
+      nixpkgs-review.enable = true;
       shellAliases.enable = true;
       television.enable = true;
       zellij.enable = true;

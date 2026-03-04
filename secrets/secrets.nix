@@ -16,6 +16,7 @@ in
   # keep-sorted start
   "tokens/cloudflare.age".publicKeys = allHosts;
   "tokens/nix-access-tokens.age".publicKeys = allHosts;
+  "tokens/nixpkgs-review.age".publicKeys = allHosts;
   "user-passwords/diffy.age".publicKeys = allHosts;
   # keep-sorted end
 }
