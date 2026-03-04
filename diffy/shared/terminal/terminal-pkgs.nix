@@ -35,12 +35,14 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
         bat # cat with syntax highlighting
         cocogitto # git toolbox
         ffmpeg # manipulate videos
+        glow # pretty markdown renderer
         imagemagick # manipulate images
         jq # json parser
         magic-wormhole # transfer files between computers
         ncdu # disk usage
         nix-init # generate package definitions
         nix-melt # flake.lock viewer
+        nix-output-monitor # pretty nix builds
         nixfmt-tree # nixpkgs formatter
         nurl # generate fetcher expressions
         pv # pipe viewer, monitor data flow through pipe
