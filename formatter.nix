@@ -43,7 +43,14 @@
             indent_size = 2;
           };
 
-          statix.enable = true;
+          statix = {
+            enable = true;
+            disabled-lints = [
+              # TODO remove after new statix release
+              # see https://github.com/oppiliappan/statix/issues/109#issuecomment-3092313521
+              "faster_zipattrswith"
+            ];
+          };
           # keep-sorted end
         };
       };

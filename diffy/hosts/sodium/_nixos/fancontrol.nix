@@ -1,10 +1,12 @@
 { config, pkgs, ... }:
 {
-  boot.extraModulePackages = [
-    config.boot.kernelPackages.nct6687d
-  ];
-  boot.kernelModules = [ "nct6687" ];
-  boot.blacklistedKernelModules = [ "nct6683" ];
+  boot = {
+    extraModulePackages = [
+      config.boot.kernelPackages.nct6687d
+    ];
+    kernelModules = [ "nct6687" ];
+    blacklistedKernelModules = [ "nct6683" ];
+  };
 
   hardware.fancontrol = {
     enable = true;

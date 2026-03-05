@@ -19,7 +19,7 @@ writeShellApplication {
     btrbk
   ];
 
-  text = builtins.readFile (
+  text = lib.readFile (
     replaceVars ./btrbk-backup.sh {
       uuid = backupConfig.backupDiskUuid;
       crypt_name = backupConfig.cryptName;

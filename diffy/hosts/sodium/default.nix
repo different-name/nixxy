@@ -56,9 +56,24 @@ in
 
       environment.etc.machine-id.text = machineId;
 
-      services.tty1Autologin = {
-        enable = true;
-        user = "diffy";
+      services = {
+        tty1Autologin = {
+          enable = true;
+          user = "diffy";
+        };
+
+        goxlr-utility.enable = true;
+
+        postgresql = {
+          enable = true;
+          package = pkgs.postgresql_17;
+
+          authentication = pkgs.lib.mkOverride 10 ''
+            #type database DBuser origin-address auth-method
+            local all      all     trust
+            host  all      all     127.0.0.1/32   trust
+          '';
+        };
       };
 
       environment.sessionVariables = {
@@ -80,18 +95,6 @@ in
       ];
 
       hardware.brillo.enable = true; # backlight control
-      services.goxlr-utility.enable = true;
-
-      services.postgresql = {
-        enable = true;
-        package = pkgs.postgresql_17;
-
-        authentication = pkgs.lib.mkOverride 10 ''
-          #type database DBuser origin-address auth-method
-          local all      all     trust
-          host  all      all     127.0.0.1/32   trust
-        '';
-      };
     };
 
   home-manager = {

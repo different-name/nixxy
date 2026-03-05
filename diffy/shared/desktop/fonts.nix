@@ -1,4 +1,4 @@
-{ bundleLib, ... }:
+{ bundleLib, lib, ... }:
 bundleLib.mkEnableModule [ "dyad" "desktop" "fonts" ] {
   nixos =
     { pkgs, ... }:
@@ -34,7 +34,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "fonts" ] {
         # Noto Color Emoji is used in all to override DejaVu's B&W emojis
         fontconfig.defaultFonts =
           let
-            addAll = builtins.mapAttrs (_k: v: v ++ [ "Symbols Nerd Font" ] ++ [ "Noto Color Emoji" ]);
+            addAll = lib.mapAttrs (_k: v: v ++ [ "Symbols Nerd Font" ] ++ [ "Noto Color Emoji" ]);
           in
           addAll {
             serif = [ "Noto Serif" ];

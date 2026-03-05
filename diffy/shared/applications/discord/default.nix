@@ -42,9 +42,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
 
         home.packages = [
           discordPackage
-          (pkgs.writeShellScriptBin "moonlight-config-updater" (
-            builtins.readFile ./moonlight-config-updater.sh
-          ))
+          (pkgs.writeShellScriptBin "moonlight-config-updater" (lib.readFile ./moonlight-config-updater.sh))
         ];
 
         xdg.autostart.entries = lib.singleton (

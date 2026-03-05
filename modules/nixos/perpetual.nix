@@ -50,7 +50,7 @@ in
 
           config =
             let
-              packageStoragePaths = builtins.zipAttrsWith (_: v: lib.flatten v) (lib.attrValues config.packages);
+              packageStoragePaths = lib.zipAttrsWith (_: v: lib.flatten v) (lib.attrValues config.packages);
             in
             {
               dirs = packageStoragePaths.dirs or [ ];

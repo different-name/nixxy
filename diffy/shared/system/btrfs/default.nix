@@ -25,7 +25,7 @@ bundleLib.mkEnableModule [ "dyad" "system" "btrfs" ] {
           script = ''
             ROOT_DEVICE=${config.fileSystems."/".device}
 
-            ${builtins.readFile ./root-subvol-switch.sh}
+            ${lib.readFile ./root-subvol-switch.sh}
           '';
         };
       };
@@ -50,7 +50,7 @@ bundleLib.mkEnableModule [ "dyad" "system" "btrfs" ] {
                 KEEP_MIN_NUM=${toString keepMinNum}
                 KEEP_AGE_DAYS=${toString keepAgeDays}
 
-                ${builtins.readFile ./root-subvol-cleanup.sh}
+                ${lib.readFile ./root-subvol-cleanup.sh}
               '';
             }
           );

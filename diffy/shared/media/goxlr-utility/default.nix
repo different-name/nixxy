@@ -26,7 +26,7 @@ bundleLib.mkEnableModule [ "dyad" "media" "goxlr-utility" ] {
               jq
               goxlr-utility
             ];
-            text = builtins.readFile ./toggle-mute.sh;
+            text = lib.readFile ./toggle-mute.sh;
           };
         in
         [

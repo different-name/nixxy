@@ -8,7 +8,7 @@ let
   importModules =
     dir:
     lib.pipe dir [
-      builtins.readDir
+      lib.readDir
       (lib.filterAttrs (name: pathType: isImportable (lib.path.append dir name) pathType))
       (lib.mapAttrs' (
         name: _: {
@@ -19,7 +19,7 @@ let
     ];
 
   moduleTypes = lib.pipe ./. [
-    builtins.readDir
+    lib.readDir
     (lib.filterAttrs (_: pathType: pathType == "directory"))
     lib.attrNames
   ];

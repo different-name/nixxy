@@ -66,7 +66,7 @@ bundleLib.mkEnableModule [ "dyad" "nix" "nix" ] {
       let
         inherit (import "${self}/flake.nix") nixConfig;
       in
-      builtins.toJSON (
+      lib.toJSON (
         lib.mapAttrs (_: list: {
           ${lib.concatStringsSep " " list} = true;
         }) nixConfig

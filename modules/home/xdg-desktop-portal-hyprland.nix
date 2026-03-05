@@ -4,7 +4,7 @@ let
 
   cfg = config.wayland.windowManager.hyprland.xdgDesktopPortalHyprland;
 
-  valueToString = value: if builtins.isBool value then lib.boolToString value else toString value;
+  valueToString = value: if lib.isBool value then lib.boolToString value else toString value;
 
   generateBlock = name: attrs: ''
     ${name} {

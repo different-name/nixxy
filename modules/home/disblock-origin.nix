@@ -137,7 +137,7 @@ in
 
   config = lib.mkIf cfg.enable {
     xdg.dataFile."disblock-origin/theme.css".text = ''
-      ${builtins.readFile (disblock-origin + /share/DisblockOrigin.theme.css)}
+      ${lib.readFile (disblock-origin + /share/DisblockOrigin.theme.css)}
 
       :root {
         ${settingsCss}
