@@ -95,7 +95,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
 
           nonSteamApps = {
             vintage-story = {
-              id = 980457983475;
               name = "Vintage Story";
               icon = ./icons/vintage-story.png;
               target = pkgs.vintagestory;
