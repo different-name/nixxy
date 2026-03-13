@@ -153,12 +153,6 @@
       };
     };
 
-    # oscgoesbrrr o.o
-    oscgoesbrrr = {
-      url = "git+https://github.com/OscToys/OscGoesBrrr.git";
-      flake = false;
-    };
-
     # cli tool for interacting with slimevr server
     solarxr-cli = {
       url = "git+https://github.com/notpeelz/solarxr-cli?submodules=1";

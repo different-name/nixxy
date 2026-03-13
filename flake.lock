@@ -889,22 +889,6 @@
         "type": "github"
       }
     },
-    "oscgoesbrrr": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1763394408,
-        "narHash": "sha256-JC86IHzntcgqdAcGAUotX7iwj3iIQwC2j2O3+QA77Tw=",
-        "ref": "refs/heads/main",
-        "rev": "6a3421f0a755e990238b2d75b71b66430f029929",
-        "revCount": 136,
-        "type": "git",
-        "url": "https://github.com/OscToys/OscGoesBrrr.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://github.com/OscToys/OscGoesBrrr.git"
-      }
-    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -950,7 +934,6 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-xr": "nixpkgs-xr",
         "nur": "nur",
-        "oscgoesbrrr": "oscgoesbrrr",
         "solarxr-cli": "solarxr-cli",
         "steam-config-nix": "steam-config-nix",
         "systems": "systems_2",

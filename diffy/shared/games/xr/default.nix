@@ -3,7 +3,6 @@
   lib,
   inputs,
   inputs',
-  self',
   ...
 }:
 bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
@@ -104,13 +103,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
       home.perpetual.default = {
         packages = {
           # keep-sorted start block=yes newline_separated=yes
-          oscgoesbrrr = {
-            package = self'.packages.oscgoesbrrr;
-            dirs = [
-              "$configHome/OscGoesBrrr"
-            ];
-          };
-
           slimevr = {
             # https://github.com/tauri-apps/tauri/issues/9394
             # TODO remove with v19
