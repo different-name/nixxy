@@ -12,10 +12,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
     {
       services.wivrn = {
         enable = true;
-
         openFirewall = true;
-        defaultRuntime = true;
-
         steam.importOXRRuntimes = true;
 
         config = {
@@ -80,12 +77,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
     { osConfig, pkgs, ... }:
     {
       xdg = {
-        # https://lvra.gitlab.io/docs/distros/nixos/#runtimes
-        configFile."openxr/1/active_runtime.json" = {
-          inherit (osConfig.environment.etc."xdg/openxr/1/active_runtime.json") source;
-          force = true;
-        };
-
         # https://github.com/wlx-team/wayvr/wiki/Customization
         configFile."wayvr" = {
           source = ./wayvr;
@@ -102,12 +93,12 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
       # TODO temporary workaround until https://www.github.com/hyprwm/xdg-desktop-portal-hyprland/issues/329 is implemented properly
       wayland.windowManager.hyprland.xdgDesktopPortalHyprland.settings = {
         screencopy.custom_picker_binary = lib.getExe (
-            pkgs.writeShellApplication {
-              name = "hyprland-share-picker-xr";
-              runtimeInputs = [ osConfig.programs.hyprland.portalPackage ];
-              text = lib.readFile ./hyprland-share-picker-xr.sh;
-            }
-          );
+          pkgs.writeShellApplication {
+            name = "hyprland-share-picker-xr";
+            runtimeInputs = [ osConfig.programs.hyprland.portalPackage ];
+            text = lib.readFile ./hyprland-share-picker-xr.sh;
+          }
+        );
       };
 
       home.perpetual.default = {
