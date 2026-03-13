@@ -35,8 +35,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
               offset_x = 0.0;
               offset_y = 0.0;
             };
-
-            openvr-compat-path = "${pkgs.opencomposite}/lib/opencomposite";
           };
         };
       };
@@ -95,23 +93,21 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
           force = true;
         };
 
-        # https://lvra.gitlab.io/docs/fossvr/opencomposite/#rebinding-controls
-        dataFile."Steam/steamapps/common/VRChat/OpenComposite/oculus_touch.json" = {
-          source = ./opencomposite/vrchat/oculus_touch.json;
+        # https://lvra.gitlab.io/docs/fossvr/xrizer/#rebinding-controls
+        dataFile."Steam/steamapps/common/VRChat/xrizer/oculustouch.json" = {
+          source = ./binds/vrchat/oculustouch.json;
         };
       };
 
       # TODO temporary workaround until https://www.github.com/hyprwm/xdg-desktop-portal-hyprland/issues/329 is implemented properly
       wayland.windowManager.hyprland.xdgDesktopPortalHyprland.settings = {
-        screencopy = {
-          custom_picker_binary = lib.getExe (
+        screencopy.custom_picker_binary = lib.getExe (
             pkgs.writeShellApplication {
               name = "hyprland-share-picker-xr";
               runtimeInputs = [ osConfig.programs.hyprland.portalPackage ];
               text = lib.readFile ./hyprland-share-picker-xr.sh;
             }
           );
-        };
       };
 
       home.perpetual.default = {
@@ -126,6 +122,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
 
           slimevr = {
             # https://github.com/tauri-apps/tauri/issues/9394
+            # TODO remove with v19
             package = inputs.wrappers.lib.wrapPackage {
               inherit pkgs;
               package = pkgs.slimevr;
