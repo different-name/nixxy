@@ -34,6 +34,10 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
           ];
         };
 
+        standardnotes.dirs = [
+          "$configHome/Standard Notes"
+        ];
+
         nrfconnect.dirs = [
           "$configHome/nrfconnect"
           ".nrfconnect-apps"
