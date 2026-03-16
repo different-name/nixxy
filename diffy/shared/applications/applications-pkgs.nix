@@ -34,8 +34,8 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
           ];
         };
 
-        standardnotes.dirs = [
-          "$configHome/Standard Notes"
+        notesnook.dirs = [
+          "$configHome/Notesnook"
         ];
 
         nrfconnect.dirs = [
