@@ -1,4 +1,4 @@
-{ bundleLib, self', ... }:
+{ bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
   home-manager =
     { pkgs, ... }:
@@ -26,13 +26,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
           "$cacheHome/gimp"
           "$configHome/GIMP"
         ];
-
-        fluxer = {
-          package = self'.packages.fluxer;
-          dirs = [
-            "$configHome/fluxer"
-          ];
-        };
 
         notesnook.dirs = [
           "$configHome/Notesnook"

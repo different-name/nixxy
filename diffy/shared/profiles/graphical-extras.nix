@@ -6,6 +6,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
       # keep-sorted start
       discord.enable = true;
       extraPackages.enable = true;
+      fluxer.enable = true;
       obs-studio.enable = true;
       # keep-sorted end
     };
