@@ -1,7 +1,12 @@
 { bundleLib, lib, ... }:
 bundleLib.mkEnableModule [ "dyad" "media" "goxlr-utility" ] {
   home-manager =
-    { osConfig, pkgs, ... }:
+    {
+      config,
+      osConfig,
+      pkgs,
+      ...
+    }:
     {
       xdg.dataFile."goxlr-utility/mic-profiles/procaster.goxlrMicProfile" = {
         source = ./procaster.goxlrMicProfile;
@@ -32,6 +37,11 @@ bundleLib.mkEnableModule [ "dyad" "media" "goxlr-utility" ] {
         [
           "$mod, Z, exec, ${lib.getExe toggleMute}"
         ];
+
+      home.file."Audio/Samples" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/goxlr-utility/samples/Recorded";
+        force = true;
+      };
 
       home.perpetual.default.dirs = [
         "$configHome/goxlr-utility"
