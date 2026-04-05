@@ -50,6 +50,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
       "Downloads"
       "Pictures"
       "Videos"
+      "Audio"
       # keep-sorted end
     ];
   };
