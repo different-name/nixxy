@@ -8,7 +8,7 @@
         themeColors = catppuccinPalette.${config.catppuccin.flavor}.colors;
         getColor = color: lib.removePrefix "#" themeColors.${color}.hex;
 
-        activeColor = "ed507c";
+        activeColor = getColor "green";
         inactiveColor = getColor "mantle";
         alternateColor = getColor "mauve";
       in

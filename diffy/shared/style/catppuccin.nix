@@ -15,7 +15,7 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
       enable = true;
       cache.enable = true;
 
-      accent = "red";
+      accent = "mauve";
       flavor = "mocha";
 
       sources.limine = inputs'.catppuccin.packages.limine.overrideAttrs (oldAttrs: {
