@@ -40,7 +40,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
           "$configHome/Proton Pass"
         ];
 
-        protonvpn-gui.dirs = [
+        proton-vpn.dirs = [
           "$cacheHome/Proton"
           "$configHome/Proton"
         ];
@@ -55,6 +55,11 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
 
         signal-desktop.dirs = [
           "$configHome/Signal"
+        ];
+
+        spotify.dirs = [
+          "$configHome/spotify"
+          "$cacheHome/spotify"
         ];
         # keep-sorted end
       };
