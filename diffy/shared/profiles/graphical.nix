@@ -45,12 +45,12 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
 
     home.perpetual.default.dirs = [
       # keep-sorted start
+      "Audio"
       "Code"
       "Documents"
       "Downloads"
       "Pictures"
       "Videos"
-      "Audio"
       # keep-sorted end
     ];
   };
