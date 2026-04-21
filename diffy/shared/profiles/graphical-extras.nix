@@ -8,6 +8,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
       extraPackages.enable = true;
       fluxer.enable = true;
       obs-studio.enable = true;
+      spotify.enable = true;
       # keep-sorted end
     };
 

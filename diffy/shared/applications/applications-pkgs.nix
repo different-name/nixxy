@@ -56,11 +56,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
         signal-desktop.dirs = [
           "$configHome/Signal"
         ];
-
-        spotify.dirs = [
-          "$configHome/spotify"
-          "$cacheHome/spotify"
-        ];
         # keep-sorted end
       };
 
