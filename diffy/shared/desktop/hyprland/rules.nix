@@ -13,7 +13,6 @@ in
       float-by-class = {
         "match:class" = lib.concatStringsSep "|" [
           # keep-sorted start
-          "Proton Pass"
           "file-roller"
           "org.gnome.FileRoller"
           "xdg-desktop-portal-gtk"
@@ -27,6 +26,7 @@ in
           # keep-sorted start
           "File Operation Progress"
           "Open Folder"
+          "Proton Pass"
           "Protontricks"
           "Select what to share"
           "Winetricks.*"
