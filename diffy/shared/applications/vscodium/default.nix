@@ -26,6 +26,8 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
             ms-python.pylint
             ms-python.python
             prettiercode.code-prettier
+            slevesque.shader
+            stevensona.shader-toy
             tamasfe.even-better-toml
             # keep-sorted end
           ];
@@ -47,6 +49,11 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
             "git.repositoryScanMaxDepth" = 3;
             "html.format.templating" = true;
             "scm.alwaysShowRepositories" = true;
+            "shader-toy.forceAspectRatio" = [
+              1
+              1
+            ];
+            "shader-toy.reloadOnEditText" = false;
             "window.titleBarStyle" = "custom";
             "workbench.colorTheme" = "Catppuccin Mocha";
             "workbench.iconTheme" = "catppuccin-mocha";
