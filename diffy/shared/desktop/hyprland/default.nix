@@ -8,7 +8,7 @@
 }:
 bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
   nixos =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     let
       inherit (pkgs.stdenv.hostPlatform) system;
       hyprlandPkgs = inputs.hyprland.inputs.nixpkgs.legacyPackages.${system};
@@ -28,20 +28,12 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
         # auto launch hyprland on tty1
         loginShellInit = ''
           if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ] && uwsm check may-start; then
-            exec uwsm start hyprland-uwsm.desktop
+            exec uwsm start -e -D Hyprland hyprland.desktop
           fi
         '';
 
-        sessionVariables = {
-          # hint electron apps to use wayland
-          NIXOS_OZONE_WL = 1;
-
-          # required for UWSM to find hyprland
-          # TODO remove after fixed: https://github.com/NixOS/nixpkgs/issues/485123
-          XDG_DATA_DIRS = [
-            "${config.programs.hyprland.package}/share"
-          ];
-        };
+        # hint electron apps to use wayland
+        sessionVariables.NIXOS_OZONE_WL = 1;
       };
     };
 
