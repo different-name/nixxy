@@ -31,6 +31,12 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
               offset_x = 0.0;
               offset_y = 0.0;
             };
+
+            application = lib.singleton (
+              pkgs.writeShellScriptBin "wivrn-applications" ''
+                ${lib.getExe' pkgs.systemd "systemctl"} --user start wayvr solarxr-input
+              ''
+            );
           };
         };
       };
@@ -53,6 +59,18 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
 
           serviceConfig = {
             ExecStart = "${lib.getExe pkgs.wayvr} --openxr --replace";
+            Restart = "on-failure";
+          };
+        };
+
+        solarxr-input = {
+          description = "SolarXR OpenXR bindings";
+          after = [ "wivrn.service" ];
+          requires = [ "wivrn.service" ];
+          partOf = [ "wivrn.service" ];
+
+          serviceConfig = {
+            ExecStart = lib.getExe' inputs'.solarxr-cli.packages.solarxr-cli "solarxr-input";
             Restart = "on-failure";
           };
         };
@@ -81,6 +99,18 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
           source = ./wayvr;
           recursive = true;
           force = true;
+        };
+
+        configFile."solarxr-input/config.json".text = lib.toJSON {
+          action_profiles = {
+            "/interaction_profiles/oculus/touch_controller".reset_yaw = {
+              left = "/user/hand/left/input/y/click";
+              double_click = true;
+            };
+            "/interaction_profiles/valve/index_controller" = { };
+            "/interaction_profiles/htc/vive_controller" = { };
+            "/interaction_profiles/microsoft/motion_controller" = { };
+          };
         };
 
         # https://lvra.gitlab.io/docs/fossvr/xrizer/#rebinding-controls
