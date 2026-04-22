@@ -73,7 +73,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
     };
 
   home-manager =
-    { osConfig, pkgs, ... }:
+    { pkgs, ... }:
     {
       xdg = {
         # https://github.com/wlx-team/wayvr/wiki/Customization
@@ -87,17 +87,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
         dataFile."Steam/steamapps/common/VRChat/xrizer/oculustouch.json" = {
           source = ./binds/vrchat/oculustouch.json;
         };
-      };
-
-      # TODO temporary workaround until https://www.github.com/hyprwm/xdg-desktop-portal-hyprland/issues/329 is implemented properly
-      wayland.windowManager.hyprland.xdgDesktopPortalHyprland.settings = {
-        screencopy.custom_picker_binary = lib.getExe (
-          pkgs.writeShellApplication {
-            name = "hyprland-share-picker-xr";
-            runtimeInputs = [ osConfig.programs.hyprland.portalPackage ];
-            text = lib.readFile ./hyprland-share-picker-xr.sh;
-          }
-        );
       };
 
       home.perpetual.default = {

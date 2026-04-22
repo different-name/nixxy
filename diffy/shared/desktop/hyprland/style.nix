@@ -26,7 +26,6 @@
             shadow = {
               range = 8;
               render_power = 3;
-              ignore_window = true;
               color = "rgba(00000055)";
             };
             dim_inactive = false;
