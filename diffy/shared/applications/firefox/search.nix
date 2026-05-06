@@ -6,14 +6,6 @@
       default = "kagi";
       engines = {
         # keep-sorted start block=yes newline_separated=yes
-        home-manager.options = {
-          name = "HM Options";
-          urls = lib.singleton {
-            template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
-          };
-          definedAliases = [ ":hm" ];
-        };
-
         kagi = {
           name = "Kagi";
           urls = lib.singleton {
