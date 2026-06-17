@@ -2,8 +2,6 @@
 bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
   dyad = {
     # keep-sorted start block=yes newline_separated=yes
-    services.tailscale.enable = true;
-
     style.catppuccin.enable = true;
 
     terminal = {

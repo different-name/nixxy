@@ -12,11 +12,8 @@ in
     };
 
     services = {
-      # keep-sorted start block=yes
       caddy.enable = true;
       cloudflare-dyndns.enable = true;
-      headscale.enable = true;
-      # keep-sorted end
     };
 
     system = {
