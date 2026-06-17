@@ -13,14 +13,6 @@ post_bump_hooks = []
 pre_package_bump_hooks = []
 post_package_bump_hooks = []
 
-[git_hooks]
-
-[commit_types]
-
 [changelog]
 path = "CHANGELOG.md"
 authors = []
-
-[bump_profiles]
-
-[packages]
