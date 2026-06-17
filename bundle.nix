@@ -4,7 +4,6 @@ let
     "sodium"
     "potassium"
     "iodine"
-    "chinchilla"
   ];
 in
 {
