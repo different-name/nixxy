@@ -75,6 +75,13 @@
             transform = 3;
           }
           {
+            # work monitor
+            output = "desc:Microstep MSI MP275 PC3M234705301";
+            mode = "1920x1080@60";
+            position = "auto-right";
+            scale = 0.75;
+          }
+          {
             # previous main monitor
             output = "desc:BNQ BenQ EW3270U 5BL00174019";
             mode = "preferred";
