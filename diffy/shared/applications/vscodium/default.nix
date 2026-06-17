@@ -8,9 +8,8 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
       inherit (inputs.nix-vscode-extensions.extensions.${system}) vscode-marketplace;
     in
     {
-      programs.vscode = {
+      programs.vscodium = {
         enable = true;
-        package = pkgs.vscodium;
 
         profiles.default = {
           extensions = with vscode-marketplace; [

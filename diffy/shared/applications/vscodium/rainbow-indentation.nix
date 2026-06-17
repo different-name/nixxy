@@ -1,7 +1,7 @@
 { lib, config, ... }:
 {
   config = lib.mkIf config.dyad.applications.vscodium.enable {
-    home-manager.programs.vscode.profiles.default.userSettings = {
+    home-manager.programs.vscodium.profiles.default.userSettings = {
       # keep-sorted start block=yes newline_separated=yes
       "editor.guides.bracketPairs" = true;
 
