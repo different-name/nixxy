@@ -6,9 +6,9 @@
   ...
 }:
 {
-  config = lib.mkIf config.dyad.applications.librewolf.enable {
+  config = lib.mkIf config.dyad.applications.firefox.enable {
     home-manager = {
-      programs.librewolf.profiles.default = {
+      programs.firefox.profiles.default = {
         extensions = {
           force = true;
 

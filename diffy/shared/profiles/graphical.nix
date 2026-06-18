@@ -4,8 +4,8 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
     # keep-sorted start block=yes newline_separated=yes
     applications = {
       # keep-sorted start
+      firefox.enable = true;
       kitty.enable = true;
-      librewolf.enable = true;
       thunar.enable = true;
       vscodium.enable = true;
       # keep-sorted end

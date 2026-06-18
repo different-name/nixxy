@@ -43,6 +43,14 @@ in
       };
 
       # keep-sorted start block=yes newline_separated=yes
+      firefox-pip = {
+        "match:class" = "firefox";
+        "match:title" = "Picture-in-Picture";
+        pin = true;
+        size = "480 270";
+        keep_aspect_ratio = true;
+      };
+
       games-by-class = {
         "match:class" = lib.concatStringsSep "|" [
           "steam_app_[0-9]+"
@@ -62,14 +70,6 @@ in
         suppress_event = "fullscreen";
         fullscreen = true;
         workspace = 2;
-      };
-
-      librewolf-pip = {
-        "match:class" = "librewolf";
-        "match:title" = "Picture-in-Picture";
-        pin = true;
-        size = "480 270";
-        keep_aspect_ratio = true;
       };
 
       pavucontrol = {

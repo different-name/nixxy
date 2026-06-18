@@ -53,7 +53,7 @@
               ## launcher
               "$mod, S, exec, vicinae toggle" # not using uwsm as it introduces latency
               ## browser
-              "$mod, W, exec, ${uwsmApp "librewolf"}"
+              "$mod, W, exec, ${uwsmApp "firefox"}"
               ## file explorer
               "$mod, E, exec, ${uwsmApp "thunar"}"
               ## emoji picker

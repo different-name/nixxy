@@ -44,8 +44,8 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
           inherit (config.catppuccin) enable;
           accent = "dark";
         };
+        firefox.enable = false;
         fish.enable = false;
-        librewolf.enable = false;
         mpv.enable = false;
         zellij.enable = false;
         # keep-sorted end

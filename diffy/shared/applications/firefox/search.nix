@@ -1,7 +1,7 @@
 { lib, config, ... }:
 {
-  config = lib.mkIf config.dyad.applications.librewolf.enable {
-    home-manager.programs.librewolf.profiles.default.search = {
+  config = lib.mkIf config.dyad.applications.firefox.enable {
+    home-manager.programs.firefox.profiles.default.search = {
       force = true;
       default = "kagi";
       engines = {

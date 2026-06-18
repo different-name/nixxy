@@ -44,6 +44,17 @@
       };
     };
 
+    # firefox user.js for privacy & security
+    betterfox = {
+      url = "github:HeitorAugustoLN/betterfox-nix";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        import-tree.follows = "import-tree";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
     # bundle nixos, darwin, home-manager, and other config together
     bundle.url = "github:different-name/bundle-of-nix";
 
