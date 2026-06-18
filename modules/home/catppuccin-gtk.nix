@@ -2,6 +2,7 @@
 {
   lib,
   config,
+  options,
   inputs,
   inputs',
   pkgs,
@@ -16,7 +17,14 @@ let
     types
     ;
 
-  catppuccinLib = import (inputs.catppuccin + /modules/lib) { inherit lib config pkgs; };
+  catppuccinLib = import (inputs.catppuccin + /modules/lib) {
+    inherit
+      lib
+      config
+      options
+      pkgs
+      ;
+  };
 
   cfg = config.catppuccin-workarounds.gtk;
   enable = cfg.enable && config.gtk.enable;

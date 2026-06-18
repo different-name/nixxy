@@ -47,7 +47,7 @@ in
 
       environment.etc.machine-id.text = machineId;
 
-      system.stateVersion = "24.05";
+      system.stateVersion = "26.05";
 
       services.tty1Autologin = {
         enable = true;

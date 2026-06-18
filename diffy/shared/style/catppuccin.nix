@@ -1,7 +1,6 @@
 {
   bundleLib,
   inputs,
-  inputs',
   self,
   ...
 }:
@@ -13,18 +12,11 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
 
     config.catppuccin = {
       enable = true;
+      autoEnable = true;
       cache.enable = true;
 
       accent = "mauve";
       flavor = "mocha";
-
-      sources.limine = inputs'.catppuccin.packages.limine.overrideAttrs (oldAttrs: {
-        postPatch = (oldAttrs.postPach or "") + ''
-          substituteInPlace "themes/catppuccin-mocha.conf" \
-            --replace-fail "a6e3a1" "cba6f7" \
-            --replace-fail "94e2d5" "cba6f7"
-        '';
-      });
     };
   };
 
@@ -37,7 +29,12 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
       ];
 
       config.catppuccin = {
-        inherit (osConfig.catppuccin) enable accent flavor;
+        inherit (osConfig.catppuccin)
+          enable
+          autoEnable
+          accent
+          flavor
+          ;
 
         # keep-sorted start block=yes
         cursors = {
