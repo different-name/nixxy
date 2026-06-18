@@ -24,12 +24,9 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
 
         # ai
         claude-code = {
-          dirs = [
-            ".claude"
-          ];
-          files = [
-            ".claude.json"
-          ];
+          dirs = [ ".claude" ];
+          files = [ ".claude.json" ];
+
         };
 
         # calculator

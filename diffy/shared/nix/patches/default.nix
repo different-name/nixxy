@@ -13,7 +13,5 @@ bundleLib.mkEnableModule [ "dyad" "nix" "patches" ] {
         });
       })
     ];
-
-    environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
   };
 }
