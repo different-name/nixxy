@@ -3,7 +3,6 @@ let
   diffyHosts = [
     "sodium"
     "potassium"
-    "iodine"
   ];
 in
 {
