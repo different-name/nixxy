@@ -16,10 +16,7 @@
 
         debug.disable_logs = false;
 
-        dwindle = {
-          pseudotile = true;
-          preserve_split = true;
-        };
+        dwindle.preserve_split = true;
 
         ecosystem = {
           no_update_news = true;
