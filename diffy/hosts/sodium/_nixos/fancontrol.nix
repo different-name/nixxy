@@ -1,4 +1,28 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  hwmonLink = "/run/fancontrol-nct6687";
+
+  linkHwmon = pkgs.writeShellApplication {
+    name = "fancontrol-link-nct6687";
+    text = ''
+      for d in /sys/class/hwmon/hwmon*; do
+        name="$(cat "$d/name" 2>/dev/null || true)"
+        if [[ "$name" == "nct6687" ]]; then
+          ln -sfn "$d" "${hwmonLink}"
+          echo "linked ${hwmonLink} -> $d"
+          exit 0
+        fi
+      done
+      echo "error: nct6687 hwmon device not found" >&2
+      exit 1
+    '';
+  };
+in
 {
   boot = {
     extraModulePackages = [
@@ -8,31 +32,33 @@
     blacklistedKernelModules = [ "nct6683" ];
   };
 
+  systemd.services.fancontrol.serviceConfig.ExecStartPre = lib.getExe linkHwmon;
+
   hardware.fancontrol = {
     enable = true;
     config =
       let
         sensors = {
-          cpu = "hwmon4/temp1_input";
+          cpu = "${hwmonLink}/temp1_input";
           gpu = "/run/nvidia-temp";
         };
 
         fans = {
           cpu = {
-            pwm = "hwmon4/pwm1";
-            rpm = "hwmon4/fan1_input";
+            pwm = "${hwmonLink}/pwm1";
+            rpm = "${hwmonLink}/fan1_input";
           };
           pump = {
-            pwm = "hwmon4/pwm2";
-            rpm = "hwmon4/fan2_input";
+            pwm = "${hwmonLink}/pwm2";
+            rpm = "${hwmonLink}/fan2_input";
           };
           rear = {
-            pwm = "hwmon4/pwm4";
-            rpm = "hwmon4/fan4_input";
+            pwm = "${hwmonLink}/pwm4";
+            rpm = "${hwmonLink}/fan4_input";
           };
           gpu = {
-            pwm = "hwmon4/pwm5";
-            rpm = "hwmon4/fan5_input";
+            pwm = "${hwmonLink}/pwm5";
+            rpm = "${hwmonLink}/fan5_input";
           };
         };
 
@@ -61,8 +87,6 @@
       in
       ''
         INTERVAL=5
-        DEVPATH=hwmon4=devices/platform/nct6687.2592
-        DEVNAME=hwmon4=nct6687
 
         FCTEMPS=${fans.cpu.pwm}=${sensors.cpu} ${fans.pump.pwm}=${sensors.cpu} ${fans.rear.pwm}=${sensors.cpu} ${fans.gpu.pwm}=${sensors.gpu}
         FCFANS=${fans.cpu.pwm}=${fans.cpu.rpm} ${fans.pump.pwm}=${fans.pump.rpm} ${fans.rear.pwm}=${fans.rear.rpm} ${fans.gpu.pwm}=${fans.gpu.rpm}
