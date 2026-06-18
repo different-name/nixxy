@@ -55,7 +55,7 @@
       config = {
         disableRendererBackgrounding = false;
         linuxSpeechDispatcher = true;
-        vulkan = true;
+        vulkan = false;
       };
       enabled = true;
     };
@@ -94,7 +94,7 @@
       };
       enabled = true;
     };
-    removeTopBar = true;
+    removeTopBar = false;
     replyChain = true;
     resolver = true;
     sendTimestamps = true;
@@ -150,7 +150,7 @@
           }
         ];
       };
-      enabled = true;
+      enabled = false;
     };
     svgEmbed = true;
     textReplacer = {
