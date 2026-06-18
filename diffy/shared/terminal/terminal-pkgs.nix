@@ -22,6 +22,16 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
           "$stateHome/lazygit"
         ];
 
+        # ai
+        claude-code = {
+          dirs = [
+            ".claude"
+          ];
+          files = [
+            ".claude.json"
+          ];
+        };
+
         # calculator
         libqalculate.dirs = [
           "$configHome/qalculate"
