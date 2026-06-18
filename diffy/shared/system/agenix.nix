@@ -39,10 +39,6 @@ bundleLib.mkEnableModule [ "dyad" "system" "agenix" ] {
         age.identityPaths = lib.mkIf persistEnabled [
           "${persistentStoragePath}${config.home.homeDirectory}/.ssh/id_ed25519"
         ];
-
-        home.packages = [
-          inputs'.agenix.packages.agenix
-        ];
       };
     };
 }
