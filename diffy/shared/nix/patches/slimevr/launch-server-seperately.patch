@@ -1,13 +1,13 @@
-diff --git a/gui/src-tauri/src/main.rs b/gui/src-tauri/src/main.rs
-index b64e6974..0d5631f4 100644
---- a/gui/src-tauri/src/main.rs
-+++ b/gui/src-tauri/src/main.rs
-@@ -274,6 +274,8 @@ fn setup_tauri(
+diff --git a/gui/electron/main/index.ts b/gui/electron/main/index.ts
+index 3f1f1dfd..404e22c9 100644
+--- a/gui/electron/main/index.ts
++++ b/gui/electron/main/index.ts
+@@ -386,6 +386,8 @@ const checkEnvironmentVariables = () => {
+ const isServerRunning = async () => !(await isPortAvailable(21110));
  
- 			app.manage(Mutex::new(window_state));
- 
-+			return Ok(());
+ const spawnServer = async () => {
++  return;
 +
- 			if cli.skip_server_start_if_running && server_running() {
- 				log::info!("Skipping server start: server is already running.");
- 				return Ok(());
+   if (options.skipServerIfRunning && (await isServerRunning())) {
+     logger.info(
+       { skipServerIfRunning: options.skipServerIfRunning },
