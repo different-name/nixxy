@@ -8,6 +8,22 @@ fi
 
 echo "Found backup device at $DEVICE"
 
+cleanup() {
+  if mountpoint -q "@mount_point@"; then
+    echo "Unmounting backup drive..."
+    sudo umount "@mount_point@"
+  fi
+
+  if cryptsetup status "@crypt_name@" &>/dev/null; then
+    echo "Closing LUKS device..."
+    sudo cryptsetup close "@crypt_name@"
+  fi
+
+  echo "Powering off the device..."
+  sudo udisksctl power-off -b "$DEVICE"
+}
+trap cleanup EXIT
+
 if ! mountpoint -q "@mount_point@"; then
   if ! cryptsetup status "@crypt_name@" &>/dev/null; then
     echo "Opening LUKS device..."
@@ -21,13 +37,4 @@ fi
 
 sudo btrbk -c @config_path@ --progress --verbose run
 
-echo "Unmounting backup drive..."
-sudo umount "@mount_point@"
-
-echo "Closing LUKS device..."
-sudo cryptsetup close "@crypt_name@"
-
-echo "Powering off the device..."
-sudo udisksctl power-off -b "$DEVICE"
-
-echo "Backup and shutdown complete."
+echo "Backup complete."
