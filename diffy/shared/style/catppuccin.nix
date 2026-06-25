@@ -20,33 +20,31 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
     };
   };
 
-  home-manager =
-    { config, osConfig, ... }:
-    {
-      imports = [
-        inputs.catppuccin.homeModules.catppuccin
-        self.homeModules.catppuccinGtk
-      ];
+  home-manager = { config, osConfig, ... }: {
+    imports = [
+      inputs.catppuccin.homeModules.catppuccin
+      self.homeModules.catppuccinGtk
+    ];
 
-      config.catppuccin = {
-        inherit (osConfig.catppuccin)
-          enable
-          autoEnable
-          accent
-          flavor
-          ;
+    config.catppuccin = {
+      inherit (osConfig.catppuccin)
+        enable
+        autoEnable
+        accent
+        flavor
+        ;
 
-        # keep-sorted start block=yes
-        cursors = {
-          inherit (config.catppuccin) enable;
-          accent = "dark";
-        };
-        firefox.enable = false;
-        fish.enable = false;
-        hyprland.enable = false; # TODO enable when moving to lua hyprland config
-        mpv.enable = false;
-        zellij.enable = false;
-        # keep-sorted end
+      # keep-sorted start block=yes
+      cursors = {
+        inherit (config.catppuccin) enable;
+        accent = "dark";
       };
+      firefox.enable = false;
+      fish.enable = false;
+      hyprland.enable = false; # TODO enable when moving to lua hyprland config
+      mpv.enable = false;
+      zellij.enable = false;
+      # keep-sorted end
     };
+  };
 }

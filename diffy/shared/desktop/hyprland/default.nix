@@ -37,44 +37,42 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
       };
     };
 
-  home-manager =
-    { osConfig, pkgs, ... }:
-    {
-      imports = [
-        self.homeModules.xdgDesktopPortalHyprland
-      ];
+  home-manager = { osConfig, pkgs, ... }: {
+    imports = [
+      self.homeModules.xdgDesktopPortalHyprland
+    ];
 
-      config = {
-        wayland.windowManager.hyprland = {
-          enable = true;
-          package = null;
-          portalPackage = null;
+    config = {
+      wayland.windowManager.hyprland = {
+        enable = true;
+        package = null;
+        portalPackage = null;
 
-          configType = "hyprlang";
+        configType = "hyprlang";
 
-          systemd = {
-            enable = !osConfig.programs.uwsm.enable; # conflicts with uwsm
-            variables = [ "--all" ]; # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#programs-dont-work-in-systemd-services-but-do-on-the-terminal
-          };
-
-          xwayland.enable = true;
-
-          settings.exec-once = [
-            "${lib.getExe pkgs.wl-clip-persist} --clipboard regular"
-          ];
+        systemd = {
+          enable = !osConfig.programs.uwsm.enable; # conflicts with uwsm
+          variables = [ "--all" ]; # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#programs-dont-work-in-systemd-services-but-do-on-the-terminal
         };
 
-        services.hyprpolkitagent.enable = true;
+        xwayland.enable = true;
 
-        home.packages = [
-          pkgs.hyprpicker
-          pkgs.grimblast
-        ];
-
-        home.perpetual.default.dirs = [
-          "$cacheHome/hyprland"
-          "$dataHome/hyprland"
+        settings.exec-once = [
+          "${lib.getExe pkgs.wl-clip-persist} --clipboard regular"
         ];
       };
+
+      services.hyprpolkitagent.enable = true;
+
+      home.packages = [
+        pkgs.hyprpicker
+        pkgs.grimblast
+      ];
+
+      home.perpetual.default.dirs = [
+        "$cacheHome/hyprland"
+        "$dataHome/hyprland"
+      ];
     };
+  };
 }

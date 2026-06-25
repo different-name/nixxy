@@ -1,38 +1,36 @@
 { bundleLib, inputs, ... }:
 bundleLib.mkEnableModule [ "dyad" "system" "boot" ] {
-  nixos =
-    { pkgs, ... }:
-    {
-      imports = [
-        inputs.disko.nixosModules.default
-      ];
+  nixos = { pkgs, ... }: {
+    imports = [
+      inputs.disko.nixosModules.default
+    ];
 
-      config.boot = {
-        initrd = {
-          systemd.enable = true;
-          availableKernelModules = [ "hid_generic" ];
-        };
-
-        kernelPackages = pkgs.linuxPackages_zen;
-
-        loader = {
-          limine = {
-            enable = true;
-            maxGenerations = 25;
-
-            extraEntries = ''
-              /+Windows
-              //Windows 10
-                protocol: efi
-                path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
-            '';
-          };
-
-          efi.canTouchEfiVariables = true;
-          timeout = 3;
-        };
-
-        supportedFilesystems = [ "ntfs" ];
+    config.boot = {
+      initrd = {
+        systemd.enable = true;
+        availableKernelModules = [ "hid_generic" ];
       };
+
+      kernelPackages = pkgs.linuxPackages_zen;
+
+      loader = {
+        limine = {
+          enable = true;
+          maxGenerations = 25;
+
+          extraEntries = ''
+            /+Windows
+            //Windows 10
+              protocol: efi
+              path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
+          '';
+        };
+
+        efi.canTouchEfiVariables = true;
+        timeout = 3;
+      };
+
+      supportedFilesystems = [ "ntfs" ];
     };
+  };
 }

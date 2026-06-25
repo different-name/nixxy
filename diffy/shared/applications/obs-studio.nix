@@ -13,30 +13,26 @@ let
     };
 in
 bundleLib.mkEnableModule [ "dyad" "applications" "obs-studio" ] {
-  nixos =
-    { pkgs, ... }:
-    {
-      programs.obs-studio = {
-        enable = true;
-        package = mkWrappedObs pkgs;
-        enableVirtualCamera = true;
-      };
+  nixos = { pkgs, ... }: {
+    programs.obs-studio = {
+      enable = true;
+      package = mkWrappedObs pkgs;
+      enableVirtualCamera = true;
     };
+  };
 
-  home-manager =
-    { pkgs, ... }:
-    {
-      programs.obs-studio = {
-        enable = true;
-        package = mkWrappedObs pkgs;
-        plugins = [
-          pkgs.obs-studio-plugins.obs-move-transition
-        ];
-      };
-
-      home.perpetual.default.dirs = [
-        "$configHome/obs-studio"
-        "$cacheHome/obs-studio"
+  home-manager = { pkgs, ... }: {
+    programs.obs-studio = {
+      enable = true;
+      package = mkWrappedObs pkgs;
+      plugins = [
+        pkgs.obs-studio-plugins.obs-move-transition
       ];
     };
+
+    home.perpetual.default.dirs = [
+      "$configHome/obs-studio"
+      "$cacheHome/obs-studio"
+    ];
+  };
 }

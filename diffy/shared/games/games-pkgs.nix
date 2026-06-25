@@ -1,50 +1,48 @@
 { bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "games" "extraPackages" ] {
-  home-manager =
-    { pkgs, ... }:
-    {
-      home.perpetual.default = {
-        packages = {
-          # keep-sorted start block=yes newline_separated=yes
-          osu-lazer-bin.dirs = [
-            "$dataHome/osu"
-          ];
+  home-manager = { pkgs, ... }: {
+    home.perpetual.default = {
+      packages = {
+        # keep-sorted start block=yes newline_separated=yes
+        osu-lazer-bin.dirs = [
+          "$dataHome/osu"
+        ];
 
-          prismlauncher = {
-            package = pkgs.prismlauncher.override {
-              jdks = [
-                pkgs.temurin-bin
-                pkgs.javaPackages.compiler.temurin-bin.jre-17
-              ];
-            };
-            dirs = [
-              "$dataHome/PrismLauncher"
+        prismlauncher = {
+          package = pkgs.prismlauncher.override {
+            jdks = [
+              pkgs.temurin-bin
+              pkgs.javaPackages.compiler.temurin-bin.jre-17
             ];
           };
-
-          r2modman.dirs = [
-            "$configHome/r2modman"
-            "$configHome/r2modmanPlus-local"
+          dirs = [
+            "$dataHome/PrismLauncher"
           ];
-
-          vintagestory.dirs = [
-            "$configHome/VintagestoryData"
-          ];
-          # keep-sorted end
         };
 
-        dirs = [
-          # keep-sorted start
-          "$cacheHome/mesa_shader_cache_db" # shader cache
-          "$dataHome/umu" # proton runtime
-          "$dataHome/vulkan/" # shader cache files?
-          ".nv" # OpenGL cache
-          # keep-sorted end
+        r2modman.dirs = [
+          "$configHome/r2modman"
+          "$configHome/r2modmanPlus-local"
         ];
+
+        vintagestory.dirs = [
+          "$configHome/VintagestoryData"
+        ];
+        # keep-sorted end
       };
 
-      xdg.mimeApps.defaultApplications = {
-        "x-scheme-handler/nxm" = "com.nexusmods.app.desktop";
-      };
+      dirs = [
+        # keep-sorted start
+        "$cacheHome/mesa_shader_cache_db" # shader cache
+        "$dataHome/umu" # proton runtime
+        "$dataHome/vulkan/" # shader cache files?
+        ".nv" # OpenGL cache
+        # keep-sorted end
+      ];
     };
+
+    xdg.mimeApps.defaultApplications = {
+      "x-scheme-handler/nxm" = "com.nexusmods.app.desktop";
+    };
+  };
 }
