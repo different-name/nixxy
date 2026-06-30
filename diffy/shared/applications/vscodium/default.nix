@@ -31,6 +31,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
 
         userSettings = {
           # keep-sorted start block=yes
+          "claudeCode.claudeProcessWrapper" = "${pkgs.claude-code}/bin/claude";
           "editor.fontFamily" = "'JetBrains Mono', 'monospace', monospace";
           "editor.fontLigatures" = true;
           "editor.formatOnSave" = true;
