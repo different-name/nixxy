@@ -20,7 +20,10 @@ in
       # keep-sorted end
     };
 
-    hardware.nvidia.enable = true;
+    hardware = {
+      bluetooth.enable = true;
+      nvidia.enable = true;
+    };
 
     system = {
       btrfs.enable = true;
