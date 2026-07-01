@@ -17,6 +17,8 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
 
       accent = "mauve";
       flavor = "mocha";
+
+      fish.enable = false;
     };
   };
 
