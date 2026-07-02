@@ -7,11 +7,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
         ".android"
       ];
 
-      blender.dirs = [
-        "$cacheHome/blender"
-        "$configHome/blender"
-      ];
-
       emote.dirs = [
         "$dataHome/Emote"
       ];

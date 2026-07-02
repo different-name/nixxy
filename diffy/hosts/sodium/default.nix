@@ -30,7 +30,11 @@ in
 
     nix.build-machine.enable = true;
 
-    games.xr.enable = true;
+    games = {
+      xr.enable = true;
+      avatar-tools.enable = true;
+    };
+
     media.goxlr-utility.enable = true;
   };
 
