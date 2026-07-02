@@ -12,12 +12,12 @@ bundleLib.mkEnableModule [ "dyad" "nix" "nixpkgs" ] {
           final: prev:
           let
             name = "wayvr";
-            version = "ad9dd7872c3f18a62ae0634132a9b7dde734c473";
+            version = "28da0347aed282b0431e6615a9ef19853f864835";
             src = final.fetchFromGitHub {
-              owner = "SparkyTD";
+              owner = "wayvr-org";
               repo = "wayvr";
-              rev = "ad9dd7872c3f18a62ae0634132a9b7dde734c473";
-              hash = "sha256-kRoLgQqT3TUvfXUVXpsKFykmE3z1XtUeKtV/teMMOn4=";
+              rev = "28da0347aed282b0431e6615a9ef19853f864835";
+              hash = "sha256-Q48DIfrszT2rIe4zSqDn0vrQ8xO6qjbnPqCtH52edDk=";
             };
           in
           {
