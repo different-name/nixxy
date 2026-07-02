@@ -101,9 +101,15 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
 
       configFile."solarxr-input/config.json".text = lib.toJSON {
         action_profiles = {
-          "/interaction_profiles/oculus/touch_controller".reset_yaw = {
-            left = "/user/hand/left/input/y/click";
-            double_click = true;
+          "/interaction_profiles/oculus/touch_controller" = {
+            reset_yaw = {
+              left = "/user/hand/left/input/y/click";
+              double_click = true;
+            };
+            tracking_pause_toggle = {
+              right = "/user/hand/right/input/b/click";
+              double_click = true;
+            };
           };
           "/interaction_profiles/valve/index_controller" = { };
           "/interaction_profiles/htc/vive_controller" = { };
