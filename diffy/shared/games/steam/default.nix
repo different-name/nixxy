@@ -67,14 +67,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
             vrchat = {
               id = 438100;
               compatTool = "proton-experimental";
-              launchOptions = {
-                env.TZ = null;
-                preHook = ''
-                  if [[ "$*" != *"--no-vr"* ]]; then
-                    export PROTON_ENABLE_WAYLAND=1
-                  fi
-                '';
-              };
+              launchOptions.env.TZ = null;
             };
 
             warhammer-40k-darktide = {
