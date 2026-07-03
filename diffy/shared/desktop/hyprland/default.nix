@@ -12,11 +12,11 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
 
     environment = {
       # auto launch hyprland on tty1
-      # loginShellInit = ''
-      #   if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ] && uwsm check may-start; then
-      #     exec uwsm start hyprland.desktop
-      #   fi
-      # '';
+      loginShellInit = ''
+        if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ] && uwsm check may-start; then
+          exec uwsm start hyprland.desktop
+        fi
+      '';
 
       # hint electron apps to use wayland
       sessionVariables.NIXOS_OZONE_WL = 1;
