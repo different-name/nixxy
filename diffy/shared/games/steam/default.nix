@@ -66,7 +66,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
 
             vrchat = {
               id = 438100;
-              compatTool = "proton-experimental";
+              compatTool = "GE-Proton-rtsp";
               launchOptions.env.TZ = null;
             };
 
