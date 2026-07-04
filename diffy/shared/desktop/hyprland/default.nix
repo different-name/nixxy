@@ -14,7 +14,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
       # auto launch hyprland on tty1
       loginShellInit = ''
         if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ] && uwsm check may-start; then
-          exec uwsm start hyprland.desktop
+          exec uwsm start -e -D Hyprland hyprland.desktop
         fi
       '';
 
@@ -44,6 +44,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
         xwayland.enable = true;
 
         settings.exec-once = [
+          "${lib.getExe pkgs.uwsm} finalize"
           "${lib.getExe pkgs.wl-clip-persist} --clipboard regular"
         ];
       };
