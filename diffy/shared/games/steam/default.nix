@@ -13,11 +13,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
       extest.enable = true;
       gamescopeSession.enable = true;
       protontricks.enable = true;
-
-      extraCompatPackages = with pkgs; [
-        inputs'.nixpkgs-xr.packages.proton-ge-rtsp-bin
-        proton-ge-bin
-      ];
     };
 
     programs.gamescope = {
@@ -47,14 +42,16 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
       config = {
         programs.steam.config = {
           enable = true;
-          closeSteam = true;
-          defaultCompatTool = "GE-Proton";
+          onSteamRunning = "close";
+          defaultCompatTool = pkgs.proton-ge-bin;
+          desktopEntries = true;
 
           apps = {
             # keep-sorted start block=yes newline_separated=yes
             cyberpunk-2077 = {
               id = 1091500;
-              compatTool = "GE-Proton";
+              compatTool = pkgs.proton-ge-bin;
+
               launchOptions = {
                 env.WINEDLLOVERRIDES = "winmm,version=n,b";
                 args = [
@@ -66,13 +63,15 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
 
             vrchat = {
               id = 438100;
-              compatTool = "GE-Proton-rtsp";
+              compatTool = inputs'.nixpkgs-xr.packages.proton-ge-rtsp-bin;
+
               launchOptions.env.TZ = null;
             };
 
             warhammer-40k-darktide = {
               id = 1361210;
-              compatTool = "GE-Proton";
+              compatTool = pkgs.proton-ge-bin;
+
               launchOptions = {
                 env.LD_PRELOAD = null;
                 preHook = ''
@@ -88,7 +87,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
           nonSteamApps = {
             vintage-story = {
               name = "Vintage Story";
-              icon = ./icons/vintage-story.png;
               target = pkgs.vintagestory;
             };
           };
