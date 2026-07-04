@@ -32,6 +32,11 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
         "$configHome/qalculate"
         "$dataHome/qalculate"
       ];
+
+      # github cli
+      gh.dirs = [
+        "$configHome/gh"
+      ];
       # keep-sorted end
     };
 
