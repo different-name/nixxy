@@ -43,12 +43,13 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
         programs.steam.config = {
           enable = true;
           onSteamRunning = "close";
+
           defaultCompatTool = pkgs.proton-ge-bin;
-          desktopEntries = true;
+          desktopEntries.enable = true;
 
           apps = {
             # keep-sorted start block=yes newline_separated=yes
-            cyberpunk-2077 = {
+            "Cyberpunk 2077" = {
               id = 1091500;
               compatTool = pkgs.proton-ge-bin;
 
@@ -61,14 +62,14 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
               };
             };
 
-            vrchat = {
+            "VRChat" = {
               id = 438100;
-              compatTool = inputs'.nixpkgs-xr.packages.proton-ge-rtsp-bin;
+              compatTool = inputs'.nixpkgs-xr.packages.proton-rtsp-bin;
 
               launchOptions.env.TZ = null;
             };
 
-            warhammer-40k-darktide = {
+            "Warhammer 40k Darktide" = {
               id = 1361210;
               compatTool = pkgs.proton-ge-bin;
 
