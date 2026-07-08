@@ -23,7 +23,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
 
           encoders = lib.singleton {
             encoder = "nvenc";
-            codec = "h264";
+            codec = "av1";
             width = 1.0;
             height = 1.0;
             offset_x = 0.0;
