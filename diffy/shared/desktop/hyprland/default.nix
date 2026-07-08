@@ -44,7 +44,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
         xwayland.enable = true;
 
         settings.exec-once = [
-          "${lib.getExe pkgs.uwsm} finalize"
+          "${lib.getExe pkgs.uwsm} finalize && ${lib.getExe' pkgs.systemd "systemctl"} --user restart xdg-desktop-portal.service"
           "${lib.getExe pkgs.wl-clip-persist} --clipboard regular"
         ];
       };
