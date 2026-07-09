@@ -11,6 +11,9 @@ bundleLib.mkEnableModule [ "dyad" "applications" "kitty" ] {
         cursor_trail = 3;
         cursor_trail_decay = "0.05 0.3";
       };
+
+      # ctrl+backspace -> ctrl+w (delete word)
+      keybindings."ctrl+backspace" = "send_text all \\x17";
     };
 
     home.perpetual.default.dirs = [
