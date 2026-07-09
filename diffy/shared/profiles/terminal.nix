@@ -8,9 +8,9 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
       # keep-sorted start
       btop.enable = true;
       extraPackages.enable = true;
-      fish.enable = true;
       git.enable = true;
       nixpkgs-review.enable = true;
+      nushell.enable = true;
       shellAliases.enable = true;
       television.enable = true;
       zellij.enable = true;

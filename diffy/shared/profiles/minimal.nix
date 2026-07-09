@@ -25,8 +25,8 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "minimal" ] {
     };
 
     terminal = {
-      fish.enable = true;
       nh.enable = true;
+      nushell.enable = true;
     };
     # keep-sorted end
   };
