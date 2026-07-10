@@ -20,6 +20,8 @@
 
       "https://nix-community.cachix.org"
       "https://cache.nixos-cuda.org"
+      "https://catppuccin.cachix.org"
+      "https://vicinae.cachix.org"
     ];
 
     trusted-public-keys = [
@@ -27,6 +29,8 @@
 
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+      "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+      "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
     ];
   };
 
@@ -129,19 +133,22 @@
     };
 
     # hardware configurations
-    nixos-hardware.url = "github:nixos/nixos-hardware";
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # nix xr/ar/vr packages
+    # extra xr packages
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
+      # has binary cache, doesn't follow nixpkgs
       inputs = {
-        nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
         treefmt-nix.follows = "treefmt-nix";
       };
     };
 
-    # nixpkgs
+    # nixpkgs!
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # nix user repository
@@ -193,17 +200,15 @@
     # launcher
     vicinae = {
       url = "github:vicinaehq/vicinae";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
+      # has binary cache, doesn't follow nixpkgs
+      inputs.systems.follows = "systems";
     };
 
     # launcher extensions
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";
+      # has binary cache, doesn't follow nixpkgs
       inputs = {
-        nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
         vicinae.follows = "vicinae";
       };
