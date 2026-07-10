@@ -25,14 +25,10 @@ bundleLib.mkEnableModule [ "dyad" "applications" "thunar" ] {
       "inode/directory" = lib.mkDefault "thunar.desktop";
     };
 
-    home.perpetual.default = {
-      dirs = [
-        "$configHome/Thunar"
-        "$dataHome/gvfs-metadata" # gnome virtual file system data / cache
-      ];
-      files = [
-        "$configHome/xfce4/xfconf/xfce-perchannel-xml/thunar.xml"
-      ];
-    };
+    home.perpetual.default.dirs = [
+      "$configHome/Thunar"
+      "$configHome/xfce4"
+      "$dataHome/gvfs-metadata" # gnome virtual file system data / cache
+    ];
   };
 }
