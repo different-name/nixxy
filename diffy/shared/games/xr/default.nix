@@ -39,14 +39,42 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
       };
     };
 
+    systemd.user.targets.vr-session.description = "VR session";
+
     systemd.user.services = {
       slimevr-server = {
         description = "SlimeVR Server";
+        partOf = [ "vr-session.target" ];
+        wantedBy = [ "vr-session.target" ];
 
         serviceConfig = {
           ExecStart = "${lib.getExe pkgs.slimevr-server} run";
+          # hold activating until the solarxr websocket is listening
+          ExecStartPost = pkgs.writeShellScript "wait-slimevr" ''
+            for _ in $(seq 1 100); do
+              (exec 3<>/dev/tcp/127.0.0.1/21110) 2>/dev/null && exit 0
+              sleep 0.1
+            done
+            exit 1
+          '';
           Restart = "on-failure";
         };
+      };
+
+      wivrn = {
+        after = [ "slimevr-server.service" ];
+        requires = [ "slimevr-server.service" ];
+        partOf = [ "vr-session.target" ];
+        wantedBy = [ "vr-session.target" ];
+
+        # hold activating until the openxr compositor ipc socket exists
+        serviceConfig.ExecStartPost = pkgs.writeShellScript "wait-wivrn" ''
+          for _ in $(seq 1 100); do
+            [ -S "$XDG_RUNTIME_DIR/wivrn/comp_ipc" ] && exit 0
+            sleep 0.1
+          done
+          exit 1
+        '';
       };
 
       wayvr = {
@@ -63,8 +91,12 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
 
       solarxr-input = {
         description = "SolarXR OpenXR bindings";
-        after = [ "wivrn.service" ];
+        after = [
+          "wivrn.service"
+          "slimevr-server.service"
+        ];
         requires = [ "wivrn.service" ];
+        wants = [ "slimevr-server.service" ];
         partOf = [ "wivrn.service" ];
 
         serviceConfig = {
