@@ -9,7 +9,11 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "qpwgraph" ] {
       Unit = {
         Description = "qpwgraph";
         Requires = [ "pipewire.service" ];
-        After = [ "pipewire.service" ];
+        After = [
+          "graphical-session.target"
+          "pipewire.service"
+        ];
+        PartOf = [ "graphical-session.target" ];
       };
 
       Service = {
@@ -17,7 +21,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "qpwgraph" ] {
         Restart = "on-failure";
       };
 
-      Install.WantedBy = [ "default.target" ];
+      Install.WantedBy = [ "graphical-session.target" ];
     };
   };
 }
