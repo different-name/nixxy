@@ -22,7 +22,9 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nushell" ] {
       programs = {
         nushell = {
           enable = true;
+
           shellAliases = config.home.shellAliases;
+          environmentVariables = config.home.sessionVariables;
 
           settings = {
             show_banner = false;
