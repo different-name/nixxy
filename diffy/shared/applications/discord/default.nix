@@ -45,20 +45,22 @@ bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
           (pkgs.writeShellScriptBin "moonlight-config-updater" (lib.readFile ./moonlight-config-updater.sh))
         ];
 
-        xdg.autostart.entries = lib.singleton (
-          (pkgs.makeDesktopItem {
-            name = "discord";
-            destination = "/";
-            desktopName = "Discord";
-            noDisplay = true;
-            exec = pkgs.writeShellScript "discord-delay-autostart" ''
-              # workaround for starting before network is available
-              sleep 2
-              exec ${lib.getExe discordPackage}
-            '';
-          })
-          + /discord.desktop
-        );
+        systemd.user.services.discord = {
+          Unit = {
+            Description = "Discord";
+            PartOf = [ "graphical-session.target" ];
+            After = [ "graphical-session.target" ];
+          };
+
+          Service = {
+            # workaround for starting before network is available
+            ExecStartPre = "${lib.getExe' pkgs.coreutils "sleep"} 2";
+            ExecStart = lib.getExe discordPackage;
+            Restart = "no";
+          };
+
+          Install.WantedBy = [ "graphical-session.target" ];
+        };
 
         home.perpetual.default.dirs = [
           "$configHome/discord"

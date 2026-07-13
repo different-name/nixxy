@@ -12,16 +12,20 @@ bundleLib.mkEnableModule [ "dyad" "media" "goxlr-utility" ] {
         source = ./procaster.goxlrMicProfile;
       };
 
-      xdg.autostart.entries = lib.singleton (
-        (pkgs.makeDesktopItem {
-          name = "goxlr-daemon";
-          destination = "/";
-          desktopName = "GoXLR Daemon";
-          noDisplay = true;
-          exec = lib.getExe' osConfig.services.goxlr-utility.package "goxlr-daemon";
-        })
-        + /goxlr-daemon.desktop
-      );
+      systemd.user.services.goxlr-daemon = {
+        Unit = {
+          Description = "GoXLR Daemon";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+        };
+
+        Service = {
+          ExecStart = lib.getExe' osConfig.services.goxlr-utility.package "goxlr-daemon";
+          Restart = "on-failure";
+        };
+
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
 
       wayland.windowManager.hyprland.settings.bind =
         let

@@ -98,16 +98,20 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
           force = true;
         };
 
-        xdg.autostart.entries = lib.singleton (
-          pkgs.makeDesktopItem {
-            name = "steam-silent";
-            destination = "/";
-            desktopName = "Steam Silent";
-            noDisplay = true;
-            exec = "${lib.getExe osConfig.programs.steam.package} -silent";
-          }
-          + /steam-silent.desktop
-        );
+        systemd.user.services.steam-silent = {
+          Unit = {
+            Description = "Steam (silent autostart)";
+            PartOf = [ "graphical-session.target" ];
+            After = [ "graphical-session.target" ];
+          };
+
+          Service = {
+            ExecStart = "${lib.getExe osConfig.programs.steam.package} -silent";
+            Restart = "no";
+          };
+
+          Install.WantedBy = [ "graphical-session.target" ];
+        };
 
         home.perpetual.default.dirs = [
           ".steam"

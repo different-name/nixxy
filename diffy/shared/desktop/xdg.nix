@@ -21,7 +21,6 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "xdg" ] {
 
   home-manager.xdg = {
     enable = true;
-    autostart.enable = true;
     mime.enable = true;
 
     mimeApps.enable = true;
