@@ -63,6 +63,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nushell" ] {
       home.perpetual.default.dirs = [
         "$cacheHome/nushell"
         "$dataHome/nushell"
+        "$configHome/nushell"
       ];
     };
 }
