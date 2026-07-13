@@ -10,9 +10,10 @@ bundleLib.mkEnableModule [ "dyad" "games" "extraPackages" ] {
 
         prismlauncher = {
           package = pkgs.prismlauncher.override {
-            jdks = [
-              pkgs.temurin-bin
-              pkgs.javaPackages.compiler.temurin-bin.jre-17
+            jdks = with pkgs; [
+              temurin-bin
+              temurin-bin-17
+              temurin-bin-25
             ];
           };
           dirs = [
