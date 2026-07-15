@@ -53,6 +53,15 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nushell" ] {
 
             # green indicator, with a space between the path and the >
             $env.PROMPT_INDICATOR = $"(char space)(ansi { fg: "${colors.green.hex}" attr: b })> (ansi reset)"
+
+            # carapace returns [] for positions it can't complete which suppresses nushell's file fallback
+            # convert empty results to null so nushell completes files instead
+            # fixes ffmpeg -i completion
+            let carapace_completer = $env.config.completions.external.completer
+            $env.config.completions.external.completer = {|spans|
+                let result = (try { do $carapace_completer $spans } catch { null })
+                if ($result | is-empty) { null } else { $result }
+            }
           '';
         };
 
