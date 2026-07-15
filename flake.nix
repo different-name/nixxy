@@ -66,12 +66,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # old catppuccin revision with gtk theme
-    catppuccin-gtk = {
-      url = "github:catppuccin/nix/06f0ea19334bcc8112e6d671fd53e61f9e3ad63a";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # discord ad blocker theme
     disblock-origin = {
       url = "git+https://git.allpurposem.at/mat/Disblock-Origin.git";
