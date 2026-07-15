@@ -23,12 +23,13 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
     };
   };
 
-  home-manager = { osConfig, pkgs, ... }: {
-    imports = [
-      self.homeModules.xdgDesktopPortalHyprland
-    ];
+  home-manager =
+    { osConfig, pkgs, ... }:
+    {
+      imports = [
+        self.homeModules.xdgDesktopPortalHyprland
+      ];
 
-    config = {
       wayland.windowManager.hyprland = {
         enable = true;
         package = null;
@@ -61,5 +62,4 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
         "$dataHome/hyprland"
       ];
     };
-  };
 }

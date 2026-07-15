@@ -8,15 +8,16 @@
 bundleLib.mkEnableModule [ "dyad" "nix" "nix" ] {
   dyad.system.agenix.enable = true;
 
-  nixos = { config, pkgs, ... }: {
-    imports = [
-      # weekly updated nix-index database
-      # needed due to nix channels being disabled, breaking command-not-found
-      # also used for comma: https://github.com/nix-community/comma
-      inputs.nix-index-database.nixosModules.default
-    ];
+  nixos =
+    { config, pkgs, ... }:
+    {
+      imports = [
+        # weekly updated nix-index database
+        # needed due to nix channels being disabled, breaking command-not-found
+        # also used for comma: https://github.com/nix-community/comma
+        inputs.nix-index-database.nixosModules.default
+      ];
 
-    config = {
       age.secrets."tokens/nix-access-tokens".file = self + /secrets/tokens/nix-access-tokens.age;
 
       # need git for flakes
@@ -57,7 +58,6 @@ bundleLib.mkEnableModule [ "dyad" "nix" "nix" ] {
 
       programs.nix-index-database.comma.enable = true;
     };
-  };
 
   home-manager = {
     xdg.dataFile."nix/trusted-settings.json".text =

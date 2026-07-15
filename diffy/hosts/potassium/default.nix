@@ -42,41 +42,39 @@ in
       # keep-sorted end
     ];
 
-    config = {
-      networking = {
-        hostName = "potassium";
-        hostId = lib.substring 0 8 machineId;
-      };
+    networking = {
+      hostName = "potassium";
+      hostId = lib.substring 0 8 machineId;
+    };
 
-      environment.etc.machine-id.text = machineId;
+    environment.etc.machine-id.text = machineId;
 
-      system.stateVersion = "26.05";
+    system.stateVersion = "26.05";
 
-      services.tty1Autologin = {
-        enable = true;
-        user = "diffy";
-      };
+    services.tty1Autologin = {
+      enable = true;
+      user = "diffy";
+    };
 
-      hardware.nvidia.prime = {
-        nvidiaBusId = "PCI:1:0:0";
-        intelBusId = "PCI:0:2:0";
-      };
+    hardware.nvidia.prime = {
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
 
-      nix = {
-        distributedBuilds = true;
-        buildMachines = lib.singleton {
-          hostName = "sodium";
-          system = "x86_64-linux";
-          maxJobs = 3;
-          speedFactor = 2;
-          supportedFeatures = [
-            "nixos-test"
-            "benchmark"
-            "big-parallel"
-            "kvm"
-          ];
-          mandatoryFeatures = [ ];
-        };
+    nix = {
+      distributedBuilds = true;
+      buildMachines = lib.singleton {
+        hostName = "sodium";
+        system = "x86_64-linux";
+        maxJobs = 3;
+        speedFactor = 2;
+        supportedFeatures = [
+          "nixos-test"
+          "benchmark"
+          "big-parallel"
+          "kvm"
+        ];
+        mandatoryFeatures = [ ];
       };
     };
   };
