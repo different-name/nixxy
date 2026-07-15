@@ -1,33 +1,35 @@
 { bundleLib, inputs, ... }:
 bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
-  nixos.nixpkgs.overlays = [
-    inputs.nix-vscode-extensions.overlays.default
-  ];
-
   home-manager = { pkgs, ... }: {
     programs.vscodium = {
       enable = true;
 
       profiles.default = {
-        extensions = with pkgs.nix-vscode-extensions.vscode-marketplace; [
-          # keep-sorted start
-          anthropic.claude-code
-          blueglassblock.better-json5
-          dbaeumer.vscode-eslint
-          editorconfig.editorconfig
-          graphql.vscode-graphql
-          graphql.vscode-graphql-syntax
-          kdl-org.kdl
-          ms-pyright.pyright
-          ms-python.black-formatter
-          ms-python.pylint
-          ms-python.python
-          prettiercode.code-prettier
-          slevesque.shader
-          stevensona.shader-toy
-          tamasfe.even-better-toml
-          # keep-sorted end
-        ];
+        extensions =
+          let
+            extensionsPkgs = pkgs.extend inputs.nix-vscode-extensions.overlays.default;
+            inherit (extensionsPkgs.nix-vscode-extensions) vscode-marketplace;
+          in
+          with vscode-marketplace;
+          [
+            # keep-sorted start
+            anthropic.claude-code
+            blueglassblock.better-json5
+            dbaeumer.vscode-eslint
+            editorconfig.editorconfig
+            graphql.vscode-graphql
+            graphql.vscode-graphql-syntax
+            kdl-org.kdl
+            ms-pyright.pyright
+            ms-python.black-formatter
+            ms-python.pylint
+            ms-python.python
+            prettiercode.code-prettier
+            slevesque.shader
+            stevensona.shader-toy
+            tamasfe.even-better-toml
+            # keep-sorted end
+          ];
 
         userSettings = {
           # keep-sorted start block=yes
