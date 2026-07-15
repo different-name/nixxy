@@ -28,6 +28,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
             slevesque.shader
             stevensona.shader-toy
             tamasfe.even-better-toml
+            thenuprojectcontributors.vscode-nushell-lang
             # keep-sorted end
           ];
 
