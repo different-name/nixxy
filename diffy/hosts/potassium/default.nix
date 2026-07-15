@@ -29,6 +29,8 @@ in
       btrfs.enable = true;
       perpetual.enable = true;
     };
+
+    nix.sodium-builder.enable = true;
   };
 
   nixos = {
@@ -59,23 +61,6 @@ in
     hardware.nvidia.prime = {
       nvidiaBusId = "PCI:1:0:0";
       intelBusId = "PCI:0:2:0";
-    };
-
-    nix = {
-      distributedBuilds = true;
-      buildMachines = lib.singleton {
-        hostName = "sodium";
-        system = "x86_64-linux";
-        maxJobs = 3;
-        speedFactor = 2;
-        supportedFeatures = [
-          "nixos-test"
-          "benchmark"
-          "big-parallel"
-          "kvm"
-        ];
-        mandatoryFeatures = [ ];
-      };
     };
   };
 
