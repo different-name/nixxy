@@ -23,6 +23,8 @@ bundleLib.mkEnableModule [ "dyad" "applications" "spotify" ] {
       colorScheme = "mocha";
     };
 
+    xdg.mimeApps.defaultApplications."x-scheme-handler/spotify" = "spotify.desktop";
+
     home.perpetual.default.dirs = [
       "$configHome/spotify"
       "$cacheHome/spotify"
