@@ -19,7 +19,11 @@ bundleLib.mkEnableModule [ "dyad" "applications" "firefox" ] {
     };
 
     xdg.mimeApps.defaultApplications = {
+      # keep-sorted start
       "application/pdf" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      # keep-sorted end
     };
 
     home.perpetual.default.dirs = [
