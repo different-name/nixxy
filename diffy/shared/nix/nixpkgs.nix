@@ -36,5 +36,7 @@ bundleLib.mkEnableModule [ "dyad" "nix" "nixpkgs" ] {
     };
 
     environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
+
+    documentation.nixos.enable = false;
   };
 }
