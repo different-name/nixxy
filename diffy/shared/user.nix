@@ -24,7 +24,6 @@ bundleLib.mkEnableModule [ "dyad" "users" "diffy" ] {
         "i2c" # for dyad.hardware.ddcutil
         "input"
         "kvm"
-        "libvirtd"
         "networkmanager"
         "podman"
         "video"
