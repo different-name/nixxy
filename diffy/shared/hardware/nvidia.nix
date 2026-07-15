@@ -10,7 +10,7 @@ bundleLib.mkEnableModule [ "dyad" "hardware" "nvidia" ] {
       powerManagement.enable = false;
       powerManagement.finegrained = false;
 
-      open = false;
+      open = true;
 
       nvidiaSettings = false;
 
