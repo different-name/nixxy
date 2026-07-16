@@ -4,6 +4,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "extraPackages" ] {
     home.packages = [
       pkgs.libnotify
       pkgs.wl-clipboard
+      pkgs.waypipe
     ];
   };
 }
