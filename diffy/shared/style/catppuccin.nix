@@ -28,7 +28,7 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
       self.homeModules.catppuccinGtk
     ];
 
-    config.catppuccin = {
+    catppuccin = {
       inherit (osConfig.catppuccin)
         enable
         autoEnable
@@ -48,5 +48,7 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
       zellij.enable = false;
       # keep-sorted end
     };
+
+    home.pointerCursor.enable = config.catppuccin.cursors.enable;
   };
 }
