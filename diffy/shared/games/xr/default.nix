@@ -1,7 +1,6 @@
 {
   bundleLib,
   lib,
-  inputs,
   inputs',
   ...
 }:
@@ -122,7 +121,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
     ];
   };
 
-  home-manager = { pkgs, ... }: {
+  home-manager = {
     xdg = {
       # https://github.com/wlx-team/wayvr/wiki/Customization
       configFile."wayvr" = {
@@ -158,23 +157,14 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
     home.perpetual.default = {
       packages = {
         # keep-sorted start block=yes newline_separated=yes
-        slimevr = {
-          # https://github.com/tauri-apps/tauri/issues/9394
-          # TODO remove with v19
-          package = inputs.wrappers.lib.wrapPackage {
-            inherit pkgs;
-            package = pkgs.slimevr;
-            env.WEBKIT_DISABLE_DMABUF_RENDERER = 1;
-          };
-          dirs = [
-            # keep-sorted start
-            "$cacheHome/.slimevr-wrapped_"
-            "$configHome/dev.slimevr.SlimeVR"
-            "$dataHome/.slimevr-wrapped_"
-            "$dataHome/dev.slimevr.SlimeVR"
-            # keep-sorted end
-          ];
-        };
+        slimevr.dirs = [
+          # keep-sorted start
+          "$cacheHome/.slimevr-wrapped_"
+          "$configHome/dev.slimevr.SlimeVR"
+          "$dataHome/.slimevr-wrapped_"
+          "$dataHome/dev.slimevr.SlimeVR"
+          # keep-sorted end
+        ];
 
         wayvr.dirs = [
           "$configHome/wayvr"
