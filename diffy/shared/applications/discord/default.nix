@@ -2,47 +2,16 @@
   bundleLib,
   lib,
   inputs,
-  inputs',
-  self,
   ...
 }:
 bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
   home-manager =
     { pkgs, ... }:
     let
-      discordPackage = pkgs.discord.override {
-        withMoonlight = true;
-        inherit (inputs'.moonlight.packages) moonlight;
-      };
+      discordPackage = pkgs.discord.override { withVencord = true; };
     in
     {
-      imports = [
-        inputs.moonlight.homeModules.default
-        self.homeModules.disblockOrigin
-      ];
-
-      programs.moonlight = {
-        enable = true;
-        configs.stable = import ./_moonlight-config.nix;
-      };
-
-      xdg.configFile."moonlight-mod/stable.json".force = true;
-
-      programs.disblockOrigin = {
-        enable = true;
-        settings = {
-          gif-button = true;
-          active-now = false;
-          clan-tags = false;
-          settings-billing-header = false;
-          settings-gift-inventory-tab = false;
-        };
-      };
-
-      home.packages = [
-        discordPackage
-        (pkgs.writeShellScriptBin "moonlight-config-updater" (lib.readFile ./moonlight-config-updater.sh))
-      ];
+      home.packages = [ discordPackage ];
 
       systemd.user.services.discord = {
         Unit = {
@@ -61,9 +30,20 @@ bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
         Install.WantedBy = [ "graphical-session.target" ];
       };
 
+      xdg.configFile."Vencord/themes/DisblockOrigin.theme.css".text =
+        lib.concatMapStringsSep "\n" lib.readFile
+          [
+            "${inputs.disblock-origin}/DisblockOrigin.theme.css"
+            ./disblock-origin-settings.css
+          ];
+
+      xdg.configFile."Vencord/settings/settings.json" = {
+        source = ./vencord.json;
+        force = true;
+      };
+
       home.perpetual.default.dirs = [
         "$configHome/discord"
-        "$configHome/moonlight-mod"
       ];
     };
 }

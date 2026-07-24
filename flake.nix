@@ -108,12 +108,6 @@
     # import modules recursively
     import-tree.url = "github:vic/import-tree";
 
-    # moonlight discord mod
-    moonlight = {
-      url = "github:moonlight-mod/moonlight";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # weekly updated nix-index database
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
