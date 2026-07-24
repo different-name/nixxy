@@ -1,6 +1,6 @@
 { bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "hardware" "nvidia" ] {
-  nixos = { config, ... }: {
+  nixos = {
     # load nvidia driver for xorg and wayland
     services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -13,9 +13,6 @@ bundleLib.mkEnableModule [ "dyad" "hardware" "nvidia" ] {
       open = true;
 
       nvidiaSettings = false;
-
-      # TODO remove after fixed, 595 nvenc faults/hangs the encoder in wivrn
-      package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
     };
 
     nixpkgs.config.cudaSupport = true;
