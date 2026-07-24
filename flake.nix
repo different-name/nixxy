@@ -132,6 +132,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # pinned for firefox, 152 renders the ui in serif
+    nixpkgs-firefox.url = "github:nixos/nixpkgs/b5aa0fbd538984f6e3d201be0005b4463d8b09f8";
+
     # extra xr packages
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
