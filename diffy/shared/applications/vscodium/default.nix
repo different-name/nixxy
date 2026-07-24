@@ -4,6 +4,8 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
     programs.vscodium = {
       enable = true;
 
+      mutableExtensionsDir = false;
+
       profiles.default = {
         extensions =
           let
