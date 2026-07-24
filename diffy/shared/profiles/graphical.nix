@@ -15,6 +15,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
       # keep-sorted start
       extraPackages.enable = true;
       fonts.enable = true;
+      gtk.enable = true;
       hexecute.enable = true;
       hyprland.enable = true;
       hyprlock.enable = true;
@@ -40,7 +41,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
   nixos.hardware.graphics.enable = true;
 
   home-manager = {
-    gtk.enable = true;
     services.playerctld.enable = true;
 
     home.perpetual.default.dirs = [
