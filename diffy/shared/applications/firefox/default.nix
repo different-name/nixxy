@@ -6,10 +6,16 @@
   ...
 }:
 bundleLib.mkEnableModule [ "dyad" "applications" "firefox" ] {
-  home-manager = { config, ... }: {
-    imports = [ inputs.betterfox.homeModules.betterfox ];
+  # bookmarks are managed through an encrypted policies file
+  # because i don't feel like sharing my bookmarks with the world
+  nixos.age.secrets.firefox-policies = {
+    file = self + /secrets/firefox/policies.age;
+    path = "/etc/firefox/policies/policies.json";
+    mode = "0444";
+  };
 
-    age.secrets."firefox/bookmarks".file = self + /secrets/firefox/bookmarks.age;
+  home-manager = {
+    imports = [ inputs.betterfox.homeModules.betterfox ];
 
     programs.firefox = {
       enable = true;
@@ -21,11 +27,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "firefox" ] {
         id = 0;
         name = "default";
         isDefault = true;
-
-        settings = {
-          "browser.bookmarks.file" = config.age.secrets."firefox/bookmarks".path;
-          "browser.places.importBookmarksHTML" = true;
-        };
       };
 
       betterfox = {
