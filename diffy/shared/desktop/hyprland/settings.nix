@@ -76,7 +76,7 @@
             output = "desc:Microstep MSI MP275 PC3M234705301";
             mode = "1920x1080@60";
             position = "auto-right";
-            scale = 0.75;
+            scale = 1;
           }
           {
             # previous main monitor
