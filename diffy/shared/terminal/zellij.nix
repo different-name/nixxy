@@ -1,11 +1,9 @@
-{ bundleLib, lib, ... }:
+{ bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "terminal" "zellij" ] {
   home-manager =
     { config, ... }:
     let
-      catppuccinPalette = lib.importJSON (config.catppuccin.sources.palette + /palette.json);
-      themeColors = catppuccinPalette.${config.catppuccin.flavor}.colors;
-      getColor = color: themeColors.${color}.hex;
+      getColor = name: config.dyad.palette.${name}.hex;
       accentColor = getColor "mauve";
     in
     {

@@ -14,8 +14,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nushell" ] {
   home-manager =
     { config, ... }:
     let
-      catppuccinPalette = lib.importJSON (config.catppuccin.sources.palette + /palette.json);
-      colors = catppuccinPalette.${config.catppuccin.flavor}.colors;
+      colors = config.dyad.palette;
     in
     {
       programs = {

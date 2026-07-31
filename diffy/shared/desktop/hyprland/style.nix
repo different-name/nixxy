@@ -4,13 +4,10 @@
     home-manager =
       { config, ... }:
       let
-        catppuccinPalette = lib.importJSON (config.catppuccin.sources.palette + /palette.json);
-        themeColors = catppuccinPalette.${config.catppuccin.flavor}.colors;
-        getColor = color: lib.removePrefix "#" themeColors.${color}.hex;
-
-        activeColor = getColor "green";
-        inactiveColor = getColor "mantle";
-        alternateColor = getColor "mauve";
+        palette = config.dyad.palette;
+        activeColor = lib.removePrefix "#" palette.green.hex;
+        inactiveColor = lib.removePrefix "#" palette.mantle.hex;
+        alternateColor = lib.removePrefix "#" palette.mauve.hex;
       in
       {
         wayland.windowManager.hyprland.settings = {

@@ -3,11 +3,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "mako" ] {
   home-manager =
     { config, pkgs, ... }:
     let
-      catppuccinPalette = lib.importJSON (config.catppuccin.sources.palette + /palette.json);
-      themeColors = catppuccinPalette.${config.catppuccin.flavor}.colors;
-      getColor = color: lib.removePrefix "#" themeColors.${color}.hex;
-
-      borderColor = getColor "green";
+      borderColor = lib.removePrefix "#" config.dyad.palette.green.hex;
       hyprlandCfg = config.wayland.windowManager.hyprland;
     in
     {
