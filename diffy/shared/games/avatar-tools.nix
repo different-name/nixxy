@@ -57,6 +57,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "avatar-tools" ] {
         "$configHome/unity3d"
         "$configHome/unityhub"
         "$dataHome/ALCOM"
+        "$dataHome/VRCFury"
         "$dataHome/VRChatCreatorCompanion"
         "$dataHome/com.anatawa12.vrc-get-gui"
         "$dataHome/unityhub"
