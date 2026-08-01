@@ -84,8 +84,6 @@ in
       "--prefer-output"
       "HDMI-A-1"
     ];
-
-    hardware.brillo.enable = true; # backlight control
   };
 
   home-manager = {

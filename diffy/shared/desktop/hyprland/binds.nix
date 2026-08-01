@@ -100,15 +100,6 @@
             # toggle mako dnd
             "$mod SHIFT, D, exec, mako-dnd"
 
-            # ddcutil external monitor brightness
-            "$mod, PAGE_UP, exec, ddcutil setvcp 10 + 10"
-            "$mod, PAGE_DOWN, exec, ddcutil setvcp 10 - 10"
-            (
-              let
-                getBrightness = "ddcutil getvcp 10 | awk -F'=' '/current value/ { gsub(\",\", \"\", $2); print $2+0 }'";
-              in
-              "$mod, PRINT, exec, notify-send -t 5000 \"Current Brightness: $(${getBrightness})%\""
-            )
           ]
           # workspace keys
           ++ (map (ws: "$mod, ${ws}, split-workspace, ${ws}") [
@@ -140,6 +131,10 @@
             "$mod CTRL, DOWN, resizeactive, 0 20"
             "$mod CTRL, LEFT, resizeactive, -20 0"
             "$mod CTRL, RIGHT, resizeactive, 20 0"
+
+            # cursor-aware brightness (hold to repeat, osd-brightness drops overlapping calls so ddc isn't overwhelmed)
+            "$mod, PAGE_UP, exec, osd-brightness up"
+            "$mod, PAGE_DOWN, exec, osd-brightness down"
           ];
 
           bindl = [
@@ -147,18 +142,18 @@
             ", XF86AudioPlay, exec, playerctl play-pause"
 
             # volume
-            ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-            ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+            ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
+            ", XF86AudioMicMute, exec, swayosd-client --input-volume mute-toggle"
           ];
 
           bindle = [
             # volume
-            ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%+"
-            ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%-"
+            ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume 6 --max-volume 100"
+            ", XF86AudioLowerVolume, exec, swayosd-client --output-volume -6 --max-volume 100"
 
             # backlight
-            ", XF86MonBrightnessUp, exec, brillo -q -u 300000 -A 5"
-            ", XF86MonBrightnessDown, exec, brillo -q -u 300000 -U 5"
+            ", XF86MonBrightnessUp, exec, osd-brightness up"
+            ", XF86MonBrightnessDown, exec, osd-brightness down"
           ];
         };
     };
