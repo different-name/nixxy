@@ -11,6 +11,19 @@ bundleLib.mkEnableModule [ "dyad" "nix" "patches" ] {
             })
           ];
         });
+
+        # patch src (not .patches) so vrcx's dotnet-backend derivation gets it too
+        vrcx = prev.vrcx.overrideAttrs (old: {
+          src = prev.applyPatches {
+            inherit (old) src;
+            patches = [
+              (builtins.path {
+                path = ./vrcx/linux-open-in-game.patch;
+                name = "vrcx-linux-open-in-game";
+              })
+            ];
+          };
+        });
       })
     ];
   };

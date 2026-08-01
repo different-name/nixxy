@@ -65,7 +65,13 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
             id = 438100;
             compatTool = inputs'.nixpkgs-xr.packages.proton-rtsp-bin;
 
-            launchOptions.env.TZ = null;
+            launchOptions.env = {
+              TZ = null;
+              # launcher service, for the vrchat:// forward (games/vrcx)
+              STEAM_COMPAT_LAUNCHER_SERVICE = "proton";
+              # restore the glib tls backend the launcher service hides via GIO_MODULE_DIR=/nonexistent (else video breaks)
+              GIO_EXTRA_MODULES = "/usr/lib/x86_64-linux-gnu/gio/modules:/usr/lib/i386-linux-gnu/gio/modules";
+            };
           };
 
           "Warhammer 40k Darktide" = {

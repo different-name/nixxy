@@ -1,0 +1,37 @@
+diff -ruN a/Dotnet/AppApi/Common/AppApiCommon.cs b/Dotnet/AppApi/Common/AppApiCommon.cs
+--- a/Dotnet/AppApi/Common/AppApiCommon.cs	2026-08-01 16:17:31.260249429 +1000
++++ b/Dotnet/AppApi/Common/AppApiCommon.cs	2026-08-01 16:18:13.139950262 +1000
+@@ -156,6 +156,22 @@
+ 
+         public Task<bool> TryOpenInstanceInVrc(string launchUrl)
+         {
++            // VRChatURLLaunchPipe is unreachable under proton; hand the url to the
++            // vrchat:// handler instead (nixxy games/vrcx). attach=1 = attach-only
++            if (OperatingSystem.IsLinux())
++            {
++                var url = launchUrl.Contains("attach=1") ? launchUrl : launchUrl + "&attach=1";
++                try
++                {
++                    Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
++                    return Task.FromResult(true);
++                }
++                catch
++                {
++                    return Task.FromResult(false);
++                }
++            }
++
+             return VRCIPC.Send(launchUrl);
+         }
+     }
+diff -ruN a/src/stores/invite.js b/src/stores/invite.js
+--- a/src/stores/invite.js	2026-08-01 16:17:31.259249412 +1000
++++ b/src/stores/invite.js	2026-08-01 16:17:31.263172971 +1000
+@@ -51,7 +51,6 @@
+ 
+     const canOpenInstanceInGame = computed(() => {
+         return (
+-            !LINUX &&
+             gameStore.isGameRunning &&
+             !advancedSettingsStore.selfInviteOverride
+         );
