@@ -1,0 +1,523 @@
+diff -ruN a/gui/public/i18n/en/translation.ftl b/gui/public/i18n/en/translation.ftl
+--- a/gui/public/i18n/en/translation.ftl	2026-08-01 16:17:31.304623064 +1000
++++ b/gui/public/i18n/en/translation.ftl	2026-08-01 16:17:31.489253261 +1000
+@@ -287,6 +287,10 @@
+ tracking-unpaused = Pause tracking
+ tracking-paused = Unpause tracking
+ 
++## Force standing pose
++force-standing-pose-off = Force standing pose
++force-standing-pose-on = Disable standing pose
++
+ ## Widget: Overlay settings
+ widget-overlay = Overlay
+ widget-overlay-is_visible_label = Show Overlay in SteamVR
+diff -ruN a/gui/src/components/Sidebar.tsx b/gui/src/components/Sidebar.tsx
+--- a/gui/src/components/Sidebar.tsx	2026-08-01 16:17:31.307822592 +1000
++++ b/gui/src/components/Sidebar.tsx	2026-08-01 16:17:31.490095862 +1000
+@@ -20,6 +20,7 @@
+ import { useConfig } from '@/hooks/config';
+ import { useBHV } from '@/hooks/bvh';
+ import { usePauseTracking } from '@/hooks/pause-tracking';
++import { useForceStandingPose } from '@/hooks/force-standing-pose';
+ import { PlayIcon } from './commons/icon/PlayIcon';
+ 
+ export function PreviewControls({ open }: { open: boolean }) {
+@@ -33,6 +34,7 @@
+     available: bvhAvailable,
+   } = useBHV();
+   const { paused, toggle: toggleTracking } = usePauseTracking();
++  const { forced, toggle: toggleStanding } = useForceStandingPose();
+ 
+   const { cmFormat } = useMemo(() => {
+     const cmFormat = Intl.NumberFormat(currentLocales, {
+@@ -125,6 +127,25 @@
+             </div>
+           </Tooltip>
+           <Tooltip
++            content={
++              <Typography
++                variant="section-title"
++                id={forced ? 'force-standing-pose-on' : 'force-standing-pose-off'}
++              />
++            }
++            preferedDirection="top"
++          >
++            <div
++              className={classNames(
++                'flex justify-center items-center w-10 h-10 rounded-full hover:bg-background-60 cursor-pointer',
++                { 'bg-background-60': forced }
++              )}
++              onClick={() => toggleStanding()}
++            >
++              <HumanIcon width={20} />
++            </div>
++          </Tooltip>
++          <Tooltip
+             content={
+               <Typography
+                 variant="section-title"
+diff -ruN a/gui/src/hooks/force-standing-pose.ts b/gui/src/hooks/force-standing-pose.ts
+--- a/gui/src/hooks/force-standing-pose.ts	1970-01-01 10:00:00.000000000 +1000
++++ b/gui/src/hooks/force-standing-pose.ts	2026-08-01 16:17:31.490181034 +1000
+@@ -0,0 +1,22 @@
++import { useState } from 'react';
++import { useWebsocketAPI } from './websocket-api';
++import { RpcMessage, SetForceStandingPoseRequestT } from 'solarxr-protocol';
++
++export function useForceStandingPose() {
++  const { sendRPCPacket } = useWebsocketAPI();
++  const [forced, setForced] = useState(false);
++
++  const toggle = () => {
++    const newForced = !forced;
++    setForced(newForced);
++    sendRPCPacket(
++      RpcMessage.SetForceStandingPoseRequest,
++      new SetForceStandingPoseRequestT(newForced)
++    );
++  };
++
++  return {
++    toggle,
++    forced,
++  };
++}
+diff -ruN a/server/core/src/main/java/dev/slimevr/protocol/rpc/RPCHandler.kt b/server/core/src/main/java/dev/slimevr/protocol/rpc/RPCHandler.kt
+--- a/server/core/src/main/java/dev/slimevr/protocol/rpc/RPCHandler.kt	2026-08-01 16:17:31.320434922 +1000
++++ b/server/core/src/main/java/dev/slimevr/protocol/rpc/RPCHandler.kt	2026-08-01 16:17:31.490417617 +1000
+@@ -123,6 +123,11 @@
+ 		)
+ 
+ 		registerPacketListener(
++			RpcMessage.SetForceStandingPoseRequest,
++			::onSetForceStandingPoseRequest,
++		)
++
++		registerPacketListener(
+ 			RpcMessage.HeightRequest,
+ 			::onHeightRequest,
+ 		)
+@@ -424,6 +429,13 @@
+ 		api.server.setPauseTracking(req.pauseTracking(), RPCResetHandler.RESET_SOURCE_NAME)
+ 	}
+ 
++	fun onSetForceStandingPoseRequest(conn: GenericConnection, messageHeader: RpcMessageHeader) {
++		val req = messageHeader
++			.message(SetForceStandingPoseRequest()) as? SetForceStandingPoseRequest ?: return
++
++		api.server.setForceStandingPose(req.forceStandingPose())
++	}
++
+ 	fun onHeightRequest(conn: GenericConnection, messageHeader: RpcMessageHeader?) {
+ 		val fbb = FlatBufferBuilder(32)
+ 
+diff -ruN a/server/core/src/main/java/dev/slimevr/tracking/processor/HumanPoseManager.kt b/server/core/src/main/java/dev/slimevr/tracking/processor/HumanPoseManager.kt
+--- a/server/core/src/main/java/dev/slimevr/tracking/processor/HumanPoseManager.kt	2026-08-01 16:17:31.321523808 +1000
++++ b/server/core/src/main/java/dev/slimevr/tracking/processor/HumanPoseManager.kt	2026-08-01 16:17:31.490620930 +1000
+@@ -669,6 +669,12 @@
+ 
+ 	fun togglePauseTracking(sourceName: String?): Boolean = skeleton.togglePauseTracking(sourceName)
+ 
++	fun getForceStandingPose(): Boolean = skeleton.getForceStandingPose()
++
++	fun setForceStandingPose(forceStandingPose: Boolean) {
++		skeleton.setForceStandingPose(forceStandingPose)
++	}
++
+ 	// This should be executed when the head tracker is changed
+ 	fun checkTrackersRequiringReset() {
+ 		// Checks if this is main human pose manager (having server) or
+diff -ruN a/server/core/src/main/java/dev/slimevr/tracking/processor/skeleton/HumanSkeleton.kt b/server/core/src/main/java/dev/slimevr/tracking/processor/skeleton/HumanSkeleton.kt
+--- a/server/core/src/main/java/dev/slimevr/tracking/processor/skeleton/HumanSkeleton.kt	2026-08-01 16:17:31.321796242 +1000
++++ b/server/core/src/main/java/dev/slimevr/tracking/processor/skeleton/HumanSkeleton.kt	2026-08-01 16:18:22.366104650 +1000
+@@ -209,6 +209,7 @@
+ 
+ 	// Others
+ 	private var pauseTracking = false // Pauses skeleton tracking if true, resumes skeleton tracking if false
++	private var forceStandingPose = false
+ 
+ 	// Modules
+ 	var legTweaks = LegTweaks(this)
+@@ -543,6 +544,28 @@
+ 		tapDetectionManager?.update()
+ 		userHeightCalibration?.tick()
+ 
++		// forced standing rest pose, for seated recalibration
++		if (forceStandingPose) {
++			// hmd yaw only (upright), so the body faces like a real full reset
++			val yawRot = headTracker?.getRotation()?.project(POS_Y)?.unit() ?: IDENTITY
++			for (bone in allHumanBones) bone.setRotation(yawRot)
++			chestTrackerBone.setRotation(yawRot)
++			hipTrackerBone.setRotation(yawRot)
++			leftKneeTrackerBone.setRotation(yawRot)
++			rightKneeTrackerBone.setRotation(yawRot)
++			leftFootTrackerBone.setRotation(yawRot)
++			rightFootTrackerBone.setRotation(yawRot)
++			leftElbowTrackerBone.setRotation(yawRot)
++			rightElbowTrackerBone.setRotation(yawRot)
++			leftHandTrackerBone.setRotation(yawRot)
++			rightHandTrackerBone.setRotation(yawRot)
++			// head/neck take the full hmd rotation (overrides the yaw set above)
++			updateHeadTransforms()
++			updateBones()
++			updateComputedTrackers()
++			return
++		}
++
+ 		StayAligned.adjustNextTracker(trackerSkeleton, stayAlignedConfig)
+ 
+ 		updateTransforms()
+@@ -1788,4 +1811,11 @@
+ 		setPauseTracking(newState, sourceName)
+ 		return newState
+ 	}
++
++	fun getForceStandingPose(): Boolean = forceStandingPose
++
++	fun setForceStandingPose(forceStandingPose: Boolean) {
++		this.forceStandingPose = forceStandingPose
++		LogManager.info("[HumanSkeleton] ${if (forceStandingPose) "Enable" else "Disable"} force standing pose")
++	}
+ }
+diff -ruN a/server/core/src/main/java/dev/slimevr/VRServer.kt b/server/core/src/main/java/dev/slimevr/VRServer.kt
+--- a/server/core/src/main/java/dev/slimevr/VRServer.kt	2026-08-01 16:17:31.317725091 +1000
++++ b/server/core/src/main/java/dev/slimevr/VRServer.kt	2026-08-01 16:17:31.491290830 +1000
+@@ -345,6 +345,10 @@
+ 		}
+ 	}
+ 
++	fun setForceStandingPose(force: Boolean) {
++		queueTask { humanPoseManager.setForceStandingPose(force) }
++	}
++
+ 	fun togglePauseTracking(sourceName: String?) {
+ 		queueTask {
+ 			humanPoseManager.togglePauseTracking(sourceName)
+diff -ruN a/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessageHeader.java b/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessageHeader.java
+--- a/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessageHeader.java	2026-08-01 16:17:31.374251337 +1000
++++ b/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessageHeader.java	2026-08-01 16:17:31.491640796 +1000
+@@ -212,6 +212,10 @@
+         _oMessageValue = message(new solarxr_protocol.rpc.SetPauseTrackingRequest());
+         _oMessage.setValue(_oMessageValue != null ? ((solarxr_protocol.rpc.SetPauseTrackingRequest) _oMessageValue).unpack() : null);
+         break;
++      case solarxr_protocol.rpc.RpcMessage.SetForceStandingPoseRequest:
++        _oMessageValue = message(new solarxr_protocol.rpc.SetForceStandingPoseRequest());
++        _oMessage.setValue(_oMessageValue != null ? ((solarxr_protocol.rpc.SetForceStandingPoseRequest) _oMessageValue).unpack() : null);
++        break;
+       case solarxr_protocol.rpc.RpcMessage.StatusSystemRequest:
+         _oMessageValue = message(new solarxr_protocol.rpc.StatusSystemRequest());
+         _oMessage.setValue(_oMessageValue != null ? ((solarxr_protocol.rpc.StatusSystemRequest) _oMessageValue).unpack() : null);
+diff -ruN a/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessage.java b/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessage.java
+--- a/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessage.java	2026-08-01 16:17:31.374251337 +1000
++++ b/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessage.java	2026-08-01 16:17:31.491902400 +1000
+@@ -91,8 +91,9 @@
+   public static final byte InstalledInfoResponse = 83;
+   public static final byte OpenUriRequest = 84;
+   public static final byte OpenUriResponse = 85;
++  public static final byte SetForceStandingPoseRequest = 86;
+ 
+-  public static final String[] names = { "NONE", "HeartbeatRequest", "HeartbeatResponse", "ResetRequest", "ResetResponse", "AssignTrackerRequest", "SettingsRequest", "SettingsResponse", "ChangeSettingsRequest", "ClearDriftCompensationRequest", "RecordBVHRequest", "RecordBVHStatus", "SkeletonConfigRequest", "ChangeSkeletonConfigRequest", "SkeletonResetAllRequest", "SkeletonConfigResponse", "OpenSerialRequest", "CloseSerialRequest", "SetWifiRequest", "SerialUpdateResponse", "AutoBoneProcessRequest", "AutoBoneProcessStatusResponse", "AutoBoneEpochResponse", "OverlayDisplayModeRequest", "OverlayDisplayModeChangeRequest", "OverlayDisplayModeResponse", "SerialTrackerRebootRequest", "SerialTrackerGetInfoRequest", "SerialTrackerFactoryResetRequest", "SerialDevicesRequest", "SerialDevicesResponse", "NewSerialDeviceResponse", "StartWifiProvisioningRequest", "StopWifiProvisioningRequest", "WifiProvisioningStatusResponse", "ServerInfosRequest", "ServerInfosResponse", "LegTweaksTmpChange", "LegTweaksTmpClear", "TapDetectionSetupNotification", "SetPauseTrackingRequest", "StatusSystemRequest", "StatusSystemResponse", "StatusSystemUpdate", "StatusSystemFixed", "ClearMountingResetRequest", "HeightRequest", "HeightResponse", "AutoBoneApplyRequest", "AutoBoneStopRecordingRequest", "AutoBoneCancelRecordingRequest", "SaveFileNotification", "TrackingPauseStateRequest", "TrackingPauseStateResponse", "SerialTrackerGetWifiScanRequest", "UnknownDeviceHandshakeNotification", "AddUnknownDeviceRequest", "ForgetDeviceRequest", "FirmwareUpdateRequest", "FirmwareUpdateStatusResponse", "FirmwareUpdateStopQueuesRequest", "SettingsResetRequest", "MagToggleRequest", "MagToggleResponse", "ChangeMagToggleRequest", "RecordBVHStatusRequest", "VRCConfigStateRequest", "VRCConfigStateChangeResponse", "EnableStayAlignedRequest", "DetectStayAlignedRelaxedPoseRequest", "ResetStayAlignedRelaxedPoseRequest", "SerialTrackerCustomCommandRequest", "VRCConfigSettingToggleMute", "TrackingChecklistRequest", "TrackingChecklistResponse", "IgnoreTrackingChecklistStepRequest", "StartUserHeightCalibration", "CancelUserHeightCalibration", "UserHeightRecordingStatusResponse", "KeybindRequest", "ChangeKeybindRequest", "KeybindResponse", "InstalledInfoRequest", "InstalledInfoResponse", "OpenUriRequest", "OpenUriResponse", };
++  public static final String[] names = { "NONE", "HeartbeatRequest", "HeartbeatResponse", "ResetRequest", "ResetResponse", "AssignTrackerRequest", "SettingsRequest", "SettingsResponse", "ChangeSettingsRequest", "ClearDriftCompensationRequest", "RecordBVHRequest", "RecordBVHStatus", "SkeletonConfigRequest", "ChangeSkeletonConfigRequest", "SkeletonResetAllRequest", "SkeletonConfigResponse", "OpenSerialRequest", "CloseSerialRequest", "SetWifiRequest", "SerialUpdateResponse", "AutoBoneProcessRequest", "AutoBoneProcessStatusResponse", "AutoBoneEpochResponse", "OverlayDisplayModeRequest", "OverlayDisplayModeChangeRequest", "OverlayDisplayModeResponse", "SerialTrackerRebootRequest", "SerialTrackerGetInfoRequest", "SerialTrackerFactoryResetRequest", "SerialDevicesRequest", "SerialDevicesResponse", "NewSerialDeviceResponse", "StartWifiProvisioningRequest", "StopWifiProvisioningRequest", "WifiProvisioningStatusResponse", "ServerInfosRequest", "ServerInfosResponse", "LegTweaksTmpChange", "LegTweaksTmpClear", "TapDetectionSetupNotification", "SetPauseTrackingRequest", "StatusSystemRequest", "StatusSystemResponse", "StatusSystemUpdate", "StatusSystemFixed", "ClearMountingResetRequest", "HeightRequest", "HeightResponse", "AutoBoneApplyRequest", "AutoBoneStopRecordingRequest", "AutoBoneCancelRecordingRequest", "SaveFileNotification", "TrackingPauseStateRequest", "TrackingPauseStateResponse", "SerialTrackerGetWifiScanRequest", "UnknownDeviceHandshakeNotification", "AddUnknownDeviceRequest", "ForgetDeviceRequest", "FirmwareUpdateRequest", "FirmwareUpdateStatusResponse", "FirmwareUpdateStopQueuesRequest", "SettingsResetRequest", "MagToggleRequest", "MagToggleResponse", "ChangeMagToggleRequest", "RecordBVHStatusRequest", "VRCConfigStateRequest", "VRCConfigStateChangeResponse", "EnableStayAlignedRequest", "DetectStayAlignedRelaxedPoseRequest", "ResetStayAlignedRelaxedPoseRequest", "SerialTrackerCustomCommandRequest", "VRCConfigSettingToggleMute", "TrackingChecklistRequest", "TrackingChecklistResponse", "IgnoreTrackingChecklistStepRequest", "StartUserHeightCalibration", "CancelUserHeightCalibration", "UserHeightRecordingStatusResponse", "KeybindRequest", "ChangeKeybindRequest", "KeybindResponse", "InstalledInfoRequest", "InstalledInfoResponse", "OpenUriRequest", "OpenUriResponse", "SetForceStandingPoseRequest", };
+ 
+   public static String name(int e) { return names[e]; }
+ }
+diff -ruN a/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessageUnion.java b/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessageUnion.java
+--- a/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessageUnion.java	2026-08-01 16:17:31.374251337 +1000
++++ b/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/RpcMessageUnion.java	2026-08-01 16:17:31.492247705 +1000
+@@ -106,6 +106,7 @@
+   public solarxr_protocol.rpc.InstalledInfoResponseT asInstalledInfoResponse() { return (solarxr_protocol.rpc.InstalledInfoResponseT) value; }
+   public solarxr_protocol.rpc.OpenUriRequestT asOpenUriRequest() { return (solarxr_protocol.rpc.OpenUriRequestT) value; }
+   public solarxr_protocol.rpc.OpenUriResponseT asOpenUriResponse() { return (solarxr_protocol.rpc.OpenUriResponseT) value; }
++  public solarxr_protocol.rpc.SetForceStandingPoseRequestT asSetForceStandingPoseRequest() { return (solarxr_protocol.rpc.SetForceStandingPoseRequestT) value; }
+ 
+   public static int pack(FlatBufferBuilder builder, RpcMessageUnion _o) {
+     switch (_o.type) {
+@@ -194,6 +195,7 @@
+       case RpcMessage.InstalledInfoResponse: return solarxr_protocol.rpc.InstalledInfoResponse.pack(builder, _o.asInstalledInfoResponse());
+       case RpcMessage.OpenUriRequest: return solarxr_protocol.rpc.OpenUriRequest.pack(builder, _o.asOpenUriRequest());
+       case RpcMessage.OpenUriResponse: return solarxr_protocol.rpc.OpenUriResponse.pack(builder, _o.asOpenUriResponse());
++      case RpcMessage.SetForceStandingPoseRequest: return solarxr_protocol.rpc.SetForceStandingPoseRequest.pack(builder, _o.asSetForceStandingPoseRequest());
+       default: return 0;
+     }
+   }
+diff -ruN a/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/SetForceStandingPoseRequest.java b/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/SetForceStandingPoseRequest.java
+--- a/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/SetForceStandingPoseRequest.java	1970-01-01 10:00:00.000000000 +1000
++++ b/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/SetForceStandingPoseRequest.java	2026-08-01 16:17:31.492400787 +1000
+@@ -0,0 +1,59 @@
++// automatically generated by the FlatBuffers compiler, do not modify
++
++package solarxr_protocol.rpc;
++
++import java.nio.*;
++import java.lang.*;
++import java.util.*;
++import com.google.flatbuffers.*;
++
++@SuppressWarnings("unused")
++public final class SetForceStandingPoseRequest extends Table {
++  public static void ValidateVersion() { Constants.FLATBUFFERS_22_10_26(); }
++  public static SetForceStandingPoseRequest getRootAsSetForceStandingPoseRequest(ByteBuffer _bb) { return getRootAsSetForceStandingPoseRequest(_bb, new SetForceStandingPoseRequest()); }
++  public static SetForceStandingPoseRequest getRootAsSetForceStandingPoseRequest(ByteBuffer _bb, SetForceStandingPoseRequest obj) { _bb.order(ByteOrder.LITTLE_ENDIAN); return (obj.__assign(_bb.getInt(_bb.position()) + _bb.position(), _bb)); }
++  public void __init(int _i, ByteBuffer _bb) { __reset(_i, _bb); }
++  public SetForceStandingPoseRequest __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
++
++  /**
++   * Emits a fixed straight standing rest pose if true, resumes normal tracking if false.
++   */
++  public boolean forceStandingPose() { int o = __offset(4); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
++
++  public static int createSetForceStandingPoseRequest(FlatBufferBuilder builder,
++      boolean forceStandingPose) {
++    builder.startTable(1);
++    SetForceStandingPoseRequest.addForceStandingPose(builder, forceStandingPose);
++    return SetForceStandingPoseRequest.endSetForceStandingPoseRequest(builder);
++  }
++
++  public static void startSetForceStandingPoseRequest(FlatBufferBuilder builder) { builder.startTable(1); }
++  public static void addForceStandingPose(FlatBufferBuilder builder, boolean forceStandingPose) { builder.addBoolean(0, forceStandingPose, false); }
++  public static int endSetForceStandingPoseRequest(FlatBufferBuilder builder) {
++    int o = builder.endTable();
++    return o;
++  }
++
++  public static final class Vector extends BaseVector {
++    public Vector __assign(int _vector, int _element_size, ByteBuffer _bb) { __reset(_vector, _element_size, _bb); return this; }
++
++    public SetForceStandingPoseRequest get(int j) { return get(new SetForceStandingPoseRequest(), j); }
++    public SetForceStandingPoseRequest get(SetForceStandingPoseRequest obj, int j) {  return obj.__assign(__indirect(__element(j), bb), bb); }
++  }
++  public SetForceStandingPoseRequestT unpack() {
++    SetForceStandingPoseRequestT _o = new SetForceStandingPoseRequestT();
++    unpackTo(_o);
++    return _o;
++  }
++  public void unpackTo(SetForceStandingPoseRequestT _o) {
++    boolean _oForceStandingPose = forceStandingPose();
++    _o.setForceStandingPose(_oForceStandingPose);
++  }
++  public static int pack(FlatBufferBuilder builder, SetForceStandingPoseRequestT _o) {
++    if (_o == null) return 0;
++    return createSetForceStandingPoseRequest(
++      builder,
++      _o.getForceStandingPose());
++  }
++}
++
+diff -ruN a/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/SetForceStandingPoseRequestT.java b/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/SetForceStandingPoseRequestT.java
+--- a/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/SetForceStandingPoseRequestT.java	1970-01-01 10:00:00.000000000 +1000
++++ b/solarxr-protocol/protocol/java/src/solarxr_protocol/rpc/SetForceStandingPoseRequestT.java	2026-08-01 16:17:31.492455958 +1000
+@@ -0,0 +1,22 @@
++// automatically generated by the FlatBuffers compiler, do not modify
++
++package solarxr_protocol.rpc;
++
++import java.nio.*;
++import java.lang.*;
++import java.util.*;
++import com.google.flatbuffers.*;
++
++public class SetForceStandingPoseRequestT {
++  private boolean forceStandingPose;
++
++  public boolean getForceStandingPose() { return forceStandingPose; }
++
++  public void setForceStandingPose(boolean forceStandingPose) { this.forceStandingPose = forceStandingPose; }
++
++
++  public SetForceStandingPoseRequestT() {
++    this.forceStandingPose = false;
++  }
++}
++
+diff -ruN a/solarxr-protocol/protocol/typescript/src/all_generated.ts b/solarxr-protocol/protocol/typescript/src/all_generated.ts
+--- a/solarxr-protocol/protocol/typescript/src/all_generated.ts	2026-08-01 16:17:31.385576081 +1000
++++ b/solarxr-protocol/protocol/typescript/src/all_generated.ts	2026-08-01 16:17:31.492678141 +1000
+@@ -136,6 +136,7 @@
+ export { SerialUpdateResponse, SerialUpdateResponseT } from './solarxr-protocol/rpc/serial-update-response.js';
+ export { ServerInfosRequest, ServerInfosRequestT } from './solarxr-protocol/rpc/server-infos-request.js';
+ export { ServerInfosResponse, ServerInfosResponseT } from './solarxr-protocol/rpc/server-infos-response.js';
++export { SetForceStandingPoseRequest, SetForceStandingPoseRequestT } from './solarxr-protocol/rpc/set-force-standing-pose-request.js';
+ export { SetPauseTrackingRequest, SetPauseTrackingRequestT } from './solarxr-protocol/rpc/set-pause-tracking-request.js';
+ export { SetWifiRequest, SetWifiRequestT } from './solarxr-protocol/rpc/set-wifi-request.js';
+ export { SettingsRequest, SettingsRequestT } from './solarxr-protocol/rpc/settings-request.js';
+diff -ruN a/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/rpc-message-header.ts b/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/rpc-message-header.ts
+--- a/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/rpc-message-header.ts	2026-08-01 16:17:31.389251588 +1000
++++ b/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/rpc-message-header.ts	2026-08-01 16:17:31.493173459 +1000
+@@ -63,6 +63,7 @@
+ import { SerialUpdateResponse, SerialUpdateResponseT } from '../../solarxr-protocol/rpc/serial-update-response.js';
+ import { ServerInfosRequest, ServerInfosRequestT } from '../../solarxr-protocol/rpc/server-infos-request.js';
+ import { ServerInfosResponse, ServerInfosResponseT } from '../../solarxr-protocol/rpc/server-infos-response.js';
++import { SetForceStandingPoseRequest, SetForceStandingPoseRequestT } from '../../solarxr-protocol/rpc/set-force-standing-pose-request.js';
+ import { SetPauseTrackingRequest, SetPauseTrackingRequestT } from '../../solarxr-protocol/rpc/set-pause-tracking-request.js';
+ import { SetWifiRequest, SetWifiRequestT } from '../../solarxr-protocol/rpc/set-wifi-request.js';
+ import { SettingsRequest, SettingsRequestT } from '../../solarxr-protocol/rpc/settings-request.js';
+@@ -185,7 +186,7 @@
+ constructor(
+   public txId: TransactionIdT|null = null,
+   public messageType: RpcMessage = RpcMessage.NONE,
+-  public message: AddUnknownDeviceRequestT|AssignTrackerRequestT|AutoBoneApplyRequestT|AutoBoneCancelRecordingRequestT|AutoBoneEpochResponseT|AutoBoneProcessRequestT|AutoBoneProcessStatusResponseT|AutoBoneStopRecordingRequestT|CancelUserHeightCalibrationT|ChangeKeybindRequestT|ChangeMagToggleRequestT|ChangeSettingsRequestT|ChangeSkeletonConfigRequestT|ClearDriftCompensationRequestT|ClearMountingResetRequestT|CloseSerialRequestT|DetectStayAlignedRelaxedPoseRequestT|EnableStayAlignedRequestT|FirmwareUpdateRequestT|FirmwareUpdateStatusResponseT|FirmwareUpdateStopQueuesRequestT|ForgetDeviceRequestT|HeartbeatRequestT|HeartbeatResponseT|HeightRequestT|HeightResponseT|IgnoreTrackingChecklistStepRequestT|InstalledInfoRequestT|InstalledInfoResponseT|KeybindRequestT|KeybindResponseT|LegTweaksTmpChangeT|LegTweaksTmpClearT|MagToggleRequestT|MagToggleResponseT|NewSerialDeviceResponseT|OpenSerialRequestT|OpenUriRequestT|OpenUriResponseT|OverlayDisplayModeChangeRequestT|OverlayDisplayModeRequestT|OverlayDisplayModeResponseT|RecordBVHRequestT|RecordBVHStatusRequestT|RecordBVHStatusT|ResetRequestT|ResetResponseT|ResetStayAlignedRelaxedPoseRequestT|SaveFileNotificationT|SerialDevicesRequestT|SerialDevicesResponseT|SerialTrackerCustomCommandRequestT|SerialTrackerFactoryResetRequestT|SerialTrackerGetInfoRequestT|SerialTrackerGetWifiScanRequestT|SerialTrackerRebootRequestT|SerialUpdateResponseT|ServerInfosRequestT|ServerInfosResponseT|SetPauseTrackingRequestT|SetWifiRequestT|SettingsRequestT|SettingsResetRequestT|SettingsResponseT|SkeletonConfigRequestT|SkeletonConfigResponseT|SkeletonResetAllRequestT|StartUserHeightCalibrationT|StartWifiProvisioningRequestT|StatusSystemFixedT|StatusSystemRequestT|StatusSystemResponseT|StatusSystemUpdateT|StopWifiProvisioningRequestT|TapDetectionSetupNotificationT|TrackingChecklistRequestT|TrackingChecklistResponseT|TrackingPauseStateRequestT|TrackingPauseStateResponseT|UnknownDeviceHandshakeNotificationT|UserHeightRecordingStatusResponseT|VRCConfigSettingToggleMuteT|VRCConfigStateChangeResponseT|VRCConfigStateRequestT|WifiProvisioningStatusResponseT|null = null
++  public message: AddUnknownDeviceRequestT|AssignTrackerRequestT|AutoBoneApplyRequestT|AutoBoneCancelRecordingRequestT|AutoBoneEpochResponseT|AutoBoneProcessRequestT|AutoBoneProcessStatusResponseT|AutoBoneStopRecordingRequestT|CancelUserHeightCalibrationT|ChangeKeybindRequestT|ChangeMagToggleRequestT|ChangeSettingsRequestT|ChangeSkeletonConfigRequestT|ClearDriftCompensationRequestT|ClearMountingResetRequestT|CloseSerialRequestT|DetectStayAlignedRelaxedPoseRequestT|EnableStayAlignedRequestT|FirmwareUpdateRequestT|FirmwareUpdateStatusResponseT|FirmwareUpdateStopQueuesRequestT|ForgetDeviceRequestT|HeartbeatRequestT|HeartbeatResponseT|HeightRequestT|HeightResponseT|IgnoreTrackingChecklistStepRequestT|InstalledInfoRequestT|InstalledInfoResponseT|KeybindRequestT|KeybindResponseT|LegTweaksTmpChangeT|LegTweaksTmpClearT|MagToggleRequestT|MagToggleResponseT|NewSerialDeviceResponseT|OpenSerialRequestT|OpenUriRequestT|OpenUriResponseT|OverlayDisplayModeChangeRequestT|OverlayDisplayModeRequestT|OverlayDisplayModeResponseT|RecordBVHRequestT|RecordBVHStatusRequestT|RecordBVHStatusT|ResetRequestT|ResetResponseT|ResetStayAlignedRelaxedPoseRequestT|SaveFileNotificationT|SerialDevicesRequestT|SerialDevicesResponseT|SerialTrackerCustomCommandRequestT|SerialTrackerFactoryResetRequestT|SerialTrackerGetInfoRequestT|SerialTrackerGetWifiScanRequestT|SerialTrackerRebootRequestT|SerialUpdateResponseT|ServerInfosRequestT|ServerInfosResponseT|SetPauseTrackingRequestT|SetWifiRequestT|SettingsRequestT|SettingsResetRequestT|SettingsResponseT|SkeletonConfigRequestT|SkeletonConfigResponseT|SkeletonResetAllRequestT|StartUserHeightCalibrationT|StartWifiProvisioningRequestT|StatusSystemFixedT|StatusSystemRequestT|StatusSystemResponseT|StatusSystemUpdateT|StopWifiProvisioningRequestT|TapDetectionSetupNotificationT|TrackingChecklistRequestT|TrackingChecklistResponseT|TrackingPauseStateRequestT|TrackingPauseStateResponseT|UnknownDeviceHandshakeNotificationT|UserHeightRecordingStatusResponseT|VRCConfigSettingToggleMuteT|VRCConfigStateChangeResponseT|VRCConfigStateRequestT|WifiProvisioningStatusResponseT|SetForceStandingPoseRequestT|null = null
+ ){}
+ 
+ 
+diff -ruN a/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/rpc-message.ts b/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/rpc-message.ts
+--- a/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/rpc-message.ts	2026-08-01 16:17:31.389251588 +1000
++++ b/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/rpc-message.ts	2026-08-01 16:17:31.493539004 +1000
+@@ -59,6 +59,7 @@
+ import { SerialUpdateResponse, SerialUpdateResponseT } from '../../solarxr-protocol/rpc/serial-update-response.js';
+ import { ServerInfosRequest, ServerInfosRequestT } from '../../solarxr-protocol/rpc/server-infos-request.js';
+ import { ServerInfosResponse, ServerInfosResponseT } from '../../solarxr-protocol/rpc/server-infos-response.js';
++import { SetForceStandingPoseRequest, SetForceStandingPoseRequestT } from '../../solarxr-protocol/rpc/set-force-standing-pose-request.js';
+ import { SetPauseTrackingRequest, SetPauseTrackingRequestT } from '../../solarxr-protocol/rpc/set-pause-tracking-request.js';
+ import { SetWifiRequest, SetWifiRequestT } from '../../solarxr-protocol/rpc/set-wifi-request.js';
+ import { SettingsRequest, SettingsRequestT } from '../../solarxr-protocol/rpc/settings-request.js';
+@@ -173,13 +174,14 @@
+   InstalledInfoRequest = 82,
+   InstalledInfoResponse = 83,
+   OpenUriRequest = 84,
+-  OpenUriResponse = 85
++  OpenUriResponse = 85,
++  SetForceStandingPoseRequest = 86
+ }
+ 
+ export function unionToRpcMessage(
+   type: RpcMessage,
+-  accessor: (obj:AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse) => AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse|null
+-): AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse|null {
++  accessor: (obj:AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse) => AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse|SetForceStandingPoseRequest|null
++): AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse|SetForceStandingPoseRequest|null {
+   switch(RpcMessage[type]) {
+     case 'NONE': return null; 
+     case 'HeartbeatRequest': return accessor(new HeartbeatRequest())! as HeartbeatRequest;
+@@ -267,15 +269,16 @@
+     case 'InstalledInfoResponse': return accessor(new InstalledInfoResponse())! as InstalledInfoResponse;
+     case 'OpenUriRequest': return accessor(new OpenUriRequest())! as OpenUriRequest;
+     case 'OpenUriResponse': return accessor(new OpenUriResponse())! as OpenUriResponse;
++    case 'SetForceStandingPoseRequest': return accessor(new SetForceStandingPoseRequest())! as SetForceStandingPoseRequest;
+     default: return null;
+   }
+ }
+ 
+ export function unionListToRpcMessage(
+   type: RpcMessage, 
+-  accessor: (index: number, obj:AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse) => AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse|null, 
++  accessor: (index: number, obj:AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse) => AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse|SetForceStandingPoseRequest|null, 
+   index: number
+-): AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse|null {
++): AddUnknownDeviceRequest|AssignTrackerRequest|AutoBoneApplyRequest|AutoBoneCancelRecordingRequest|AutoBoneEpochResponse|AutoBoneProcessRequest|AutoBoneProcessStatusResponse|AutoBoneStopRecordingRequest|CancelUserHeightCalibration|ChangeKeybindRequest|ChangeMagToggleRequest|ChangeSettingsRequest|ChangeSkeletonConfigRequest|ClearDriftCompensationRequest|ClearMountingResetRequest|CloseSerialRequest|DetectStayAlignedRelaxedPoseRequest|EnableStayAlignedRequest|FirmwareUpdateRequest|FirmwareUpdateStatusResponse|FirmwareUpdateStopQueuesRequest|ForgetDeviceRequest|HeartbeatRequest|HeartbeatResponse|HeightRequest|HeightResponse|IgnoreTrackingChecklistStepRequest|InstalledInfoRequest|InstalledInfoResponse|KeybindRequest|KeybindResponse|LegTweaksTmpChange|LegTweaksTmpClear|MagToggleRequest|MagToggleResponse|NewSerialDeviceResponse|OpenSerialRequest|OpenUriRequest|OpenUriResponse|OverlayDisplayModeChangeRequest|OverlayDisplayModeRequest|OverlayDisplayModeResponse|RecordBVHRequest|RecordBVHStatus|RecordBVHStatusRequest|ResetRequest|ResetResponse|ResetStayAlignedRelaxedPoseRequest|SaveFileNotification|SerialDevicesRequest|SerialDevicesResponse|SerialTrackerCustomCommandRequest|SerialTrackerFactoryResetRequest|SerialTrackerGetInfoRequest|SerialTrackerGetWifiScanRequest|SerialTrackerRebootRequest|SerialUpdateResponse|ServerInfosRequest|ServerInfosResponse|SetPauseTrackingRequest|SetWifiRequest|SettingsRequest|SettingsResetRequest|SettingsResponse|SkeletonConfigRequest|SkeletonConfigResponse|SkeletonResetAllRequest|StartUserHeightCalibration|StartWifiProvisioningRequest|StatusSystemFixed|StatusSystemRequest|StatusSystemResponse|StatusSystemUpdate|StopWifiProvisioningRequest|TapDetectionSetupNotification|TrackingChecklistRequest|TrackingChecklistResponse|TrackingPauseStateRequest|TrackingPauseStateResponse|UnknownDeviceHandshakeNotification|UserHeightRecordingStatusResponse|VRCConfigSettingToggleMute|VRCConfigStateChangeResponse|VRCConfigStateRequest|WifiProvisioningStatusResponse|SetForceStandingPoseRequest|null {
+   switch(RpcMessage[type]) {
+     case 'NONE': return null; 
+     case 'HeartbeatRequest': return accessor(index, new HeartbeatRequest())! as HeartbeatRequest;
+@@ -363,6 +366,7 @@
+     case 'InstalledInfoResponse': return accessor(index, new InstalledInfoResponse())! as InstalledInfoResponse;
+     case 'OpenUriRequest': return accessor(index, new OpenUriRequest())! as OpenUriRequest;
+     case 'OpenUriResponse': return accessor(index, new OpenUriResponse())! as OpenUriResponse;
++    case 'SetForceStandingPoseRequest': return accessor(index, new SetForceStandingPoseRequest())! as SetForceStandingPoseRequest;
+     default: return null;
+   }
+ }
+diff -ruN a/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/set-force-standing-pose-request.ts b/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/set-force-standing-pose-request.ts
+--- a/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/set-force-standing-pose-request.ts	1970-01-01 10:00:00.000000000 +1000
++++ b/solarxr-protocol/protocol/typescript/src/solarxr-protocol/rpc/set-force-standing-pose-request.ts	2026-08-01 16:17:31.493655306 +1000
+@@ -0,0 +1,75 @@
++// automatically generated by the FlatBuffers compiler, do not modify
++
++import * as flatbuffers from 'flatbuffers';
++
++
++
++export class SetForceStandingPoseRequest implements flatbuffers.IUnpackableObject<SetForceStandingPoseRequestT> {
++  bb: flatbuffers.ByteBuffer|null = null;
++  bb_pos = 0;
++  __init(i:number, bb:flatbuffers.ByteBuffer):SetForceStandingPoseRequest {
++  this.bb_pos = i;
++  this.bb = bb;
++  return this;
++}
++
++static getRootAsSetForceStandingPoseRequest(bb:flatbuffers.ByteBuffer, obj?:SetForceStandingPoseRequest):SetForceStandingPoseRequest {
++  return (obj || new SetForceStandingPoseRequest()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
++}
++
++static getSizePrefixedRootAsSetForceStandingPoseRequest(bb:flatbuffers.ByteBuffer, obj?:SetForceStandingPoseRequest):SetForceStandingPoseRequest {
++  bb.setPosition(bb.position() + flatbuffers.SIZE_PREFIX_LENGTH);
++  return (obj || new SetForceStandingPoseRequest()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
++}
++
++/**
++ * Emits a fixed straight standing rest pose if true, resumes normal tracking if false.
++ */
++forceStandingPose():boolean {
++  const offset = this.bb!.__offset(this.bb_pos, 4);
++  return offset ? !!this.bb!.readInt8(this.bb_pos + offset) : false;
++}
++
++static startSetForceStandingPoseRequest(builder:flatbuffers.Builder) {
++  builder.startObject(1);
++}
++
++static addForceStandingPose(builder:flatbuffers.Builder, forceStandingPose:boolean) {
++  builder.addFieldInt8(0, +forceStandingPose, +false);
++}
++
++static endSetForceStandingPoseRequest(builder:flatbuffers.Builder):flatbuffers.Offset {
++  const offset = builder.endObject();
++  return offset;
++}
++
++static createSetForceStandingPoseRequest(builder:flatbuffers.Builder, forceStandingPose:boolean):flatbuffers.Offset {
++  SetForceStandingPoseRequest.startSetForceStandingPoseRequest(builder);
++  SetForceStandingPoseRequest.addForceStandingPose(builder, forceStandingPose);
++  return SetForceStandingPoseRequest.endSetForceStandingPoseRequest(builder);
++}
++
++unpack(): SetForceStandingPoseRequestT {
++  return new SetForceStandingPoseRequestT(
++    this.forceStandingPose()
++  );
++}
++
++
++unpackTo(_o: SetForceStandingPoseRequestT): void {
++  _o.forceStandingPose = this.forceStandingPose();
++}
++}
++
++export class SetForceStandingPoseRequestT implements flatbuffers.IGeneratedObject {
++constructor(
++  public forceStandingPose: boolean = false
++){}
++
++
++pack(builder:flatbuffers.Builder): flatbuffers.Offset {
++  return SetForceStandingPoseRequest.createSetForceStandingPoseRequest(builder,
++    this.forceStandingPose
++  );
++}
++}
+diff -ruN a/solarxr-protocol/schema/rpc.fbs b/solarxr-protocol/schema/rpc.fbs
+--- a/solarxr-protocol/schema/rpc.fbs	2026-08-01 16:17:31.390247191 +1000
++++ b/solarxr-protocol/schema/rpc.fbs	2026-08-01 16:17:31.493918790 +1000
+@@ -102,7 +102,8 @@
+     InstalledInfoRequest,
+     InstalledInfoResponse,
+     OpenUriRequest,
+-    OpenUriResponse
++    OpenUriResponse,
++    SetForceStandingPoseRequest
+ }
+ 
+ enum KeybindId: uint8 {
+@@ -732,6 +733,11 @@
+     pauseTracking: bool;
+ }
+ 
++table SetForceStandingPoseRequest {
++    /// Emits a fixed straight standing rest pose if true, resumes normal tracking if false.
++    forceStandingPose: bool;
++}
++
+ /// Clears mounting reset data, defaulting to the manually set mounting orientations
+ table ClearMountingResetRequest {}
+ 
