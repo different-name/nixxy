@@ -48,7 +48,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "vrcx" ] {
             exit 0
           fi
 
-          notify-send -a VRChat "VRChat" "Starting VRChat to open link…" 2>/dev/null || true
+          notify-send -a VRChat "VRChat" "Starting VRChat to open link..." 2>/dev/null || true
           exec steam -applaunch ${appid} "$url"
         '';
       };

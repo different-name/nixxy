@@ -5,7 +5,7 @@ diff -ruN a/Dotnet/AppApi/Common/AppApiCommon.cs b/Dotnet/AppApi/Common/AppApiCo
  
          public Task<bool> TryOpenInstanceInVrc(string launchUrl)
          {
-+            // VRChatURLLaunchPipe is unreachable under proton; hand the url to the
++            // VRChatURLLaunchPipe is unreachable under proton, so hand the url to the
 +            // vrchat:// handler instead (nixxy games/vrcx). attach=1 = attach-only
 +            if (OperatingSystem.IsLinux())
 +            {
