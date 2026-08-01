@@ -14,7 +14,7 @@
           no_hardware_cursors = true;
         };
 
-        debug.disable_logs = false;
+        debug.disable_logs = true;
 
         dwindle.preserve_split = true;
 
