@@ -25,9 +25,10 @@ bundleLib.mkEnableModule [ "dyad" "nix" "patches" ] {
           src = prev.applyPatches {
             inherit (old) src;
             patches = [
-              (builtins.path {
-                path = ./vrcx/linux-open-in-game.patch;
+              (prev.fetchpatch {
                 name = "vrcx-linux-open-in-game";
+                url = "https://github.com/vrcx-team/VRCX/compare/07c9d52fd577680112e9124d37dd9cc3360cac93...different-name:4f5b2c8b4a49dbc1e3f7304f1f85b32a086a29cd.patch";
+                hash = "sha256-1pAn7hiJWahM3SIn9XnYLBkrwaI6+c7VPNnQk0ca6b4=";
               })
             ];
           };
