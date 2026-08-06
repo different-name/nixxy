@@ -1,0 +1,6 @@
+.direnv
+.stfolder
+.stignore
+.stversions
+/result
+/result-*

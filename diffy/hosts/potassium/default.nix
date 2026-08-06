@@ -31,6 +31,8 @@ in
     };
 
     nix.sodium-builder.enable = true;
+
+    services.syncthing.enable = true;
   };
 
   nixos = {
