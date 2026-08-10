@@ -660,11 +660,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784628692,
-        "narHash": "sha256-N8ccJ1g3YoJXdNtTwPT6olwN0VervTSPe6J+hUCa0hA=",
+        "lastModified": 1786364922,
+        "narHash": "sha256-uZnh+tfXTb9JC0XVAEr1ehOYZlTq3m6MJsSXckbLm5g=",
         "owner": "different-name",
         "repo": "steam-config-nix",
-        "rev": "0ff179e83623eb730fc37ce7fda293e202e53fac",
+        "rev": "5551c96aed219d58c91d0e183003b8bd1b1ddcf7",
         "type": "github"
       },
       "original": {
