@@ -1,0 +1,333 @@
+diff --git a/src/plugins/vcNarrator/VoiceSetting.tsx b/src/plugins/vcNarrator/VoiceSetting.tsx
+index 2daf8638..706478f1 100644
+--- a/src/plugins/vcNarrator/VoiceSetting.tsx
++++ b/src/plugins/vcNarrator/VoiceSetting.tsx
+@@ -4,10 +4,25 @@
+  * SPDX-License-Identifier: GPL-3.0-or-later
+  */
+ 
+-import { Forms, SearchableSelect, useMemo, useState } from "@webpack/common";
++import { Forms, SearchableSelect, useEffect, useMemo, useState } from "@webpack/common";
+ 
+ import { getCurrentVoice, settings } from "./settings";
+ 
++// getVoices() can be empty until the async voiceschanged event fires
++export function useAvailableVoices() {
++    const [voices, setVoices] = useState(() => window.speechSynthesis?.getVoices() ?? []);
++
++    useEffect(() => {
++        if (typeof speechSynthesis === "undefined") return;
++
++        const update = () => setVoices(speechSynthesis.getVoices());
++        speechSynthesis.addEventListener("voiceschanged", update);
++        return () => speechSynthesis.removeEventListener("voiceschanged", update);
++    }, []);
++
++    return voices;
++}
++
+ // TODO: replace by [Object.groupBy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy) once it has more maturity
+ 
+ function groupBy<T extends object, K extends PropertyKey>(arr: T[], fn: (obj: T) => K) {
+@@ -103,7 +118,7 @@ function ComplexPicker({ voice, voices }: PickerProps) {
+ 
+ 
+ function VoiceSetting() {
+-    const voices = useMemo(() => window.speechSynthesis?.getVoices() ?? [], []);
++    const voices = useAvailableVoices();
+     const { voice } = settings.use(["voice"]);
+ 
+     if (!voices.length)
+diff --git a/src/plugins/vcNarrator/index.tsx b/src/plugins/vcNarrator/index.tsx
+index 31137168..b753c281 100644
+--- a/src/plugins/vcNarrator/index.tsx
++++ b/src/plugins/vcNarrator/index.tsx
+@@ -26,6 +26,7 @@ import { AuthenticationStore, Button, ChannelStore, Forms, GuildMemberStore, Sel
+ import { ReactElement } from "react";
+ 
+ import { getCurrentVoice, settings } from "./settings";
++import { useAvailableVoices } from "./VoiceSetting";
+ 
+ interface VoiceStateChangeEvent {
+     userId: string;
+@@ -38,10 +39,6 @@ interface VoiceStateChangeEvent {
+     sessionId: string;
+ }
+ 
+-// Mute/Deaf for other people than you is commented out, because otherwise someone can spam it and it will be annoying
+-// Filtering out events is not as simple as just dropping duplicates, as otherwise mute, unmute, mute would
+-// not say the second mute, which would lead you to believe they're unmuted
+-
+ function speak(text: string) {
+     // Don't narrate in the overlay window, otherwise everything is said twice
+     if (!text || window.__OVERLAY__) return;
+@@ -75,12 +72,84 @@ function formatText(str: string, user: string, channel: string, displayName: str
+         .replaceAll("{{NICKNAME}}", clean(nickname) || (nickname ? "Someone" : ""));
+ }
+ 
+-/*
+-let StatusMap = {} as Record<string, {
++const OTHERS_MUTE_DEAFEN_COOLDOWN = 3000;
++
++interface AudioTrack {
+     mute: boolean;
+     deaf: boolean;
+-}>;
+-*/
++    spokenMute: boolean;
++    spokenDeaf: boolean;
++    timer: ReturnType<typeof setTimeout> | null;
++    speak: (kind: string) => void;
++}
++
++const audioStates = new Map<string, AudioTrack>();
++
++function makeTrack(mute: boolean, deaf: boolean): AudioTrack {
++    return { mute, deaf, spokenMute: mute, spokenDeaf: deaf, timer: null, speak: () => { } };
++}
++
++function forgetUser(userId: string) {
++    const track = audioStates.get(userId);
++    if (track?.timer != null) clearTimeout(track.timer);
++    audioStates.delete(userId);
++}
++
++function resetAudioStates() {
++    for (const track of audioStates.values())
++        if (track.timer != null) clearTimeout(track.timer);
++    audioStates.clear();
++}
++
++function seedAudioStates(channelId?: string) {
++    resetAudioStates();
++    if (!channelId) return;
++
++    const myId = UserStore.getCurrentUser().id;
++    const states = VoiceStateStore.getVoiceStatesForChannel(channelId);
++    for (const userId in states) {
++        if (userId === myId) continue;
++        const s = states[userId];
++        audioStates.set(userId, makeTrack(s.mute || s.selfMute, s.deaf || s.selfDeaf));
++    }
++}
++
++// deafening also mutes, so a deaf transition absorbs the mute change to avoid saying both
++function flushAudio(track: AudioTrack) {
++    if (track.deaf !== track.spokenDeaf) {
++        const kind = track.deaf ? "deafen" : "undeafen";
++        track.spokenDeaf = track.deaf;
++        track.spokenMute = track.mute;
++        track.speak(kind);
++    } else if (track.mute !== track.spokenMute) {
++        const kind = track.mute ? "mute" : "unmute";
++        track.spokenMute = track.mute;
++        track.speak(kind);
++    }
++}
++
++function trackOtherAudio(userId: string, mute: boolean, deaf: boolean, announce: boolean, speak: (kind: string) => void) {
++    const existing = audioStates.get(userId);
++
++    if (!existing || !announce) {
++        if (existing?.timer != null) clearTimeout(existing.timer);
++        audioStates.set(userId, makeTrack(mute, deaf));
++        return;
++    }
++
++    existing.mute = mute;
++    existing.deaf = deaf;
++    existing.speak = speak;
++
++    // within cooldown the trailing flush reconciles against the latest state
++    if (existing.timer != null) return;
++
++    flushAudio(existing);
++    existing.timer = setTimeout(() => {
++        existing.timer = null;
++        flushAudio(existing);
++    }, OTHERS_MUTE_DEAFEN_COOLDOWN);
++}
+ 
+ // For every user, channelId and oldChannelId will differ when moving channel.
+ // Only for the local user, channelId and oldChannelId will be the same when moving channel,
+@@ -97,48 +166,21 @@ function getTypeAndChannelId({ channelId, oldChannelId }: VoiceStateChangeEvent,
+         if (channelId) return [oldChannelId ? "move" : "join", channelId];
+         if (oldChannelId) return ["leave", oldChannelId];
+     }
+-    /*
+-    if (channelId) {
+-        if (deaf || selfDeaf) return ["deafen", channelId];
+-        if (mute || selfMute) return ["mute", channelId];
+-        const oldStatus = StatusMap[userId];
+-        if (oldStatus.deaf) return ["undeafen", channelId];
+-        if (oldStatus.mute) return ["unmute", channelId];
+-    }
+-    */
+     return ["", ""];
+ }
+ 
+-/*
+-function updateStatuses(type: string, { deaf, mute, selfDeaf, selfMute, userId, channelId }: VoiceState, isMe: boolean) {
+-    if (isMe && (type === "join" || type === "move")) {
+-        StatusMap = {};
+-        const states = VoiceStateStore.getVoiceStatesForChannel(channelId!) as Record<string, VoiceState>;
+-        for (const userId in states) {
+-            const s = states[userId];
+-            StatusMap[userId] = {
+-                mute: s.mute || s.selfMute,
+-                deaf: s.deaf || s.selfDeaf
+-            };
+-        }
+-        return;
+-    }
++function speakEvent(type: string, channelId: string | undefined, userId: string, isMe: boolean, myGuildId?: string | null) {
++    const template = settings.store[type + "Message"];
++    if (!template) return;
+ 
+-    if (type === "leave" || (type === "move" && channelId !== SelectedChannelStore.getVoiceChannelId())) {
+-        if (isMe)
+-            StatusMap = {};
+-        else
+-            delete StatusMap[userId];
++    const userObj = UserStore.getUser(userId);
++    const user = isMe && !settings.store.sayOwnName ? "" : userObj.username;
++    const displayName = user && ((userObj as any).globalName ?? user);
++    const nickname = user && (GuildMemberStore.getNick(myGuildId!, userId) ?? displayName);
++    const channel = ChannelStore.getChannel(channelId!)?.name ?? "";
+ 
+-        return;
+-    }
+-
+-    StatusMap[userId] = {
+-        deaf: deaf || selfDeaf,
+-        mute: mute || selfMute
+-    };
++    speak(formatText(template, user, channel, displayName, nickname));
+ }
+-*/
+ 
+ function playSample(type: string) {
+     const currentUser = UserStore.getCurrentUser();
+@@ -180,36 +222,39 @@ export default definePlugin({
+                 }
+ 
+                 const [type, id] = getTypeAndChannelId(state, isMe);
+-                if (!type) continue;
+-
+-                const template = settings.store[type + "Message"];
+-                const user = isMe && !settings.store.sayOwnName ? "" : UserStore.getUser(userId).username;
+-                const displayName = user && ((UserStore.getUser(userId) as any).globalName ?? user);
+-                const nickname = user && (GuildMemberStore.getNick(myGuildId!, userId) ?? displayName);
+-                const channel = ChannelStore.getChannel(id).name;
+ 
+-                speak(formatText(template, user, channel, displayName, nickname));
+-
+-                // updateStatuses(type, state, isMe);
++                if (type) speakEvent(type, id, userId, isMe, myGuildId);
++
++                if (isMe) {
++                    if (type === "join" || type === "move") seedAudioStates(id);
++                    else if (type === "leave") resetAudioStates();
++                } else if (channelId === myChanId) {
++                    const mute = state.mute || state.selfMute;
++                    const deaf = state.deaf || state.selfDeaf;
++                    const announce = type === "" && settings.store.sayOthersMuteDeafen;
++                    trackOtherAudio(userId, mute, deaf, announce, kind => speakEvent(kind, myChanId, userId, false, myGuildId));
++                } else {
++                    forgetUser(userId);
++                }
+             }
+         },
+ 
+         AUDIO_TOGGLE_SELF_MUTE() {
+-            const chanId = SelectedChannelStore.getVoiceChannelId()!;
+-            const s = VoiceStateStore.getVoiceStateForChannel(chanId);
++            const chanId = SelectedChannelStore.getVoiceChannelId();
++            const s = chanId && VoiceStateStore.getVoiceStateForChannel(chanId);
+             if (!s) return;
+ 
+             const event = s.mute || s.selfMute ? "unmute" : "mute";
+-            speak(formatText(settings.store[event + "Message"], "", ChannelStore.getChannel(chanId).name, "", ""));
++            speakEvent(event, chanId, UserStore.getCurrentUser().id, true, SelectedGuildStore.getGuildId() ?? undefined);
+         },
+ 
+         AUDIO_TOGGLE_SELF_DEAF() {
+-            const chanId = SelectedChannelStore.getVoiceChannelId()!;
+-            const s = VoiceStateStore.getVoiceStateForChannel(chanId);
++            const chanId = SelectedChannelStore.getVoiceChannelId();
++            const s = chanId && VoiceStateStore.getVoiceStateForChannel(chanId);
+             if (!s) return;
+ 
+             const event = s.deaf || s.selfDeaf ? "undeafen" : "deafen";
+-            speak(formatText(settings.store[event + "Message"], "", ChannelStore.getChannel(chanId).name, "", ""));
++            speakEvent(event, chanId, UserStore.getCurrentUser().id, true, SelectedGuildStore.getGuildId() ?? undefined);
+         }
+     },
+ 
+@@ -221,13 +266,19 @@ export default definePlugin({
+             return;
+         }
+ 
++        seedAudioStates(SelectedChannelStore.getVoiceChannelId());
++    },
++
++    stop() {
++        resetAudioStates();
+     },
+ 
+     settingsAboutComponent() {
+-        const [hasVoices, hasEnglishVoices] = useMemo(() => {
+-            const voices = speechSynthesis.getVoices();
+-            return [voices.length !== 0, voices.some(v => v.lang.startsWith("en"))];
+-        }, []);
++        const voices = useAvailableVoices();
++        const [hasVoices, hasEnglishVoices] = useMemo(
++            () => [voices.length !== 0, voices.some(v => v.lang.startsWith("en"))],
++            [voices],
++        );
+ 
+         const types = useMemo(
+             () => Object.keys(settings.def).filter(k => k.endsWith("Message")).map(k => k.slice(0, -7)),
+diff --git a/src/plugins/vcNarrator/settings.ts b/src/plugins/vcNarrator/settings.ts
+index ee3aee0e..0c8d673f 100644
+--- a/src/plugins/vcNarrator/settings.ts
++++ b/src/plugins/vcNarrator/settings.ts
+@@ -59,6 +59,11 @@ export const settings = definePluginSettings({
+         type: OptionType.BOOLEAN,
+         default: false
+     },
++    sayOthersMuteDeafen: {
++        description: "Announce when other people in your channel mute, unmute, deafen or undeafen. Only genuine state changes are announced.",
++        type: OptionType.BOOLEAN,
++        default: false
++    },
+     joinMessage: {
+         type: OptionType.STRING,
+         description: "Join Message",
+@@ -76,22 +81,22 @@ export const settings = definePluginSettings({
+     },
+     muteMessage: {
+         type: OptionType.STRING,
+-        description: "Mute Message (only self for now)",
++        description: "Mute Message",
+         default: "{{USER}} muted"
+     },
+     unmuteMessage: {
+         type: OptionType.STRING,
+-        description: "Unmute Message (only self for now)",
++        description: "Unmute Message",
+         default: "{{USER}} unmuted"
+     },
+     deafenMessage: {
+         type: OptionType.STRING,
+-        description: "Deafen Message (only self for now)",
++        description: "Deafen Message",
+         default: "{{USER}} deafened"
+     },
+     undeafenMessage: {
+         type: OptionType.STRING,
+-        description: "Undeafen Message (only self for now)",
++        description: "Undeafen Message",
+         default: "{{USER}} undeafened"
+     }
+ });

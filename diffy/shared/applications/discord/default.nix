@@ -8,7 +8,12 @@ bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
   home-manager =
     { pkgs, ... }:
     let
-      discordPackage = pkgs.discord.override { withVencord = true; };
+      discordPackage = pkgs.discord.override {
+        withVencord = true;
+        vencord = pkgs.vencord.overrideAttrs (old: {
+          patches = (old.patches or [ ]) ++ [ ./vcnarrator-mute-deafen.patch ];
+        });
+      };
     in
     {
       home.packages = [ discordPackage ];
