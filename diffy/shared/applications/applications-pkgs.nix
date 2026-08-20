@@ -52,6 +52,11 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
       # keep-sorted end
     };
 
+    home.perpetual.default.dirs = [
+      ".config/hearth"
+      ".local/state/hearth"
+    ];
+
     home.packages = with pkgs; [
       # keep-sorted start
       pavucontrol
