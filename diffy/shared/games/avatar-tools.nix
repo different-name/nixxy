@@ -31,12 +31,11 @@ bundleLib.mkEnableModule [ "dyad" "games" "avatar-tools" ] {
       # for alcom to use instead of launching the editor directly
       # also includes launch args:
       #  -force-vulkan: stable rendering on nvidia
-      #  -job-worker-count 1: works around crunch texture compressor crashing
       unity-editor = pkgs.writeShellScriptBin "unity-editor" ''
         export FONTCONFIG_FILE=${unityFontconfig}
         exec ${pkgs.unityhub.fhsEnv}/bin/unityhub-fhs-env \
           "$HOME/Documents/Unity/Hub/Editor/2022.3.22f1/Editor/Unity" \
-          -force-vulkan -job-worker-count 1 "$@"
+          -force-vulkan "$@"
       '';
     in
     {
