@@ -572,6 +572,7 @@
       "rate": 1,
       "sayOwnName": false,
       "latinOnly": true,
+      "sayOthersMuteDeafen": true,
       "joinMessage": "{{USER}} joined",
       "leaveMessage": "{{USER}} left",
       "moveMessage": "{{USER}} moved to {{CHANNEL}}",
