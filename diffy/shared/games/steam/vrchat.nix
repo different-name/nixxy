@@ -2,6 +2,7 @@
   lib,
   config,
   inputs',
+  self',
   ...
 }:
 {
@@ -86,6 +87,13 @@
       xdg.dataFile."Steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/Pictures/VRChat" = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Pictures/VRChat";
         force = true;
+      };
+
+      home.perpetual.default.packages.oscleash = {
+        package = self'.packages.oscleash;
+        dirs = [
+          "$configHome/OSCLeash"
+        ];
       };
     };
   };
