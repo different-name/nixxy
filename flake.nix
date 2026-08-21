@@ -171,7 +171,7 @@
 
     # hyprland plugin for dwm-like workspaces across monitors
     split-monitor-workspaces = {
-      url = "github:zjeffer/split-monitor-workspaces/release/0.55.x";
+      url = "github:zjeffer/split-monitor-workspaces/release/0.56.x";
       flake = false;
     };
 
