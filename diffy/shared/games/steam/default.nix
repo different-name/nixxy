@@ -81,6 +81,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
         Description = "Steam (silent autostart)";
         PartOf = [ "graphical-session.target" ];
         After = [ "graphical-session.target" ];
+        X-SwitchMethod = "keep-old";
       };
 
       Service = {
