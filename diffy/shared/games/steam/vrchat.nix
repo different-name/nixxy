@@ -24,6 +24,8 @@ in
 
           env.TZ = null;
 
+          systemd.enable = true;
+
           files.prefix.patch."user.reg" = {
             format = "unityPrefs";
             content."Software/VRChat/VRChat" = {
@@ -116,6 +118,22 @@ in
               run ln -sfnT ${lib.escapeShellArg photos} ${lib.escapeShellArg prefixPhotos}
             fi
           '';
+
+        systemd.user.services.oscleash = {
+          Unit = {
+            Description = "OSCLeash";
+            PartOf = [ "steam-app-vrchat.target" ];
+            Before = [ "steam-app-vrchat.target" ];
+          };
+
+          Service = {
+            ExecStart = lib.getExe self'.packages.oscleash;
+            Restart = "on-failure";
+            RestartSec = 5;
+          };
+
+          Install.WantedBy = [ "steam-app-vrchat.target" ];
+        };
 
         home.perpetual.default.packages.oscleash = {
           package = self'.packages.oscleash;
