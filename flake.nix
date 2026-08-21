@@ -169,6 +169,12 @@
       };
     };
 
+    # hyprland plugin for dwm-like workspaces across monitors
+    split-monitor-workspaces = {
+      url = "github:zjeffer/split-monitor-workspaces/release/0.55.x";
+      flake = false;
+    };
+
     # manage steam game launch options and other local config
     steam-config-nix = {
       url = "github:different-name/steam-config-nix";

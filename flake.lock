@@ -572,6 +572,7 @@
         "nur": "nur",
         "solarxr-cli": "solarxr-cli",
         "spicetify-nix": "spicetify-nix",
+        "split-monitor-workspaces": "split-monitor-workspaces",
         "steam-config-nix": "steam-config-nix",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix",
@@ -644,6 +645,23 @@
       "original": {
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "split-monitor-workspaces": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782230079,
+        "narHash": "sha256-AIg6hxip9hP6XWIqpjQOIripCdJQvtKSEubV+qL8mF8=",
+        "owner": "zjeffer",
+        "repo": "split-monitor-workspaces",
+        "rev": "d6b45cdb9b30c388bc4ded4adad78a14e523d591",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zjeffer",
+        "ref": "release/0.55.x",
+        "repo": "split-monitor-workspaces",
         "type": "github"
       }
     },
