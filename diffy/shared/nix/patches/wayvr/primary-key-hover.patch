@@ -1,0 +1,17 @@
+diff --git a/wayvr/src/overlays/keyboard/builder.rs b/wayvr/src/overlays/keyboard/builder.rs
+index 815f652..82fe535 100644
+--- a/wayvr/src/overlays/keyboard/builder.rs
++++ b/wayvr/src/overlays/keyboard/builder.rs
+@@ -392,9 +392,9 @@ fn get_anim_transform(pos: f32, widget_size: Vec2, width_mult: f32) -> Mat4 {
+     util::centered_matrix(widget_size, &Mat4::from_scale(scale))
+ }
+ 
+-const HOVER_COLOR: WguiColor = WguiColorName::Tertiary.to_wgui_color();
+-const HOVER_BORDER_COLOR: WguiColor = WguiColorName::Tertiary.to_wgui_color().mult_rgb(0.5);
+-const HOVER_TEXT_COLOR: WguiColor = WguiColorName::OnTertiary.to_wgui_color();
++const HOVER_COLOR: WguiColor = WguiColorName::Primary.to_wgui_color();
++const HOVER_BORDER_COLOR: WguiColor = WguiColorName::Primary.to_wgui_color().mult_rgb(0.5);
++const HOVER_TEXT_COLOR: WguiColor = WguiColorName::OnPrimary.to_wgui_color();
+ const PRESS_BORDER_COLOR: WguiColor = WguiColorName::Highlight.to_wgui_color();
+ 
+ fn set_anim_color(

@@ -1,0 +1,13 @@
+diff --git a/wayvr/src/assets/gui/keyboard.xml b/wayvr/src/assets/gui/keyboard.xml
+index 0d3a288..367570e 100644
+--- a/wayvr/src/assets/gui/keyboard.xml
++++ b/wayvr/src/assets/gui/keyboard.xml
+@@ -1,7 +1,7 @@
+ <layout>
+   <macro name="keycap_rect"
+     margin="2" width="100%" overflow="hidden" box_sizing="border_box"
+-    border_color="outline" border="2" round="6" color="background_variant" color2="background" gradient="vertical"
++    border_color="outline" border="2" round="6" color="background" color2="background" gradient="none"
+     align_items="center" justify_content="center" />
+ 
+   <macro name="tray_rect"

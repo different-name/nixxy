@@ -33,6 +33,23 @@ bundleLib.mkEnableModule [ "dyad" "nix" "patches" ] {
             ];
           };
         });
+
+        wayvr = prev.wayvr.overrideAttrs (old: {
+          patches = (old.patches or [ ]) ++ [
+            (builtins.path {
+              path = ./wayvr/gradient-intensity-config.patch;
+              name = "wayvr-gradient-intensity-config";
+            })
+            (builtins.path {
+              path = ./wayvr/keycap-style.patch;
+              name = "wayvr-keycap-style";
+            })
+            (builtins.path {
+              path = ./wayvr/primary-key-hover.patch;
+              name = "wayvr-primary-key-hover";
+            })
+          ];
+        });
       })
     ];
   };
