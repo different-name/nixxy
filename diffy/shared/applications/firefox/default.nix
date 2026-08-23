@@ -29,6 +29,12 @@ bundleLib.mkEnableModule [ "dyad" "applications" "firefox" ] {
         isDefault = true;
       };
 
+      # profile for ytdlp cookies, closing after login prevents cookie rotation
+      profiles.ytdlp = {
+        id = 1;
+        name = "ytdlp";
+      };
+
       betterfox = {
         enable = true;
         profiles.default.enableAllSections = true;
