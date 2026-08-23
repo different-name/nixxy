@@ -40,8 +40,8 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
 
       apps = {
         # keep-sorted start block=yes newline_separated=yes
-        "Cyberpunk 2077" = {
-          id = 1091500;
+        "1091500" = {
+          name = "Cyberpunk 2077";
           compatTool = pkgs.proton-ge-bin;
 
           dllOverrides = {
@@ -54,8 +54,8 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
           ];
         };
 
-        "Warhammer 40k Darktide" = {
-          id = 1361210;
+        "1361210" = {
+          name = "Warhammer 40k Darktide";
           compatTool = pkgs.proton-ge-bin;
 
           env.LD_PRELOAD = null;

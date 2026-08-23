@@ -6,7 +6,7 @@
   ...
 }:
 let
-  appId = 438100;
+  appId = toString 438100;
 in
 {
   config = lib.mkIf config.dyad.games.steam.enable {
@@ -18,8 +18,8 @@ in
         ...
       }:
       {
-        programs.steam.config.apps."VRChat" = {
-          id = appId;
+        programs.steam.config.apps.${appId} = {
+          name = "VRChat";
           compatTool = inputs'.nixpkgs-xr.packages.proton-rtsp-bin;
 
           env.TZ = null;
@@ -100,7 +100,7 @@ in
         home.activation.vrchatPhotos =
           let
             photos = "${config.home.homeDirectory}/Pictures/VRChat";
-            prefixHome = "${config.xdg.dataHome}/Steam/steamapps/compatdata/${toString appId}/pfx/drive_c/users/steamuser";
+            prefixHome = "${config.xdg.dataHome}/Steam/steamapps/compatdata/${appId}/pfx/drive_c/users/steamuser";
             prefixPhotos = "${prefixHome}/Pictures/VRChat";
           in
           lib.hm.dag.entryAfter [ "linkGeneration" ] ''
