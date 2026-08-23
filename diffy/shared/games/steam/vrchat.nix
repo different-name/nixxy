@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   inputs',
   self',
   ...
@@ -18,6 +19,8 @@ in
         ...
       }:
       {
+        imports = [ inputs.vrchat-video-resolver.homeModules.default ];
+
         programs.steam.config.apps.${appId} = {
           name = "VRChat";
           compatTool = inputs'.nixpkgs-xr.packages.proton-rtsp-bin;
@@ -118,6 +121,14 @@ in
               run ln -sfnT ${lib.escapeShellArg photos} ${lib.escapeShellArg prefixPhotos}
             fi
           '';
+
+        services.vrchat-video-resolver = {
+          enable = true;
+          cookies.fromBrowser = "firefox:$HOME/.config/mozilla/firefox/ytdlp";
+          steamConfig.enable = true;
+        };
+
+        home.perpetual.default.dirs = [ "$cacheHome/vrchat-video-resolver" ];
 
         systemd.user.services.oscleash = {
           Unit = {

@@ -497,6 +497,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_6": {
+      "locked": {
+        "lastModified": 1787360063,
+        "narHash": "sha256-dt4WdcvsA8/RCe+VZZwqU0X+XMM3wBbGCWA0/sFWzGo=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2c423e03bbafcff28bfadc6781a4a8257f205cb5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -578,6 +594,7 @@
         "treefmt-nix": "treefmt-nix",
         "vicinae": "vicinae",
         "vicinae-extensions": "vicinae-extensions",
+        "vrchat-video-resolver": "vrchat-video-resolver",
         "wrappers": "wrappers"
       }
     },
@@ -770,6 +787,30 @@
       "original": {
         "owner": "vicinaehq",
         "repo": "extensions",
+        "type": "github"
+      }
+    },
+    "vrchat-video-resolver": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": "nixpkgs_6",
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787492761,
+        "narHash": "sha256-gSKCFX+pyshOAV1JMYp5ZgH5nWRg77NX4XT5tUZ8a3A=",
+        "owner": "different-name",
+        "repo": "vrchat-video-resolver",
+        "rev": "55cb8e4821592a5cc74c737a6bf0f9e8c45a703b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "different-name",
+        "repo": "vrchat-video-resolver",
         "type": "github"
       }
     },
