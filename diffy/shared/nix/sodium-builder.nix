@@ -3,6 +3,9 @@ bundleLib.mkEnableModule [ "dyad" "nix" "sodium-builder" ] {
   nixos = {
     nix = {
       distributedBuilds = true;
+      # distributedBuilds no longer populates the builders line on its own,
+      # point it at the generated machines file so the daemon offloads
+      settings.builders = "@/etc/nix/machines";
       buildMachines = [
         {
           hostName = "sodium";
