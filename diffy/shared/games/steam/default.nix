@@ -67,13 +67,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
         };
         # keep-sorted end
       };
-
-      nonSteamApps = {
-        vintage-story = {
-          name = "Vintage Story";
-          target = pkgs.vintagestory;
-        };
-      };
     };
 
     systemd.user.services.steam-silent = {

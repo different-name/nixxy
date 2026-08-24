@@ -25,10 +25,6 @@ bundleLib.mkEnableModule [ "dyad" "games" "extraPackages" ] {
           "$configHome/r2modman"
           "$configHome/r2modmanPlus-local"
         ];
-
-        vintagestory.dirs = [
-          "$configHome/VintagestoryData"
-        ];
         # keep-sorted end
       };
 
