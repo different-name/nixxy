@@ -21,6 +21,8 @@ in
       # keep-sorted end
     };
 
+    applications.bambu-studio.enable = true;
+
     hardware.nvidia.enable = true;
 
     system = {
