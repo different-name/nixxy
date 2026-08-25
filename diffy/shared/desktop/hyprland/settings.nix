@@ -72,6 +72,13 @@
             transform = 3;
           }
           {
+            # laptop monitor
+            output = "desc:Sharp Corporation 0x14D1";
+            mode = "preferred";
+            position = "0x0";
+            scale = 1.2;
+          }
+          {
             # work monitor
             output = "desc:Microstep MSI MP275 PC3M234705301";
             mode = "1920x1080@60";
