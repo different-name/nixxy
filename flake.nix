@@ -181,16 +181,6 @@
       flake = false;
     };
 
-    # resolve vrchat's video urls, remuxing youtube for its players
-    vrchat-video-resolver = {
-      url = "github:different-name/vrchat-video-resolver";
-      # has its own nixpkgs revision for fresher yt-dlp without needing to update system
-      inputs = {
-        systems.follows = "systems";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
     # manage steam game launch options and other local config
     steam-config-nix = {
       url = "github:different-name/steam-config-nix";
@@ -224,6 +214,16 @@
       inputs = {
         systems.follows = "systems";
         vicinae.follows = "vicinae";
+      };
+    };
+
+    # resolve vrchat's video urls, remuxing youtube for its players
+    vrchat-video-resolver = {
+      url = "github:different-name/vrchat-video-resolver";
+      # has its own nixpkgs revision for fresher yt-dlp without needing to update system
+      inputs = {
+        systems.follows = "systems";
+        flake-parts.follows = "flake-parts";
       };
     };
 
