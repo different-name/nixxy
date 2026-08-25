@@ -1,54 +1,65 @@
 {
   bundleLib,
   lib,
+  config,
   inputs,
   ...
 }:
-bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
-  home-manager =
-    { pkgs, ... }:
-    let
-      discordPackage = pkgs.discord.override {
-        withVencord = true;
-        vencord = pkgs.vencord.overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ [ ./vcnarrator-mute-deafen.patch ];
-        });
-      };
-    in
-    {
-      home.packages = [ discordPackage ];
+{
+  options.dyad.applications.discord.autoStart = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Start discord with the graphical session";
+  };
 
-      systemd.user.services.discord = {
-        Unit = {
-          Description = "Discord";
-          PartOf = [ "graphical-session.target" ];
-          After = [ "graphical-session.target" ];
-        };
+  imports = lib.singleton (
+    bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
+      home-manager =
+        { pkgs, ... }:
+        let
+          discordPackage = pkgs.discord.override {
+            withVencord = true;
+            vencord = pkgs.vencord.overrideAttrs (old: {
+              patches = (old.patches or [ ]) ++ [ ./vcnarrator-mute-deafen.patch ];
+            });
+          };
+        in
+        {
+          home.packages = [ discordPackage ];
 
-        Service = {
-          # workaround for starting before network is available
-          ExecStartPre = "${lib.getExe' pkgs.coreutils "sleep"} 2";
-          ExecStart = lib.getExe discordPackage;
-          Restart = "no";
-        };
+          systemd.user.services.discord = lib.mkIf config.dyad.applications.discord.autoStart {
+            Unit = {
+              Description = "Discord";
+              PartOf = [ "graphical-session.target" ];
+              After = [ "graphical-session.target" ];
+            };
 
-        Install.WantedBy = [ "graphical-session.target" ];
-      };
+            Service = {
+              # workaround for starting before network is available
+              ExecStartPre = "${lib.getExe' pkgs.coreutils "sleep"} 2";
+              ExecStart = lib.getExe discordPackage;
+              Restart = "no";
+            };
 
-      xdg.configFile."Vencord/themes/DisblockOrigin.theme.css".text =
-        lib.concatMapStringsSep "\n" lib.readFile
-          [
-            "${inputs.disblock-origin}/DisblockOrigin.theme.css"
-            ./disblock-origin-settings.css
+            Install.WantedBy = [ "graphical-session.target" ];
+          };
+
+          xdg.configFile."Vencord/themes/DisblockOrigin.theme.css".text =
+            lib.concatMapStringsSep "\n" lib.readFile
+              [
+                "${inputs.disblock-origin}/DisblockOrigin.theme.css"
+                ./disblock-origin-settings.css
+              ];
+
+          xdg.configFile."Vencord/settings/settings.json" = {
+            source = ./vencord.json;
+            force = true;
+          };
+
+          home.perpetual.default.dirs = [
+            "$configHome/discord"
           ];
-
-      xdg.configFile."Vencord/settings/settings.json" = {
-        source = ./vencord.json;
-        force = true;
-      };
-
-      home.perpetual.default.dirs = [
-        "$configHome/discord"
-      ];
-    };
+        };
+    }
+  );
 }
