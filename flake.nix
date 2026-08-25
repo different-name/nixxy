@@ -78,6 +78,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # target file size video compression for discord
+    ffmpeg4discord = {
+      url = "github:zfleeman/ffmpeg4discord";
+      flake = false;
+    };
+
     # nix flakes framework
     flake-parts = {
       url = "github:hercules-ci/flake-parts";

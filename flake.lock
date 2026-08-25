@@ -149,6 +149,22 @@
         "type": "github"
       }
     },
+    "ffmpeg4discord": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787107213,
+        "narHash": "sha256-7ECKa2rsVtNn0xDls87SQciVxRW7d1V5xItijlVLsvE=",
+        "owner": "zfleeman",
+        "repo": "ffmpeg4discord",
+        "rev": "23f4e85c5e5c22ad6229b6716444ffcd0e2d76c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zfleeman",
+        "repo": "ffmpeg4discord",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "locked": {
         "lastModified": 1733328505,
@@ -574,6 +590,7 @@
         "catppuccin": "catppuccin",
         "disblock-origin": "disblock-origin",
         "disko": "disko",
+        "ffmpeg4discord": "ffmpeg4discord",
         "flake-parts": "flake-parts",
         "hexecute": "hexecute",
         "home-manager": "home-manager",

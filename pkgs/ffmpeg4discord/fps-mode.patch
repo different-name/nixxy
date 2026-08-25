@@ -1,0 +1,13 @@
+ffmpeg 8.0 removed -vsync, replaced by -fps_mode
+
+--- a/ffmpeg4discord/twopass.py
++++ b/ffmpeg4discord/twopass.py
+@@ -244,7 +244,7 @@
+             "pass1": {
+                 "pass": 1,
+                 "f": "null",
+-                "vsync": "cfr",  # not sure if this is unique to x264 or not
++                "fps_mode": "cfr",  # not sure if this is unique to x264 or not
+                 "c:v": codec_map.get(codec, codec),
+             },
+             "pass2": {

@@ -1,17 +1,13 @@
 {
   lib,
+  inputs,
   python3Packages,
-  fetchPypi,
 }:
-python3Packages.buildPythonApplication rec {
+python3Packages.buildPythonApplication {
   pname = "ffmpeg4discord";
-  version = "0.1.9";
+  version = inputs.ffmpeg4discord.shortRev;
+  src = inputs.ffmpeg4discord.outPath;
   format = "pyproject";
-
-  src = fetchPypi {
-    inherit pname version;
-    hash = "sha256-6JUKnsqQRMh2tIgAHho7IAFBO3scE22QNy8zVVxaOXo=";
-  };
 
   build-system = with python3Packages; [
     setuptools
@@ -20,7 +16,10 @@ python3Packages.buildPythonApplication rec {
   dependencies = with python3Packages; [
     flask
     ffmpeg-python
+    platformdirs
   ];
+
+  patches = [ ./fps-mode.patch ];
 
   pythonRelaxDeps = [ "flask" ];
 
