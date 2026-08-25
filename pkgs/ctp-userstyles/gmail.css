@@ -1,0 +1,103 @@
+@-moz-document domain("mail.google.com") {
+  body.aAU {
+    background-color: #1e1e2e !important;
+  }
+
+  form.bas.aJf[role="search"] {
+    background-color: #313244 !important;
+  }
+
+  /* btDi4d drops its .tyMQmc state class once the bar unsticks at the end of a thread */
+  div.nH.a98.iY,
+  div.nH.btDi4d,
+  div.nr.wR {
+    background-color: #1e1e2e !important;
+  }
+
+  div.nH.a98.iY {
+    color: #cdd6f4 !important;
+  }
+
+  /* gmail renders this subtree in light-theme greys regardless of base theme */
+  div.nH.a98.iY * {
+    color: inherit !important;
+  }
+
+  /* timestamp, snippet, sender address */
+  div.nH.a98.iY span.g3,
+  div.nH.a98.iY div.g6,
+  div.nH.a98.iY span.go {
+    color: #a6adc8 !important;
+  }
+
+  div.nH.a98.iY span.gD {
+    color: #cdd6f4 !important;
+  }
+
+  div.nH.a98.iY a[href] {
+    color: #89b4fa !important;
+  }
+
+  /* collapsed-message count bubble */
+  span.adx[role="button"] {
+    background-color: #313244 !important;
+  }
+
+  /* ai overview chip */
+  div.DC5CAd {
+    background-color: #313244 !important;
+  }
+
+  /* newer/older pagination */
+  div.hN,
+  div.hO {
+    background-color: #313244 !important;
+  }
+
+  /* trimmed-content toggle */
+  div.ajR {
+    background-color: #45475a !important;
+  }
+
+  /* reply, forward, and smart-reply pills */
+  span.ams {
+    border-color: #45475a !important;
+  }
+
+  div.G3.G2.afm {
+    border-color: #313244 !important;
+  }
+
+  /* external-sender chip, outspecificed by the subtree rule above */
+  div.nH.a98.iY div.aau {
+    background-color: rgba(249, 226, 175, 0.15) !important;
+    color: #f9e2af !important;
+  }
+
+  div.qj.aEe.qr {
+    background-color: #45475a !important;
+  }
+
+  div.aeN[role="navigation"] {
+    background-color: #181825 !important;
+  }
+
+  div.V6.CL.W9[role="link"] {
+    background-color: transparent !important;
+  }
+
+  div.lJradf.XQuz9d.X72uL[role="button"] {
+    background-color: #313244 !important;
+    color: #cdd6f4 !important;
+  }
+
+  /* compose formatting toolbar */
+  div.J-Z[role="toolbar"] {
+    background-color: #313244 !important;
+  }
+
+  div.J-Z[role="toolbar"] [role="option"],
+  div.J-Z[role="toolbar"] [role="button"] {
+    color: #cdd6f4 !important;
+  }
+}

@@ -53,10 +53,7 @@
         };
       };
 
-      # download update import file for stylus catppuccin userstyles
-      home.shellAliases.ctpuserstyles = ''
-        curl -sL https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json | sed -E 's/"default":"(rosewater|flamingo|pink|mauve|red|maroon|peach|green|yellow|teal|blue|sapphire|grey|lavender)"/"default":"red"/g' > ~/import.json
-      '';
+      home.packages = [ self'.packages.ctp-userstyles ];
     };
   };
 }
