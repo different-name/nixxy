@@ -87,10 +87,10 @@
           }
           {
             # previous main monitor
-            output = "desc:BNQ BenQ EW3270U 5BL00174019";
-            mode = "preferred";
-            position = "0x0";
-            scale = 1.5;
+            output = "desc:BNQ BenQ EW3270U 0x00005445";
+            mode = "2560x1440@60";
+            position = "auto-right";
+            scale = 1;
           }
           {
             # everything else
