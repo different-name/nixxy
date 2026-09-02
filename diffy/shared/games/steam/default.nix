@@ -88,6 +88,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
     home.perpetual.default.dirs = [
       ".steam"
       "$dataHome/Steam"
+      "$cacheHome/protonfixes"
 
       ".factorio"
       "$dataHome/Terraria"

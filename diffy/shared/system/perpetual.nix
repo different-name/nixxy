@@ -33,7 +33,6 @@ bundleLib.mkEnableModule [ "dyad" "system" "perpetual" ] {
       ];
 
       files = [
-        "/var/lib/logrotate.status"
         "/var/lib/systemd/random-seed"
       ];
     };
@@ -58,7 +57,10 @@ bundleLib.mkEnableModule [ "dyad" "system" "perpetual" ] {
 
       dirs = [
         # keep-sorted start
+        "$cacheHome/gstreamer-1.0"
+        "$cacheHome/gtk-4.0"
         "$dataHome/Trash"
+        "$dataHome/pki" # nss certificate db
         ".terminfo"
         "nixxy"
         # keep-sorted end

@@ -82,6 +82,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
     home.perpetual.default.dirs = [
       "$configHome/VSCodium"
       "$stateHome/VSCodium"
+      ".vscode-oss-shared"
     ];
   };
 }

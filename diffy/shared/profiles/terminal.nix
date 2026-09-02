@@ -10,6 +10,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
       # keep-sorted start
       btop.enable = true;
       claude-code.enable = true;
+      dev-state.enable = true;
       extraPackages.enable = true;
       git.enable = true;
       nixpkgs-review.enable = true;

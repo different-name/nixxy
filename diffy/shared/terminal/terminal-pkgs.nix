@@ -26,8 +26,14 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
         "$dataHome/qalculate"
       ];
 
+      # audio/video downloader
+      yt-dlp.dirs = [
+        "$cacheHome/yt-dlp"
+      ];
+
       # github cli
       gh.dirs = [
+        "$cacheHome/gh"
         "$configHome/gh"
       ];
       # keep-sorted end
@@ -55,7 +61,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
       tree # directory listing
       unzip # unzip files
       usbutils # tools for usb devices
-      yt-dlp # audio/video downloader
       zip # zip files
       # keep-sorted end
     ];

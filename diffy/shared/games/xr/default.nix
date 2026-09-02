@@ -199,6 +199,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
         ];
 
         wayvr.dirs = [
+          "$cacheHome/wayvr"
           "$configHome/wayvr"
         ];
         # keep-sorted end

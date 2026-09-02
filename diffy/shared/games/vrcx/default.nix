@@ -8,6 +8,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "vrcx" ] {
       xdg.configFile."VRCX/custom.css".source = ./custom.css;
 
       home.perpetual.default.dirs = [
+        "$cacheHome/VRCX"
         "$configHome/VRCX"
       ];
     };

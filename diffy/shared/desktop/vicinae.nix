@@ -38,7 +38,9 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "vicinae" ] {
     };
 
     home.perpetual.default.dirs = [
+      "$cacheHome/vicinae"
       "$dataHome/vicinae"
+      "$stateHome/vicinae"
     ];
   };
 }

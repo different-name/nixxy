@@ -30,10 +30,11 @@ bundleLib.mkEnableModule [ "dyad" "games" "extraPackages" ] {
 
       dirs = [
         # keep-sorted start
-        "$cacheHome/mesa_shader_cache_db" # shader cache
+        "$cacheHome/mesa_shader_cache" # shader cache
+        "$cacheHome/qtshadercache-x86_64-little_endian-lp64" # qt shader cache
+        "$cacheHome/radv_builtin_shaders" # radv shader cache
         "$dataHome/umu" # proton runtime
-        "$dataHome/vulkan/" # shader cache files?
-        ".nv" # OpenGL cache
+        "$dataHome/vulkan" # steam fossilize and overlay layers
         # keep-sorted end
       ];
     };

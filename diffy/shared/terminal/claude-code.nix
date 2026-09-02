@@ -4,7 +4,10 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "claude-code" ] {
     { config, ... }:
     {
       home.perpetual.default.packages.claude-code = {
-        dirs = [ ".claude" ];
+        dirs = [
+          "$cacheHome/claude-cli-nodejs"
+          ".claude"
+        ];
         files = [ ".claude.json" ];
       };
 
