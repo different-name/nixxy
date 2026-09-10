@@ -19,13 +19,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
             blueglassblock.better-json5
             dbaeumer.vscode-eslint
             editorconfig.editorconfig
-            graphql.vscode-graphql
-            graphql.vscode-graphql-syntax
-            kdl-org.kdl
-            ms-pyright.pyright
-            ms-python.black-formatter
-            ms-python.pylint
-            ms-python.python
             prettiercode.code-prettier
             slevesque.shader
             stevensona.shader-toy
