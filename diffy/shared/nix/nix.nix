@@ -34,7 +34,10 @@ bundleLib.mkEnableModule [ "dyad" "nix" "nix" ] {
           nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
           settings = {
-            experimental-features = "nix-command flakes";
+            experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
             flake-registry = ""; # disable global registry
 
             # https://jackson.dev/post/nix-reasonable-defaults/

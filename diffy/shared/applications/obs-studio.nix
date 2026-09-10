@@ -25,9 +25,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "obs-studio" ] {
     programs.obs-studio = {
       enable = true;
       package = mkWrappedObs pkgs;
-      plugins = [
-        pkgs.obs-studio-plugins.obs-move-transition
-      ];
     };
 
     home.perpetual.default.dirs = [
