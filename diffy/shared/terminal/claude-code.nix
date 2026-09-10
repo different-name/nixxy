@@ -135,6 +135,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "claude-code" ] {
         ${lib.optionalString config.programs.nushell.enable ''
           - i use nushell as my shell. provide shell snippets in nushell syntax, not bash/posix.
         ''}
+        - finding processes: `pgrep -f` and `ps | grep` match the shell you run them from, the whole command text sits in that process's cmdline. use `pidof <name>` (exit code is the answer), `systemctl --user is-active <unit>`, or `ss -lptnH 'sport = :3000'` instead. `pgrep -x <name>` is fine for an exact name. only reach for `-f` with the first char bracketed, `pgrep -f "[c]laude"`.
       '';
     };
 }
