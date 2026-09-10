@@ -20,7 +20,10 @@
           discordPackage = pkgs.discord.override {
             withVencord = true;
             vencord = pkgs.vencord.overrideAttrs (old: {
-              patches = (old.patches or [ ]) ++ [ ./vcnarrator-mute-deafen.patch ];
+              patches = (old.patches or [ ]) ++ [
+                ./favorite-gif-cache.patch
+                ./vcnarrator-mute-deafen.patch
+              ];
             });
           };
         in

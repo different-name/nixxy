@@ -192,6 +192,9 @@
     "FavoriteEmojiFirst": {
       "enabled": false
     },
+    "FavoriteGifCache": {
+      "enabled": true
+    },
     "FavoriteGifSearch": {
       "enabled": true
     },
