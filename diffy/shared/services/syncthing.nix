@@ -44,13 +44,6 @@ bundleLib.mkEnableModule [ "dyad" "services" "syncthing" ] {
           (?d)result
           (?d)result-*
           (?d)target
-          (?d)*.db-journal
-          (?d)*.db-shm
-          (?d)*.db-wal
-          /ncg-tools/.data/archive
-          /ncg-tools/.data/backups
-          /ncg-tools/.data/browser-profiles
-          /ncg-tools/apps/migration/.data
         '';
       };
     in
