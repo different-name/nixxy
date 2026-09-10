@@ -32,6 +32,8 @@
               Description = "Discord";
               PartOf = [ "graphical-session.target" ];
               After = [ "graphical-session.target" ];
+              RefuseManualStart = true;
+              RefuseManualStop = true;
             };
 
             Service = {
