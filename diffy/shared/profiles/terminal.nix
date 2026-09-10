@@ -11,6 +11,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
       btop.enable = true;
       claude-code.enable = true;
       dev-state.enable = true;
+      epht.enable = true;
       extraPackages.enable = true;
       git.enable = true;
       nixpkgs-review.enable = true;

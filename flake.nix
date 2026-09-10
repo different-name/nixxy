@@ -78,6 +78,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # report unpersisted live data and orphaned persistent storage
+    epht = {
+      url = "github:different-name/epht";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
     # target file size video compression for discord
     ffmpeg4discord = {
       url = "github:zfleeman/ffmpeg4discord";
