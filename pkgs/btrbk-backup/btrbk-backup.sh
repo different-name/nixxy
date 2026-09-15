@@ -35,6 +35,6 @@ if ! mountpoint -q "@mount_point@"; then
   sudo mount /dev/mapper/"@crypt_name@" "@mount_point@"
 fi
 
-sudo btrbk -c @config_path@ --progress --verbose run
+sudo btrbk -c @config_path@ --progress --verbose resume
 
 echo "Backup complete."
