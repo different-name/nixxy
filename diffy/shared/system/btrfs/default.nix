@@ -54,6 +54,9 @@ bundleLib.mkEnableModule [ "dyad" "system" "btrfs" ] {
         );
       };
 
+    # single profile data, scrub detects rot but only repairs dup metadata
+    services.btrfs.autoScrub.enable = true;
+
     services.fstrim.enable = true;
 
     services.btrbk = {
