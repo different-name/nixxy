@@ -19,8 +19,6 @@ python3Packages.buildPythonApplication {
     platformdirs
   ];
 
-  patches = [ ./fps-mode.patch ];
-
   pythonRelaxDeps = [ "flask" ];
 
   nativeCheckInputs = with python3Packages; [
