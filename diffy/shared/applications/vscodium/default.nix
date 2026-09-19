@@ -15,7 +15,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
           with vscode-marketplace;
           [
             # keep-sorted start
-            anthropic.claude-code
             blueglassblock.better-json5
             dbaeumer.vscode-eslint
             editorconfig.editorconfig
@@ -29,7 +28,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
 
         userSettings = {
           # keep-sorted start block=yes
-          "claudeCode.claudeProcessWrapper" = "${pkgs.claude-code}/bin/claude";
           "editor.fontFamily" = "'JetBrains Mono', 'monospace', monospace";
           "editor.fontLigatures" = true;
           "editor.formatOnSave" = true;
