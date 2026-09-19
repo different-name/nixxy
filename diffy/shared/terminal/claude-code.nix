@@ -1,4 +1,9 @@
-{ bundleLib, lib, ... }:
+{
+  bundleLib,
+  lib,
+  self,
+  ...
+}:
 bundleLib.mkEnableModule [ "dyad" "terminal" "claude-code" ] {
   home-manager =
     { config, pkgs, ... }:
@@ -130,12 +135,13 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "claude-code" ] {
 
       home.file.".claude/themes/catppuccin.json".source = theme;
 
+      age.secrets."claude/instructions" = {
+        file = self + /secrets/claude/instructions.age;
+        path = "${config.home.homeDirectory}/.claude/instructions.md";
+      };
+
       home.file.".claude/CLAUDE.md".text = ''
-        # global preferences
-        ${lib.optionalString config.programs.nushell.enable ''
-          - i use nushell as my shell. provide shell snippets in nushell syntax, not bash/posix.
-        ''}
-        - finding processes: `pgrep -f` and `ps | grep` match the shell you run them from, the whole command text sits in that process's cmdline. use `pidof <name>` (exit code is the answer), `systemctl --user is-active <unit>`, or `ss -lptnH 'sport = :3000'` instead. `pgrep -x <name>` is fine for an exact name. only reach for `-f` with the first char bracketed, `pgrep -f "[c]laude"`.
+        @${config.age.secrets."claude/instructions".path}
       '';
     };
 }
