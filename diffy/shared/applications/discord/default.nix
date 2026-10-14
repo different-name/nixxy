@@ -24,6 +24,15 @@
                 ./favorite-gif-cache.patch
                 ./vcnarrator-mute-deafen.patch
               ];
+
+              postPatch = (old.postPatch or "") + ''
+                mkdir -p src/userplugins
+                cp -r ${./compress-video-uploads} src/userplugins/compressVideoUploads
+                chmod -R u+w src/userplugins
+                substituteInPlace src/userplugins/compressVideoUploads/native.ts \
+                  --replace-fail '"ffmpeg"' '"${lib.getExe' pkgs.ffmpeg "ffmpeg"}"' \
+                  --replace-fail '"ffprobe"' '"${lib.getExe' pkgs.ffmpeg "ffprobe"}"'
+              '';
             });
           };
         in

@@ -123,6 +123,9 @@
     "ColorSighted": {
       "enabled": false
     },
+    "CompressVideoUploads": {
+      "enabled": true
+    },
     "ConsoleJanitor": {
       "enabled": false
     },
