@@ -8,9 +8,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
   home-manager = { pkgs, ... }: {
     home.perpetual.default.packages = {
       # keep-sorted start block=yes newline_separated=yes
-      # video compression for discord (10 MB)
-      ffmpeg4discord.package = self'.packages.ffmpeg4discord;
-
       nixxy-fmt.package = pkgs.writeShellScriptBin "nixxy-fmt" ''
         exec ${lib.getExe self'.formatter} "$@"
       '';
