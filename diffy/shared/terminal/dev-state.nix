@@ -8,6 +8,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "dev-state" ] {
     "$cacheHome/treefmt"
     "$cacheHome/zig"
     "$configHome/gcloud"
+    "$configHome/ncmb"
     "$dataHome/containers"
     "$stateHome/pnpm"
     ".net"
