@@ -1,0 +1,96 @@
+diff --git a/wayvr/src/backend/openxr/playspace.rs b/wayvr/src/backend/openxr/playspace.rs
+index c83ee2c..13ed0a4 100644
+--- a/wayvr/src/backend/openxr/playspace.rs
++++ b/wayvr/src/backend/openxr/playspace.rs
+@@ -13,6 +13,8 @@ use crate::{
+ 
+ use super::overlay::OpenXrOverlayData;
+ 
++const SPACE_ROTATE_SMOOTHING: f32 = 0.05;
++
+ struct MoverData<T> {
+     pose: Affine3A,
+     hand: usize,
+@@ -21,7 +23,7 @@ struct MoverData<T> {
+ 
+ pub(super) struct PlayspaceMover {
+     drag: Option<MoverData<Vec3A>>,
+-    rotate: Option<MoverData<Quat>>,
++    rotate: Option<MoverData<Affine3A>>,
+     gravity: SpaceGravity,
+     playspace_state: PlayspaceState,
+ }
+@@ -93,29 +95,40 @@ impl PlayspaceMover {
+                 return;
+             }
+ 
+-            let pose_quat = Quat::from_affine3(&data.pose);
+-            let new_hand =
+-                pose_quat * Quat::from_affine3(&app.input_state.pointers[data.hand].raw_pose);
+-
+-            let dq = pose_quat.conjugate() * (new_hand * data.hand_pose.conjugate()) * pose_quat;
+-            let mut space_transform = if app.session.config.space_rotate_unlocked {
+-                Affine3A::from_quat(dq)
++            let raw_hand = data.pose * app.input_state.pointers[data.hand].raw_pose;
++            let t = 1.0 - (-app.delta_time / SPACE_ROTATE_SMOOTHING).exp();
++            let new_hand = Affine3A::from_rotation_translation(
++                Quat::from_affine3(&data.hand_pose).slerp(Quat::from_affine3(&raw_hand), t),
++                raw_hand.translation.into(),
++            );
++
++            let new_pose = if app.session.config.space_rotate_unlocked {
++                // keep the hand's stage pose fixed so the body orbits it
++                let p = new_hand * data.hand_pose.inverse() * data.pose;
++                Affine3A::from_rotation_translation(
++                    Quat::from_affine3(&p).normalize(),
++                    p.translation.into(),
++                )
+             } else {
++                let pose_quat = Quat::from_affine3(&data.pose);
++                let dq = pose_quat.conjugate()
++                    * Quat::from_affine3(&(new_hand * data.hand_pose.inverse()))
++                    * pose_quat;
+                 let rel_y = f32::atan2(
+                     2.0 * dq.y.mul_add(dq.w, dq.x * dq.z),
+                     2.0f32.mul_add(dq.w.mul_add(dq.w, dq.x * dq.x), -1.0),
+                 );
+ 
+-                Affine3A::from_rotation_y(rel_y)
++                let mut space_transform = Affine3A::from_rotation_y(rel_y);
++                space_transform.translation = (space_transform
++                    .transform_vector3a(app.input_state.hmd.translation)
++                    - app.input_state.hmd.translation)
++                    * -1.0;
++                data.pose * space_transform
+             };
+-            let offset = (space_transform.transform_vector3a(app.input_state.hmd.translation)
+-                - app.input_state.hmd.translation)
+-                * -1.0;
+-
+-            space_transform.translation = offset;
+ 
+             let before_pose = data.pose;
+-            data.pose *= space_transform;
++            data.pose = new_pose;
+             if !app.session.config.space_drag_affects_world {
+                 playspace_common::shift_world(overlays, &mut app.anchor, &before_pose, &data.pose);
+             }
+@@ -123,6 +136,9 @@ impl PlayspaceMover {
+ 
+             apply_offset(data.pose, &mut monado.ipc);
+             self.rotate = Some(data);
++            // drag would fight rotate when both share a button
++            self.drag = None;
++            return;
+         } else {
+             // start space rotate
+             for (i, pointer) in app.input_state.pointers.iter().enumerate() {
+@@ -141,7 +157,7 @@ impl PlayspaceMover {
+                         return;
+                     };
+ 
+-                    let hand_pose = Quat::from_affine3(&(pose * pointer.raw_pose));
++                    let hand_pose = pose * pointer.raw_pose;
+                     self.rotate = Some(MoverData {
+                         pose,
+                         hand: i,

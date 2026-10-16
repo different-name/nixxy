@@ -38,6 +38,10 @@ bundleLib.mkEnableModule [ "dyad" "nix" "patches" ] {
               path = ./wayvr/primary-key-hover.patch;
               name = "wayvr-primary-key-hover";
             })
+            (builtins.path {
+              path = ./wayvr/space-rotate-hand-anchor.patch;
+              name = "wayvr-space-rotate-hand-anchor";
+            })
           ];
         });
       })
