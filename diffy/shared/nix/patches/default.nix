@@ -37,6 +37,10 @@ bundleLib.mkEnableModule [ "dyad" "nix" "patches" ] {
         wayvr = prev.wayvr.overrideAttrs (old: {
           patches = (old.patches or [ ]) ++ [
             (builtins.path {
+              path = ./wayvr/destroy-dmabuf-params.patch;
+              name = "wayvr-destroy-dmabuf-params";
+            })
+            (builtins.path {
               path = ./wayvr/gradient-intensity-config.patch;
               name = "wayvr-gradient-intensity-config";
             })
