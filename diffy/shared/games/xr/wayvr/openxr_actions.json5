@@ -99,6 +99,10 @@
       double_click: true,
       right: "/user/hand/right/input/a/click",
     },
+    space_rotate: {
+      double_click: true,
+      left: "/user/hand/left/input/x/click",
+    },
     click_modifier_right: {
       left: "/user/hand/left/input/y/touch",
       right: "/user/hand/right/input/b/touch"
