@@ -14,7 +14,7 @@ bundleLib.mkEnableModule [ "dyad" "users" "diffy" ] {
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIoe3VveHt2vXoHdkRbLE0Xx5il0T3v8PiWxFvdniSLg diffy@sodium"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID3EOgPFHT/t5cimzbfL/vEyolU4CbdT9HVMyp8PnTUG diffy@potassium"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnaWNZ2Q4sAkqK1KFbNfNb84l7uWVwCE7HnIHJzD8r1 diffy@s23u"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBky+9o1dDMAQ52WKsy+NU2yLEN04Cm5zSuaeJ24jx5e diffy@lithium"
       ];
 
       extraGroups = [
