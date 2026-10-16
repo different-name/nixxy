@@ -39,7 +39,10 @@ in
 
     media.goxlr-utility.enable = true;
 
-    services.syncthing.enable = true;
+    services = {
+      syncthing.enable = true;
+      webdav.enable = true;
+    };
   };
 
   nixos = {
