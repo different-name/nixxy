@@ -37,6 +37,16 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
 
       defaultCompatTool = pkgs.proton-ge-bin;
       desktopEntries.enable = true;
+
+      apps."1282100" = {
+        name = "Remnant II";
+
+        # xwayland's screen spans both monitors, so wine won't confine the cursor without this
+        files.prefix.patch."user.reg" = {
+          format = "registry";
+          content."Software/Wine/X11 Driver".GrabFullscreen = "Y";
+        };
+      };
     };
 
     systemd.user.services.steam-silent = {
