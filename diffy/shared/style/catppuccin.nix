@@ -27,6 +27,7 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
       config,
       osConfig,
       lib,
+      pkgs,
       ...
     }:
     {
@@ -62,12 +63,26 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
           firefox.enable = false;
           fish.enable = false;
           hyprland.enable = false; # TODO enable when moving to lua hyprland config
+          kvantum.assertStyle = false;
           mpv.enable = false;
+          qt5ct.enable = true;
           zellij.enable = false;
           # keep-sorted end
         };
 
         home.pointerCursor.enable = config.catppuccin.cursors.enable;
+
+        # copied rather than linked, kde apps write to kdeglobals
+        home.activation.catppuccinKdeglobals =
+          let
+            kde = pkgs.catppuccin-kde.override {
+              flavour = [ config.catppuccin.flavor ];
+              accents = [ config.catppuccin.accent ];
+            };
+          in
+          lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            run install -Dm644 ${kde}/share/color-schemes/*.colors "${config.xdg.configHome}/kdeglobals"
+          '';
       };
     };
 }
