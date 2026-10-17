@@ -7,6 +7,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
       discord.enable = true;
       extraPackages.enable = true;
       obs-studio.enable = true;
+      signal-desktop.enable = true;
       spotify.enable = true;
       # keep-sorted end
     };

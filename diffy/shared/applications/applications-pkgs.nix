@@ -45,10 +45,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
         "$dataHome/qBittorrent"
         # keep-sorted end
       ];
-
-      signal-desktop.dirs = [
-        "$configHome/Signal"
-      ];
       # keep-sorted end
     };
 
