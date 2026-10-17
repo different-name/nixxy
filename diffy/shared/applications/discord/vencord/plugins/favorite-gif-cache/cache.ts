@@ -1,9 +1,3 @@
-/*
- * Vencord, a Discord client mod
- * Copyright (c) 2026 Vendicated and contributors
- * SPDX-License-Identifier: GPL-3.0-or-later
- */
-
 const DB_NAME = "VencordFavoriteGifCache";
 const DB_VERSION = 1;
 const BLOBS = "blobs";
@@ -52,28 +46,29 @@ export async function open() {
     keys.forEach((key, i) => index.set(String(key), metas[i]));
 }
 
+// detaches before awaiting so a restart's open() isn't closed by this
 export async function close() {
     if (flushTimer !== undefined) clearTimeout(flushTimer);
     flushTimer = undefined;
 
-    await flush();
-
-    db?.close();
+    const handle = db;
     db = undefined;
+    const flushed = flush(handle);
     index.clear();
+
+    await flushed.catch(() => { });
+    handle?.close();
 }
 
-async function flush() {
-    if (!db || !dirty.size) return;
+async function flush(handle = db) {
+    if (!handle || !dirty.size) return;
 
-    const keys = [...dirty];
-    dirty.clear();
-
-    const tx = db.transaction(META, "readwrite");
-    for (const key of keys) {
+    const tx = handle.transaction(META, "readwrite");
+    for (const key of dirty) {
         const meta = index.get(key);
         if (meta) tx.objectStore(META).put({ ...meta }, key);
     }
+    dirty.clear();
 
     await settled(tx);
 }

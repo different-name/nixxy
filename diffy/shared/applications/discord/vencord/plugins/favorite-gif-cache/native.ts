@@ -1,13 +1,6 @@
-/*
- * Vencord, a Discord client mod
- * Copyright (c) 2026 Vendicated and contributors
- * SPDX-License-Identifier: GPL-3.0-or-later
- */
-
 import { IpcMainInvokeEvent } from "electron";
 
-// downloading in the main process sidesteps the renderer csp, which only
-// whitelists some of the gif hosts discord itself serves from
+// the renderer csp blocks some gif hosts
 export async function fetchMedia(_: IpcMainInvokeEvent, url: string) {
     if (!/^https?:\/\//.test(url)) return null;
 

@@ -1,9 +1,3 @@
-/*
- * Vencord, a Discord client mod
- * Copyright (c) 2026 Vendicated and contributors
- * SPDX-License-Identifier: GPL-3.0-or-later
- */
-
 import { definePluginSettings } from "@api/Settings";
 import { Button } from "@components/Button";
 import { Flex } from "@components/Flex";
@@ -69,6 +63,7 @@ const settings = definePluginSettings({
 const favorites = new Map<string, string>();
 const downloading = new Set<string>();
 const objectUrls = new Map<string, { url: string; size: number; }>();
+const liveUrls = new Set<string>();
 const serving = new WeakMap<Element, string>();
 
 let objectUrlBytes = 0;
@@ -143,11 +138,13 @@ function objectUrlFor(key: string, blob: Blob) {
 
     const created = { url: URL.createObjectURL(blob), size: blob.size };
     objectUrls.set(key, created);
+    liveUrls.add(created.url);
     objectUrlBytes += created.size;
 
     for (const [oldest, entry] of objectUrls) {
         if (objectUrlBytes <= OBJECT_URL_BUDGET || objectUrls.size === 1) break;
         objectUrls.delete(oldest);
+        liveUrls.delete(entry.url);
         objectUrlBytes -= entry.size;
         URL.revokeObjectURL(entry.url);
     }
@@ -158,7 +155,13 @@ function objectUrlFor(key: string, blob: Blob) {
 function releaseObjectUrls() {
     for (const { url } of objectUrls.values()) URL.revokeObjectURL(url);
     objectUrls.clear();
+    liveUrls.clear();
     objectUrlBytes = 0;
+}
+
+function hasUsableSrc(el: Element) {
+    const src = el.getAttribute("src");
+    return !!src && (!src.startsWith("blob:") || liveUrls.has(src));
 }
 
 function serve(el: Element, value: string, setSrc: (src: string) => void) {
@@ -171,7 +174,7 @@ function serve(el: Element, value: string, setSrc: (src: string) => void) {
         return false;
     }
 
-    if (serving.get(el) === key && el.hasAttribute("src")) return true;
+    if (serving.get(el) === key && hasUsableSrc(el)) return true;
     serving.set(el, key);
 
     if (!cache.index.has(key)) {
