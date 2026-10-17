@@ -57,6 +57,8 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
             exit 1
           '';
           Restart = "on-failure";
+          # jvm exits 143 on sigterm
+          SuccessExitStatus = 143;
         };
       };
 
