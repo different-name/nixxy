@@ -22,16 +22,13 @@
             commandLineArgs = lib.optionalString config.dyad.hardware.nvidia.enable "--disable-accelerated-video-decode";
             withVencord = true;
             vencord = pkgs.vencord.overrideAttrs (old: {
-              patches = (old.patches or [ ]) ++ [
-                ./favorite-gif-cache.patch
-                ./vcnarrator-mute-deafen.patch
-              ];
+              patches = (old.patches or [ ]) ++ lib.filesystem.listFilesRecursive ./vencord/patches;
 
               postPatch = (old.postPatch or "") + ''
                 mkdir -p src/userplugins
-                cp -r ${./compress-video-uploads} src/userplugins/compressVideoUploads
+                cp -r ${./vencord/plugins}/. src/userplugins/
                 chmod -R u+w src/userplugins
-                substituteInPlace src/userplugins/compressVideoUploads/native.ts \
+                substituteInPlace src/userplugins/compress-video-uploads/native.ts \
                   --replace-fail '"ffmpeg"' '"${lib.getExe' pkgs.ffmpeg "ffmpeg"}"' \
                   --replace-fail '"ffprobe"' '"${lib.getExe' pkgs.ffmpeg "ffprobe"}"'
               '';
@@ -68,7 +65,7 @@
               ];
 
           xdg.configFile."Vencord/settings/settings.json" = {
-            source = ./vencord.json;
+            source = ./vencord/settings.json;
             force = true;
           };
 
