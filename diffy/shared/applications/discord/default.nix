@@ -58,11 +58,24 @@
           };
 
           xdg.configFile."Vencord/themes/DisblockOrigin.theme.css".text =
-            lib.concatMapStringsSep "\n" lib.readFile
-              [
-                "${inputs.disblock-origin}/DisblockOrigin.theme.css"
-                ./disblock-origin-settings.css
-              ];
+            let
+              overrides = {
+                bool-settings-payment-section = false;
+                bool-show-name-gradients = false;
+                bool-show-server-banners = false;
+                display-active-now = "none";
+                display-clan-tags = "none";
+                display-gif-button = "unset";
+                display-settings-gift-inventory-tab = "none";
+                display-sticker-button = "unset";
+              };
+              toCss = value: if lib.isBool value then lib.boolToString value else value;
+            in
+            lib.readFile "${inputs.disblock-origin}/DisblockOrigin.theme.css"
+            + ''
+              :root {
+              ${lib.concatLines (lib.mapAttrsToList (name: value: "  --${name}: ${toCss value};") overrides)}}
+            '';
 
           xdg.configFile."Vencord/settings/settings.json" = {
             source = ./vencord/settings.json;
