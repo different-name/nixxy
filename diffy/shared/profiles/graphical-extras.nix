@@ -28,8 +28,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
       extraPackages.enable = true;
     };
 
-    services.kdeconnect.enable = true;
-
     style.catppuccin.enable = true;
     # keep-sorted end
   };
