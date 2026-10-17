@@ -21,7 +21,6 @@
       "https://nix-community.cachix.org"
       "https://cache.nixos-cuda.org"
       "https://catppuccin.cachix.org"
-      "https://vicinae.cachix.org"
     ];
 
     trusted-public-keys = [
@@ -30,7 +29,6 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
       "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
-      "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
     ];
   };
 
@@ -203,15 +201,17 @@
     # launcher
     vicinae = {
       url = "github:vicinaehq/vicinae";
-      # has binary cache, doesn't follow nixpkgs
-      inputs.systems.follows = "systems";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
 
     # launcher extensions
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";
-      # has binary cache, doesn't follow nixpkgs
       inputs = {
+        nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
         vicinae.follows = "vicinae";
       };
