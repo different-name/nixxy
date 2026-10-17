@@ -18,6 +18,8 @@
         { pkgs, ... }:
         let
           discordPackage = pkgs.discord.override {
+            # vaapi decode through nvidia-vaapi-driver drops frames on streams
+            commandLineArgs = lib.optionalString config.dyad.hardware.nvidia.enable "--disable-accelerated-video-decode";
             withVencord = true;
             vencord = pkgs.vencord.overrideAttrs (old: {
               patches = (old.patches or [ ]) ++ [
