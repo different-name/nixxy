@@ -44,17 +44,25 @@ function run(cmd: string, args: string[], onLine?: (line: string) => void) {
 async function probe(input: string) {
     const out = await run(FFPROBE, [
         "-v", "error",
-        "-show_entries", "format=duration:stream=codec_type,height",
+        "-show_entries", "format=duration:stream=codec_type,codec_name,pix_fmt,height",
         "-of", "json",
         input
     ]);
     const { format, streams } = JSON.parse(out);
     const video = streams.find(s => s.codec_type === "video");
+    const audio = streams.find(s => s.codec_type === "audio");
     return {
         duration: Number(format.duration),
         height: Number(video?.height) || 0,
-        hasAudio: streams.some(s => s.codec_type === "audio")
+        // hevc and 10-bit h264 don't play inline on every client
+        playsAnywhere: video?.codec_name === "h264" && video?.pix_fmt === "yuv420p",
+        hasAudio: !!audio,
+        audioCodec: audio?.codec_name as string | undefined
     };
+}
+
+function inputPath(dir: string, ext: string) {
+    return join(dir, "input" + (/^\.[a-z0-9]{1,5}$/i.test(ext) ? ext : ""));
 }
 
 function maxHeightFor(videoBps: number) {
@@ -110,12 +118,47 @@ export function getProgress(_: IpcMainInvokeEvent, id: number) {
     return jobs.get(id);
 }
 
+// mobile clients don't play opus or vorbis in mp4
+const MP4_AUDIO = new Set(["aac", "mp3"]);
+
+export async function remux(_: IpcMainInvokeEvent, data: Uint8Array, ext: string): Promise<{ data?: Uint8Array; error?: string; }> {
+    const dir = await mkdtemp(join(tmpdir(), "vc-remux-"));
+    try {
+        const input = inputPath(dir, ext);
+        const output = join(dir, "output.mp4");
+        await writeFile(input, data);
+
+        const info = await probe(input);
+        if (!info.playsAnywhere) throw new Error("video stream needs re-encoding");
+        const audio = !info.hasAudio
+            ? ["-an"]
+            : MP4_AUDIO.has(info.audioCodec!)
+                ? ["-c:a", "copy"]
+                : ["-c:a", "aac", "-b:a", "192k", "-ac", "2"];
+        await run(FFMPEG, [
+            "-y", "-nostdin", "-v", "error",
+            "-i", input,
+            "-map", "0:v:0", "-map", "0:a:0?",
+            "-c:v", "copy",
+            ...audio,
+            "-map_chapters", "-1",
+            "-movflags", "+faststart",
+            output
+        ]);
+        return { data: new Uint8Array(await readFile(output)) };
+    } catch (e) {
+        return { error: e instanceof Error ? e.message : String(e) };
+    } finally {
+        rm(dir, { recursive: true, force: true }).catch(() => { });
+    }
+}
+
 export async function compress(_: IpcMainInvokeEvent, id: number, data: Uint8Array, ext: string, limit: number): Promise<{ data?: Uint8Array; error?: string; }> {
     const progress: Progress = { attempt: 0, pass: 1, fraction: 0 };
     jobs.set(id, progress);
     const dir = await mkdtemp(join(tmpdir(), "vc-compress-"));
     try {
-        const input = join(dir, "input" + (/^\.[a-z0-9]{1,5}$/i.test(ext) ? ext : ""));
+        const input = inputPath(dir, ext);
         const output = join(dir, "output.mp4");
         await writeFile(input, data);
 
