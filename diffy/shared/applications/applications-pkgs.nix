@@ -20,10 +20,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
         "$configHome/GIMP"
       ];
 
-      notesnook.dirs = [
-        "$configHome/Notesnook"
-      ];
-
       nrfconnect.dirs = [
         "$configHome/nrfconnect"
         ".nrfconnect-apps"
