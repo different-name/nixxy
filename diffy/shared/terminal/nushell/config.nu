@@ -21,6 +21,17 @@ $env.PROMPT_COMMAND = {||
 # green indicator, with a space between the path and the >
 $env.PROMPT_INDICATOR = $"(char space)(ansi { fg: $theme.green attr: b })> (ansi reset)"
 
+def adb-wifi [] {
+    let services = avahi-browse --resolve --parsable --terminate _adb-tls-connect._tcp
+        | lines
+        | where ($it | str starts-with "=;")
+        | split column ";" event interface protocol name type domain host address port
+        | where protocol == IPv4
+    if ($services | is-empty) { error make { msg: "no phone with wireless debugging found" } }
+    let service = $services | first
+    adb connect $"($service.address):($service.port)"
+}
+
 # carapace returns [] for positions it can't complete which suppresses nushell's file fallback
 # convert empty results to null so nushell completes files instead
 # fixes ffmpeg -i completion
