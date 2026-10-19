@@ -34,7 +34,10 @@ in
 
     nix.sodium-builder.enable = true;
 
-    services.syncthing.enable = true;
+    services = {
+      printing.enable = true;
+      syncthing.enable = true;
+    };
   };
 
   nixos = {
