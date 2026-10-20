@@ -1,9 +1,10 @@
-{ lib, inputs, ... }:
-let
-  machineId = "9471422d94d34bb8807903179fb35f11";
-in
-{
+{ inputs, ... }: {
   dyad = {
+    host = {
+      machineId = "9471422d94d34bb8807903179fb35f11";
+      stateVersion = "26.05";
+    };
+
     users.diffy.enable = true;
 
     profiles.graphical-extras.enable = true;
@@ -33,15 +34,6 @@ in
       (inputs.import-tree ./_nixos)
       inputs.nixos-hardware.nixosModules.common-cpu-amd
     ];
-
-    system.stateVersion = "26.05";
-
-    networking = {
-      hostName = "sodium";
-      hostId = lib.substring 0 8 machineId;
-    };
-
-    environment.etc.machine-id.text = machineId;
 
     environment.sessionVariables = {
       STEAM_FORCE_DESKTOPUI_SCALING = "1.5";

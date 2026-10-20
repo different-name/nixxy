@@ -20,6 +20,7 @@ in
 
       hosts = lib.genAttrs diffyHosts (host: {
         imports = [ (inputs.import-tree ./diffy/hosts/${host}) ];
+        nixos.networking.hostName = host;
       });
     };
   };

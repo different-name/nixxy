@@ -1,9 +1,10 @@
-{ lib, inputs, ... }:
-let
-  machineId = "ea3a24c5b3a84bc0a06ac47ef29ef2a8";
-in
-{
+{ inputs, ... }: {
   dyad = {
+    host = {
+      machineId = "ea3a24c5b3a84bc0a06ac47ef29ef2a8";
+      stateVersion = "26.05";
+    };
+
     users.diffy.enable = true;
 
     profiles.graphical-extras.enable = true;
@@ -35,15 +36,6 @@ in
       inputs.nixos-hardware.nixosModules.common-pc-laptop
       # keep-sorted end
     ];
-
-    networking = {
-      hostName = "potassium";
-      hostId = lib.substring 0 8 machineId;
-    };
-
-    environment.etc.machine-id.text = machineId;
-
-    system.stateVersion = "26.05";
 
     services.thermald = {
       enable = true;

@@ -11,10 +11,13 @@ let
     (lib.findFirst (def: def ? nixos) { } options.bundle.systemPlatforms.definitions).nixos;
 
   stub = {
+    dyad.host = {
+      machineId = "00000000000000000000000000000000";
+      stateVersion = "26.05";
+    };
+
     nixos = {
-      system.stateVersion = "26.05";
       nixpkgs.hostPlatform = "x86_64-linux";
-      networking.hostId = "00000000";
       fileSystems."/" = {
         device = "/dev/disk/by-label/root";
         fsType = "btrfs";
