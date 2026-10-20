@@ -1,9 +1,9 @@
 { bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "games" "avatar-tools" ] {
-  nixos = {
+  nixos = { config, ... }: {
     # nodatacow for new files under the unity dir
     # speeds up poiyomi shader locking
-    systemd.tmpfiles.rules = [ "h /home/diffy/Documents/Unity - - - - +C" ];
+    systemd.tmpfiles.rules = [ "h ${config.users.users.diffy.home}/Documents/Unity - - - - +C" ];
   };
 
   home-manager =
