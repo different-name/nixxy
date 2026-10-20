@@ -68,19 +68,10 @@ bundleLib.mkEnableModule [ "dyad" "system" "btrfs" ] {
       services.btrbk = {
         instances."persist" = {
           onCalendar = "daily";
-          # timer only snapshots, the backup drive is attached manually
-          snapshotOnly = true;
           settings = {
             snapshot_preserve_min = "1w";
             snapshot_preserve = "2w";
-            target_preserve_min = "1w";
-            target_preserve = "2w";
-            volume = {
-              "/btrfs" = {
-                target = "/mnt/backup";
-                subvolume = "persist";
-              };
-            };
+            volume."/btrfs".subvolume = "persist";
           };
         };
       };
