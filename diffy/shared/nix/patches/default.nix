@@ -1,8 +1,8 @@
-{ bundleLib, ... }:
+{ lib, bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "nix" "patches" ] {
   nixos = {
-    nixpkgs.overlays = [
-      (_final: prev: {
+    nixpkgs.overlays = lib.singleton (
+      _final: prev: {
         # NixOS/nixpkgs#575861, modules_install runs depmod and its output collides with the kernel's
         linuxPackages_zen = prev.linuxPackages_zen.extend (
           _kfinal: kprev: {
@@ -53,7 +53,7 @@ bundleLib.mkEnableModule [ "dyad" "nix" "patches" ] {
             })
           ];
         });
-      })
-    ];
+      }
+    );
   };
 }

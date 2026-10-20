@@ -19,8 +19,8 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "mako" ] {
         };
       };
 
-      home.packages = [
-        (pkgs.writeShellApplication {
+      home.packages = lib.singleton (
+        pkgs.writeShellApplication {
           name = "mako-dnd";
 
           runtimeInputs = [
@@ -37,7 +37,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "mako" ] {
                 hyprctl notify -1 1000 "rgb(${borderColor})" "Notifications Hidden"
             fi
           '';
-        })
-      ];
+        }
+      );
     };
 }

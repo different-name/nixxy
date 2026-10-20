@@ -96,15 +96,15 @@ in
   home-manager = {
     programs.btop.settings.cpu_sensor = "k10temp/Tctl";
 
-    home.packages = [
-      (self'.packages.btrbk-backup.override {
+    home.packages = lib.singleton (
+      self'.packages.btrbk-backup.override {
         backupConfig = {
           backupDiskUuid = "a5091625-835c-492f-8d99-0fc8d27012a0";
           cryptName = "backup_drive";
           mountPoint = "/mnt/backup";
           configPath = "/etc/btrbk/persist.conf";
         };
-      })
-    ];
+      }
+    );
   };
 }

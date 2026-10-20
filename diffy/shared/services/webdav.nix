@@ -20,12 +20,10 @@ bundleLib.mkEnableModule [ "dyad" "services" "webdav" ] {
           inherit port;
           directory = "/var/lib/webdav";
           permissions = "CRUD";
-          users = [
-            {
-              username = "{env}WEBDAV_USERNAME";
-              password = "{env}WEBDAV_PASSWORD";
-            }
-          ];
+          users = lib.singleton {
+            username = "{env}WEBDAV_USERNAME";
+            password = "{env}WEBDAV_PASSWORD";
+          };
         };
       };
 

@@ -1,4 +1,4 @@
-{ bundleLib, ... }:
+{ lib, bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "nix" "sodium-builder" ] {
   nixos = {
     nix = {
@@ -6,24 +6,22 @@ bundleLib.mkEnableModule [ "dyad" "nix" "sodium-builder" ] {
       # distributedBuilds no longer populates the builders line on its own,
       # point it at the generated machines file so the daemon offloads
       settings.builders = "@/etc/nix/machines";
-      buildMachines = [
-        {
-          hostName = "sodium";
-          sshUser = "nix-builder";
-          sshKey = "/root/.ssh/id_ed25519";
-          protocol = "ssh-ng";
-          system = "x86_64-linux";
-          maxJobs = 3;
-          speedFactor = 2;
-          supportedFeatures = [
-            "benchmark"
-            "big-parallel"
-            "kvm"
-            "nixos-test"
-          ];
-          mandatoryFeatures = [ ];
-        }
-      ];
+      buildMachines = lib.singleton {
+        hostName = "sodium";
+        sshUser = "nix-builder";
+        sshKey = "/root/.ssh/id_ed25519";
+        protocol = "ssh-ng";
+        system = "x86_64-linux";
+        maxJobs = 3;
+        speedFactor = 2;
+        supportedFeatures = [
+          "benchmark"
+          "big-parallel"
+          "kvm"
+          "nixos-test"
+        ];
+        mandatoryFeatures = [ ];
+      };
     };
 
     # trust sodium's host key so the nix daemon can offload non-interactively
