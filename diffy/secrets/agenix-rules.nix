@@ -1,27 +1,39 @@
 # create/edit: nix run github:ryantm/agenix -- -e x.age
 # rekey:       nix run github:ryantm/agenix -- -r
 let
-  inherit ((import ../keys.nix).users) diffy;
+  keys = import ../keys.nix;
 
-  hosts = { inherit (diffy) argon potassium sodium; };
-
-  desktops = [
-    hosts.potassium
-    hosts.sodium
+  # user keys on the desktops, so secrets stay editable there
+  editors = with keys.users.diffy; [
+    potassium
+    sodium
   ];
-  allHosts = builtins.attrValues hosts;
+
+  # system secrets decrypt with the host key of each machine that uses them
+  hosts = names: editors ++ map (name: keys.hosts.${name}) names;
 in
 {
-  # keep-sorted start
-  "claude/instructions.age".publicKeys = desktops;
-  "cloudflare/dns-token.age".publicKeys = allHosts;
-  "firefox/policies.age".publicKeys = desktops;
-  "restic/argon.age".publicKeys = desktops ++ [ hosts.argon ];
-  "restic/potassium.age".publicKeys = desktops;
-  "restic/sodium.age".publicKeys = desktops;
-  "tokens/nix-access-tokens.age".publicKeys = allHosts;
-  "tokens/nixpkgs-review.age".publicKeys = desktops;
-  "user-passwords/diffy.age".publicKeys = allHosts;
-  "webdav/seedvault.age".publicKeys = allHosts;
+  # keep-sorted start block=yes
+  "claude/instructions.age".publicKeys = editors;
+  "cloudflare/dns-token.age".publicKeys = hosts [ "argon" ];
+  "firefox/policies.age".publicKeys = hosts [
+    "potassium"
+    "sodium"
+  ];
+  "restic/argon.age".publicKeys = hosts [ "argon" ];
+  "restic/potassium.age".publicKeys = hosts [ "potassium" ];
+  "restic/sodium.age".publicKeys = hosts [ "sodium" ];
+  "tokens/nix-access-tokens.age".publicKeys = hosts [
+    "argon"
+    "potassium"
+    "sodium"
+  ];
+  "tokens/nixpkgs-review.age".publicKeys = editors;
+  "user-passwords/diffy.age".publicKeys = hosts [
+    "argon"
+    "potassium"
+    "sodium"
+  ];
+  "webdav/seedvault.age".publicKeys = hosts [ "argon" ];
   # keep-sorted end
 }
