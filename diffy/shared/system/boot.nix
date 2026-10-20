@@ -1,6 +1,11 @@
-{ bundleLib, inputs, ... }:
+{
+  bundleLib,
+  inputs,
+  lib,
+  ...
+}:
 bundleLib.mkEnableModule [ "dyad" "system" "boot" ] {
-  nixos = { pkgs, ... }: {
+  nixos = { config, pkgs, ... }: {
     imports = [ inputs.disko.nixosModules.default ];
 
     config.boot = {
@@ -9,7 +14,7 @@ bundleLib.mkEnableModule [ "dyad" "system" "boot" ] {
         availableKernelModules = [ "hid_generic" ];
       };
 
-      kernelPackages = pkgs.linuxPackages_zen;
+      kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
       loader = {
         limine = {
@@ -17,7 +22,7 @@ bundleLib.mkEnableModule [ "dyad" "system" "boot" ] {
           maxGenerations = 25;
         };
 
-        efi.canTouchEfiVariables = true;
+        efi.canTouchEfiVariables = config.boot.loader.limine.efiSupport;
         timeout = 3;
       };
 
