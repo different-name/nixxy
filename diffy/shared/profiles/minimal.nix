@@ -21,6 +21,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "minimal" ] {
       # keep-sorted start
       boot.enable = true;
       locale.enable = true;
+      network-tuning.enable = true;
       security.enable = true;
       # keep-sorted end
     };
