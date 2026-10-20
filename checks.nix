@@ -35,7 +35,6 @@ let
     minimal = lib.recursiveUpdate user { dyad.profiles.minimal.enable = true; };
     workstation = lib.recursiveUpdate user { dyad.profiles.workstation.enable = true; };
     graphical = lib.recursiveUpdate user { dyad.profiles.graphical.enable = true; };
-    graphical-extras = lib.recursiveUpdate user { dyad.profiles.graphical-extras.enable = true; };
     mako = lib.recursiveUpdate user { dyad.desktop.mako.enable = true; };
     vscodium = lib.recursiveUpdate user { dyad.applications.vscodium.enable = true; };
     nushell = lib.recursiveUpdate user { dyad.terminal.nushell.enable = true; };

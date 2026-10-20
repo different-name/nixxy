@@ -6,8 +6,13 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
     # keep-sorted start block=yes newline_separated=yes
     applications = {
       # keep-sorted start
+      discord.enable = true;
+      extraPackages.enable = true;
       firefox.enable = true;
       kitty.enable = true;
+      obs-studio.enable = true;
+      signal-desktop.enable = true;
+      spotify.enable = true;
       thunar.enable = true;
       vscodium.enable = true;
       # keep-sorted end
@@ -24,6 +29,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
       hyprlock.enable = true;
       hyprpaper.enable = true;
       mako.enable = true;
+      qpwgraph.enable = true;
       qt.enable = true;
       swayosd.enable = true;
       vicinae.enable = true;
@@ -31,13 +37,25 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
       # keep-sorted end
     };
 
+    games = {
+      # keep-sorted start
+      extraPackages.enable = true;
+      steam.enable = true;
+      vrcx.enable = true;
+      # keep-sorted end
+    };
+
+    hardware.ddcutil.enable = true;
+
     media = {
+      # keep-sorted start
+      extraPackages.enable = true;
       imv.enable = true;
       mpv.enable = true;
+      # keep-sorted end
     };
 
     services.pipewire.enable = true;
-
     # keep-sorted end
   };
 

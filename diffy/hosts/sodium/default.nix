@@ -7,7 +7,7 @@
 
     users.diffy.enable = true;
 
-    profiles.graphical-extras.enable = true;
+    profiles.graphical.enable = true;
 
     applications.orca-slicer.enable = true;
 
