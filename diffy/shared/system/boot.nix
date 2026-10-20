@@ -15,13 +15,6 @@ bundleLib.mkEnableModule [ "dyad" "system" "boot" ] {
         limine = {
           enable = true;
           maxGenerations = 25;
-
-          extraEntries = ''
-            /+Windows
-            //Windows 10
-              protocol: efi
-              path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
-          '';
         };
 
         efi.canTouchEfiVariables = true;
