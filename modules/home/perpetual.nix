@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  options,
   pkgs,
   ...
 }:
@@ -40,11 +41,13 @@ let
 in
 {
   options.home.perpetual = lib.mkOption {
+    description = "Named persistence stores, each mapped to an impermanence store of the same name";
     type = types.attrsOf (
       types.submodule (
         { config, ... }: {
           options = baseOptions // {
             packages = lib.mkOption {
+              description = "Packages to install together with the state paths they need persisted";
               type = types.attrsOf (
                 types.submodule (
                   { name, ... }: {
@@ -76,17 +79,20 @@ in
     default = { };
   };
 
-  config = {
-    home.persistence = lib.mapAttrs (
-      _: persistCfg:
-      lib.mkIf persistCfg.enable {
-        files = map replaceXdgVars persistCfg.files;
-        directories = map replaceXdgVars persistCfg.dirs;
-      }
-    ) cfg;
-
-    home.packages = lib.flatten (
-      lib.mapAttrsToList (_: c: lib.mapAttrsToList (_: p: p.package) c.packages) cfg
-    );
-  };
+  config = lib.mkMerge [
+    {
+      home.packages = lib.flatten (
+        lib.mapAttrsToList (_: c: lib.mapAttrsToList (_: p: p.package) c.packages) cfg
+      );
+    }
+    (lib.optionalAttrs (options.home ? persistence) {
+      home.persistence = lib.mapAttrs (
+        _: persistCfg:
+        lib.mkIf persistCfg.enable {
+          files = map replaceXdgVars persistCfg.files;
+          directories = map replaceXdgVars persistCfg.dirs;
+        }
+      ) cfg;
+    })
+  ];
 }

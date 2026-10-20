@@ -18,7 +18,7 @@ bundleLib.mkEnableModule [ "dyad" "system" "agenix" ] {
   home-manager =
     { config, ... }:
     let
-      inherit (config.home) persistence;
+      persistence = config.home.persistence or { };
       inherit (persistence.default) persistentStoragePath;
       persistEnabled = lib.hasAttr "default" persistence && persistence.default.enable;
     in
