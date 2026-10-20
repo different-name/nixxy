@@ -12,11 +12,6 @@
             config = {
               # keep-sorted start block=yes newline_separated=yes
               cursor = {
-                # workaround for grimblast area screenshots showing cursor
-                # https://github.com/hyprwm/contrib/issues/60#issuecomment-2351538806
-                # allow_dumb_copy = true;
-                # removed above in favor of https://github.com/hyprwm/Hyprland/issues/8424#issuecomment-2477328413
-                use_cpu_buffer = true;
                 # workaround for mouse being invisible in blender
                 no_hardware_cursors = true;
               };
@@ -56,7 +51,6 @@
 
             env = [
               # keep-sorted start
-              (env "GRIMBLAST_NO_CURSOR" "0") # TODO https://github.com/fufexan/dotfiles/blob/27b78fa5e824ebcadcdb45509ca1e80aec40d50f/system/programs/hyprland/settings.nix#L11-L12
               (env "QT_WAYLAND_DISABLE_WINDOWDECORATION" "1")
               (env "XCURSOR_SIZE" "16")
               # keep-sorted end
