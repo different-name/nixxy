@@ -51,7 +51,7 @@ in
       flakeAttribute = "probeConfigurations";
     };
 
-    homePlatforms.home-manager.system.platforms.probe.module = inputs.home-manager.nixosModules.default;
+    homePlatforms.home-manager.attachTo.probe.module = inputs.home-manager.nixosModules.default;
 
     hosts = lib.mapAttrs (_: _: {
       system = "x86_64-linux";
