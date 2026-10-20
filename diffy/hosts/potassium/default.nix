@@ -36,7 +36,6 @@ in
 
     services = {
       printing.enable = true;
-      syncthing.enable = true;
     };
   };
 
