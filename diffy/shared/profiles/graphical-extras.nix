@@ -24,10 +24,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
 
     hardware.ddcutil.enable = true;
 
-    media = {
-      goxlr-utility.enable = true;
-      extraPackages.enable = true;
-    };
+    media.extraPackages.enable = true;
 
     style.catppuccin.enable = true;
     # keep-sorted end

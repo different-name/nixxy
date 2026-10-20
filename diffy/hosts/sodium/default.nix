@@ -69,8 +69,6 @@ in
         enable = true;
         user = "diffy";
       };
-
-      goxlr-utility.enable = true;
     };
 
     environment.sessionVariables = {

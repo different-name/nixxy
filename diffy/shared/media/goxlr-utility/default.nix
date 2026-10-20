@@ -1,5 +1,7 @@
 { bundleLib, lib, ... }:
 bundleLib.mkEnableModule [ "dyad" "media" "goxlr-utility" ] {
+  nixos.services.goxlr-utility.enable = true;
+
   home-manager =
     {
       config,
