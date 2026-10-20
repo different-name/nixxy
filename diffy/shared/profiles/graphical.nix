@@ -24,7 +24,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
       extraPackages.enable = true;
       fonts.enable = true;
       gtk.enable = true;
-      hexecute.enable = true;
       hyprland.enable = true;
       hyprlock.enable = true;
       hyprpaper.enable = true;
