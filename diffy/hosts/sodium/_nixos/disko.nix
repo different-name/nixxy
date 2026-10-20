@@ -57,6 +57,15 @@
                     mountpoint = "/persist";
                   };
 
+                  # replaceable data, not snapshotted
+                  "scratch" = {
+                    mountOptions = [
+                      "compress=lzo"
+                      "noatime"
+                    ];
+                    mountpoint = "/scratch";
+                  };
+
                   "swap" = {
                     swap.swapfile.size = "16G";
                     mountpoint = "/.swapvol";

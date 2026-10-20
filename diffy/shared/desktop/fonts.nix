@@ -46,5 +46,5 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "fonts" ] {
     };
   };
 
-  home-manager.home.perpetual.default.dirs = [ "$cacheHome/fontconfig" ];
+  home-manager.home.perpetual.volatile.dirs = [ "$cacheHome/fontconfig" ];
 }

@@ -37,6 +37,8 @@
     # needs the sbctl keys enrolled in this machine's firmware
     boot.loader.limine.secureBoot.enable = true;
 
+    fileSystems."/scratch".neededForBoot = true;
+
     imports = [
       (inputs.import-tree ./_nixos)
       inputs.nixos-hardware.nixosModules.common-cpu-amd

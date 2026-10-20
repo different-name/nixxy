@@ -64,6 +64,13 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
       Install.WantedBy = [ "graphical-session.target" ];
     };
 
+    # re-downloadable, compatdata stays in default for non-cloud saves
+    home.perpetual.volatile.dirs = [
+      "$dataHome/Steam/steamapps/common"
+      "$dataHome/Steam/steamapps/shadercache"
+      "$dataHome/Steam/steamapps/workshop"
+    ];
+
     home.perpetual.default.dirs = [
       ".steam"
       "$dataHome/Steam"

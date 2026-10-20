@@ -34,16 +34,17 @@ bundleLib.mkEnableModule [ "dyad" "services" "backup" ] {
 
         paths = [ "/persist" ];
         exclude = [
-          "${home}/.local/share/Steam/steamapps/common"
-          "${home}/.local/share/Steam/steamapps/shadercache"
-          "${home}/.local/share/Steam/steamapps/workshop"
           "${home}/Documents/Unity/*/Library"
           "${home}/Documents/Unity/*/Temp"
           "${home}/Documents/Unity/*/obj"
           "${home}/Documents/Unity/*/Logs"
           "**/.Trash-*"
         ];
-        extraBackupArgs = [ "--exclude-caches" ];
+        # the volatile store's bind mounts propagate back under /persist
+        extraBackupArgs = [
+          "--exclude-caches"
+          "--one-file-system"
+        ];
 
         timerConfig = {
           OnCalendar = "04:00";

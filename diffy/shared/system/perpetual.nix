@@ -15,13 +15,28 @@
 
   imports = lib.singleton (
     bundleLib.mkEnableModule [ "dyad" "system" "perpetual" ] {
-      nixos = {
+      nixos = { config, ... }: {
         imports = [ inputs.impermanence.nixosModules.default ];
 
-        environment.persistence.default = {
-          persistentStoragePath = "/persist/system";
-          hideMounts = true;
-          enableWarnings = true;
+        environment.persistence = {
+          default = {
+            persistentStoragePath = "/persist/system";
+            hideMounts = true;
+            enableWarnings = true;
+          };
+
+          # without a scratch subvolume, volatile data still has to survive reboots
+          volatile = {
+            persistentStoragePath =
+              if config.fileSystems ? "/scratch" then "/scratch/system" else "/persist/system";
+            hideMounts = true;
+            enableWarnings = true;
+          };
+        };
+
+        environment.perpetual.volatile = {
+          enable = true;
+          dirs = [ "/var/cache" ];
         };
 
         environment.perpetual.default = {
@@ -31,7 +46,6 @@
             # keep-sorted start
             "/root/.android"
             "/root/.cache"
-            "/var/cache"
             "/var/lib/nixos"
             "/var/lib/systemd/coredump"
             "/var/lib/systemd/timers"
@@ -47,12 +61,23 @@
         fileSystems."/persist".neededForBoot = true;
       };
 
-      home-manager = {
-        home.persistence.default = {
-          persistentStoragePath = "/persist";
-          hideMounts = true;
-          enableWarnings = true;
+      home-manager = { osConfig, ... }: {
+        home.persistence = {
+          default = {
+            persistentStoragePath = "/persist";
+            hideMounts = true;
+            enableWarnings = true;
+          };
+
+          # without a scratch subvolume, volatile data still has to survive reboots
+          volatile = {
+            persistentStoragePath = if osConfig.fileSystems ? "/scratch" then "/scratch" else "/persist";
+            hideMounts = true;
+            enableWarnings = true;
+          };
         };
+
+        home.perpetual.volatile.enable = true;
 
         home.perpetual.default = {
           enable = true;
