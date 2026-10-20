@@ -1,7 +1,6 @@
 {
   bundleLib,
   inputs,
-  inputs',
   self,
   ...
 }:
@@ -19,9 +18,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "firefox" ] {
 
     programs.firefox = {
       enable = true;
-
-      # 152.0.6 renders the whole ui in serif, pin to 152.0.3 until fixed
-      package = inputs'.nixpkgs-firefox.legacyPackages.firefox;
 
       profiles.default = {
         id = 0;
