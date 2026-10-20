@@ -17,10 +17,10 @@ let
 in
 {
   # keep-sorted start
-  "claude/instructions.age".publicKeys = allHosts;
+  "claude/instructions.age".publicKeys = desktops;
   "firefox/policies.age".publicKeys = desktops;
   "tokens/nix-access-tokens.age".publicKeys = allHosts;
-  "tokens/nixpkgs-review.age".publicKeys = allHosts;
+  "tokens/nixpkgs-review.age".publicKeys = desktops;
   "user-passwords/diffy.age".publicKeys = allHosts;
   "webdav/seedvault.age".publicKeys = desktops;
   # keep-sorted end
