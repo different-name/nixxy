@@ -6,8 +6,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nh" ] {
     # weekly garbage collection
     clean = {
       enable = true;
-      # keep configs from last 30 days
-      extraArgs = "--keep-since 30d";
+      extraArgs = "--keep-since 30d --keep 5";
     };
   };
 
