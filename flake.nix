@@ -6,6 +6,7 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./bundle.nix
+        ./checks.nix
         ./formatter.nix
         ./modules
         ./pkgs
