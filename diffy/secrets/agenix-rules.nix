@@ -16,6 +16,9 @@ in
   "claude/instructions.age".publicKeys = desktops;
   "cloudflare/dns-token.age".publicKeys = allHosts;
   "firefox/policies.age".publicKeys = desktops;
+  "restic/argon.age".publicKeys = desktops ++ [ hosts.argon ];
+  "restic/potassium.age".publicKeys = desktops;
+  "restic/sodium.age".publicKeys = desktops;
   "tokens/nix-access-tokens.age".publicKeys = allHosts;
   "tokens/nixpkgs-review.age".publicKeys = desktops;
   "user-passwords/diffy.age".publicKeys = allHosts;

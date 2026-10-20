@@ -9,6 +9,8 @@
 
     profiles.graphical.enable = true;
 
+    services.backup.enable = true;
+
     hardware = {
       bluetooth.enable = true;
       nvidia.enable = true;

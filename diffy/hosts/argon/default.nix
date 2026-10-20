@@ -10,6 +10,7 @@
     profiles.minimal.enable = true;
 
     services = {
+      backup.enable = true;
       headscale.enable = true;
       webdav.enable = true;
     };

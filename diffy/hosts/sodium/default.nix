@@ -9,6 +9,8 @@
 
     profiles.graphical.enable = true;
 
+    services.backup.enable = true;
+
     applications.orca-slicer.enable = true;
 
     hardware.nvidia.enable = true;
