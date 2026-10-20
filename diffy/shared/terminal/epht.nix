@@ -27,7 +27,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "epht" ] {
         "/var/lib/NetworkManager/secret_key" # cannot be persisted as file
         "/var/lib/NetworkManager/timestamps" # cannot be persisted as file
         "/var/lib/systemd/catalog"
-        "/var/lib/systemd/timers"
         # keep-sorted end
       ];
     };

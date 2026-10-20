@@ -34,6 +34,7 @@
             "/var/cache"
             "/var/lib/nixos"
             "/var/lib/systemd/coredump"
+            "/var/lib/systemd/timers"
             "/var/lib/systemd/timesync"
             "/var/log"
             # keep-sorted end
