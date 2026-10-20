@@ -23,7 +23,6 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "mako" ] {
       services.mako = {
         enable = true;
         settings = {
-          "border-color" = lib.mkForce "#${borderColor}";
           "border-radius" = rounding;
 
           "mode=do-not-disturb" = {
