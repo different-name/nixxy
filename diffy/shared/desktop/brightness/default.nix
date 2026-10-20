@@ -5,12 +5,10 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "brightness" ] {
 
   # own the kernel-access deps so the module works standalone: i2c-* for ddc/ci,
   # and brightnessctl's udev rules (video group) for the /sys/class/backlight writes
-  nixos =
-    { pkgs, ... }:
-    {
-      hardware.i2c.enable = true;
-      services.udev.packages = [ pkgs.brightnessctl ];
-    };
+  nixos = { pkgs, ... }: {
+    hardware.i2c.enable = true;
+    services.udev.packages = [ pkgs.brightnessctl ];
+  };
 
   home-manager =
     { config, pkgs, ... }:

@@ -16,9 +16,7 @@ python3Packages.buildPythonPackage {
     hash = "sha256-psckZ32ZEQ1+Ez6U60pGLqqroWWZAkNq2bs8JIA1wqo=";
   };
 
-  build-system = with python3Packages; [
-    setuptools
-  ];
+  build-system = with python3Packages; [ setuptools ];
 
   dependencies = with python3Packages; [
     requests

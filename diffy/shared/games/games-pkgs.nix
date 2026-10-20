@@ -4,9 +4,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "extraPackages" ] {
     home.perpetual.default = {
       packages = {
         # keep-sorted start block=yes newline_separated=yes
-        osu-lazer-bin.dirs = [
-          "$dataHome/osu"
-        ];
+        osu-lazer-bin.dirs = [ "$dataHome/osu" ];
 
         prismlauncher = {
           package = pkgs.prismlauncher.override {
@@ -16,9 +14,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "extraPackages" ] {
               temurin-bin-25
             ];
           };
-          dirs = [
-            "$dataHome/PrismLauncher"
-          ];
+          dirs = [ "$dataHome/PrismLauncher" ];
         };
 
         r2modman.dirs = [

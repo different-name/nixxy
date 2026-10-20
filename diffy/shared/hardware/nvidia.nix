@@ -41,7 +41,5 @@ bundleLib.mkEnableModule [ "dyad" "hardware" "nvidia" ] {
     );
   };
 
-  home-manager.home.perpetual.default.dirs = [
-    "$cacheHome/nvidia"
-  ];
+  home-manager.home.perpetual.default.dirs = [ "$cacheHome/nvidia" ];
 }

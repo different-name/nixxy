@@ -82,9 +82,7 @@
             force = true;
           };
 
-          home.perpetual.default.dirs = [
-            "$configHome/discord"
-          ];
+          home.perpetual.default.dirs = [ "$configHome/discord" ];
         };
     }
   );

@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   config = lib.mkIf config.dyad.applications.firefox.enable {
     home-manager.programs.firefox.profiles.default.search = {
       force = true;
@@ -8,9 +7,7 @@
         # keep-sorted start block=yes newline_separated=yes
         kagi = {
           name = "Kagi";
-          urls = lib.singleton {
-            template = "https://kagi.com/search?q={searchTerms}";
-          };
+          urls = lib.singleton { template = "https://kagi.com/search?q={searchTerms}"; };
           definedAliases = [ ":kg" ];
         };
 
@@ -32,17 +29,13 @@
 
         noogle = {
           name = "Noogle";
-          urls = lib.singleton {
-            template = "https://noogle.dev/q?term={searchTerms}";
-          };
+          urls = lib.singleton { template = "https://noogle.dev/q?term={searchTerms}"; };
           definedAliases = [ ":ng" ];
         };
 
         proton-db = {
           name = "Proton DB";
-          urls = lib.singleton {
-            template = "https://www.protondb.com/search?q={searchTerms}";
-          };
+          urls = lib.singleton { template = "https://www.protondb.com/search?q={searchTerms}"; };
           definedAliases = [ ":pd" ];
         };
 
@@ -56,9 +49,7 @@
 
         youtube = {
           name = "Youtube";
-          urls = lib.singleton {
-            template = "https://www.youtube.com/results?search_query={searchTerms}";
-          };
+          urls = lib.singleton { template = "https://www.youtube.com/results?search_query={searchTerms}"; };
           definedAliases = [ ":yt" ];
         };
         # keep-sorted end

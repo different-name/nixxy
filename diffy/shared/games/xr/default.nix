@@ -113,9 +113,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
     # slimevr tracker udev rules
     services.udev.packages = [ pkgs.slimevr ];
 
-    environment.systemPackages = [
-      inputs'.solarxr-cli.packages.default
-    ];
+    environment.systemPackages = [ inputs'.solarxr-cli.packages.default ];
 
     environment.perpetual.default.dirs = [
       "/root/.config/dev.slimevr.SlimeVR"

@@ -7,18 +7,12 @@
 }:
 bundleLib.mkEnableModule [ "dyad" "system" "agenix" ] {
   nixos = {
-    imports = [
-      inputs.agenix.nixosModules.default
-    ];
+    imports = [ inputs.agenix.nixosModules.default ];
 
     # access to the hostkey independent of impermanence activation
-    age.identityPaths = [
-      "/persist/system/etc/ssh/ssh_host_ed25519_key"
-    ];
+    age.identityPaths = [ "/persist/system/etc/ssh/ssh_host_ed25519_key" ];
 
-    environment.systemPackages = [
-      inputs'.agenix.packages.agenix
-    ];
+    environment.systemPackages = [ inputs'.agenix.packages.agenix ];
   };
 
   home-manager =
@@ -29,9 +23,7 @@ bundleLib.mkEnableModule [ "dyad" "system" "agenix" ] {
       persistEnabled = lib.hasAttr "default" persistence && persistence.default.enable;
     in
     {
-      imports = [
-        inputs.agenix.homeManagerModules.default
-      ];
+      imports = [ inputs.agenix.homeManagerModules.default ];
 
       age.identityPaths = lib.mkIf persistEnabled [
         "${persistentStoragePath}${config.home.homeDirectory}/.ssh/id_ed25519"

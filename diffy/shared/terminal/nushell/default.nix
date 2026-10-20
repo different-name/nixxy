@@ -1,15 +1,13 @@
 { bundleLib, lib, ... }:
 bundleLib.mkEnableModule [ "dyad" "terminal" "nushell" ] {
-  nixos =
-    { pkgs, ... }:
-    {
-      programs.bash.interactiveShellInit = ''
-        if [[ $(${lib.getExe' pkgs.procps "ps"} --no-header --pid=$PPID --format=comm) != "nu" && -z ''${BASH_EXECUTION_STRING} ]]
-        then
-          exec ${lib.getExe pkgs.nushell}
-        fi
-      '';
-    };
+  nixos = { pkgs, ... }: {
+    programs.bash.interactiveShellInit = ''
+      if [[ $(${lib.getExe' pkgs.procps "ps"} --no-header --pid=$PPID --format=comm) != "nu" && -z ''${BASH_EXECUTION_STRING} ]]
+      then
+        exec ${lib.getExe pkgs.nushell}
+      fi
+    '';
+  };
 
   home-manager =
     { config, ... }:

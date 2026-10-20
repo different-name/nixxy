@@ -16,9 +16,7 @@ bundleLib.mkEnableModule [ "dyad" "hardware" "fwupd" ] {
           # keep-sorted end
         ];
 
-        files = [
-          "${fwuptDir}/pending.db"
-        ];
+        files = [ "${fwuptDir}/pending.db" ];
       };
   };
 }

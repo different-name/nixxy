@@ -1,8 +1,4 @@
-{
-  bundleLib,
-  inputs,
-  ...
-}:
+{ bundleLib, inputs, ... }:
 let
   mkWrappedObs =
     pkgs:

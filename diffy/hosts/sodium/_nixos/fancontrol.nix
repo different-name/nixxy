@@ -25,9 +25,7 @@ let
 in
 {
   boot = {
-    extraModulePackages = [
-      config.boot.kernelPackages.nct6687d
-    ];
+    extraModulePackages = [ config.boot.kernelPackages.nct6687d ];
     kernelModules = [ "nct6687" ];
     blacklistedKernelModules = [ "nct6683" ];
   };

@@ -39,9 +39,7 @@ bundleLib.mkEnableModule [ "dyad" "media" "goxlr-utility" ] {
             text = lib.readFile ./toggle-mute.sh;
           };
         in
-        [
-          (bind "${mod} + Z" (exec (lib.getExe toggleMute)))
-        ];
+        [ (bind "${mod} + Z" (exec (lib.getExe toggleMute))) ];
 
       home.file."Audio/Samples" = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/goxlr-utility/samples/Recorded";

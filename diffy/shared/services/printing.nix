@@ -15,8 +15,6 @@ bundleLib.mkEnableModule [ "dyad" "services" "printing" ] {
       };
     };
 
-    environment.perpetual.default.dirs = [
-      "/var/lib/cups"
-    ];
+    environment.perpetual.default.dirs = [ "/var/lib/cups" ];
   };
 }

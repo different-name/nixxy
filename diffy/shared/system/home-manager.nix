@@ -1,13 +1,7 @@
-{
-  bundleLib,
-  inputs,
-  ...
-}:
+{ bundleLib, inputs, ... }:
 bundleLib.mkEnableModule [ "dyad" "system" "home-manager" ] {
   nixos = {
-    imports = [
-      inputs.home-manager.nixosModules.home-manager
-    ];
+    imports = [ inputs.home-manager.nixosModules.home-manager ];
 
     config.home-manager = {
       useGlobalPkgs = true;

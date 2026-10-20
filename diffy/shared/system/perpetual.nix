@@ -32,9 +32,7 @@ bundleLib.mkEnableModule [ "dyad" "system" "perpetual" ] {
         # keep-sorted end
       ];
 
-      files = [
-        "/var/lib/systemd/random-seed"
-      ];
+      files = [ "/var/lib/systemd/random-seed" ];
     };
 
     # required for impermanence to function

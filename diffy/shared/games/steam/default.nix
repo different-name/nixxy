@@ -27,9 +27,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
   };
 
   home-manager = { osConfig, pkgs, ... }: {
-    imports = [
-      inputs.steam-config-nix.homeModules.default
-    ];
+    imports = [ inputs.steam-config-nix.homeModules.default ];
 
     programs.steam.config = {
       enable = true;

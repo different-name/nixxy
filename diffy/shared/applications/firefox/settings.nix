@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   config = lib.mkIf config.dyad.applications.firefox.enable {
     home-manager = { config, ... }: {
       programs.firefox.profiles.default.settings = {

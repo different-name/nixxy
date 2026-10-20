@@ -18,8 +18,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nh" ] {
       flake = "${config.home.homeDirectory}/nixxy";
     };
 
-    home.perpetual.default.dirs = [
-      "$cacheHome/nix-output-monitor"
-    ];
+    home.perpetual.default.dirs = [ "$cacheHome/nix-output-monitor" ];
   };
 }

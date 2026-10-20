@@ -49,8 +49,6 @@ bundleLib.mkEnableModule [ "dyad" "services" "webdav" ] {
 
       networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ httpsPort ];
 
-      environment.perpetual.default.dirs = [
-        "/var/lib/webdav"
-      ];
+      environment.perpetual.default.dirs = [ "/var/lib/webdav" ];
     };
 }

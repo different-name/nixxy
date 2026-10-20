@@ -6,9 +6,7 @@
 }:
 bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
   nixos = {
-    imports = [
-      inputs.catppuccin.nixosModules.catppuccin
-    ];
+    imports = [ inputs.catppuccin.nixosModules.catppuccin ];
 
     config.catppuccin = {
       enable = true;

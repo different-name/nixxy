@@ -6,9 +6,7 @@ let
   ];
 in
 {
-  imports = [
-    inputs.bundle.flakeModules.default
-  ];
+  imports = [ inputs.bundle.flakeModules.default ];
 
   bundle = {
     hosts = lib.genAttrs diffyHosts (_: {

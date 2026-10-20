@@ -19,8 +19,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nixpkgs-review" ] {
       }
     );
 
-    home.perpetual.default.dirs = [
-      "$cacheHome/nixpkgs-review"
-    ];
+    home.perpetual.default.dirs = [ "$cacheHome/nixpkgs-review" ];
   };
 }

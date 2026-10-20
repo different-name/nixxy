@@ -128,9 +128,7 @@ in
           steamConfig.enable = true;
         };
 
-        home.perpetual.default.dirs = [
-          "$cacheHome/vrchat-video-resolver"
-        ];
+        home.perpetual.default.dirs = [ "$cacheHome/vrchat-video-resolver" ];
 
         systemd.user.services.oscleash = {
           Unit = {
@@ -150,9 +148,7 @@ in
 
         home.perpetual.default.packages.oscleash = {
           package = self'.packages.oscleash;
-          dirs = [
-            "$configHome/OSCLeash"
-          ];
+          dirs = [ "$configHome/OSCLeash" ];
         };
       };
   };

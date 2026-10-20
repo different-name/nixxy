@@ -9,9 +9,7 @@ let
 in
 bundleLib.mkEnableModule [ "dyad" "applications" "spotify" ] {
   home-manager = {
-    imports = [
-      inputs.spicetify-nix.homeManagerModules.spicetify
-    ];
+    imports = [ inputs.spicetify-nix.homeManagerModules.spicetify ];
 
     programs.spicetify = {
       enable = true;

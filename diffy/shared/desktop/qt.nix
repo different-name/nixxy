@@ -26,8 +26,6 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "qt" ] {
         qt6ctSettings = qtctSettings;
       };
 
-      home.packages = [
-        pkgs.kdePackages.qqc2-desktop-style
-      ];
+      home.packages = [ pkgs.kdePackages.qqc2-desktop-style ];
     };
 }

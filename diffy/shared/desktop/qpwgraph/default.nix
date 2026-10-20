@@ -1,9 +1,7 @@
 { bundleLib, lib, ... }:
 bundleLib.mkEnableModule [ "dyad" "desktop" "qpwgraph" ] {
   home-manager = { pkgs, ... }: {
-    home.packages = [
-      pkgs.qpwgraph
-    ];
+    home.packages = [ pkgs.qpwgraph ];
 
     systemd.user.services.qpwgraph = {
       Unit = {

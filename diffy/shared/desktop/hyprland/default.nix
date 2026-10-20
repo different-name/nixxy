@@ -29,9 +29,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
       toLua = lib.generators.toLua { };
     in
     {
-      imports = [
-        self.homeModules.xdgDesktopPortalHyprland
-      ];
+      imports = [ self.homeModules.xdgDesktopPortalHyprland ];
 
       lib.hyprland = rec {
         mod = "SUPER";

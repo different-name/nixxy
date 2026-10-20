@@ -26,14 +26,12 @@ in
   options.environment.perpetual = lib.mkOption {
     type = types.attrsOf (
       types.submodule (
-        { config, ... }:
-        {
+        { config, ... }: {
           options = baseOptions // {
             packages = lib.mkOption {
               type = types.attrsOf (
                 types.submodule (
-                  { name, ... }:
-                  {
+                  { name, ... }: {
                     options = baseOptions // {
                       package = lib.mkOption {
                         type = types.package;

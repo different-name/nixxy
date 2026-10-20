@@ -13,9 +13,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
       '';
 
       # git tui
-      lazygit.dirs = [
-        "$stateHome/lazygit"
-      ];
+      lazygit.dirs = [ "$stateHome/lazygit" ];
 
       # calculator
       libqalculate.dirs = [
@@ -24,9 +22,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
       ];
 
       # audio/video downloader
-      yt-dlp.dirs = [
-        "$cacheHome/yt-dlp"
-      ];
+      yt-dlp.dirs = [ "$cacheHome/yt-dlp" ];
 
       # github cli
       gh.dirs = [

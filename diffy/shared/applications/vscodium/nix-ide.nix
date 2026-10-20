@@ -31,9 +31,7 @@
 
           "nix.serverPath" = "${lib.getExe pkgs.nixd}";
 
-          "nix.serverSettings.nixd.formatting.command" = [
-            "${lib.getExe pkgs.nixfmt}"
-          ];
+          "nix.serverSettings.nixd.formatting.command" = [ "${lib.getExe pkgs.nixfmt}" ];
 
           "nix.serverSettings.nixd.options.nixos.expr" =
             "(builtins.getFlake \"${config.programs.nh.flake}\").nixosConfigurations.<name>.options";

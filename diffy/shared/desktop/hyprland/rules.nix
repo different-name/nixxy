@@ -36,9 +36,7 @@ in
       };
 
       tile-by-class = {
-        match.class = lib.concatStringsSep "|" [
-          "battle.net.exe"
-        ];
+        match.class = lib.concatStringsSep "|" [ "battle.net.exe" ];
         float = true;
       };
 

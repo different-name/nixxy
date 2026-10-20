@@ -15,7 +15,5 @@ bundleLib.mkEnableModule [ "dyad" "services" "openssh" ] {
     ];
   };
 
-  home-manager.home.perpetual.default.dirs = [
-    ".ssh"
-  ];
+  home-manager.home.perpetual.default.dirs = [ ".ssh" ];
 }

@@ -6,18 +6,10 @@ bundleLib.mkEnableModule [ "dyad" "system" "btrfs" ] {
       enable = true;
       services.root-subvol-switch = {
         description = "Switch btrfs root subvolume";
-        wantedBy = [
-          "initrd.target"
-        ];
-        after = [
-          "systemd-cryptsetup@rootfs.service"
-        ];
-        requires = [
-          "systemd-cryptsetup@rootfs.service"
-        ];
-        before = [
-          "sysroot.mount"
-        ];
+        wantedBy = [ "initrd.target" ];
+        after = [ "systemd-cryptsetup@rootfs.service" ];
+        requires = [ "systemd-cryptsetup@rootfs.service" ];
+        before = [ "sysroot.mount" ];
         unitConfig.DefaultDependencies = "no";
         serviceConfig.Type = "oneshot";
         script = ''
@@ -41,9 +33,7 @@ bundleLib.mkEnableModule [ "dyad" "system" "btrfs" ] {
         serviceConfig.ExecStart = lib.getExe (
           pkgs.writeShellApplication {
             name = "root-subvol-cleanup";
-            runtimeInputs = with pkgs; [
-              btrfs-progs
-            ];
+            runtimeInputs = with pkgs; [ btrfs-progs ];
             text = ''
               KEEP_MIN_NUM=${toString keepMinNum}
               KEEP_AGE_DAYS=${toString keepAgeDays}

@@ -1,9 +1,7 @@
 { bundleLib, inputs, ... }:
 bundleLib.mkEnableModule [ "dyad" "system" "boot" ] {
   nixos = { pkgs, ... }: {
-    imports = [
-      inputs.disko.nixosModules.default
-    ];
+    imports = [ inputs.disko.nixosModules.default ];
 
     config.boot = {
       initrd = {

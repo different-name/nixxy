@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   config = lib.mkIf config.dyad.desktop.hyprland.enable {
     home-manager =
       { config, ... }:

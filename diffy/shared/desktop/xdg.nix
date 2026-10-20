@@ -13,9 +13,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "xdg" ] {
         ];
       };
 
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-      ];
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
   };
 

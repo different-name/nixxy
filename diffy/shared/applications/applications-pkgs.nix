@@ -3,17 +3,11 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
   home-manager = { pkgs, ... }: {
     home.perpetual.default.packages = {
       # keep-sorted start block=yes newline_separated=yes
-      android-tools.dirs = [
-        ".android"
-      ];
+      android-tools.dirs = [ ".android" ];
 
-      emote.dirs = [
-        "$dataHome/Emote"
-      ];
+      emote.dirs = [ "$dataHome/Emote" ];
 
-      ente-desktop.dirs = [
-        "$configHome/ente"
-      ];
+      ente-desktop.dirs = [ "$configHome/ente" ];
 
       gimp3-with-plugins.dirs = [
         "$cacheHome/gimp"
@@ -25,9 +19,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
         ".nrfconnect-apps"
       ];
 
-      proton-pass.dirs = [
-        "$configHome/Proton Pass"
-      ];
+      proton-pass.dirs = [ "$configHome/Proton Pass" ];
 
       proton-vpn.dirs = [
         "$cacheHome/Proton"
