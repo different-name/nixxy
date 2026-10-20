@@ -41,24 +41,8 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
     # keep-sorted end
   };
 
-  nixos.hardware = {
-    graphics.enable = true;
-    # udev rules for flashing
-    keyboard.qmk.enable = true;
-  };
+  # udev rules for flashing
+  nixos.hardware.keyboard.qmk.enable = true;
 
-  home-manager = {
-    services.playerctld.enable = true;
-
-    home.perpetual.default.dirs = [
-      # keep-sorted start
-      "Audio"
-      "Code"
-      "Documents"
-      "Downloads"
-      "Pictures"
-      "Videos"
-      # keep-sorted end
-    ];
-  };
+  home-manager.services.playerctld.enable = true;
 }

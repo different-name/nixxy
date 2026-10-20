@@ -96,8 +96,6 @@ in
             repeating = true;
           } "${mod} + CTRL + RIGHT" "hl.dsp.window.resize({ x = 20, y = 0, relative = true })")
 
-          # media controls
-          (bindWith { locked = true; } "XF86AudioPlay" (exec "playerctl play-pause"))
         ]
         # workspace keys
         ++ map (ws: bind "${mod} + ${ws}" ''smw.workspace("${ws}")'') workspaces
@@ -117,6 +115,9 @@ in
           (bind "${mod} + D" (exec ''notify-send -t 5000 "$(date "+%a %-d %b %Y | %-I:%M%p")"''))
         ]
         ++ when desktop.mako [ (bind "${mod} + SHIFT + D" (exec "mako-dnd")) ]
+        ++ when config.services.playerctld [
+          (bindWith { locked = true; } "XF86AudioPlay" (exec "playerctl play-pause"))
+        ]
         ++ when media.goxlr-utility [ (bind "${mod} + Z" (exec "goxlr-utility-tg-mute")) ]
 
         # cursor-aware brightness (hold to repeat, osd-brightness drops overlapping calls so ddc isn't overwhelmed)

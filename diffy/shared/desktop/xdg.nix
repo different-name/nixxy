@@ -17,12 +17,25 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "xdg" ] {
     };
   };
 
-  home-manager.xdg = {
-    enable = true;
-    mime.enable = true;
+  home-manager = {
+    xdg = {
+      enable = true;
+      mime.enable = true;
 
-    mimeApps.enable = true;
+      mimeApps.enable = true;
 
-    configFile."mimeapps.list".force = true;
+      configFile."mimeapps.list".force = true;
+    };
+
+    home.perpetual.default.dirs = [
+      # keep-sorted start
+      "Audio"
+      "Code"
+      "Documents"
+      "Downloads"
+      "Pictures"
+      "Videos"
+      # keep-sorted end
+    ];
   };
 }
