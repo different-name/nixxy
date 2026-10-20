@@ -41,6 +41,10 @@
       # keep-sorted end
     ];
 
+    # laptop joins untrusted networks, ssh only over the tailnet
+    services.openssh.openFirewall = false;
+    networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 22 ];
+
     services.thermald = {
       enable = true;
       # generated for the xps 15 9500, thermald has no default for it
