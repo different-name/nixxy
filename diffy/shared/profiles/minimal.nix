@@ -37,7 +37,18 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "minimal" ] {
     # keep-sorted end
   };
 
-  nixos.programs.mosh.enable = true;
+  nixos = {
+    programs.mosh = {
+      enable = true;
+      openFirewall = false;
+    };
+
+    # mosh only over the tailnet
+    networking.firewall.interfaces.tailscale0.allowedUDPPortRanges = lib.singleton {
+      from = 60000;
+      to = 61000;
+    };
+  };
 
   home-manager.programs.fd.enable = true;
 }
