@@ -1,4 +1,14 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+let
+  inherit (config.dyad.desktop.hyprland) rounding;
+in
+{
+  options.dyad.desktop.hyprland.rounding = lib.mkOption {
+    type = lib.types.ints.unsigned;
+    default = 5;
+    description = "Corner radius in pixels for windows and notifications";
+  };
+
   config = lib.mkIf config.dyad.desktop.hyprland.enable {
     home-manager =
       { config, ... }:
@@ -21,7 +31,7 @@
             };
 
             decoration = {
-              rounding = 5;
+              inherit rounding;
               shadow = {
                 range = 8;
                 render_power = 3;

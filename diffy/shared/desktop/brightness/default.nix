@@ -11,9 +11,9 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "brightness" ] {
   };
 
   home-manager =
-    { config, pkgs, ... }:
+    { osConfig, pkgs, ... }:
     let
-      hyprland = config.wayland.windowManager.hyprland.package;
+      hyprland = osConfig.programs.hyprland.package;
 
       probe = pkgs.writeShellApplication {
         name = "osd-brightness-probe";
