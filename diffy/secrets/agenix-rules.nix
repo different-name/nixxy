@@ -18,6 +18,7 @@ in
 {
   # keep-sorted start
   "claude/instructions.age".publicKeys = desktops;
+  "cloudflare/dns-token.age".publicKeys = allHosts;
   "firefox/policies.age".publicKeys = desktops;
   "tokens/nix-access-tokens.age".publicKeys = allHosts;
   "tokens/nixpkgs-review.age".publicKeys = desktops;
