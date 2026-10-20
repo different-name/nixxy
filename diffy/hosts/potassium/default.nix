@@ -44,8 +44,6 @@ in
       # keep-sorted start
       (inputs.import-tree ./_nixos)
       inputs.nixos-hardware.nixosModules.common-cpu-intel
-      inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-      inputs.nixos-hardware.nixosModules.common-pc-ssd
       self.nixosModules.tty1Autologin
       # keep-sorted end
     ];

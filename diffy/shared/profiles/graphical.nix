@@ -40,7 +40,11 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
     # keep-sorted end
   };
 
-  nixos.hardware.graphics.enable = true;
+  nixos.hardware = {
+    graphics.enable = true;
+    # udev rules for flashing
+    keyboard.qmk.enable = true;
+  };
 
   home-manager = {
     services.playerctld.enable = true;

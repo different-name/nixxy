@@ -29,9 +29,4 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "minimal" ] {
     };
     # keep-sorted end
   };
-
-  nixos = {
-    hardware.keyboard.qmk.enable = true;
-    services.fstrim.enable = true;
-  };
 }
