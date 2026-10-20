@@ -11,6 +11,8 @@
 
     services.backup.enable = true;
 
+    system.secure-boot.enable = true;
+
     hardware = {
       bluetooth.enable = true;
       nvidia.enable = true;

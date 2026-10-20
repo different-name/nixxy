@@ -11,6 +11,8 @@
 
     services.backup.enable = true;
 
+    system.secure-boot.enable = true;
+
     applications.orca-slicer.enable = true;
 
     hardware.nvidia.enable = true;
