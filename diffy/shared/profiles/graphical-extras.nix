@@ -1,6 +1,8 @@
 { bundleLib, lib, ... }:
 bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
   dyad = lib.mkDefault {
+    profiles.graphical.enable = true;
+
     # keep-sorted start block=yes newline_separated=yes
     applications = {
       # keep-sorted start
@@ -26,7 +28,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical-extras" ] {
 
     media.extraPackages.enable = true;
 
-    style.catppuccin.enable = true;
     # keep-sorted end
   };
 }

@@ -6,19 +6,10 @@ in
   dyad = {
     users.diffy.enable = true;
 
-    profiles = {
-      # keep-sorted start
-      minimal.enable = true;
-      terminal.enable = true;
-      # keep-sorted end
-    };
-
-    # overrides profile defaults
-    hardware.fwupd.enable = false;
+    profiles.minimal.enable = true;
 
     system = {
       btrfs.enable = true;
-      networking.enable = false;
       perpetual.enable = true;
     };
   };

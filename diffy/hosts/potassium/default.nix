@@ -11,14 +11,7 @@ in
   dyad = {
     users.diffy.enable = true;
 
-    profiles = {
-      # keep-sorted start
-      graphical-extras.enable = true;
-      graphical.enable = true;
-      minimal.enable = true;
-      terminal.enable = true;
-      # keep-sorted end
-    };
+    profiles.graphical-extras.enable = true;
 
     hardware = {
       bluetooth.enable = true;

@@ -30,7 +30,7 @@ let
     none = { };
     inherit user;
     minimal = lib.recursiveUpdate user { dyad.profiles.minimal.enable = true; };
-    terminal = lib.recursiveUpdate user { dyad.profiles.terminal.enable = true; };
+    workstation = lib.recursiveUpdate user { dyad.profiles.workstation.enable = true; };
     graphical = lib.recursiveUpdate user { dyad.profiles.graphical.enable = true; };
     graphical-extras = lib.recursiveUpdate user { dyad.profiles.graphical-extras.enable = true; };
     mako = lib.recursiveUpdate user { dyad.desktop.mako.enable = true; };

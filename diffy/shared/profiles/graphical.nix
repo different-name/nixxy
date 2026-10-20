@@ -1,6 +1,8 @@
 { bundleLib, lib, ... }:
 bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
   dyad = lib.mkDefault {
+    profiles.workstation.enable = true;
+
     # keep-sorted start block=yes newline_separated=yes
     applications = {
       # keep-sorted start
@@ -36,7 +38,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
 
     services.pipewire.enable = true;
 
-    style.catppuccin.enable = true;
     # keep-sorted end
   };
 

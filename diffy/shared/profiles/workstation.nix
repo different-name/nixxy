@@ -1,21 +1,20 @@
 { bundleLib, lib, ... }:
-bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
+bundleLib.mkEnableModule [ "dyad" "profiles" "workstation" ] {
   dyad = lib.mkDefault {
     # keep-sorted start block=yes newline_separated=yes
-    services.tailscale.enable = true;
+    hardware.fwupd.enable = true;
 
-    style.catppuccin.enable = true;
+    profiles.minimal.enable = true;
+
+    system.networking.enable = true;
 
     terminal = {
       # keep-sorted start
-      btop.enable = true;
       claude-code.enable = true;
       dev-state.enable = true;
       epht.enable = true;
       extraPackages.enable = true;
-      git.enable = true;
       nixpkgs-review.enable = true;
-      nushell.enable = true;
       shellAliases.enable = true;
       television.enable = true;
       zellij.enable = true;
@@ -23,8 +22,4 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
     };
     # keep-sorted end
   };
-
-  nixos.programs.mosh.enable = true;
-
-  home-manager.programs.fd.enable = true;
 }
