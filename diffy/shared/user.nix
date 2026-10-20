@@ -1,7 +1,6 @@
 { bundleLib, self, ... }:
 bundleLib.mkEnableModule [ "dyad" "users" "diffy" ] {
   dyad.system = {
-    home-manager.enable = true;
     agenix.enable = true;
   };
 
