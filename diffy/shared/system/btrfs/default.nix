@@ -67,10 +67,10 @@ bundleLib.mkEnableModule [ "dyad" "system" "btrfs" ] {
 
       services.btrbk = {
         instances."persist" = {
-          onCalendar = "daily";
+          onCalendar = "hourly";
           settings = {
-            snapshot_preserve_min = "1w";
-            snapshot_preserve = "2w";
+            snapshot_preserve_min = "24h";
+            snapshot_preserve = "48h 14d 8w";
             volume."/btrfs".subvolume = "persist";
           };
         };
