@@ -8,6 +8,8 @@ in
 
     profiles.minimal.enable = true;
 
+    services.headscale.enable = true;
+
     system = {
       btrfs.enable = true;
       perpetual.enable = true;
