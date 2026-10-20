@@ -3,20 +3,25 @@
 let
   hosts = {
     # keep-sorted start
+    argon = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGSNVe+NarhPICWaIGLhPFnA9p3BX4WRDN4IHJJxuMnF diffy@argon";
     potassium = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID3EOgPFHT/t5cimzbfL/vEyolU4CbdT9HVMyp8PnTUG diffy@potassium";
     sodium = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIoe3VveHt2vXoHdkRbLE0Xx5il0T3v8PiWxFvdniSLg diffy@sodium";
     # keep-sorted end
   };
 
+  desktops = [
+    hosts.potassium
+    hosts.sodium
+  ];
   allHosts = builtins.attrValues hosts;
 in
 {
   # keep-sorted start
   "claude/instructions.age".publicKeys = allHosts;
-  "firefox/policies.age".publicKeys = allHosts;
+  "firefox/policies.age".publicKeys = desktops;
   "tokens/nix-access-tokens.age".publicKeys = allHosts;
   "tokens/nixpkgs-review.age".publicKeys = allHosts;
   "user-passwords/diffy.age".publicKeys = allHosts;
-  "webdav/seedvault.age".publicKeys = allHosts;
+  "webdav/seedvault.age".publicKeys = desktops;
   # keep-sorted end
 }
