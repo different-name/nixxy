@@ -1,4 +1,9 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+let
+  inherit (config.dyad) applications desktop;
+  when = feature: lib.optionals feature.enable;
+in
+{
   config = lib.mkIf config.dyad.desktop.hyprland.enable {
     home-manager =
       { config, osConfig, ... }:
@@ -13,6 +18,7 @@
         uwsmCmd = lib.optionalString osConfig.programs.uwsm.enable "uwsm app -- ";
         uwsmApp = cmd: uwsmCmd + cmd;
         uwsmSingleApp = cmd: "pgrep ${cmd} || ${uwsmCmd + cmd}";
+        launch = keys: cmd: bind keys (exec (uwsmApp cmd));
 
         workspaces = map toString (lib.range 1 9);
       in
@@ -38,20 +44,6 @@
           (bind "CTRL + ALT + SHIFT + DELETE" (
             exec ''systemctl --user stop wayland-wm@hyprland\\x2duwsm.desktop.service''
           ))
-
-          # utility
-          ## terminal
-          (bind "${mod} + RETURN" (exec (uwsmApp "kitty")))
-          ## lock screen
-          (bind "${mod} + L" (exec (uwsmSingleApp "hyprlock")))
-          ## launcher
-          (bind "${mod} + S" (exec "vicinae toggle")) # not using uwsm as it introduces latency
-          ## browser
-          (bind "${mod} + W" (exec (uwsmApp "firefox")))
-          ## file explorer
-          (bind "${mod} + E" (exec (uwsmApp "thunar")))
-          ## emoji picker
-          (bind "${mod} + SHIFT + E" (exec (uwsmApp "emote")))
 
           # move focus
           (bind "${mod} + LEFT" ''hl.dsp.focus({ direction = "left" })'')
@@ -90,12 +82,6 @@
           # color picker
           (bind "${mod} + SHIFT + C" (exec "${uwsmSingleApp "hyprpicker"} --autocopy"))
 
-          # display time as noficiation
-          (bind "${mod} + D" (exec ''notify-send -t 5000 "$(date "+%a %-d %b %Y | %-I:%M%p")"''))
-
-          # toggle mako dnd
-          (bind "${mod} + SHIFT + D" (exec "mako-dnd"))
-
           # resize with arrowkeys
           (bindWith {
             repeating = true;
@@ -110,14 +96,44 @@
             repeating = true;
           } "${mod} + CTRL + RIGHT" "hl.dsp.window.resize({ x = 20, y = 0, relative = true })")
 
-          # cursor-aware brightness (hold to repeat, osd-brightness drops overlapping calls so ddc isn't overwhelmed)
-          (bindWith { repeating = true; } "${mod} + PAGE_UP" (exec "osd-brightness up"))
-          (bindWith { repeating = true; } "${mod} + PAGE_DOWN" (exec "osd-brightness down"))
-
           # media controls
           (bindWith { locked = true; } "XF86AudioPlay" (exec "playerctl play-pause"))
+        ]
+        # workspace keys
+        ++ map (ws: bind "${mod} + ${ws}" ''smw.workspace("${ws}")'') workspaces
+        ++ map (ws: bind "${mod} + SHIFT + ${ws}" ''smw.move_to_workspace("${ws}")'') workspaces
 
-          # volume
+        # utility
+        ++ when applications.kitty [ (launch "${mod} + RETURN" "kitty") ]
+        ++ when applications.firefox [ (launch "${mod} + W" "firefox") ]
+        ++ when applications.thunar [ (launch "${mod} + E" "thunar") ]
+        ++ when applications.extraPackages [ (launch "${mod} + SHIFT + E" "emote") ]
+        ++ when desktop.hyprlock [ (bind "${mod} + L" (exec (uwsmSingleApp "hyprlock"))) ]
+        # not using uwsm as it introduces latency
+        ++ when desktop.vicinae [ (bind "${mod} + S" (exec "vicinae toggle")) ]
+
+        # display time as notification
+        ++ when desktop.extraPackages [
+          (bind "${mod} + D" (exec ''notify-send -t 5000 "$(date "+%a %-d %b %Y | %-I:%M%p")"''))
+        ]
+        ++ when desktop.mako [ (bind "${mod} + SHIFT + D" (exec "mako-dnd")) ]
+
+        # cursor-aware brightness (hold to repeat, osd-brightness drops overlapping calls so ddc isn't overwhelmed)
+        ++ when desktop.brightness [
+          (bindWith { repeating = true; } "${mod} + PAGE_UP" (exec "osd-brightness up"))
+          (bindWith { repeating = true; } "${mod} + PAGE_DOWN" (exec "osd-brightness down"))
+          (bindWith {
+            locked = true;
+            repeating = true;
+          } "XF86MonBrightnessUp" (exec "osd-brightness up"))
+          (bindWith {
+            locked = true;
+            repeating = true;
+          } "XF86MonBrightnessDown" (exec "osd-brightness down"))
+        ]
+
+        # volume
+        ++ when desktop.swayosd [
           (bindWith { locked = true; } "XF86AudioMute" (exec "swayosd-client --output-volume mute-toggle"))
           (bindWith { locked = true; } "XF86AudioMicMute" (exec "swayosd-client --input-volume mute-toggle"))
           (bindWith {
@@ -128,20 +144,7 @@
             locked = true;
             repeating = true;
           } "XF86AudioLowerVolume" (exec "swayosd-client --output-volume -6 --max-volume 100"))
-
-          # backlight
-          (bindWith {
-            locked = true;
-            repeating = true;
-          } "XF86MonBrightnessUp" (exec "osd-brightness up"))
-          (bindWith {
-            locked = true;
-            repeating = true;
-          } "XF86MonBrightnessDown" (exec "osd-brightness down"))
-        ]
-        # workspace keys
-        ++ map (ws: bind "${mod} + ${ws}" ''smw.workspace("${ws}")'') workspaces
-        ++ map (ws: bind "${mod} + SHIFT + ${ws}" ''smw.move_to_workspace("${ws}")'') workspaces;
+        ];
       };
   };
 }
