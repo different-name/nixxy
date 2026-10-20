@@ -136,7 +136,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "claude-code" ] {
       home.file.".claude/themes/catppuccin.json".source = theme;
 
       age.secrets."claude/instructions" = {
-        file = self + /secrets/claude/instructions.age;
+        file = self + /diffy/secrets/claude/instructions.age;
         path = "${config.home.homeDirectory}/.claude/instructions.md";
       };
 

@@ -29,7 +29,7 @@
           inputs.nix-index-database.nixosModules.default
         ];
 
-        age.secrets."tokens/nix-access-tokens".file = self + /secrets/tokens/nix-access-tokens.age;
+        age.secrets."tokens/nix-access-tokens".file = self + /diffy/secrets/tokens/nix-access-tokens.age;
 
         # need git for flakes
         environment.systemPackages = [ pkgs.git ];

@@ -8,7 +8,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "firefox" ] {
   # bookmarks are managed through an encrypted policies file
   # because i don't feel like sharing my bookmarks with the world
   nixos.age.secrets.firefox-policies = {
-    file = self + /secrets/firefox/policies.age;
+    file = self + /diffy/secrets/firefox/policies.age;
     path = "/etc/firefox/policies/policies.json";
     mode = "0444";
   };

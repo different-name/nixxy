@@ -9,7 +9,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nixpkgs-review" ] {
   dyad.system.agenix.enable = true;
 
   home-manager = { pkgs, config, ... }: {
-    age.secrets."tokens/nixpkgs-review".file = self + /secrets/tokens/nixpkgs-review.age;
+    age.secrets."tokens/nixpkgs-review".file = self + /diffy/secrets/tokens/nixpkgs-review.age;
 
     home.packages = lib.singleton (
       inputs.wrappers.lib.wrapPackage {

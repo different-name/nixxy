@@ -10,7 +10,7 @@ bundleLib.mkEnableModule [ "dyad" "services" "webdav" ] {
       tailscale = lib.getExe config.services.tailscale.package;
     in
     {
-      age.secrets."webdav/seedvault".file = self + /secrets/webdav/seedvault.age;
+      age.secrets."webdav/seedvault".file = self + /diffy/secrets/webdav/seedvault.age;
 
       services.webdav = {
         enable = true;
