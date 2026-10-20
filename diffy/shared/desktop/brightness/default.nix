@@ -2,6 +2,8 @@
 bundleLib.mkEnableModule [ "dyad" "desktop" "brightness" ] {
   # osd is drawn by swayosd-server, so depend on it explicitly (not via the profile)
   dyad.desktop.swayosd.enable = true;
+  # hyprctl finds the monitor under the cursor
+  dyad.desktop.hyprland.enable = true;
 
   # own the kernel-access deps so the module works standalone: i2c-* for ddc/ci,
   # and brightnessctl's udev rules (video group) for the /sys/class/backlight writes
