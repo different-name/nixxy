@@ -68,13 +68,11 @@
 
           # screenshot
           ## area
-          (bind "PRINT" (exec "${uwsmSingleApp "grimblast"} --notify copy area"))
-          (bind "${mod} + SHIFT + S" (exec "${uwsmSingleApp "grimblast"} --notify copy area"))
+          (bind "PRINT" (exec "${uwsmSingleApp "grimblast"} --notify --freeze copy area"))
+          (bind "${mod} + SHIFT + S" (exec "${uwsmSingleApp "grimblast"} --notify --freeze copy area"))
           ## current screen
-          (bind "CTRL + PRINT" (exec "${uwsmSingleApp "grimblast"} --notify --cursor copy output"))
-          (bind "${mod} + SHIFT + CTRL + S" (
-            exec "${uwsmSingleApp "grimblast"} --notify --cursor copy output"
-          ))
+          (bind "CTRL + PRINT" (exec "${uwsmSingleApp "grimblast"} --notify copy output"))
+          (bind "${mod} + SHIFT + CTRL + S" (exec "${uwsmSingleApp "grimblast"} --notify copy output"))
 
           # cycle workspaces
           (bind "${mod} + bracketleft" ''hl.dsp.focus({ workspace = "m-1" })'')
