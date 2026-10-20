@@ -1,4 +1,4 @@
-{ bundleLib, ... }:
+{ lib, bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "hardware" "nvidia" ] {
   nixos = {
     # load nvidia driver for xorg and wayland
@@ -15,7 +15,30 @@ bundleLib.mkEnableModule [ "dyad" "hardware" "nvidia" ] {
       nvidiaSettings = false;
     };
 
-    nixpkgs.config.cudaSupport = true;
+    # per package, global cudaSupport forces source builds of anything with optional cuda
+    nixpkgs.overlays = lib.singleton (
+      _final: prev:
+      let
+        # own instance so deps get cuda too and match cache.nixos-cuda.org
+        pkgsCuda = import prev.path {
+          inherit (prev.stdenv.hostPlatform) system;
+          config = {
+            allowUnfree = true;
+            cudaSupport = true;
+          };
+        };
+      in
+      {
+        # cycles gpu rendering
+        inherit (pkgsCuda) blender;
+        # gpu stats
+        btop = prev.btop.override { cudaSupport = true; };
+        # nvenc
+        obs-studio = prev.obs-studio.override { cudaSupport = true; };
+        # nvenc
+        wivrn = prev.wivrn.override { cudaSupport = true; };
+      }
+    );
   };
 
   home-manager.home.perpetual.default.dirs = [
