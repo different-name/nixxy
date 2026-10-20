@@ -4,7 +4,7 @@ bundleLib.mkEnableModule [ "dyad" "users" "diffy" ] {
     agenix.enable = true;
   };
 
-  nixos = { config, ... }: {
+  nixos = { config, lib, ... }: {
     users.users.diffy = {
       uid = 1000;
       isNormalUser = true;
@@ -20,7 +20,6 @@ bundleLib.mkEnableModule [ "dyad" "users" "diffy" ] {
         # keep-sorted start
         "audio"
         "dialout"
-        "i2c" # for dyad.hardware.ddcutil
         "input"
         "kvm"
         "networkmanager"
@@ -28,7 +27,8 @@ bundleLib.mkEnableModule [ "dyad" "users" "diffy" ] {
         "video"
         "wheel"
         # keep-sorted end
-      ];
+      ]
+      ++ lib.optional config.hardware.i2c.enable config.hardware.i2c.group;
     };
 
     nix.settings.trusted-users = [ "diffy" ];
