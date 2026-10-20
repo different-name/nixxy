@@ -71,8 +71,17 @@ in
     };
   };
 
-  # display battery as notification
-  home-manager.wayland.windowManager.hyprland.settings.bind = [
-    ''$mod, B, exec, notify-send -t 5000 "Battery: $(cat /sys/class/power_supply/BAT0/capacity)%"''
-  ];
+  home-manager =
+    { config, ... }:
+    let
+      inherit (config.lib.hyprland) mod bind exec;
+    in
+    {
+      # display battery as notification
+      wayland.windowManager.hyprland.settings.bind = [
+        (bind "${mod} + B" (
+          exec ''notify-send -t 5000 "Battery: $(cat /sys/class/power_supply/BAT0/capacity)%"''
+        ))
+      ];
+    };
 }

@@ -1,6 +1,6 @@
 { bundleLib, inputs, ... }:
 bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
-  home-manager = { pkgs, ... }: {
+  home-manager = { config, pkgs, ... }: {
     programs.vscodium = {
       enable = true;
 
@@ -67,7 +67,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
     };
 
     wayland.windowManager.hyprland.settings.env = [
-      "EDITOR,codium --wait"
+      (config.lib.hyprland.env "EDITOR" "codium --wait")
     ];
 
     home.perpetual.default.dirs = [

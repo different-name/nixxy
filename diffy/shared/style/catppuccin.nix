@@ -62,7 +62,6 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
           };
           firefox.enable = false;
           fish.enable = false;
-          hyprland.enable = false; # TODO enable when moving to lua hyprland config
           kvantum.assertStyle = false;
           mpv.enable = false;
           qt5ct.enable = true;

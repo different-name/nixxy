@@ -11,7 +11,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "mako" ] {
         enable = true;
         settings = {
           "border-color" = lib.mkForce "#${borderColor}";
-          "border-radius" = hyprlandCfg.settings.decoration.rounding;
+          "border-radius" = hyprlandCfg.settings.config.decoration.rounding;
 
           "mode=do-not-disturb" = {
             invisible = 1;

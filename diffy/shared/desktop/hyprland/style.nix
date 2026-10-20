@@ -11,47 +11,76 @@
       in
       {
         wayland.windowManager.hyprland.settings = {
-          general = {
-            gaps_in = 3;
-            gaps_out = 6;
-            "col.active_border" = "rgb(${activeColor})";
-            "col.inactive_border" = "rgba(${inactiveColor}88)";
-          };
-
-          decoration = {
-            rounding = 5;
-            shadow = {
-              range = 8;
-              render_power = 3;
-              color = "rgba(00000055)";
+          config = {
+            general = {
+              gaps_in = 3;
+              gaps_out = 6;
+              col = {
+                active_border = "rgb(${activeColor})";
+                inactive_border = "rgba(${inactiveColor}88)";
+              };
             };
-            dim_inactive = false;
-          };
 
-          animations = {
-            enabled = true;
-            animation = [
-              "border, 1, 2, default"
-              "fade, 1, 4, default"
-              "windows, 1, 3, default, popin 80%"
-              "workspaces, 1, 2, default, slide"
-            ];
-          };
+            decoration = {
+              rounding = 5;
+              shadow = {
+                range = 8;
+                render_power = 3;
+                color = "rgba(00000055)";
+              };
+              dim_inactive = false;
+            };
 
-          group = {
-            "col.border_active" = "rgb(${alternateColor})";
-            "col.border_inactive" = "rgba(${inactiveColor}88)";
-            "col.border_locked_active" = "rgb(${activeColor})";
-            "col.border_locked_inactive" = "rgba(${inactiveColor}88)";
-            groupbar = {
-              height = 6;
-              render_titles = false;
-              "col.active" = "rgb(${alternateColor})";
-              "col.inactive" = "rgb(${inactiveColor})";
-              "col.locked_active" = "rgb(${activeColor})";
-              "col.locked_inactive" = "rgb(${inactiveColor})";
+            animations.enabled = true;
+
+            group = {
+              col = {
+                border_active = "rgb(${alternateColor})";
+                border_inactive = "rgba(${inactiveColor}88)";
+                border_locked_active = "rgb(${activeColor})";
+                border_locked_inactive = "rgba(${inactiveColor}88)";
+              };
+              groupbar = {
+                height = 6;
+                render_titles = false;
+                col = {
+                  active = "rgb(${alternateColor})";
+                  inactive = "rgb(${inactiveColor})";
+                  locked_active = "rgb(${activeColor})";
+                  locked_inactive = "rgb(${inactiveColor})";
+                };
+              };
             };
           };
+
+          animation = [
+            {
+              leaf = "border";
+              enabled = true;
+              speed = 2;
+              bezier = "default";
+            }
+            {
+              leaf = "fade";
+              enabled = true;
+              speed = 4;
+              bezier = "default";
+            }
+            {
+              leaf = "windows";
+              enabled = true;
+              speed = 3;
+              bezier = "default";
+              style = "popin 80%";
+            }
+            {
+              leaf = "workspaces";
+              enabled = true;
+              speed = 2;
+              bezier = "default";
+              style = "slide";
+            }
+          ];
         };
       };
   };

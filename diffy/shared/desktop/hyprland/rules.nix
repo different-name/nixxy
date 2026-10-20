@@ -4,14 +4,14 @@ let
 in
 {
   config = lib.mkIf config.dyad.desktop.hyprland.enable {
-    home-manager.wayland.windowManager.hyprland.settings.windowrule = formatWindowRules {
+    home-manager.wayland.windowManager.hyprland.settings.window_rule = formatWindowRules {
       global = {
-        "match:class" = ".*";
+        match.class = ".*";
         suppress_event = "maximize";
       };
 
       float-by-class = {
-        "match:class" = lib.concatStringsSep "|" [
+        match.class = lib.concatStringsSep "|" [
           # keep-sorted start
           "file-roller"
           "org.gnome.FileRoller"
@@ -22,7 +22,7 @@ in
       };
 
       float-by-title = {
-        "match:title" = lib.concatStringsSep "|" [
+        match.title = lib.concatStringsSep "|" [
           # keep-sorted start
           "File Operation Progress"
           "Open Folder"
@@ -36,7 +36,7 @@ in
       };
 
       tile-by-class = {
-        "match:class" = lib.concatStringsSep "|" [
+        match.class = lib.concatStringsSep "|" [
           "battle.net.exe"
         ];
         float = true;
@@ -44,15 +44,17 @@ in
 
       # keep-sorted start block=yes newline_separated=yes
       firefox-pip = {
-        "match:class" = "firefox";
-        "match:title" = "Picture-in-Picture";
+        match = {
+          class = "firefox";
+          title = "Picture-in-Picture";
+        };
         pin = true;
         size = "480 270";
         keep_aspect_ratio = true;
       };
 
       games-by-class = {
-        "match:class" = lib.concatStringsSep "|" [
+        match.class = lib.concatStringsSep "|" [
           "steam_app_[0-9]+"
           # keep-sorted start
           "AcrossTheObelisk.x86_64"
@@ -73,33 +75,37 @@ in
       };
 
       pavucontrol = {
-        "match:class" = "org.pulseaudio.pavucontrol";
+        match.class = "org.pulseaudio.pavucontrol";
         float = true;
         size = "1000 750";
       };
 
       qalculate = {
-        "match:class" = "qalculate-gtk";
+        match.class = "qalculate-gtk";
         float = true;
         size = "850 575";
       };
 
       steam-friends = {
-        "match:class" = "steam";
-        "match:title" = "Friends List";
+        match = {
+          class = "steam";
+          title = "Friends List";
+        };
         float = true;
         size = "452 800";
       };
 
       steam-settings = {
-        "match:class" = "steam";
-        "match:title" = "Steam Settings";
+        match = {
+          class = "steam";
+          title = "Steam Settings";
+        };
         float = true;
         size = "1275 1083";
       };
 
       wine-system-tray = {
-        "match:title" = "Wine System Tray";
+        match.title = "Wine System Tray";
         workspace = "hidden silent";
         no_initial_focus = true;
       };

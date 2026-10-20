@@ -25,17 +25,40 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
 
   home-manager =
     { osConfig, pkgs, ... }:
+    let
+      toLua = lib.generators.toLua { };
+    in
     {
       imports = [
         self.homeModules.xdgDesktopPortalHyprland
       ];
+
+      lib.hyprland = rec {
+        mod = "SUPER";
+        lua = lib.generators.mkLuaInline;
+        bind = bindWith { };
+        bindWith = opts: keys: dispatcher: {
+          _args = [
+            keys
+            (lua dispatcher)
+          ]
+          ++ lib.optional (opts != { }) opts;
+        };
+        exec = cmd: "hl.dsp.exec_cmd(${toLua cmd})";
+        env = name: value: {
+          _args = [
+            name
+            value
+          ];
+        };
+      };
 
       wayland.windowManager.hyprland = {
         enable = true;
         package = null;
         portalPackage = null;
 
-        configType = "hyprlang";
+        configType = "lua";
 
         systemd = {
           enable = !osConfig.programs.uwsm.enable; # conflicts with uwsm
@@ -44,10 +67,16 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
 
         xwayland.enable = true;
 
-        settings.exec-once = [
-          "${lib.getExe pkgs.uwsm} finalize && ${lib.getExe' pkgs.systemd "systemctl"} --user restart xdg-desktop-portal.service"
-          "${lib.getExe pkgs.wl-clip-persist} --clipboard regular"
-        ];
+        settings.on = lib.singleton {
+          _args = [
+            "hyprland.start"
+            (lib.generators.mkLuaInline ''
+              function()
+                hl.exec_cmd(${toLua "${lib.getExe pkgs.uwsm} finalize && ${lib.getExe' pkgs.systemd "systemctl"} --user restart xdg-desktop-portal.service"})
+                hl.exec_cmd(${toLua "${lib.getExe pkgs.wl-clip-persist} --clipboard regular"})
+              end'')
+          ];
+        };
       };
 
       services.hyprpolkitagent.enable = true;

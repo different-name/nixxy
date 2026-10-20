@@ -29,6 +29,7 @@ bundleLib.mkEnableModule [ "dyad" "media" "goxlr-utility" ] {
 
       wayland.windowManager.hyprland.settings.bind =
         let
+          inherit (config.lib.hyprland) mod bind exec;
           toggleMute = pkgs.writeShellApplication {
             name = "goxlr-utility-tg-mute";
             runtimeInputs = with pkgs; [
@@ -39,7 +40,7 @@ bundleLib.mkEnableModule [ "dyad" "media" "goxlr-utility" ] {
           };
         in
         [
-          "$mod, Z, exec, ${lib.getExe toggleMute}"
+          (bind "${mod} + Z" (exec (lib.getExe toggleMute)))
         ];
 
       home.file."Audio/Samples" = {
