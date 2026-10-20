@@ -6,9 +6,17 @@
 }:
 bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
   nixos = {
+    imports = [ self.nixosModules.tty1Autologin ];
+
     programs.hyprland.enable = true;
 
     programs.uwsm.enable = true;
+
+    # the session is started from the tty1 login shell below
+    services.tty1Autologin = {
+      enable = true;
+      user = "diffy";
+    };
 
     environment = {
       # auto launch hyprland on tty1

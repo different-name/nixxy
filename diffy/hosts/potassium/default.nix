@@ -1,9 +1,4 @@
-{
-  lib,
-  inputs,
-  self,
-  ...
-}:
+{ lib, inputs, ... }:
 let
   machineId = "ea3a24c5b3a84bc0a06ac47ef29ef2a8";
 in
@@ -38,7 +33,6 @@ in
       (inputs.import-tree ./_nixos)
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc-laptop
-      self.nixosModules.tty1Autologin
       # keep-sorted end
     ];
 
@@ -51,17 +45,10 @@ in
 
     system.stateVersion = "26.05";
 
-    services = {
-      tty1Autologin = {
-        enable = true;
-        user = "diffy";
-      };
-
-      thermald = {
-        enable = true;
-        # generated for the xps 15 9500, thermald has no default for it
-        configFile = "${inputs.nixos-hardware}/dell/xps/15-9500/thermald-conf.xml";
-      };
+    services.thermald = {
+      enable = true;
+      # generated for the xps 15 9500, thermald has no default for it
+      configFile = "${inputs.nixos-hardware}/dell/xps/15-9500/thermald-conf.xml";
     };
   };
 

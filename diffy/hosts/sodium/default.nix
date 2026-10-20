@@ -1,9 +1,4 @@
-{
-  lib,
-  inputs,
-  self,
-  ...
-}:
+{ lib, inputs, ... }:
 let
   machineId = "9471422d94d34bb8807903179fb35f11";
 in
@@ -38,11 +33,8 @@ in
 
   nixos = {
     imports = [
-      # keep-sorted start
       (inputs.import-tree ./_nixos)
       inputs.nixos-hardware.nixosModules.common-cpu-amd
-      self.nixosModules.tty1Autologin
-      # keep-sorted end
     ];
 
     system.stateVersion = "26.05";
@@ -53,13 +45,6 @@ in
     };
 
     environment.etc.machine-id.text = machineId;
-
-    services = {
-      tty1Autologin = {
-        enable = true;
-        user = "diffy";
-      };
-    };
 
     environment.sessionVariables = {
       STEAM_FORCE_DESKTOPUI_SCALING = "1.5";

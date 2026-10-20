@@ -29,19 +29,16 @@ bundleLib.mkEnableModule [ "dyad" "media" "goxlr-utility" ] {
         Install.WantedBy = [ "graphical-session.target" ];
       };
 
-      wayland.windowManager.hyprland.settings.bind =
-        let
-          inherit (config.lib.hyprland) mod bind exec;
-          toggleMute = pkgs.writeShellApplication {
-            name = "goxlr-utility-tg-mute";
-            runtimeInputs = with pkgs; [
-              jq
-              goxlr-utility
-            ];
-            text = lib.readFile ./toggle-mute.sh;
-          };
-        in
-        [ (bind "${mod} + Z" (exec (lib.getExe toggleMute))) ];
+      home.packages = lib.singleton (
+        pkgs.writeShellApplication {
+          name = "goxlr-utility-tg-mute";
+          runtimeInputs = with pkgs; [
+            jq
+            goxlr-utility
+          ];
+          text = lib.readFile ./toggle-mute.sh;
+        }
+      );
 
       home.file."Audio/Samples" = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/goxlr-utility/samples/Recorded";

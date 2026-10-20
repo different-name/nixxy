@@ -1,4 +1,8 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+let
+  inherit (config.dyad) applications;
+in
+{
   config = lib.mkIf config.dyad.desktop.hyprland.enable {
     home-manager =
       { config, ... }:
@@ -53,7 +57,8 @@
               (env "QT_WAYLAND_DISABLE_WINDOWDECORATION" "1")
               (env "XCURSOR_SIZE" "16")
               # keep-sorted end
-            ];
+            ]
+            ++ lib.optional applications.vscodium.enable (env "EDITOR" "codium --wait");
 
             gesture = lib.singleton {
               fingers = 3;

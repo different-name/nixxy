@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  inherit (config.dyad) applications desktop;
+  inherit (config.dyad) applications desktop media;
   when = feature: lib.optionals feature.enable;
 in
 {
@@ -117,6 +117,7 @@ in
           (bind "${mod} + D" (exec ''notify-send -t 5000 "$(date "+%a %-d %b %Y | %-I:%M%p")"''))
         ]
         ++ when desktop.mako [ (bind "${mod} + SHIFT + D" (exec "mako-dnd")) ]
+        ++ when media.goxlr-utility [ (bind "${mod} + Z" (exec "goxlr-utility-tg-mute")) ]
 
         # cursor-aware brightness (hold to repeat, osd-brightness drops overlapping calls so ddc isn't overwhelmed)
         ++ when desktop.brightness [
