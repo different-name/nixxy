@@ -6,6 +6,7 @@ in
 bundleLib.mkEnableModule [ "dyad" "services" "webdav" ] {
   dyad.services = {
     acme.enable = true;
+    nginx.enable = true;
     tailscale.enable = true;
   };
 
@@ -31,38 +32,32 @@ bundleLib.mkEnableModule [ "dyad" "services" "webdav" ] {
 
     systemd.services.webdav.serviceConfig.StateDirectory = "webdav";
 
-    services.nginx = {
-      enable = true;
-      recommendedProxySettings = true;
-      recommendedTlsSettings = true;
+    services.nginx.virtualHosts.${domain} = {
+      enableACME = true;
+      acmeRoot = null;
+      forceSSL = true;
 
-      virtualHosts.${domain} = {
-        enableACME = true;
-        acmeRoot = null;
-        forceSSL = true;
+      # 443 is public for other services, this one is tailnet only
+      extraConfig = ''
+        allow 100.64.0.0/10;
+        deny all;
+      '';
 
-        # 443 is public for other services, this one is tailnet only
+      locations."/".return = "404";
+
+      locations."/files" = {
+        proxyPass = "http://127.0.0.1:${toString port}";
         extraConfig = ''
-          allow 100.64.0.0/10;
-          deny all;
+          client_max_body_size 0;
+          proxy_request_buffering off;
+
+          # COPY and MOVE need the destination as a path, not a url
+          set $dest $http_destination;
+          if ($http_destination ~ "^https?://[^/]+(?<path>/.*)$") {
+            set $dest $path;
+          }
+          proxy_set_header Destination $dest;
         '';
-
-        locations."/".return = "404";
-
-        locations."/files" = {
-          proxyPass = "http://127.0.0.1:${toString port}";
-          extraConfig = ''
-            client_max_body_size 0;
-            proxy_request_buffering off;
-
-            # COPY and MOVE need the destination as a path, not a url
-            set $dest $http_destination;
-            if ($http_destination ~ "^https?://[^/]+(?<path>/.*)$") {
-              set $dest $path;
-            }
-            proxy_set_header Destination $dest;
-          '';
-        };
       };
     };
 
