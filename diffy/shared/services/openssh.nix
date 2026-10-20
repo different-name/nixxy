@@ -1,4 +1,4 @@
-{ bundleLib, ... }:
+{ bundleLib, lib, ... }:
 bundleLib.mkEnableModule [ "dyad" "services" "openssh" ] {
   nixos = {
     services.openssh = {
@@ -8,6 +8,14 @@ bundleLib.mkEnableModule [ "dyad" "services" "openssh" ] {
         PasswordAuthentication = false;
       };
     };
+
+    programs.ssh.knownHosts = lib.mapAttrs (name: publicKey: {
+      hostNames = [
+        name
+        "${name}.tail.diffy.wtf"
+      ];
+      inherit publicKey;
+    }) (import ../../keys.nix).hosts;
 
     environment.perpetual.default = {
       dirs = [ "/root/.ssh" ];

@@ -23,14 +23,5 @@ bundleLib.mkEnableModule [ "dyad" "nix" "sodium-builder" ] {
         mandatoryFeatures = [ ];
       };
     };
-
-    # trust sodium's host key so the nix daemon can offload non-interactively
-    programs.ssh.knownHosts.sodium = {
-      hostNames = [
-        "sodium"
-        "sodium.local"
-      ];
-      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9oz3SDojEZqnsBoYXOjdMGzyz3ILY7Luvfw7sTFm3/ root@sodium";
-    };
   };
 }

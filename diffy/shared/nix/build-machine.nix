@@ -7,10 +7,7 @@ bundleLib.mkEnableModule [ "dyad" "nix" "build-machine" ] {
         group = "nix-builder";
         useDefaultShell = true;
 
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJcwUucfJukMLcfKPpPnfzrw7lIIJFcwW/IxIIO6w8g7 root@sodium"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHsxVRPHU7NetTLDygkO4QZJV7PUwwv17gPHqmTQpzzM root@potassium"
-        ];
+        openssh.authorizedKeys.keys = builtins.attrValues (import ../../keys.nix).users.root;
       };
 
       groups.nix-builder = { };
