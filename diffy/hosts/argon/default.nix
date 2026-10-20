@@ -39,6 +39,12 @@
       routes = lib.singleton { Gateway = "66.226.150.1"; };
     };
 
+    # no lan to answer on
+    services.resolved.settings.Resolve = {
+      LLMNR = "no";
+      MulticastDNS = "no";
+    };
+
     # ssh only over the tailnet, the binarylane console is the fallback
     services.openssh.openFirewall = false;
     services.tailscale.openFirewall = true;
