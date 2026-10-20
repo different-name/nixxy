@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  bundleInfo,
+  ...
+}:
 let
   cfg = config.dyad.host;
 in
@@ -16,6 +21,7 @@ in
   };
 
   config.nixos = {
+    networking.hostName = bundleInfo.host;
     networking.hostId = lib.substring 0 8 cfg.machineId;
     environment.etc.machine-id.text = cfg.machineId;
     system.stateVersion = cfg.stateVersion;
