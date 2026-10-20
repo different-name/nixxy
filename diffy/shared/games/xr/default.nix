@@ -1,5 +1,6 @@
 {
   bundleLib,
+  config,
   lib,
   inputs',
   ...
@@ -21,7 +22,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
             Mbps * 1000000;
 
           encoders = lib.singleton {
-            encoder = "nvenc";
+            encoder = if config.dyad.hardware.nvidia.enable then "nvenc" else "vaapi";
             codec = "h265";
             width = 1.0;
             height = 1.0;
