@@ -26,9 +26,6 @@ in
 
     media.goxlr-utility.enable = true;
 
-    services = {
-      webdav.enable = true;
-    };
   };
 
   nixos = {

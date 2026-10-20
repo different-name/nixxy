@@ -23,6 +23,6 @@ in
   "tokens/nix-access-tokens.age".publicKeys = allHosts;
   "tokens/nixpkgs-review.age".publicKeys = desktops;
   "user-passwords/diffy.age".publicKeys = allHosts;
-  "webdav/seedvault.age".publicKeys = desktops;
+  "webdav/seedvault.age".publicKeys = allHosts;
   # keep-sorted end
 }

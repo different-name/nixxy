@@ -1,54 +1,73 @@
 { bundleLib, self, ... }:
 let
+  domain = "dav.diffy.wtf";
   port = 6065;
-  httpsPort = 8443;
 in
 bundleLib.mkEnableModule [ "dyad" "services" "webdav" ] {
-  nixos =
-    { config, lib, ... }:
-    let
-      tailscale = lib.getExe config.services.tailscale.package;
-    in
-    {
-      age.secrets."webdav/seedvault".file = self + /diffy/secrets/webdav/seedvault.age;
+  dyad.services = {
+    acme.enable = true;
+    tailscale.enable = true;
+  };
 
-      services.webdav = {
-        enable = true;
-        environmentFile = config.age.secrets."webdav/seedvault".path;
-        settings = {
-          address = "127.0.0.1";
-          inherit port;
-          directory = "/var/lib/webdav";
-          permissions = "CRUD";
-          users = lib.singleton {
-            username = "{env}WEBDAV_USERNAME";
-            password = "{env}WEBDAV_PASSWORD";
-          };
+  nixos = { config, lib, ... }: {
+    age.secrets."webdav/seedvault".file = self + /diffy/secrets/webdav/seedvault.age;
+
+    services.webdav = {
+      enable = true;
+      environmentFile = config.age.secrets."webdav/seedvault".path;
+      settings = {
+        address = "127.0.0.1";
+        inherit port;
+        prefix = "/files";
+        behindProxy = true;
+        directory = "/var/lib/webdav";
+        permissions = "CRUD";
+        users = lib.singleton {
+          username = "{env}WEBDAV_USERNAME";
+          password = "{env}WEBDAV_PASSWORD";
         };
       };
-
-      systemd.services.webdav.serviceConfig.StateDirectory = "webdav";
-
-      # seedvault refuses cleartext http, tailscale serve gives it a trusted cert
-      systemd.services.webdav-tailscale-serve = {
-        after = [
-          "tailscaled.service"
-          "webdav.service"
-        ];
-        wants = [ "tailscaled.service" ];
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-          Type = "oneshot";
-          RemainAfterExit = true;
-          Restart = "on-failure";
-          RestartSec = 10;
-          ExecStart = "${tailscale} serve --bg --https=${toString httpsPort} http://127.0.0.1:${toString port}";
-          ExecStop = "${tailscale} serve --https=${toString httpsPort} off";
-        };
-      };
-
-      networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ httpsPort ];
-
-      environment.perpetual.default.dirs = [ "/var/lib/webdav" ];
     };
+
+    systemd.services.webdav.serviceConfig.StateDirectory = "webdav";
+
+    services.nginx = {
+      enable = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+
+      virtualHosts.${domain} = {
+        enableACME = true;
+        acmeRoot = null;
+        forceSSL = true;
+
+        # 443 is public for other services, this one is tailnet only
+        extraConfig = ''
+          allow 100.64.0.0/10;
+          deny all;
+        '';
+
+        locations."/".return = "404";
+
+        locations."/files" = {
+          proxyPass = "http://127.0.0.1:${toString port}";
+          extraConfig = ''
+            client_max_body_size 0;
+            proxy_request_buffering off;
+
+            # COPY and MOVE need the destination as a path, not a url
+            set $dest $http_destination;
+            if ($http_destination ~ "^https?://[^/]+(?<path>/.*)$") {
+              set $dest $path;
+            }
+            proxy_set_header Destination $dest;
+          '';
+        };
+      };
+    };
+
+    networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 443 ];
+
+    environment.perpetual.default.dirs = [ "/var/lib/webdav" ];
+  };
 }

@@ -8,7 +8,10 @@ in
 
     profiles.minimal.enable = true;
 
-    services.headscale.enable = true;
+    services = {
+      headscale.enable = true;
+      webdav.enable = true;
+    };
 
     system = {
       btrfs.enable = true;
