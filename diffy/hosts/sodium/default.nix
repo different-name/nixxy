@@ -21,7 +21,7 @@ in
       # keep-sorted end
     };
 
-    applications.bambu-studio.enable = true;
+    applications.orca-slicer.enable = true;
 
     hardware.nvidia.enable = true;
 
