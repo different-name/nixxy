@@ -1,6 +1,6 @@
-{ bundleLib, ... }:
+{ bundleLib, lib, ... }:
 bundleLib.mkEnableModule [ "dyad" "profiles" "terminal" ] {
-  dyad = {
+  dyad = lib.mkDefault {
     # keep-sorted start block=yes newline_separated=yes
     services.tailscale.enable = true;
 

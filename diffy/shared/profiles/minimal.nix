@@ -1,6 +1,6 @@
-{ bundleLib, ... }:
+{ bundleLib, lib, ... }:
 bundleLib.mkEnableModule [ "dyad" "profiles" "minimal" ] {
-  dyad = {
+  dyad = lib.mkDefault {
     # keep-sorted start block=yes newline_separated=yes
     hardware.fwupd.enable = true;
 

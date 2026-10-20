@@ -1,6 +1,6 @@
-{ bundleLib, ... }:
+{ bundleLib, lib, ... }:
 bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
-  dyad = {
+  dyad = lib.mkDefault {
     # keep-sorted start block=yes newline_separated=yes
     applications = {
       # keep-sorted start
