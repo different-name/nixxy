@@ -34,7 +34,7 @@
           "nix.serverSettings.nixd.formatting.command" = [ "${lib.getExe pkgs.nixfmt}" ];
 
           "nix.serverSettings.nixd.options.nixos.expr" =
-            "(builtins.getFlake \"${config.programs.nh.flake}\").nixosConfigurations.<name>.options";
+            "(builtins.getFlake \"${config.dyad.flake}\").nixosConfigurations.<name>.options";
           # keep-sorted end
         };
       };

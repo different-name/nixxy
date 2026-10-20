@@ -15,7 +15,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nh" ] {
     programs.nh = {
       enable = true;
       package = lib.mkDefault osConfig.programs.nh.package;
-      flake = "${config.home.homeDirectory}/nixxy";
+      flake = config.dyad.flake;
     };
 
     home.perpetual.default.dirs = [ "$cacheHome/nix-output-monitor" ];
