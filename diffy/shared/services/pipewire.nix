@@ -1,4 +1,4 @@
-{ bundleLib, lib, ... }:
+{ bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "services" "pipewire" ] {
   nixos = {
     services.pipewire = {
@@ -9,8 +9,6 @@ bundleLib.mkEnableModule [ "dyad" "services" "pipewire" ] {
       jack.enable = true;
       wireplumber.enable = true;
     };
-
-    services.pulseaudio.enable = lib.mkForce false;
   };
 
   home-manager.home.perpetual.default.dirs = [
