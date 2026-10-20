@@ -21,7 +21,6 @@
 
       "https://nix-community.cachix.org"
       "https://cache.nixos-cuda.org"
-      "https://catppuccin.cachix.org"
     ];
 
     trusted-public-keys = [
@@ -29,7 +28,6 @@
 
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
-      "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
     ];
   };
 
@@ -134,8 +132,8 @@
     # extra xr packages
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
-      # has binary cache, doesn't follow nixpkgs
       inputs = {
+        nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
         treefmt-nix.follows = "treefmt-nix";
       };
@@ -171,7 +169,7 @@
       };
     };
 
-    # hyprland plugin for dwm-like workspaces across monitors
+    # dwm-like workspaces across monitors, used as a lua library
     split-monitor-workspaces = {
       url = "github:zjeffer/split-monitor-workspaces/release/0.56.x";
       flake = false;
@@ -218,10 +216,12 @@
     # resolve vrchat's video urls, remuxing youtube for its players
     vrchat-video-resolver = {
       url = "github:different-name/vrchat-video-resolver";
-      # has its own nixpkgs revision for fresher yt-dlp without needing to update system
       inputs = {
-        systems.follows = "systems";
         flake-parts.follows = "flake-parts";
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+        steam-config-nix.follows = "steam-config-nix";
+        systems.follows = "systems";
       };
     };
 
