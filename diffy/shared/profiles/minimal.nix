@@ -7,7 +7,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "minimal" ] {
     nix = {
       # keep-sorted start
       nix.enable = true;
-      nixpkgs.enable = true;
       patches.enable = true;
       substituters.enable = true;
       # keep-sorted end

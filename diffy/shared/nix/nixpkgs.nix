@@ -1,5 +1,4 @@
-{ bundleLib, ... }:
-bundleLib.mkEnableModule [ "dyad" "nix" "nixpkgs" ] {
+{
   nixos = {
     nixpkgs.config = {
       allowUnfree = true;
