@@ -18,6 +18,6 @@ bundleLib.mkEnableModule [ "dyad" "services" "acme" ] {
       };
     };
 
-    environment.perpetual.default.dirs = [ "/var/lib/acme" ];
+    keep.persist.dirs."/var/lib/acme" = { };
   };
 }

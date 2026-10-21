@@ -116,10 +116,10 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
 
     environment.systemPackages = [ inputs'.solarxr-cli.packages.default ];
 
-    environment.perpetual.default.dirs = [
-      "/root/.config/dev.slimevr.SlimeVR"
-      "/root/.local/share/dev.slimevr.SlimeVR"
-    ];
+    keep.persist.dirs = {
+      "/root/.config/dev.slimevr.SlimeVR" = { };
+      "/root/.local/share/dev.slimevr.SlimeVR" = { };
+    };
   };
 
   home-manager = { config, ... }: {
@@ -187,33 +187,34 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
       };
     };
 
-    home.perpetual.default = {
+    keep.persist = {
       packages = {
         # keep-sorted start block=yes newline_separated=yes
-        slimevr.dirs = [
-          # keep-sorted start
-          "$cacheHome/.slimevr-wrapped_"
-          "$configHome/dev.slimevr.SlimeVR"
-          "$dataHome/.slimevr-wrapped_"
-          "$dataHome/dev.slimevr.SlimeVR"
-          # keep-sorted end
-        ];
+        slimevr = {
+          xdg.cache.dirs.".slimevr-wrapped_" = { };
+          xdg.config.dirs."dev.slimevr.SlimeVR" = { };
 
-        wayvr.dirs = [
-          "$cacheHome/wayvr"
-          "$configHome/wayvr"
-        ];
+          xdg.data.dirs = {
+            ".slimevr-wrapped_" = { };
+            "dev.slimevr.SlimeVR" = { };
+          };
+        };
+
+        wayvr = {
+          xdg.cache.dirs."wayvr" = { };
+          xdg.config.dirs."wayvr" = { };
+        };
         # keep-sorted end
       };
 
-      dirs = [
-        # keep-sorted start
-        "$cacheHome/wivrn"
-        "$configHome/openvr"
-        "$configHome/wivrn"
-        "$stateHome/OpenComposite"
-        # keep-sorted end
-      ];
+      xdg.cache.dirs."wivrn" = { };
+
+      xdg.config.dirs = {
+        "openvr" = { };
+        "wivrn" = { };
+      };
+
+      xdg.state.dirs."OpenComposite" = { };
     };
   };
 }

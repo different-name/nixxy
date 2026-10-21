@@ -1,7 +1,7 @@
 { lib, bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "applications" "orca-slicer" ] {
   home-manager = { pkgs, osConfig, ... }: {
-    home.perpetual.default.packages.orca-slicer = {
+    keep.persist.packages.orca-slicer = {
       package =
         if lib.elem "nvidia" osConfig.services.xserver.videoDrivers then
           # blank viewport on nvidia proprietary gl, same env as withNvidiaGLWorkaround without the rebuild
@@ -21,13 +21,9 @@ bundleLib.mkEnableModule [ "dyad" "applications" "orca-slicer" ] {
         else
           pkgs.orca-slicer;
 
-      dirs = [
-        # keep-sorted start
-        "$cacheHome/orca-slicer"
-        "$configHome/OrcaSlicer"
-        "$dataHome/orca-slicer"
-        # keep-sorted end
-      ];
+      xdg.cache.dirs."orca-slicer" = { };
+      xdg.config.dirs."OrcaSlicer" = { };
+      xdg.data.dirs."orca-slicer" = { };
     };
   };
 }

@@ -149,6 +149,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "zellij" ] {
         };
       };
 
-      home.perpetual.default.dirs = [ "$cacheHome/zellij" ];
+      keep.persist.xdg.cache.dirs."zellij" = { };
     };
 }

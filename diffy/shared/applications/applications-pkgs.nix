@@ -1,45 +1,43 @@
 { bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
   home-manager = { pkgs, ... }: {
-    home.perpetual.default.packages = {
+    keep.persist.packages = {
       # keep-sorted start block=yes newline_separated=yes
-      android-tools.dirs = [ ".android" ];
+      android-tools.dirs.".android" = { };
 
-      emote.dirs = [ "$dataHome/Emote" ];
+      emote.xdg.data.dirs."Emote" = { };
 
-      ente-desktop.dirs = [ "$configHome/ente" ];
+      ente-desktop.xdg.config.dirs."ente" = { };
 
-      gimp3-with-plugins.dirs = [
-        "$cacheHome/gimp"
-        "$configHome/GIMP"
-      ];
+      gimp3-with-plugins = {
+        xdg.cache.dirs."gimp" = { };
+        xdg.config.dirs."GIMP" = { };
+      };
 
-      nrfconnect.dirs = [
-        "$configHome/nrfconnect"
-        ".nrfconnect-apps"
-      ];
+      nrfconnect = {
+        dirs.".nrfconnect-apps" = { };
+        xdg.config.dirs."nrfconnect" = { };
+      };
 
-      proton-pass.dirs = [ "$configHome/Proton Pass" ];
+      proton-pass.xdg.config.dirs."Proton Pass" = { };
 
-      proton-vpn.dirs = [
-        "$cacheHome/Proton"
-        "$configHome/Proton"
-      ];
+      proton-vpn = {
+        xdg.cache.dirs."Proton" = { };
+        xdg.config.dirs."Proton" = { };
+      };
 
-      qbittorrent.dirs = [
-        # keep-sorted start
-        "$cacheHome/qBittorrent"
-        "$configHome/qBittorrent"
-        "$dataHome/qBittorrent"
-        # keep-sorted end
-      ];
+      qbittorrent = {
+        xdg.cache.dirs."qBittorrent" = { };
+        xdg.config.dirs."qBittorrent" = { };
+        xdg.data.dirs."qBittorrent" = { };
+      };
       # keep-sorted end
     };
 
-    home.perpetual.default.dirs = [
-      ".config/hearth"
-      ".local/state/hearth"
-    ];
+    keep.persist = {
+      xdg.config.dirs."hearth" = { };
+      xdg.state.dirs."hearth" = { };
+    };
 
     home.packages = with pkgs; [
       # keep-sorted start

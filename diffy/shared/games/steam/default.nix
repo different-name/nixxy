@@ -64,21 +64,26 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
       Install.WantedBy = [ "graphical-session.target" ];
     };
 
-    # re-downloadable, compatdata stays in default for non-cloud saves
-    home.perpetual.volatile.dirs = [
-      "$dataHome/Steam/steamapps/common"
-      "$dataHome/Steam/steamapps/shadercache"
-      "$dataHome/Steam/steamapps/workshop"
-    ];
+    # re-downloadable, compatdata stays in persist for non-cloud saves
+    keep.scratch.xdg.data.dirs = {
+      "Steam/steamapps/common" = { };
+      "Steam/steamapps/shadercache" = { };
+      "Steam/steamapps/workshop" = { };
+    };
 
-    home.perpetual.default.dirs = [
-      ".steam"
-      "$dataHome/Steam"
-      "$cacheHome/protonfixes"
+    keep.persist = {
+      dirs = {
+        ".steam" = { };
+        ".factorio" = { };
+      };
 
-      ".factorio"
-      "$dataHome/Terraria"
-      "$dataHome/TerraTech"
-    ];
+      xdg.cache.dirs."protonfixes" = { };
+
+      xdg.data.dirs = {
+        "Steam" = { };
+        "Terraria" = { };
+        "TerraTech" = { };
+      };
+    };
   };
 }

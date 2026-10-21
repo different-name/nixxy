@@ -23,9 +23,9 @@ bundleLib.mkEnableModule [ "dyad" "applications" "obs-studio" ] {
       package = mkWrappedObs pkgs;
     };
 
-    home.perpetual.default.dirs = [
-      "$configHome/obs-studio"
-      "$cacheHome/obs-studio"
-    ];
+    keep.persist = {
+      xdg.cache.dirs."obs-studio" = { };
+      xdg.config.dirs."obs-studio" = { };
+    };
   };
 }

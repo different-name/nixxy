@@ -1,9 +1,9 @@
 { bundleLib, inputs, ... }:
-bundleLib.mkEnableModule [ "dyad" "terminal" "epht" ] {
+bundleLib.mkEnableModule [ "dyad" "terminal" "keep" ] {
   nixos = {
-    imports = [ inputs.epht.nixosModules.default ];
+    imports = [ inputs.keep-nix.nixosModules.cli ];
 
-    programs.epht = {
+    programs.keep = {
       enable = true;
 
       extraExcludes = [
@@ -34,9 +34,9 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "epht" ] {
 
   # left disabled, the nixos module folds these excludes into the system manifest
   home-manager = {
-    imports = [ inputs.epht.homeModules.default ];
+    imports = [ inputs.keep-nix.homeModules.cli ];
 
-    programs.epht.extraExcludes = [
+    programs.keep.extraExcludes = [
       # keep-sorted start
       ".cache/Microsoft/DeveloperTools/deviceid" # probably vsc, haven't had issues being ephemeral
       ".cache/thumbnails"

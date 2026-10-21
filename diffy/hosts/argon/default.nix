@@ -17,7 +17,7 @@
 
     system = {
       btrfs.enable = true;
-      perpetual.enable = true;
+      keep.enable = true;
     };
   };
 

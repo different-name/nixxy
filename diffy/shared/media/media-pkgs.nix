@@ -1,9 +1,9 @@
 { bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "media" "extraPackages" ] {
   home-manager = { pkgs, ... }: {
-    home.perpetual.default.packages = {
+    keep.persist.packages = {
       # anime streamer
-      ani-cli.dirs = [ "$stateHome/ani-cli" ];
+      ani-cli.xdg.state.dirs."ani-cli" = { };
     };
 
     home.packages = with pkgs; [ video-trimmer ];

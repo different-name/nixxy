@@ -46,19 +46,27 @@ bundleLib.mkEnableModule [ "dyad" "games" "avatar-tools" ] {
         # keep-sorted end
       ];
 
-      home.perpetual.default.dirs = [
-        # keep-sorted start
-        "$cacheHome/blender"
-        "$configHome/UnityHub"
-        "$configHome/blender"
-        "$configHome/unity3d"
-        "$configHome/unityhub"
-        "$dataHome/ALCOM"
-        "$dataHome/VRCFury"
-        "$dataHome/VRChatCreatorCompanion"
-        "$dataHome/com.anatawa12.vrc-get-gui"
-        "$dataHome/unityhub"
-        # keep-sorted end
-      ];
+      keep.persist = {
+        xdg.cache.dirs."blender" = { };
+
+        xdg.config.dirs = {
+          # keep-sorted start
+          "UnityHub" = { };
+          "blender" = { };
+          "unity3d" = { };
+          "unityhub" = { };
+          # keep-sorted end
+        };
+
+        xdg.data.dirs = {
+          # keep-sorted start
+          "ALCOM" = { };
+          "VRCFury" = { };
+          "VRChatCreatorCompanion" = { };
+          "com.anatawa12.vrc-get-gui" = { };
+          "unityhub" = { };
+          # keep-sorted end
+        };
+      };
     };
 }

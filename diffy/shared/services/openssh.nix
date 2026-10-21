@@ -17,17 +17,17 @@ bundleLib.mkEnableModule [ "dyad" "services" "openssh" ] {
       inherit publicKey;
     }) (import ../../keys.nix).hosts;
 
-    environment.perpetual.default = {
-      dirs = [ "/root/.ssh" ];
+    keep.persist = {
+      dirs."/root/.ssh" = { };
       # not the whole dir, it would hide the sshd_config nixos writes before the mount
-      files = map (key: "/etc/ssh/${key}") [
+      files = lib.genAttrs (map (key: "/etc/ssh/${key}") [
         "ssh_host_ed25519_key"
         "ssh_host_ed25519_key.pub"
         "ssh_host_rsa_key"
         "ssh_host_rsa_key.pub"
-      ];
+      ]) (_: { });
     };
   };
 
-  home-manager.home.perpetual.default.dirs = [ ".ssh" ];
+  home-manager.keep.persist.dirs.".ssh" = { };
 }

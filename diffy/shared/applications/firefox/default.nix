@@ -45,9 +45,9 @@ bundleLib.mkEnableModule [ "dyad" "applications" "firefox" ] {
       # keep-sorted end
     };
 
-    home.perpetual.default.dirs = [
-      "$cacheHome/mozilla/firefox"
-      "$configHome/mozilla/firefox"
-    ];
+    keep.persist = {
+      xdg.cache.dirs."mozilla/firefox" = { };
+      xdg.config.dirs."mozilla/firefox" = { };
+    };
   };
 }

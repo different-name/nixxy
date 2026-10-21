@@ -37,10 +37,10 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "vicinae" ] {
       };
     };
 
-    home.perpetual.default.dirs = [
-      "$cacheHome/vicinae"
-      "$dataHome/vicinae"
-      "$stateHome/vicinae"
-    ];
+    keep.persist = {
+      xdg.cache.dirs."vicinae" = { };
+      xdg.data.dirs."vicinae" = { };
+      xdg.state.dirs."vicinae" = { };
+    };
   };
 }

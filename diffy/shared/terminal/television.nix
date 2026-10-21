@@ -27,9 +27,9 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "television" ] {
       nixpkgs = "tv nixpkgs --exact";
     };
 
-    home.perpetual.default.dirs = [
-      "$cacheHome/nix-search-tv"
-      "$dataHome/television"
-    ];
+    keep.persist = {
+      xdg.cache.dirs."nix-search-tv" = { };
+      xdg.data.dirs."television" = { };
+    };
   };
 }

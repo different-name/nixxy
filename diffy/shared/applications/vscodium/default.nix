@@ -67,10 +67,10 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
       # keep-sorted end
     };
 
-    home.perpetual.default.dirs = [
-      "$configHome/VSCodium"
-      "$stateHome/VSCodium"
-      ".vscode-oss-shared"
-    ];
+    keep.persist = {
+      dirs.".vscode-oss-shared" = { };
+      xdg.config.dirs."VSCodium" = { };
+      xdg.state.dirs."VSCodium" = { };
+    };
   };
 }

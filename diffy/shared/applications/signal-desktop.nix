@@ -144,9 +144,9 @@ bundleLib.mkEnableModule [ "dyad" "applications" "signal-desktop" ] {
       });
     in
     {
-      home.perpetual.default.packages.signal-desktop = {
+      keep.persist.packages.signal-desktop = {
         inherit package;
-        dirs = [ "$configHome/Signal" ];
+        xdg.config.dirs."Signal" = { };
       };
     };
 }

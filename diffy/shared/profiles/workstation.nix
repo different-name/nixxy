@@ -12,8 +12,8 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "workstation" ] {
       # keep-sorted start
       claude-code.enable = true;
       dev-state.enable = true;
-      epht.enable = true;
       extraPackages.enable = true;
+      keep.enable = true;
       nixpkgs-review.enable = true;
       shellAliases.enable = true;
       television.enable = true;

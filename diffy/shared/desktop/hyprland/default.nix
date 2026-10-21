@@ -98,9 +98,9 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
         pkgs.grimblast
       ];
 
-      home.perpetual.default.dirs = [
-        "$cacheHome/hyprland"
-        "$dataHome/hyprland"
-      ];
+      keep.persist = {
+        xdg.cache.dirs."hyprland" = { };
+        xdg.data.dirs."hyprland" = { };
+      };
     };
 }

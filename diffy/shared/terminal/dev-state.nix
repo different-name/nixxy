@@ -1,18 +1,27 @@
 { bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "terminal" "dev-state" ] {
-  home-manager.home.perpetual.default.dirs = [
-    # keep-sorted start
-    "$cacheHome/deno"
-    "$cacheHome/pip"
-    "$cacheHome/pnpm"
-    "$cacheHome/treefmt"
-    "$cacheHome/zig"
-    "$configHome/gcloud"
-    "$configHome/ncmb"
-    "$dataHome/containers"
-    "$stateHome/pnpm"
-    ".net"
-    ".npm"
-    # keep-sorted end
-  ];
+  home-manager.keep.persist = {
+    dirs = {
+      ".net" = { };
+      ".npm" = { };
+    };
+
+    xdg.cache.dirs = {
+      # keep-sorted start
+      "deno" = { };
+      "pip" = { };
+      "pnpm" = { };
+      "treefmt" = { };
+      "zig" = { };
+      # keep-sorted end
+    };
+
+    xdg.config.dirs = {
+      "gcloud" = { };
+      "ncmb" = { };
+    };
+
+    xdg.data.dirs."containers" = { };
+    xdg.state.dirs."pnpm" = { };
+  };
 }

@@ -45,9 +45,9 @@ bundleLib.mkEnableModule [ "dyad" "media" "goxlr-utility" ] {
         force = true;
       };
 
-      home.perpetual.default.dirs = [
-        "$configHome/goxlr-utility"
-        "$dataHome/goxlr-utility"
-      ];
+      keep.persist = {
+        xdg.config.dirs."goxlr-utility" = { };
+        xdg.data.dirs."goxlr-utility" = { };
+      };
     };
 }

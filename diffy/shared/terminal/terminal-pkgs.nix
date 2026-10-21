@@ -6,29 +6,29 @@
 }:
 bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
   home-manager = { pkgs, ... }: {
-    home.perpetual.default.packages = {
+    keep.persist.packages = {
       # keep-sorted start block=yes newline_separated=yes
       nixxy-fmt.package = pkgs.writeShellScriptBin "nixxy-fmt" ''
         exec ${lib.getExe self'.formatter} "$@"
       '';
 
       # git tui
-      lazygit.dirs = [ "$stateHome/lazygit" ];
+      lazygit.xdg.state.dirs."lazygit" = { };
 
       # calculator
-      libqalculate.dirs = [
-        "$configHome/qalculate"
-        "$dataHome/qalculate"
-      ];
+      libqalculate = {
+        xdg.config.dirs."qalculate" = { };
+        xdg.data.dirs."qalculate" = { };
+      };
 
       # audio/video downloader
-      yt-dlp.dirs = [ "$cacheHome/yt-dlp" ];
+      yt-dlp.xdg.cache.dirs."yt-dlp" = { };
 
       # github cli
-      gh.dirs = [
-        "$cacheHome/gh"
-        "$configHome/gh"
-      ];
+      gh = {
+        xdg.cache.dirs."gh" = { };
+        xdg.config.dirs."gh" = { };
+      };
       # keep-sorted end
     };
 

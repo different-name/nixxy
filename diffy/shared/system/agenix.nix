@@ -6,27 +6,21 @@
   ...
 }:
 bundleLib.mkEnableModule [ "dyad" "system" "agenix" ] {
-  nixos = {
+  nixos = { config, ... }: {
     imports = [ inputs.agenix.nixosModules.default ];
 
-    # access to the hostkey independent of impermanence activation
-    age.identityPaths = [ "/persist/system/etc/ssh/ssh_host_ed25519_key" ];
+    # access to the hostkey independent of keep activation
+    age.identityPaths = [ "${config.keep.persist.path}/system/etc/ssh/ssh_host_ed25519_key" ];
 
     environment.systemPackages = [ inputs'.agenix.packages.agenix ];
   };
 
-  home-manager =
-    { config, ... }:
-    let
-      persistence = config.home.persistence or { };
-      inherit (persistence.default) persistentStoragePath;
-      persistEnabled = lib.hasAttr "default" persistence && persistence.default.enable;
-    in
-    {
-      imports = [ inputs.agenix.homeManagerModules.default ];
+  home-manager = { config, ... }: {
+    imports = [ inputs.agenix.homeManagerModules.default ];
 
-      age.identityPaths = lib.mkIf persistEnabled [
-        "${persistentStoragePath}${config.home.homeDirectory}/.ssh/id_ed25519"
-      ];
-    };
+    # the home volume only exists once a module declares into it
+    age.identityPaths = lib.mkIf (config.keep ? persist) [
+      "${config.keep.persist.path}${config.home.homeDirectory}/.ssh/id_ed25519"
+    ];
+  };
 }

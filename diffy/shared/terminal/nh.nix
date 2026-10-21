@@ -17,6 +17,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nh" ] {
       flake = config.dyad.flake;
     };
 
-    home.perpetual.default.dirs = [ "$cacheHome/nix-output-monitor" ];
+    keep.persist.xdg.cache.dirs."nix-output-monitor" = { };
   };
 }

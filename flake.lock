@@ -120,32 +120,6 @@
         "type": "github"
       }
     },
-    "epht": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": [
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1792553925,
-        "narHash": "sha256-TUEmwwmHe6tm0Jnhi+SxPGUIPUF0IJ46l6mna3RL3IY=",
-        "owner": "different-name",
-        "repo": "epht",
-        "rev": "e30ec3f5716db80ea62e56964e55a7318a91b654",
-        "type": "github"
-      },
-      "original": {
-        "owner": "different-name",
-        "repo": "epht",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "locked": {
         "lastModified": 1733328505,
@@ -237,29 +211,6 @@
         "type": "github"
       }
     },
-    "impermanence": {
-      "inputs": {
-        "home-manager": [
-          "home-manager"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1769548169,
-        "narHash": "sha256-03+JxvzmfwRu+5JafM0DLbxgHttOQZkUtDWBmeUkN8Y=",
-        "owner": "nix-community",
-        "repo": "impermanence",
-        "rev": "7b1d382faf603b6d264f58627330f9faa5cba149",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "impermanence",
-        "type": "github"
-      }
-    },
     "import-tree": {
       "locked": {
         "lastModified": 1788467110,
@@ -272,6 +223,32 @@
       "original": {
         "owner": "vic",
         "repo": "import-tree",
+        "type": "github"
+      }
+    },
+    "keep-nix": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792572408,
+        "narHash": "sha256-qWhLDaj4g4Jm7qOhtxt2egRH54M8lV316wuVozU3OBg=",
+        "owner": "different-name",
+        "repo": "keep-nix",
+        "rev": "a8dec6c6cb11bad4099c9e80d6a242205ce408f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "different-name",
+        "repo": "keep-nix",
         "type": "github"
       }
     },
@@ -479,11 +456,10 @@
         "catppuccin": "catppuccin",
         "disblock-origin": "disblock-origin",
         "disko": "disko",
-        "epht": "epht",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
-        "impermanence": "impermanence",
         "import-tree": "import-tree",
+        "keep-nix": "keep-nix",
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-hardware": "nixos-hardware",

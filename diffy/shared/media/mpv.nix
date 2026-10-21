@@ -9,6 +9,6 @@ bundleLib.mkEnableModule [ "dyad" "media" "mpv" ] {
       };
     };
 
-    home.perpetual.default.dirs = [ "$cacheHome/mpv" ];
+    keep.persist.xdg.cache.dirs."mpv" = { };
   };
 }

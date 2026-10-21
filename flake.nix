@@ -71,16 +71,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # report unpersisted live data and orphaned persistent storage
-    epht = {
-      url = "github:different-name/epht";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
     # nix flakes framework
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -93,17 +83,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # manage persistent state
-    impermanence = {
-      url = "github:nix-community/impermanence";
-      inputs = {
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     # import modules recursively
     import-tree.url = "github:vic/import-tree";
+
+    # persisted state on the ephemeral root
+    keep-nix = {
+      url = "github:different-name/keep-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        home-manager.follows = "home-manager";
+      };
+    };
 
     # weekly updated nix-index database
     nix-index-database = {

@@ -80,6 +80,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
         force = true;
       };
 
-      home.perpetual.default.dirs = [ "$configHome/discord" ];
+      keep.persist.xdg.config.dirs."discord" = { };
     };
 }

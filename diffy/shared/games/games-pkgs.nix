@@ -1,10 +1,10 @@
 { bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "games" "extraPackages" ] {
   home-manager = { pkgs, ... }: {
-    home.perpetual.default = {
+    keep.persist = {
       packages = {
         # keep-sorted start block=yes newline_separated=yes
-        osu-lazer-bin.dirs = [ "$dataHome/osu" ];
+        osu-lazer-bin.xdg.data.dirs."osu" = { };
 
         prismlauncher = {
           package = pkgs.prismlauncher.override {
@@ -14,25 +14,28 @@ bundleLib.mkEnableModule [ "dyad" "games" "extraPackages" ] {
               temurin-bin-25
             ];
           };
-          dirs = [ "$dataHome/PrismLauncher" ];
+          xdg.data.dirs."PrismLauncher" = { };
         };
 
-        r2modman.dirs = [
-          "$configHome/r2modman"
-          "$configHome/r2modmanPlus-local"
-        ];
+        r2modman.xdg.config.dirs = {
+          "r2modman" = { };
+          "r2modmanPlus-local" = { };
+        };
         # keep-sorted end
       };
 
-      dirs = [
+      xdg.cache.dirs = {
         # keep-sorted start
-        "$cacheHome/mesa_shader_cache" # shader cache
-        "$cacheHome/qtshadercache-x86_64-little_endian-lp64" # qt shader cache
-        "$cacheHome/radv_builtin_shaders" # radv shader cache
-        "$dataHome/umu" # proton runtime
-        "$dataHome/vulkan" # steam fossilize and overlay layers
+        "mesa_shader_cache" = { }; # shader cache
+        "qtshadercache-x86_64-little_endian-lp64" = { }; # qt shader cache
+        "radv_builtin_shaders" = { }; # radv shader cache
         # keep-sorted end
-      ];
+      };
+
+      xdg.data.dirs = {
+        "umu" = { }; # proton runtime
+        "vulkan" = { }; # steam fossilize and overlay layers
+      };
     };
 
     xdg.mimeApps.defaultApplications = {
