@@ -1,6 +1,5 @@
 {
   bundleLib,
-  config,
   lib,
   inputs,
   self,
@@ -12,25 +11,23 @@ let
 in
 {
   # palette is read by modules that do not theme with catppuccin
-  home-manager = lib.mkIf config.dyad.users.diffy.enable (
-    { config, lib, ... }: {
-      imports = [ inputs.catppuccin.homeModules.catppuccin ];
+  home-manager = { config, lib, ... }: {
+    imports = [ inputs.catppuccin.homeModules.catppuccin ];
 
-      options.dyad.palette = lib.mkOption {
-        type = lib.types.attrs;
-        readOnly = true;
-        description = "Parsed catppuccin palette (colours) for config.catppuccin.flavor";
-      };
+    options.dyad.palette = lib.mkOption {
+      type = lib.types.attrs;
+      readOnly = true;
+      description = "Parsed catppuccin palette (colours) for config.catppuccin.flavor";
+    };
 
-      config = {
-        catppuccin = { inherit accent flavor; };
+    config = {
+      catppuccin = { inherit accent flavor; };
 
-        dyad.palette =
-          (lib.importJSON (config.catppuccin.sources.palette + /palette.json))
-          .${config.catppuccin.flavor}.colors;
-      };
-    }
-  );
+      dyad.palette =
+        (lib.importJSON (config.catppuccin.sources.palette + /palette.json))
+        .${config.catppuccin.flavor}.colors;
+    };
+  };
 
   imports = lib.singleton (
     bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {

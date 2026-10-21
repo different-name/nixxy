@@ -1,21 +1,18 @@
 {
   bundleLib,
-  config,
   lib,
   inputs,
   self,
   ...
 }:
 {
-  home-manager = lib.mkIf config.dyad.users.diffy.enable (
-    { config, lib, ... }: {
-      options.dyad.flake = lib.mkOption {
-        type = lib.types.str;
-        default = "${config.home.homeDirectory}/nixxy";
-        description = "Path to this flake";
-      };
-    }
-  );
+  home-manager = { config, lib, ... }: {
+    options.dyad.flake = lib.mkOption {
+      type = lib.types.str;
+      default = "${config.home.homeDirectory}/nixxy";
+      description = "Path to this flake";
+    };
+  };
 
   imports = lib.singleton (
     bundleLib.mkEnableModule [ "dyad" "nix" "nix" ] {

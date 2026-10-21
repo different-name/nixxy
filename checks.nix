@@ -30,7 +30,7 @@ let
 
   # toggle sets that have broken on their own before
   probes = {
-    none = { };
+    none.homePlatforms.home-manager.enable = false;
     inherit user;
     minimal = lib.recursiveUpdate user { dyad.profiles.minimal.enable = true; };
     workstation = lib.recursiveUpdate user { dyad.profiles.workstation.enable = true; };

@@ -1,6 +1,5 @@
 {
   bundleLib,
-  config,
   lib,
   inputs,
   self,
@@ -9,9 +8,7 @@
 {
   # declared on every host so modules can add paths without perpetual enabled
   nixos.imports = [ self.nixosModules.perpetual ];
-  home-manager = lib.mkIf config.dyad.users.diffy.enable {
-    imports = [ self.homeModules.perpetual ];
-  };
+  home-manager.imports = [ self.homeModules.perpetual ];
 
   imports = lib.singleton (
     bundleLib.mkEnableModule [ "dyad" "system" "perpetual" ] {
