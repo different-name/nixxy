@@ -8,6 +8,7 @@
 }:
 let
   appId = toString 438100;
+  inherit (config.dyad.games) xr;
 in
 {
   config = lib.mkIf config.dyad.games.steam.enable {
@@ -97,6 +98,11 @@ in
               VRC_HOME_ACCESS_TYPE = 4;
             };
           };
+        };
+
+        # https://lvra.gitlab.io/docs/fossvr/xrizer/#rebinding-controls
+        xdg.dataFile."Steam/steamapps/common/VRChat/xrizer/oculustouch.json" = lib.mkIf xr.enable {
+          source = ./oculustouch.json;
         };
 
         # move vrchat photo location to ~/Pictures/VRChat, takes more advanced logic
