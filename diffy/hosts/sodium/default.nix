@@ -44,6 +44,17 @@
       inputs.nixos-hardware.nixosModules.common-cpu-amd
     ];
 
+    boot.initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+    ];
+    boot.kernelModules = [ "kvm-amd" ];
+    hardware.enableRedistributableFirmware = true;
+
     environment.sessionVariables = {
       STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
       GDK_SCALE = "2";

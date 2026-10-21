@@ -41,6 +41,14 @@
       # keep-sorted end
     ];
 
+    boot.initrd.availableKernelModules = [
+      "xhci_pci"
+      "nvme"
+      "rtsx_pci_sdmmc"
+    ];
+    boot.kernelModules = [ "kvm-intel" ];
+    hardware.enableRedistributableFirmware = true;
+
     # laptop joins untrusted networks, ssh only over the tailnet
     services.openssh.openFirewall = false;
     networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 22 ];

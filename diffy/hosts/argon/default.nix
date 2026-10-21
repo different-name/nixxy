@@ -21,8 +21,13 @@
     };
   };
 
-  nixos = { pkgs, ... }: {
-    imports = [ (inputs.import-tree ./_nixos) ];
+  nixos = { pkgs, modulesPath, ... }: {
+    imports = [
+      (inputs.import-tree ./_nixos)
+      (modulesPath + "/profiles/qemu-guest.nix")
+    ];
+
+    services.qemuGuest.enable = true;
 
     networking = {
       useDHCP = false;
