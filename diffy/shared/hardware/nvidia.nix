@@ -1,10 +1,23 @@
 { lib, bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "hardware" "nvidia" ] {
-  nixos = {
+  nixos = { config, ... }: {
     # load nvidia driver for xorg and wayland
     services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
+      # patchelf 0.19.2 maps .dynamic read-only when the rpath is set after the interpreter, https://github.com/NixOS/nixpkgs/issues/576412
+      package = config.boot.kernelPackages.nvidiaPackages.stable.overrideAttrs (old: {
+        postFixup = (old.postFixup or "") + ''
+          for orig in $bin/origBin/*; do
+            prog=$bin/bin/$(basename "$orig")
+            rpath=$(patchelf --print-rpath "$prog")
+            install -m755 "$orig" "$prog"
+            patchelf --set-rpath "$rpath" "$prog"
+            patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" "$prog"
+          done
+        '';
+      });
+
       modesetting.enable = true;
 
       powerManagement.enable = false;
