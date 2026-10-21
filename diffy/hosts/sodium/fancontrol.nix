@@ -24,6 +24,16 @@
           exit 1
         '';
       };
+
+      # a failed read reports hot so the gpu fan spins up instead of stopping
+      gpuTemp = pkgs.writeShellScript "fancontrol-gpu-temp" ''
+        t=$(${lib.getExe' pkgs.coreutils "timeout"} 3 ${lib.getExe' (lib.getBin config.hardware.nvidia.package) "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)
+        if [[ $t =~ ^[0-9]+$ ]]; then
+          echo $((t * 1000))
+        else
+          echo 100000
+        fi
+      '';
     in
     {
       boot = {
@@ -40,7 +50,7 @@
           let
             sensors = {
               cpu = "${hwmonLink}/temp1_input";
-              gpu = "/run/nvidia-temp";
+              gpu = "!${gpuTemp}";
             };
 
             fans = {
@@ -74,8 +84,8 @@
 
               gpu = {
                 minTemp = "45";
-                maxTemp = "70";
-                maxPWM = "210";
+                maxTemp = "75";
+                maxPWM = "255";
               };
 
               rearFan = {
@@ -96,27 +106,6 @@
             MINSTOP=${fans.cpu.pwm}=${minStop} ${fans.pump.pwm}=${minStop} ${fans.rear.pwm}=${minStop} ${fans.gpu.pwm}=${minStop}
             MAXPWM=${fans.cpu.pwm}=${curves.cpu.maxPWM} ${fans.pump.pwm}=${curves.cpu.maxPWM} ${fans.rear.pwm}=${curves.cpu.maxPWM} ${fans.gpu.pwm}=${curves.gpu.maxPWM}
           '';
-      };
-
-      # https://www.reddit.com/r/linuxquestions/comments/s8odfm/comment/htkp2td/
-      systemd.services.nvidia-temp = {
-        enable = true;
-        description = "Nvidia GPU temperature reader";
-        wantedBy = [ "fancontrol.service" ];
-        serviceConfig = {
-          Restart = "on-failure";
-        };
-        path = [
-          config.hardware.nvidia.package
-          pkgs.bash
-        ];
-        script = ''
-          bash -c 'while :; do
-            t="$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits)";
-            echo "$((t * 1000))" > /run/nvidia-temp;
-            sleep 5;
-          done'
-        '';
       };
     };
 }
