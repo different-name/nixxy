@@ -18,6 +18,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
             blueglassblock.better-json5
             dbaeumer.vscode-eslint
             editorconfig.editorconfig
+            mhutchie.git-graph
             prettiercode.code-prettier
             slevesque.shader
             stevensona.shader-toy
