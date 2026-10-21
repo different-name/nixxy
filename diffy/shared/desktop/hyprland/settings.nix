@@ -112,7 +112,7 @@ in
             ];
           };
 
-          xdgDesktopPortalHyprland.settings = {
+          xdph.settings = {
             screencopy = {
               allow_token_by_default = true;
             };
