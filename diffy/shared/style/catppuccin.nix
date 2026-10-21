@@ -9,86 +9,84 @@ let
   accent = "mauve";
   flavor = "mocha";
 in
-{
-  # palette is read by modules that do not theme with catppuccin
-  home-manager = { config, lib, ... }: {
-    imports = [ inputs.catppuccin.homeModules.catppuccin ];
+bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
+  imports = lib.singleton {
+    # palette is read by modules that do not theme with catppuccin
+    home-manager = { config, lib, ... }: {
+      imports = [ inputs.catppuccin.homeModules.catppuccin ];
 
-    options.dyad.palette = lib.mkOption {
-      type = lib.types.attrs;
-      readOnly = true;
-      description = "Parsed catppuccin palette (colours) for config.catppuccin.flavor";
-    };
+      options.dyad.palette = lib.mkOption {
+        type = lib.types.attrs;
+        readOnly = true;
+        description = "Parsed catppuccin palette (colours) for config.catppuccin.flavor";
+      };
 
-    config = {
-      catppuccin = { inherit accent flavor; };
+      config = {
+        catppuccin = { inherit accent flavor; };
 
-      dyad.palette =
-        (lib.importJSON (config.catppuccin.sources.palette + /palette.json))
-        .${config.catppuccin.flavor}.colors;
+        dyad.palette =
+          (lib.importJSON (config.catppuccin.sources.palette + /palette.json))
+          .${config.catppuccin.flavor}.colors;
+      };
     };
   };
 
-  imports = lib.singleton (
-    bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
-      nixos = {
-        imports = [ inputs.catppuccin.nixosModules.catppuccin ];
+  nixos = {
+    imports = [ inputs.catppuccin.nixosModules.catppuccin ];
 
-        config.catppuccin = {
-          enable = true;
-          autoEnable = true;
-          cache.enable = true;
+    config.catppuccin = {
+      enable = true;
+      autoEnable = true;
+      cache.enable = true;
 
-          inherit accent flavor;
+      inherit accent flavor;
 
-          fish.enable = false;
-        };
-      };
+      fish.enable = false;
+    };
+  };
 
-      home-manager =
-        {
-          config,
-          osConfig,
-          lib,
-          pkgs,
-          ...
-        }:
-        {
-          imports = [ self.homeModules.catppuccinGtk ];
+  home-manager =
+    {
+      config,
+      osConfig,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      imports = [ self.homeModules.catppuccinGtk ];
 
-          config = {
-            catppuccin = {
-              inherit (osConfig.catppuccin) enable autoEnable;
+      config = {
+        catppuccin = {
+          inherit (osConfig.catppuccin) enable autoEnable;
 
-              # keep-sorted start block=yes
-              cursors = {
-                inherit (config.catppuccin) enable;
-                accent = "dark";
-              };
-              firefox.enable = false;
-              fish.enable = false;
-              kvantum.assertStyle = false;
-              mpv.enable = false;
-              qt5ct.enable = true;
-              zellij.enable = false;
-              # keep-sorted end
-            };
-
-            home.pointerCursor.enable = config.catppuccin.cursors.enable;
-
-            # copied rather than linked, kde apps write to kdeglobals
-            home.activation.catppuccinKdeglobals =
-              let
-                kde = pkgs.catppuccin-kde.override {
-                  flavour = [ config.catppuccin.flavor ];
-                  accents = [ config.catppuccin.accent ];
-                };
-              in
-              lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-                run install -Dm644 ${kde}/share/color-schemes/*.colors "${config.xdg.configHome}/kdeglobals"
-              '';
+          # keep-sorted start block=yes
+          cursors = {
+            inherit (config.catppuccin) enable;
+            accent = "dark";
           };
+          firefox.enable = false;
+          fish.enable = false;
+          kvantum.assertStyle = false;
+          mpv.enable = false;
+          qt5ct.enable = true;
+          zellij.enable = false;
+          # keep-sorted end
         };
-    }
-  );
+
+        home.pointerCursor.enable = config.catppuccin.cursors.enable;
+
+        # copied rather than linked, kde apps write to kdeglobals
+        home.activation.catppuccinKdeglobals =
+          let
+            kde = pkgs.catppuccin-kde.override {
+              flavour = [ config.catppuccin.flavor ];
+              accents = [ config.catppuccin.accent ];
+            };
+          in
+          lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            run install -Dm644 ${kde}/share/color-schemes/*.colors "${config.xdg.configHome}/kdeglobals"
+          '';
+      };
+    };
 }

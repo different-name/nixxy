@@ -5,6 +5,12 @@
   ...
 }:
 bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
+  options.rounding = lib.mkOption {
+    type = lib.types.ints.unsigned;
+    default = 5;
+    description = "Corner radius in pixels for hyprland windows";
+  };
+
   nixos = {
     imports = [ self.nixosModules.tty1Autologin ];
 
