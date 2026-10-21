@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 
-delete_subvolume_recursively() {
-  local subvol="$1"
-  while IFS= read -r line; do
-    delete_subvolume_recursively "/btrfs/$line"
-  done < <(btrfs subvolume list -o "$subvol" | cut -f 9- -d ' ')
-  echo "Deleting subvolume: $subvol"
-  btrfs subvolume delete "$subvol"
-}
-
 # get list of archived subvolumes excluding 'current'
 mapfile -t subvols < <(find "/btrfs/root" -mindepth 1 -maxdepth 1 -type d ! -name current)
 
@@ -41,6 +32,7 @@ for ((i = 0; i < candidates; i++)); do
   age_days=$(((now - subvol_epoch) / 86400))
 
   if ((age_days > KEEP_AGE_DAYS)); then
-    delete_subvolume_recursively "$subvol"
+    echo "Deleting subvolume: $subvol"
+    btrfs subvolume delete --recursive "$subvol"
   fi
 done
