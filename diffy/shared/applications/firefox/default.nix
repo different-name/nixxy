@@ -49,5 +49,8 @@ bundleLib.mkEnableModule [ "dyad" "applications" "firefox" ] {
       cacheDirs = [ "mozilla/firefox" ];
       configDirs = [ "mozilla/firefox" ];
     };
+
+    # apps register their extension hosts again at runtime
+    programs.keep.exclude = [ ".config/mozilla/native-messaging-hosts" ];
   };
 }

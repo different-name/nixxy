@@ -21,5 +21,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "qpwgraph" ] {
 
       Install.WantedBy = [ "graphical-session.target" ];
     };
+
+    keep.safe.configDirs = [ "rncbc.org" ];
   };
 }

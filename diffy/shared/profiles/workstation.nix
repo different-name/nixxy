@@ -13,7 +13,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "workstation" ] {
       claude-code.enable = true;
       dev-state.enable = true;
       extraPackages.enable = true;
-      keep.enable = true;
       nixpkgs-review.enable = true;
       shellAliases.enable = true;
       television.enable = true;

@@ -9,6 +9,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "dev-state" ] {
     cacheDirs = [
       # keep-sorted start
       "deno"
+      "go-build"
       "pip"
       "pnpm"
       "treefmt"
@@ -18,6 +19,7 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "dev-state" ] {
 
     configDirs = [
       "gcloud"
+      "go"
       "hearth"
       "ncmb"
     ];

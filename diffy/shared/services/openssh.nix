@@ -17,6 +17,8 @@ bundleLib.mkEnableModule [ "dyad" "services" "openssh" ] {
       inherit publicKey;
     }) (import ../../keys.nix).hosts;
 
+    programs.keep.exclude = [ "/etc/ssh/authorized_keys.d" ];
+
     keep.safe = {
       dirs = [ "/root/.ssh" ];
       # not the whole dir, it would hide the sshd_config nixos writes before the mount

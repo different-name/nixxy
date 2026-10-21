@@ -1,5 +1,7 @@
 { bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "system" "security" ] {
+  nixos.programs.keep.exclude = [ "/etc/sudoers" ];
+
   nixos.security = {
     rtkit.enable = true;
 

@@ -17,6 +17,11 @@ bundleLib.mkEnableModule [ "dyad" "system" "btrfs" ] {
           "${utils.escapeSystemdPath rootDevice}.device";
     in
     {
+      programs.keep.exclude = [
+        "/.swapvol"
+        "/btrfs"
+      ];
+
       # https://discourse.nixos.org/t/impermanence-vs-systemd-initrd-w-tpm-unlocking/25167/3
       boot.initrd.systemd = {
         enable = true;

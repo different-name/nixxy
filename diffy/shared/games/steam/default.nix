@@ -90,10 +90,17 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
         "Steam"
         "TerraTech"
         "Terraria"
+        "steam-config-nix"
         "umu" # proton runtime
         "vulkan" # steam fossilize and overlay layers
         # keep-sorted end
       ];
     };
+
+    programs.keep.exclude = [
+      # across the obelisk launcher
+      ".local/share/Paradox Interactive"
+      ".paradoxlauncher"
+    ];
   };
 }

@@ -11,5 +11,12 @@ bundleLib.mkEnableModule [ "dyad" "services" "pipewire" ] {
     };
   };
 
-  home-manager.keep.safe.stateDirs = [ "wireplumber" ]; # audio settings
+  home-manager = {
+    keep.safe.stateDirs = [ "wireplumber" ]; # audio settings
+
+    programs.keep.exclude = [
+      ".config/pulse"
+      ".pulse-cookie"
+    ];
+  };
 }

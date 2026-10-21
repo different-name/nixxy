@@ -1,12 +1,16 @@
 { bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "terminal" "btop" ] {
-  home-manager.programs.btop = {
-    enable = true;
+  home-manager = {
+    programs.btop = {
+      enable = true;
 
-    settings = {
-      proc_gradient = false;
-      proc_mem_bytes = false;
-      show_swap = false;
+      settings = {
+        proc_gradient = false;
+        proc_mem_bytes = false;
+        show_swap = false;
+      };
     };
+
+    programs.keep.exclude = [ ".local/state/btop.log" ];
   };
 }

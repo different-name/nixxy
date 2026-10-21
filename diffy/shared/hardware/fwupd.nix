@@ -3,6 +3,8 @@ bundleLib.mkEnableModule [ "dyad" "hardware" "fwupd" ] {
   nixos = {
     services.fwupd.enable = true;
 
+    programs.keep.exclude = [ "/etc/fwupd" ];
+
     keep.safe =
       let
         fwuptDir = "/var/lib/fwupd";

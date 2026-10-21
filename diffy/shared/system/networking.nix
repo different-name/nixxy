@@ -6,6 +6,14 @@ bundleLib.mkEnableModule [ "dyad" "system" "networking" ] {
       enableIPv6 = false;
     };
 
-    keep.safe.dirs = [ "/etc/NetworkManager/system-connections" ];
+    keep.safe.dirs = [
+      "/etc/NetworkManager/system-connections"
+      "/var/lib/NetworkManager"
+    ];
+
+    programs.keep.exclude = [
+      "/etc/resolv.conf"
+      "/etc/wpa_supplicant"
+    ];
   };
 }

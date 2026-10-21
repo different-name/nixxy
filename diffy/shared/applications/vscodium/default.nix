@@ -72,5 +72,10 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
       configDirs = [ "VSCodium" ];
       stateDirs = [ "VSCodium" ];
     };
+
+    programs.keep.exclude = [
+      ".cache/Microsoft"
+      ".vscode-oss"
+    ];
   };
 }

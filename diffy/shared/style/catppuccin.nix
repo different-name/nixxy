@@ -76,6 +76,8 @@ bundleLib.mkEnableModule [ "dyad" "style" "catppuccin" ] {
 
         home.pointerCursor.enable = config.catppuccin.cursors.enable;
 
+        programs.keep.exclude = [ ".config/kdeglobals" ];
+
         # copied rather than linked, kde apps write to kdeglobals
         home.activation.catppuccinKdeglobals =
           let

@@ -17,6 +17,9 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nh" ] {
       flake = config.dyad.flake;
     };
 
-    keep.safe.cacheDirs = [ "nix-output-monitor" ];
+    keep.safe = {
+      cacheDirs = [ "nix-output-monitor" ];
+      stateDirs = [ "nix-output-monitor" ];
+    };
   };
 }

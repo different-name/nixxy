@@ -81,5 +81,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
       };
 
       keep.safe.configDirs = [ "discord" ];
+
+      programs.keep.exclude = [ ".config/Vencord" ];
     };
 }

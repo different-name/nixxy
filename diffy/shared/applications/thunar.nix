@@ -31,5 +31,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "thunar" ] {
 
       dataDirs = [ "gvfs-metadata" ]; # gnome virtual file system data / cache
     };
+
+    programs.keep.exclude = [ ".cache/thumbnails" ];
   };
 }

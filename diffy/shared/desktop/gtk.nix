@@ -9,5 +9,10 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "gtk" ] {
       };
     };
     dconf.settings."org/gnome/desktop/interface".font-name = "Inter 11";
+
+    programs.keep.exclude = [
+      ".config/dconf"
+      ".local/share/recently-used.xbel"
+    ];
   };
 }

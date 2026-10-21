@@ -37,5 +37,11 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "xdg" ] {
       "Videos"
       # keep-sorted end
     ];
+
+    # apps register their desktop entries and icons again at runtime
+    programs.keep.exclude = [
+      ".local/share/applications"
+      ".local/share/icons"
+    ];
   };
 }
