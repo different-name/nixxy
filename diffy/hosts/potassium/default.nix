@@ -35,7 +35,7 @@
   nixos = {
     imports = [
       # keep-sorted start
-      (inputs.import-tree ./_nixos)
+      ./_disko.nix
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc-laptop
       # keep-sorted end

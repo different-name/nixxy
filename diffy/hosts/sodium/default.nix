@@ -40,7 +40,7 @@
     fileSystems."/scratch".neededForBoot = true;
 
     imports = [
-      (inputs.import-tree ./_nixos)
+      ./_disko.nix
       inputs.nixos-hardware.nixosModules.common-cpu-amd
     ];
 

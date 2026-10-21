@@ -1,4 +1,4 @@
-{ lib, inputs, ... }: {
+{ lib, ... }: {
   dyad = {
     host = {
       machineId = "374afff124794b54c4670b774254545c";
@@ -23,7 +23,7 @@
 
   nixos = { pkgs, modulesPath, ... }: {
     imports = [
-      (inputs.import-tree ./_nixos)
+      ./_disko.nix
       (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
@@ -61,7 +61,7 @@
     boot.loader.limine = {
       efiSupport = false;
       biosDevice = "/dev/vda";
-      # the bios boot partition in disko.nix
+      # the bios boot partition in _disko.nix
       partitionIndex = 1;
     };
   };
