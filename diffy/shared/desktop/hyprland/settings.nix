@@ -53,10 +53,8 @@ in
             };
 
             env = [
-              # keep-sorted start
               (env "QT_WAYLAND_DISABLE_WINDOWDECORATION" "1")
               (env "XCURSOR_SIZE" "16")
-              # keep-sorted end
             ]
             ++ lib.optional applications.vscodium.enable (env "EDITOR" "codium --wait");
 
