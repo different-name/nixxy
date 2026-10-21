@@ -65,25 +65,25 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
     };
 
     # re-downloadable, compatdata stays in persist for non-cloud saves
-    keep.scratch.xdg.data.dirs = {
-      "Steam/steamapps/common" = { };
-      "Steam/steamapps/shadercache" = { };
-      "Steam/steamapps/workshop" = { };
-    };
+    keep.loose.dataDirs = [
+      "Steam/steamapps/common"
+      "Steam/steamapps/shadercache"
+      "Steam/steamapps/workshop"
+    ];
 
-    keep.persist = {
-      dirs = {
-        ".steam" = { };
-        ".factorio" = { };
-      };
+    keep.safe = {
+      dirs = [
+        ".steam"
+        ".factorio"
+      ];
 
-      xdg.cache.dirs."protonfixes" = { };
+      cacheDirs = [ "protonfixes" ];
 
-      xdg.data.dirs = {
-        "Steam" = { };
-        "Terraria" = { };
-        "TerraTech" = { };
-      };
+      dataDirs = [
+        "Steam"
+        "Terraria"
+        "TerraTech"
+      ];
     };
   };
 }

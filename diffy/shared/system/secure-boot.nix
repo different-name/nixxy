@@ -7,6 +7,6 @@ bundleLib.mkEnableModule [ "dyad" "system" "secure-boot" ] {
     environment.systemPackages = [ pkgs.sbctl ];
 
     # regenerated keys would not match the ones enrolled in the firmware
-    keep.persist.dirs."/var/lib/sbctl" = { };
+    keep.safe.dirs = [ "/var/lib/sbctl" ];
   };
 }

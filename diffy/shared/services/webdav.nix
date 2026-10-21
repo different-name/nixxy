@@ -63,6 +63,6 @@ bundleLib.mkEnableModule [ "dyad" "services" "webdav" ] {
 
     networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 443 ];
 
-    keep.persist.dirs."/var/lib/webdav" = { };
+    keep.safe.dirs = [ "/var/lib/webdav" ];
   };
 }

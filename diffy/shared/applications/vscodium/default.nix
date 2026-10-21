@@ -67,10 +67,10 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
       # keep-sorted end
     };
 
-    keep.persist = {
-      dirs.".vscode-oss-shared" = { };
-      xdg.config.dirs."VSCodium" = { };
-      xdg.state.dirs."VSCodium" = { };
+    keep.safe = {
+      dirs = [ ".vscode-oss-shared" ];
+      configDirs = [ "VSCodium" ];
+      stateDirs = [ "VSCodium" ];
     };
   };
 }

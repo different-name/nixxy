@@ -6,28 +6,42 @@
 }:
 bundleLib.mkEnableModule [ "dyad" "terminal" "extraPackages" ] {
   home-manager = { pkgs, ... }: {
-    keep.persist.packages = {
+    imports = lib.attrValues {
       # keep-sorted start block=yes newline_separated=yes
-      nixxy-fmt.package = pkgs.writeShellScriptBin "nixxy-fmt" ''
-        exec ${lib.getExe self'.formatter} "$@"
-      '';
+      # github cli
+      gh = {
+        home.packages = [ pkgs.gh ];
+        keep.safe = {
+          cacheDirs = [ "gh" ];
+          configDirs = [ "gh" ];
+        };
+      };
 
       # git tui
-      lazygit.xdg.state.dirs."lazygit" = { };
+      lazygit = {
+        home.packages = [ pkgs.lazygit ];
+        keep.safe.stateDirs = [ "lazygit" ];
+      };
 
       # calculator
       libqalculate = {
-        xdg.config.dirs."qalculate" = { };
-        xdg.data.dirs."qalculate" = { };
+        home.packages = [ pkgs.libqalculate ];
+        keep.safe = {
+          configDirs = [ "qalculate" ];
+          dataDirs = [ "qalculate" ];
+        };
       };
 
-      # audio/video downloader
-      yt-dlp.xdg.cache.dirs."yt-dlp" = { };
+      nixxy-fmt.home.packages = [
+        (pkgs.writeShellScriptBin "nixxy-fmt" ''
+          exec ${lib.getExe self'.formatter} "$@"
+        '')
+      ];
 
-      # github cli
-      gh = {
-        xdg.cache.dirs."gh" = { };
-        xdg.config.dirs."gh" = { };
+      # audio/video downloader
+      yt-dlp = {
+        home.packages = [ pkgs.yt-dlp ];
+        keep.safe.cacheDirs = [ "yt-dlp" ];
       };
       # keep-sorted end
     };

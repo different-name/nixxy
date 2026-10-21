@@ -149,6 +149,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "zellij" ] {
         };
       };
 
-      keep.persist.xdg.cache.dirs."zellij" = { };
+      keep.safe.cacheDirs = [ "zellij" ];
     };
 }

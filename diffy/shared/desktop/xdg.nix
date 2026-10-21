@@ -27,15 +27,15 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "xdg" ] {
       configFile."mimeapps.list".force = true;
     };
 
-    keep.persist.dirs = {
+    keep.safe.dirs = [
       # keep-sorted start
-      "Audio" = { };
-      "Code" = { };
-      "Documents" = { };
-      "Downloads" = { };
-      "Pictures" = { };
-      "Videos" = { };
+      "Audio"
+      "Code"
+      "Documents"
+      "Downloads"
+      "Pictures"
+      "Videos"
       # keep-sorted end
-    };
+    ];
   };
 }

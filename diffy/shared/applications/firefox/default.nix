@@ -45,9 +45,9 @@ bundleLib.mkEnableModule [ "dyad" "applications" "firefox" ] {
       # keep-sorted end
     };
 
-    keep.persist = {
-      xdg.cache.dirs."mozilla/firefox" = { };
-      xdg.config.dirs."mozilla/firefox" = { };
+    keep.safe = {
+      cacheDirs = [ "mozilla/firefox" ];
+      configDirs = [ "mozilla/firefox" ];
     };
   };
 }

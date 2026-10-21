@@ -5,9 +5,9 @@ bundleLib.mkEnableModule [ "dyad" "games" "vrcx" ] {
 
     xdg.configFile."VRCX/custom.css".source = ./custom.css;
 
-    keep.persist = {
-      xdg.cache.dirs."VRCX" = { };
-      xdg.config.dirs."VRCX" = { };
+    keep.safe = {
+      cacheDirs = [ "VRCX" ];
+      configDirs = [ "VRCX" ];
     };
   };
 }

@@ -1,42 +1,68 @@
 { bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
-  home-manager = { pkgs, ... }: {
-    keep.persist.packages = {
+  home-manager = { pkgs, lib, ... }: {
+    imports = lib.attrValues {
       # keep-sorted start block=yes newline_separated=yes
-      android-tools.dirs.".android" = { };
+      android-tools = {
+        home.packages = [ pkgs.android-tools ];
+        keep.safe.dirs = [ ".android" ];
+      };
 
-      emote.xdg.data.dirs."Emote" = { };
+      emote = {
+        home.packages = [ pkgs.emote ];
+        keep.safe.dataDirs = [ "Emote" ];
+      };
 
-      ente-desktop.xdg.config.dirs."ente" = { };
+      ente = {
+        home.packages = [ pkgs.ente-desktop ];
+        keep.safe.configDirs = [ "ente" ];
+      };
 
-      gimp3-with-plugins = {
-        xdg.cache.dirs."gimp" = { };
-        xdg.config.dirs."GIMP" = { };
+      gimp = {
+        home.packages = [ pkgs.gimp3-with-plugins ];
+        keep.safe = {
+          cacheDirs = [ "gimp" ];
+          configDirs = [ "GIMP" ];
+        };
+      };
+
+      hearth = {
+        keep.safe = {
+          configDirs = [ "hearth" ];
+          stateDirs = [ "hearth" ];
+        };
       };
 
       nrfconnect = {
-        dirs.".nrfconnect-apps" = { };
-        xdg.config.dirs."nrfconnect" = { };
+        home.packages = [ pkgs.nrfconnect ];
+        keep.safe = {
+          dirs = [ ".nrfconnect-apps" ];
+          configDirs = [ "nrfconnect" ];
+        };
       };
 
-      proton-pass.xdg.config.dirs."Proton Pass" = { };
+      proton-pass = {
+        home.packages = [ pkgs.proton-pass ];
+        keep.safe.configDirs = [ "Proton Pass" ];
+      };
 
       proton-vpn = {
-        xdg.cache.dirs."Proton" = { };
-        xdg.config.dirs."Proton" = { };
+        home.packages = [ pkgs.proton-vpn ];
+        keep.safe = {
+          cacheDirs = [ "Proton" ];
+          configDirs = [ "Proton" ];
+        };
       };
 
       qbittorrent = {
-        xdg.cache.dirs."qBittorrent" = { };
-        xdg.config.dirs."qBittorrent" = { };
-        xdg.data.dirs."qBittorrent" = { };
+        home.packages = [ pkgs.qbittorrent ];
+        keep.safe = {
+          cacheDirs = [ "qBittorrent" ];
+          configDirs = [ "qBittorrent" ];
+          dataDirs = [ "qBittorrent" ];
+        };
       };
       # keep-sorted end
-    };
-
-    keep.persist = {
-      xdg.config.dirs."hearth" = { };
-      xdg.state.dirs."hearth" = { };
     };
 
     home.packages = with pkgs; [

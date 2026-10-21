@@ -46,5 +46,5 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "fonts" ] {
     };
   };
 
-  home-manager.keep.scratch.xdg.cache.dirs."fontconfig" = { };
+  home-manager.keep.loose.cacheDirs = [ "fontconfig" ];
 }

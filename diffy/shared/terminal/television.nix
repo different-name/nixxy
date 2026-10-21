@@ -27,9 +27,9 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "television" ] {
       nixpkgs = "tv nixpkgs --exact";
     };
 
-    keep.persist = {
-      xdg.cache.dirs."nix-search-tv" = { };
-      xdg.data.dirs."television" = { };
+    keep.safe = {
+      cacheDirs = [ "nix-search-tv" ];
+      dataDirs = [ "television" ];
     };
   };
 }

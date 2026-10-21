@@ -19,6 +19,6 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nixpkgs-review" ] {
       }
     );
 
-    keep.persist.xdg.cache.dirs."nixpkgs-review" = { };
+    keep.safe.cacheDirs = [ "nixpkgs-review" ];
   };
 }

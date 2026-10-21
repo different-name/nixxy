@@ -23,13 +23,13 @@ bundleLib.mkEnableModule [ "dyad" "applications" "thunar" ] {
       "inode/directory" = lib.mkDefault "thunar.desktop";
     };
 
-    keep.persist = {
-      xdg.config.dirs = {
-        "Thunar" = { };
-        "xfce4" = { };
-      };
+    keep.safe = {
+      configDirs = [
+        "Thunar"
+        "xfce4"
+      ];
 
-      xdg.data.dirs."gvfs-metadata" = { }; # gnome virtual file system data / cache
+      dataDirs = [ "gvfs-metadata" ]; # gnome virtual file system data / cache
     };
   };
 }

@@ -18,6 +18,6 @@ bundleLib.mkEnableModule [ "dyad" "services" "acme" ] {
       };
     };
 
-    keep.persist.dirs."/var/lib/acme" = { };
+    keep.safe.dirs = [ "/var/lib/acme" ];
   };
 }

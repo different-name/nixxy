@@ -46,27 +46,27 @@ bundleLib.mkEnableModule [ "dyad" "games" "avatar-tools" ] {
         # keep-sorted end
       ];
 
-      keep.persist = {
-        xdg.cache.dirs."blender" = { };
+      keep.safe = {
+        cacheDirs = [ "blender" ];
 
-        xdg.config.dirs = {
+        configDirs = [
           # keep-sorted start
-          "UnityHub" = { };
-          "blender" = { };
-          "unity3d" = { };
-          "unityhub" = { };
+          "UnityHub"
+          "blender"
+          "unity3d"
+          "unityhub"
           # keep-sorted end
-        };
+        ];
 
-        xdg.data.dirs = {
+        dataDirs = [
           # keep-sorted start
-          "ALCOM" = { };
-          "VRCFury" = { };
-          "VRChatCreatorCompanion" = { };
-          "com.anatawa12.vrc-get-gui" = { };
-          "unityhub" = { };
+          "ALCOM"
+          "VRCFury"
+          "VRChatCreatorCompanion"
+          "com.anatawa12.vrc-get-gui"
+          "unityhub"
           # keep-sorted end
-        };
+        ];
       };
     };
 }

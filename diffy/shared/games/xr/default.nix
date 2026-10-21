@@ -116,13 +116,35 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
 
     environment.systemPackages = [ inputs'.solarxr-cli.packages.default ];
 
-    keep.persist.dirs = {
-      "/root/.config/dev.slimevr.SlimeVR" = { };
-      "/root/.local/share/dev.slimevr.SlimeVR" = { };
-    };
+    keep.safe.dirs = [
+      "/root/.config/dev.slimevr.SlimeVR"
+      "/root/.local/share/dev.slimevr.SlimeVR"
+    ];
   };
 
-  home-manager = { config, ... }: {
+  home-manager = { config, pkgs, ... }: {
+    imports = lib.attrValues {
+      slimevr = {
+        home.packages = [ pkgs.slimevr ];
+        keep.safe = {
+          cacheDirs = [ ".slimevr-wrapped_" ];
+          configDirs = [ "dev.slimevr.SlimeVR" ];
+          dataDirs = [
+            ".slimevr-wrapped_"
+            "dev.slimevr.SlimeVR"
+          ];
+        };
+      };
+
+      wayvr = {
+        home.packages = [ pkgs.wayvr ];
+        keep.safe = {
+          cacheDirs = [ "wayvr" ];
+          configDirs = [ "wayvr" ];
+        };
+      };
+    };
+
     xdg = {
       # https://github.com/wlx-team/wayvr/wiki/Customization
       configFile."wayvr" = {
@@ -187,34 +209,15 @@ bundleLib.mkEnableModule [ "dyad" "games" "xr" ] {
       };
     };
 
-    keep.persist = {
-      packages = {
-        # keep-sorted start block=yes newline_separated=yes
-        slimevr = {
-          xdg.cache.dirs.".slimevr-wrapped_" = { };
-          xdg.config.dirs."dev.slimevr.SlimeVR" = { };
+    keep.safe = {
+      cacheDirs = [ "wivrn" ];
 
-          xdg.data.dirs = {
-            ".slimevr-wrapped_" = { };
-            "dev.slimevr.SlimeVR" = { };
-          };
-        };
+      configDirs = [
+        "openvr"
+        "wivrn"
+      ];
 
-        wayvr = {
-          xdg.cache.dirs."wayvr" = { };
-          xdg.config.dirs."wayvr" = { };
-        };
-        # keep-sorted end
-      };
-
-      xdg.cache.dirs."wivrn" = { };
-
-      xdg.config.dirs = {
-        "openvr" = { };
-        "wivrn" = { };
-      };
-
-      xdg.state.dirs."OpenComposite" = { };
+      stateDirs = [ "OpenComposite" ];
     };
   };
 }

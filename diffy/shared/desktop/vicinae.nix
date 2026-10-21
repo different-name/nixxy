@@ -37,10 +37,10 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "vicinae" ] {
       };
     };
 
-    keep.persist = {
-      xdg.cache.dirs."vicinae" = { };
-      xdg.data.dirs."vicinae" = { };
-      xdg.state.dirs."vicinae" = { };
+    keep.safe = {
+      cacheDirs = [ "vicinae" ];
+      dataDirs = [ "vicinae" ];
+      stateDirs = [ "vicinae" ];
     };
   };
 }

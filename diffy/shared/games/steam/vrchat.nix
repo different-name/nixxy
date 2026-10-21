@@ -128,7 +128,7 @@ in
           steamConfig.enable = true;
         };
 
-        keep.persist.xdg.cache.dirs."vrchat-video-resolver" = { };
+        keep.safe.cacheDirs = [ "vrchat-video-resolver" ];
 
         systemd.user.services.oscleash = {
           Unit = {
@@ -146,10 +146,8 @@ in
           Install.WantedBy = [ "steam-app-vrchat.target" ];
         };
 
-        keep.persist.packages.oscleash = {
-          package = self'.packages.oscleash;
-          xdg.config.dirs."OSCLeash" = { };
-        };
+        home.packages = [ self'.packages.oscleash ];
+        keep.safe.configDirs = [ "OSCLeash" ];
       };
   };
 }

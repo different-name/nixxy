@@ -23,9 +23,9 @@ bundleLib.mkEnableModule [ "dyad" "applications" "spotify" ] {
 
     xdg.mimeApps.defaultApplications."x-scheme-handler/spotify" = "spotify.desktop";
 
-    keep.persist = {
-      xdg.cache.dirs."spotify" = { };
-      xdg.config.dirs."spotify" = { };
+    keep.safe = {
+      cacheDirs = [ "spotify" ];
+      configDirs = [ "spotify" ];
     };
   };
 }

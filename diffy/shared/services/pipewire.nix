@@ -11,5 +11,5 @@ bundleLib.mkEnableModule [ "dyad" "services" "pipewire" ] {
     };
   };
 
-  home-manager.keep.persist.xdg.state.dirs."wireplumber" = { }; # audio settings
+  home-manager.keep.safe.stateDirs = [ "wireplumber" ]; # audio settings
 }

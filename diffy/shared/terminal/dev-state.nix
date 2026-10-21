@@ -1,27 +1,27 @@
 { bundleLib, ... }:
 bundleLib.mkEnableModule [ "dyad" "terminal" "dev-state" ] {
-  home-manager.keep.persist = {
-    dirs = {
-      ".net" = { };
-      ".npm" = { };
-    };
+  home-manager.keep.safe = {
+    dirs = [
+      ".net"
+      ".npm"
+    ];
 
-    xdg.cache.dirs = {
+    cacheDirs = [
       # keep-sorted start
-      "deno" = { };
-      "pip" = { };
-      "pnpm" = { };
-      "treefmt" = { };
-      "zig" = { };
+      "deno"
+      "pip"
+      "pnpm"
+      "treefmt"
+      "zig"
       # keep-sorted end
-    };
+    ];
 
-    xdg.config.dirs = {
-      "gcloud" = { };
-      "ncmb" = { };
-    };
+    configDirs = [
+      "gcloud"
+      "ncmb"
+    ];
 
-    xdg.data.dirs."containers" = { };
-    xdg.state.dirs."pnpm" = { };
+    dataDirs = [ "containers" ];
+    stateDirs = [ "pnpm" ];
   };
 }

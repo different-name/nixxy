@@ -16,9 +16,9 @@ bundleLib.mkEnableModule [ "dyad" "applications" "kitty" ] {
       keybindings."ctrl+backspace" = "send_text all \\x17";
     };
 
-    keep.persist = {
-      xdg.cache.dirs."kitty" = { };
-      xdg.data.dirs."kitty-ssh-kitten" = { };
+    keep.safe = {
+      cacheDirs = [ "kitty" ];
+      dataDirs = [ "kitty-ssh-kitten" ];
     };
   };
 }

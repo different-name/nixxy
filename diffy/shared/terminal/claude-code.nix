@@ -125,10 +125,11 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "claude-code" ] {
       };
     in
     {
-      keep.persist.packages.claude-code = {
-        dirs.".claude" = { };
-        xdg.cache.dirs."claude-cli-nodejs" = { };
-        files.".claude.json" = { };
+      home.packages = [ pkgs.claude-code ];
+      keep.safe = {
+        dirs = [ ".claude" ];
+        cacheDirs = [ "claude-cli-nodejs" ];
+        files = [ ".claude.json" ];
       };
 
       home.file.".claude/themes/catppuccin.json".source = theme;

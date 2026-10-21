@@ -104,6 +104,6 @@ bundleLib.mkEnableModule [ "dyad" "services" "headscale" ] {
       allowedUDPPorts = [ 3478 ];
     };
 
-    keep.persist.dirs."/var/lib/headscale" = { };
+    keep.safe.dirs = [ "/var/lib/headscale" ];
   };
 }

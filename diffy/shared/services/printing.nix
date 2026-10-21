@@ -15,6 +15,6 @@ bundleLib.mkEnableModule [ "dyad" "services" "printing" ] {
       };
     };
 
-    keep.persist.dirs."/var/lib/cups" = { };
+    keep.safe.dirs = [ "/var/lib/cups" ];
   };
 }

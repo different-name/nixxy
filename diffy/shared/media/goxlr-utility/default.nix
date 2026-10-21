@@ -45,9 +45,9 @@ bundleLib.mkEnableModule [ "dyad" "media" "goxlr-utility" ] {
         force = true;
       };
 
-      keep.persist = {
-        xdg.config.dirs."goxlr-utility" = { };
-        xdg.data.dirs."goxlr-utility" = { };
+      keep.safe = {
+        configDirs = [ "goxlr-utility" ];
+        dataDirs = [ "goxlr-utility" ];
       };
     };
 }

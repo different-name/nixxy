@@ -41,5 +41,5 @@ bundleLib.mkEnableModule [ "dyad" "hardware" "nvidia" ] {
     );
   };
 
-  home-manager.keep.persist.xdg.cache.dirs."nvidia" = { };
+  home-manager.keep.safe.cacheDirs = [ "nvidia" ];
 }

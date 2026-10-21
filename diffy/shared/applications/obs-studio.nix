@@ -23,9 +23,9 @@ bundleLib.mkEnableModule [ "dyad" "applications" "obs-studio" ] {
       package = mkWrappedObs pkgs;
     };
 
-    keep.persist = {
-      xdg.cache.dirs."obs-studio" = { };
-      xdg.config.dirs."obs-studio" = { };
+    keep.safe = {
+      cacheDirs = [ "obs-studio" ];
+      configDirs = [ "obs-studio" ];
     };
   };
 }

@@ -45,10 +45,10 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "nushell" ] {
         };
       };
 
-      keep.persist = {
-        xdg.cache.dirs."nushell" = { };
-        xdg.config.dirs."nushell" = { };
-        xdg.data.dirs."nushell" = { };
+      keep.safe = {
+        cacheDirs = [ "nushell" ];
+        configDirs = [ "nushell" ];
+        dataDirs = [ "nushell" ];
       };
     };
 }

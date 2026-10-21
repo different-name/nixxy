@@ -9,6 +9,6 @@ bundleLib.mkEnableModule [ "dyad" "media" "mpv" ] {
       };
     };
 
-    keep.persist.xdg.cache.dirs."mpv" = { };
+    keep.safe.cacheDirs = [ "mpv" ];
   };
 }

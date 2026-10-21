@@ -96,9 +96,9 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "hyprland" ] {
         pkgs.grimblast
       ];
 
-      keep.persist = {
-        xdg.cache.dirs."hyprland" = { };
-        xdg.data.dirs."hyprland" = { };
+      keep.safe = {
+        cacheDirs = [ "hyprland" ];
+        dataDirs = [ "hyprland" ];
       };
     };
 }

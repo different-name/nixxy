@@ -77,9 +77,9 @@ bundleLib.mkEnableModule [ "dyad" "nix" "nix" ] {
       in
       lib.toJSON (lib.mapAttrs (_: list: { ${lib.concatStringsSep " " list} = true; }) nixConfig);
 
-    keep.persist = {
-      xdg.cache.dirs."nix" = { };
-      xdg.data.files."nix/repl-history" = { };
+    keep.safe = {
+      cacheDirs = [ "nix" ];
+      dataFiles = [ "nix/repl-history" ];
     };
   };
 }

@@ -80,6 +80,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
         force = true;
       };
 
-      keep.persist.xdg.config.dirs."discord" = { };
+      keep.safe.configDirs = [ "discord" ];
     };
 }
