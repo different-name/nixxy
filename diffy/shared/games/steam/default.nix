@@ -77,12 +77,22 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
         ".factorio"
       ];
 
-      cacheDirs = [ "protonfixes" ];
+      cacheDirs = [
+        # keep-sorted start
+        "mesa_shader_cache" # shader cache
+        "protonfixes"
+        "radv_builtin_shaders" # radv shader cache
+        # keep-sorted end
+      ];
 
       dataDirs = [
+        # keep-sorted start
         "Steam"
-        "Terraria"
         "TerraTech"
+        "Terraria"
+        "umu" # proton runtime
+        "vulkan" # steam fossilize and overlay layers
+        # keep-sorted end
       ];
     };
   };

@@ -18,10 +18,15 @@ bundleLib.mkEnableModule [ "dyad" "terminal" "dev-state" ] {
 
     configDirs = [
       "gcloud"
+      "hearth"
       "ncmb"
     ];
 
     dataDirs = [ "containers" ];
-    stateDirs = [ "pnpm" ];
+
+    stateDirs = [
+      "hearth"
+      "pnpm"
+    ];
   };
 }

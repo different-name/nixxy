@@ -30,24 +30,5 @@ bundleLib.mkEnableModule [ "dyad" "games" "extraPackages" ] {
       };
       # keep-sorted end
     };
-
-    keep.safe = {
-      cacheDirs = [
-        # keep-sorted start
-        "mesa_shader_cache" # shader cache
-        "qtshadercache-x86_64-little_endian-lp64" # qt shader cache
-        "radv_builtin_shaders" # radv shader cache
-        # keep-sorted end
-      ];
-
-      dataDirs = [
-        "umu" # proton runtime
-        "vulkan" # steam fossilize and overlay layers
-      ];
-    };
-
-    xdg.mimeApps.defaultApplications = {
-      "x-scheme-handler/nxm" = "com.nexusmods.app.desktop";
-    };
   };
 }

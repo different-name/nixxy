@@ -26,13 +26,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
         };
       };
 
-      hearth = {
-        keep.safe = {
-          configDirs = [ "hearth" ];
-          stateDirs = [ "hearth" ];
-        };
-      };
-
       nrfconnect = {
         home.packages = [ pkgs.nrfconnect ];
         keep.safe = {

@@ -27,5 +27,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "qt" ] {
       };
 
       home.packages = [ pkgs.kdePackages.qqc2-desktop-style ];
+
+      keep.safe.cacheDirs = [ "qtshadercache-x86_64-little_endian-lp64" ];
     };
 }
