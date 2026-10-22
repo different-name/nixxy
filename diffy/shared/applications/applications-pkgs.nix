@@ -34,6 +34,13 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
         };
       };
 
+      opencloud = {
+        home.packages = [ pkgs.opencloud-desktop ];
+        keep.safe.configDirs = [ "OpenCloud" ];
+        # a synced folder lost on reboot would sync its deletion to the server
+        keep.loose.dirs = [ "OpenCloud" ];
+      };
+
       qbittorrent = {
         home.packages = [ pkgs.qbittorrent ];
         keep.safe = {
