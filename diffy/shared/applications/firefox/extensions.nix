@@ -33,14 +33,15 @@
 
           packages = with inputs'.nur.legacyPackages.repos.rycee.firefox-addons; [
             # keep-sorted start
-            adnauseam
             bitwarden
+            darkreader
             dearrow
             redirector
             self'.packages.catppuccin-firefox-mocha
             sponsorblock
             stylus
             twitch-auto-points
+            ublock-origin
             youtube-nonstop
             # keep-sorted end
           ];
