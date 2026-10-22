@@ -20,6 +20,7 @@ in
     "potassium"
     "sodium"
   ];
+  "radicale/htpasswd.age".publicKeys = hosts [ "argon" ];
   "restic/argon.age".publicKeys = hosts [ "argon" ];
   "restic/potassium.age".publicKeys = hosts [ "potassium" ];
   "restic/sodium.age".publicKeys = hosts [ "sodium" ];
