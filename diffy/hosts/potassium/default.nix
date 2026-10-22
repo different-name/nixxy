@@ -23,8 +23,6 @@
       keep.enable = true;
     };
 
-    applications.discord.autoStart = false;
-
     nix.sodium-builder.enable = true;
 
     services = {

@@ -5,17 +5,29 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
 
     # keep-sorted start block=yes newline_separated=yes
     applications = {
-      # keep-sorted start
-      bitwarden.enable = true;
-      discord.enable = true;
+      # keep-sorted start block=yes
+      bitwarden = {
+        autoStart = true;
+        enable = true;
+      };
+      discord = {
+        autoStart = true;
+        enable = true;
+      };
       extraPackages.enable = true;
       firefox.enable = true;
       kitty.enable = true;
       obs-studio.enable = true;
-      signal-desktop.enable = true;
+      signal-desktop = {
+        autoStart = true;
+        enable = true;
+      };
       spotify.enable = true;
       thunar.enable = true;
-      thunderbird.enable = true;
+      thunderbird = {
+        autoStart = true;
+        enable = true;
+      };
       vscodium.enable = true;
       # keep-sorted end
     };

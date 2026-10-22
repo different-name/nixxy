@@ -1,5 +1,19 @@
-{ lib, bundleLib, ... }:
+{
+  lib,
+  bundleLib,
+  config,
+  ...
+}:
+let
+  inherit (config.dyad.applications.signal-desktop) autoStart;
+in
 bundleLib.mkEnableModule [ "dyad" "applications" "signal-desktop" ] {
+  options.autoStart = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Start Signal with the graphical session";
+  };
+
   home-manager =
     { config, pkgs, ... }:
     let
@@ -145,6 +159,24 @@ bundleLib.mkEnableModule [ "dyad" "applications" "signal-desktop" ] {
     in
     {
       home.packages = [ package ];
+
+      systemd.user.services.signal = lib.mkIf autoStart {
+        Unit = {
+          Description = "Signal";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+          RefuseManualStart = true;
+          RefuseManualStop = true;
+        };
+
+        Service = {
+          ExecStart = "${lib.getExe package} --start-in-tray";
+          Restart = "no";
+        };
+
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
       keep.safe.configDirs = [ "Signal" ];
     };
 }

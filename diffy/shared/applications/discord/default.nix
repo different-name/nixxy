@@ -8,7 +8,7 @@
 bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
   options.autoStart = lib.mkOption {
     type = lib.types.bool;
-    default = true;
+    default = false;
     description = "Start discord with the graphical session";
   };
 
@@ -48,7 +48,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
         Service = {
           # workaround for starting before network is available
           ExecStartPre = "${lib.getExe' pkgs.coreutils "sleep"} 2";
-          ExecStart = lib.getExe discordPackage;
+          ExecStart = "${lib.getExe discordPackage} --start-minimized";
           Restart = "no";
         };
 
