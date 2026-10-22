@@ -15,6 +15,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
       signal-desktop.enable = true;
       spotify.enable = true;
       thunar.enable = true;
+      thunderbird.enable = true;
       vscodium.enable = true;
       # keep-sorted end
     };

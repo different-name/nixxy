@@ -30,7 +30,21 @@ in
           (bindWith { mouse = true; } "${mod} + CTRL + mouse:272" "hl.dsp.window.resize()")
 
           # compositor commands
-          (bind "${mod} + Q" "hl.dsp.window.close()")
+          (bind "${mod} + Q" (
+            if applications.thunderbird.autoStart then
+              # thunderbird has no tray, so closing it hides it in its special workspace instead
+              ''
+                function()
+                  local window = hl.get_active_window()
+                  if window and window.class == "thunderbird" then
+                    hl.dispatch(hl.dsp.window.move({ workspace = "special:mail", follow = false }))
+                  else
+                    hl.dispatch(hl.dsp.window.close())
+                  end
+                end''
+            else
+              "hl.dsp.window.close()"
+          ))
           (bind "${mod} + F" "hl.dsp.window.fullscreen_state({ internal = 2, client = -1 })") # fullscreen the window, don't inform the client it was fullscreened
           (bind "${mod} + SHIFT + F" "hl.dsp.window.fullscreen_state({ internal = -1, client = 2 })") # keep current fullscreen state, tell client it is fullscreened
           (bind "${mod} + R" ''hl.dsp.layout("togglesplit")'')
