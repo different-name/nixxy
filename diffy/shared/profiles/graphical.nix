@@ -54,7 +54,12 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
       # keep-sorted end
     };
 
-    services.pipewire.enable = true;
+    services = {
+      # keep-sorted start
+      gnome-keyring.enable = true;
+      pipewire.enable = true;
+      # keep-sorted end
+    };
     # keep-sorted end
   };
 
