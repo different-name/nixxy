@@ -3,15 +3,18 @@ let
   domain = "hs.diffy.wtf";
   port = 8085;
 
-  # personal devices reach everything, the work servers only each other, argon nothing
+  # personal devices reach everything but the phone's private space, which only reaches argon's https, the work servers only each other, argon nothing
   policy = {
     hosts = {
       sodium = "100.64.0.1/32";
       potassium = "100.64.0.2/32";
       lithium = "100.64.0.3/32";
+      lithium-private = "100.64.0.9/32";
       argon = "100.64.0.4/32";
       ncmb1 = "100.64.0.5/32";
       ncmb2 = "100.64.0.6/32";
+      jetkvm-ncmb1 = "100.64.0.7/32";
+      jetkvm-ncmb2 = "100.64.0.8/32";
     };
 
     acls = [
@@ -22,7 +25,21 @@ let
           "potassium"
           "lithium"
         ];
-        dst = [ "*:*" ];
+        dst = [
+          "sodium:*"
+          "potassium:*"
+          "lithium:*"
+          "argon:*"
+          "ncmb1:*"
+          "ncmb2:*"
+          "jetkvm-ncmb1:*"
+          "jetkvm-ncmb2:*"
+        ];
+      }
+      {
+        action = "accept";
+        src = [ "lithium-private" ];
+        dst = [ "argon:443" ];
       }
       {
         action = "accept";
