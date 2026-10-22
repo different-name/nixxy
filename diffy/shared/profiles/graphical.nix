@@ -6,6 +6,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
     # keep-sorted start block=yes newline_separated=yes
     applications = {
       # keep-sorted start
+      bitwarden.enable = true;
       discord.enable = true;
       extraPackages.enable = true;
       firefox.enable = true;

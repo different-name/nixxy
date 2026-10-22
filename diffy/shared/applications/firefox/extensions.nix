@@ -34,9 +34,8 @@
           packages = with inputs'.nur.legacyPackages.repos.rycee.firefox-addons; [
             # keep-sorted start
             adnauseam
+            bitwarden
             dearrow
-            proton-pass
-            proton-vpn
             redirector
             self'.packages.catppuccin-firefox-mocha
             sponsorblock

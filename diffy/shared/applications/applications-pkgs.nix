@@ -34,19 +34,6 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
         };
       };
 
-      proton-pass = {
-        home.packages = [ pkgs.proton-pass ];
-        keep.safe.configDirs = [ "Proton Pass" ];
-      };
-
-      proton-vpn = {
-        home.packages = [ pkgs.proton-vpn ];
-        keep.safe = {
-          cacheDirs = [ "Proton" ];
-          configDirs = [ "Proton" ];
-        };
-      };
-
       qbittorrent = {
         home.packages = [ pkgs.qbittorrent ];
         keep.safe = {

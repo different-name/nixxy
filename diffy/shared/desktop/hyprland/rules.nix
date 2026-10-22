@@ -26,7 +26,6 @@ in
           # keep-sorted start
           "File Operation Progress"
           "Open Folder"
-          "Proton Pass"
           "Protontricks"
           "Select what to share"
           "Winetricks.*"
