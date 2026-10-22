@@ -20,6 +20,8 @@ in
     "potassium"
     "sodium"
   ];
+  "opencloud/admin.age".publicKeys = hosts [ "argon" ];
+  "opencloud/s3.age".publicKeys = hosts [ "argon" ];
   "radicale/htpasswd.age".publicKeys = hosts [ "argon" ];
   "restic/argon.age".publicKeys = hosts [ "argon" ];
   "restic/potassium.age".publicKeys = hosts [ "potassium" ];
