@@ -12,6 +12,9 @@
     services = {
       backup.enable = true;
       headscale.enable = true;
+      opencloud.enable = true;
+      radicale.enable = true;
+      vaultwarden.enable = true;
       webdav.enable = true;
     };
 
