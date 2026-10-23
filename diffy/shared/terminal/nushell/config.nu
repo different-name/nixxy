@@ -4,18 +4,20 @@ $env.config.color_config.shape_external_resolved = $theme.text
 $env.config.color_config.shape_externalarg = $theme.lavender
 $env.config.color_config.shape_flag = $theme.mauve
 
-# stock nushell prompt, minus the right-side clock, path recolored mauve
+# stock nushell prompt, minus the right-side clock, path recolored lavender
 $env.PROMPT_COMMAND_RIGHT = ""
+let hostname = (sys host).hostname
 $env.PROMPT_COMMAND = {||
     let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-dir }) {
         null => $env.PWD
         "" => "~"
         $relative => ([~ $relative] | path join)
     }
-    let path_color = (ansi { fg: $theme.mauve attr: b })
-    let separator_color = (ansi { fg: $theme.mauve })
+    let path_color = (ansi { fg: $theme.lavender attr: b })
+    let separator_color = (ansi { fg: $theme.lavender })
+    let host_segment = $"(ansi { fg: $theme.mauve attr: b })($hostname)(ansi reset) "
     let path_segment = $"($path_color)($dir)"
-    $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
+    $host_segment + ($path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)")
 }
 
 # green indicator, with a space between the path and the >
