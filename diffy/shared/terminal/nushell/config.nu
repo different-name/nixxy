@@ -27,6 +27,8 @@ def adb-wifi [] {
         | where ($it | str starts-with "=;")
         | split column ";" event interface protocol name type domain host address port
         | where protocol == IPv4
+        # avahi can resolve an ipv4 advert to an ipv6 link-local address, which adb can't connect to
+        | where not ($it.address | str contains ":")
     if ($services | is-empty) { error make { msg: "no phone with wireless debugging found" } }
     let service = $services | first
     adb connect $"($service.address):($service.port)"
