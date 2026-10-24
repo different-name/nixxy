@@ -14,6 +14,13 @@ let
 in
 {
   # keep-sorted start block=yes
+  "bone/catch-login.age".publicKeys = hosts [ "argon" ];
+  "bone/catch-password.age".publicKeys = hosts [ "argon" ];
+  "bone/device-lithium.age".publicKeys = hosts [ "argon" ];
+  "bone/device-potassium.age".publicKeys = hosts [ "argon" ];
+  "bone/device-sodium.age".publicKeys = hosts [ "argon" ];
+  "bone/main-login.age".publicKeys = hosts [ "argon" ];
+  "bone/main-password.age".publicKeys = hosts [ "argon" ];
   "claude/instructions.age".publicKeys = editors;
   "cloudflare/dns-token.age".publicKeys = hosts [ "argon" ];
   "firefox/policies.age".publicKeys = hosts [
