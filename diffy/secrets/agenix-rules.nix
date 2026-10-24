@@ -20,6 +20,7 @@ in
     "potassium"
     "sodium"
   ];
+  "mollysocket/env.age".publicKeys = hosts [ "argon" ];
   "opencloud/admin.age".publicKeys = hosts [ "argon" ];
   "opencloud/s3.age".publicKeys = hosts [ "argon" ];
   "radicale/htpasswd.age".publicKeys = hosts [ "argon" ];
