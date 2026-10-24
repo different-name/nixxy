@@ -11,7 +11,10 @@
 
     services = {
       backup.enable = true;
+      bone.enable = true;
       headscale.enable = true;
+      mollysocket.enable = true;
+      ntfy.enable = true;
       opencloud.enable = true;
       radicale.enable = true;
       vaultwarden.enable = true;
