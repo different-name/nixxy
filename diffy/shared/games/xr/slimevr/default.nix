@@ -1,4 +1,33 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+let
+  # the gui bundles slimevr-server, which builds from the gui's src
+  patched =
+    pkgs:
+    let
+      slimevr-server = pkgs.slimevr-server.override { inherit slimevr; };
+
+      # patch src (not .patches) so slimevr-server gets it too
+      slimevr = (pkgs.slimevr.override { inherit slimevr-server; }).overrideAttrs (old: {
+        src = pkgs.applyPatches {
+          inherit (old) src;
+          patches = [
+            (builtins.path {
+              path = ./patches/launch-server-seperately.patch;
+              name = "slimevr-launch-server-seperately";
+            })
+            (builtins.path {
+              path = ./patches/force-standing-pose.patch;
+              name = "slimevr-force-standing-pose";
+            })
+          ];
+        };
+      });
+    in
+    {
+      inherit slimevr slimevr-server;
+    };
+in
+{
   config = lib.mkIf config.dyad.games.xr.enable {
     nixos = { pkgs, ... }: {
       systemd.user.services.slimevr-server = {
@@ -7,7 +36,7 @@
         wantedBy = [ "vr-session.target" ];
 
         serviceConfig = {
-          ExecStart = "${lib.getExe pkgs.slimevr-server} run";
+          ExecStart = "${lib.getExe (patched pkgs).slimevr-server} run";
           # hold activating until the solarxr websocket is listening
           ExecStartPost = pkgs.writeShellScript "wait-slimevr" ''
             for _ in $(seq 1 100); do
@@ -26,7 +55,7 @@
       networking.firewall.allowedUDPPorts = [ 6969 ];
 
       # slimevr tracker udev rules
-      services.udev.packages = [ pkgs.slimevr ];
+      services.udev.packages = [ (patched pkgs).slimevr ];
 
       keep.safe.dirs = [
         "/root/.config/dev.slimevr.SlimeVR"
@@ -35,7 +64,7 @@
     };
 
     home-manager = { pkgs, ... }: {
-      home.packages = [ pkgs.slimevr ];
+      home.packages = [ (patched pkgs).slimevr ];
 
       keep.safe = {
         cacheDirs = [ ".slimevr-wrapped_" ];
