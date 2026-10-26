@@ -40,14 +40,6 @@ bundleLib.mkEnableModule [ "dyad" "nix" "patches" ] {
               name = "wayvr-gradient-intensity-config";
             })
             (builtins.path {
-              path = ./wayvr/keycap-style.patch;
-              name = "wayvr-keycap-style";
-            })
-            (builtins.path {
-              path = ./wayvr/primary-key-hover.patch;
-              name = "wayvr-primary-key-hover";
-            })
-            (builtins.path {
               path = ./wayvr/space-rotate-hand-anchor.patch;
               name = "wayvr-space-rotate-hand-anchor";
             })

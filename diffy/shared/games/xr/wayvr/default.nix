@@ -1,4 +1,21 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+let
+  patchedWayvr =
+    pkgs:
+    pkgs.wayvr.overrideAttrs (old: {
+      patches = (old.patches or [ ]) ++ [
+        (builtins.path {
+          path = ./patches/keycap-style.patch;
+          name = "wayvr-keycap-style";
+        })
+        (builtins.path {
+          path = ./patches/primary-key-hover.patch;
+          name = "wayvr-primary-key-hover";
+        })
+      ];
+    });
+in
+{
   config = lib.mkIf config.dyad.games.xr.enable {
     nixos = { pkgs, ... }: {
       systemd.user.services.wayvr = {
@@ -8,14 +25,14 @@
         partOf = [ "wivrn.service" ];
 
         serviceConfig = {
-          ExecStart = "${lib.getExe pkgs.wayvr} --openxr --replace";
+          ExecStart = "${lib.getExe (patchedWayvr pkgs)} --openxr --replace";
           Restart = "on-failure";
         };
       };
     };
 
     home-manager = { config, pkgs, ... }: {
-      home.packages = [ pkgs.wayvr ];
+      home.packages = [ (patchedWayvr pkgs) ];
 
       keep.safe = {
         cacheDirs = [ "wayvr" ];
