@@ -40,7 +40,7 @@ def adb-wifi [] {
 # convert empty results to null so nushell completes files instead
 # fixes ffmpeg -i completion
 let carapace_completer = $env.config.completions.external.completer
-$env.config.completions.external.completer = {|spans|
-    let result = (try { do $carapace_completer $spans } catch { null })
+$env.config.completions.external.completer = {|place|
+    let result = (try { do $carapace_completer $place.command } catch { null })
     if ($result | is-empty) { null } else { $result }
 }
