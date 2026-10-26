@@ -34,9 +34,6 @@
   };
 
   nixos = {
-    # needs the sbctl keys enrolled in this machine's firmware
-    boot.loader.limine.secureBoot.enable = true;
-
     fileSystems."/scratch".neededForBoot = true;
 
     imports = [
