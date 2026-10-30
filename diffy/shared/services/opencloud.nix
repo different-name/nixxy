@@ -24,6 +24,7 @@ bundleLib.mkEnableModule [ "dyad" "services" "opencloud" ] {
         PROXY_TLS = "false";
         OC_SHARING_PUBLIC_SHARE_MUST_HAVE_PASSWORD = "false";
         OC_SHARING_PUBLIC_WRITEABLE_SHARE_MUST_HAVE_PASSWORD = "true";
+        FRONTEND_ARCHIVER_MAX_SIZE = "21474836480"; # 20GiB
 
         # metadata stays under the state dir, blobs go to r2
         STORAGE_USERS_DRIVER = "decomposeds3";
