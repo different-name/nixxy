@@ -22,6 +22,4 @@ map(
        else . end)
    else . end)
   | (if (.sourceCode? // null) != null then .sourceCode |= markdefaults else . end)
-  | (if (.usercssData.name? // "") == "Gmail Catppuccin"
-     then .sourceCode += "\n\n" + $gmail else . end)
 )
