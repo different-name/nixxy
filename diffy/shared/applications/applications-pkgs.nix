@@ -15,14 +15,16 @@ bundleLib.mkEnableModule [ "dyad" "applications" "extraPackages" ] {
 
       ente = {
         # electron only uses the keyring on desktops it recognises, hyprland isn't one
-        home.packages = lib.singleton (pkgs.symlinkJoin {
+        home.packages = lib.singleton (
+          pkgs.symlinkJoin {
             inherit (pkgs.ente-desktop) name meta;
             paths = [ pkgs.ente-desktop ];
             nativeBuildInputs = [ pkgs.makeWrapper ];
             postBuild = ''
               wrapProgram $out/bin/ente-desktop --add-flags --password-store=gnome-libsecret
             '';
-          });
+          }
+        );
         keep.safe.configDirs = [ "ente" ];
       };
 
