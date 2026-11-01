@@ -568,26 +568,21 @@
     },
     "steam-config-nix": {
       "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "systems": [
-          "systems"
         ]
       },
       "locked": {
-        "lastModified": 1792111133,
-        "narHash": "sha256-UGPRL5Lo+QTvQC1s5IPd+NIhDF48Zd6eKuzjbFIcFeI=",
+        "lastModified": 1793501434,
+        "narHash": "sha256-rFejwH9pH8PeTtzgl36sIGq1pbKkf+DdYOD5nfVFp+Y=",
         "owner": "different-name",
         "repo": "steam-config-nix",
-        "rev": "ae75eb33cfd73929f519882cc8ec8294bfdc3c0d",
+        "rev": "601e7a6fc8949fdebbd804a461eed5499d2fc7f8",
         "type": "github"
       },
       "original": {
         "owner": "different-name",
+        "ref": "rewrite",
         "repo": "steam-config-nix",
         "type": "github"
       }
@@ -698,11 +693,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791156608,
-        "narHash": "sha256-JvPLBMZP5hp+s7NhjjoLkYVJl+N1KoZIrrNKcs2zR6s=",
+        "lastModified": 1793502831,
+        "narHash": "sha256-1+ehrgqCoWDffsrUZEhqAOikHmKgGtBQkjPECc6umP4=",
         "owner": "different-name",
         "repo": "vrchat-video-resolver",
-        "rev": "9f535852f1328e3238a0907b8b99ff77f66669a8",
+        "rev": "ed8938fbc5a355702e059161113189fd6d557cf1",
         "type": "github"
       },
       "original": {

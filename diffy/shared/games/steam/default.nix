@@ -1,10 +1,20 @@
 {
   bundleLib,
   lib,
+  config,
   inputs,
   ...
 }:
+let
+  inherit (config.dyad.games.steam) autoStart;
+in
 bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
+  options.autoStart = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Start Steam with the graphical session, hidden in the tray";
+  };
+
   nixos = { pkgs, ... }: {
     programs.steam = {
       enable = true;
@@ -26,10 +36,10 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
     hardware.steam-hardware.enable = true;
   };
 
-  home-manager = { osConfig, pkgs, ... }: {
+  home-manager = { config, pkgs, ... }: {
     imports = [ inputs.steam-config-nix.homeModules.default ];
 
-    programs.steam.config = {
+    programs.steam-config = {
       enable = true;
       onSteamRunning = "close";
 
@@ -40,16 +50,16 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
         name = "Remnant II";
 
         # xwayland's screen spans both monitors, so wine won't confine the cursor without this
-        files.prefix.patch."user.reg" = {
+        files.prefix.writeKeys."user.reg" = {
           format = "registry";
           content."Software/Wine/X11 Driver".GrabFullscreen = "Y";
         };
       };
     };
 
-    systemd.user.services.steam-silent = {
+    systemd.user.services.steam = lib.mkIf autoStart {
       Unit = {
-        Description = "Steam (silent autostart)";
+        Description = "Steam";
         PartOf = [ "graphical-session.target" ];
         After = [ "graphical-session.target" ];
         RefuseManualStart = true;
@@ -57,7 +67,7 @@ bundleLib.mkEnableModule [ "dyad" "games" "steam" ] {
       };
 
       Service = {
-        ExecStart = "${lib.getExe osConfig.programs.steam.package} -silent";
+        ExecStart = "${config.programs.steam-config.launcher}/bin/steam -silent";
         Restart = "no";
       };
 

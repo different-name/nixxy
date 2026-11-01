@@ -47,9 +47,12 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
     };
 
     games = {
-      # keep-sorted start
+      # keep-sorted start block=yes
       extraPackages.enable = true;
-      steam.enable = true;
+      steam = {
+        autoStart = true;
+        enable = true;
+      };
       vrcx.enable = true;
       # keep-sorted end
     };

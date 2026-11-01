@@ -171,12 +171,8 @@
 
     # manage steam game launch options and other local config
     steam-config-nix = {
-      url = "github:different-name/steam-config-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        flake-parts.follows = "flake-parts";
-      };
+      url = "github:different-name/steam-config-nix/rewrite";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # list of systems

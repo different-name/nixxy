@@ -22,7 +22,7 @@ in
       {
         imports = [ inputs.vrchat-video-resolver.homeModules.default ];
 
-        programs.steam.config.apps.${appId} = {
+        programs.steam-config.apps.${appId} = {
           name = "VRChat";
           compatTool = inputs'.nixpkgs-xr.packages.proton-rtsp-bin;
 
@@ -30,7 +30,7 @@ in
 
           systemd.enable = true;
 
-          files.prefix.patch."user.reg" = {
+          files.prefix.writeKeys."user.reg" = {
             format = "unityPrefs";
             content."Software/VRChat/VRChat" = {
               VRC_ADVANCED_GRAPHICS_ANTIALIASING = 0;
@@ -130,8 +130,8 @@ in
 
         services.vrchat-video-resolver = {
           enable = true;
-          cookies.fromBrowser = "firefox:$HOME/.config/mozilla/firefox/ytdlp";
           steamConfig.enable = true;
+          cookies.fromBrowser = "firefox:$HOME/.config/mozilla/firefox/ytdlp";
         };
 
         keep.safe.cacheDirs = [ "vrchat-video-resolver" ];
