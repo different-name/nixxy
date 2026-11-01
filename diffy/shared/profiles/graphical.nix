@@ -24,10 +24,6 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
       };
       spotify.enable = true;
       thunar.enable = true;
-      thunderbird = {
-        autoStart = true;
-        enable = true;
-      };
       vscodium.enable = true;
       # keep-sorted end
     };
