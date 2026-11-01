@@ -35,7 +35,7 @@ bundleLib.mkEnableModule [ "dyad" "services" "bone" ] {
       path = name: config.age.secrets."bone/${name}".path;
     in
     {
-      imports = [ inputs.bone.nixosModules.server ];
+      imports = [ inputs.diffys-attic.nixosModules.server ];
 
       age.secrets = lib.mergeAttrsList (
         lib.concatMap (a: [

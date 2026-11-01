@@ -49,31 +49,6 @@
         "type": "github"
       }
     },
-    "bone": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dir": "bone",
-        "lastModified": 1793340154,
-        "narHash": "sha256-VN8jwCCWhNAPR3mVPDaqObBZFgsSeGRXDE830J+Rrko=",
-        "owner": "different-name",
-        "repo": "diffys-attic",
-        "rev": "38db6be32bedfec3d405d593611422289e9a008a",
-        "type": "github"
-      },
-      "original": {
-        "dir": "bone",
-        "owner": "different-name",
-        "repo": "diffys-attic",
-        "type": "github"
-      }
-    },
     "bundle": {
       "locked": {
         "lastModified": 1792554575,
@@ -477,9 +452,9 @@
       "inputs": {
         "agenix": "agenix",
         "betterfox": "betterfox",
-        "bone": "bone",
         "bundle": "bundle",
         "catppuccin": "catppuccin",
+        "diffys-attic": "diffys-attic",
         "disblock-origin": "disblock-origin",
         "disko": "disko",
         "flake-parts": "flake-parts",
@@ -753,6 +728,31 @@
       "original": {
         "owner": "lassulus",
         "repo": "wrappers",
+        "type": "github"
+      }
+    },
+    "diffys-attic": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "bone",
+        "lastModified": 1793340154,
+        "narHash": "sha256-VN8jwCCWhNAPR3mVPDaqObBZFgsSeGRXDE830J+Rrko=",
+        "owner": "different-name",
+        "repo": "diffys-attic",
+        "rev": "38db6be32bedfec3d405d593611422289e9a008a",
+        "type": "github"
+      },
+      "original": {
+        "dir": "bone",
+        "owner": "different-name",
+        "repo": "diffys-attic",
         "type": "github"
       }
     }

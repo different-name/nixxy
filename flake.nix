@@ -50,15 +50,6 @@
       };
     };
 
-    # diffy's mail server
-    bone = {
-      url = "github:different-name/diffys-attic?dir=bone";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     # bundle nixos, darwin, home-manager, and other config together
     bundle.url = "github:different-name/bundle-of-nix";
 
@@ -66,6 +57,15 @@
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # assorted diffy slop
+    diffys-attic = {
+      url = "github:different-name/diffys-attic?dir=bone";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     # discord ad blocker theme
