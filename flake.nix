@@ -61,7 +61,7 @@
 
     # assorted diffy slop
     diffys-attic = {
-      url = "github:different-name/diffys-attic?dir=bone";
+      url = "github:different-name/diffys-attic";
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
