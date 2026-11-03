@@ -33,6 +33,40 @@
         };
       };
 
+      services.pipewire.wireplumber = {
+        extraScripts."wivrn-mic-volume.lua" = ''
+          SimpleEventHook {
+            name = "wivrn-mic-volume",
+            interests = {
+              EventInterest {
+                Constraint { "event.type", "=", "node-added" },
+                Constraint { "node.name", "=", "wivrn.source" },
+              },
+            },
+            execute = function (event)
+              event:get_subject ():set_param ("Props", Pod.Object {
+                "Spa:Pod:Object:Param:Props", "Props",
+                -- wpctl and pavucontrol show cubic volume
+                channelVolumes = Pod.Array { "Spa:Float", 1.5 ^ 3 },
+              })
+            end
+          }:register ()
+        '';
+
+        extraConfig."50-wivrn-mic-volume" = {
+          "wireplumber.components" = lib.singleton {
+            name = "wivrn-mic-volume.lua";
+            type = "script/lua";
+            provides = "custom.wivrn-mic-volume";
+          };
+          "wireplumber.profiles".main."custom.wivrn-mic-volume" = "required";
+          "stream.rules" = lib.singleton {
+            matches = lib.singleton { "node.name" = "wivrn.source"; };
+            actions.update-props."state.restore-props" = false;
+          };
+        };
+      };
+
       systemd.user.services.wivrn = {
         after = [ "slimevr-server.service" ];
         requires = [ "slimevr-server.service" ];
