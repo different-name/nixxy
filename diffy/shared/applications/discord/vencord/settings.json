@@ -602,9 +602,7 @@
       "enabled": true
     },
     "VoiceMessages": {
-      "enabled": true,
-      "noiseSuppression": false,
-      "echoCancellation": false
+      "enabled": false
     },
     "VolumeBooster": {
       "enabled": true,
