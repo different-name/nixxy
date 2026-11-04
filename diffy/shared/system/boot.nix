@@ -14,7 +14,7 @@ bundleLib.mkEnableModule [ "dyad" "system" "boot" ] {
         availableKernelModules = [ "hid_generic" ];
       };
 
-      kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
       loader = {
         limine = {
