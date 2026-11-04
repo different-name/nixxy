@@ -13,7 +13,7 @@ bundleLib.mkEnableModule [ "dyad" "users" "diffy" ] {
       # not argon, a compromised server should not reach the desktops
       openssh.authorizedKeys.keys = with (import ../keys.nix).users.diffy; [
         lithium
-        potassium
+        magnesium
         sodium
       ];
 

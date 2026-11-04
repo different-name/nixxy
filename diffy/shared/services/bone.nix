@@ -15,7 +15,7 @@ let
   ];
   devices = [
     "lithium"
-    "potassium"
+    "magnesium"
     "sodium"
   ];
 

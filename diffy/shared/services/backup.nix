@@ -3,7 +3,7 @@ let
   box = "u696311.your-storagebox.de";
   subAccounts = {
     sodium = "u696311-sub1";
-    potassium = "u696311-sub2";
+    magnesium = "u696311-sub2";
     argon = "u696311-sub3";
   };
 in

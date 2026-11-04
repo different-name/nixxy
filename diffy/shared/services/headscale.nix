@@ -7,7 +7,7 @@ let
   policy = {
     hosts = {
       sodium = "100.64.0.1/32";
-      potassium = "100.64.0.2/32";
+      magnesium = "100.64.0.2/32";
       lithium = "100.64.0.3/32";
       lithium-private = "100.64.0.9/32";
       argon = "100.64.0.4/32";
@@ -22,12 +22,12 @@ let
         action = "accept";
         src = [
           "sodium"
-          "potassium"
+          "magnesium"
           "lithium"
         ];
         dst = [
           "sodium:*"
-          "potassium:*"
+          "magnesium:*"
           "lithium:*"
           "argon:*"
           "ncmb1:*"

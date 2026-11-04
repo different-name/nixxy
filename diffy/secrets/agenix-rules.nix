@@ -5,7 +5,7 @@ let
 
   # user keys on the desktops, so secrets stay editable there
   editors = with keys.users.diffy; [
-    potassium
+    magnesium
     sodium
   ];
 
@@ -17,14 +17,14 @@ in
   "bone/catch-login.age".publicKeys = hosts [ "argon" ];
   "bone/catch-password.age".publicKeys = hosts [ "argon" ];
   "bone/device-lithium.age".publicKeys = hosts [ "argon" ];
-  "bone/device-potassium.age".publicKeys = hosts [ "argon" ];
+  "bone/device-magnesium.age".publicKeys = hosts [ "argon" ];
   "bone/device-sodium.age".publicKeys = hosts [ "argon" ];
   "bone/main-login.age".publicKeys = hosts [ "argon" ];
   "bone/main-password.age".publicKeys = hosts [ "argon" ];
   "claude/instructions.age".publicKeys = editors;
   "cloudflare/dns-token.age".publicKeys = hosts [ "argon" ];
   "firefox/policies.age".publicKeys = hosts [
-    "potassium"
+    "magnesium"
     "sodium"
   ];
   "mollysocket/env.age".publicKeys = hosts [ "argon" ];
@@ -32,17 +32,17 @@ in
   "opencloud/s3.age".publicKeys = hosts [ "argon" ];
   "radicale/htpasswd.age".publicKeys = hosts [ "argon" ];
   "restic/argon.age".publicKeys = hosts [ "argon" ];
-  "restic/potassium.age".publicKeys = hosts [ "potassium" ];
+  "restic/magnesium.age".publicKeys = hosts [ "magnesium" ];
   "restic/sodium.age".publicKeys = hosts [ "sodium" ];
   "tokens/nix-access-tokens.age".publicKeys = hosts [
     "argon"
-    "potassium"
+    "magnesium"
     "sodium"
   ];
   "tokens/nixpkgs-review.age".publicKeys = editors;
   "user-passwords/diffy.age".publicKeys = hosts [
     "argon"
-    "potassium"
+    "magnesium"
     "sodium"
   ];
   "webdav/seedvault.age".publicKeys = hosts [ "argon" ];

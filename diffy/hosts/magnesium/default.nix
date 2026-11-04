@@ -1,8 +1,8 @@
 { inputs, ... }: {
   dyad = {
     host = {
-      machineId = "ea3a24c5b3a84bc0a06ac47ef29ef2a8";
-      stateVersion = "26.05";
+      machineId = "f973333893a548168337a2a8c258685b";
+      stateVersion = "26.11";
     };
 
     users.diffy.enable = true;
@@ -11,12 +11,7 @@
 
     services.backup.enable = true;
 
-    system.secure-boot.enable = true;
-
-    hardware = {
-      bluetooth.enable = true;
-      nvidia.enable = true;
-    };
+    hardware.bluetooth.enable = true;
 
     system = {
       btrfs.enable = true;
@@ -31,31 +26,32 @@
   };
 
   nixos = {
+    fileSystems."/scratch".neededForBoot = true;
+
     imports = [
       # keep-sorted start
       ./_disko.nix
-      inputs.nixos-hardware.nixosModules.common-cpu-intel
-      inputs.nixos-hardware.nixosModules.common-pc-laptop
+      inputs.nixos-hardware.nixosModules.framework-intel-core-ultra-series3
       # keep-sorted end
     ];
 
     boot.initrd.availableKernelModules = [
       "xhci_pci"
+      "thunderbolt"
       "nvme"
-      "rtsx_pci_sdmmc"
+      "usb_storage"
+      "sd_mod"
     ];
     boot.kernelModules = [ "kvm-intel" ];
     hardware.enableRedistributableFirmware = true;
+    # framework-laptop-kmod ships no .ko.cer, which the modules tree now requires
+    hardware.framework.enableKmod = false;
+
+    keep.safe.dirs = [ "/var/lib/fprint" ];
 
     # laptop joins untrusted networks, ssh only over the tailnet
     services.openssh.openFirewall = false;
     networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 22 ];
-
-    services.thermald = {
-      enable = true;
-      # generated for the xps 15 9500, thermald has no default for it
-      configFile = "${inputs.nixos-hardware}/dell/xps/15-9500/thermald-conf.xml";
-    };
   };
 
   home-manager =
@@ -67,7 +63,7 @@
       # display battery as notification
       wayland.windowManager.hyprland.settings.bind = [
         (bind "${mod} + B" (
-          exec ''notify-send -t 5000 "Battery: $(cat /sys/class/power_supply/BAT0/capacity)%"''
+          exec ''notify-send -t 5000 "Battery: $(cat /sys/class/power_supply/BAT*/capacity)%"''
         ))
       ];
     };

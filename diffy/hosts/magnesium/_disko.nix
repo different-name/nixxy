@@ -8,7 +8,7 @@
 
         partitions = {
           ESP = {
-            size = "500M";
+            size = "2G";
             type = "EF00";
             content = {
               type = "filesystem";
@@ -57,6 +57,15 @@
                       "noatime"
                     ];
                     mountpoint = "/persist";
+                  };
+
+                  # replaceable data, not snapshotted
+                  "scratch" = {
+                    mountOptions = [
+                      "compress=lzo"
+                      "noatime"
+                    ];
+                    mountpoint = "/scratch";
                   };
 
                   "swap" = {

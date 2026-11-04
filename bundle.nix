@@ -2,7 +2,7 @@
 let
   diffyHosts = [
     "sodium"
-    "potassium"
+    "magnesium"
     "argon"
   ];
 in
