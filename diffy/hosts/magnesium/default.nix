@@ -16,6 +16,7 @@
     system = {
       btrfs.enable = true;
       keep.enable = true;
+      secure-boot.enable = true;
     };
 
     nix.sodium-builder.enable = true;
