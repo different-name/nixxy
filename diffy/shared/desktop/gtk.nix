@@ -4,11 +4,11 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "gtk" ] {
     gtk = {
       enable = true;
       font = {
-        name = "Inter";
+        name = "Onest";
         size = 11;
       };
     };
-    dconf.settings."org/gnome/desktop/interface".font-name = "Inter 11";
+    dconf.settings."org/gnome/desktop/interface".font-name = "Onest 11";
 
     programs.keep.exclude = [
       ".config/dconf"

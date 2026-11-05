@@ -6,7 +6,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "fonts" ] {
         # sans(serif) fonts
         (google-fonts.override {
           fonts = [
-            "Inter"
+            "Onest"
             "Nunito"
           ];
         })
@@ -36,7 +36,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "fonts" ] {
         in
         addAll {
           serif = [ "Noto Serif" ];
-          sansSerif = [ "Inter" ];
+          sansSerif = [ "Onest" ];
           monospace = [
             "JetBrains Mono"
             "Symbola"
