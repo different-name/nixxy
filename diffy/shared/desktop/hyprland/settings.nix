@@ -90,24 +90,24 @@ in
               }
               {
                 # laptop monitor
-                output = "desc:Sharp Corporation 0x14D1";
+                output = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1";
                 mode = "preferred";
                 position = "0x0";
-                scale = 1.2;
+                scale = 1.67;
               }
               {
                 # work monitor
-                output = "desc:Microstep MSI MP275 PC3M234705301";
-                mode = "1920x1080@60";
+                output = "desc:BNQ BenQ EW3270U 5BL00174019";
+                mode = "3840x2160@60";
                 position = "auto-right";
-                scale = 1;
+                scale = 1.5;
               }
               {
-                # previous main monitor
-                output = "desc:BNQ BenQ EW3270U 0x00005445";
-                mode = "2560x1440@60";
+                # work tv
+                output = "desc:Hisense Electric Co. Ltd. HDMI 0x00000001";
+                mode = "preferred";
                 position = "auto-right";
-                scale = 1;
+                scale = 2;
               }
               {
                 # everything else
