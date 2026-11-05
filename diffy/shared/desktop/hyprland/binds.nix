@@ -36,7 +36,7 @@ in
           (bind "${mod} + R" ''hl.dsp.layout("togglesplit")'')
           (bind "${mod} + G" "hl.dsp.window.float()")
           (bind "${mod} + A" "hl.dsp.group.toggle()")
-          (bind "${mod} + SHIFT + A" "hl.dsp.group.lock_active()")
+          (bind "${mod} + SHIFT + A" "hl.dsp.group.lock()")
           (bind "ALT + TAB" "hl.dsp.group.next()")
           (bind "ALT + SHIFT + TAB" "hl.dsp.group.prev()")
           (bind "${mod} + T" "hl.dsp.window.pin()")
