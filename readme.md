@@ -7,4 +7,4 @@ every module in [`diffy/shared`](diffy/shared) is a toggle, [profiles](diffy/sha
 ### go look at these
 
 - [isabelroses/dotfiles](https://github.com/isabelroses/dotfiles)
-- [skilet.ro/gaia](https://tangled.org/skilet.ro/gaia)
+- [skiletro/gaia](https://git.warm.vodka/skiletro/gaia)
