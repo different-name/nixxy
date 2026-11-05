@@ -89,11 +89,12 @@ in
                 transform = 3;
               }
               {
-                # laptop monitor
+                # laptop display
                 output = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1";
                 mode = "preferred";
                 position = "0x0";
                 scale = 1.67;
+                supports_hdr = -1;
               }
               {
                 # work monitor
