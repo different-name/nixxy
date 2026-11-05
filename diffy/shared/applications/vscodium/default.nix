@@ -29,7 +29,7 @@ bundleLib.mkEnableModule [ "dyad" "applications" "vscodium" ] {
 
         userSettings = {
           # keep-sorted start block=yes
-          "editor.fontFamily" = "'JetBrains Mono', 'monospace', monospace";
+          "editor.fontFamily" = "'Maple Mono', 'monospace', monospace";
           "editor.fontLigatures" = true;
           "editor.formatOnSave" = true;
           "editor.tabSize" = 2;

@@ -16,7 +16,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "fonts" ] {
         roboto
 
         # monospace fonts
-        jetbrains-mono
+        maple-mono.truetype
 
         # nerdfonts
         nerd-fonts.symbols-only
@@ -38,7 +38,7 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "fonts" ] {
           serif = [ "Noto Serif" ];
           sansSerif = [ "Onest" ];
           monospace = [
-            "JetBrains Mono"
+            "Maple Mono"
             "Symbola"
           ];
           emoji = [ ];
