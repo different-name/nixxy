@@ -11,7 +11,10 @@
 
     services.backup.enable = true;
 
-    hardware.bluetooth.enable = true;
+    hardware = {
+      battery.enable = true;
+      bluetooth.enable = true;
+    };
 
     system = {
       btrfs.enable = true;
