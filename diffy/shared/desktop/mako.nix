@@ -17,19 +17,40 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "mako" ] {
       ...
     }:
     let
-      borderColor = lib.removePrefix "#" config.dyad.palette.green.hex;
+      inherit (config.dyad) palette;
+      borderColor = lib.removePrefix "#" palette.green.hex;
     in
     {
+      # catppuccin's include sorts after the settings and would override the translucent background
+      catppuccin.mako.enable = false;
+
       services.mako = {
         enable = true;
         settings = {
+          "background-color" = "${palette.base.hex}d9";
+          "border-color" = palette.${config.catppuccin.accent}.hex;
           "border-radius" = rounding;
+          "progress-color" = "over ${palette.surface0.hex}";
+          "text-color" = palette.text.hex;
 
           "mode=do-not-disturb" = {
             invisible = 1;
           };
+
+          "urgency=high" = {
+            "border-color" = palette.peach.hex;
+          };
         };
       };
+
+      wayland.windowManager.hyprland.settings.layer_rule = lib.mkIf withHyprland (
+        lib.singleton {
+          name = "mako";
+          match.namespace = "^notifications$";
+          blur = true;
+          ignore_alpha = 0.5;
+        }
+      );
 
       # toggles with a hyprctl notification, bound in hyprland
       home.packages = lib.mkIf withHyprland (

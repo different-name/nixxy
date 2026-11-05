@@ -15,7 +15,11 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "vicinae" ] {
       settings = {
         close_on_focus_loss = false;
 
-        launcher_window.compact_mode.enabled = true;
+        launcher_window = {
+          compact_mode.enabled = true;
+          # vicinae requests blur itself, it only shows below full opacity
+          opacity = 0.85;
+        };
 
         providers = {
           applications.preferences.launchPrefix = "uwsm app -- ";
