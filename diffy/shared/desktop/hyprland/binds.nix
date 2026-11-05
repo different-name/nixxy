@@ -105,6 +105,7 @@ in
         ++ when applications.kitty [ (launch "${mod} + RETURN" "kitty") ]
         ++ when applications.firefox [ (launch "${mod} + W" "firefox") ]
         ++ when applications.thunar [ (launch "${mod} + E" "thunar") ]
+        ++ when applications.jot [ (launch "${mod} + J" "jot") ]
         ++ when applications.extraPackages [ (launch "${mod} + SHIFT + E" "emote") ]
         ++ when desktop.hyprlock [ (bind "${mod} + L" (exec (uwsmSingleApp "hyprlock"))) ]
         # not using uwsm as it introduces latency

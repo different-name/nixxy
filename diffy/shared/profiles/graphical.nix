@@ -16,6 +16,7 @@ bundleLib.mkEnableModule [ "dyad" "profiles" "graphical" ] {
       };
       extraPackages.enable = true;
       firefox.enable = true;
+      jot.enable = true;
       kitty.enable = true;
       obs-studio.enable = true;
       signal-desktop = {
