@@ -14,9 +14,7 @@
           stripRoot = false;
           hash = "sha256-LEdXmkMsRcC2UQrzMXzXXIVoeTXHctfwgc1PKOLJ6GU=";
         };
-        mod = name: {
-          "r6/scripts/${name}".source = "${inputs.diffys-attic}/cyberpunk/mods/${name}";
-        };
+        mod = name: { "r6/scripts/${name}".source = "${inputs.diffys-attic}/cyberpunk/mods/${name}"; };
       in
       {
         programs.steam-config.apps."1091500" = {
