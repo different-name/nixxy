@@ -2,7 +2,7 @@ import NotificationComponent from "@api/Notifications/NotificationComponent";
 import definePlugin, { PluginNative } from "@utils/types";
 import { Channel } from "@vencord/discord-types";
 import { findByCodeLazy } from "@webpack";
-import { createRoot, Toasts, UploadHandler, useEffect, useState } from "@webpack/common";
+import { createRoot, showToast, UploadHandler, useEffect, useState } from "@webpack/common";
 
 import type { ReactNode } from "react";
 
@@ -20,10 +20,9 @@ const VIDEO_EXT = /\.(mp4|m4v|mov|mkv|webm|avi|flv|wmv)$/i;
 // compressed outputs and files that failed, so the re-prompt never loops
 const handled = new WeakSet<File>();
 
-// vencord's createToast lookup no longer matches discord, show takes { text, variant } directly
 function toast(text: string, variant: "default" | "critical" = "default") {
     try {
-        (Toasts.show as (toast: { text: string; variant: string; }) => void)({ text, variant });
+        showToast({ text, variant });
     } catch { }
 }
 

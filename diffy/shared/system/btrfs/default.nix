@@ -23,22 +23,19 @@ bundleLib.mkEnableModule [ "dyad" "system" "btrfs" ] {
       ];
 
       # https://discourse.nixos.org/t/impermanence-vs-systemd-initrd-w-tpm-unlocking/25167/3
-      boot.initrd.systemd = {
-        enable = true;
-        services.root-subvol-switch = {
-          description = "Switch btrfs root subvolume";
-          wantedBy = [ "initrd.target" ];
-          after = [ rootUnit ];
-          requires = [ rootUnit ];
-          before = [ "sysroot.mount" ];
-          unitConfig.DefaultDependencies = "no";
-          serviceConfig.Type = "oneshot";
-          script = ''
-            ROOT_DEVICE=${rootDevice}
+      boot.initrd.systemd.services.root-subvol-switch = {
+        description = "Switch btrfs root subvolume";
+        wantedBy = [ "initrd.target" ];
+        after = [ rootUnit ];
+        requires = [ rootUnit ];
+        before = [ "sysroot.mount" ];
+        unitConfig.DefaultDependencies = "no";
+        serviceConfig.Type = "oneshot";
+        script = ''
+          ROOT_DEVICE=${rootDevice}
 
-            ${lib.readFile ./root-subvol-switch.sh}
-          '';
-        };
+          ${lib.readFile ./root-subvol-switch.sh}
+        '';
       };
 
       # based on https://github.com/tejing1/nixos-config/blob/46e31a56242d1aee21a4ef9095946f32564e8181/nixosConfigurations/tejingdesk/optin-state.nix#L67-L92

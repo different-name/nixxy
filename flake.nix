@@ -165,7 +165,7 @@
 
     # dwm-like workspaces across monitors, used as a lua library
     split-monitor-workspaces = {
-      url = "github:zjeffer/split-monitor-workspaces/release/0.56.x";
+      url = "github:zjeffer/split-monitor-workspaces/release/0.57.x";
       flake = false;
     };
 

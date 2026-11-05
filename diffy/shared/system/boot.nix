@@ -9,10 +9,7 @@ bundleLib.mkEnableModule [ "dyad" "system" "boot" ] {
     imports = [ inputs.disko.nixosModules.default ];
 
     config.boot = {
-      initrd = {
-        systemd.enable = true;
-        availableKernelModules = [ "hid_generic" ];
-      };
+      initrd.availableKernelModules = [ "hid_generic" ];
 
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
