@@ -13,6 +13,24 @@ in
         alternateColor = lib.removePrefix "#" palette.mauve.hex;
       in
       {
+        xdg.configFile."hypr/hyprtoolkit.conf".text =
+          lib.generators.toKeyValue { } (
+            lib.mapAttrs (_: c: "rgb(${lib.removePrefix "#" palette.${c}.hex})") {
+              background = "base";
+              base = "surface0";
+              alternate_base = "surface1";
+              text = "text";
+              bright_text = "rosewater";
+              link_text = "blue";
+              accent = config.catppuccin.accent;
+              accent_secondary = "lavender";
+            }
+          )
+          + ''
+            rounding_large=${toString rounding}
+            rounding_small=${toString (rounding / 2)}
+          '';
+
         wayland.windowManager.hyprland.settings = {
           config = {
             general = {
