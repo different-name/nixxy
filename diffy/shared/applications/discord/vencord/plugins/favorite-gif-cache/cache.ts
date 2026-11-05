@@ -1,5 +1,5 @@
 const DB_NAME = "VencordFavoriteGifCache";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const BLOBS = "blobs";
 const META = "meta";
 const FLUSH_DELAY = 30_000;
@@ -31,15 +31,35 @@ function settled(tx: IDBTransaction) {
 
 export async function open() {
     const req = indexedDB.open(DB_NAME, DB_VERSION);
-    req.onupgradeneeded = () => {
+    req.onupgradeneeded = event => {
         const upgrading = req.result;
+        // v1 stored still first frames under the animated key
+        if (event.oldVersion < 2) {
+            for (const name of [BLOBS, META]) {
+                if (upgrading.objectStoreNames.contains(name)) upgrading.deleteObjectStore(name);
+            }
+        }
         if (!upgrading.objectStoreNames.contains(BLOBS)) upgrading.createObjectStore(BLOBS);
         if (!upgrading.objectStoreNames.contains(META)) upgrading.createObjectStore(META);
     };
 
-    db = await promisify(req);
+    const handle = await new Promise<IDBDatabase>((resolve, reject) => {
+        let blocked = false;
+        req.onsuccess = () => blocked ? req.result.close() : resolve(req.result);
+        req.onerror = () => reject(req.error);
+        req.onblocked = () => {
+            blocked = true;
+            reject(new Error("an older version of the gif store is open in another window"));
+        };
+    });
 
-    const store = db.transaction(META, "readonly").objectStore(META);
+    handle.onversionchange = () => {
+        handle.close();
+        if (db === handle) db = undefined;
+    };
+    db = handle;
+
+    const store = handle.transaction(META, "readonly").objectStore(META);
     const [keys, metas] = await Promise.all([promisify(store.getAllKeys()), promisify(store.getAll())]);
 
     index.clear();

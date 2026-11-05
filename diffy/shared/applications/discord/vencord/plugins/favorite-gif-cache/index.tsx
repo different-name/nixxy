@@ -13,6 +13,7 @@ const Native = VencordNative.pluginHelpers.FavoriteGifCache as PluginNative<type
 const logger = new Logger("FavoriteGifCache");
 
 const GIF_HOSTS = /^(media\d*\.tenor\.com|c\.tenor\.com|media\d*\.giphy\.com|i\.giphy\.com)$/;
+const MEDIA_PROXY = /(^|\.)discordapp\.net$/;
 const PREFETCH_WORKERS = 4;
 const OBJECT_URL_BUDGET = 64 * 1024 * 1024;
 const MEGABYTE = 1024 * 1024;
@@ -74,7 +75,13 @@ function parse(value: unknown) {
 
     try {
         const url = new URL(value);
-        return { key: url.origin + url.pathname, hostname: url.hostname };
+        const key = url.origin + url.pathname;
+
+        // the media proxy serves a still first frame for format= without animated=true, under the same path
+        const still = MEDIA_PROXY.test(url.hostname) && url.searchParams.has("format") && url.searchParams.get("animated") !== "true";
+        if (still) url.searchParams.set("animated", "true");
+
+        return { key, hostname: url.hostname, still, animated: url.href };
     } catch {
         return null;
     }
@@ -82,7 +89,7 @@ function parse(value: unknown) {
 
 function cacheKey(value: unknown) {
     const parsed = parse(value);
-    if (!parsed) return null;
+    if (!parsed || parsed.still) return null;
 
     if (favorites.has(parsed.key)) return parsed.key;
     if (settings.store.cacheSearchResults && GIF_HOSTS.test(parsed.hostname)) return parsed.key;
@@ -97,7 +104,7 @@ function loadFavorites() {
         favorites.clear();
         for (const gif of Object.values<any>(favoriteGifs?.gifs ?? {})) {
             const parsed = parse(gif?.src);
-            if (parsed) favorites.set(parsed.key, gif.src);
+            if (parsed) favorites.set(parsed.key, parsed.animated);
         }
     } catch (err) {
         logger.error("could not read favorite gifs", err);
