@@ -1,0 +1,71 @@
+diff --git a/internal/shaders/cursorGlow.frag.glsl b/internal/shaders/cursorGlow.frag.glsl
+index edfb78a..cccb3bb 100644
+--- a/internal/shaders/cursorGlow.frag.glsl
++++ b/internal/shaders/cursorGlow.frag.glsl
+@@ -13,6 +13,11 @@ vec3 hsv2rgb(vec3 c) {
+ 	return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+ }
+ 
++float paletteHue(float t) {
++	float w = smoothstep(0.3, 0.7, 0.5 - 0.5 * cos(t * 6.2831853));
++	return mix(@greenHue@, @mauveHue@, w);
++}
++
+ float smin(float a, float b, float k) {
+ 	float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
+ 	return mix(b, a, h) - k * h * (1.0 - h);
+@@ -109,8 +114,8 @@ void main() {
+ 
+ 	float hueSpeed = mix(0.2, 0.6, velocityNorm);
+ 	float hue = mod(time * hueSpeed + atan(coord.y, coord.x) / 6.28 + swirl * 0.3, 1.0);
+-	vec3 mainColor = hsv2rgb(vec3(hue, mix(0.7, 0.75, velocityNorm), 1.0));
+-	vec3 accentColor = hsv2rgb(vec3(mod(hue + 0.5, 1.0), 0.75, 1.2));
++	vec3 mainColor = hsv2rgb(vec3(paletteHue(hue), mix(0.7, 0.75, velocityNorm), 1.0));
++	vec3 accentColor = hsv2rgb(vec3(paletteHue(hue + 0.5), 0.75, 1.2));
+ 	vec3 finalColor = mainColor * intensity;
+ 	finalColor += accentColor * innerGlow;
+ 	finalColor += mainColor * 0.5 * outerGlow;
+diff --git a/internal/shaders/line.frag.glsl b/internal/shaders/line.frag.glsl
+index e0ce5a0..023b64c 100644
+--- a/internal/shaders/line.frag.glsl
++++ b/internal/shaders/line.frag.glsl
+@@ -11,9 +11,14 @@ vec3 hsv2rgb(vec3 c) {
+ 	return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+ }
+ 
++float paletteHue(float t) {
++	float w = smoothstep(0.3, 0.7, 0.5 - 0.5 * cos(t * 6.2831853));
++	return mix(@greenHue@, @mauveHue@, w);
++}
++
+ void main() {
+ 	float hue = mod(vPosition.x * 0.001 + vPosition.y * 0.001 + time * 0.5, 1.0);
+-	vec3 color = hsv2rgb(vec3(hue, 0.8, 1.0));
++	vec3 color = hsv2rgb(vec3(paletteHue(hue), 0.8, 1.0));
+ 
+ 	float sparkle = sin(vPosition.x * 0.1 + time * 3.0) * sin(vPosition.y * 0.1 + time * 2.0);
+ 	sparkle = smoothstep(0.7, 1.0, sparkle) * 0.5;
+diff --git a/internal/shaders/particle.frag.glsl b/internal/shaders/particle.frag.glsl
+index aef6f60..829d906 100644
+--- a/internal/shaders/particle.frag.glsl
++++ b/internal/shaders/particle.frag.glsl
+@@ -9,13 +9,18 @@ vec3 hsv2rgb(vec3 c) {
+ 	return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+ }
+ 
++float paletteHue(float t) {
++	float w = smoothstep(0.3, 0.7, 0.5 - 0.5 * cos(t * 6.2831853));
++	return mix(@greenHue@, @mauveHue@, w);
++}
++
+ void main() {
+ 	vec2 coord = gl_PointCoord - vec2(0.5);
+ 	float dist = length(coord);
+ 	if (dist > 0.5) discard;
+ 
+ 	float alpha = smoothstep(0.5, 0.2, dist) * vLife;
+-	vec3 color = hsv2rgb(vec3(vHue, 0.9, 1.0)) * (1.0 + (1.0 - dist * 2.0) * 2.0);
++	vec3 color = hsv2rgb(vec3(paletteHue(vHue), 0.9, 1.0)) * (1.0 + (1.0 - dist * 2.0) * 2.0);
+ 
+ 	FragColor = vec4(color, alpha * 0.8);
+ }

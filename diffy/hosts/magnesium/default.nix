@@ -75,7 +75,33 @@
       ...
     }:
     let
-      inherit (config.lib.hyprland) mod bind exec;
+      inherit (config.lib.hyprland)
+        mod
+        lua
+        bind
+        exec
+        ;
+
+      inherit (inputs) hyprgrass;
+      hexecute = inputs.hexecute.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+        patches = old.patches or [ ] ++ [ ./hexecute/palette.patch ];
+        postPatch = old.postPatch or "" + ''
+          substituteInPlace internal/shaders/*.frag.glsl \
+            --replace-quiet @greenHue@ ${toString (config.dyad.palette.green.hsl.h / 360)} \
+            --replace-quiet @mauveHue@ ${toString (config.dyad.palette.mauve.hsl.h / 360)}
+        '';
+      });
+      hyprlandVersion = pkgs.hyprland.version;
+
+      touchBind = fingers: action: {
+        inherit mod;
+        pattern = {
+          kind = "longpress";
+          inherit fingers;
+        };
+        action = lua action;
+        mouse = true;
+      };
 
       osdBattery = pkgs.writeShellApplication {
         name = "osd-battery";
@@ -103,8 +129,48 @@
       };
     in
     {
-      wayland.windowManager.hyprland.settings.bind = [
-        (bind "${mod} + B" (exec (lib.getExe osdBattery)))
+      assertions = lib.singleton {
+        assertion = lib.hasInfix "# v${hyprlandVersion}" (builtins.readFile "${hyprgrass}/hyprpm.toml");
+        message = "hyprgrass has no pin for hyprland ${hyprlandVersion}, point its flake input at the matching commit in hyprpm.toml";
+      };
+
+      home.packages = [
+        hexecute
+        osdBattery
       ];
+
+      xdg.configFile = {
+        "hexecute/gestures.json".source = ./hexecute/gestures.json;
+        "hexecute/settings.json".text = builtins.toJSON { overlay_alpha = 0.75; };
+      };
+
+      wayland.windowManager.hyprland = {
+        plugins = lib.singleton (
+          pkgs.callPackage "${hyprgrass}/nix/default.nix" {
+            # nixpkgs wf-touch is newer than hyprgrass builds against
+            wf-touch = pkgs.callPackage "${hyprgrass}/nix/wf-touch.nix" { };
+            tag = lib.removePrefix "v" (lib.trim (builtins.readFile "${hyprgrass}/VERSION"));
+            commit = hyprgrass.shortRev;
+          }
+        );
+
+        settings = {
+          bind = [ (bind "${mod} + B" (exec (lib.getExe osdBattery))) ];
+
+          # touch input never reaches mouse binds
+          "plugin.hyprgrass.bind" = [
+            (touchBind 1 "hl.dsp.window.drag()")
+            (touchBind 2 "hl.dsp.window.resize()")
+            {
+              pattern = {
+                kind = "tap";
+                fingers = 3;
+              };
+              # wrapper renames the process, so match the argv0 path instead of the name
+              action = lua (exec "pkill -f '^${hexecute}/bin/hexecute' || ${hexecute}/bin/hexecute");
+            }
+          ];
+        };
+      };
     };
 }

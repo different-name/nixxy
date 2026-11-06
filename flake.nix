@@ -86,10 +86,22 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    # gesture launcher
+    hexecute = {
+      url = "github:m31-galaxy/Hexecute";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # manages user environment
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # touchscreen gestures, pinned to the hyprland release in its hyprpm.toml
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass/a43567ce98b28df61a309955cd72f9ccbeac5b0e";
+      flake = false;
     };
 
     # import modules recursively

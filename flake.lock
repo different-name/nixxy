@@ -214,6 +214,26 @@
         "type": "github"
       }
     },
+    "hexecute": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782142426,
+        "narHash": "sha256-8003XFGgXUGE47ttuAVXT0MtIXrbggTppzTcnMHZDxA=",
+        "owner": "m31-galaxy",
+        "repo": "Hexecute",
+        "rev": "80dbfa930a3fd0a3b08a6cad154b0173c94db64d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "m31-galaxy",
+        "repo": "Hexecute",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -231,6 +251,23 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "hyprgrass": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793877337,
+        "narHash": "sha256-boyAXiAOyxU9JRJmO+rfU9eqsrloKwfeoW/2IlOO/YI=",
+        "owner": "horriblename",
+        "repo": "hyprgrass",
+        "rev": "a43567ce98b28df61a309955cd72f9ccbeac5b0e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "horriblename",
+        "repo": "hyprgrass",
+        "rev": "a43567ce98b28df61a309955cd72f9ccbeac5b0e",
         "type": "github"
       }
     },
@@ -481,7 +518,9 @@
         "disblock-origin": "disblock-origin",
         "disko": "disko",
         "flake-parts": "flake-parts",
+        "hexecute": "hexecute",
         "home-manager": "home-manager",
+        "hyprgrass": "hyprgrass",
         "import-tree": "import-tree",
         "keep-nix": "keep-nix",
         "nix-index-database": "nix-index-database",
