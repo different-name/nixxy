@@ -29,7 +29,7 @@
     };
   };
 
-  nixos = {
+  nixos = { lib, pkgs, ... }: {
     fileSystems."/scratch".neededForBoot = true;
 
     imports = [
@@ -51,12 +51,14 @@
     # framework-laptop-kmod ships no .ko.cer, which the modules tree now requires
     hardware.framework.enableKmod = false;
 
-    # the driver skips framework ecs with their own charge control unless forced
-    boot.extraModprobeConfig = "options cros_charge_control probe_with_fwk_charge_control=1";
-    # the threshold attr is added after the battery, which emits a change event
-    services.udev.extraRules = ''
-      ACTION=="add|change", SUBSYSTEM=="power_supply", KERNEL=="BAT1", TEST=="charge_control_end_threshold", ATTR{charge_control_end_threshold}="80"
-    '';
+    # the ec ignores cros_charge_control, only its own charge limit command works
+    systemd.services.charge-limit = {
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${lib.getExe' pkgs.framework-tool "framework_tool"} --charge-limit 80";
+      };
+    };
 
     keep.safe.dirs = [ "/var/lib/fprint" ];
 
