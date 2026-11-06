@@ -9,16 +9,12 @@ let
   withHyprland = config.dyad.desktop.hyprland.enable;
 in
 bundleLib.mkEnableModule [ "dyad" "desktop" "mako" ] {
+  dyad.desktop.swayosd.enable = true;
+
   home-manager =
-    {
-      config,
-      osConfig,
-      pkgs,
-      ...
-    }:
+    { config, pkgs, ... }:
     let
       inherit (config.dyad) palette;
-      borderColor = lib.removePrefix "#" palette.green.hex;
     in
     {
       # catppuccin's include sorts after the settings and would override the translucent background
@@ -32,6 +28,14 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "mako" ] {
           "border-radius" = rounding;
           "progress-color" = "over ${palette.surface0.hex}";
           "text-color" = palette.text.hex;
+
+          "mode=hide-chat app-name=Signal" = {
+            invisible = 1;
+          };
+
+          "mode=hide-chat app-name=discord" = {
+            invisible = 1;
+          };
 
           "mode=do-not-disturb" = {
             invisible = 1;
@@ -52,28 +56,35 @@ bundleLib.mkEnableModule [ "dyad" "desktop" "mako" ] {
         }
       );
 
-      # toggles with a hyprctl notification, bound in hyprland
-      home.packages = lib.mkIf withHyprland (
-        lib.singleton (
-          pkgs.writeShellApplication {
-            name = "mako-dnd";
+      # bound in hyprland
+      home.packages = lib.singleton (
+        pkgs.writeShellApplication {
+          name = "mako-dnd";
 
-            runtimeInputs = [
-              config.services.mako.package
-              osConfig.programs.hyprland.package
-            ];
+          runtimeInputs = [
+            config.services.mako.package
+            pkgs.gnugrep
+            pkgs.swayosd
+          ];
 
-            text = ''
-              if makoctl mode | grep -q '\<do-not-disturb\>'; then
-                  makoctl mode -r do-not-disturb
-                  hyprctl notify -1 1000 "rgb(${borderColor})" "Notifications Shown"
-              else
-                  makoctl mode -a do-not-disturb
-                  hyprctl notify -1 1000 "rgb(${borderColor})" "Notifications Hidden"
-              fi
-            '';
-          }
-        )
+          text = ''
+            osd() {
+                swayosd-client --custom-icon "$1" --custom-message "$2"
+            }
+
+            modes=$(makoctl mode)
+            if grep -qx do-not-disturb <<<"$modes"; then
+                makoctl mode -r do-not-disturb
+                osd notifications-symbolic "Notifications Shown"
+            elif grep -qx hide-chat <<<"$modes"; then
+                makoctl mode -r hide-chat -a do-not-disturb
+                osd notifications-disabled-symbolic "All Notifications Hidden"
+            else
+                makoctl mode -a hide-chat
+                osd notification-inactive-symbolic "Chat Notifications Hidden"
+            fi
+          '';
+        }
       );
     };
 }
