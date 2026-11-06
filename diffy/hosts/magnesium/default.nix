@@ -68,16 +68,43 @@
   };
 
   home-manager =
-    { config, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       inherit (config.lib.hyprland) mod bind exec;
+
+      osdBattery = pkgs.writeShellApplication {
+        name = "osd-battery";
+        runtimeInputs = [ pkgs.swayosd ];
+        text = ''
+          bat=/sys/class/power_supply/BAT1
+          capacity=$(<"$bat/capacity")
+          status=$(<"$bat/status")
+
+          level=$((capacity / 10 * 10))
+          case "$status" in
+          Full) icon=battery-level-100-charged-symbolic ;;
+          Charging) icon=battery-level-$level-charging-symbolic ;;
+          *) icon=battery-level-$level-symbolic ;;
+          esac
+          # papirus has no 100-charging icon
+          [ "$icon" = battery-level-100-charging-symbolic ] && icon=battery-level-100-charged-symbolic
+
+          progress=1
+          [ "$capacity" -lt 100 ] && progress=$(printf '0.%02d' "$capacity")
+
+          swayosd-client --custom-icon "$icon" \
+            --custom-progress "$progress" --custom-progress-text "$capacity%"
+        '';
+      };
     in
     {
-      # display battery as notification
       wayland.windowManager.hyprland.settings.bind = [
-        (bind "${mod} + B" (
-          exec ''notify-send -t 5000 "Battery: $(cat /sys/class/power_supply/BAT*/capacity)%"''
-        ))
+        (bind "${mod} + B" (exec (lib.getExe osdBattery)))
       ];
     };
 }
