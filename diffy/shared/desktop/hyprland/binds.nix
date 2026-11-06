@@ -111,9 +111,10 @@ in
         # not using uwsm as it introduces latency
         ++ when desktop.vicinae [ (bind "${mod} + S" (exec "vicinae toggle")) ]
 
-        # display time as notification
-        ++ when desktop.extraPackages [
-          (bind "${mod} + D" (exec ''notify-send -t 5000 "$(date "+%a %-d %b %Y | %-I:%M%p")"''))
+        ++ when desktop.swayosd [
+          (bind "${mod} + D" (
+            exec ''swayosd-client --custom-icon preferences-system-time-symbolic -d 3000 --custom-message "$(date "+%a %-d %b %Y | %-I:%M%p")"''
+          ))
         ]
         ++ when desktop.mako [ (bind "${mod} + SHIFT + D" (exec "mako-dnd")) ]
         ++ when config.services.playerctld [
