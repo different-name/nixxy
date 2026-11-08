@@ -20,9 +20,19 @@ bundleLib.mkEnableModule [ "dyad" "applications" "discord" ] {
         commandLineArgs = lib.optionalString config.dyad.hardware.nvidia.enable "--disable-accelerated-video-decode";
         withVencord = true;
         vencord = pkgs.vencord.overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ lib.filesystem.listFilesRecursive ./vencord/patches;
+          # discord moved to rspack, fixed in 1.15.16
+          version = "1.15.16";
+          src = old.src.override {
+            tag = "v1.15.16";
+            hash = "sha256-aUJubLJpyLAZWiOezqFxPY6oVPgWVPQpajFqrJvrO9U=";
+          };
+          pnpmDeps = old.pnpmDeps.overrideAttrs {
+            outputHash = "sha256-HS8uZNepvDefjrsG3buVLFCVv7sHvazcwdpcT3EQ/78=";
+          };
 
-          postPatch = (old.postPatch or "") + ''
+          patches = lib.filesystem.listFilesRecursive ./vencord/patches;
+
+          postPatch = ''
             mkdir -p src/userplugins
             cp -r ${./vencord/plugins}/. src/userplugins/
             chmod -R u+w src/userplugins

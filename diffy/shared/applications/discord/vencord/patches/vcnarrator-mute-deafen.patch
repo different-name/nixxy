@@ -1,13 +1,13 @@
 diff --git a/src/plugins/vcNarrator/VoiceSetting.tsx b/src/plugins/vcNarrator/VoiceSetting.tsx
-index 2daf8638..706478f1 100644
+index 11f9526..7b78c3a 100644
 --- a/src/plugins/vcNarrator/VoiceSetting.tsx
 +++ b/src/plugins/vcNarrator/VoiceSetting.tsx
-@@ -4,10 +4,25 @@
-  * SPDX-License-Identifier: GPL-3.0-or-later
-  */
- 
--import { Forms, SearchableSelect, useMemo, useState } from "@webpack/common";
-+import { Forms, SearchableSelect, useEffect, useMemo, useState } from "@webpack/common";
+@@ -7,10 +7,25 @@
+ import { Heading } from "@components/Heading";
+ import { Margins } from "@components/margins";
+ import { Paragraph } from "@components/Paragraph";
+-import { SearchableSelect, useMemo, useState } from "@webpack/common";
++import { SearchableSelect, useEffect, useMemo, useState } from "@webpack/common";
  
  import { getCurrentVoice, settings } from "./settings";
  
@@ -29,7 +29,7 @@ index 2daf8638..706478f1 100644
  // TODO: replace by [Object.groupBy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy) once it has more maturity
  
  function groupBy<T extends object, K extends PropertyKey>(arr: T[], fn: (obj: T) => K) {
-@@ -103,7 +118,7 @@ function ComplexPicker({ voice, voices }: PickerProps) {
+@@ -106,7 +121,7 @@ function ComplexPicker({ voice, voices }: PickerProps) {
  
  
  function VoiceSetting() {
@@ -39,10 +39,10 @@ index 2daf8638..706478f1 100644
  
      if (!voices.length)
 diff --git a/src/plugins/vcNarrator/index.tsx b/src/plugins/vcNarrator/index.tsx
-index 31137168..b753c281 100644
+index ac128ce..42d1b35 100644
 --- a/src/plugins/vcNarrator/index.tsx
 +++ b/src/plugins/vcNarrator/index.tsx
-@@ -26,6 +26,7 @@ import { AuthenticationStore, Button, ChannelStore, Forms, GuildMemberStore, Sel
+@@ -30,6 +30,7 @@ import { AuthenticationStore, ChannelStore, GuildMemberStore, SelectedChannelSto
  import { ReactElement } from "react";
  
  import { getCurrentVoice, settings } from "./settings";
@@ -50,7 +50,7 @@ index 31137168..b753c281 100644
  
  interface VoiceStateChangeEvent {
      userId: string;
-@@ -38,10 +39,6 @@ interface VoiceStateChangeEvent {
+@@ -42,10 +43,6 @@ interface VoiceStateChangeEvent {
      sessionId: string;
  }
  
@@ -61,7 +61,7 @@ index 31137168..b753c281 100644
  function speak(text: string) {
      // Don't narrate in the overlay window, otherwise everything is said twice
      if (!text || window.__OVERLAY__) return;
-@@ -75,12 +72,84 @@ function formatText(str: string, user: string, channel: string, displayName: str
+@@ -79,12 +76,84 @@ function formatText(str: string, user: string, channel: string, displayName: str
          .replaceAll("{{NICKNAME}}", clean(nickname) || (nickname ? "Someone" : ""));
  }
  
@@ -150,7 +150,7 @@ index 31137168..b753c281 100644
  
  // For every user, channelId and oldChannelId will differ when moving channel.
  // Only for the local user, channelId and oldChannelId will be the same when moving channel,
-@@ -97,48 +166,21 @@ function getTypeAndChannelId({ channelId, oldChannelId }: VoiceStateChangeEvent,
+@@ -101,48 +170,21 @@ function getTypeAndChannelId({ channelId, oldChannelId }: VoiceStateChangeEvent,
          if (channelId) return [oldChannelId ? "move" : "join", channelId];
          if (oldChannelId) return ["leave", oldChannelId];
      }
@@ -208,7 +208,7 @@ index 31137168..b753c281 100644
  
  function playSample(type: string) {
      const currentUser = UserStore.getCurrentUser();
-@@ -180,36 +222,39 @@ export default definePlugin({
+@@ -184,36 +226,39 @@ export default definePlugin({
                  }
  
                  const [type, id] = getTypeAndChannelId(state, isMe);
@@ -264,7 +264,7 @@ index 31137168..b753c281 100644
          }
      },
  
-@@ -221,13 +266,19 @@ export default definePlugin({
+@@ -225,13 +270,19 @@ export default definePlugin({
              return;
          }
  
@@ -289,7 +289,7 @@ index 31137168..b753c281 100644
          const types = useMemo(
              () => Object.keys(settings.def).filter(k => k.endsWith("Message")).map(k => k.slice(0, -7)),
 diff --git a/src/plugins/vcNarrator/settings.ts b/src/plugins/vcNarrator/settings.ts
-index ee3aee0e..0c8d673f 100644
+index ee3aee0..0c8d673 100644
 --- a/src/plugins/vcNarrator/settings.ts
 +++ b/src/plugins/vcNarrator/settings.ts
 @@ -59,6 +59,11 @@ export const settings = definePluginSettings({
