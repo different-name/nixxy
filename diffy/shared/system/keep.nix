@@ -77,7 +77,10 @@ bundleLib.mkEnableModule [ "dyad" "system" "keep" ] {
   };
 
   home-manager = {
+    keep.loose.trash = true;
+
     keep.safe = {
+      trash = true;
       dirs = [
         ".terminfo"
         "nixxy"
@@ -89,13 +92,13 @@ bundleLib.mkEnableModule [ "dyad" "system" "keep" ] {
       ];
 
       dataDirs = [
-        "Trash"
         "pki" # nss certificate db
       ];
     };
 
     programs.keep.exclude = [
       ".local/state/lesshst" # less history file
+      ".local/share/Trash"
       ".pki" # seems to be from chromium, haven't noticed anything wrong having this ephemeral
     ];
   };
